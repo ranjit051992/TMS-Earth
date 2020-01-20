@@ -1,10 +1,9 @@
 package framework.reporting;
 
-import framework.frameworkUtilies.GlobalVariable;
+import framework.utilities.GlobalVariable;
 import framework.startup.Startup;
-import framework.utilities.helper_package.FileOperations;
 import org.apache.log4j.Logger;
-import product.constants.iConstants;
+import eProc.constants.iConstants;
 
 import java.io.IOException;
 import java.sql.*;

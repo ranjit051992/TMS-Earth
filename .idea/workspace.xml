@@ -1,13 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e357b223-eb9d-4b33-9fe9-c225abf16658" name="Default Changelist" comment="" />
+    <list default="true" id="e357b223-eb9d-4b33-9fe9-c225abf16658" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/implementation/eProc/pages/coa/ICoa.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/implementation/eProc/productUtilities/constants/IConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/implementation/eProc/productUtilities/dataCreation/ObjectCreation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/implementation/framework/loggers/LogGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/framework/helperPackage/CoaImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/pages/coa/CoaImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/framework/helperPackage/FileOperations.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/framework/helperPackage/GetData.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/GetData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/framework/helperPackage/Utilities.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/framework/helperPackage/commonUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/productUtilities/commonUtilities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/framework/reporting/ReportingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/reporting/ReportingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/specs/CreateReqSpecification.spec" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/specs/example.spec" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/specs/newSpec.spec" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BO/CatalogItemBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/bo/CatalogItemBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BO/RequisitionBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/bo/RequisitionBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DriverSelector/DriverSelector.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ObjectCreation/iConstants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Pages/ExcelReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Pages/IPageCart.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Pages/IPageCartImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Pages/IPageCheckout.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/pages/checkout/ICheckout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Pages/ObjectClass.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Pages/PageClass.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/actionBot/ActionBot.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/businessFlow/FlowCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/keywords/CartFlow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eProc/Requisition/Checkout/CheckoutImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/pages/checkout/CheckoutImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/executionHooks/ExecutionHooks.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/executionHooks/ExecutionHooks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/frameworkUtilies/FileOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/FileOperations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/frameworkUtilies/GlobalVariable.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/GlobalVariable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/frameworkUtilies/PropertiesConfigurator.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/PropertiesConfigurator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/frameworkUtilies/customLogger/CustomFileAppender.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/frameworkUtilies/driverFactory/DriverSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/driverFactory/DriverSelector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/frameworkUtilies/testResult/ReportingService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/frameworkUtilies/testResult/TestReportingBO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/listeners/TestListeners.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/startup/Startup.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/startup/Startup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/utilities/commonServices/CommonFunctions.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/utilities/commonServices/CommonServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/commonServices/CommonServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/utilities/commonServices/ExecutionServices.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/utilities/commonServices/JSONParsingClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/commonServices/JSONParsingClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/utilities/commonServices/TestObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/utilities/commonServices/xmlParsingClass.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/utilities/customLogger/CustomFileAppender.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/utilities/customWebUI/WebUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/utilities/customizeAssertion/CustomizeAssertion.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/customizeAssertion/CustomizeAssertion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/utilities/helper_package/CoaImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/utilities/helper_package/FileOperations.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/utilities/helper_package/GetData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/utilities/helper_package/Utilities.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/utilities/helper_package/commonUtilities.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/utilities/screenshot/Screenshot.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/screenshot/Screenshot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/utilities/testCaseWrapper/TestCaseFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/utilities/userListing/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/productUtilities/userListing/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/utilities/userListing/userListingUtility.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/productUtilities/userListing/UserListing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/framework/utilities/webElementWrapper/WebElementWrapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/implementation/StepImplementation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/StepImplementation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/BO/CatalogItemBO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/BO/RequisitionBO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DriverSelector/DriverSelector.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/NewMavenProject.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ObjectCreation/iConstants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Pages/ExcelReader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Pages/IPageCart.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Pages/IPageCartImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Pages/IPageCheckout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Pages/ObjectClass.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Pages/PageClass.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/actionBot/ActionBot.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/businessFlow/FlowCart.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/eProc/Requisition/Checkout/CheckoutImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/executionHooks/ExecutionHooks.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/implementation/StepImplementation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/NewMavenProject.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/StepImplementation.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1WTVkEHzL6gf5y3dtGcjyQfcENt" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -15,20 +109,38 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/implementation/framework/reporting" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/implementation/framework" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/implementation/eProc/bo" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="framework.action" />
-      <recent name="framework.loggers" />
+      <recent name="eProc.pages.checkout" />
+      <recent name="eProc.businessFlow" />
+      <recent name="framework.executionHooks" />
+      <recent name="framework.driverFactory" />
+      <recent name="framework.startup" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Gauge_Workspace\dd-ui-automation\implementation\eProc\bo" />
+      <recent name="D:\Gauge_Workspace\dd-ui-automation\implementation\framework\utilities" />
+      <recent name="D:\Gauge_Workspace\dd-ui-automation\implementation\framework" />
       <recent name="D:\Workspaces\IntelliJ_Workspace\NewMavenProject\implementation\framework\reporting" />
       <recent name="D:\Workspaces\IntelliJ_Workspace\NewMavenProject\implementation\framework\helperPackage" />
     </key>
   </component>
-  <component name="RunManager" selected="Gauge Execution.Test scenario">
+  <component name="RunManager" selected="TestNG.D:/Gauge_Workspace/dd-ui-automation/methods-test-Parallel.xml">
+    <configuration name="D:/Gauge_Workspace/dd-ui-automation/methods-test-Parallel.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="NewMavenProject" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/methods-test-Parallel.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test scenario" type="executeSpecs" factoryName="Gauge Execution" temporary="true">
       <setting name="environment" value="" />
       <setting name="specsToExecute" value="$PROJECT_DIR$/specs/eProc/Requisition/Checkout/example.spec:34" />
@@ -76,6 +188,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.D:/Gauge_Workspace/dd-ui-automation/methods-test-Parallel.xml" />
         <item itemvalue="Gauge Execution.Test scenario" />
         <item itemvalue="Gauge Execution.example.spec" />
       </list>
@@ -107,21 +220,49 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="690" y="302" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1579510183695">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="302" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579510183695" />
+    <state x="618" y="441" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1579516052160">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="618" y="441" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579516052160" />
+    <state x="761" y="389" width="397" height="267" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1579510192399">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="761" y="389" width="397" height="267" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579510192399" />
+    <state x="761" y="410" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1579508887745">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="761" y="410" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579508887745" />
+    <state x="690" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1579514455668">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579514455668" />
     <state x="540" y="258" key="IDE.errors.dialog" timestamp="1579174290661">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="540" y="258" key="IDE.errors.dialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579174290661" />
-    <state x="463" y="166" key="SettingsEditor" timestamp="1579174386317">
+    <state x="463" y="166" key="SettingsEditor" timestamp="1579516431565">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="463" y="166" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579174386317" />
+    <state x="463" y="166" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579516431565" />
+    <state x="775" y="302" key="chooseDestDirectoryDialog" timestamp="1579509211718">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="775" y="302" key="chooseDestDirectoryDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579509211718" />
+    <state x="605" y="110" width="709" height="819" key="find.popup" timestamp="1579516411724">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="605" y="110" width="709" height="819" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579516411724" />
     <state x="342" y="248" key="new project wizard" timestamp="1579175136831">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="342" y="248" key="new project wizard/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579175136831" />
-    <state x="623" y="225" width="670" height="676" key="search.everywhere.popup" timestamp="1579174641001">
+    <state x="623" y="225" width="672" height="676" key="search.everywhere.popup" timestamp="1579516444192">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="670" height="676" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579174641001" />
+    <state x="623" y="225" width="672" height="676" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579516444192" />
   </component>
 </project>

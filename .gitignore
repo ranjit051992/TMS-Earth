@@ -1,2 +1,8 @@
 /reports/
 /logs/
+/.idea/
+/.gauge/
+/env/
+/resources/
+/target/
+/*.iml
