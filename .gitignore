@@ -1,6 +1,2 @@
-/bin/
-/output/
-/dist/
-/target/
-/test-output/
-*.prefs
+/reports/
+/logs/
