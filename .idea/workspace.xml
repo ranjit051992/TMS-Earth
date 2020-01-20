@@ -1,13 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e357b223-eb9d-4b33-9fe9-c225abf16658" name="Default Changelist" comment="" />
+    <list default="true" id="e357b223-eb9d-4b33-9fe9-c225abf16658" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NewMavenProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/NewMavenProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/eProc/keywords/CartFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/keywords/CartFlow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/eProc/pages/checkout/ICheckout.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/pages/checkout/ICheckout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/eProc/pages/coa/CoaImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/eProc/productUtilities/commonUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/productUtilities/commonUtilities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/eProc/productUtilities/constants/IConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/productUtilities/constants/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/eProc/productUtilities/userListing/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/productUtilities/userListing/UserBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/eProc/productUtilities/userListing/UserListing.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/productUtilities/userListing/UserListing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/framework/action/ActionBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/action/ActionBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/framework/loggers/LogGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/loggers/LogGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/framework/reporting/ReportingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/reporting/ReportingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/framework/reporting/TestReportingBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/reporting/TestReportingBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/framework/startup/Startup.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/startup/Startup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/framework/utilities/FileOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/FileOperations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/framework/utilities/GetData.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/GetData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/framework/utilities/GlobalVariable.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/GlobalVariable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/framework/utilities/commonServices/CommonServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/commonServices/CommonServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/framework/utilities/commonServices/JSONParsingClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/commonServices/JSONParsingClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/framework/utilities/customizeAssertion/CustomizeAssertion.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/customizeAssertion/CustomizeAssertion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/framework/utilities/driverFactory/DriverSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/driverFactory/DriverSelector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/framework/utilities/screenshot/Screenshot.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/screenshot/Screenshot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="1WTVkEHzL6gf5y3dtGcjyQfcENt" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -15,20 +61,38 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/implementation/framework/reporting" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/implementation/framework" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/implementation/eProc/bo" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="framework.action" />
-      <recent name="framework.loggers" />
+      <recent name="eProc.pages.checkout" />
+      <recent name="eProc.businessFlow" />
+      <recent name="framework.executionHooks" />
+      <recent name="framework.driverFactory" />
+      <recent name="framework.startup" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Gauge_Workspace\dd-ui-automation\implementation\eProc\bo" />
+      <recent name="D:\Gauge_Workspace\dd-ui-automation\implementation\framework\utilities" />
+      <recent name="D:\Gauge_Workspace\dd-ui-automation\implementation\framework" />
       <recent name="D:\Workspaces\IntelliJ_Workspace\NewMavenProject\implementation\framework\reporting" />
       <recent name="D:\Workspaces\IntelliJ_Workspace\NewMavenProject\implementation\framework\helperPackage" />
     </key>
   </component>
-  <component name="RunManager" selected="Gauge Execution.Test scenario">
+  <component name="RunManager" selected="TestNG.D:/Gauge_Workspace/dd-ui-automation/methods-test-Parallel.xml">
+    <configuration name="D:/Gauge_Workspace/dd-ui-automation/methods-test-Parallel.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="NewMavenProject" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/methods-test-Parallel.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test scenario" type="executeSpecs" factoryName="Gauge Execution" temporary="true">
       <setting name="environment" value="" />
       <setting name="specsToExecute" value="$PROJECT_DIR$/specs/eProc/Requisition/Checkout/example.spec:34" />
@@ -76,6 +140,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.D:/Gauge_Workspace/dd-ui-automation/methods-test-Parallel.xml" />
         <item itemvalue="Gauge Execution.Test scenario" />
         <item itemvalue="Gauge Execution.example.spec" />
       </list>
@@ -107,21 +172,53 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="690" y="302" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1579510183695">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="302" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579510183695" />
+    <state x="618" y="441" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1579516052160">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="618" y="441" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579516052160" />
+    <state x="761" y="389" width="397" height="267" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1579510192399">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="761" y="389" width="397" height="267" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579510192399" />
+    <state x="761" y="410" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1579508887745">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="761" y="410" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579508887745" />
+    <state x="151" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1579518501605">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="151" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579518501605" />
+    <state x="690" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1579514455668">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579514455668" />
     <state x="540" y="258" key="IDE.errors.dialog" timestamp="1579174290661">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="540" y="258" key="IDE.errors.dialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579174290661" />
-    <state x="463" y="166" key="SettingsEditor" timestamp="1579174386317">
+    <state x="463" y="166" key="SettingsEditor" timestamp="1579518820044">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="463" y="166" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579174386317" />
+    <state x="463" y="166" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579518820044" />
+    <state x="775" y="302" key="chooseDestDirectoryDialog" timestamp="1579509211718">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="775" y="302" key="chooseDestDirectoryDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579509211718" />
+    <state x="605" y="110" width="709" height="819" key="find.popup" timestamp="1579519789265">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="605" y="110" width="709" height="819" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579519789265" />
     <state x="342" y="248" key="new project wizard" timestamp="1579175136831">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="342" y="248" key="new project wizard/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579175136831" />
-    <state x="623" y="225" width="670" height="676" key="search.everywhere.popup" timestamp="1579174641001">
+    <state x="623" y="225" width="672" height="676" key="search.everywhere.popup" timestamp="1579518627472">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="670" height="676" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579174641001" />
+    <state x="623" y="225" width="672" height="676" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579518627472" />
   </component>
 </project>

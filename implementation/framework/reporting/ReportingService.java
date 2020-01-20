@@ -1,10 +1,10 @@
 package framework.reporting;
 
-import framework.frameworkUtilies.GlobalVariable;
+import framework.utilities.FileOperations;
+import framework.utilities.GlobalVariable;
 import framework.startup.Startup;
-import framework.utilities.helper_package.FileOperations;
 import org.apache.log4j.Logger;
-import product.constants.iConstants;
+import eProc.productUtilities.constants.Constants;
 
 import java.io.IOException;
 import java.sql.*;
@@ -21,7 +21,7 @@ public class ReportingService
 	 * @author nitin.chourey;
 	 * @description reportGenration Method inserts testcase data in
 	 *              Automation_Report table in DB or write in txt file;
-	 * @param Nil;
+	 * @param *Nil;
 	 * @return Nil;
 	 * @throws Exception
 	 */
@@ -29,7 +29,7 @@ public class ReportingService
 	{
 		TestReportingBO testReportingBo = new TestReportingBO();
 		int suitId = getUniqueSequence();
-		Set<String> keysSet = iConstants.testCaseMapping.keySet();
+		Set<String> keysSet = Constants.testCaseMapping.keySet();
 
 		for (String jiraid : keysSet)
 		{
@@ -59,7 +59,7 @@ public class ReportingService
 	 * @author nitin.chourey;
 	 * @description collectTestCaseData collects all the data from
 	 *              testCase_eproc and creates reporting bo objects;
-	 * @param Nil;
+	 * @param *Nil;
 	 * @return Nil;
 	 * @throws SQLException
 	 * @throws IOException
@@ -128,7 +128,7 @@ public class ReportingService
 	 * @author nitin.chourey;
 	 * @description updateResultInDB updates test case status in testcases_eproc
 	 *              table ;
-	 * @param String
+	 * @param *String
 	 *            testcase jiraId, String testcase status; @returnNil;
 	 */
 	public static void updateResultInDB(String Jiraid, String status)
@@ -172,7 +172,7 @@ public class ReportingService
 	 * @author nitin.chourey;
 	 * @description collectTestcaseMapping creates Map with parent testcase and
 	 *              mapped cases;
-	 * @param String
+	 * @param *String
 	 *            List of testcases in string format;
 	 * @return Nil;
 	 */
@@ -193,7 +193,7 @@ public class ReportingService
 			rs = stmt.executeQuery(query);
 			while (rs.next())
 			{
-				iConstants.testCaseMapping.put(rs.getString("TESTCASE_NAME"), rs.getString("MAPPED_WITH"));
+				Constants.testCaseMapping.put(rs.getString("TESTCASE_NAME"), rs.getString("MAPPED_WITH"));
 			}
 		}
 		catch (Exception e)
@@ -222,7 +222,7 @@ public class ReportingService
 	 * @author nitin.chourey;
 	 * @description updatAutomationReportData inserts REporting data in
 	 *              Automation_Report table ;
-	 * @param TestReportingBO
+	 * @param *TestReportingBO
 	 *            Reporting BO , Int suit id;
 	 * @return Nil;
 	 * @throws Exception
@@ -270,7 +270,7 @@ public class ReportingService
 	 * 
 	 * @author nitin.chourey;
 	 * @description getUniqueSequence generates unique sequence;
-	 * @param Nil;
+	 * @param *Nil;
 	 * @return int sequence;
 	 * @throws SQLException
 	 */
@@ -317,13 +317,13 @@ public class ReportingService
 	/**
 	 * @author nitin.chourey;
 	 * @description queryCreation creates mysql query as par configuration;
-	 * @param Nil;
+	 * @param *Nil;
 	 * @return String query;
 	 * @throws SQLException
 	 */
 	public static String queryCreation() throws Exception
 	{
-		List<String> testcasesList = framework.frameworkUtilies.FileOperations.getTestCaseList();
+		List<String> testcasesList = FileOperations.getTestCaseList();
 		String testcases = "";
 		String query = null;
 		if (testcasesList.size() > 0)
@@ -389,9 +389,9 @@ public class ReportingService
 		}
 		for (String parent : Startup.testMethodTestCaseMap.keySet())
 		{
-			iConstants.testCaseMapping.put(parent, "parentTestCase");
+			Constants.testCaseMapping.put(parent, "parentTestCase");
 		}
-		logger.info("iConstants.testCaseMapping............. " + iConstants.testCaseMapping.size());
+		logger.info("Constants.testCaseMapping............. " + Constants.testCaseMapping.size());
 	}
 
 	public static void WriteCurrentStatus(String suitname)
@@ -401,25 +401,25 @@ public class ReportingService
 
 	public static void beforeCase(String testCaseName)
 	{
-		for (String tcName : iConstants.testCaseMapping.keySet())
+		for (String tcName : Constants.testCaseMapping.keySet())
 		{
-			if (iConstants.testCaseMapping.get(tcName).equals(testCaseName))
+			if (Constants.testCaseMapping.get(tcName).equals(testCaseName))
 			{
-				iConstants.testCaseStatus.put(tcName, "Skipped");
+				Constants.testCaseStatus.put(tcName, "Skipped");
 			}
 
 		}
-		iConstants.testCaseStatus.put(testCaseName, "Skipped");
+		Constants.testCaseStatus.put(testCaseName, "Skipped");
 
 	}
 
 	public static void afterCase()
 	{
-		for (String tcName : iConstants.testCaseStatus.keySet())
+		for (String tcName : Constants.testCaseStatus.keySet())
 		{
-			if (iConstants.testCaseStatus.get(tcName).equals("Skipped"))
+			if (Constants.testCaseStatus.get(tcName).equals("Skipped"))
 			{
-				iConstants.skippedCases.add(tcName);
+				Constants.skippedCases.add(tcName);
 			}
 
 		}

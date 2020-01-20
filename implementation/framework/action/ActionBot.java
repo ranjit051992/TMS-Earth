@@ -1,6 +1,5 @@
 package framework.action;
 
-import ObjectCreation.iConstants;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -14,6 +13,8 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import eProc.productUtilities.constants.Constants;
 
 public class ActionBot
 {
@@ -927,19 +928,19 @@ public class ActionBot
             select = new Select(element);
             if (selectBy != null)
             {
-                if (selectBy.equalsIgnoreCase(iConstants.SELECT_BY_VALUE))
+                if (selectBy.equalsIgnoreCase(Constants.SELECT_BY_VALUE))
                 {
                     select.selectByValue(value);
                 }
-                else if (selectBy.equalsIgnoreCase(iConstants.SELECT_BY_INDEX))
+                else if (selectBy.equalsIgnoreCase(Constants.SELECT_BY_INDEX))
                 {
                     select.selectByIndex(Integer.parseInt(value));
                 }
-                else if (selectBy.equalsIgnoreCase(iConstants.SELECT_BY_VISIBLE_TEXT))
+                else if (selectBy.equalsIgnoreCase(Constants.SELECT_BY_VISIBLE_TEXT))
                 {
                     select.selectByVisibleText(value);
                 }
-                else if (selectBy.equalsIgnoreCase(iConstants.SELECT_BY_PARTIAL_VISIBLE_TEXT))
+                else if (selectBy.equalsIgnoreCase(Constants.SELECT_BY_PARTIAL_VISIBLE_TEXT))
                 {
                     for (WebElement options : select.getOptions())
                     {
