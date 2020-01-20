@@ -1,10 +1,10 @@
 package eProc.productUtilities.userListing;
 
-import framework.frameworkUtilies.GlobalVariable;
-import framework.frameworkUtilies.testResult.TestReportingBO;
+import framework.utilities.GlobalVariable;
+import framework.reporting.TestReportingBO;
 import framework.startup.Startup;
-import framework.utilities.helper_package.FileOperations;
-import framework.utilities.helper_package.commonUtilities;
+import framework.utilities.FileOperations;
+import eProc.productUtilities.commonUtilities;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
@@ -26,19 +26,19 @@ public class UserListing
 	 * @return: User object;
 	 * @throws Exception
 	 */
-	public static User beforeLogin(WebDriver driver, TestReportingBO testcase) throws Exception
+	public static UserBO beforeLogin(WebDriver driver, TestReportingBO testcase) throws Exception
 	{
-		User user = new User();
+		UserBO userBO = new UserBO();
 		try
 		{
 
-			user = UserListing.reserveUser(driver, testcase);
+			userBO = UserListing.reserveUser(driver, testcase);
 		}
 		catch (Exception e)
 		{
 			throw e;
 		}
-		return user;
+		return userBO;
 	}
 
 	/**
@@ -53,18 +53,18 @@ public class UserListing
 	 * @throws SQLException
 	 */
 
-	public static synchronized User setUserInActive(WebDriver driver, TestReportingBO testcase) throws SQLException
+	public static synchronized UserBO setUserInActive(WebDriver driver, TestReportingBO testcase) throws SQLException
 	{
 
-		User user = new User();
+		UserBO userBO = new UserBO();
 
 		try
 		{
 			if (Startup.usersList.size() != 0)
 			{
-				user = Startup.usersList.get(0);
-				Startup.usersList.remove(user);
-				logger.info("setting isActive flag false for :: " + user.getUsername());
+//				user = Startup.usersList.get(0);
+				Startup.usersList.remove(userBO);
+				logger.info("setting isActive flag false for :: " + userBO.getUsername());
 				logger.info("after reserving available users  :  " + Startup.usersList.size());
 
 			}
@@ -78,7 +78,7 @@ public class UserListing
 			logger.error("Exception in setUserInActive method", e);
 		}
 
-		return user;
+		return userBO;
 	}
 
 	/**
@@ -93,15 +93,15 @@ public class UserListing
 	 * @throws SQLException
 	 */
 
-	public static synchronized void setUserActive(User user) throws Exception
+	public static synchronized void setUserActive(UserBO userBO) throws Exception
 	{
 
 		try
 		{
-			if (user != null)
+			if (userBO != null)
 			{
-				Startup.usersList.add(user);
-				logger.info("setting isActive flag true for :: " + user.getUsername());
+				Startup.usersList.add(userBO);
+				logger.info("setting isActive flag true for :: " + userBO.getUsername());
 				logger.info("after releasing available users  :  " + Startup.usersList.size());
 
 			}
@@ -134,7 +134,7 @@ public class UserListing
 		String query = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		User user = null;
+		UserBO userBO = null;
 
 		logger.info("\nGetting data for Setup: " + GlobalVariable.SETUP + "  and Tenant :" + GlobalVariable.TENANT);
 
@@ -150,16 +150,16 @@ public class UserListing
 			{
 				while (rs.next())
 				{
-					user = new User();
-					user.setUsername(rs.getString("USERNAME"));
-					user.setPassword(rs.getString("PASSWORD"));
-					user.setTenant(rs.getString("TENANT_NAME"));
-					user.setSetUpName(rs.getString("SETUP_NAME"));
-					user.setRole(rs.getString("ROLE"));
-					Startup.usersList.add(user);
+					userBO = new UserBO();
+					userBO.setUsername(rs.getString("USERNAME"));
+					userBO.setPassword(rs.getString("PASSWORD"));
+					userBO.setTenant(rs.getString("TENANT_NAME"));
+					userBO.setSetUpName(rs.getString("SETUP_NAME"));
+					userBO.setRole(rs.getString("ROLE"));
+					Startup.usersList.add(userBO);
 
 				}
-				logger.info("\nSetting values in user  :  " + user.getUsername() + "    " + user.getPassword() + "    " + user.getTenant() + "   " + user.getSetUpName() + "   " + user.getRole());
+				logger.info("\nSetting values in user  :  " + userBO.getUsername() + "    " + userBO.getPassword() + "    " + userBO.getTenant() + "   " + userBO.getSetUpName() + "   " + userBO.getRole());
 			}
 			else
 			{
@@ -181,33 +181,33 @@ public class UserListing
 
 	}
 
-	public static User reserveUser(WebDriver driver, TestReportingBO testcase) throws Exception
+	public static UserBO reserveUser(WebDriver driver, TestReportingBO testcase) throws Exception
 	{
-		User user = new User();
+		UserBO userBO = new UserBO();
 		try
 		{
 
-			user = UserListing.setUserInActive(driver, testcase);
-			FileOperations.writeInFile("./output/UserActivities.txt", user.getUsername() + " :: Reserved for :: " + testcase.getTestCaseName() + "  :: At " + commonUtilities.currentdateTime("dd/MM/yyyy::HH:mm"));
+			userBO = UserListing.setUserInActive(driver, testcase);
+			FileOperations.writeInFile("./output/UserActivities.txt", userBO.getUsername() + " :: Reserved for :: " + testcase.getTestCaseName() + "  :: At " + commonUtilities.currentdateTime("dd/MM/yyyy::HH:mm"));
 
 		}
 		catch (Exception e)
 		{
 			throw e;
 		}
-		return user;
+		return userBO;
 	}
 
-	public static void releaseUser(WebDriver driver, TestReportingBO testcase, User user) throws Exception
+	public static void releaseUser(WebDriver driver, TestReportingBO testcase, UserBO userBO) throws Exception
 	{
 		try
 		{
-			if (user != null)
+			if (userBO != null)
 			{
-				if (user.getUsername() != null)
+				if (userBO.getUsername() != null)
 				{
-					UserListing.setUserActive(user);
-					FileOperations.writeInFile("./output/UserActivities.txt", user.getUsername() + " :: Released By :: " + testcase.getTestCaseName() + "  :: At " + commonUtilities.currentdateTime("dd/MM/yyyy::HH:mm"));
+					UserListing.setUserActive(userBO);
+					FileOperations.writeInFile("./output/UserActivities.txt", userBO.getUsername() + " :: Released By :: " + testcase.getTestCaseName() + "  :: At " + commonUtilities.currentdateTime("dd/MM/yyyy::HH:mm"));
 				}
 			}
 			else

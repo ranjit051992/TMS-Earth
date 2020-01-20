@@ -3,8 +3,7 @@ package framework.utilities;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,5 +39,18 @@ public class FileOperations
 		}
 
 		return testcases;
+	}
+
+	public static void writeInFile(String filePath, String Value) throws Exception {
+		try {
+			BufferedWriter BR = new BufferedWriter(new FileWriter(new File(filePath), true));
+			BR.write(Value);
+			BR.newLine();
+			BR.close();
+		}
+		catch (Exception e) {
+
+			throw e;
+		}
 	}
 }

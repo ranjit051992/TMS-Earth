@@ -1,7 +1,7 @@
 package framework.utilities;
 
 import framework.startup.Startup;
-import framework.utilities.helper_package.commonUtilities;
+import eProc.productUtilities.commonUtilities;
 
 public class GlobalVariable
 {

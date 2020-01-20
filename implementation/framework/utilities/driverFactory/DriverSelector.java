@@ -1,7 +1,7 @@
 package framework.utilities.driverFactory;
 
-import framework.frameworkUtilies.GlobalVariable;
-import framework.frameworkUtilies.testResult.TestReportingBO;
+import framework.utilities.GlobalVariable;
+import framework.reporting.TestReportingBO;
 import org.apache.log4j.Logger;
 import org.apache.log4j.MDC;
 import org.openqa.selenium.WebDriver;

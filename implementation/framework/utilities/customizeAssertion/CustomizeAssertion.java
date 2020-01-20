@@ -1,10 +1,10 @@
 package framework.utilities.customizeAssertion;
 
-import framework.frameworkUtilies.testResult.TestReportingBO;
+import framework.reporting.TestReportingBO;
 import framework.startup.Startup;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
-import product.constants.iConstants;
+import eProc.productUtilities.constants.Constants;
 
 public class CustomizeAssertion
 {
@@ -16,7 +16,7 @@ public class CustomizeAssertion
 	 * @author nitin.chourey;
 	 * @description assertTrue is wrapper on testNG assertTrue and updates
 	 *              status in Reporting BO;
-	 * @param Boolean
+	 * @param *Boolean
 	 *            test case status, String assertion Message, String testcase
 	 *            JiraID;
 	 * @return Nil;
@@ -25,11 +25,11 @@ public class CustomizeAssertion
 	{
 		if (status)
 		{
-			iConstants.testCaseStatus.put(JiraId, "PASSED");
+			Constants.testCaseStatus.put(JiraId, "PASSED");
 		}
 		else
 		{
-			iConstants.testCaseStatus.put(JiraId, "FAILED");
+			Constants.testCaseStatus.put(JiraId, "FAILED");
 		}
 
 		TestReportingBO ReportingBO = Startup.testMethodTestCaseMap.get(JiraId);
@@ -39,13 +39,13 @@ public class CustomizeAssertion
 			{
 				ReportingBO.setTestCaseName(JiraId);
 				ReportingBO.setExecutionResult("PASSED");
-				iConstants.passedCases.add(JiraId);
+				Constants.passedCases.add(JiraId);
 			}
 			else
 			{
 				ReportingBO.setTestCaseName(JiraId);
 				ReportingBO.setExecutionResult("FAILED");
-				iConstants.failedCases.add(JiraId);
+				Constants.failedCases.add(JiraId);
 			}
 			Startup.testMethodTestCaseMap.put(JiraId, ReportingBO);
 			ReportingBO = null;
@@ -63,7 +63,7 @@ public class CustomizeAssertion
 	 * @author nitin.chourey;
 	 * @description softAssertTrue is wrapper on testNG softAssertTrue and
 	 *              updates status in Reporting BO;
-	 * @param Boolean
+	 * @param *Boolean
 	 *            test case status, String assertion Message, String testcase
 	 *            JiraID;
 	 * @return Nil;
@@ -72,11 +72,11 @@ public class CustomizeAssertion
 	{
 		if (status)
 		{
-			iConstants.testCaseStatus.put(JiraId, "PASSED");
+			Constants.testCaseStatus.put(JiraId, "PASSED");
 		}
 		else
 		{
-			iConstants.testCaseStatus.put(JiraId, "FAILED");
+			Constants.testCaseStatus.put(JiraId, "FAILED");
 		}
 		TestReportingBO ReportingBO = Startup.testMethodTestCaseMap.get(JiraId);
 		org.testng.asserts.SoftAssert softassert = new org.testng.asserts.SoftAssert();
@@ -86,14 +86,14 @@ public class CustomizeAssertion
 			{
 				ReportingBO.setTestCaseName(JiraId);
 				ReportingBO.setExecutionResult("PASSED");
-				iConstants.passedCases.add(JiraId);
+				Constants.passedCases.add(JiraId);
 			}
 			else
 			{
 				ReportingBO.setTestCaseName(JiraId);
 				ReportingBO.setExecutionResult("FAILED");
 				ReportingBO.setMessage("Assertion Exception : " + message);
-				iConstants.failedCases.add(JiraId);
+				Constants.failedCases.add(JiraId);
 			}
 			Startup.testMethodTestCaseMap.put(JiraId, ReportingBO);
 			ReportingBO = null;
@@ -111,7 +111,7 @@ public class CustomizeAssertion
 	 * @author nitin.chourey;
 	 * @description assertFalse is wrapper on testNG assertFalse and updates
 	 *              status in Reporting BO;
-	 * @param Boolean
+	 * @param *Boolean
 	 *            test case status, String assertion Message, String testcase
 	 *            JiraID;
 	 * @return Nil;
@@ -120,11 +120,11 @@ public class CustomizeAssertion
 	{
 		if (status)
 		{
-			iConstants.testCaseStatus.put(JiraId, "FAILED");
+			Constants.testCaseStatus.put(JiraId, "FAILED");
 		}
 		else
 		{
-			iConstants.testCaseStatus.put(JiraId, "PASSED");
+			Constants.testCaseStatus.put(JiraId, "PASSED");
 		}
 
 		TestReportingBO ReportingBO = Startup.testMethodTestCaseMap.get(JiraId);
@@ -134,13 +134,13 @@ public class CustomizeAssertion
 			{
 				ReportingBO.setTestCaseName(JiraId);
 				ReportingBO.setExecutionResult("FAILED");
-				iConstants.failedCases.add(JiraId);
+				Constants.failedCases.add(JiraId);
 			}
 			else
 			{
 				ReportingBO.setTestCaseName(JiraId);
 				ReportingBO.setExecutionResult("PASSED");
-				iConstants.passedCases.add(JiraId);
+				Constants.passedCases.add(JiraId);
 			}
 			Startup.testMethodTestCaseMap.put(JiraId, ReportingBO);
 			ReportingBO = null;
@@ -158,7 +158,7 @@ public class CustomizeAssertion
 	 * @author nitin.chourey;
 	 * @description softAssertFalse is wrapper on testNG softAssertFalse and
 	 *              updates status in Reporting BO;
-	 * @param Boolean
+	 * @param *Boolean
 	 *            test case status, String assertion Message, String testcase
 	 *            JiraID;
 	 * @return Nil;
@@ -167,11 +167,11 @@ public class CustomizeAssertion
 	{
 		if (status)
 		{
-			iConstants.testCaseStatus.put(JiraId, "FAILED");
+			Constants.testCaseStatus.put(JiraId, "FAILED");
 		}
 		else
 		{
-			iConstants.testCaseStatus.put(JiraId, "PASSED");
+			Constants.testCaseStatus.put(JiraId, "PASSED");
 		}
 
 		TestReportingBO ReportingBO = Startup.testMethodTestCaseMap.get(JiraId);
@@ -183,13 +183,13 @@ public class CustomizeAssertion
 				ReportingBO.setTestCaseName(JiraId);
 				ReportingBO.setExecutionResult("FAILED");
 				ReportingBO.setMessage("Assertion Exception : " + message);
-				iConstants.failedCases.add(JiraId);
+				Constants.failedCases.add(JiraId);
 			}
 			else
 			{
 				ReportingBO.setTestCaseName(JiraId);
 				ReportingBO.setExecutionResult("PASSED");
-				iConstants.passedCases.add(JiraId);
+				Constants.passedCases.add(JiraId);
 			}
 			Startup.testMethodTestCaseMap.put(JiraId, ReportingBO);
 			ReportingBO = null;
@@ -206,7 +206,7 @@ public class CustomizeAssertion
 	 * 
 	 * @author nitin.chourey;
 	 * @descriptionassertAll is just a Wrapper on testNG assertAll;
-	 * @param Nil;
+	 * @param *Nil;
 	 * @return Nil;
 	 */
 	public static void assertAll()

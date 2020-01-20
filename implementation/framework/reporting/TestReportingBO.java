@@ -137,7 +137,7 @@ public class TestReportingBO
 
 	/**
 	 *
-	 * @param testcaseType the testcaseType to set;
+	 * @param *TestcaseType the testcaseType to set;
 	 */
 	public void setTestcaseType(String testcaseType)
 	{
@@ -146,7 +146,7 @@ public class TestReportingBO
 
 	/**
 	 *
-	 * @param testCaseName the testCaseName to set;
+	 * @param *TestCaseName the testCaseName to set;
 	 */
 	public void setTestCaseName(String testCaseName)
 	{
@@ -155,7 +155,7 @@ public class TestReportingBO
 
 	/**
 	 *
-	 * @param testcaseDescription the testcaseDescription to set;
+	 * @param *TestcaseDescription the testcaseDescription to set;
 	 */
 	public void setTestcaseDescription(String testcaseDescription)
 	{

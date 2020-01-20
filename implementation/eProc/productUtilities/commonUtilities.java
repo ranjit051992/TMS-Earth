@@ -1,7 +1,6 @@
 package eProc.productUtilities;
 
 import framework.utilities.GlobalVariable;
-import framework.utilities.customWebUI.WebUI;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -10,7 +9,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import framework.action.ActionBot;
-import eProc.constants.iConstants;
+import eProc.productUtilities.constants.Constants;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -24,8 +23,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
-
-import static framework.utilities.customWebUI.WebUI.findTestObject;
 
 public class commonUtilities
 {
@@ -261,9 +258,9 @@ public class commonUtilities
 		try
 		{
 			logger.info("imagePath : " + imagePath);
-			WebUI.waitForElementVisible(driver,findTestObject(driver,iConstants.IMAGE_UPLOAD_BUTTON), GlobalVariable.DEFAULT_MEDIUM_WAIT);
-			WebUI.delay(10);
-			ActionBot.click(driver, iConstants.IMAGE_DELETE_BUTTON);
+//			WebUI.waitForElementVisible(driver,findTestObject(driver,Constants.IMAGE_UPLOAD_BUTTON), GlobalVariable.DEFAULT_MEDIUM_WAIT);
+//			WebUI.delay(10);
+			ActionBot.click(driver, Constants.IMAGE_DELETE_BUTTON);
 			// if(getHeight(imagePath)<=200 && getWidth(imagePath)<=200);
 			// {
 

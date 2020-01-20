@@ -1,5 +1,7 @@
 package framework.loggers;
 
+import framework.utilities.GlobalVariable;
+import org.apache.log4j.Logger;
 import org.apache.log4j.MDC;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.*;
@@ -13,11 +15,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class LogGenerator {
+
+    public static Logger logger = Logger.getLogger(LogGenerator.class);
+    static Set<String> classNameSet	= new TreeSet<String>();
 
     /**
      * ;

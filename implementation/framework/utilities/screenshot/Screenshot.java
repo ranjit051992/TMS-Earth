@@ -1,7 +1,7 @@
 package framework.utilities.screenshot;
 
-import framework.frameworkUtilies.GlobalVariable;
-import framework.utilities.helper_package.commonUtilities;
+import framework.utilities.GlobalVariable;
+import eProc.productUtilities.commonUtilities;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
@@ -83,7 +83,7 @@ public class Screenshot
 	 * @author nitin.chourey;
 	 * @description moveDirectory moves passed and failed testcase to different
 	 *              folders ;
-	 * @param Test
+	 * @param *Test
 	 *            case object;
 	 * @return boolean value;
 	 */

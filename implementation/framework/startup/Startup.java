@@ -8,9 +8,9 @@ import framework.reporting.TestReportingBO;
 import framework.utilities.commonServices.CommonServices;
 import framework.utilities.commonServices.JSONParsingClass;
 import framework.utilities.screenshot.Screenshot;
-import eProc.productUtilities.userListing.User;
+import eProc.productUtilities.userListing.UserBO;
 import eProc.productUtilities.userListing.UserListing;
-import framework.utilities.webElementWrapper.WebElementWrapper;
+//import framework.utilities.webElementWrapper.WebElementWrapper;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -25,7 +25,7 @@ public class Startup
 	public static Map<String, TestReportingBO>	executionMethods		= new HashMap<String, TestReportingBO>();
 	public static Map<String, String>			testDataMap				= new HashMap<String, String>();
 	private static String						log4jConfPath			= "./Resources/log4j.properties";
-	public static List<User>					usersList				= new ArrayList<User>();
+	public static List<UserBO>					usersList				= new ArrayList<UserBO>();
 	public static List<String>					remainingMethods		= new ArrayList<String>();
 	public static Map<String, String>			configMap				= new HashMap<String, String>();
 
@@ -38,7 +38,7 @@ public class Startup
 
 		createconfigMap();
 
-		userListingUtility.collectUserData();
+		UserListing.collectUserData();
 
 		ReportingService.collectTestCaseData();
 
@@ -46,14 +46,14 @@ public class Startup
 
 		JSONParsingClass.getJsonData(GlobalVariable.SETUP, GlobalVariable.TENANT);
 
-		WebElementWrapper.UiElements = WebElementWrapper.getUIElements();
+//		WebElementWrapper.UiElements = WebElementWrapper.getUIElements();
 
 		GetData.getTestData();
 
 		if (executionMethods.size() != 0)
 		{
 
-			CommonServices.screenShotFileOperations(GlobalVariable.SUITE_TYPE);
+			Screenshot.screenShotFileOperations(GlobalVariable.SUITE_TYPE);
 
 
 

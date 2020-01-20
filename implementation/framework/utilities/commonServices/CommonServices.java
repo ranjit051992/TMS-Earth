@@ -1,12 +1,13 @@
 
 package framework.utilities.commonServices;
 
-import framework.frameworkUtilies.GlobalVariable;
-import framework.frameworkUtilies.testResult.ReportingService;
-import framework.frameworkUtilies.testResult.TestReportingBO;
+import framework.loggers.LogGenerator;
+import framework.utilities.GlobalVariable;
+import framework.reporting.ReportingService;
+import framework.reporting.TestReportingBO;
 import framework.startup.Startup;
 import framework.utilities.screenshot.Screenshot;
-import eProc.productUtilities.userListing.User;
+import eProc.productUtilities.userListing.UserBO;
 import org.apache.log4j.Logger;
 import org.apache.log4j.MDC;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -27,7 +28,6 @@ import java.util.*;
 public class CommonServices
 {
 	static Logger		logger			= Logger.getLogger(CommonServices.class);
-	static Set<String>	classNameSet	= new TreeSet<String>();
 
 	/**
 	 * 
@@ -38,7 +38,7 @@ public class CommonServices
 	 * @return: nil;
 	 */
 
-	public static void afterSuccessfulExecution(WebDriver driver, TestReportingBO testCase, User user)
+	public static void afterSuccessfulExecution(WebDriver driver, TestReportingBO testCase, UserBO userBO)
 	{
 		logger.info("===================================" + testCase.getTestCaseName() + "  Executed successfully===================================");
 		Startup.remainingMethods.remove(testCase.getTestCaseName());
@@ -54,7 +54,7 @@ public class CommonServices
 	 *             instance, User object;
 	 * @return: nil;
 	 */
-	public static synchronized void afterexecution(WebDriver driver, TestReportingBO testcase, User user)
+	public static synchronized void afterexecution(WebDriver driver, TestReportingBO testcase, UserBO userBO)
 	{
 		try
 		{
@@ -88,7 +88,7 @@ public class CommonServices
 	 * @return: nil;
 	 * @throws Exception
 	 */
-	public static void assertionMethod(WebDriver driver, TestReportingBO testcase, User user, AssertionError ae)
+	public static void assertionMethod(WebDriver driver, TestReportingBO testcase, UserBO userBO, AssertionError ae)
 	{
 		try
 		{
@@ -96,7 +96,7 @@ public class CommonServices
 			String exception_message = "";
 			logger.info(ae);
 			// KeywordUtil.markFailed(ae.message);
-			exception_message = CommonServices.generateErrorLog(ae);
+			exception_message = LogGenerator.generateErrorLog(ae);
 			Startup.testMethodTestCaseMap.get(testcase.getTestCaseName()).setMessage("Exception Occured : " + exception_message);
 			Startup.testMethodTestCaseMap.get(testcase.getTestCaseName()).setExecutionResult("FAILED");
 		}
@@ -116,13 +116,13 @@ public class CommonServices
 	 * @throws Exception
 	 */
 
-	public static void exceptionMethod(WebDriver driver, TestReportingBO testcase, User user, Exception e)
+	public static void exceptionMethod(WebDriver driver, TestReportingBO testcase, UserBO userBO, Exception e)
 	{
 		try
 		{
 			Screenshot.captureScreenshot(driver, testcase.getTestCaseName(), "Exception occurred");
 			String exception_message = "";
-			exception_message = CommonServices.generateErrorLog(e);
+			exception_message = LogGenerator.generateErrorLog(e);
 			Startup.testMethodTestCaseMap.get(testcase.getTestCaseName()).setMessage("Exception Occured : " + exception_message);
 			Startup.testMethodTestCaseMap.get(testcase.getTestCaseName()).setExecutionResult("FAILED");
 			e.printStackTrace();

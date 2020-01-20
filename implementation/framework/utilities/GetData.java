@@ -1,11 +1,11 @@
 package framework.utilities;
 
-import framework.frameworkUtilies.GlobalVariable;
+import framework.utilities.GlobalVariable;
 import framework.startup.Startup;
 import org.apache.log4j.Logger;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import product.constants.iConstants;
+import eProc.productUtilities.constants.Constants;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -139,7 +139,7 @@ public class GetData
 			logger.info(hs);
 			hs.createRow(0).createCell(0).setCellValue("TestCaseName");
 			hs.getRow(0).createCell(1).setCellValue("Status");
-			Set<String> keysSet = iConstants.testCaseMapping.keySet();
+			Set<String> keysSet = Constants.testCaseMapping.keySet();
 			Iterator itr = keysSet.iterator();
 			while (itr.hasNext())
 			{

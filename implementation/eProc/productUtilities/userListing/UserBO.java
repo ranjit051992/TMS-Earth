@@ -1,6 +1,6 @@
 package eProc.productUtilities.userListing;
 
-public class User
+public class UserBO
 {
 
 	private String	username;

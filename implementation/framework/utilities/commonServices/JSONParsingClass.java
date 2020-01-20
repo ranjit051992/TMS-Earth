@@ -6,7 +6,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
-import product.constants.iConstants;
+import eProc.productUtilities.constants.Constants;
 
 import java.io.File;
 import java.util.HashMap;
@@ -58,7 +58,7 @@ public class JSONParsingClass
 			String fieldKey = field.getKey();
 
 			JsonNode fieldValue = field.getValue();
-			iConstants.profileConfig.put(fieldKey, fieldValue.asText());
+			Constants.profileConfig.put(fieldKey, fieldValue.asText());
 
 		}
 	}
@@ -66,7 +66,7 @@ public class JSONParsingClass
 	public static void main(String[] args)
 	{
 		getJsonData("QCVM", "KATALON_AUTOX");
-		String url = iConstants.profileConfig.get("URL");
+		String url = Constants.profileConfig.get("URL");
 		logger.info("url   : " + url);
 	}
 }

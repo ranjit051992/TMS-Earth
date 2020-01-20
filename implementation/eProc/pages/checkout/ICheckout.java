@@ -140,8 +140,8 @@ public interface ICheckout
     String BUYER_DROPDOWN_OPTION = "Check_Out_Page/Line Item Details Tab/Shipping Asset Tagging/Buyers Tab/BuyerDropDownOptions";
     String GROUP_DROPDOWN_OPTION = "Check_Out_Page/Line Item Details Tab/Shipping Asset Tagging/Buyers Tab/GroupOption";
     String CHECKOUT_PAGE_TAB_LIST = "FlowOR/Requisition/CheckoutPageTabs";
-    //String BASIC_DETAILS_TAB = iConstants.BASIC_DETAILS_TAB;
-   // String ADDITIONAL_DETAILS_TAB = iConstants.ADDITIONAL_DETAILS_TAB;
+    //String BASIC_DETAILS_TAB = Constants.BASIC_DETAILS_TAB;
+   // String ADDITIONAL_DETAILS_TAB = Constants.ADDITIONAL_DETAILS_TAB;
     String TAB_LIST = "Check_Out_Page/TabList";
     String ASSET_TAG_DELETE_BUTTON = "FlowOR/Requisition/Line Item Details/ShippingDetailsAndAssestTagging/AssetDeleteButton";
     String SUPPLIER_DETAILS_MODAL_DONE_BUTTON = "Check_Out_Page/Line Item Details Tab/SupplierDetailsModalDoneButton";
