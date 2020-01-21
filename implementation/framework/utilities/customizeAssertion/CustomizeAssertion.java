@@ -1,5 +1,6 @@
 package framework.utilities.customizeAssertion;
 
+import com.thoughtworks.gauge.Step;
 import framework.reporting.TestReportingBO;
 import framework.startup.Startup;
 import org.apache.log4j.Logger;
@@ -21,6 +22,7 @@ public class CustomizeAssertion
 	 *            JiraID;
 	 * @return Nil;
 	 */
+	@Step("Assert True for testcase <JiraId> with status <status> and message <message>")
 	public static void assertTrue(boolean status, String message, String JiraId) throws Exception
 	{
 		if (status)
@@ -68,6 +70,7 @@ public class CustomizeAssertion
 	 *            JiraID;
 	 * @return Nil;
 	 */
+	@Step("Soft Assert True for testcase <JiraId> with status <status> and message <message>")
 	public static void softAssertTrue(boolean status, String message, String JiraId) throws Exception
 	{
 		if (status)
@@ -116,6 +119,7 @@ public class CustomizeAssertion
 	 *            JiraID;
 	 * @return Nil;
 	 */
+	@Step("Assert False for testcase <JiraId> with status <status> and message <message>")
 	public static void assertFalse(boolean status, String message, String JiraId) throws Exception
 	{
 		if (status)
@@ -163,6 +167,7 @@ public class CustomizeAssertion
 	 *            JiraID;
 	 * @return Nil;
 	 */
+	@Step("Soft Assert False for testcase <JiraId> with status <status> and message <message>")
 	public static void softAssertFalse(boolean status, String message, String JiraId) throws Exception
 	{
 		if (status)
@@ -209,6 +214,7 @@ public class CustomizeAssertion
 	 * @param *Nil;
 	 * @return Nil;
 	 */
+	@Step("Assert All")
 	public static void assertAll()
 	{
 		org.testng.asserts.SoftAssert softassert = new org.testng.asserts.SoftAssert();

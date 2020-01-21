@@ -1,7 +1,7 @@
 package framework.utilities;
 
 import framework.startup.Startup;
-import eProc.productUtilities.commonUtilities;
+import eProc.productUtilities.CommonUtilities;
 
 public class GlobalVariable
 {
@@ -30,7 +30,7 @@ public class GlobalVariable
 	public static boolean		LOGIN_WITH_PASSWORD_MANAGER	= Startup.configMap.get("LOGIN_WITH_PASSWORD_MANAGER").equalsIgnoreCase("true");
 	public static boolean		isCOA						= Startup.configMap.get("isCOA").equalsIgnoreCase("true");
 	public static boolean		GENERATE_REPORT				= Startup.configMap.get("GENERATE_REPORT").equalsIgnoreCase("true");
-	public static String		EXECUTION_DATE_STAMP		= commonUtilities.currentdateTime("yyyy-MM-dd");
+	public static String		EXECUTION_DATE_STAMP		= CommonUtilities.currentdateTime("yyyy-MM-dd");
 	public static String		USER_NAME					= Startup.configMap.get("USER_NAME");
 	public static String		PASSWORD					= Startup.configMap.get("PASSWORD");
 	public static String		ADMIN_USERNAME				= Startup.configMap.get("ADMIN_USERNAME");

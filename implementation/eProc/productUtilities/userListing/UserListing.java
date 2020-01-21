@@ -1,10 +1,12 @@
 package eProc.productUtilities.userListing;
 
+import com.thoughtworks.gauge.datastore.DataStore;
+import com.thoughtworks.gauge.datastore.DataStoreFactory;
 import framework.utilities.GlobalVariable;
 import framework.reporting.TestReportingBO;
 import framework.startup.Startup;
 import framework.utilities.FileOperations;
-import eProc.productUtilities.commonUtilities;
+import eProc.productUtilities.CommonUtilities;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
@@ -157,6 +159,8 @@ public class UserListing
 					userBO.setSetUpName(rs.getString("SETUP_NAME"));
 					userBO.setRole(rs.getString("ROLE"));
 					Startup.usersList.add(userBO);
+					DataStore store = DataStoreFactory.getScenarioDataStore();
+					store.put("UserBO", userBO);
 
 				}
 				logger.info("\nSetting values in user  :  " + userBO.getUsername() + "    " + userBO.getPassword() + "    " + userBO.getTenant() + "   " + userBO.getSetUpName() + "   " + userBO.getRole());
@@ -188,7 +192,7 @@ public class UserListing
 		{
 
 			userBO = UserListing.setUserInActive(driver, testcase);
-			FileOperations.writeInFile("./output/UserActivities.txt", userBO.getUsername() + " :: Reserved for :: " + testcase.getTestCaseName() + "  :: At " + commonUtilities.currentdateTime("dd/MM/yyyy::HH:mm"));
+			FileOperations.writeInFile("./output/UserActivities.txt", userBO.getUsername() + " :: Reserved for :: " + testcase.getTestCaseName() + "  :: At " + CommonUtilities.currentdateTime("dd/MM/yyyy::HH:mm"));
 
 		}
 		catch (Exception e)
@@ -207,7 +211,7 @@ public class UserListing
 				if (userBO.getUsername() != null)
 				{
 					UserListing.setUserActive(userBO);
-					FileOperations.writeInFile("./output/UserActivities.txt", userBO.getUsername() + " :: Released By :: " + testcase.getTestCaseName() + "  :: At " + commonUtilities.currentdateTime("dd/MM/yyyy::HH:mm"));
+					FileOperations.writeInFile("./output/UserActivities.txt", userBO.getUsername() + " :: Released By :: " + testcase.getTestCaseName() + "  :: At " + CommonUtilities.currentdateTime("dd/MM/yyyy::HH:mm"));
 				}
 			}
 			else

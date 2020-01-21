@@ -1,9 +1,9 @@
 package eProc.pages.checkout;
 
+import eProc.productUtilities.constants.Constants;
+
 public interface ICheckout
 {
-
-
     String BASIC_DETAILS = "FlowOR/Requisition/Basic Details/link_Basic details";
     String REQUISITION_NAME = "//eproc-req-basic-detail//input[contains(@class,'serviceDefaultName')]";
     String ON_BEHALF_OF = "FlowOR/Requisition/Basic Details/input_on Behalf Of";
@@ -28,12 +28,16 @@ public interface ICheckout
     String SETTLEMENT_VIA_INVOICE = "FlowOR/Requisition/Additional Details/select_Settlement via _Invoice";
     String SETTLEMENT_VIA_DISBURSMENT = "FlowOR/Requisition/Additional Details/select_settlement_via_Disbursement";
     String SETTLEMENT_VIA_USER_PCARD = "FlowOR/Requisition/Additional Details/select via User P-card";
+    String INPUT_USER_P_CARD = "FlowOR/Requisition/Additional Details/input_User P Card";
     String PCARD = "FlowOR/Requisition/Additional Details/div_P Card Dropdown";
     String PURCHASE_ORDER_TABLE = "FlowOR/Requisition/Additional Details/table_Purchase Order";
     String SELECT_PURCHASE_ORDER = "FlowOR/Requisition/Additional Details/select Purchase Order";
     String FIRST_PO_NUMBER = "FlowOR/Requisition/Additional Details/select_First Po No From PO Table";
     String PO_BUTTON_CONTINUE = "FlowOR/Requisition/Additional Details/button_Continue";
     String VIEW_LINK_PO = "FlowOR/Requisition/Additional Details/link_View Selected PO";
+    String RADIO_PURCHASE_YES = "FlowOR/Requisition/Additional Details/radio_Respective Purchase Yes";
+    String RADIO_SEND_PO_TO_SUPPLIE_NO_BUTTON = "FlowOR/Requisition/Additional Details/radio Button_send PO to Supplier No";
+    String INPUT_ADD_ATTACHMENT_FILE = "FlowOR/Requisition/Add attachment/input_Add Attachment File";
 
     //Shipping Details;
     String DELIVER_TO = "FlowOR/Requisition/Shipping Details/select _ deliver to";
@@ -43,6 +47,16 @@ public interface ICheckout
     String FIRST_SELECTED_ADDRESS = "FlowOR/Requisition/Shipping Details/select_First Another Address";
     String DEFAULT_SHIPPING_LABEL = "FlowOR/Requisition/Shipping Details/text_Default Shipping Address";
     String SHIIPPING_DETAILS_TAB = "FlowOR/Requisition/Shipping Details/link_Shipping Details";
+
+    //Buyer Info
+    String BUYERS_TAB = "Check_Out_Page/Line Item Details Tab/Shipping Asset Tagging/Buyers Tab/Buyers tab";
+    String BUYER_DROP_DOWN = "Check_Out_Page/Line Item Details Tab/Shipping Asset Tagging/Buyers Tab/BuyerDropDown";
+    String BUYER_DROP_DOWN_OPTIONS = "Check_Out_Page/Line Item Details Tab/Shipping Asset Tagging/Buyers Tab/BuyerDropDownOptions";
+    String INPUT_BUYER_TEXTBOX = "Check_Out_Page/Line Item Details Tab/Shipping Asset Tagging/Buyers Tab/BuyerTextbox";
+
+    //Costbooking Tab
+    String COST_BOOKING_TAB = "Check_Out_Page/Line Item Details Tab/Shipping Asset Tagging/Cost Booking Details Tab/Cost Booking tab";
+
     //Asset Tagging;
     String SHIPPING_AND_ASSET_TAGGING_PAGE = "FlowOR/Requisition/Line Item Details/ShippingDetailsAndAssestTagging/ShippingAndAssetTaggingPage";
     String ADD_ASSET_TAG_LINK = "FlowOR/Requisition/Line Item Details/ShippingDetailsAndAssestTagging/AddAssetTagLink";
@@ -80,9 +94,16 @@ public interface ICheckout
     //Line Items Tab;
     String LINE_ITEMS_LINK = "FlowOR/Requisition/Line Item Details/link_line item details";
 
+    //Footer Buttons
     String I_AM_DONE_BUTTON = "FlowOR/Requisition/Footer/button_ I am done";
-    String DDS_CONTINUE_BTN = "FlowOR/Requisition/DewDrops_Continue_Btn";
+    String CONTINUE_BUTTON = "FlowOR/Requisition/button_continue";
+   // String DDS_CONTINUE_BTN = "FlowOR/Requisition/DewDrops_Continue_Btn";
     String SAVE_AS_DRAFT = "FlowOR/Requisition/Footer/SaveAsDraftButton";
+    String CANCEL_BUTTON = "FlowOR/Requisition/Footer/CancelButton";
+    String SUBMIT_REQ_POPUP = "FlowOR/Requisition/Footer/SubmitReq_Popup/SubmitReqPopup";
+    String SUBMIT_REQUISITION_MESSAGE = "FlowOR/Requisition/Footer/SubmitReq_Popup/SubmitReqMessage";
+    String SUBMIT_REQUISITION_POPUP_CANCEL_BUTTON = "FlowOR/Requisition/Footer/SubmitReq_Popup/CancelButton";
+    String SUBMIT_REQUISITION_POPUP_CONTINUE_BUTTON = "FlowOR/Requisition/Footer/SubmitReq_Popup/ContinueButton";
 
     //Urgent Requiremnet Status;
     String RADIO_URGENT_YES_BUTTON  = "FlowOR/Requisition/Basic Details/radio_Urgent Requirement Yes";
@@ -145,6 +166,14 @@ public interface ICheckout
     String TAB_LIST = "Check_Out_Page/TabList";
     String ASSET_TAG_DELETE_BUTTON = "FlowOR/Requisition/Line Item Details/ShippingDetailsAndAssestTagging/AssetDeleteButton";
     String SUPPLIER_DETAILS_MODAL_DONE_BUTTON = "Check_Out_Page/Line Item Details Tab/SupplierDetailsModalDoneButton";
+    String BASIC_DETAILS_TAB = Constants.BASIC_DETAILS_TAB;
+    String ADDITIONAL_DETAILS_TAB = Constants.ADDITIONAL_DETAILS_TAB;
+    String LOADING_SPINNER = "FlowOR/Requisition/LoadingSpinner";
 
+
+    //Line Item Details
+    String ITEM_TOTAL_AMOUNT = "FlowOR/Requisition/Line Item Details/ItemTotalAmount";
+
+    String SEND_TO_BUYER_CONFIRM_POPUP = "FlowOR/Requisition/Confirm_PopUp_Send_To_Buyer";
 
 }

@@ -1,5 +1,6 @@
 package framework.action;
 
+import framework.utilities.webElementWrapper.WebElementWrapper;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -3235,5 +3236,34 @@ public class ActionBot
         return flag;
     }
 
+    public static boolean verifyElementHasAttribute(WebDriver driver, String elementXpath, String attribute, int timeout)
+    {
+        boolean hasAttribute = false;
 
+       // String xpath = WebElementWrapper.getXpath(elementXpath);
+        try
+        {
+            WebElement element = driver.findElement(By.xpath(elementXpath));
+
+            if (isElementPresentByXpath(driver,elementXpath))
+            {
+                String att = element.getAttribute(attribute);
+                if (att.equals(null))
+                {
+                    hasAttribute = false;
+                }
+                else
+                {
+                    hasAttribute = true;
+                }
+            }
+
+        }
+        catch (Exception e)
+        {
+            hasAttribute = false;
+        }
+
+        return hasAttribute;
+    }
 }

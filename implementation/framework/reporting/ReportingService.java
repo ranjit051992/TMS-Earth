@@ -1,5 +1,7 @@
 package framework.reporting;
 
+import com.thoughtworks.gauge.datastore.DataStore;
+import com.thoughtworks.gauge.datastore.DataStoreFactory;
 import framework.utilities.FileOperations;
 import framework.utilities.GlobalVariable;
 import framework.startup.Startup;
@@ -101,9 +103,12 @@ public class ReportingService
 						Startup.remainingMethods.add(testcaseName);
 					}
 					testReportingBo = null;
+					DataStore store =DataStoreFactory.getScenarioDataStore();
+					store.put("TestReportingBO",testReportingBo);
 				}
 				logger.info("\n\nTotal testcases(Including mapped) which will execute  : " + Startup.testMethodTestCaseMap.size());
 				logger.info("\n\ntotal TestCases(@Test) Marked for Execution are       : " + Startup.executionMethods.size());
+
 			}
 			else
 			{
