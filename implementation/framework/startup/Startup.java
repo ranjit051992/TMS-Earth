@@ -42,10 +42,10 @@ public class Startup
 
 		UserListing.collectUserData();
 
-		ReportingService.collectTestCaseData();
+		//ReportingService.collectTestCaseData();
 
 
-		ReportingService.testCaseMapping();
+	//	ReportingService.testCaseMapping();
 
 		JSONParsingClass.getJsonData(GlobalVariable.SETUP, GlobalVariable.TENANT);
 
@@ -90,9 +90,9 @@ public class Startup
 
 			UserListing.collectUserData();
 
-			ReportingService.collectTestCaseData();
+			//ReportingService.collectTestCaseData();
 
-			ReportingService.testCaseMapping();
+//			ReportingService.testCaseMapping();
 
 			JSONParsingClass.getJsonData(GlobalVariable.SETUP, GlobalVariable.TENANT);
 
@@ -100,7 +100,7 @@ public class Startup
 
 			GetData.getTestData();
 
-			if (executionMethods.size() != 0)
+			/*if (executionMethods.size() != 0)
 			{
 
 				Screenshot.screenShotFileOperations(GlobalVariable.SUITE_TYPE);
@@ -117,7 +117,7 @@ public class Startup
 			else
 			{
 				logger.info("ERROR : No Testcase marked for execution. Please check TestCases.xlsx or config.properties");
-			}
+			}*/
 		}
 		catch (Exception e)
 		{

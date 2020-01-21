@@ -34,16 +34,7 @@ public class ExecutionHooks
 
     @BeforeScenario
     public void BeforeScenario() throws Exception {
-        // Login to DDs application
-        WebDriver driver = null;
-        DataStore testCaseStore = DataStoreFactory.getScenarioDataStore();
-        TestReportingBO testcase = (TestReportingBO) testCaseStore.get("TestReportingBO");
 
-        DataStore userStore = DataStoreFactory.getScenarioDataStore();
-        UserBO userBO = (UserBO) userStore.get("TestReportingBO");
-
-        driver = DriverSelector.getDriver(testcase);
-        LoginImpl.login(driver,testcase,userBO);
     }
 
     @AfterScenario

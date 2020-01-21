@@ -32,7 +32,7 @@ public class ObjectCreation
                 catalogItem.setItemName(GetData.getValueFromSpecificIndex("ITEM_NAME_FOR_SEARCHING", i));
                 logger.info(catalogItem.getItemName());
                 catalogItem.setSupplierName(GetData.getValueFromSpecificIndex("SUPPLIER_NAME", 0));
-                catalogItem.setQuantity(Integer.parseInt(CommonUtilities.randomNumberBetweenRange(1, 9)));
+                catalogItem.setQuantity(CommonUtilities.randomNumberBetweenRange(1, 9));
 
                 catalogItemlist.add(catalogItem);
             }

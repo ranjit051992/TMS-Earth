@@ -1,6 +1,7 @@
 package eProc.pages.onlineStore;
 
 import com.thoughtworks.gauge.Step;
+import com.thoughtworks.gauge.datastore.DataStoreFactory;
 import framework.action.ActionBot;
 import framework.utilities.GlobalVariable;
 import framework.utilities.screenshot.Screenshot;
@@ -15,9 +16,13 @@ public class OnlineStoreImpl implements IOnlineStore
 {
     public static Logger logger = Logger.getLogger(OnlineStoreImpl.class);
 
-    public static void searchItem(WebDriver driver, String searchItem, String testCaseName) throws Exception
+    @Step("Browser <driverKey>:  Search  Item <searchItem>  on online store Page for testcase <testcase>")
+    public static void searchItem(String driverKey, String searchItem, String testCaseName) throws Exception
     {
-        try {
+        WebDriver driver = null;
+        try
+        {
+            driver = (WebDriver) DataStoreFactory.getSuiteDataStore().get(driverKey);
             String elementXpath = WebElementWrapper.getXpath(HOME_LINK);
             ActionBot.scrollToElementByXpath(driver, elementXpath);
             ActionBot.defaultSleep(driver, GlobalVariable.DEFAULT_WAIT);
@@ -28,19 +33,44 @@ public class OnlineStoreImpl implements IOnlineStore
         catch(Exception e) {
             throw e;
         }
+        finally {
+            DataStoreFactory.getScenarioDataStore().put("WebDriver",driver);
+        }
     }
 
-    public static void clickSearchIcon(WebDriver driver) throws Exception {
-        String searchTextboxXpath = WebElementWrapper.getXpath(SEARCH_TEXTBOX);
-        driver.findElement(By.xpath(searchTextboxXpath)).sendKeys(Keys.ENTER);
-        logger.info("Clicked on the search icon");
-        Screenshot.captureScreenshot(driver, MDC.get("TestCaseName").toString(), "Clicked on the search icon");
+    @Step("Click on search icon in browser <driverKey> for testcase <testCaseName>")
+    public static void clickSearchIcon(String driverKey, String testCaseName) throws Exception {
+        WebDriver driver = null;
+        try {
+            driver = (WebDriver) DataStoreFactory.getSuiteDataStore().get(driverKey);
+            String searchTextboxXpath = WebElementWrapper.getXpath(SEARCH_TEXTBOX);
+            driver.findElement(By.xpath(searchTextboxXpath)).sendKeys(Keys.ENTER);
+            logger.info("Clicked on the search icon");
+            Screenshot.captureScreenshot(driver, testCaseName, "Clicked on the search icon");
+        }
+        catch(Exception e) {
+            throw e;
+        }
+        finally {
+            DataStoreFactory.getScenarioDataStore().put("WebDriver",driver);
+        }
     }
 
-    public static void waitForLoadingSymbolNotDisplayed(WebDriver driver) throws Exception {
-        ActionBot.waitForElementNotPresent(driver,LOADING_SYMBOL);
-        logger.info("Waited for the loading symbol to go off");
-        Screenshot.captureScreenshot(driver, MDC.get("TestCaseName").toString(), "Waited for the loading symbol to go off");
+    public static void waitForLoadingSymbolNotDisplayed(String driverKey) throws Exception {
+        WebDriver driver = null;
+       try {
+            driver = (WebDriver) DataStoreFactory.getSuiteDataStore().get(driverKey);
+           ActionBot.waitForElementNotPresent(driver,LOADING_SYMBOL);
+           logger.info("Waited for the loading symbol to go off");
+           Screenshot.captureScreenshot(driver, MDC.get("TestCaseName").toString(), "Waited for the loading symbol to go off");
+       }
+       catch (Exception e)
+       {
+           throw e;
+       }
+       finally {
+           DataStoreFactory.getScenarioDataStore().put("WebDriver",driver);
+       }
     }
 
     public static boolean waitForResultsToLoad(WebDriver driver) throws Exception {
@@ -168,16 +198,17 @@ public class OnlineStoreImpl implements IOnlineStore
      * @param: driver,testcaseName, item name,quantity;
      * @return: ;
      */
-    @Step("Add Catalog Item <itemName> with quantity<quantity> <driver> <testcaseName>to cart")
-    public static void addCatalogItemToCart(WebDriver driver, String testcaseName, String itemName, int quantity) throws Exception
+    @Step("Add Catalog Item in browser <driver>  for testcase <testcaseName> for itemName <itemName> quantity <quantity>  to cart")
+    public static void addCatalogItemToCart(String driverKey, String testcaseName, String itemName, String quantity) throws Exception
     {
 
         try
         {
-            OnlineStoreImpl.waitForLoadingSymbolNotDisplayed(driver);
+            WebDriver driver = (WebDriver) DataStoreFactory.getSuiteDataStore().get(driverKey);
+            OnlineStoreImpl.waitForLoadingSymbolNotDisplayed(driverKey);
             OnlineStoreImpl.clickOnHomeLink(driver);
-            OnlineStoreImpl.searchItem(driver,itemName,testcaseName);
-            OnlineStoreImpl.fillQuantity(driver,Integer.toString(quantity),itemName);
+            OnlineStoreImpl.searchItem(driverKey,itemName,testcaseName);
+            OnlineStoreImpl.fillQuantity(driver,quantity,itemName);
             Screenshot.captureScreenshot(driver, testcaseName, "Before_Clicking_AddToCart");
             OnlineStoreImpl.clickOnAddToCartButton(driver,itemName);
             boolean flag = ActionBot.waitForElementVisible(driver, IOnlineStore.ADD_TO_CART_SUCESS_MESSAGE);

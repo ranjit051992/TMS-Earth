@@ -26,6 +26,7 @@ public class ActionBot
     {
 
         WebElement element = null;
+
         try
         {
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -72,15 +73,16 @@ public class ActionBot
 
     public static void click(WebDriver driver, String elementPath) throws Exception
     {
+        By by = WebElementWrapper.getElement(elementPath);
         try
         {
             wait = new WebDriverWait(driver, 10);
-            if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementPath)))!=null)
+            if (wait.until(ExpectedConditions.visibilityOfElementLocated(by))!=null)
             {
-                if (wait.until(ExpectedConditions.elementToBeClickable(By.xpath(elementPath)))!=null)
+                if (wait.until(ExpectedConditions.elementToBeClickable(by))!=null)
                 {
-
-                    driver.findElement(By.xpath(elementPath)).click();
+                    driver.findElement(by).click();
+                   // driver.findElement(By.xpath(elementPath)).click();
                 }
                 else
                 {
@@ -98,12 +100,12 @@ public class ActionBot
             try
             {
                 wait = new WebDriverWait(driver, 10);
-                if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementPath)))!=null)
+                if (wait.until(ExpectedConditions.visibilityOfElementLocated(by))!=null)
                 {
-                    if (wait.until(ExpectedConditions.elementToBeClickable(By.xpath(elementPath)))!=null)
+                    if (wait.until(ExpectedConditions.elementToBeClickable(by))!=null)
                     {
-
-                        driver.findElement(By.xpath(elementPath)).click();
+                        driver.findElement(by).click();
+                       //driver.findElement(By.xpath(elementPath)).click();
                     }
                     else
                     {
@@ -251,9 +253,11 @@ public class ActionBot
 
         try
         {
-            if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementPath)))!=null)
+           wait = new WebDriverWait(driver, 10);
+           By by = WebElementWrapper.getElement(elementPath);
+            if (wait.until(ExpectedConditions.visibilityOfElementLocated(by))!=null)
             {
-                element = driver.findElement(By.xpath(elementPath));
+                element = driver.findElement(by);
                 if (element != null)
                 {
                     logger.info("Element " + elementPath + " is Visible.");
@@ -268,9 +272,11 @@ public class ActionBot
         {
             try
             {
-                if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementPath)))!=null)
+                By by = WebElementWrapper.getElement(elementPath);
+                if (wait.until(ExpectedConditions.visibilityOfElementLocated(by))!=null)
                 {
-                    element = driver.findElement(By.xpath(elementPath));
+                    element = driver.findElement(by);
+                   // element = driver.findElement(By.xpath(elementPath));
                     if (element != null)
                     {
                         logger.info("Element " + elementPath + " is Visible.");
@@ -351,14 +357,15 @@ public class ActionBot
     public static void doubleClick(WebDriver driver, String elementPath) throws Exception
     {
         WebElement element =null;
+        By by = WebElementWrapper.getElement(elementPath);
         try
         {
              wait = new WebDriverWait(driver, 10);
-            if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementPath)))!=null)
+            if (wait.until(ExpectedConditions.visibilityOfElementLocated(by))!=null)
             {
-                if (wait.until(ExpectedConditions.elementToBeClickable(By.xpath(elementPath)))!=null)
+                if (wait.until(ExpectedConditions.elementToBeClickable(by))!=null)
                 {
-                    element = driver.findElement(By.xpath(elementPath));
+                    element = driver.findElement(by);
                     Actions action = new Actions(driver);
 
                     action.moveToElement(element).doubleClick().build().perform();
@@ -379,12 +386,13 @@ public class ActionBot
             try
             {
 
-                if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementPath)))!=null)
+                if (wait.until(ExpectedConditions.visibilityOfElementLocated(by))!=null)
                 {
-                    if (wait.until(ExpectedConditions.elementToBeClickable(By.xpath(elementPath)))!=null)
+                    if (wait.until(ExpectedConditions.elementToBeClickable(by))!=null)
                     {
 
-                        element = driver.findElement(By.xpath(elementPath));
+                        //element = driver.findElement(By.xpath(elementPath));
+                        element = driver.findElement(by);
                         Actions action = new Actions(driver);
 
                         action.moveToElement(element).doubleClick().build().perform();
@@ -424,12 +432,13 @@ public class ActionBot
     public static void sendKeys(WebDriver driver, String elementPath, String text) throws Exception
     {
         wait = new WebDriverWait(driver, 10);
+        By by = WebElementWrapper.getElement(elementPath);
         try
         {
 
-            if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementPath)))!=null)
+            if (wait.until(ExpectedConditions.visibilityOfElementLocated(by))!=null)
             {
-                if (wait.until(ExpectedConditions.elementToBeClickable(By.xpath(elementPath)))!=null)
+                if (wait.until(ExpectedConditions.elementToBeClickable(by))!=null)
                 {
                     clear(driver,elementPath);
 
@@ -454,9 +463,9 @@ public class ActionBot
             try
             {
 
-                if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementPath)))!=null)
+                if (wait.until(ExpectedConditions.visibilityOfElementLocated(by))!=null)
                 {
-                    if (wait.until(ExpectedConditions.elementToBeClickable(By.xpath(elementPath)))!=null)
+                    if (wait.until(ExpectedConditions.elementToBeClickable(by))!=null)
                     {
                         clear(driver,elementPath);
                         WebElement webElement = ActionBot.findElement(driver, elementPath);
@@ -566,14 +575,14 @@ public class ActionBot
     public static void clear(WebDriver driver, String elementPath) throws Exception
     {
         wait = new WebDriverWait(driver, 10);
-
+        By by = WebElementWrapper.getElement(elementPath);
         try
         {
-            if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementPath)))!=null)
+            if (wait.until(ExpectedConditions.visibilityOfElementLocated(by))!=null)
             {
-                if (wait.until(ExpectedConditions.elementToBeClickable(By.xpath(elementPath)))!=null)
+                if (wait.until(ExpectedConditions.elementToBeClickable(by))!=null)
                 {
-                   driver.findElement(By.xpath(elementPath));
+                   driver.findElement(by).clear();
                 }
                 else
                 {
@@ -589,11 +598,12 @@ public class ActionBot
         {
             try
             {
-                if (wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementPath)))!=null)
+                if (wait.until(ExpectedConditions.visibilityOfElementLocated(by))!=null)
                 {
-                    if (wait.until(ExpectedConditions.elementToBeClickable(By.xpath(elementPath)))!=null)
+                    if (wait.until(ExpectedConditions.elementToBeClickable(by))!=null)
                     {
-                        driver.findElement(By.xpath(elementPath));
+                        ///driver.findElement(By.xpath(elementPath));
+                        driver.findElement(by).clear();
                     }
                     else
                     {
@@ -632,13 +642,13 @@ public class ActionBot
     {
         String value = "";
         WebElement element = null;
-
+        By by = WebElementWrapper.getElement(elementPath);
         try
         {
             element = waitUntilVisible(driver, elementPath);
             if (element != null)
             {
-                value =driver.findElement(By.xpath(elementPath)).getText();
+                value =driver.findElement(by).getText();
                 logger.info("Text is :" + value);
             }
             else
@@ -656,7 +666,7 @@ public class ActionBot
                 element = waitUntilVisible(driver, elementPath);
                 if (element != null)
                 {
-                    value =driver.findElement(By.xpath(elementPath)).getText();
+                    value =driver.findElement(by).getText();
                     logger.info("Text is :" + value);
                 }
                 else
@@ -1178,12 +1188,13 @@ public class ActionBot
     {
         boolean status = false;
         WebElement element = null;
+        By by = WebElementWrapper.getElement(elementPath);
         try
         {
             // xpath =
             // findTestObject(driver,elementPath).findPropertyValue("xpath");
 
-            if (driver.findElement(By.xpath(elementPath)).isSelected())
+            if (driver.findElement(by).isSelected())
             {
                 status = true;
             }
@@ -1197,7 +1208,7 @@ public class ActionBot
             try
             {
 
-                element = driver.findElement(By.xpath(elementPath));
+                element = driver.findElement(by);
 
                 if (element.isSelected())
                 {
@@ -1226,7 +1237,7 @@ public class ActionBot
     {
         boolean status = false;
         WebElement element = null;
-
+        By by = WebElementWrapper.getElement(elementPath);
         try
         {
             element = ActionBot.findElement(driver, elementPath);
@@ -2149,12 +2160,14 @@ public class ActionBot
     {
         try
         {
-            return driver.findElements(By.xpath(elementPath));
+            String xpath = WebElementWrapper.getXpath(elementPath);
+            return driver.findElements(By.xpath(xpath));
         }
         catch (Exception e)
         {
             try
             {
+                String xpath = WebElementWrapper.getXpath(elementPath);
                 return driver.findElements(By.xpath(elementPath));
             }
             catch (Exception ex)
@@ -2177,7 +2190,7 @@ public class ActionBot
         try
         {
             // element = waitUntilVisible(driver, elementPath);
-            String xpath = elementPath;
+            String xpath = WebElementWrapper.getXpath(elementPath);
             element = driver.findElement(By.xpath(xpath));
             if (element != null)
             {
@@ -2197,7 +2210,7 @@ public class ActionBot
             try
             {
                 // element = waitUntilVisible(driver, elementPath);
-                String xpath = elementPath;
+                String xpath = WebElementWrapper.getXpath(elementPath);
                 element = driver.findElement(By.xpath(xpath));
                 if (element != null)
                 {
@@ -2229,10 +2242,11 @@ public class ActionBot
     {
         boolean status = false;
         wait =  new WebDriverWait(driver, 10);
+        By by = WebElementWrapper.getElement(elementPath);
         try
         {
 
-            status = wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(elementPath)));
+            status = wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
             if (status)
             {
                 logger.info("Element " + elementPath + " is not present");
@@ -2247,7 +2261,7 @@ public class ActionBot
             try
             {
                 logger.info("Reattempting to wait for element not present...");
-                status = wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(elementPath)));
+                status = wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
                 if (status)
                 {
                     logger.info("Element " + elementPath + " is not present");
@@ -2460,7 +2474,8 @@ public class ActionBot
             // TestObject to = findObject(path);
             // String xpath = to.findProperty("xpath").getValue();
            // String xpath = WebElementWrapper.UiElementsXpath.get(path);
-            WebElement element = driver.findElement(By.xpath(path));
+            By by = WebElementWrapper.getElement(path);
+            WebElement element = driver.findElement(by);
             JavascriptExecutor executor = (JavascriptExecutor) driver;
             executor.executeScript("arguments[0].click();", element);
         }
@@ -2478,10 +2493,11 @@ public class ActionBot
     {
         boolean flag = false;
         wait = new WebDriverWait(driver, 10);
+        By by = WebElementWrapper.getElement(elementPath);
         try
         {
 
-            if (wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(elementPath))))
+            if (wait.until(ExpectedConditions.invisibilityOfElementLocated(by)))
             {
                 flag = true;
                 logger.info("Element " + elementPath + " is not Visible.");
@@ -2496,7 +2512,7 @@ public class ActionBot
             logger.info("Checking element invisibility again..!");
             try
             {
-                if (wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(elementPath))))
+                if (wait.until(ExpectedConditions.invisibilityOfElementLocated(by)))
                 {
                     flag = true;
                     logger.info("Element " + elementPath + " is not Visible.");
@@ -2651,12 +2667,13 @@ public class ActionBot
     public static boolean waitForLoadingSymbolNotDisplayed(WebDriver driver, String testCaseName, String elementPath, int timeOut) throws Exception
     {
         boolean flag = false;
+        By by = WebElementWrapper.getElement(elementPath);
         try
         {
             // flag =
             // WebUI.waitForElementNotPresent(driver,findTestObject(driver,elementPath),
             // timeOut);
-            flag = new WebDriverWait(driver,60).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(elementPath)));
+            flag = new WebDriverWait(driver,60).until(ExpectedConditions.invisibilityOfElementLocated(by));
 
             if (flag)
             {
@@ -2673,7 +2690,7 @@ public class ActionBot
             // flag =
             // WebUI.waitForElementNotPresent(driver,findTestObject(driver,elementPath),
             // timeOut);
-            flag = new WebDriverWait(driver, 60).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(elementPath)));
+            flag = new WebDriverWait(driver, 60).until(ExpectedConditions.invisibilityOfElementLocated(by));
 
             if (flag)
             {
@@ -2695,7 +2712,7 @@ public class ActionBot
     {
         boolean flag = true;
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        String elementXpath = elementPath;
+        String elementXpath = WebElementWrapper.getXpath(elementPath);
         try
         {
             wait.until(ExpectedConditions.invisibilityOfElementWithText(By.xpath(elementXpath), textToBeNotPresent));
@@ -3060,9 +3077,10 @@ public class ActionBot
     {
         boolean flag = false;
         wait = new WebDriverWait(driver,10);
+        By by = WebElementWrapper.getElement(elementPath);
         try
         {
-           WebElement element =  wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath(elementPath))));
+           WebElement element =  wait.until(ExpectedConditions.visibilityOfElementLocated((by)));
 
             if (element!=null)
             {
@@ -3122,9 +3140,10 @@ public class ActionBot
 
     public static void moveToElement(WebDriver driver, String elementpath) throws Exception
     {
+        By by = WebElementWrapper.getElement(elementpath);
         try
         {
-            WebElement element = driver.findElement(By.xpath(elementpath));
+            WebElement element = driver.findElement(by);
            moveToElement(driver, element);
 
           //  WebUI.mouseOver(driver, findTestObject(driver, objectRepoPath));
@@ -3211,9 +3230,10 @@ public class ActionBot
     {
         boolean flag = false;
         wait = new WebDriverWait(driver,10);
+        By by = WebElementWrapper.getElement(elementPath);
         try
         {
-            if (wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(elementPath)))!=null)
+            if (wait.until(ExpectedConditions.presenceOfElementLocated(by))!=null)
             {
                 flag = true;
                 logger.info("Element '" + elementPath + "' is visible.");
