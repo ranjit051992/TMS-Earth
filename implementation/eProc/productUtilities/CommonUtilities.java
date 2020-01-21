@@ -24,7 +24,7 @@ import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class commonUtilities
+public class CommonUtilities
 {
 
 	public static Logger logger = Logger.getLogger("commonUtilities");
@@ -125,7 +125,7 @@ public class commonUtilities
 
 	public static String randomScript(int length)
 	{
-		String rndmScript = "<script>alert(\"" + commonUtilities.randomStringWithSymbols(length) + "\")</script>";
+		String rndmScript = "<script>alert(\"" + CommonUtilities.randomStringWithSymbols(length) + "\")</script>";
 		return rndmScript;
 	}
 
@@ -217,7 +217,7 @@ public class commonUtilities
 
 	public static ArrayList<Integer> splitPercentageBasedOnRange(int splitCount)
 	{
-		int randNo = Integer.parseInt(commonUtilities.randomNumberBetweenRange(1, 70));
+		int randNo = Integer.parseInt(CommonUtilities.randomNumberBetweenRange(1, 70));
 		ArrayList<Integer> allNumber = new ArrayList<Integer>();
 		int maxValue = 100;
 		int firstNo = randNo;

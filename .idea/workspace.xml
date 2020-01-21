@@ -2,30 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e357b223-eb9d-4b33-9fe9-c225abf16658" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/implementation/eProc/concept/CreateRequisition.cpt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/implementation/eProc/keywords/CreateRequisition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/implementation/eProc/keywords/OnlineStoreFlow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/implementation/eProc/pages/addItem/AddItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/implementation/eProc/pages/cart/CartImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/implementation/eProc/pages/cart/ICart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/implementation/eProc/pages/login/ILogin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/implementation/eProc/pages/login/LoginImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/implementation/eProc/pages/onlineStore/IOnlineStore.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/implementation/eProc/pages/onlineStore/OnlineStoreImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/implementation/eProc/pages/pageNavigation/Navigation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/implementation/framework/utilities/webElementWrapper/WebElementWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gauge/executionStatus.json" beforeDir="false" afterPath="$PROJECT_DIR$/.gauge/executionStatus.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gauge/failures.json" beforeDir="false" afterPath="$PROJECT_DIR$/.gauge/failures.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gauge/lastRunCmd.json" beforeDir="false" afterPath="$PROJECT_DIR$/.gauge/lastRunCmd.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NewMavenProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/NewMavenProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/eProc/bo/RequisitionBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/bo/RequisitionBO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/implementation/eProc/keywords/CartFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/keywords/CartFlow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/eProc/pages/checkout/CheckoutImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/pages/checkout/CheckoutImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/implementation/eProc/pages/checkout/ICheckout.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/pages/checkout/ICheckout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/implementation/eProc/pages/coa/CoaImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/implementation/eProc/productUtilities/commonUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/productUtilities/commonUtilities.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/implementation/eProc/productUtilities/constants/IConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/productUtilities/constants/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/implementation/eProc/productUtilities/userListing/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/productUtilities/userListing/UserBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/eProc/productUtilities/commonUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/productUtilities/CommonUtilities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/eProc/productUtilities/dataCreation/ObjectCreation.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/productUtilities/dataCreation/ObjectCreation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/implementation/eProc/productUtilities/userListing/UserListing.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/eProc/productUtilities/userListing/UserListing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/implementation/framework/action/ActionBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/action/ActionBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/implementation/framework/loggers/LogGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/loggers/LogGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/implementation/framework/executionHooks/ExecutionHooks.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/executionHooks/ExecutionHooks.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/implementation/framework/reporting/ReportingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/reporting/ReportingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/implementation/framework/reporting/TestReportingBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/reporting/TestReportingBO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/implementation/framework/startup/Startup.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/startup/Startup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/implementation/framework/utilities/FileOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/FileOperations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/implementation/framework/utilities/GetData.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/GetData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/implementation/framework/utilities/GlobalVariable.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/GlobalVariable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/implementation/framework/utilities/commonServices/CommonServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/commonServices/CommonServices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/implementation/framework/utilities/commonServices/JSONParsingClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/commonServices/JSONParsingClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/implementation/framework/utilities/customizeAssertion/CustomizeAssertion.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/customizeAssertion/CustomizeAssertion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/implementation/framework/utilities/driverFactory/DriverSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/driverFactory/DriverSelector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/implementation/framework/utilities/screenshot/Screenshot.java" beforeDir="false" afterPath="$PROJECT_DIR$/implementation/framework/utilities/screenshot/Screenshot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/specs/eProc/Requisition/Checkout/example.spec" beforeDir="false" afterPath="$PROJECT_DIR$/specs/eProc/Requisition/Checkout/example.spec" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +46,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="Concept" />
       </list>
     </option>
   </component>
@@ -82,33 +92,8 @@
       <recent name="D:\Workspaces\IntelliJ_Workspace\NewMavenProject\implementation\framework\helperPackage" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.D:/Gauge_Workspace/dd-ui-automation/methods-test-Parallel.xml">
-    <configuration name="D:/Gauge_Workspace/dd-ui-automation/methods-test-Parallel.xml" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="NewMavenProject" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/methods-test-Parallel.xml" />
-      <option name="TEST_OBJECT" value="SUITE" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Test scenario" type="executeSpecs" factoryName="Gauge Execution" temporary="true">
-      <setting name="environment" value="" />
-      <setting name="specsToExecute" value="$PROJECT_DIR$/specs/eProc/Requisition/Checkout/example.spec:34" />
-      <setting name="tags" value="" />
-      <setting name="parallelNodes" value="" />
-      <setting name="execInParallel" value="false" />
-      <setting name="programParameters" value="" />
-      <setting name="workingDirectory" value="" />
-      <setting name="moduleName" value="NewMavenProject" />
-      <envMap />
-      <setting name="rowsRange" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Vowel counts in single word" type="executeSpecs" factoryName="Gauge Execution" temporary="true">
+  <component name="RunManager" selected="Gauge Execution.Vowel counts in single word (5)">
+    <configuration name="Vowel counts in single word (1)" type="executeSpecs" factoryName="Gauge Execution" temporary="true">
       <setting name="environment" value="" />
       <setting name="specsToExecute" value="$PROJECT_DIR$/specs/eProc/Requisition/Checkout/example.spec:12" />
       <setting name="tags" value="" />
@@ -123,9 +108,54 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="example.spec" type="executeSpecs" factoryName="Gauge Execution" temporary="true">
+    <configuration name="Vowel counts in single word (2)" type="executeSpecs" factoryName="Gauge Execution" temporary="true">
       <setting name="environment" value="" />
-      <setting name="specsToExecute" value="$PROJECT_DIR$/specs/eProc/Requisition/Checkout/example.spec" />
+      <setting name="specsToExecute" value="$PROJECT_DIR$/specs/eProc/Requisition/Checkout/example.spec:12" />
+      <setting name="tags" value="" />
+      <setting name="parallelNodes" value="" />
+      <setting name="execInParallel" value="false" />
+      <setting name="programParameters" value="" />
+      <setting name="workingDirectory" value="" />
+      <setting name="moduleName" value="NewMavenProject" />
+      <envMap />
+      <setting name="rowsRange" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Vowel counts in single word (3)" type="executeSpecs" factoryName="Gauge Execution" temporary="true">
+      <setting name="environment" value="" />
+      <setting name="specsToExecute" value="$PROJECT_DIR$/specs/eProc/Requisition/Checkout/example.spec:12" />
+      <setting name="tags" value="" />
+      <setting name="parallelNodes" value="" />
+      <setting name="execInParallel" value="false" />
+      <setting name="programParameters" value="" />
+      <setting name="workingDirectory" value="" />
+      <setting name="moduleName" value="NewMavenProject" />
+      <envMap />
+      <setting name="rowsRange" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Vowel counts in single word (4)" type="executeSpecs" factoryName="Gauge Execution" temporary="true">
+      <setting name="environment" value="" />
+      <setting name="specsToExecute" value="$PROJECT_DIR$/specs/eProc/Requisition/Checkout/example.spec:12" />
+      <setting name="tags" value="" />
+      <setting name="parallelNodes" value="" />
+      <setting name="execInParallel" value="false" />
+      <setting name="programParameters" value="" />
+      <setting name="workingDirectory" value="" />
+      <setting name="moduleName" value="NewMavenProject" />
+      <envMap />
+      <setting name="rowsRange" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Vowel counts in single word (5)" type="executeSpecs" factoryName="Gauge Execution" temporary="true">
+      <setting name="environment" value="" />
+      <setting name="specsToExecute" value="$PROJECT_DIR$/specs/eProc/Requisition/Checkout/example.spec:12" />
       <setting name="tags" value="" />
       <setting name="parallelNodes" value="" />
       <setting name="execInParallel" value="false" />
@@ -140,9 +170,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.D:/Gauge_Workspace/dd-ui-automation/methods-test-Parallel.xml" />
-        <item itemvalue="Gauge Execution.Test scenario" />
-        <item itemvalue="Gauge Execution.example.spec" />
+        <item itemvalue="Gauge Execution.Vowel counts in single word (5)" />
+        <item itemvalue="Gauge Execution.Vowel counts in single word (4)" />
+        <item itemvalue="Gauge Execution.Vowel counts in single word (3)" />
+        <item itemvalue="Gauge Execution.Vowel counts in single word (2)" />
+        <item itemvalue="Gauge Execution.Vowel counts in single word (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -196,6 +228,38 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="270" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579514455668" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1579527289626">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579527289626" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1579527289626">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579527289626" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1579527289626">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579527289626" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1579527289626">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579527289626" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1579527289619">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579527289619" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1579527289619">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579527289619" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1579527289619">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579527289619" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1579527289619">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579527289619" />
     <state x="540" y="258" key="IDE.errors.dialog" timestamp="1579174290661">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -208,6 +272,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="775" y="302" key="chooseDestDirectoryDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579509211718" />
+    <state x="667" y="348" key="com.intellij.ide.util.TipDialog" timestamp="1579590001774">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="667" y="348" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579590001774" />
+    <state x="617" y="138" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1579594160784">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="617" y="138" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579594160784" />
     <state x="605" y="110" width="709" height="819" key="find.popup" timestamp="1579519789265">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -216,9 +288,20 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="342" y="248" key="new project wizard/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579175136831" />
-    <state x="623" y="225" width="672" height="676" key="search.everywhere.popup" timestamp="1579518627472">
+    <state x="623" y="225" width="672" height="676" key="search.everywhere.popup" timestamp="1579594477358">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="676" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579518627472" />
+    <state x="623" y="225" width="672" height="676" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1579594477358" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/implementation/framework/utilities/customizeAssertion/CustomizeAssertion.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

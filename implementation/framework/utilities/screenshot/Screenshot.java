@@ -1,7 +1,7 @@
 package framework.utilities.screenshot;
 
 import framework.utilities.GlobalVariable;
-import eProc.productUtilities.commonUtilities;
+import eProc.productUtilities.CommonUtilities;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
@@ -30,7 +30,7 @@ public class Screenshot
 			}
 			if (GlobalVariable.TAKE_SCREEN_SHOT && driver != null && testcase != null)
 			{
-				String screenshotname = commonUtilities.currentdateTime("dd-MM-yyyy_HH-mm-ss-SS") + testcase + "_" + screenshotName;
+				String screenshotname = CommonUtilities.currentdateTime("dd-MM-yyyy_HH-mm-ss-SS") + testcase + "_" + screenshotName;
 				String filepath = GlobalVariable.SCREENSHOT_PATH;
 				String fileName = filepath + testcase + "/" + screenshotname + ".png";
 				File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);

@@ -14,6 +14,7 @@ To execute this specification, run
 tags: single word
 
 * The word "gauge" has "3" vowels.
+* Assert True for testcase "DDS-99451" with status "true" and message "Assertion occurred in verifying vowels"
 
 
 ## Vowel counts in multiple word

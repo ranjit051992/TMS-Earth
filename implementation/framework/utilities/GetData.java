@@ -1,5 +1,7 @@
 package framework.utilities;
 
+import com.thoughtworks.gauge.datastore.DataStore;
+import com.thoughtworks.gauge.datastore.DataStoreFactory;
 import framework.utilities.GlobalVariable;
 import framework.startup.Startup;
 import org.apache.log4j.Logger;
@@ -54,6 +56,8 @@ public class GetData
 				while (rs.next())
 				{
 					Startup.testDataMap.put(rs.getString("FIELD_NAME"), rs.getString(columnName));
+					DataStore store = DataStoreFactory.getSuiteDataStore();
+					store.put(rs.getString("FIELD_NAME"), rs.getString(columnName));
 				}
 			}
 			logger.info("testDtaMap size : " + Startup.testDataMap.size());
@@ -84,12 +88,14 @@ public class GetData
 	public static String getValueFromSpecificIndex(String field, int index)
 	{
 
-		HashMap<String, String> mapdata = new HashMap<String, String>();
+		//HashMap<String, String> mapdata = new HashMap<String, String>();
 		String data = null;
 		try
 		{
+			DataStore store = DataStoreFactory.getSuiteDataStore();
+			String fieldData = store.get(field).toString();
 
-			String fieldData = Startup.testDataMap.get(field);
+			//String fieldData = Startup.testDataMap.get(field);
 
 			if (fieldData != null)
 			{

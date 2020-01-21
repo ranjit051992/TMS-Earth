@@ -5,5 +5,7 @@
 		"--hide-suggestion",
 		"--simple-console"
 	],
-	"FailedItems": []
+	"FailedItems": [
+		"specs\\eProc\\Requisition\\Checkout\\example.spec:12"
+	]
 }
