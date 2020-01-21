@@ -133,10 +133,10 @@ public class UserListing
 	public static void collectUserData() throws SQLException
 	{
 		Connection con = null;
-		String query = null;
-		Statement stmt = null;
-		ResultSet rs = null;
-		UserBO userBO = null;
+		String query ;
+		Statement stmt ;
+		ResultSet rs ;
+		UserBO userBO=null ;
 
 		logger.info("\nGetting data for Setup: " + GlobalVariable.SETUP + "  and Tenant :" + GlobalVariable.TENANT);
 
@@ -159,11 +159,12 @@ public class UserListing
 					userBO.setSetUpName(rs.getString("SETUP_NAME"));
 					userBO.setRole(rs.getString("ROLE"));
 					Startup.usersList.add(userBO);
-					DataStore store = DataStoreFactory.getScenarioDataStore();
-					store.put("UserBO", userBO);
 
+					DataStore store = DataStoreFactory.getSuiteDataStore();
+					store.put("UserBO", userBO);
+					logger.info("\nSetting values in user  :  " + userBO.getUsername() + "    " + userBO.getPassword() + "    " + userBO.getTenant() + "   " + userBO.getSetUpName() + "   " + userBO.getRole());
 				}
-				logger.info("\nSetting values in user  :  " + userBO.getUsername() + "    " + userBO.getPassword() + "    " + userBO.getTenant() + "   " + userBO.getSetUpName() + "   " + userBO.getRole());
+
 			}
 			else
 			{

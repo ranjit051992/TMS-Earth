@@ -1,5 +1,7 @@
 package framework.utilities.driverFactory;
 
+import com.thoughtworks.gauge.datastore.DataStore;
+import com.thoughtworks.gauge.datastore.DataStoreFactory;
 import framework.utilities.GlobalVariable;
 import framework.reporting.TestReportingBO;
 import org.apache.log4j.Logger;
@@ -123,6 +125,61 @@ public class DriverSelector
 		catch (Exception e)
 		{
 
+			throw e;
+		}
+		return driver;
+	}
+
+	public  static WebDriver getDriver() throws Exception {
+		WebDriver driver = null;
+		try {
+			if ("Local".equalsIgnoreCase(GlobalVariable.RUN_ON))
+			{
+				logger.info("running on local");
+				if ("Chrome".equalsIgnoreCase(GlobalVariable.BROWSER))
+				{
+					System.setProperty("webdriver.chrome.driver", "./Resources/Drivers/chrome/chromedriver.exe");
+					ChromeOptions options = new ChromeOptions();
+					options.addArguments("start-maximized");
+					driver = new ChromeDriver(options);
+					driver.manage().window().maximize();
+				}
+				else if ("FireFox".equalsIgnoreCase(GlobalVariable.BROWSER))
+				{
+					logger.info("Launching FireFox browser");
+					System.setProperty("webdriver.gecko.driver", "./Resources/Drivers/firefox/geckodriver.exe");
+					File pathBinary = new File("D:\\eProcData\\firefox57\\firefox.exe");
+					FirefoxBinary firefoxBinary = new FirefoxBinary(pathBinary);
+					DesiredCapabilities desired = DesiredCapabilities.firefox();
+					FirefoxOptions options = new FirefoxOptions();
+					desired.setCapability(FirefoxOptions.FIREFOX_OPTIONS, options.setBinary(firefoxBinary));
+					driver = new FirefoxDriver(options);
+				}
+				else if ("IE".equalsIgnoreCase(GlobalVariable.BROWSER))
+				{
+					logger.info("Launching IE browser");
+					System.setProperty("webdriver.ie.driver", "./Resources/Drivers/ie/IEDriverServer.exe");
+					DesiredCapabilities ds = DesiredCapabilities.internetExplorer();
+					ds.setCapability(InternetExplorerDriver.IGNORE_ZOOM_SETTING, true);
+					driver = new InternetExplorerDriver(ds);
+				}
+				else if ("Edge".equalsIgnoreCase(GlobalVariable.BROWSER))
+				{
+					logger.info("Launching Edge browser");
+					System.setProperty("webdriver.edge.driver", "./Resources/Drivers/edge/MicrosoftWebDriver.exe");
+					driver = new EdgeDriver();
+				}
+				else
+				{
+					logger.error("Please select valid Browser (Chrome|FireFox|IE|Edge)");
+					throw new Exception(GlobalVariable.BROWSER + " is a invalid Browser, Valid values are (Chrome|FireFox|IE|Edge)");
+				}
+			}
+
+
+		}
+		catch (Exception e)
+		{
 			throw e;
 		}
 		return driver;

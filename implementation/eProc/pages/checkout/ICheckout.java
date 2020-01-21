@@ -175,5 +175,8 @@ public interface ICheckout
     String ITEM_TOTAL_AMOUNT = "FlowOR/Requisition/Line Item Details/ItemTotalAmount";
 
     String SEND_TO_BUYER_CONFIRM_POPUP = "FlowOR/Requisition/Confirm_PopUp_Send_To_Buyer";
+    String RECEIPT_CONFIRM_BUTTON= "Receipt_Page/ConfirmButton";
+
+
 
 }

@@ -4,6 +4,7 @@ import com.thoughtworks.gauge.Step;
 import eProc.bo.CatalogItemBO;
 import eProc.bo.RequisitionBO;
 import eProc.keywords.OnlineStoreFlow;
+import eProc.pages.onlineStore.OnlineStoreImpl;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
@@ -26,7 +27,7 @@ public class AddItem
             {
                 for (CatalogItemBO catalogItemBO : catalogItemList)
                 {
-                    OnlineStoreFlow.addCatalogItemToCart(driver,testCaseName,catalogItemBO.getItemName(),catalogItemBO.getQuantity());
+                   // OnlineStoreImpl.addCatalogItemToCart(driver,testCaseName,catalogItemBO.getItemName(),catalogItemBO.getQuantity());
                     addedCatelogItems.add(catalogItemBO);
                     logger.info("Catalog item is added to cart.");
                 }

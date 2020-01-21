@@ -5,10 +5,12 @@ import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
+import eProc.bo.CatalogItemBO;
 import eProc.bo.RequisitionBO;
 import eProc.pages.addItem.AddItem;
 import eProc.pages.cart.CartImpl;
 import eProc.pages.onlineStore.OnlineStoreImpl;
+import eProc.pages.requisitionListing.IRequisitionListing;
 import eProc.productUtilities.CommonUtilities;
 import eProc.productUtilities.constants.Constants;
 import framework.action.ActionBot;
@@ -25,6 +27,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
@@ -486,22 +489,16 @@ public class CheckoutImpl implements ICheckout{
         Screenshot.captureScreenshot(driver, MDC.get("TestCaseName").toString(), "Clicked on Save as Draft button");
     }
 
-  /*  public static boolean waitForSearchFieldOnOnlineStorePage(WebDriver driver) throws Exception
-    {
-        WebUI.waitForElementPresent(driver, findTestObject(driver, "Online_Store_Page/Search Box"), GlobalVariable.DEFAULT_HIGH_WAIT);
-        boolean flag = WebUI.waitForElementVisible(driver, findTestObject(driver, "Online_Store_Page/Search Box"), GlobalVariable.DEFAULT_HIGH_WAIT);
-        return flag;
-    }*/
-
-/*    public static void clickOnCancelButton(WebDriver driver) throws Exception
+   public static void clickOnCancelButton(WebDriver driver) throws Exception
     {
         ActionBot.click(driver, ICheckout.CANCEL_BUTTON);
         logger.info("Clicked on Cancel button");
 
         // if confirm pop up exists, click on Yes button;
         boolean flag = false;
-        flag = WebUI.waitForElementPresent(driver, findTestObject(driver, "Receipt_Page/ConfirmButton"), GlobalVariable.DEFAULT_HIGH_WAIT);
-        flag = WebUI.waitForElementVisible(driver, findTestObject(driver, "Receipt_Page/ConfirmButton"), GlobalVariable.DEFAULT_HIGH_WAIT);
+        flag = ActionBot.waitForElementVisible(driver,RECEIPT_CONFIRM_BUTTON);
+        flag =  ActionBot.verifyElementVisible(driver,RECEIPT_CONFIRM_BUTTON);
+
         if (flag)
         {
             ActionBot.click(driver, "Receipt_Page/ConfirmButton");
@@ -511,7 +508,7 @@ public class CheckoutImpl implements ICheckout{
         {
             logger.info("Confirmation pop up not present");
         }
-    }*/
+    }
 
     public static boolean waitForLoadingSymbolToGoOff(WebDriver driver, String testCaseName) throws Exception
     {
@@ -997,36 +994,6 @@ public class CheckoutImpl implements ICheckout{
         logger.info("Clicked on Cost Booking Details link");
     }
 
-   /* public static boolean isRequisitionSubmitted(WebDriver driver, String testcase) throws Exception
-    {
-        boolean flag = waitForLoadingSymbolToGoOff(driver, testcase);
-        if (flag)
-        {
-            logger.info("Create req loader went off");
-            Screenshot.captureScreenshot(driver, testcase, "Create req loader went off");
-            if (WebUI.waitForElementVisible(driver, findTestObject(driver, ImodalListingPageFilter.SEARCHBOX_PO_LISTING), GlobalVariable.DEFAULT_HIGH_WAIT))
-            {
-                flag = true;
-                Screenshot.captureScreenshot(driver, testcase, "Requisition Created Successfully");
-            }
-            else if (WebUI.waitForElementVisible(driver, findTestObject(driver, IPageCheckout.BASIC_DETAILS), GlobalVariable.DEFAULT_HIGH_WAIT))
-            {
-                Screenshot.captureScreenshot(driver, testcase, "Requisition not Created");
-                flag = false;
-                logger.info("Requisition did not submit. Chekcout page is still displayed.");
-                throw new Exception("Requisition did not submit. Chekcout page is still displayed.");
-            }
-        }
-        else
-        {
-            logger.info("Create req loader did not go off");
-            Screenshot.captureScreenshot(driver, testcase, "Create req loader did not go off");
-            throw new Exception("Create req Loader did not go off");
-        }
-
-        return flag;
-
-    }*/
 
     public static String enterAssetCode(WebDriver driver, String assetCode) throws Exception
     {
@@ -1062,9 +1029,46 @@ public class CheckoutImpl implements ICheckout{
         Screenshot.captureScreenshot(driver, testcase, "Clicked on Comments For Supplier link");
     }
 
+    @Step("Click on Cost Allotation Tab in browser <driver> for TestCase <testcase>")
+    public static void clickOnCostAllocation(WebDriver driver, String testcase) throws Exception
+    {
+        try
+        {
+            ActionBot.clickOnTab(driver, TAB_LIST, Constants.COST_ALLOCATION);
+            logger.info("Clicked on Cost Allocation Tab");
+            Screenshot.captureScreenshot(driver, testcase, "Clicked on Cost Allocation Tab");
+        }
+        catch(Exception e)
+        {
+            throw e;
+        }
+    }
+
+    @Step("Click on Buyer Drop Down in browser <driver> for TestCase <testcase>")
+    public static void clickOnBuyerDropdown(WebDriver driver, String testcaseName)throws Exception
+    {
+        ActionBot.click(driver, BUYER_DROPDOWN);
+        logger.info("Clicked on Buyer dropdown.");
+    }
+
+    @Step("Select Buyer Group option in browser <driver> for TestCase <testcase>")
+    public static void selectBuyerGroupOption(WebDriver driver, String testcaseName)throws Exception
+    {
+        ActionBot.click(driver, GROUP_DROPDOWN_OPTION);
+        logger.info("Selected on Buyer Group option.");
+    }
+
+    @Step("Click on Shipping Details And Asset Tagging Tab in browser <driver> for TestCase <testcase>")
+    public static void clickOnShippingDetailsAndAssetTaggingTab(WebDriver driver, String testCaseName) throws Exception {
+        ActionBot.click(driver, SHIPPING_DETAILS_AND_ASSET_TAGGING);
+        logger.info("Clicked on Shipping Details and Asset Tagging tab");
+        Screenshot.captureScreenshot(driver, testCaseName, "Clicked on Shipping Details and Asset Tagging tab");
+    }
+
      @Step("Create Requisition for Requsition <requisitionBO> in browser <driver> and TestCase <testCaseName>")
     public static RequisitionBO createRequisition(WebDriver driver, RequisitionBO req, String testCaseName) throws Exception
     {
+        boolean flag = false;
         try
         {
             AddItem.addItemToCart(driver,req,testCaseName);
@@ -1075,12 +1079,12 @@ public class CheckoutImpl implements ICheckout{
             if (req.getReqName() != null)
             {
                 String requisitionName = enterRequisitionName(driver, req.getReqName());
-                requisitionBO.setReqName(requisitionName);
+                req.setReqName(requisitionName);
             }
 
             if (req.getOnBehalfOf() != null)
             {
-                String onBehalfOf = enterOnBehalfOf(driver, req.getOnBehalfOf());
+                String onBehalfOf = enterOnBehalfOf(driver, req.getOnBehalfOf(),testCaseName);
                 req.setOnBehalfOf(onBehalfOf);
             }
 
@@ -1225,8 +1229,8 @@ public class CheckoutImpl implements ICheckout{
 
                 if (!GlobalVariable.isCOA)
                 {
-                    IPageCheckoutImp.clickOnCostAllocation(driver, MDC.get("TestCaseName").toString());
-                    CoaImpl.fillNonCoaAtHeaderLevel(driver, req, MDC.get("TestCaseName").toString());
+                    clickOnCostAllocation(driver, MDC.get("TestCaseName").toString());
+                   // CoaImpl.fillNonCoaAtHeaderLevel(driver, req, MDC.get("TestCaseName").toString());
                 }
 
                 clickOnLineItemDetailsTab(driver);
@@ -1241,7 +1245,7 @@ public class CheckoutImpl implements ICheckout{
                         itemNames.add(catalogItemBO.getItemName());
                     }
                 }
-                if ((req.getGuidedItemList() != null) && (req.getGuidedItemList().size() > 0))
+                /*if ((req.getGuidedItemList() != null) && (req.getGuidedItemList().size() > 0))
                 {
                     for (GuidedItemBO guidedItemBO : req.getGuidedItemList())
                     {
@@ -1269,7 +1273,7 @@ public class CheckoutImpl implements ICheckout{
                     {
                         itemNames.add(stockItem.getStockItemName());
                     }
-                }
+                }*/
 
                 for (int i = 0; i < itemNames.size(); i++)
                 {
@@ -1292,9 +1296,9 @@ public class CheckoutImpl implements ICheckout{
                     {
                         clickOnBuyerTab(driver);
 
-                        IPageCheckoutImp.clickOnBuyerDropdown(driver, MDC.get("TestCaseName").toString());
+                        clickOnBuyerDropdown(driver, MDC.get("TestCaseName").toString());
 
-                        IPageCheckoutImp.selectBuyerGroupOption(driver, MDC.get("TestCaseName").toString());
+                        selectBuyerGroupOption(driver, MDC.get("TestCaseName").toString());
 
                         enterBuyerInTextbox(driver, req.getAssignedBuyerGroup());
 
@@ -1302,7 +1306,7 @@ public class CheckoutImpl implements ICheckout{
 
                     if (req.isAssetTagging())
                     {
-                        IPageCheckoutImp.clickOnShippingDetailsAndAssetTaggingTab(driver, MDC.get("TestCaseName").toString());
+                        clickOnShippingDetailsAndAssetTaggingTab(driver, MDC.get("TestCaseName").toString());
                         clickOnAddAssetTagLink(driver);
                         enterAssetNumber(driver, "enter asset number");
                         enterManufacturerNumber(driver, "enter manufacturer number");
@@ -1321,7 +1325,7 @@ public class CheckoutImpl implements ICheckout{
                     {
                         if (req.getReqGlAccount() != null)
                         {
-                            CoaImpl.selectGLAccount(driver, req.getReqGlAccount(), MDC.get("TestCaseName").toString());
+                            //CoaImpl.selectGLAccount(driver, req.getReqGlAccount(), MDC.get("TestCaseName").toString());
                         }
                     }
 
@@ -1335,16 +1339,16 @@ public class CheckoutImpl implements ICheckout{
                     // Filling COA form if set true;
                     if (GlobalVariable.isCOA)
                     {
-                        CoaImpl.fillCoaForm(req.getCoaDataType(), req.getNoOfCoaSplit(), req.getSplitBy(), driver);
+                       // CoaImpl.fillCoaForm(req.getCoaDataType(), req.getNoOfCoaSplit(), req.getSplitBy(), driver);
                     }
                     else
                     {
                         if (req.isReqSplitCostAtLineItemLevel())
                         {
-                            CoaImpl.fillNonCoaAtLineItemLevel(driver, req, MDC.get("TestCaseName").toString());
+                          //  CoaImpl.fillNonCoaAtLineItemLevel(driver, req, MDC.get("TestCaseName").toString());
                         }
 
-                        CoaImpl.clickOnSaveButton(driver, MDC.get("TestCaseName").toString());
+                       // CoaImpl.clickOnSaveButton(driver, MDC.get("TestCaseName").toString());
                     }
                     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
@@ -1387,7 +1391,7 @@ public class CheckoutImpl implements ICheckout{
                 else if (req.getReqNextAction().equalsIgnoreCase(Constants.SAVE_AS_DRAFT))
                 {
                     clickOnSaveAsDraftButton(driver);
-                    flag = WebUI.waitForElementVisible(driver, findTestObject(driver, ImodalListingPageFilter.SEARCHBOX_PO_LISTING), GlobalVariable.DEFAULT_HIGH_WAIT);
+                    flag =ActionBot.waitForElementVisible(driver,IRequisitionListing.SEARCHBOX_REQ_LISTING);
                     if (flag)
                     {
                         logger.info("Requisition page is displayed");
@@ -1402,7 +1406,7 @@ public class CheckoutImpl implements ICheckout{
                 else if (req.getReqNextAction().equalsIgnoreCase(Constants.CANCEL))
                 {
                     clickOnCancelButton(driver);
-                    waitForSearchFieldOnOnlineStorePage(driver);
+                    OnlineStoreImpl.waitForOnlineStorePageToLoad(driver);
                 }
                 else if (req.getReqNextAction().equalsIgnoreCase(Constants.NONE))
                 {
@@ -1419,7 +1423,38 @@ public class CheckoutImpl implements ICheckout{
         return req;
     }
 
-    @Step("update <objectName> set <setOfKey> to <setOfValues> ")
+    public static boolean isRequisitionSubmitted(WebDriver driver, String testcase) throws Exception
+    {
+        boolean flag = waitForLoadingSymbolToGoOff(driver, testcase);
+        if (flag)
+        {
+            logger.info("Create req loader went off");
+            Screenshot.captureScreenshot(driver, testcase, "Create req loader went off");
+            if (ActionBot.waitForElementVisible(driver, IRequisitionListing.SEARCHBOX_REQ_LISTING))
+            {
+                flag = true;
+                Screenshot.captureScreenshot(driver, testcase, "Requisition Created Successfully");
+            }
+            else if (ActionBot.isElementPresent(driver,BASIC_DETAILS))
+            {
+                Screenshot.captureScreenshot(driver, testcase, "Requisition not Created");
+                flag = false;
+                logger.info("Requisition did not submit. Chekcout page is still displayed.");
+                throw new Exception("Requisition did not submit. Chekcout page is still displayed.");
+            }
+        }
+        else
+        {
+            logger.info("Create req loader did not go off");
+            Screenshot.captureScreenshot(driver, testcase, "Create req loader did not go off");
+            throw new Exception("Create req Loader did not go off");
+        }
+
+        return flag;
+
+    }
+
+    @Step("Update <objectName> set <setOfKey> to <setOfValues> ")
     public RequisitionBO updateObject(String objectName, String key, String value) throws Exception {
         RequisitionBO req;
         Map<String, String> updatedMap = ListofKey(key, value);

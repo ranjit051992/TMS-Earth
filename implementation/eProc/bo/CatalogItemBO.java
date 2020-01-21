@@ -7,7 +7,7 @@ import java.util.List;
 public class CatalogItemBO
 {
 	private String itemName;
-	private int quantity;
+	private String quantity;
 	private List<String> attachments;
 	private String maximumItemTotalAcrossReleases;
 	private String maximumUnitPricePerRelease;
@@ -45,12 +45,12 @@ public class CatalogItemBO
 		this.itemName = itemName;
 	}
 
-	public int getQuantity()
+	public String getQuantity()
 	{
 		return quantity;
 	}
 
-	public void setQuantity(int quantity)
+	public void setQuantity(String quantity)
 	{
 		this.quantity = quantity;
 	}
