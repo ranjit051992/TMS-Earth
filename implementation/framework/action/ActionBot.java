@@ -314,9 +314,10 @@ public class ActionBot
     public static WebElement waitUntilVisibleByXpath(WebDriver driver, String xPath) throws Exception
     {
         WebElement element = null;
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+
         try
         {
+            wait = new WebDriverWait(driver, 10);
             element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xPath)));
             if (element != null)
             {
@@ -331,6 +332,7 @@ public class ActionBot
         {
             try
             {
+                wait = new WebDriverWait(driver, 10);
                 element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xPath)));
                 if (element != null)
                 {
