@@ -1,5 +1,6 @@
 package framework.utilities.driverFactory;
 
+import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
 import framework.utilities.GlobalVariable;
@@ -182,6 +183,13 @@ public class DriverSelector
 		{
 			throw e;
 		}
+		return driver;
+	}
+
+	@Step("Get Driver form Data Store <driverKey>")
+	public static WebDriver getDriverFromDataStore(String driverKey)
+	{
+		WebDriver driver = (WebDriver)DataStoreFactory.getSuiteDataStore().get(driverKey);
 		return driver;
 	}
 }

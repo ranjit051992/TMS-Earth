@@ -4,6 +4,7 @@ import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
 import eProc.bo.CatalogItemBO;
+import eProc.bo.ItemsBO;
 import eProc.bo.RequisitionBO;
 import eProc.productUtilities.CommonUtilities;
 import eProc.productUtilities.constants.Constants;
@@ -105,8 +106,41 @@ public class ObjectCreation
         requisitionBO.setReqNextAction(Constants.SUBMIT);
         requisitionBO.setPoNextAction(Constants.SUBMIT_PO_FOR_PROCESSING);
 
-        DataStore store = DataStoreFactory.getScenarioDataStore();
+        DataStore store = DataStoreFactory.getSuiteDataStore();
         store.put("RequisitionBO", requisitionBO);
         return requisitionBO;
+    }
+
+    public static CatalogItemBO getDefaultObjectOfCatalogItem(int index) {
+
+        CatalogItemBO catalogItem = new CatalogItemBO();
+        catalogItem.setItemName(GetData.getValueFromSpecificIndex("ITEM_NAME_FOR_SEARCHING", index));
+        catalogItem.setSupplierName(GetData.getValueFromSpecificIndex("SUPPLIER_NAME", index));
+        catalogItem.setQuantity(CommonUtilities.randomNumberBetweenRange(1, 9));
+        return catalogItem;
+    }
+
+    @Step("Get default Object of items with noOfItem <noOfItem> and itemType <itemtype>")
+    public static ItemsBO getDefaultObjectOfItems(int noOfItem, String itemtype)
+    {
+        ItemsBO itemsBO = new ItemsBO();
+        List<CatalogItemBO> catalogItemBOList =  new ArrayList<CatalogItemBO>();
+        if(itemtype.equalsIgnoreCase(Constants.CatalogItem))
+        {
+            for(int i=0;i<noOfItem;i++)
+            {
+                CatalogItemBO catalogItemBO = getDefaultObjectOfCatalogItem(i);
+                catalogItemBOList.add(catalogItemBO);
+            }
+            itemsBO.setCatalogItemList(catalogItemBOList);
+        }
+        if(itemtype.equalsIgnoreCase(Constants.GuidedItem))
+        {
+            //guidedBo
+        }
+        DataStore store = DataStoreFactory.getSuiteDataStore();
+        store.put("ItemsBO", itemsBO);
+        System.out.println(store);
+        return itemsBO;
     }
 }
