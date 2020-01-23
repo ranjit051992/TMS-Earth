@@ -26,5 +26,14 @@ Every heading in this file denotes a scenario. Every bulleted point denotes a st
 
 
 
+## Update Default Requisition Object and add items to cart
+* Login to application with driver "Update Default Requisition Object and add items to cart"
+* Get Default of Requisition with noOfItem "1" and itemType "CatalogItem"
+* Update "RequisitionBO" set "noOfItem||itemType" to "2||CatalogItem"
+* Add Item to Cart on browser "Update Default Requisition Object and add items to cart" for RequisitionBO "RequisitionBO" and testcase "Update Default Requisition Object and add items to cart"
+
+
+
+
 
 
