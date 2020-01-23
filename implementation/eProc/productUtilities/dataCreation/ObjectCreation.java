@@ -105,7 +105,8 @@ public class ObjectCreation
 
         requisitionBO.setReqNextAction(Constants.SUBMIT);
         requisitionBO.setPoNextAction(Constants.SUBMIT_PO_FOR_PROCESSING);
-
+        ItemsBO itemsBO = ObjectCreation.getDefaultObjectOfItems(noOfItem, itemtype);
+        requisitionBO.setItems(itemsBO);
         DataStore store = DataStoreFactory.getSuiteDataStore();
         store.put("RequisitionBO", requisitionBO);
         return requisitionBO;

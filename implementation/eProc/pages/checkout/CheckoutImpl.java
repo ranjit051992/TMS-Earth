@@ -6,6 +6,7 @@ import com.thoughtworks.gauge.TableRow;
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
 import eProc.bo.CatalogItemBO;
+import eProc.bo.ItemsBO;
 import eProc.bo.RequisitionBO;
 import eProc.pages.addItem.AddItem;
 import eProc.pages.cart.CartImpl;
@@ -16,6 +17,7 @@ import eProc.productUtilities.constants.Constants;
 import framework.action.ActionBot;
 import framework.utilities.GetData;
 import framework.utilities.GlobalVariable;
+import framework.utilities.driverFactory.DriverSelector;
 import framework.utilities.screenshot.Screenshot;
 import framework.utilities.webElementWrapper.WebElementWrapper;
 import org.apache.commons.lang.reflect.FieldUtils;
@@ -25,6 +27,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.server.DriverFactory;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -1066,13 +1069,18 @@ public class CheckoutImpl implements ICheckout{
     }
 
      @Step("Create Requisition for Requsition <requisitionBO> in browser <driver> and TestCase <testCaseName>")
-    public static RequisitionBO createRequisition(WebDriver driver, RequisitionBO req, String testCaseName) throws Exception
+    public static RequisitionBO createRequisition(String driverKey, String reqKey, String testCaseName) throws Exception
     {
         boolean flag = false;
+        WebDriver driver = null;
+        RequisitionBO req = null;
         try
         {
-            AddItem.addItemToCart(driver,req,testCaseName);
-            OnlineStoreImpl.clickOnCartButtonOnOnlineStorePage(driver, testCaseName);
+            driver = DriverSelector.getDriverFromDataStore(driverKey);
+            req = (RequisitionBO)DataStoreFactory.getSuiteDataStore().get(reqKey);
+
+            AddItem.addItemToCart(driverKey,reqKey,testCaseName);
+            OnlineStoreImpl.clickOnCartButtonOnOnlineStorePage(driverKey, testCaseName);
             CartImpl.clickOnCheckoutButton(driver, testCaseName);
             clickOnBasicDetailsLink(driver, testCaseName);
 
@@ -1420,6 +1428,10 @@ public class CheckoutImpl implements ICheckout{
         {
             throw e;
         }
+        finally
+        {
+            DataStoreFactory.getSuiteDataStore().put("WebDriver", driver);
+        }
         return req;
     }
 
@@ -1462,9 +1474,19 @@ public class CheckoutImpl implements ICheckout{
         req = (RequisitionBO) store.get(objectName);
         for (String fieldName : updatedMap.keySet()) {
             System.out.println(req.getClass() + "      " + req.getClass().getDeclaredField(fieldName).getType().getSimpleName());
-            if (req.getClass().getDeclaredField(fieldName).getType().getSimpleName().equals("List")) {
+            if (req.getClass().getDeclaredField(fieldName).getType().getSimpleName().equals("List"))
+            {
+
             }
-            FieldUtils.writeField(req, fieldName, updatedMap.get(fieldName), true);
+           else if (req.getClass().getDeclaredField(fieldName).getType().getSimpleName().equals("int"))
+            {
+
+                FieldUtils.writeField(req, fieldName, Integer.parseInt(updatedMap.get(fieldName)), true);
+            }
+           else {
+                FieldUtils.writeField(req, fieldName, updatedMap.get(fieldName), true);
+            }
+
         }
         store.put(objectName, req);
         return req;
@@ -1480,6 +1502,7 @@ public class CheckoutImpl implements ICheckout{
         }
         return dataList;
     }
+
 
     }
 

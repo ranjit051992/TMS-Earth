@@ -152,6 +152,7 @@ public class RequisitionBO
 
     private String assignedBuyerGroup;
 
+    ItemsBO items;
 
     //Cost Allocation;
     private boolean isBookCostToSingleCostCenter;
@@ -1221,5 +1222,11 @@ public class RequisitionBO
         this.allowBudget = allowBudget;
     }
 
+    public ItemsBO getItems() {
+        return items;
+    }
 
+    public void setItems(ItemsBO items) {
+        this.items = items;
+    }
 }
