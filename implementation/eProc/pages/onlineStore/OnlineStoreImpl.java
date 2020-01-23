@@ -37,7 +37,7 @@ public class OnlineStoreImpl implements IOnlineStore {
         } catch (Exception e) {
             throw e;
         } finally {
-            DataStoreFactory.getSuiteDataStore().put("WebDriver", driver);
+            DataStoreFactory.getSuiteDataStore().put(driverKey, driver);
         }
     }
 
@@ -53,7 +53,7 @@ public class OnlineStoreImpl implements IOnlineStore {
         } catch (Exception e) {
             throw e;
         } finally {
-            DataStoreFactory.getSuiteDataStore().put("WebDriver", driver);
+            DataStoreFactory.getSuiteDataStore().put(driverKey, driver);
         }
     }
 
@@ -67,7 +67,7 @@ public class OnlineStoreImpl implements IOnlineStore {
         } catch (Exception e) {
             throw e;
         } finally {
-            DataStoreFactory.getSuiteDataStore().put("WebDriver", driver);
+            DataStoreFactory.getSuiteDataStore().put(driverKey, driver);
         }
     }
 
@@ -102,7 +102,7 @@ public class OnlineStoreImpl implements IOnlineStore {
 
         }
         finally {
-            DataStoreFactory.getSuiteDataStore().put("WebDriver", driver);
+            DataStoreFactory.getSuiteDataStore().put(driverkey, driver);
         }
     }
 
@@ -120,7 +120,7 @@ public class OnlineStoreImpl implements IOnlineStore {
             throw e;
         }
         finally {
-            DataStoreFactory.getSuiteDataStore().put("WebDriver", driver);
+            DataStoreFactory.getSuiteDataStore().put(driverKey, driver);
         }
     }
 
@@ -142,15 +142,27 @@ public class OnlineStoreImpl implements IOnlineStore {
         throw e;
     }
     finally {
-        DataStoreFactory.getSuiteDataStore().put("WebDriver", driver);
+        DataStoreFactory.getSuiteDataStore().put(driverKey, driver);
     }
 
     }
 
-    public static void clickOnCartButtonOnOnlineStorePage(WebDriver driver, String testCaseName) throws Exception {
-        ActionBot.click(driver, CART_BUTTON);
-        logger.info("Clicked on cart icon on online store page");
-       // Screenshot.captureScreenshot(driver, testCaseName, "Clicked on cart icon on online store page");
+    @Step("Click on Cart Button on Online Store Page for browser <driver> and testcase <testcase>")
+    public static void clickOnCartButtonOnOnlineStorePage(String driverKey, String testCaseName) throws Exception {
+       WebDriver driver = null;
+       try {
+           driver = DriverSelector.getDriverFromDataStore(driverKey);
+           ActionBot.click(driver, CART_BUTTON);
+           logger.info("Clicked on cart icon on online store page");
+           // Screenshot.captureScreenshot(driver, testCaseName, "Clicked on cart icon on online store page");
+       }
+       catch (Exception e)
+       {
+           throw e;
+       }
+       finally {
+           DataStoreFactory.getSuiteDataStore().put(driverKey, driver);
+       }
     }
 
     /**
@@ -245,7 +257,7 @@ public class OnlineStoreImpl implements IOnlineStore {
             throw e;
         }
         finally {
-            DataStoreFactory.getSuiteDataStore().put("WebDriver", driver);
+            DataStoreFactory.getSuiteDataStore().put(driverKey, driver);
         }
     }
 
@@ -292,7 +304,7 @@ public class OnlineStoreImpl implements IOnlineStore {
         }
         finally
         {
-            DataStoreFactory.getSuiteDataStore().put("WebDriver", driver);
+            DataStoreFactory.getSuiteDataStore().put(driverKey, driver);
         }
         return itemsBO;
     }
@@ -312,7 +324,7 @@ public class OnlineStoreImpl implements IOnlineStore {
             throw e;
         }
         finally {
-            DataStoreFactory.getSuiteDataStore().put("WebDriver", driver);
+            DataStoreFactory.getSuiteDataStore().put(driverKey, driver);
         }
     }
 
@@ -329,7 +341,7 @@ public class OnlineStoreImpl implements IOnlineStore {
             throw e;
         }
         finally {
-            DataStoreFactory.getSuiteDataStore().put("WebDriver", driver);
+            DataStoreFactory.getSuiteDataStore().put(driverKey, driver);
         }
 
     }
