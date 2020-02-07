@@ -1,0 +1,7 @@
+{
+    "type": "node",
+    "request": "launch",
+    "name": "codeceptjs",
+    "args": ["run", "--grep", "@tag1"],
+    "program": "./node_modules/.bin/codeceptjs"
+  }
