@@ -1,2 +1,0 @@
-import {loginpage} from './login';
-
