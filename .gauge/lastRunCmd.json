@@ -1,8 +1,0 @@
-[
-	"C:\\Program Files\\Gauge\\bin\\gauge.exe",
-	"run",
-	"--machine-readable",
-	"--hide-suggestion",
-	"--simple-console",
-	"C:/Users/priyanka.ingale/IdeaProjects/NewMavenProject/specs/eProc/Requisition/Checkout/example.spec"
-]
