@@ -1,0 +1,2 @@
+import {loginpage} from './login';
+
