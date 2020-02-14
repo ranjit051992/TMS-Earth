@@ -1,5 +1,0 @@
-Created by priyanka.ingale on 21-01-2020
-
-This is a concept file with following syntax for each concept.
-# Create Requisition with Catalog Item
-* Create Requisition for Requsition "requisitionBO" in browser "driver" and TestCase "testCaseName"
