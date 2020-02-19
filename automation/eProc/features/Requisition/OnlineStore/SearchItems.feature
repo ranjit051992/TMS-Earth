@@ -18,3 +18,17 @@ Feature: OnlineStore
   Given i am main page ""
 
 
+@tag3
+  Scenario: Add item to cart
+
+  Given i am on Online Store page
+
+  When cart is empty
+
+  When i search catalog item
+
+  When add quantity
+
+  When click on Add to Cart button
+
+  Then item should be added to cart
