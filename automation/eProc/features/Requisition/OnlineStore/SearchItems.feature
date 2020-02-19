@@ -32,3 +32,4 @@ Feature: OnlineStore
   When click on Add to Cart button
 
   Then item should be added to cart
+
