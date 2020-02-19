@@ -1,3 +1,19 @@
 {
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "workbench.colorTheme": "Atom One Dark",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "cucumberautocomplete.onTypeFormat": true,
+    "cucumberautocomplete.steps": [
+        "./automation/eProc/implementation/**/**/**.js",
+    ],
+    "cucumberautocomplete.syncfeatures": "./automation/eProc/features/**/**/**.feature",
+    "cucumberautocomplete.strictGherkinCompletion": true
 }
