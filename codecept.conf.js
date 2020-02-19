@@ -16,7 +16,8 @@ exports.config = {
       host: '127.0.0.1',
       port: 4444,
       restart: false,
-      windowSize: '1200x700',
+      windowSize: 'maximize',
+      waitForTimeout: 30000,
     }, 
     "ChaiWrapper" : 
     {
@@ -30,8 +31,8 @@ exports.config = {
   },
 
   gherkin: {
-    features: './automation/eproc/features/**.feature',
-    steps: ['./automation/eproc/stepDefinitions/onlineStore.js']
+    features: './automation/eproc/features/**/**/**.feature',
+    steps: './automation/eproc/implementation/**/**/**.js'
   },  
 
   name: 'BDD_UI_Automation',
