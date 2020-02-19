@@ -1,5 +1,6 @@
 const { container: Container, codecept: Codecept } = require("codeceptjs");
 const logger = require("./automation/Framework/FrameworkUtilities/Logger/logger");
+const databaseOperations = require("./automation/Framework/FrameworkUtilities/DatabaseOperations/databaseOperations");
 
 const LOGIN_URL = 'http://login-rp.zycus.com/';
 const REST_API_URL = "https://dewdrops-rp.zycus.com";
@@ -69,6 +70,15 @@ async function runCodecept() {
     codecept.runHooks();
 
     logger.info("before bootstrap");
+
+    global.testData = await databaseOperations.getTestData();
+    
+    global.uiElements = await databaseOperations.getUiElementXpath();
+
+    // logger.info("global.uiElements   : "+global.uiElements)
+    // global.uiElements = {
+    //     map: uiElementsMap,
+    // }
 
     // codecept.runBootstrap(async (err) => {
         // load tests
