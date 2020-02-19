@@ -16,5 +16,3 @@ Feature: OnlineStore
   Scenario: Search an Item on OnlineStore page1
 
   Given i am main page ""
-
-

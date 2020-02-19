@@ -31,8 +31,11 @@ exports.config = {
   },
 
   gherkin: {
-    features: './automation/eproc/features/**/**/**.feature',
-    steps: './automation/eproc/implementation/**/**/**.js'
+    features: ['./automation/eproc/features/**/**.feature',
+    './automation/eproc/features/**/**/**.feature'
+  ],
+    steps: ['./automation/eproc/implementation/**/**.js',
+    './automation/eproc/implementation/**/**/**.js'],
   },  
 
   name: 'BDD_UI_Automation',
