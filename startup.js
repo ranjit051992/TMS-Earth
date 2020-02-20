@@ -54,7 +54,7 @@ async function runCodecept() {
 
     const opts = {
         // steps: true,
-        grep: "@tag3",
+        grep: "@tag4",
         verbose: true
     }
 
