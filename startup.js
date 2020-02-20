@@ -54,13 +54,18 @@ async function runCodecept() {
             wdio: {
                 enabled: true,
                 services: ['selenium-standalone']
+            },autoDelay: {
+                enabled: true,
+                delayBefore: 500,
+                delayAfter: 500,
+                methods: ['click', 'fillField', 'checkOption']
             }
         }
     }
 
     const opts = {
         // steps: true,
-        grep: "@tag1",
+        grep: "@tag4",
         verbose: true
     }
 
