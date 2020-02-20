@@ -4,20 +4,24 @@
 const LOGIN_URL = 'http://login-rp.zycus.com/';
 const REST_API_URL = "https://dewdrops-rp.zycus.com";
 const BROWSER ='chrome';
-
+const prop=require('./automation/Framework/PropertiesConfigurator');
+global.confi_prop=prop;
 exports.config = {
  
   tests: './*_test.js',
   output: './output',
   helpers: {
     WebDriver: {
-      url: LOGIN_URL,
-      browser: BROWSER,
-      host: '127.0.0.1',
-      port: 4444,
-      restart: false,
-      windowSize: 'maximize',
+      url: prop.url,
+      browser: prop.browser,
+      host: prop.host,
+      port: prop.port.number,
+      restart: prop.restart,
+      windowSize: prop.windowSize,
       waitForTimeout: 30000,
+      default_low_wait: prop.DEFAULT_LOW_WAIT,
+      default_medium_wait: prop.DEFAULT_MEDIUM_WAIT,
+      default_high_wait: prop.DEFAULT_HIGH_WAIT,
     }, 
     "ChaiWrapper" : 
     {
@@ -26,7 +30,7 @@ exports.config = {
   },
 
   include: {
-    I: './steps_file',
+    I: prop.stepFilePath,
     ...require('./automation/Framework/Include')
   },
 
@@ -38,7 +42,7 @@ exports.config = {
     './automation/eproc/implementation/**/**/**.js'],
   },  
 
-  name: 'BDD_UI_Automation',
+  name: prop.projectName,
   plugins: {
     retryFailedStep: {
       enabled: true
