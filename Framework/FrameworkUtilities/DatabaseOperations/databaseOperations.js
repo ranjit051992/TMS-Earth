@@ -2,15 +2,20 @@ const mysql = require('mysql');
 const logger = require("../Logger/logger");
 const parser = require('mssql-connection-string');
 
-const connectionString = "Data Source=tcp:192.168.5.221,3306;Initial Catalog=Gauge_schema;User Id=gauge.poc;Password=gauge@123;";
-const connectionObj = parser(connectionString);
-
 module.exports = {
     async getTestData() {
+        const prop = global.confi_prop;
 
-        logger.info(prop.SETUP+"_"+prop.TENANT)
-        const columnName = "RM_ZCS";
+        const connectionString = "Data Source=tcp:"+prop.DBhost+",3306;Initial Catalog="+prop.DBdatabase+";User Id="+prop.DBuser+";Password="+prop.DBpassword+";";
+        logger.info("connectionString  : " + connectionString)
+
+        const connectionObj = parser(connectionString);
+
+        const columnName = prop.SETUP + "_" + prop.TENANT
+        logger.info(columnName);
+        
         const query = `SELECT FIELD_NAME, ${columnName} FROM TestData_eproc`;
+        logger.info(query);
 
         return new Promise((resolve, reject) => {
             let testDataMap = new Map();
@@ -37,8 +42,6 @@ module.exports = {
                             for(let i = 0; i < rows.length; i++) {
                                 let mapKey;
                                 let mapValue;
-                                let counter = 0;
-                                logger.info("Inside rows for loop");
 
                                 for (let [key, value] of Object.entries(rows[i])) {
                                     if(key === "FIELD_NAME") {
@@ -47,15 +50,6 @@ module.exports = {
                                     else if(key === columnName) {
                                         mapValue = value;
                                     }
-
-
-                                    // if(counter === 0) {
-                                    //     mapKey = value;
-                                    // }
-                                    // else {
-                                    //     mapValue = value;
-                                    // }
-                                    // counter++;
                                 }
                                 testDataMap.set(mapKey, mapValue);
                             }
@@ -70,6 +64,12 @@ module.exports = {
     },
 
     async getUiElementXpath(uiElementKey) {
+        const prop = global.confi_prop;
+
+        const connectionString = "Data Source=tcp:"+prop.DBhost+",3306;Initial Catalog="+prop.DBdatabase+";User Id="+prop.DBuser+";Password="+prop.DBpassword+";";
+        logger.info("connectionString  : " + connectionString)
+
+        const connectionObj = parser(connectionString);
 
         const query = `SELECT PAGE_NAME, ELEMENT_NAME, XPATH FROM eProc_UI_Elements`;
 
@@ -77,12 +77,6 @@ module.exports = {
             let testDataMap = new Map();
 
             logger.info("Creating sql connection");
-            // connection = mysql.createConnection({
-            //     host: "192.168.5.221",
-            //     user: "gauge.poc",
-            //     password: "gauge@123",
-            //     database: "Gauge_schema",
-            // });
             connection = mysql.createConnection(connectionObj);
 
             logger.info("Checking sql connection");
@@ -116,25 +110,10 @@ module.exports = {
                                     }
 
                                 }
-                                
-                                // if(mapKey === uiElementKey) {
-                                //     connection.destroy();
-                                //     logger.info(`Ui element found ${mapValue}`);
-                                //     resolve(mapValue);
-                                //     break;
-                                // }
-                                // else {
-                                //     if(i === (rows.length - 1)) {
-                                //         connection.destroy();
-                                //         logger.info(`Ui element key ${uiElementKey} not present in table`);
-                                //         reject(`Ui element key ${uiElementKey} not present in table`);
-                                //     }
-                                // }
-                                
                                 testDataMap.set(mapKey, mapValue);
                             }
                             connection.destroy();
-                            logger.info(`Data map size --> ${testDataMap.size}`);
+                            logger.info(`UiElement map size --> ${testDataMap.size}`);
                             resolve(testDataMap);
                         }
                     });

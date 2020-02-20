@@ -4,7 +4,7 @@
 const LOGIN_URL = 'http://login-rp.zycus.com/';
 const REST_API_URL = "https://dewdrops-rp.zycus.com";
 const BROWSER ='chrome';
-const prop=require('./automation/Framework/PropertiesConfigurator');
+const prop=require('./Framework/PropertiesConfigurator');
 global.confi_prop=prop;
 exports.config = {
  
@@ -31,7 +31,7 @@ exports.config = {
 
   include: {
     I: prop.stepFilePath,
-    ...require('./automation/Framework/Include')
+    ...require('./Framework/Include')
   },
 
   gherkin: {

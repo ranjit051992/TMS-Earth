@@ -12,9 +12,9 @@
     "javascript.updateImportsOnFileMove.enabled": "always",
     "cucumberautocomplete.onTypeFormat": true,
     "cucumberautocomplete.steps": [
-        "./automation/eProc/implementation/**/**.js",
-        "./automation/eProc/implementation/**/**/**.js",
+        "./eProc/implementation/**/**.js",
+        "./eProc/implementation/**/**/**.js",
     ],
-    "cucumberautocomplete.syncfeatures": "./automation/eProc/features/**/**.feature",
+    "cucumberautocomplete.syncfeatures": "./eProc/features/**/**.feature",
     "cucumberautocomplete.strictGherkinCompletion": true
 }
