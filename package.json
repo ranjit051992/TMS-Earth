@@ -20,7 +20,9 @@
     "data-store": "^4.0.3",
     "express": "4.17.1",
     "log4js": "^6.1.1",
+    "mssql-connection-string": "^0.3.2",
     "mysql": "2.18.1",
+    "properties-reader": "^1.0.0",
     "xlsx": "^0.15.5"
   }
 }

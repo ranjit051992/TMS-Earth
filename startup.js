@@ -1,6 +1,9 @@
 const { container: Container, codecept: Codecept } = require("codeceptjs");
-const logger = require("./automation/Framework/FrameworkUtilities/Logger/logger");
-const databaseOperations = require("./automation/Framework/FrameworkUtilities/DatabaseOperations/databaseOperations");
+const logger = require("./Framework/FrameworkUtilities/Logger/logger");
+const databaseOperations = require("./Framework/FrameworkUtilities/DatabaseOperations/databaseOperations");
+
+const prop = require('./Framework/PropertiesConfigurator');
+global.confi_prop = prop;
 
 const LOGIN_URL = 'http://login-rp.zycus.com/';
 const REST_API_URL = "https://dewdrops-rp.zycus.com";
@@ -13,14 +16,17 @@ async function runCodecept() {
         output: './output',
         helpers: {
             WebDriver: {
-                url: LOGIN_URL,
-                browser: BROWSER,
-                host: '127.0.0.1',
-                port: 4444,
-                restart: false,
-                windowSize: 'maximize',
+                url:prop.url,
+                browser: prop.browser,
+                host:prop.host,
+                port: prop.port.number,
+                restart: prop.restart,
+                windowSize: prop.windowSize,
                 waitForTimeout: 30000,
-            },
+                default_low_wait: prop.DEFAULT_LOW_WAIT,
+                default_medium_wait: prop.DEFAULT_MEDIUM_WAIT,
+                default_high_wait: prop.DEFAULT_HIGH_WAIT,
+              },
             "ChaiWrapper":
             {
                 "require": "codeceptjs-chai"
@@ -29,12 +35,12 @@ async function runCodecept() {
 
         include: {
             I: './steps_file',
-            ...require('./automation/Framework/Include')
+            ...require('./Framework/Include')
         },
 
         gherkin: {
-            features: './automation/eproc/features/**/**/**.feature',
-            steps: './automation/eproc/implementation/**/**/**.js'
+            features: './eproc/features/**/**/**.feature',
+            steps: './eproc/implementation/**/**/**.js'
         },
 
         name: 'BDD_UI_Automation',
@@ -54,7 +60,7 @@ async function runCodecept() {
 
     const opts = {
         // steps: true,
-        grep: "@tag4",
+        grep: "@tag1",
         verbose: true
     }
 
@@ -75,15 +81,10 @@ async function runCodecept() {
     
     global.uiElements = await databaseOperations.getUiElementXpath();
 
-    // logger.info("global.uiElements   : "+global.uiElements)
-    // global.uiElements = {
-    //     map: uiElementsMap,
-    // }
-
     // codecept.runBootstrap(async (err) => {
         // load tests
         // codecept.loadTests("*_test.js");
-        codecept.loadTests("./automation/eproc/features/**/**/**.feature");
+        codecept.loadTests("./eproc/features/**/**/**.feature");
 
         logger.info("****************************** before codecept run**********************************")
 
