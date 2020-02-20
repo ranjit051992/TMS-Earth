@@ -1,5 +1,9 @@
 const mysql = require('mysql');
 const logger = require("../Logger/logger");
+const parser = require('mssql-connection-string');
+
+const connectionString = "Data Source=tcp:192.168.5.221,3306;Initial Catalog=Gauge_schema;User Id=gauge.poc;Password=gauge@123;";
+const connectionObj = parser(connectionString);
 
 module.exports = {
     async getTestData() {
@@ -11,12 +15,8 @@ module.exports = {
             let testDataMap = new Map();
 
             logger.info("Creating sql connection");
-            connection = mysql.createConnection({
-                host: "192.168.5.221",
-                user: "gauge.poc",
-                password: "gauge@123",
-                database: "Gauge_schema",
-            });
+
+            connection = mysql.createConnection(connectionObj);
 
             logger.info("Checking sql connection");
             connection.connect(function (error) {
@@ -76,12 +76,13 @@ module.exports = {
             let testDataMap = new Map();
 
             logger.info("Creating sql connection");
-            connection = mysql.createConnection({
-                host: "192.168.5.221",
-                user: "gauge.poc",
-                password: "gauge@123",
-                database: "Gauge_schema",
-            });
+            // connection = mysql.createConnection({
+            //     host: "192.168.5.221",
+            //     user: "gauge.poc",
+            //     password: "gauge@123",
+            //     database: "Gauge_schema",
+            // });
+            connection = mysql.createConnection(connectionObj);
 
             logger.info("Checking sql connection");
             connection.connect(function (error) {
