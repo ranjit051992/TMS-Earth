@@ -4,6 +4,7 @@ const logger = require("../Logger/logger");
 module.exports = {
     async getTestData() {
 
+        logger.info(prop.SETUP+"_"+prop.TENANT)
         const columnName = "RM_ZCS";
         const query = `SELECT FIELD_NAME, ${columnName} FROM TestData_eproc`;
 
