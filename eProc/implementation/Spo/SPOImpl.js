@@ -3,7 +3,8 @@ const logger = require("../../../Framework/FrameworkUtilities/Logger/logger");
 const iSpoObject = require("./iSpoObject");
 const spoObj = require("../../dataCreation/ObjectCreation")
 const prop=require("../../../Framework/PropertiesConfigurator");
-// var prop=global.confi_prop;
+
+
 function clickOnCreatePOButton()
 {
     I.click(global.uiElements.get(iSpoObject.createPOButton));
