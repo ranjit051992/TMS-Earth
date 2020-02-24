@@ -4,7 +4,7 @@ const databaseOperations = require("./Framework/FrameworkUtilities/DatabaseOpera
 
 const prop = require('./Framework/PropertiesConfigurator');
 global.confi_prop = prop;
-
+global.lang = 'en';
 const LOGIN_URL = 'http://login-rp.zycus.com/';
 const REST_API_URL = "https://dewdrops-rp.zycus.com";
 const BROWSER = 'chrome';
@@ -40,8 +40,8 @@ async function runCodecept() {
         },
 
         gherkin: {
-            features: './eproc/features/**/**/**.feature',
-            steps: './eproc/implementation/**/**/**.js'
+            features: './iContract/features/**/*.feature',
+            steps: './iContract/implementation/**/*.js'
         },
 
         name: 'BDD_UI_Automation',
@@ -60,7 +60,10 @@ async function runCodecept() {
                 delayBefore: 500,
                 delayAfter: 500,
                 methods: ['click', 'fillField', 'checkOption']
-            }
+            },
+            allure: {
+                enabled: true
+              },
         }
     }
 
@@ -83,14 +86,16 @@ async function runCodecept() {
 
     logger.info("before bootstrap");
 
-    global.testData = await databaseOperations.getTestData();
+    // global.testData = await databaseOperations.getTestData();
     
     global.uiElements = await databaseOperations.getUiElementXpath();
+
+    global.lmt = await databaseOperations.getLMTDetails();
 
     // codecept.runBootstrap(async (err) => {
         // load tests
         // codecept.loadTests("*_test.js");
-        codecept.loadTests("./eproc/features/**/**/**.feature");
+        codecept.loadTests("./iContract/feature/**/*.feature");
 
         logger.info("****************************** before codecept run**********************************")
 

@@ -6,6 +6,7 @@ class LoginPage
     {
 
         I.assertEqual(1, 1);
+        console.log("sdfgh");
     }
 }
 module.exports = new LoginPage;
