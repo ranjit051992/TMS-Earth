@@ -4,6 +4,7 @@ const iSpoObject = require("./iSpoObject");
 // const spoObj = require("../../dataCreation/ObjectCreation")
 const prop=require("../../../Framework/PropertiesConfigurator");
 
+
 //this.World = require("../../features/support/World.js").World;
 
 
