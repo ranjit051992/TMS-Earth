@@ -8,6 +8,12 @@ Feature: SPO
 
   Given i am on purchase order listing Page
     
-  And I Create Standard po
+  And I Create Standard po with "2" "Catalog" item
+  
+  And i search po by description 
+
+
+
+
   
   

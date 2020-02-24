@@ -35,7 +35,8 @@ async function runCodecept() {
 
         include: {
             I: './steps_file',
-            ...require('./Framework/Include')
+            ...require('./Framework/Include'),
+            ...require("./eProc/bo/Spo")
         },
 
         gherkin: {
