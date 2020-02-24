@@ -1,8 +1,13 @@
 const spo = require("../bo/Spo");
+const itemsBo = require("../bo/ItemsBo")
+const catalogItem = require("../bo/CatalogItem")
+
+
 class ObjectCreation
 {
     getObjectOfStandardPO(noOfItems,itemType)
     {
+        
         //spo.setPoNumber();
         spo.setPoDescription("AutomationSPO");
         spo.setPurchaseType(global.testData.get("PURCHASE_TYPE"));
@@ -16,9 +21,38 @@ class ObjectCreation
         spo.setBookCostToSingleMultipleCC("Yes");
         spo.setAssignCostProject("No");
         spo.setItemName(global.testData.get("ITEM_NAME_FOR_SEARCHING"));
+        // let item = this.getObjectOfItemsBo(noOfItems,itemType);
+        // spo.setItems(item);
         spo.setGlAccount(global.testData.get("GL_ACCOUNT"));
         spo.setCostCenter(global.testData.get("COST_CENTER"));
         return spo;
     }
+
+    getObjectOfItemsBo(noOfItems,itemType)
+    {
+        let catalogItems = new Set();
+
+        if(itemType==='Catalog')
+        {
+            for(const i in noOfItems)
+            {
+                let catalog = this.getObjectOfCatalogItem();
+                catalogItems.add(catalog);
+            }
+        }
+
+        itemsBo.setCatalogItemSet(catalogItems);
+
+        return itemsBo;
+    }
+
+    getObjectOfCatalogItem()
+    {
+
+        catalogItem.setItemName(global.testData.get("ITEM_NAME_FOR_SEARCHING"));
+
+        return catalogItem;
+    }
+
 }
 module.exports = new ObjectCreation();
