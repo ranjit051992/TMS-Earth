@@ -21,8 +21,8 @@ class ObjectCreation
         spo.setBookCostToSingleMultipleCC("Yes");
         spo.setAssignCostProject("No");
         spo.setItemName(global.testData.get("ITEM_NAME_FOR_SEARCHING"));
-        // let item = this.getObjectOfItemsBo(noOfItems,itemType);
-        // spo.setItems(item);
+        let item = this.getObjectOfItemsBo(noOfItems,itemType);
+        spo.setItems(item);
         spo.setGlAccount(global.testData.get("GL_ACCOUNT"));
         spo.setCostCenter(global.testData.get("COST_CENTER"));
         return spo;
@@ -36,8 +36,10 @@ class ObjectCreation
         {
             for(const i in noOfItems)
             {
-                let catalog = this.getObjectOfCatalogItem();
+                let itemNo = 0;
+                let catalog = this.getObjectOfCatalogItem(itemNo);
                 catalogItems.add(catalog);
+                itemNo++;
             }
         }
 
@@ -46,11 +48,13 @@ class ObjectCreation
         return itemsBo;
     }
 
-    getObjectOfCatalogItem()
+    getObjectOfCatalogItem(itemIndex)
     {
 
-        catalogItem.setItemName(global.testData.get("ITEM_NAME_FOR_SEARCHING"));
-
+        var itemName = global.testData.get("ITEM_NAME_FOR_SEARCHING");
+        var array = itemName.split("||");
+        console.log("Items array : "+array);
+        catalogItem.setItemName(array[itemIndex]);
         return catalogItem;
     }
 
