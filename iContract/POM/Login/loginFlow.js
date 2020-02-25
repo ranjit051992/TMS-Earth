@@ -10,7 +10,8 @@ const loginAction = require("./loginAction");
         I.fillField(global.uiElements.get(loginAction.PASSWORD_TEXTBOX), global.confi_prop.password);
     } 
     clickOnLogin (){
-        I.click(global.uiElements.get(loginAction.LOGIN_BUTTON));
+        // I.click(global.uiElements.get(loginAction.LOGIN_BUTTON));
+        I.clickIfVisible(global.uiElements.get(loginAction.LOGIN_BUTTON));
     }
 }
 

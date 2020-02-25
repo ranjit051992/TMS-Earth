@@ -72,7 +72,7 @@ module.exports = {
         const connectionObj = parser(connectionString);
 
         // const query = `SELECT PAGE_NAME, ELEMENT_NAME, XPATH FROM eProc_UI_Elements`;
-        const query = `SELECT * FROM iContract_ObjectRepository`;
+        const query = `SELECT * FROM Cucumber_CodeCept_iContract_OR`;
 
         return new Promise((resolve, reject) => {
             let elementMap = new Map();

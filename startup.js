@@ -30,9 +30,11 @@ async function runCodecept() {
             "ChaiWrapper":
             {
                 "require": "codeceptjs-chai"
-            }
+            },
+            MyHelper: {
+                require: './CustomHelper/myHelper.js',
+              },
         },
-
         include: {
             I: './steps_file',
             ...require('./Framework/Include'),

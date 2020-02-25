@@ -1,6 +1,7 @@
 {
     "git.ignoreLimitWarning": true,
     "editor.suggestSelection": "first",
+    "editor.autoIndent" : "full",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "files.exclude": {
         "**/.classpath": true,

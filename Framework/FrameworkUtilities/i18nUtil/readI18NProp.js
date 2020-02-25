@@ -12,7 +12,9 @@
 class lmt {
     getLabel(key){
         return global.lmt.get(key).get(global.lang);
-       }    
+       }
+
+       
 }
 
 
