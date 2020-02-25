@@ -5,6 +5,8 @@ const dbKeys = require("../../../../Framework/FrameworkUtilities/DatabaseOperati
 const iOnlineStore = require("./IOnlineStore");
 const username = global.confi_prop.username;
 const password = global.confi_prop.password;
+const prop=require("../../../../Framework/PropertiesConfigurator");
+
 let map = new Map();
 
 Given('logged in on eproc Page', async () => {
@@ -34,12 +36,13 @@ Given(/^i am main page "(.*?)"$/, (name) => {
     console.log("hey " + name + " i am main page");
 });
 Given("i am on Online Store page", async () => {
-    I.waitForVisible(global.uiElements.get(iOnlineStore.REQ_TABLE_OPTION_ICON));
+    I.waitForVisible(global.uiElements.get(iOnlineStore.REQ_TABLE_OPTION_ICON),prop.DEFAULT_MEDIUM_WAIT);
     logger.info("Navigated to DDS Online Store page");
 });
-When("i search catalog item", async () => {
-    const searchItem = global.testData.get(dbKeys.ITEM_NAME_FOR_SEARCHING);
+When(/^i search "(.*?)"$/, async (itemName) => {
+    const searchItem = global.testData.get(itemName);
     I.fillField(global.uiElements.get(iOnlineStore.SEARCH_TEXTBOX), searchItem);
+    I.waitForElement("//span[contains(text(),'"+searchItem+"')]",prop.DEFAULT_MEDIUM_WAIT);
     logger.info(`Entered search text --> ${searchItem}`);
     I.pressKey("Enter");
     logger.info("Pressed Enter on search textbox");
@@ -53,12 +56,30 @@ Then("results for catalog item are displayed", () => {
 When("cart is empty", () => {
     logger.info("cart is empty");
 });
-When("add quantity", () => {
-    logger.info("add quantity");
+When(/^add quantity "(.*?)"$/, (quantity) => {
+    I.fillField(global.uiElements.get(iOnlineStore.QUANTITY_TEXTBOX),quantity);
+    logger.info("added quantity : "+quantity);
 });
 When("click on Add to Cart button", () => {
+    I.click(global.uiElements.get(iOnlineStore.ADD_TO_CART_BUTTON));
     logger.info("click on Add to Cart button");
 });
 Then("item should be added to cart", () => {
-    logger.info("item should be added to cart");
+    I.waitForElement(global.uiElements.get(iOnlineStore.ADD_TO_CART_SUCCESS_MSG),prop.DEFAULT_MEDIUM_WAIT);
+    logger.info("item is added to cart");
+});
+Then(/^item should have supplier "(.*?)"$/, async (supplier) => {
+    const supplierName = global.testData.get(supplier);
+   // let searchResultXpath = `//eproc-product-list//span[contains(text(),'${searchItem}')]`;
+    let text = await I.grabTextFrom(global.uiElements.get(iOnlineStore.SUPPLIER_NAME));
+    logger.info("Actual supplier name found : "+text.toUpperCase());
+    let isPresent = false;
+    if(text.toUpperCase() === supplierName)
+    {
+        isPresent = true;
+    }
+   
+    I.assertEqual(true,isPresent);
+
+   // logger.info(`Search results displayed for --> ${searchItem}`);
 });
