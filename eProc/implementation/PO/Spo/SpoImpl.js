@@ -1,8 +1,8 @@
 const { I } = inject();
-const logger = require("../../../Framework/FrameworkUtilities/Logger/logger");
-const iSpoObject = require("./iSpoObject");
+const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger");
+const iSpoObject = require("./SpoObject");
 // const spoObj = require("../../dataCreation/ObjectCreation")
-const prop = require("../../../Framework/PropertiesConfigurator");
+const prop = require("../../../../Framework/PropertiesConfigurator");
 
 
 //this.World = require("../../features/support/World.js").World;
@@ -270,6 +270,14 @@ module.exports = {
         I.seeElement(optionXpath);
         I.click(optionXpath);
         logger.info(`Selected Deliver To --> ${option}`);
+    },
+    selectTaxInclusive() {
+        I.checkOption(global.uiElements.get(iSpoObject.SPO_TAX_INCLUSIVE));
+        logger.info(`Selected Tax Inclusive --> ${option}`);
+    },
+    clickRemoveTaxesConfirmButton() {
+        I.checkOption(global.uiElements.get(iSpoObject.SPO_TAX_INCLUSIVE));
+        logger.info(`Clicked on Remove Taxes Confirm button`);
     },
 
 }

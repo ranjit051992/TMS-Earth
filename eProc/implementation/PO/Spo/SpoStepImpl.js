@@ -1,12 +1,12 @@
 const { I } = inject();
-const logger = require("../../../Framework/FrameworkUtilities/Logger/logger");
-const iSpoObject = require("./iSpoObject");
-const objectCreation = require("../../dataCreation/ObjectCreation")
-const prop = require("../../../Framework/PropertiesConfigurator");
-const spoImpl = require("./SPOImpl");
-const items = require("../../bo/ItemsBo");
-const catalogItem = require("../../bo/CatalogItem");
-const iConstants = require("../../constants/iConstants");
+const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger");
+const iSpoObject = require("./SpoObject");
+const objectCreation = require("../../../dataCreation/ObjectCreation")
+const prop = require("../../../../Framework/PropertiesConfigurator");
+const spoImpl = require("./SpoImpl");
+const items = require("../../../bo/ItemsBo");
+const catalogItem = require("../../../bo/CatalogItem");
+const iConstants = require("../../../constants/iConstants");
 // const spo = require("../../bo/Spo");
 
 
@@ -91,6 +91,10 @@ Given(/^I Create Standard po with "(.*?)" "(.*?)" item$/, async (noOfItems, item
 
 
    logger.info(`**************Filling Line Items**************`);
+   if(spo.taxInclusive) {
+      spoImpl.selectTaxInclusive();
+      spoImpl.clickRemoveTaxesConfirmButton();
+   }
    spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_LINE_ITEMS_SECTION);
    spoImpl.clickOnAddLineItemButton();
    //    let item = spo.items;
@@ -114,6 +118,11 @@ Given(/^I Create Standard po with "(.*?)" "(.*?)" item$/, async (noOfItems, item
    logger.info(`**************Filling Taxes**************`);
    spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_TAXES_SECTION_SECTION);
    spoImpl.clickOnRemoveAllTaxesButton();
+
+   logger.info(`**************Filling Taxes**************`);
+   spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_ADDITIONAL_DETAILS_SECTION);
+
+
    spoImpl.clickOnSubmitPOButton();
    spoImpl.clickOnConfirmButton();
    I.waitForInvisible(global.uiElements.get(iSpoObject.spinner), prop.DEFAULT_HIGH_WAIT);

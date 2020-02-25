@@ -31,6 +31,7 @@ class Spo
         let notes;
         let receiptRuleAtHeaderLevel;
         let receiptCreationDefault;
+        let taxInclusive;
 
     }
     setPoNumber(poNumber)
@@ -161,6 +162,11 @@ class Spo
     setReceiptCreationDefault(receiptCreationDefault)
     {
         this.receiptCreationDefault = receiptCreationDefault;
+    }
+
+    setTaxInclusive(taxInclusive)
+    {
+        this.taxInclusive = taxInclusive;
     }
 }
 module.exports = new Spo();
