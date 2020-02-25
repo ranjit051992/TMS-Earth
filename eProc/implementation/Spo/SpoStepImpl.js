@@ -59,24 +59,28 @@ Given(/^I Create Standard po with "(.*?)" "(.*?)" item$/, async function(noOfIte
    spoImpl.enterCostCenter(spo.costCenter);
   // fillNonCoaAtHeaderLevel(spo);
    spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST),"Line Items")
-   spoImpl.clickOnAddLineItemButton();
-//    let item = spo.items;
-//    let catalogItemsSet = item.catalogItemSet;
-//    catalogItemsSet.forEach(function(value)
-//    {
-//     catalogItem = value;
-//     spoImpl.enterItemName(catalogItem.itemName);
-//     spoImpl.selectItemOption( catalogItem.itemName);
-//     spoImpl.clickOnCostBookingLink( catalogItem.itemName);
-   
+   let item =items;
+   item = spo.items;
+   let catalogItemsSet = item.catalogItemSet;
+   let catalog = catalogItem;
+   for(catalog of catalogItemsSet)
+   {
+    //catalogItem = catalog;
+    spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST),"Line Items")
+    spoImpl.clickOnAddLineItemButton();
+    spoImpl.enterItemName(catalog.itemName);
+    spoImpl.selectItemOption( catalog.itemName);
+    spoImpl.clickOnCostBookingLink( catalog.itemName);
+    spoImpl.fillGlAccount(spo.glAccount);
+    spoImpl.clickOnCostBookingSaveButton();
 
-//    });
-spoImpl.enterItemName(spo.itemName);
-spoImpl.selectItemOption(spo.itemName);
-spoImpl.clickOnCostBookingLink(spo.itemName);
+   }
+// spoImpl.enterItemName(spo.itemName);
+// spoImpl.selectItemOption(spo.itemName);
+// spoImpl.clickOnCostBookingLink(spo.itemName);
    
-   spoImpl.fillGlAccount(spo.glAccount);
-   spoImpl.clickOnCostBookingSaveButton();
+   // spoImpl.fillGlAccount(spo.glAccount);
+   // spoImpl.clickOnCostBookingSaveButton();
    spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST),"Taxes");
    spoImpl.clickOnRemoveAllTaxesButton();
    spoImpl.clickOnSubmitPOButton();
