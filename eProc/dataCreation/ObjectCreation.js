@@ -33,6 +33,7 @@ class ObjectCreation
         spo.setNotes("This is an auto generated note");
         spo.setReceiptRuleAtHeaderLevel(true);
         spo.setReceiptCreationDefault(true);
+        spo.setTaxInclusive(true);
         return spo;
     }
 

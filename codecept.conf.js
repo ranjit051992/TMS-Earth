@@ -28,8 +28,8 @@ exports.config = {
     I: prop.stepFilePath,
   },
   gherkin: {
-    features: "./eproc/features/**/**/**.feature",
-    steps: "./eproc/implementation/**/**/**.js"
+    features: "./eProc/features/**/**/**.feature",
+    steps: "./eProc/implementation/**/**/**.js"
 }, 
   name: prop.projectName,
   plugins: {
