@@ -47,6 +47,53 @@ async  fetchPONumber()
     I.click("//a[contains(text(),'"+purchaseType+"')]");
     logger.info("Selected purchase type :"+purchaseType);
 },
+clickOnBuyingUnitLink()
+{
+    I.click(global.uiElements.get(iSpoObject.BUYING_UNIT_LINK));
+    logger.info("Clicked on Buying Unit link");
+},
+async fillCompany(company)
+{
+    I.click(global.uiElements.get(iSpoObject.COMPANY_TEXTBOX));
+    I.clearField(global.uiElements.get(iSpoObject.COMPANY_TEXTBOX));
+    I.fillField(global.uiElements.get(iSpoObject.COMPANY_TEXTBOX), company);
+    this.selectOrganizationUnitOption(company);
+    company = await I.grabAttributeFrom(global.uiElements.get(iSpoObject.COMPANY_TEXTBOX), "value");
+    logger.info(`Selected company --> ${company}`);
+    return company;
+},
+async fillBusinessUnit(businessUnit)
+{
+    I.click(global.uiElements.get(iSpoObject.BUSINESS_UNIT_TEXTBOX));
+    I.clearField(global.uiElements.get(iSpoObject.BUSINESS_UNIT_TEXTBOX));
+    I.fillField(global.uiElements.get(iSpoObject.BUSINESS_UNIT_TEXTBOX), businessUnit);
+    this.selectOrganizationUnitOption(businessUnit);
+    businessUnit = await I.grabAttributeFrom(global.uiElements.get(iSpoObject.BUSINESS_UNIT_TEXTBOX), "value");
+    logger.info(`Selected business unit --> ${businessUnit}`);
+    return businessUnit;
+},
+async fillLocation(location)
+{
+    I.click(global.uiElements.get(iSpoObject.LOCATION_TEXTBOX));
+    I.clearField(global.uiElements.get(iSpoObject.LOCATION_TEXTBOX));
+    I.fillField(global.uiElements.get(iSpoObject.LOCATION_TEXTBOX), location);
+    this.selectOrganizationUnitOption(location);
+    location = await I.grabAttributeFrom(global.uiElements.get(iSpoObject.LOCATION_TEXTBOX), "value");
+    logger.info(`Selected location --> ${location}`);
+    return location;
+},
+clickOnOuModalDoneButton()
+{
+    I.click(global.uiElements.get(iSpoObject.OU_MODAL_DONE_BUTTON));
+    I.waitForInvisible(global.uiElements.get(iSpoObject.OU_MODAL_DONE_BUTTON));
+    logger.info(`Clicked on OU modal Done button`);
+},
+async fetchBillToAddress()
+{
+    let billToAddress = await I.grabTextFrom(global.uiElements.get(iSpoObject.BILL_TO_ADDRESS_VALUE));
+    logger.info(`Clicked on OU modal Done button`);
+    return billToAddress;
+},
   fillSupplierName(supplierName)
 {
     I.fillField(global.uiElements.get(iSpoObject.supplierNameTextbox),supplierName);
@@ -101,7 +148,41 @@ async  fetchPONumber()
     I.click("//span[contains(text(),'"+buyer+"')]");
     logger.info("Selected buyer :"+buyer);
 },
-
+async selectDeliverTo(deliverTo)
+{
+    I.click(global.uiElements.get(iSpoObject.DELIVER_TO_TEXTBOX));
+    I.clearField(global.uiElements.get(iSpoObject.DELIVER_TO_TEXTBOX));
+    I.fillField(global.uiElements.get(iSpoObject.DELIVER_TO_TEXTBOX), deliverTo);
+    this.selectDeliverToOption(deliverTo);
+    deliverTo = await I.grabAttributeFrom(global.uiElements.get(iSpoObject.DELIVER_TO_TEXTBOX), "value");
+    logger.info(`Selected deliverTo -->${deliverTo}`);
+    return deliverTo;
+},
+async selectRequiredByDate()
+{
+    logger.info("Selecting date");
+    // let day = new Date().getDate();
+    let day = "27";
+    let dayXpath = `//div[text()='${day}']/..`;
+    I.click(global.uiElements.get(iSpoObject.REQUIRED_BY));
+    let numberOfElements = await I.grabNumberOfVisibleElements(dayXpath);
+    for(let i = 0; i < numberOfElements; i++) {
+        dayXpath = `(//div[text()='${day}']/..)[${i + 1}]`;
+        try {
+            await I.waitForEnabled(dayXpath, 2);
+            logger.info(`Date enabled for xpath --> ${dayXpath}`);
+            I.click(dayXpath);
+            logger.info(`Clicked on date ${day}`);
+            break;
+        } catch (e) {
+            logger.info(`Date disabled for xpath --> ${dayXpath}`);
+        }
+        
+        if(i == numberOfElements) {
+            throw new Error(`Day --> ${day} not present in the datepicker`);
+        }
+    }
+},
 async  clickonTab(tabList, tabName)
 {
     // //let browser = this.helpers.WebDriver;
@@ -119,7 +200,9 @@ async  clickonTab(tabList, tabName)
     //     //console.log(tabListName);
     // },
     // logger.info(`Clicked on tab ${tabName},`);
-    I.scrollIntoView("//div[contains(text(),'"+tabName+"')]");
+    I.scrollIntoView("//dew-section//div[contains(text(),'"+tabName+"')]");
+    I.wait(prop.DEFAULT_WAIT);
+    logger.info(`Scrolled to section --> ${tabName}`);
 },
  clickOnCostAllocationTab()
 {
@@ -147,6 +230,18 @@ async  clickonTab(tabList, tabName)
     I.waitForVisible(xpath, prop.DEFAULT_MEDIUM_WAIT);
     I.click(xpath);
     logger.info(`Enter Cost Center: ${costCenter}`);
+},
+selectReceiptCreationAtHeaderLevel()
+{
+    I.seeElement(global.uiElements.get(iSpoObject.RECEIPT_CREATION_HEADER_LEVEL_BUTTON));
+    I.click(global.uiElements.get(iSpoObject.RECEIPT_CREATION_HEADER_LEVEL_BUTTON));
+    logger.info(`Selected Receipt Creation at Header Level`);
+},
+selectDefaultReceiptCreation()
+{
+    I.seeElement(global.uiElements.get(iSpoObject.RECEIPT_HEADER_LEVEL_DEFAULT_RADIO_BUTTON));
+    I.click(global.uiElements.get(iSpoObject.RECEIPT_HEADER_LEVEL_DEFAULT_RADIO_BUTTON));
+    logger.info(`Selected Default Receipt Creation`);
 },
  clickOnAddLineItemButton()
 {
@@ -206,6 +301,18 @@ async  clickonTab(tabList, tabName)
     I.seeElement(global.uiElements.get(iSpoObject.CONFIRM_BUTTON));
     I.click(global.uiElements.get(iSpoObject.CONFIRM_BUTTON));
     logger.info("Submitted PO");
+},
+selectOrganizationUnitOption(option) {
+    let optionXpath = `//div[contains(text(),'${option}')]`;
+    I.seeElement(optionXpath);
+    I.click(optionXpath);
+    logger.info(`Selected option --> ${option}`);
+},
+selectDeliverToOption(option) {
+    let optionXpath = `//span[contains(text(),'${option}')]`;
+    I.seeElement(optionXpath);
+    I.click(optionXpath);
+    logger.info(`Selected Deliver To --> ${option}`);
 },
 
 }

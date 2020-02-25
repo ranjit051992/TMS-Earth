@@ -6,6 +6,7 @@ const prop=require("../../../Framework/PropertiesConfigurator");
 const spoImpl = require("./SPOImpl");
 const items = require("../../bo/ItemsBo");
 const catalogItem = require("../../bo/CatalogItem");
+const iConstants = require("../../constants/iConstants");
 // const spo = require("../../bo/Spo");
 
 
@@ -15,7 +16,7 @@ Given("i am on purchase order listing Page",() => {
    I.waitForInvisible(global.uiElements.get(iSpoObject.spinner),prop.DEFAULT_MEDIUM_WAIT);
 });
 
-Given(/^I Create Standard po with "(.*?)" "(.*?)" item$/, async function(noOfItems,itemType){
+Given(/^I Create Standard po with "(.*?)" "(.*?)" item$/, async (noOfItems,itemType) => {
 
    
    const spo = objectCreation.getObjectOfStandardPO(noOfItems,itemType);
@@ -26,16 +27,28 @@ Given(/^I Create Standard po with "(.*?)" "(.*?)" item$/, async function(noOfIte
    spoImpl.clickOnStandardPOButton();
    I.waitForInvisible(global.uiElements.get(iSpoObject.spinner),prop.DEFAULT_MEDIUM_WAIT);
    I.waitForVisible(global.uiElements.get(iSpoObject.poNumberTextbox),prop.DEFAULT_MEDIUM_WAIT);
+
+   logger.info(`**************Filling Basic Details**************`);
    //spoImpl.fillPONumber(spo.poNumber);
    let poNumber = await spoImpl.fetchPONumber();
    // spo.setPoNumber(poNumber);
    //spoImpl.fillPODescription(spo.getPoDescription());
    spoImpl.fillPODescription(spo.poDescription);
-   
    spoImpl.clickOnPurchaseTypeDropdown();
    spoImpl.selectPurchaseType(spo.purchaseType);
 
-   spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST),"Supplier Details");
+
+   logger.info(`**************Filling Billing Information**************`);
+   spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_BILLING_INFORMATION_SECTION);
+   spoImpl.clickOnBuyingUnitLink();
+   await spoImpl.fillCompany(spo.company);
+   await spoImpl.fillBusinessUnit(spo.businessUnit);
+   await spoImpl.fillLocation(spo.location);
+   spoImpl.clickOnOuModalDoneButton();
+   spoImpl.fetchBillToAddress();
+
+   logger.info(`**************Filling Supplier Details**************`);
+   spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_SUPPLIER_DETAILS_SECTION);
    spoImpl.fillSupplierName(spo.supplierName);
    spoImpl.selectSupplierName(spo.supplierName);
    spoImpl.fillSupplierAddress(spo.supplierAddress);
@@ -47,18 +60,38 @@ Given(/^I Create Standard po with "(.*?)" "(.*?)" item$/, async function(noOfIte
    spoImpl.selectDeliveryTerm(spo.deliveryTerm);
    spoImpl.fillCurrency(spo.currency);
    spoImpl.selectCurrency(spo.currency);
-   spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST),"MST_Buyerandotherinformation");
+
+   logger.info(`**************Filling Buyer and Other Information**************`);
+   spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_BUYER_AND_OTHER_INFORMATION_SECTION);
    spoImpl.fillBuyer(spo.buyer);
    spoImpl.selectBuyer(spo.buyer);
    
-   
+   logger.info(`**************Filling Shipping Details**************`);
+   spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_SHIPPING_DETAILS_SECTION);
+   spoImpl.selectDeliverTo(spo.deliverTo);
+   // await spoImpl.selectRequiredByDate();
+
+   logger.info(`**************Filling Cost Allocation**************`);
+   spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_COST_ALLOCATION_SECTION);
     //click on cost Allocation tab
    spoImpl.clickOnCostAllocationTab();
    spoImpl.clickOnAssignCostNOButton();
    spoImpl.clickOnBookCostToSingle_MultipleCostCenter();
    spoImpl.enterCostCenter(spo.costCenter);
   // fillNonCoaAtHeaderLevel(spo);
-   spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST),"Line Items")
+
+  logger.info(`**************Filling Control Settings**************`);
+  spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_CONTROL_SETTINGS_SECTION);
+  if(spo.receiptRuleAtHeaderLevel) {
+     spoImpl.selectReceiptCreationAtHeaderLevel();
+     if(spo.receiptCreationDefault) {
+        spoImpl.selectDefaultReceiptCreation();
+     }
+  }
+
+
+  logger.info(`**************Filling Line Items**************`);
+   spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_LINE_ITEMS_SECTION);
    spoImpl.clickOnAddLineItemButton();
 //    let item = spo.items;
 //    let catalogItemsSet = item.catalogItemSet;
@@ -77,7 +110,9 @@ spoImpl.clickOnCostBookingLink(spo.itemName);
    
    spoImpl.fillGlAccount(spo.glAccount);
    spoImpl.clickOnCostBookingSaveButton();
-   spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST),"Taxes");
+
+   logger.info(`**************Filling Taxes**************`);
+   spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_TAXES_SECTION_SECTION);
    spoImpl.clickOnRemoveAllTaxesButton();
    spoImpl.clickOnSubmitPOButton();
    spoImpl.clickOnConfirmButton();
@@ -127,4 +162,4 @@ Given("i search po by description",()=> {
 
     // logger.info("PO description is : "+ I.pod);
     
-})
+});
