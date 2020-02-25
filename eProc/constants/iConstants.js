@@ -8,4 +8,5 @@ module.exports = {
     SPO_CONTROL_SETTINGS_SECTION: "Control Settings",
     SPO_LINE_ITEMS_SECTION: "Line Items",
     SPO_TAXES_SECTION_SECTION: "Taxes",
+    SPO_ADDITIONAL_DETAILS_SECTION: "Additional Details",
 }

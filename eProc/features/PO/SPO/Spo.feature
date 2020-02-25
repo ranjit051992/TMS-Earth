@@ -1,4 +1,4 @@
-Feature: SPO
+Feature: Spo
 
  Background:
     Given logged in on eproc Page
