@@ -8,19 +8,30 @@ class Spo
         let poNumber;
         let poDescription;
         let purchaseType;
+        let company;
+        let businessUnit;
+        let location;
         let supplierName;
         let supplierAddress;
         let paymentTerm;
         let deliveryTerm;
         let currency;
         let buyer;
+        let deliverTo;
+        let requiredBy;
         let assignCostProject;
         let bookCostToSingleMultipleCC;
-        let bookCostAtLineItemLevel; 
+        let bookCostAtLineItemLevel;
+        let costBookingPercentage;
         let itemName;
         let glAccount;
         let costCenter;
         let items;
+        let termsAndConditions;
+        let notes;
+        let receiptRuleAtHeaderLevel;
+        let receiptCreationDefault;
+
     }
     setPoNumber(poNumber)
     {
@@ -35,6 +46,21 @@ class Spo
     setPurchaseType(purchaseType)
     {
         this.purchaseType = purchaseType;
+    }
+
+    setCompany(company)
+    {
+        this.company = company;
+    }
+
+    setBusinessUnit(businessUnit)
+    {
+        this.businessUnit = businessUnit;
+    }
+
+    setLocation(location)
+    {
+        this.location = location;
     }
   
     setSupplierName(supplierName)
@@ -100,6 +126,41 @@ class Spo
     setItems(items)
     {
         this.items = items;
+    }
+
+    setDeliverTo(deliverTo)
+    {
+        this.deliverTo = deliverTo;
+    }
+
+    setRequiredBy(requiredBy)
+    {
+        this.requiredBy = requiredBy;
+    }
+
+    setCostBookingPercentage(costBookingPercentage)
+    {
+        this.costBookingPercentage = costBookingPercentage;
+    }
+
+    setTermsAndConditions(termsAndConditions)
+    {
+        this.termsAndConditions = termsAndConditions;
+    }
+
+    setNotes(notes)
+    {
+        this.notes = notes;
+    }
+    
+    setReceiptRuleAtHeaderLevel(receiptRuleAtHeaderLevel)
+    {
+        this.receiptRuleAtHeaderLevel = receiptRuleAtHeaderLevel;
+    }
+
+    setReceiptCreationDefault(receiptCreationDefault)
+    {
+        this.receiptCreationDefault = receiptCreationDefault;
     }
 }
 module.exports = new Spo();

@@ -11,12 +11,16 @@ class ObjectCreation
         //spo.setPoNumber();
         spo.setPoDescription("AutomationSPO");
         spo.setPurchaseType(global.testData.get("PURCHASE_TYPE"));
+        spo.setCompany(global.testData.get("ORGANIZATION_UNIT/COMPANY_NAME"));
+        spo.setBusinessUnit(global.testData.get("BUSINESS_UNIT_NAME"));
+        spo.setLocation(global.testData.get("LOCATION_NAME"));
         spo.setSupplierName(global.testData.get("SUPPLIER_NAME"));
         spo.setSupplierAddress(global.testData.get("SUPPLIER_ADDRESS"));
         spo.setPaymentTerm(global.testData.get("PAYMENT_TERMS"));
         spo.setDeliveryTerm(global.testData.get("DELIVERY_TERMS"));
         spo.setCurrency(global.testData.get("CURRENCY_TYPE"));
         spo.setBuyer(global.testData.get("BUYER_NAME"));
+        spo.setDeliverTo(global.testData.get("DELIVERES_TO/OWNER"));
         spo.setBookCostAtLineItemLevel("No");
         spo.setBookCostToSingleMultipleCC("Yes");
         spo.setAssignCostProject("No");
@@ -25,6 +29,10 @@ class ObjectCreation
         spo.setItems(item);
         spo.setGlAccount(global.testData.get("GL_ACCOUNT"));
         spo.setCostCenter(global.testData.get("COST_CENTER"));
+        spo.setTermsAndConditions("This is an auto generated term and condition");
+        spo.setNotes("This is an auto generated note");
+        spo.setReceiptRuleAtHeaderLevel(true);
+        spo.setReceiptCreationDefault(true);
         return spo;
     }
 
