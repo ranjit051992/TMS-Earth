@@ -24,7 +24,7 @@ exports.config = {
     },
     MyHelper: 
     {
-       require: './CustomHelper/myHelper.js',
+       require: "./CustomHelper/myHelper.js",
     },
 
   },
