@@ -10,4 +10,4 @@ module.exports = {
     DDS_LOGIN_PAGE: "Login/DDS_LOGIN_PAGE",
     REQ_TABLE_OPTION_ICON: "OnlineStore/REQ_TABLE_OPTION_ICON",
     SEARCH_TEXTBOX: "OnlineStore/SEARCH_TEXTBOX",
-}
+};

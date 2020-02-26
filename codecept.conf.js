@@ -1,15 +1,10 @@
-
-
-
-const LOGIN_URL = 'http://login-rp.zycus.com/';
-const REST_API_URL = "https://dewdrops-rp.zycus.com";
-const BROWSER ='chrome';
-const prop=require('./Framework/PropertiesConfigurator');
+const prop = require("./Framework/PropertiesConfigurator");
+const databaseOperations = require("./Framework/FrameworkUtilities/DatabaseOperations/databaseOperations");
 global.confi_prop=prop;
 exports.config = {
  
-  tests: './*_test.js',
-  output: './output',
+  tests: "./*_test.js",
+  output: "./output",
   helpers: {
     WebDriver: {
       url: prop.url,
@@ -28,20 +23,14 @@ exports.config = {
       "require": "codeceptjs-chai"
     }
   },
-
+  bootstrap: "./bootstrap.js",
   include: {
     I: prop.stepFilePath,
-    ...require('./Framework/Include')
   },
-
   gherkin: {
-    features: ['./automation/eproc/features/**/**.feature',
-    './automation/eproc/features/**/**/**.feature'
-  ],
-    steps: ['./automation/eproc/implementation/**/**.js',
-    './automation/eproc/implementation/**/**/**.js'],
-  },  
-
+    features: "./eProc/features/**/**/**.feature",
+    steps: "./eProc/implementation/**/**/**.js"
+}, 
   name: prop.projectName,
   plugins: {
     retryFailedStep: {
@@ -52,7 +41,7 @@ exports.config = {
     },
     wdio:{
       enabled:true,
-      services:['selenium-standalone']
+      services:["selenium-standalone"]
   }
   }
-}
+};

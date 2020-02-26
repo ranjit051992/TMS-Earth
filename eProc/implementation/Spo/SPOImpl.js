@@ -3,7 +3,7 @@ const logger = require("../../../Framework/FrameworkUtilities/Logger/logger");
 const iSpoObject = require("./iSpoObject");
 // const spoObj = require("../../dataCreation/ObjectCreation")
 const prop=require("../../../Framework/PropertiesConfigurator");
-
+const commonComponent = require("../../commonComponent/CommonComponentObject");
 
 //this.World = require("../../features/support/World.js").World;
 
@@ -44,7 +44,8 @@ async  fetchPONumber()
 },
   selectPurchaseType(purchaseType)
 {
-    I.click("//a[contains(text(),'"+purchaseType+"')]");
+    //I.click("//a[contains(text(),'"+purchaseType+"')]");
+    commonComponent.selectValueFromDropDown(global.uiElements.get(iSpoObject.purchaseTypeDropdown), purchaseType);
     logger.info("Selected purchase type :"+purchaseType);
 },
   fillSupplierName(supplierName)
@@ -208,6 +209,6 @@ async  clickonTab(tabList, tabName)
     logger.info("Submitted PO");
 },
 
-}
+};
 
 

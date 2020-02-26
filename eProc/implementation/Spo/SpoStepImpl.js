@@ -1,7 +1,7 @@
 const { I } = inject();
 const logger = require("../../../Framework/FrameworkUtilities/Logger/logger");
 const iSpoObject = require("./iSpoObject");
-const objectCreation = require("../../dataCreation/ObjectCreation")
+const objectCreation = require("../../dataCreation/ObjectCreation");
 const prop=require("../../../Framework/PropertiesConfigurator");
 const spoImpl = require("./SPOImpl");
 const items = require("../../bo/ItemsBo");
@@ -20,7 +20,7 @@ Given(/^I Create Standard po with "(.*?)" "(.*?)" item$/, async function(noOfIte
    
    const spo = objectCreation.getObjectOfStandardPO(noOfItems,itemType);
    //const spo = require("../../bo/Spo");
-   logger.info("poNumber  : "+spo.poNumber)
+   logger.info("poNumber  : "+spo.poNumber);
    spoImpl.clickOnCreatePOButton();
    
    spoImpl.clickOnStandardPOButton();
@@ -32,15 +32,15 @@ Given(/^I Create Standard po with "(.*?)" "(.*?)" item$/, async function(noOfIte
    //spoImpl.fillPODescription(spo.getPoDescription());
    spoImpl.fillPODescription(spo.poDescription);
    
-   spoImpl.clickOnPurchaseTypeDropdown();
+   //spoImpl.clickOnPurchaseTypeDropdown();
    spoImpl.selectPurchaseType(spo.purchaseType);
-
+  
    spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST),"Supplier Details");
    spoImpl.fillSupplierName(spo.supplierName);
    spoImpl.selectSupplierName(spo.supplierName);
    spoImpl.fillSupplierAddress(spo.supplierAddress);
    // spoImpl.selectSupplierAddress(spo.getSupplierAddress());
-   spoImpl.selectSupplierAddress(spo.supplierAddress)
+   spoImpl.selectSupplierAddress(spo.supplierAddress);
    spoImpl.clickOnPaymentTermDropdown();
    spoImpl.selectPaymentTerm(spo.paymentTerm);
    spoImpl.clickOnDeliveryTermDropdown();
@@ -58,7 +58,7 @@ Given(/^I Create Standard po with "(.*?)" "(.*?)" item$/, async function(noOfIte
    spoImpl.clickOnBookCostToSingle_MultipleCostCenter();
    spoImpl.enterCostCenter(spo.costCenter);
   // fillNonCoaAtHeaderLevel(spo);
-   spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST),"Line Items")
+   spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST),"Line Items");
    spoImpl.clickOnAddLineItemButton();
 //    let item = spo.items;
 //    let catalogItemsSet = item.catalogItemSet;
@@ -127,4 +127,4 @@ Given("i search po by description",()=> {
 
     // logger.info("PO description is : "+ I.pod);
     
-})
+});
