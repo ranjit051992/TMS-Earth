@@ -26,7 +26,8 @@
     "mssql-connection-string": "^0.3.2",
     "mysql": "2.18.1",
     "properties-reader": "^1.0.0",
-    "xlsx": "^0.15.5",
-    "randomstring": "^1.1.5"
+    "randomstring": "^1.1.5",
+    "request": "^2.88.2",
+    "xlsx": "^0.15.5"
   }
 }

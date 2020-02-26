@@ -20,7 +20,8 @@ async function runCodecept() {
                 browser: prop.browser,
                 host:prop.host,
                 port: prop.port.number,
-                restart: prop.restart,
+                // restart: prop.restart,
+                restart : false,
                 windowSize: prop.windowSize,
                 waitForTimeout: 30000,
                 default_low_wait: prop.DEFAULT_LOW_WAIT,
@@ -70,8 +71,8 @@ async function runCodecept() {
     }
 
     const opts = {
-        // steps: true,
-        grep: "@tag4",
+        steps: true,
+        // grep: "@tag4",
         verbose: true
     }
 
@@ -97,7 +98,7 @@ async function runCodecept() {
     // codecept.runBootstrap(async (err) => {
         // load tests
         // codecept.loadTests("*_test.js");
-        codecept.loadTests("./iContract/feature/**/*.feature");
+        codecept.loadTests("./iContract/feature/testLMT.feature");
 
         logger.info("****************************** before codecept run**********************************")
 
