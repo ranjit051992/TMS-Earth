@@ -21,7 +21,11 @@ exports.config = {
     "ChaiWrapper" : 
     {
       "require": "codeceptjs-chai"
-   },
+    },
+    MyHelper: 
+    {
+       require: './CustomHelper/myHelper.js',
+    },
 
   },
   bootstrap: "./bootstrap.js",
