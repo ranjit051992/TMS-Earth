@@ -6,20 +6,21 @@ const prop=require("../../../Framework/PropertiesConfigurator");
 const spoImpl = require("./SPOImpl");
 const items = require("../../bo/ItemsBo");
 const catalogItem = require("../../bo/CatalogItem");
-// const spo = require("../../bo/Spo");
 
 
 Given("i am on purchase order listing Page",() => {
-    //clickonTab();
     I.amOnPage(prop.poListingUrl)
    I.waitForInvisible(global.uiElements.get(iSpoObject.spinner),prop.DEFAULT_MEDIUM_WAIT);
+   // const req = objectCreation.getObjectOfRequisition(2,"Catalog");
+   // console.log("ReqName : "+req.reqName);
+   // logger.info("ReqName : "+req.reqName);
+
 });
 
 Given(/^I Create Standard po with "(.*?)" "(.*?)" item$/, async function(noOfItems,itemType){
 
    
    const spo = objectCreation.getObjectOfStandardPO(noOfItems,itemType);
-   //const spo = require("../../bo/Spo");
    logger.info("poNumber  : "+spo.poNumber)
    spoImpl.clickOnCreatePOButton();
    
@@ -59,28 +60,29 @@ Given(/^I Create Standard po with "(.*?)" "(.*?)" item$/, async function(noOfIte
    spoImpl.enterCostCenter(spo.costCenter);
   // fillNonCoaAtHeaderLevel(spo);
    spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST),"Line Items")
-   let item =items;
-   item = spo.items;
-   let catalogItemsSet = item.catalogItemSet;
-   let catalog = catalogItem;
-   for(catalog of catalogItemsSet)
-   {
-    //catalogItem = catalog;
-    spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST),"Line Items")
-    spoImpl.clickOnAddLineItemButton();
-    spoImpl.enterItemName(catalog.itemName);
-    spoImpl.selectItemOption( catalog.itemName);
-    spoImpl.clickOnCostBookingLink( catalog.itemName);
-    spoImpl.fillGlAccount(spo.glAccount);
-    spoImpl.clickOnCostBookingSaveButton();
+   // let item =items;
+   // item = spo.items;
+   // let catalogItemsSet = item.catalogItemSet;
+   // let catalog = catalogItem;
+   // for(catalog of catalogItemsSet)
+   // {
+   //  //catalogItem = catalog;
+   //  spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST),"Line Items")
+   //  spoImpl.clickOnAddLineItemButton();
+   //  spoImpl.enterItemName(catalog.itemName);
+   //  spoImpl.selectItemOption( catalog.itemName);
+   //  spoImpl.clickOnCostBookingLink( catalog.itemName);
+   //  spoImpl.fillGlAccount(spo.glAccount);
+   //  spoImpl.clickOnCostBookingSaveButton();
 
-   }
-// spoImpl.enterItemName(spo.itemName);
-// spoImpl.selectItemOption(spo.itemName);
-// spoImpl.clickOnCostBookingLink(spo.itemName);
+   // }
+   spoImpl.clickOnAddLineItemButton();
+spoImpl.enterItemName(spo.itemName);
+spoImpl.selectItemOption(spo.itemName);
+spoImpl.clickOnCostBookingLink(spo.itemName);
    
-   // spoImpl.fillGlAccount(spo.glAccount);
-   // spoImpl.clickOnCostBookingSaveButton();
+   spoImpl.fillGlAccount(spo.glAccount);
+   spoImpl.clickOnCostBookingSaveButton();
    spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST),"Taxes");
    spoImpl.clickOnRemoveAllTaxesButton();
    spoImpl.clickOnSubmitPOButton();
@@ -130,5 +132,6 @@ Given(/^I Create Standard po with "(.*?)" "(.*?)" item$/, async function(noOfIte
 Given("i search po by description",()=> {
 
     // logger.info("PO description is : "+ I.pod);
+    
     
 })

@@ -22,6 +22,7 @@ exports.config = {
     {
       "require": "codeceptjs-chai"
     }
+   
   },
   bootstrap: "./bootstrap.js",
   include: {

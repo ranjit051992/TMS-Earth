@@ -8,12 +8,15 @@ Feature: SPO
 
   Given i am on purchase order listing Page
     
-  And I Create Standard po with "2" "Catalog" item
+  And I Create Standard po with "2" "ITEM_NAME_FOR_SEARCHING" item
   
   And i search po by description 
 
 
+@tag6
+  Scenario: Create Standard PO
 
+  Given i am on purchase order listing Page
 
   
   

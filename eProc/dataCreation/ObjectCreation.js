@@ -1,6 +1,8 @@
 const spo = require("../bo/Spo");
 const itemsBo = require("../bo/ItemsBo")
 const catalogItem = require("../bo/CatalogItem")
+const requisition = require("../bo/Requisition")
+const faker = require('faker')
 
 
 class ObjectCreation
@@ -20,7 +22,7 @@ class ObjectCreation
         spo.setBookCostAtLineItemLevel("No");
         spo.setBookCostToSingleMultipleCC("Yes");
         spo.setAssignCostProject("No");
-        spo.setItemName(global.testData.get("ITEM_NAME_FOR_SEARCHING"));
+        spo.setItemName(global.testData.get(itemType));
         let item = this.getObjectOfItemsBo(noOfItems,itemType);
         spo.setItems(item);
         spo.setGlAccount(global.testData.get("GL_ACCOUNT"));
@@ -50,13 +52,48 @@ class ObjectCreation
 
     getObjectOfCatalogItem(itemIndex)
     {
-
-        var itemName = global.testData.get("ITEM_NAME_FOR_SEARCHING");
-        var array = itemName.split("||");
-        console.log("Items array : "+array);
-        catalogItem.setItemName(array[itemIndex]);
+        catalogItem.setItemName(global.testData.get("ITEM_NAME_FOR_SEARCHING"));
         return catalogItem;
     }
 
+    getObjectOfRequisition(noOfItems,itemType)
+     {
+         requisition.reqName = "Automation_Req"+faker.random.number(200000);
+        requisition.onBehalfOf = global.testData.get("ON_BEHALF_OF_WITH_RIGHT_USER");
+        requisition.company = global.testData.get("ORGANIZATION_UNIT/COMPANY_NAME");
+        requisition.businessUnit = global.testData.get("BUSINESS_UNIT_NAME");
+        requisition.location = global.testData.get("LOCATION_NAME");
+        requisition.urgentRequirement = global.testData.get("No");
+        requisition.reasonForOrdering = global.testData.get("REASON_FOR_ORDERING");
+        requisition.commentsForSupplier = global.testData.get("COMMENTS_FOR_SUPPLIERS");
+        requisition.purchaseType = global.testData.get("PURCHASE_TYPE");
+        requisition.attachmentPath = "";
+        requisition.settlementVia = "Invoice";
+        requisition.retrospectivePurchase = "No";
+        requisition.shipToDefaultAddress = "Yes";
+        requisition.shipToAnotherAddress = "No";
+        requisition.deliverTo = global.testData.get("DELIVERES_TO/OWNER");
+        //requisition.requiredBy = faker.date.
+        requisition.assignCostProject = "No";
+        requisition.bookCostToSingleMultipleCC= "Yes";
+        requisition.bookCostAtLineLevel = "No";
+        requisition.costCenter = global.testData.get("COST_CENTER");
+        requisition.itemName = global.testData.get("ITEM_NAME_FOR_SEARCHING");
+        requisition.glAccount = global.testData.get("GL_ACCOUNT");
+        requisition.assetCode = global.testData.get("COST_BOOKING_DETAILS_ASSET_CODE");
+        requisition.buyer = global.testData.get("BUYER_NAME");
+        requisition.itemName = global.testData.get("ITEM_NAME_FOR_SEARCHING");
+        // let itemArray = new Array();
+        
+        // for(let i in noOfItems)
+        // {
+        //     itemArray.push(this.getObjectOfItemsBo(noOfItems,itemType));
+        // }
+
+        // requisition.items = itemArray;
+        return requisition;
+    }
+
 }
+
 module.exports = new ObjectCreation();
