@@ -7,7 +7,6 @@ const iConstants = require("../../../constants/iConstants");
 module.exports = {
     clickOnCreatePOButton() {
         I.click(global.uiElements.get(iSpoObject.createPOButton));
-
     },
     async clickOnStandardPOButton() {
         I.click(global.uiElements.get(iSpoObject.standardPOButton));

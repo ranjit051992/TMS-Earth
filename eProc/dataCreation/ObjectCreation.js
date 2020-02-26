@@ -4,7 +4,6 @@ const catalogItem = require("../bo/CatalogItem")
 const requisition = require("../bo/Requisition")
 const logger = require("../../Framework/FrameworkUtilities/Logger/logger");
 const commonUtilities = require("../../Framework/FrameworkUtilities/CommonUtilities")
-const faker = require('faker')
 
 
 class ObjectCreation

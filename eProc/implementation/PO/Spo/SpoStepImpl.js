@@ -12,19 +12,17 @@ Given("I am on PO listing page", async function () {
    await I.waitForInvisible(global.uiElements.get(iSpoObject.spinner), prop.DEFAULT_MEDIUM_WAIT);
 });
 
-Given("I Create Standard po with {string} {string} item", async (noOfItems, itemType) => {
+Given("I Create Standard po with {string} {string} item", async function (noOfItems, itemType) {
    this.spo = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
    this.spo = await spoImpl.createSpoFlow(this.spo);
 });
 
 When("I click on Create PO button", async function() {
-   spoImpl.clickOnCreatePOButton(); //need to remove this as click on create po button not present in gherkin
-   spoImpl.clickOnStandardPOButton();
+   spoImpl.clickOnCreatePOButton();
 });
 
 When("I click on Create SPO button", async function() {
    this.spo = objectCreation.getObjectOfStandardPO(1, "Catalog");
-   spoImpl.clickOnCreatePOButton(); //need to remove this as click on create po button not present in gherkin
    spoImpl.clickOnStandardPOButton();
 });
 
@@ -33,8 +31,17 @@ When("I fetch PO number", async function() {
    this.spo.setPoNumber(poNumber);
 });
 
+When("I fill Order Description", async function() {
+   spoImpl.fillPODescription(this.spo.poDescription);
+});
+
 When("I select supplier details", async function() {
-   spoImpl.fillSupplierDetails(spo);   //need to initialize spo object
+   spoImpl.fillSupplierDetails(spo);
+});
+
+When("I select Buyer", async function() {
+   let buyer = spoImpl.fillBuyer(this.spo.buyer);
+   this.spo.setBuyer(buyer);
 });
 
 When("I add Purchase type", async function() {
@@ -48,7 +55,7 @@ When("I add Required by date", async function() {
    this.spo.setRequiredBy(requiredBy);
 });
 
-When("I search catalog item with {String}", async function(itemName) {  //search item key is not passed
+When("I search catalog item with {string}", async function(itemName) {
    spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_LINE_ITEMS_SECTION);
    spoImpl.clickOnAddLineItemButton();
    spoImpl.enterItemName(this.spo.itemName);
@@ -76,6 +83,30 @@ When("I add attachment at header level", async function() {
 
 When("I submit the PO", async function() {
    await spoImpl.submitPo();
+});
+
+When("I search for the created po", async function() {
+   
+});
+
+When("I click on option icon", async function() {
+   
+});
+
+When("I click on Recall option", async function() {
+   
+});
+
+When("I enter recall comments", async function() {
+   
+});
+
+When("I click on Recall button", async function() {
+   
+});
+
+Then("PO should be in draft status on po listing", async function() {
+   
 });
 
 Then("I should be able to view the SPO with multiple items", async function() {

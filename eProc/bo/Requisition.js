@@ -1,5 +1,4 @@
 
-const itemBo = require("../bo/ItemsBo")
 class Requisition
 {
 

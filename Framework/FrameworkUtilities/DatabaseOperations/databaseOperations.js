@@ -14,6 +14,7 @@ module.exports = {
         const columnName = prop.SETUP + "_" + prop.TENANT
         logger.info(columnName);
         
+        // const query = `SELECT FIELD_NAME, ${columnName} FROM TestData_eproc`;
         const query = `SELECT FIELD_NAME, ${columnName} FROM iContract_QC`;
         logger.info(query);
 
@@ -100,6 +101,15 @@ module.exports = {
                                 let mapValue;
 
                                 for (let [key, value] of Object.entries(rows[i])) {
+                                    // if(key === "PAGE_NAME") {
+                                    //     mapKey = value;
+                                    // }
+                                    // else if(key === "ELEMENT_NAME") {
+                                    //     mapKey = `${mapKey}/${value}`;
+                                    // }
+                                    // else if(key === "XPATH") {
+                                    //     mapValue = value;
+                                    // }
                                     if(key === "Page Name") {
                                         mapKey = value;
                                     }

@@ -1,16 +1,16 @@
 Feature: Spo
 
   # Background:
-  #   Given logged in on eproc Page
+  #   Given I am logged in eproc
 
-  @tag4
-  Scenario: Create Standard PO
+  # @omtag
+  # Scenario: Create Standard PO
 
-  Given I am on PO listing page
+  # Given I am on PO listing page
     
-  And I Create Standard po with "2" "ITEM_NAME_FOR_SEARCHING" item
+  # And I Create Standard po with "2" "ITEM_NAME_FOR_SEARCHING" item
   
-  And i search po by description 
+  # And i search po by description 
 
 @Non_COA @L1      
 Scenario: To verify that user is able to create a SPO with single & multiple line items and with attachments in Zycus eproc
@@ -87,25 +87,33 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
   Then I should be able to see the new items in the amended version
 
 
-@Non_COA @L1
+@Non_COA @L1 @90
   Scenario: To verify that user is able to recall a PO after it is submitted
 
   Given I am logged in eproc
-  And I am on PO listing page 
+  And I am on PO listing page
 
-
-  When I click on Create SPO button
+  When I click on Create PO button
+  And I click on Create SPO button
+  And I fetch PO number
+  And I fill Order Description
+  And I add Purchase type
   And I select supplier details
-  And I add Purchase type 
-  Add I add Required by date
-  And I search catalog item with "search_term" 
+  And I select Buyer
+  And I add Required by date
+  And I search catalog item with "search_term"
   And I add costing and accounting details for that item
-  And I add 1 free text item with details
-  And I add attachment at header level
-  And I submit the PO 
+  # And I add 1 free text item with details
+  # And I add attachment at header level
+  And I submit the PO
+  And I am on PO listing page
+  # And I search for the created po
+  # And I click on option icon
+  # And I click on Recall option
+  # And I enter recall comments
+  # And I click on Recall button
 
-  Then I should be able to view the SPO with multiple items 
-  And I should be able to download attachments 
+  # Then PO should be in draft status on po listing
 
 
 @Non_COA @L1
@@ -196,7 +204,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 
   When I click on Create Blanket PO button
   And I select supplier details
-  Add I add Required by date
+  And I add Required by date
   And I search catalog item with "search_term" 
   And I add costing and accounting details for that item
   And I add 1 free text item with details
@@ -218,7 +226,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 
   When I click on Create Blanket PO button
   And I select supplier details
-  Add I add Required by date
+  And I add Required by date
   And I search catalog item with "search_term" 
   And I add costing and accounting details for that item
   And I Define Buying Scope
@@ -238,7 +246,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 
   When I click on Create Blanket PO button
   And I select supplier details
-  Add I add Required by date
+  And I add Required by date
   And I search catalog item with "search_term" 
   And I add costing and accounting details for that item
   And I uncheck Auto update checkbox for Order Value field
@@ -300,7 +308,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 
   When I click on Create Blanket PO button
   And I select supplier details
-  Add I add Required by date
+  And I add Required by date
   And I add 1 free text item with details
   And I add 1 attachment at header level
   And I Define Buying Scope
@@ -363,7 +371,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
   When I click on Create SPO button
   And I select supplier details
   And I add Purchase type 
-  Add I add Required by date
+  And I add Required by date
   And I search catalog item with "search_term" 
   And I add costing and accounting details for that item
   And I Save PO as draft
@@ -619,7 +627,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
   When I click on Create SPO button
   And I select supplier details
   And I add Purchase type 
-  Add I add Required by date
+  And I add Required by date
   And I search catalog item with "search_term" 
   And I add costing and accounting details for that item
   And I add 1 free text item with details
@@ -718,7 +726,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 
   When I click on Create Blanket PO button
   And I select supplier details
-  Add I add Required by date
+  And I add Required by date
   And I search catalog item with "search_term" 
   And I add costing and accounting details for that item
   And I add 1 free text item with details
@@ -740,7 +748,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 
   When I click on Create Blanket PO button
   And I select supplier details
-  Add I add Required by date
+  And I add Required by date
   And I search catalog item with "search_term" 
   And I add costing and accounting details for that item
   And I Define Buying Scope
@@ -760,7 +768,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 
   When I click on Create Blanket PO button
   And I select supplier details
-  Add I add Required by date
+  And I add Required by date
   And I search catalog item with "search_term" 
   And I add costing and accounting details for that item
   And I uncheck Auto update checkbox for Order Value field
@@ -822,7 +830,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 
   When I click on Create Blanket PO button
   And I select supplier details
-  Add I add Required by date
+  And I add Required by date
   And I add 1 free text item with details
   And I add 1 attachment at header level
   And I Define Buying Scope
@@ -885,7 +893,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
   When I click on Create SPO button
   And I select supplier details
   And I add Purchase type 
-  Add I add Required by date
+  And I add Required by date
   And I search catalog item with "search_term" 
   And I add costing and accounting details for that item
   And I Save PO as draft
