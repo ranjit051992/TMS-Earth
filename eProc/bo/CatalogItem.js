@@ -16,4 +16,4 @@ class CatalogItem
         this.quantity = quantity;
     }
 }
-module.exports = new CatalogItem();
+module.exports = CatalogItem;
