@@ -1,6 +1,6 @@
 module.exports={
 
-Login:'./automation/eProc/Login.js'
+Login:'./iContract/POM/Login/loginFlow.js'
 
 
 
