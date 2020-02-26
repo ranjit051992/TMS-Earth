@@ -1,1 +1,4 @@
 /output/
+/allure-report/
+/node_modules/allure-commandline/
+/node_modules/.bin

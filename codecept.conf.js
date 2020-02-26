@@ -21,8 +21,8 @@ exports.config = {
     "ChaiWrapper" : 
     {
       "require": "codeceptjs-chai"
-    }
-   
+   },
+
   },
   bootstrap: "./bootstrap.js",
   include: {

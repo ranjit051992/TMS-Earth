@@ -1,6 +1,7 @@
 {
     "git.ignoreLimitWarning": true,
     "editor.suggestSelection": "first",
+    "editor.autoIndent" : "full",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "files.exclude": {
         "**/.classpath": true,
@@ -12,9 +13,9 @@
     "javascript.updateImportsOnFileMove.enabled": "always",
     "cucumberautocomplete.onTypeFormat": true,
     "cucumberautocomplete.steps": [
-        "./eProc/implementation/**/**.js",
-        "./eProc/implementation/**/**/**.js",
+        "./eProc/implementation/**/*.js",
+        "./iContract/implementation/**/*.js",
     ],
-    "cucumberautocomplete.syncfeatures": "./eProc/features/**/**.feature",
+    "cucumberautocomplete.syncfeatures": ["./Contract/feature/*.feature","./eProc/features/**/*.feature"],
     "cucumberautocomplete.strictGherkinCompletion": true
 }
