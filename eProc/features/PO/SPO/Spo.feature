@@ -13,7 +13,7 @@ Feature: Spo
   And i search po by description 
 
 
-@tag6
+@tag7
   Scenario: Create Standard PO
 
   Given i am on purchase order listing Page

@@ -1,35 +1,38 @@
 
+const itemBo = require("../bo/ItemsBo")
 class Requisition
 {
 
     constructor()
     {
-        let reqNumber;
-        let reqName;
-        let onBehalfOf;
-        let company;
-        let businessUnit;
-        let location;
-        let urgentRequirement;
-        let reasonForOrdering;
-        let commentsForSupplier;
-        let purchaseType;
-        let attachmentPath;
-        let settlementVia;
-        let retrospectivePurchase;
-        let shipToDefaultAddress;
-        let shipToAnotherAddress;
-        let deliverTo;
-        let requiredBy;
-        let assignCostProject;
-        let bookCostToSingleMultipleCC;
-        let bookCostAtLineLevel;
-        let costCenter;
-        let itemName;
-        let glAccount;
-        let assetCode;
-        let buyer;
-        let items=[];
+        this.reqNumber;
+        this.reqName;
+        this.onBehalfOf;
+        this.company;
+        this.businessUnit;
+        this.location;
+        this.urgentRequirement;
+        this.reasonForOrdering;
+        this.commentsForSupplier;
+        this.purchaseType;
+        this.attachmentPath;
+        this.settlementVia;
+        this.retrospectivePurchase;
+        this.shipToDefaultAddress;
+        this.shipToAnotherAddress;
+        this.deliverTo;
+        this.requiredBy;
+        this.assignCostProject;
+        this.bookCostToSingleMultipleCC;
+        this.bookCostAtLineLevel;
+        this.costCenter;
+        this.itemName;
+        this.glAccount;
+        this.assetCode;
+        this.buyer;
+        this.items = [];
+        this.fillCBL;
+        //let items = [];
     }
 
     setReqName(reqName)
@@ -39,7 +42,7 @@ class Requisition
 
     setReqNumber(reqNumber)
     {
-        this.reqNumber = reqNumber;
+        this.reqNumber = reqNumber
     }
 
     setOnBehalfOf(onBehalfOf)
@@ -159,7 +162,12 @@ class Requisition
 
     setItems(items)
     {
-        this.items = items;
+        this.items =items;
+    }
+
+    setFillCBL(fillCBL)
+    {
+        this.fillCBL = fillCBL;
     }
 }
 

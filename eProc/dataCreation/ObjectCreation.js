@@ -1,7 +1,8 @@
 const spo = require("../bo/Spo");
-const itemsBo = require("../bo/ItemsBo")
 const catalogItem = require("../bo/CatalogItem")
 const requisition = require("../bo/Requisition")
+const logger = require("../../Framework/FrameworkUtilities/Logger/logger");
+const commonUtilities = require("../../Framework/FrameworkUtilities/CommonUtilities")
 const faker = require('faker')
 
 
@@ -27,8 +28,7 @@ class ObjectCreation
         spo.setBookCostToSingleMultipleCC("Yes");
         spo.setAssignCostProject("No");
         spo.setItemName(global.testData.get(itemType));
-        let item = this.getObjectOfItemsBo(noOfItems,itemType);
-        spo.setItems(item);
+        spo.items  =  this.getArrayOfItems(noOfItems,itemType);
         spo.setGlAccount(global.testData.get("GL_ACCOUNT"));
         spo.setCostCenter(global.testData.get("COST_CENTER"));
         spo.setTermsAndConditions("This is an auto generated term and condition");
@@ -39,30 +39,30 @@ class ObjectCreation
         return spo;
     }
 
-    getObjectOfItemsBo(noOfItems,itemType)
+    getArrayOfItems(noOfItems,itemType)
     {
-        let catalogItems = new Set();
-
-        if(itemType==='Catalog')
+        
+        let catalogItems = new Array();
+        
+        if(itemType==="Catalog")
         {
-            for(const i in noOfItems)
+            for(let i =0;i<noOfItems;i++)
             {
-                let itemNo = 0;
-                let catalog = this.getObjectOfCatalogItem(itemNo);
-                catalogItems.add(catalog);
-                itemNo++;
+                let catalog = this.getObjectOfCatalogItem(i);
+                catalogItems[i] = catalog;
             }
         }
 
-        itemsBo.setCatalogItemSet(catalogItems);
-
-        return itemsBo;
+        
+        return catalogItems;
     }
 
     getObjectOfCatalogItem(itemIndex)
     {
-        catalogItem.setItemName(global.testData.get("ITEM_NAME_FOR_SEARCHING"));
-        return catalogItem;
+        let catalog = new catalogItem()
+        catalog.setItemName(commonUtilities.splitData(1,"ITEM_NAME_FOR_SEARCHING"));
+        catalog.quantity = faker.random.number(20);
+        return catalog;
     }
 
     getObjectOfRequisition(noOfItems,itemType)
@@ -92,17 +92,13 @@ class ObjectCreation
         requisition.assetCode = global.testData.get("COST_BOOKING_DETAILS_ASSET_CODE");
         requisition.buyer = global.testData.get("BUYER_NAME");
         requisition.itemName = global.testData.get("ITEM_NAME_FOR_SEARCHING");
-        // let itemArray = new Array();
-        
-        // for(let i in noOfItems)
-        // {
-        //     itemArray.push(this.getObjectOfItemsBo(noOfItems,itemType));
-        // }
-
-        // requisition.items = itemArray;
+        requisition.fillCBL = false;
+        requisition.items  =  this.getArrayOfItems(noOfItems,itemType);
+       
         return requisition;
     }
 
+    
 }
 
 module.exports = new ObjectCreation();
