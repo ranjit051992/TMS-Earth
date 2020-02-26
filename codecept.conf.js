@@ -22,9 +22,11 @@ exports.config = {
     {
       "require": "codeceptjs-chai"
     },
-    MyHelper: {
-      require: './CustomHelper/myHelper.js',
+    MyHelper: 
+    {
+       require: './CustomHelper/myHelper.js',
     },
+
   },
   bootstrap: "./bootstrap.js",
   include: {
