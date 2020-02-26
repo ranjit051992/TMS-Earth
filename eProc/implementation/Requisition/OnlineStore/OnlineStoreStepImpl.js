@@ -9,7 +9,7 @@ const prop=require("../../../../Framework/PropertiesConfigurator");
 
 let map = new Map();
 
-Given('logged in on eproc Page', async () => {
+Given("I am logged in eproc", async () => {
     logger.info(global.confi_prop.poListingUrl);
     I.amOnPage(global.confi_prop.url);
     I.seeElement(global.uiElements.get(iOnlineStore.EMAIL_ADDRESS_GHOST_TEXTBOX));

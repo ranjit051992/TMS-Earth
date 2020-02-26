@@ -32,6 +32,7 @@ class Spo
         let receiptRuleAtHeaderLevel;
         let receiptCreationDefault;
         let taxInclusive;
+        let billToAddress;
 
     }
     setPoNumber(poNumber)
@@ -167,6 +168,11 @@ class Spo
     setTaxInclusive(taxInclusive)
     {
         this.taxInclusive = taxInclusive;
+    }
+
+    setBillToAddress(billToAddress)
+    {
+        this.billToAddress = billToAddress;
     }
 }
 module.exports = new Spo();
