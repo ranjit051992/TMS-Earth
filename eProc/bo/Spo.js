@@ -1,37 +1,36 @@
-const item = require("../bo/ItemsBo")
 
 class Spo
 {
     constructor()
     {
   
-        let poNumber;
-        let poDescription;
-        let purchaseType;
-        let company;
-        let businessUnit;
-        let location;
-        let supplierName;
-        let supplierAddress;
-        let paymentTerm;
-        let deliveryTerm;
-        let currency;
-        let buyer;
-        let deliverTo;
-        let requiredBy;
-        let assignCostProject;
-        let bookCostToSingleMultipleCC;
-        let bookCostAtLineItemLevel;
-        let costBookingPercentage;
-        let itemName;
-        let glAccount;
-        let costCenter;
-        let items;
-        let termsAndConditions;
-        let notes;
-        let receiptRuleAtHeaderLevel;
-        let receiptCreationDefault;
-        let taxInclusive;
+        this.poNumber;
+        this.poDescription;
+        this.purchaseType;
+        this.company;
+        this.businessUnit;
+        this.location;
+        this.supplierName;
+        this.supplierAddress;
+        this.paymentTerm;
+        this.deliveryTerm;
+        this.currency;
+        this.buyer;
+        this.deliverTo;
+        this.requiredBy;
+        this.assignCostProject;
+        this.bookCostToSingleMultipleCC;
+        this.bookCostAtLineItemLevel;
+        this.costBookingPercentage;
+        this.itemName;
+        this.glAccount;
+        this.costCenter;
+        this.items = [];
+        this.termsAndConditions;
+        this.notes;
+        this.receiptRuleAtHeaderLevel;
+        this.receiptCreationDefault;
+        this.taxInclusive;
 
     }
     setPoNumber(poNumber)
@@ -126,7 +125,7 @@ class Spo
     
     setItems(items)
     {
-        this.items = items;
+        this.items =items;
     }
 
     setDeliverTo(deliverTo)

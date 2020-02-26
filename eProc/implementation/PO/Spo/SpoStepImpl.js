@@ -4,14 +4,12 @@ const iSpoObject = require("./SpoObject");
 const objectCreation = require("../../../dataCreation/ObjectCreation")
 const prop = require("../../../../Framework/PropertiesConfigurator");
 const spoImpl = require("./SpoImpl");
-const items = require("../../../bo/ItemsBo");
 const catalogItem = require("../../../bo/CatalogItem");
 const iConstants = require("../../../constants/iConstants");
 // const spo = require("../../bo/Spo");
 
 
 Given("i am on purchase order listing Page", () => {
-   //clickonTab();
    I.amOnPage(prop.poListingUrl)
    I.waitForInvisible(global.uiElements.get(iSpoObject.spinner), prop.DEFAULT_MEDIUM_WAIT);
 });

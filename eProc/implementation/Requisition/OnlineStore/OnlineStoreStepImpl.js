@@ -9,8 +9,8 @@ const prop=require("../../../../Framework/PropertiesConfigurator");
 
 let map = new Map();
 
-Given('logged in on eproc Page', async () => {
-    logger.info(global.confi_prop.poListingUrl);
+Given("logged in on eproc Page", async () => {
+    logger.info(global.confi_prop.url);
     I.amOnPage(global.confi_prop.url);
     I.seeElement(global.uiElements.get(iOnlineStore.EMAIL_ADDRESS_GHOST_TEXTBOX));
     logger.info("Navigated to login page");
@@ -32,7 +32,7 @@ Given(/^i am on login page "(.*?)"$/, (name) => {
     console.log("hey " + name + " i am on login page");
 });
 Given(/^i am main page "(.*?)"$/, (name) => {
-    I.assertEqual('given', 'given');
+    I.assertEqual("given", "given");
     console.log("hey " + name + " i am main page");
 });
 Given("i am on Online Store page", async () => {

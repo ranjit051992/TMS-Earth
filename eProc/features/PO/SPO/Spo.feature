@@ -8,7 +8,7 @@ Feature: Spo
 
   Given i am on purchase order listing Page
     
-  And I Create Standard po with "2" "Catalog" item
+  And I Create Standard po with "2" "ITEM_NAME_FOR_SEARCHING" item
   
   And i search po by description 
 
@@ -1137,7 +1137,10 @@ Scenario: COA >> To verify that user is able to create a SPO with single & multi
   Then I should be able to see the status of PO as In approval on PO listing
 
   
+@tag7
+  Scenario: Create Standard PO
 
+  Given i am on purchase order listing Page
 
   
   
