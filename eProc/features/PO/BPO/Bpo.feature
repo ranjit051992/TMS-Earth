@@ -22,7 +22,7 @@ Feature: Bpo
 
   When I click on Create Blanket PO button
   And I select supplier details
-  Add I add Required by date
+  And I add Required by date
   And I search catalog item with "search_term" 
   And I add costing and accounting details for that item
   And I add 1 free text item with details
@@ -44,7 +44,7 @@ Feature: Bpo
 
   When I click on Create Blanket PO button
   And I select supplier details
-  Add I add Required by date
+  And I add Required by date
   And I search catalog item with "search_term" 
   And I add costing and accounting details for that item
   And I Define Buying Scope
@@ -64,7 +64,7 @@ Feature: Bpo
 
   When I click on Create Blanket PO button
   And I select supplier details
-  Add I add Required by date
+  And I add Required by date
   And I search catalog item with "search_term" 
   And I add costing and accounting details for that item
   And I uncheck Auto update checkbox for Order Value field
@@ -113,7 +113,7 @@ Feature: Bpo
 
   When I click on Create Blanket PO button
   And I select supplier details
-  Add I add Required by date
+  And I add Required by date
   And I add 1 free text item with details
   And I add 1 attachment at header level
   And I Define Buying Scope
@@ -146,7 +146,7 @@ Feature: Bpo
 
   When I click on Create Blanket PO button
   And I select supplier details
-  Add I add Required by date
+  And I add Required by date
   And I search catalog item with "search_term" 
   And I add costing and accounting details for that item
   And I add 1 free text item with details
@@ -168,7 +168,7 @@ Feature: Bpo
 
   When I click on Create Blanket PO button
   And I select supplier details
-  Add I add Required by date
+  And I add Required by date
   And I search catalog item with "search_term" 
   And I add costing and accounting details for that item
   And I Define Buying Scope
@@ -188,7 +188,7 @@ Feature: Bpo
 
   When I click on Create Blanket PO button
   And I select supplier details
-  Add I add Required by date
+  And I add Required by date
   And I search catalog item with "search_term" 
   And I add costing and accounting details for that item
   And I uncheck Auto update checkbox for Order Value field
@@ -237,7 +237,7 @@ Feature: Bpo
 
   When I click on Create Blanket PO button
   And I select supplier details
-  Add I add Required by date
+  And I add Required by date
   And I add 1 free text item with details
   And I add 1 attachment at header level
   And I Define Buying Scope
