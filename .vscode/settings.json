@@ -16,6 +16,6 @@
         "./eProc/implementation/**/*.js",
         "./iContract/implementation/**/*.js",
     ],
-    "cucumberautocomplete.syncfeatures": "./Contract/feature/*.feature",
+    "cucumberautocomplete.syncfeatures": ["./Contract/feature/*.feature","./eProc/features/**/*.feature"],
     "cucumberautocomplete.strictGherkinCompletion": true
 }
