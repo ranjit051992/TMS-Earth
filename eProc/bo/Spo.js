@@ -3,7 +3,6 @@ class Spo
 {
     constructor()
     {
-  
         this.poNumber;
         this.poDescription;
         this.purchaseType;
@@ -31,7 +30,7 @@ class Spo
         this.receiptRuleAtHeaderLevel;
         this.receiptCreationDefault;
         this.taxInclusive;
-
+        this.billToAddress;
     }
     setPoNumber(poNumber)
     {
@@ -166,6 +165,11 @@ class Spo
     setTaxInclusive(taxInclusive)
     {
         this.taxInclusive = taxInclusive;
+    }
+
+    setBillToAddress(billToAddress)
+    {
+        this.billToAddress = billToAddress;
     }
 }
 module.exports = new Spo();

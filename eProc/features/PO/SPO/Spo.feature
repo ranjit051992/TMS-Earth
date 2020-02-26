@@ -1,12 +1,12 @@
 Feature: Spo
 
- Background:
-    Given logged in on eproc Page
+  # Background:
+  #   Given logged in on eproc Page
 
-@tag4
+  @tag4
   Scenario: Create Standard PO
 
-  Given i am on purchase order listing Page
+  Given I am on PO listing page
     
   And I Create Standard po with "2" "ITEM_NAME_FOR_SEARCHING" item
   
@@ -1137,10 +1137,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
   Then I should be able to see the status of PO as In approval on PO listing
 
   
-@tag7
-  Scenario: Create Standard PO
+# @tag7
+#   Scenario: Create Standard PO
 
-  Given i am on purchase order listing Page
-
-  
-  
+#   Given i am on purchase order listing Page
