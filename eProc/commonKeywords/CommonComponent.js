@@ -1,6 +1,6 @@
 const {I} = inject();
 const dropdownAction = require("./CommonComponentObject");
-const logger = require("./../../Framework/FrameworkUtilities/Logger/logger");
+const logger = require("../../Framework/FrameworkUtilities/Logger/logger");
 const prop= global.confi_prop;
 module.exports={
 
@@ -11,8 +11,8 @@ module.exports={
                 I.click(selectOption);
                 }
                 else{
-                    I.click(global.uiElements.get(dropdownAction.SearchAndSelectDropdown_Option));
-                    let selectedValue =  await I.grabAttributeFrom(global.uiElements.get(dropdownAction.SearchAndSelectDropdown_Option), "title");
+                    I.click(I.getElement(dropdownAction.SearchAndSelectDropdown_Option));
+                    let selectedValue =  await I.grabAttributeFrom(I.getElement(dropdownAction.SearchAndSelectDropdown_Option), "title");
                     return selectedValue;
                 }
             },

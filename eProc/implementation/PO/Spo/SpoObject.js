@@ -1,9 +1,9 @@
 module.exports={
     createPOButton: "Spo/CREATE_PO_BUTTON",
-    //createPOButton:  global.uiElements.get("Spo/CREATE_PO_BUTTON"),
+    //createPOButton:  I.getElement("Spo/CREATE_PO_BUTTON"),
     standardPOButton : "Spo/STANDARD_PO_BUTTON",
     spinner : "Spo/spinner",
- //  spinner : global.uiElements.get("Spo/spinner"),
+ //  spinner : I.getElement("Spo/spinner"),
     poNumberTextbox : "Spo/BasicDetails/PO_NUMBER_TEXTBOX",
     poDescriptionTextbox : "Spo/BasicDetails/PO_DESCRIPTION_TEXTBOX",
     purchaseTypeDropdown : "Spo/BasicDetails/PURCHASE_TYPE_DROPDOWN",

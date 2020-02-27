@@ -22,7 +22,9 @@
         "DBuser": "gauge.poc",
         "DBpassword": "gauge@123",
         "username": "prashant.patil@zycus.com",
-        "password": "Pass@123"
+        "password": "Pass@123",
+        "testdataTable":"TestData_eproc",
+        "uiElementTable":"eProc_UI_Elements"
     },
     "iContract": {
         "url": "https://dewdrops-partner.zycus.com/",
@@ -47,6 +49,9 @@
         "DBuser": "teamicontract",
         "DBpassword": "iContract@123",
         "username": "dewdropsuser1@zycus.com",
-        "password": "pass@321"
+        "password": "pass@321",
+        "testdataTable":"iContract_QC",
+        "uiElementTable":"Cucumber_CodeCept_iContract_OR"      
+        
     }
 }

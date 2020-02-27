@@ -10,6 +10,6 @@ const faker = require('faker');
 Given("I checkout", function () {
 
     onlinestoreImpl.clickOnCartIcon();
-    I.waitForVisible(global.uiElements.get(iCart.CART_ITEM_TABLE));
+    I.waitForVisible(I.getElement(iCart.CART_ITEM_TABLE));
     cartImpl.clickOnCheckoutButton();
 });

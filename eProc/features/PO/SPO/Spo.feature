@@ -1,16 +1,16 @@
 Feature: Spo
 
-  # Background:
-  #   Given I am logged in eproc
+  Background:
+    Given I am logged in eProc
 
-  # @omtag
-  # Scenario: Create Standard PO
+  @omtag
+  Scenario: Create Standard PO
 
-  # Given I am on PO listing page
+  Given I am on PO listing page
     
-  # And I Create Standard po with "2" "ITEM_NAME_FOR_SEARCHING" item
+  And I Create Standard po with "2" "ITEM_NAME_FOR_SEARCHING" item
   
-  # And i search po by description 
+  # And i search po by descr/iption 
 
 @Non_COA @L2     
 Scenario: To verify that user is able to create a SPO with single & multiple line items and with attachments in Zycus eproc

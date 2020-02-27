@@ -5,7 +5,7 @@ class CommonUtilities
     splitData(index,key)
     {
         let value;
-        let mapValue = global.testData.get(key);
+        let mapValue = I.getData(key);
         if(typeof mapValue =='undefined')
         {
             logger.info("Getting null from testData for given field : "+key);

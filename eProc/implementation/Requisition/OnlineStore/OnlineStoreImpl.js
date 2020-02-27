@@ -12,10 +12,10 @@ module.exports={
     */
     async fillSearchItem(itemName)
     {
-        I.waitForVisible(global.uiElements.get(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
-        I.clearField(global.uiElements.get(iOnlineStore.SEARCH_TEXTBOX));
-        I.fillField(global.uiElements.get(iOnlineStore.SEARCH_TEXTBOX),itemName);
+        I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+        I.clearField(I.getElement(iOnlineStore.SEARCH_TEXTBOX));
+        I.fillField(I.getElement(iOnlineStore.SEARCH_TEXTBOX),itemName);
         logger.info(`Entered item name : ${itemName}`);
         
     },
@@ -29,8 +29,8 @@ module.exports={
     */
    async clickOnSearchIcon()
    {
-       I.waitForVisible(global.uiElements.get(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
-       I.waitForClickable(global.uiElements.get(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+       I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+       I.waitForClickable(I.getElement(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
        I.pressKey('Enter');
        logger.info(`clicked on Search icon`);
        
@@ -75,9 +75,9 @@ module.exports={
     */
    async clickOnCartIcon()
    {
-       I.waitForVisible(global.uiElements.get(iOnlineStore.CART_ICON),prop.DEFAULT_MEDIUM_WAIT);
-       I.waitForClickable(global.uiElements.get(iOnlineStore.CART_ICON),prop.DEFAULT_MEDIUM_WAIT);
-       I.click(global.uiElements.get(iOnlineStore.CART_ICON));
+       I.waitForVisible(I.getElement(iOnlineStore.CART_ICON),prop.DEFAULT_MEDIUM_WAIT);
+       I.waitForClickable(I.getElement(iOnlineStore.CART_ICON),prop.DEFAULT_MEDIUM_WAIT);
+       I.click(I.getElement(iOnlineStore.CART_ICON));
        logger.info(`clicked on Cart icon`); 
    },
 
@@ -109,7 +109,7 @@ module.exports={
         this.searchItem(itemName);
         this.fillItemQuantity(itemName,quantity);
         this.clickOnAddToCartButton(itemName);
-        I.waitForVisible(global.uiElements.get(iOnlineStore.ADD_TO_CART_SUCCESS_MSG),prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForVisible(I.getElement(iOnlineStore.ADD_TO_CART_SUCCESS_MSG),prop.DEFAULT_MEDIUM_WAIT);
         logger.info("Add to cart success msg is displayed. Item "+itemName+" is added to cart.");
    },
 
@@ -122,8 +122,8 @@ module.exports={
     */
    async clickOnOnlineStoreLink()
    {
-       I.waitForVisible(global.uiElements.get(iOnlineStore.ONLINE_STORE_LINK),prop.DEFAULT_MEDIUM_WAIT);
-       I.click(global.uiElements.get(iOnlineStore.ONLINE_STORE_LINK));
+       I.waitForVisible(I.getElement(iOnlineStore.ONLINE_STORE_LINK),prop.DEFAULT_MEDIUM_WAIT);
+       I.click(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
    },
 
    /** 
@@ -135,8 +135,8 @@ module.exports={
     */
    async waitForOnlineStoreToLoad()
    {
-       I.waitForInvisible(global.uiElements.get(iOnlineStore.SPINNER),prop.DEFAULT_MEDIUM_WAIT);
-       I.waitForVisible(global.uiElements.get(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+       I.waitForInvisible(I.getElement(iOnlineStore.SPINNER),prop.DEFAULT_MEDIUM_WAIT);
+       I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
        logger.info("Online Store page is loaded.");
    },
 
