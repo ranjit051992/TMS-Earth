@@ -42,6 +42,8 @@ module.exports= {
     COST_CENTER: "Checkout/CostAllocation/COST_CENTER",
     PROJECT: "Checkout/CostAllocation/PROJECT",
     PERCENTAGE: "Checkout/CostAllocation/PERCENTAGE",
+    FETCHED_COST_CENTER: "Checkout/CostAllocation/FETCHED_COST_CENTER",
+    FETCHED_PROJECT : "Checkout/CostAllocation/FETCHED_PROJECT",
 
     //Item Details
     ADD_LINE_ITEM_BUTTON: "Checkout/ItemDetails/ADD_LINE_ITEM_BUTTON",
@@ -50,6 +52,7 @@ module.exports= {
     GL_ACCOUNT: "Checkout/ItemDetails/CostBookingDetails/GL_ACCOUNT",
     ASSET_CODE: "Checkout/ItemDetails/CostBookingDetails/ASSET_CODE",
     COST_BOOKING_SAVE_BUTTON: "Checkout/ItemDetails/CostBookingDetails/SAVE_BUTTON",
+
 
     //Buyers Tab
     BUYER_DROPDOWN_ICON: "Checkout/ItemDetails/BuyersTab/BUYER_DROPDOWN_ICON",

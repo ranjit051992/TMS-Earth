@@ -1,20 +1,20 @@
-const mysql = require('mysql');
+const mysql = require("mysql");
 const logger = require("../Logger/logger");
-const parser = require('mssql-connection-string');
+const parser = require("mssql-connection-string");
 
 module.exports = {
     async getTestData() {
         const prop = global.confi_prop;
 
         const connectionString = "Data Source=tcp:"+prop.DBhost+",3306;Initial Catalog="+prop.DBdatabase+";User Id="+prop.DBuser+";Password="+prop.DBpassword+";";
-        logger.info("connectionString  : " + connectionString)
+        logger.info("connectionString  : " + connectionString);
 
         const connectionObj = parser(connectionString);
 
-        const columnName = prop.SETUP + "_" + prop.TENANT
+        const columnName = prop.SETUP + "_" + prop.TENANT;
         logger.info(columnName);
         
-        const query = `SELECT FIELD_NAME, ${columnName} FROM iContract_QC`;
+        const query = `SELECT FIELD_NAME, ${columnName} FROM TestData_eproc`;
         logger.info(query);
 
         return new Promise((resolve, reject) => {
@@ -67,12 +67,12 @@ module.exports = {
         const prop = global.confi_prop;
 
         const connectionString = "Data Source=tcp:"+prop.DBhost+",3306;Initial Catalog="+prop.DBdatabase+";User Id="+prop.DBuser+";Password="+prop.DBpassword+";";
-        logger.info("connectionString  : " + connectionString)
+        logger.info("connectionString  : " + connectionString);
 
         const connectionObj = parser(connectionString);
 
         // const query = `SELECT PAGE_NAME, ELEMENT_NAME, XPATH FROM eProc_UI_Elements`;
-        const query = `SELECT * FROM Cucumber_CodeCept_iContract_OR`;
+        const query = "SELECT * FROM Cucumber_CodeCept_iContract_OR";
 
         return new Promise((resolve, reject) => {
             let elementMap = new Map();
@@ -127,11 +127,11 @@ module.exports = {
         const prop = global.confi_prop;
 
         const connectionString = "Data Source=tcp:"+prop.DBhost+",3306;Initial Catalog="+prop.DBdatabase+";User Id="+prop.DBuser+";Password="+prop.DBpassword+";";
-        logger.info("connectionString  : " + connectionString)
+        logger.info("connectionString  : " + connectionString);
 
         const connectionObj = parser(connectionString);
 
-        const query = `SELECT * FROM LMT`;
+        const query = "SELECT * FROM LMT";
 
         return new Promise((resolve, reject) => {
             let LMTMap = new Map();
@@ -159,9 +159,9 @@ module.exports = {
                                 let LMTValueMap = new Map();
                                 for (let [key, value] of Object.entries(rows[i])) {
                                     if(key === "Key"){
-                                        mapKey = value
+                                        mapKey = value;
                                     }else{
-                                        LMTValueMap.set(key, value)
+                                        LMTValueMap.set(key, value);
                                     }
                                 }
                                 LMTMap.set(mapKey, LMTValueMap);
@@ -175,4 +175,4 @@ module.exports = {
             });
         });
     }
-}
+};

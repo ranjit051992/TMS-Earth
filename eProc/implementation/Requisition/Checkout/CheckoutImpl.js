@@ -1,10 +1,53 @@
+const { I } = inject();
 const iCheckout= require("./CheckoutObject");
 const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger");
 const commonComponent = require("../..//..//commonComponent/CommonComponent");
 const prop = require("../../../../Framework/PropertiesConfigurator");
-//const requisitionBO = require("/..");
+const ObjectCreation = require("../../../dataCreation/ObjectCreation");
+const iConstants = require("../../../../eProc/constants/iConstants");
+const requisitionBO = require("../../../bo/Requisition");
 
 module.exports={
+
+       /**
+     * createRequisitionFlow: Creats a Requisition
+     * @param {*} requisitionBO 
+     * @ return requisitionBO
+     */
+    async createRequisitionFlow(requisitionBO)
+    { 
+        requisitionBO = await this.fillBasicDetails(requisitionBO);
+
+        requisitionBO = await this.fillAdditionalDetails(requisitionBO);
+
+        requisitionBO = await this.fillShippingDetails(requisitionBO);
+
+        requisitionBO = await this.fillCostAllocation(requisitionBO);
+
+        requisitionBO = await this. fillItemDetails(requisitionBO);
+
+        if(requisitionBO.nextAction === iConstants.SUBMIT)
+        {
+            this.clickOnImDoneButton();
+            I.wait(prop.DEFAULT_MEDIUM_WAIT);
+            this.clickOnContinueButton();
+            commonComponent.waitForLoadingSymbolNotDisplayed();
+        }
+
+        else if(requisitionBO.nextAction === iConstants.SAVE_AS_DRAFT)
+        {
+            this.clickOnSaveAsDraftButton();
+           
+        }
+
+        else if(requisitionBO.nextAction === iConstants.CANCEL)
+        {
+            this.clickOnCancelButton();
+        }
+
+        return requisitionBO;
+
+    },
 
  /** 
      * enterRequisitionName Enters Requsition Name
@@ -208,6 +251,15 @@ module.exports={
         return purchaseType;
     },
 
+    /**
+     * clickOnPurchaseTypeYesButton: Clicks on Yes Button on Confirm Pop after selecting PurchaseType
+     */
+    clickOnPurchaseTypeYesButton()
+    {
+        I.click(iCheckout.PURCHASE_TYPE_CONFIRM_POPUP_YES_BUTTON);
+        logger.info("Clicked on Purchase Type YES button");
+    },
+
     async selectSettlementVia(settlementVia)
     {
         commonComponent.selectValueFromDropDown(global.uiElements.get(iCheckout.SETTLEMENT_VIA), settlementVia);
@@ -295,6 +347,7 @@ module.exports={
     /**
      * fillCostCenter: Fills Cost Center
      * @param {*} costCenter 
+     * @returns costCenter
      */
     async fillCostCenter(costCenter)
     {
@@ -321,6 +374,7 @@ module.exports={
     /**
      * fillGLAccount: fills GL Account
      * @param {*} glAccount 
+     * @returns glAccount
      */
     async fillGLAccount(glAccount)
     {
@@ -433,13 +487,14 @@ module.exports={
     async fillBasicDetails(requisitionBO)
     {
         logger.info("*********Filling Requisition Basic Details");
-        if(requisitionBO.reqName !== "null")
+        commonComponent.scrollToSection(iConstants.CHECKOUT_BASIC_DETAILS_SECTION);
+        if(requisitionBO.reqName !== "undefined")
         {
            let reqName =  this.enterRequisitionName(requisitionBO.reqName);
            requisitionBO.setReqName(reqName);
         }
 
-        if(requisitionBO.onBehalfOf !== "null")
+        if(requisitionBO.onBehalfOf !== "undefined")
         {
             let onBehalfOf = this.fillOnBehalfOf(requisitionBO.onBehalfOf);
             requisitionBO.setOnBehalfOf(onBehalfOf);
@@ -474,14 +529,14 @@ module.exports={
             this.clickOnUrgentRequirementNoButton();
         }
 
-        if(requisitionBO.reasonForOrdering !== "null")
+        if(requisitionBO.reasonForOrdering !== "undefined")
         {
             this.clickOnReasonForOrderingLink();
             let reasonForOrdering = this.enterReasonForOrdering(requisitionBO.reasonForOrdering);
             requisitionBO.setReasonForOrdering(reasonForOrdering);
         }
 
-        if(requisitionBO.commentsForSupplier !== "null")
+        if(requisitionBO.commentsForSupplier !== "undefined")
         {
             this.clickOnCommentsForSupplierLink();
             let commentsForSupplier = this.enterCommentsForSupplier(requisitionBO.commentsForSupplier);
@@ -492,10 +547,165 @@ module.exports={
 
     },
 
+    /**
+     * fillProject: Fills Assign Cost Project
+     * @param {*} project 
+     * @returns project
+     */
+    async fillProject(project)
+    {
+        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.PROJECT), project);
+        project = await I.grabTextFrom(global.uiElements.get(iCheckout.PROJECT));
+        logger.info("Entered Project is "+project);
+        return project;
+    },
 
     async fillAdditionalDetails(requisitionBO)
     {
-        commonComponent.scrollToSection(iConstants.ADDITIONAL_DETAILS);
+        logger.info("*********Filling Requisition Additional Details");
+        commonComponent.scrollToSection(iConstants.CHECKOUT_ADDITIONAL_DETAILS_SECTION);
+        
+        if(requisitionBO.purchaseType !== "undefined")
+        {
+            let purchaseType =  this.selectPurchaseType(requisitionBO.purchaseType);
+            requisitionBO.setPurchaseType(purchaseType);
+        }
+
+        if(requisitionBO.settlementVia !== "undefined")
+        {
+            let settlementVia = this.selectSettlementVia(requisitionBO.settlementVia);
+            requisitionBO.setSettlementVia(settlementVia);
+        }
+
+        if(requisitionBO.retrospectivePurchase === "Yes")
+        {
+            this.clickOnRetrospectivePurchaseYesButton();
+        }
+        else
+        {
+            this.clickOnRetrospectivePurchaseNoButton();
+        }
+
+        if(requisitionBO.attachmentPath !== "undefined")
+        {
+            this.addAttachments();
+        }
+
         return requisitionBO;
-    }
+    },
+
+    async fillShippingDetails(requisitionBO)
+    {
+        logger.info("*********Filling Requisition Shipping Details");
+        commonComponent.scrollToSection(iConstants.CHECKOUT_SHIPPING_DETAILS_SECTION);
+
+       if(requisitionBO.isDefaultAddressOption === true)
+       {
+            let defaultAddress = this.getDefaultShippingAddress();
+            requisitionBO.shipToDefaultAddress(defaultAddress);
+       }
+
+       if(requisitionBO.isOtherAddressOption === true)
+       {
+            //otherAddress
+       }
+
+
+
+        return requisitionBO;
+    },
+
+    async fillCostAllocation(requisitionBO)
+    {
+        logger.info("*********Filling Requisition Cost Allocation Details");
+        commonComponent.scrollToSection(iConstants.CHECKOUT_COST_ALLOCATION_SECTION);
+
+        if(requisitionBO.fillCostAllocation === true)
+        {
+            if(requisitionBO.assignCostProject === "Yes")
+            {
+                this.clickOnAssignCostProjectYesButton();
+            }
+
+        if(requisitionBO.bookCostToSingleMultipleCC)
+        {
+            if(requisitionBO.costCenter !== "undefined")
+            {
+                let costCenter = this.fillCostCenter(requisitionBO.costCenter);
+                requisitionBO.setCostCenter(costCenter);
+            }
+            if(requisitionBO.assignCostProject === "Yes")
+            {
+            let project =  this.fillProject(requisitionBO.project);
+            requisitionBO.setProject(project);
+            }
+
+        }
+
+        if(requisitionBO.bookCostAtLineLevel)
+        {
+            ///line level code
+        }
+        }
+
+       return requisitionBO;
+
+    },
+
+    async fillItemDetails()
+    {
+        logger.info("*********Filling Requisition Item Details Details");
+        commonComponent.scrollToSection(iConstants.CHECKOUT_ITEM_DETAILS_SECTION);
+
+        for(let i=0; i< requisitionBO.items.length; i++)
+        {
+            this.clickOnCostBookingLink(items[i]);
+
+        if(requisitionBO.buyer !== "undefined")
+        {
+            this.clickOnTab(iConstants.CHECKOUT_BUYER_TAB);
+            this.selectBuyerDropDownOption(requisitionBO.buyerOption);
+            let buyer = this.fillBuyerInTextBox(requisitionBO.buyer);
+            requisitionBO.setBuyer(buyer);
+
+        }
+
+        else if(requisitionBO.assignedBuyerGroup !== "undefined")
+        {
+            this.clickOnTab(iConstants.CHECKOUT_BUYER_TAB);
+            /// assigned BuyerGroup code
+        }
+
+        if(!prop.isCOA)
+        {
+            if(requisitionBO.glAccount !== "undefined")
+            {
+               let glAccount =  this.fillGLAccount(requisitionBO.glAccount);
+               requisitionBO.setGlAccount(glAccount);
+            }
+        }
+
+        if(prop.isCOA)
+        {
+            //fill COA form code
+        }
+        else
+        {
+            clickInCostBookingSaveButton();
+            commonComponent.waitForLoadingSymbolNotDisplayed();
+        }
+
+        if(requisitionBO.assetCode !== "undefined")
+        {
+            let assetCode = this.fillAssetCode(requisitionBO.assetCode);
+            requisitionBO.setAssetCode(assetCode);
+        }
+        }
+        return requisitionBO;
+
+    },
+
+ 
+
+
 };

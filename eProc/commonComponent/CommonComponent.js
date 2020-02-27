@@ -1,5 +1,5 @@
 const {I} = inject();
-const dropdownAction = require("./CommonComponentObject");
+const commonCompObject = require("./CommonComponentObject");
 const logger = require("./../../Framework/FrameworkUtilities/Logger/logger");
 const prop= require("../../Framework/PropertiesConfigurator");
 module.exports={
@@ -11,7 +11,7 @@ module.exports={
                 I.click(selectOption);
                 }
                 else{
-                    I.click(global.uiElements.get(dropdownAction.SearchAndSelectDropdown_Option));
+                    I.click(global.uiElements.get(commonCompObject.SearchAndSelectDropdown_Option));
                     let selectedValue =  await I.grabAttributeFrom(global.uiElements.get(dropdownAction.SearchAndSelectDropdown_Option), "title");
                     return selectedValue;
                 }
@@ -40,5 +40,11 @@ module.exports={
                 I.scrollIntoView(sectionXapth);
                 I.wait(prop.DEFAULT_MEDIUM_WAIT);
                 logger.info("Scrolled to Section "+sectionName);
+            },
+
+            waitForLoadingSymbolNotDisplayed()
+            {
+                I.waitForInvisible(global.uiElements.get(commonCompObject.LOADING_SPINNER), prop.DEFAULT_HIGH_WAIT);
+                logger.info("Waited for Loading Symbol to go off");
             },
 };

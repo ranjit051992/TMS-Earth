@@ -9,4 +9,18 @@ module.exports = {
     SPO_LINE_ITEMS_SECTION: "Line Items",
     SPO_TAXES_SECTION_SECTION: "Taxes",
     SPO_ADDITIONAL_DETAILS_SECTION: "Additional Details",
-}
+
+    CHECKOUT_BASIC_DETAILS_SECTION: "Basic details",
+    CHECKOUT_ADDITIONAL_DETAILS_SECTION: "Additional Details",
+    CHECKOUT_SHIPPING_DETAILS_SECTION: "Shipping Details",
+    CHECKOUT_COST_ALLOCATION_SECTION: "Cost Allocation",
+    CHECKOUT_ITEM_DETAILS_SECTION: "Item Details",
+    CHECKOUT_WORKFLOW_SECTION: "Workflow",
+    CHECKOUT_BUYER_TAB: "Buyers",
+    CHECKOUT_COST_BOOKING_DETAILS_TAB: "Cost Booking Details",
+
+    SUBMIT: "Submit",
+    SAVE_AS_DRAFT: "Save_As_Draft",
+    CANCEL: "Cancel",
+
+};

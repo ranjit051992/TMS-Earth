@@ -74,11 +74,11 @@ module.exports = {
     clickOnOuModalDoneButton() {
         I.click(global.uiElements.get(iSpoObject.OU_MODAL_DONE_BUTTON));
         I.waitForInvisible(global.uiElements.get(iSpoObject.OU_MODAL_DONE_BUTTON));
-        logger.info(`Clicked on OU modal Done button`);
+        logger.info("Clicked on OU modal Done button");
     },
     async fetchBillToAddress() {
         let billToAddress = await I.grabTextFrom(global.uiElements.get(iSpoObject.BILL_TO_ADDRESS_VALUE));
-        logger.info(`Clicked on OU modal Done button`);
+        logger.info("Clicked on OU modal Done button");
         return billToAddress;
     },
     fillSupplierName(supplierName) {
@@ -202,12 +202,12 @@ module.exports = {
     selectReceiptCreationAtHeaderLevel() {
         I.seeElement(global.uiElements.get(iSpoObject.RECEIPT_CREATION_HEADER_LEVEL_BUTTON));
         I.click(global.uiElements.get(iSpoObject.RECEIPT_CREATION_HEADER_LEVEL_BUTTON));
-        logger.info(`Selected Receipt Creation at Header Level`);
+        logger.info("Selected Receipt Creation at Header Level");
     },
     selectDefaultReceiptCreation() {
         I.seeElement(global.uiElements.get(iSpoObject.RECEIPT_HEADER_LEVEL_DEFAULT_RADIO_BUTTON));
         I.click(global.uiElements.get(iSpoObject.RECEIPT_HEADER_LEVEL_DEFAULT_RADIO_BUTTON));
-        logger.info(`Selected Default Receipt Creation`);
+        logger.info("Selected Default Receipt Creation");
     },
     clickOnAddLineItemButton() {
         I.seeElement(global.uiElements.get(iSpoObject.ADD_LINE_ITEM_BUTTON));
@@ -277,9 +277,9 @@ module.exports = {
     },
     clickRemoveTaxesConfirmButton() {
         I.checkOption(global.uiElements.get(iSpoObject.SPO_TAX_INCLUSIVE));
-        logger.info(`Clicked on Remove Taxes Confirm button`);
+        logger.info("Clicked on Remove Taxes Confirm button");
     },
 
-}
+};
 
 
