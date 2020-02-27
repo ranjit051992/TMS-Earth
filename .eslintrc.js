@@ -15,8 +15,8 @@ module.exports = {
     'sourceType': 'module',
   },
   'rules': {
-    "semi": ["error", "always"],
-        "quotes": ["error", "double"],
+    // "semi": ["error", "always"],
+    //     "quotes": ["error", "double"],
         "require-jsdoc" : 0
   },
 };

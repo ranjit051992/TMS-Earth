@@ -1,6 +1,8 @@
-const prop = require("./Framework/PropertiesConfigurator");
-const databaseOperations = require("./Framework/FrameworkUtilities/DatabaseOperations/databaseOperations");
-global.confi_prop=prop;
+require("./Framework/PropertiesConfigurator");
+
+
+const prop=global.confi_prop;
+global.lang = 'en';
 exports.config = {
  
   tests: "./*_test.js",
@@ -10,7 +12,7 @@ exports.config = {
       url: prop.url,
       browser: prop.browser,
       host: prop.host,
-      port: prop.port.number,
+      port: prop.port,
       restart: prop.restart,
       windowSize: prop.windowSize,
       waitForTimeout: 30000,
@@ -32,6 +34,16 @@ exports.config = {
   include: {
     I: prop.stepFilePath,
   },
+  multiple: {
+    sanityCases: {
+      // grep:"@Sanity",
+          chunks: 1
+        },
+    Regression:{
+      // grep:"@Regression",
+          chunks: 2
+    }
+      },
   gherkin: {
     features: "./eProc/features/**/**/**.feature",
     steps: "./eProc/implementation/**/**/**.js"

@@ -107,7 +107,7 @@ Feature: Checkout
 
     Then I should be able to view the requisition with free text item and the catalog items.
 
-@tag23
+@Non-COA @L1
     Scenario: To verify that user is able to see the approval hierarchy after raising a requisition
     Given I am logged in eProc
 

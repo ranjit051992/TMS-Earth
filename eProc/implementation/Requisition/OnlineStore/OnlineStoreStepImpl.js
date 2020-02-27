@@ -26,12 +26,6 @@ When("I search for {string} {string} items", function (noOfItem,itemType) {
 
 When("I add {string} {string} items to cart", function(noOfItem,itemType) {
 
-    cartImpl.clearCart();
-
-    for(let i=0; i<noOfItem;i++)
-    {
-        let item = commonUtils.splitData(i,itemType);
-        onlineStoreImpl.addItemToCart(item,faker.random.number(20));
-    }
+    onlineStoreImpl.addItemsToCart(noOfItem,itemType);
 
 });

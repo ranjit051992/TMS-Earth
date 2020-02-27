@@ -141,7 +141,22 @@ module.exports={
        logger.info("Online Store page is loaded.");
    },
 
-
+    /** 
+     * add number of items to cart of specified type
+     * 
+     * @param number of items , itemType (DB item name key)
+     * @returns   
+     * 
+    */
+   async addItemsToCart(noOfItem,itemType)
+   {
+       cartImpl.clearCart();
+       for(let i=0; i<noOfItem;i++)
+       {
+           let item = commonUtils.splitData(i,itemType);
+           onlineStoreImpl.addItemToCart(item,faker.random.number(20));
+        }
+   }
 
    
 
