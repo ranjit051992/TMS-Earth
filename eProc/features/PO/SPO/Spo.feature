@@ -107,13 +107,16 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
   # And I add attachment at header level
   And I submit the PO
   And I am on PO listing page
-  # And I search for the created po
-  # And I click on option icon
-  # And I click on Recall option
-  # And I enter recall comments
-  # And I click on Recall button
+  And I search for the created po
+  And I click on option icon
+  And I click on Recall option
+  And I enter recall comments
+  And I click on Recall button
+  And I click on recalled success message Done button
+  And I am on PO listing page
+  And I search for the created po
 
-  # Then PO should be in draft status on po listing
+  Then PO status should be draft
 
 
 @Non_COA @L1
