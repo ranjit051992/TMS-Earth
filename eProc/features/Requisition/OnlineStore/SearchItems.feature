@@ -3,54 +3,12 @@ Feature: OnlineStore
  Background:
     Given logged in on eproc Page
 
-@tag1
-  Scenario: Search an Item on OnlineStore page
-
-  Given i am on Online Store page
-
-  When i search "ITEM_NAME_FOR_SEARCHING"
-
-  Then results for catalog item are displayed
-
-@tag2
-  Scenario: Search an Item on OnlineStore page1
-
-  Given i am main page ""
-
-
-@tag3
-  Scenario: Add item to cart
-
-  Given i am on Online Store page
-
-  When cart is empty
-
-  When i search "ITEM_NAME_FOR_SEARCHING"
-
-  When add quantity "2"
-
-  When click on Add to Cart button
-
-  Then item should be added to cart
-
-@tag5
-  Scenario: Search an Item on OnlineStore page & verify supplier name
-
-  Given i am on Online Store page
-
-  When i search "ITEM_NAME_FOR_SEARCHING"
-
-  And results for catalog item are displayed
-
-  Then item should have supplier "SUPPLIER_NAME"
-
-
 
 @Non-COA @L1
   Scenario: To verify that user is able to search a particular item or service.
   Given I am logged in eProc
 
-  When I search for an item with search_term
+  When I search for "1" "ITEM_NAME_FOR_SEARCHING" items
 
   Then I should see all the matching items for search_term on Listing
 
@@ -59,7 +17,7 @@ Feature: OnlineStore
   Scenario: To verify that user is able to select an item from Catalog and add it as my Favourite.
   Given I am logged in eProc
 
-  When I search for a catalog item
+  When I search for "1" "ITEM_NAME_FOR_SEARCHING" items
   And I add single catalog item as Favourite
   And  I add multiple catalog items as Favourite
 
@@ -70,7 +28,7 @@ Feature: OnlineStore
   Scenario: To verify that user is able to add an item from Hosted Catalog to the Cart.
   Given I am logged in eProc
 
-  When I search for a catalog item
+  When I search for "1" "ITEM_NAME_FOR_SEARCHING" items
   And I add multiple catalog items to cart
 
   Then I should see Catalog items in Cart
@@ -80,7 +38,7 @@ Feature: OnlineStore
   Scenario: To verify that user is be able to compare items within a catalog
   Given I am logged in eProc
 
-  When I search for a catalog items
+  When I search for "1" "ITEM_NAME_FOR_SEARCHING" items
   And I select multiple catalog items
   And I click on compare items
 
@@ -135,7 +93,7 @@ Feature: OnlineStore
   Scenario: To verify that user is able to search a particular item or service.
   Given I am logged in eProc
 
-  When I search for an item with search_term
+  When I search for "1" "ITEM_NAME_FOR_SEARCHING" items
 
   Then I should see all the matching items for search_term on Listing
 
@@ -144,7 +102,7 @@ Feature: OnlineStore
   Scenario: To verify that user is able to select an item from Catalog and add it as my Favourite.
   Given I am logged in eProc
 
-  When I search for a catalog item
+  When I search for "1" "ITEM_NAME_FOR_SEARCHING" items
   And I add single catalog item as Favourite
   And  I add multiple catalog items as Favourite
 
@@ -155,7 +113,7 @@ Feature: OnlineStore
   Scenario: To verify that user is able to add an item from Hosted Catalog to the Cart.
   Given I am logged in eProc
 
-  When I search for a catalog item
+  When I search for "1" "ITEM_NAME_FOR_SEARCHING" items
   And I add multiple catalog items to cart
 
   Then I should see Catalog items in Cart
@@ -165,7 +123,7 @@ Feature: OnlineStore
   Scenario: To verify that user is be able to compare items within a catalog
   Given I am logged in eProc
 
-  When I search for a catalog items
+  When I search for "1" "ITEM_NAME_FOR_SEARCHING" items
   And I select multiple catalog items
   And I click on compare items
 

@@ -14,7 +14,8 @@ module.exports = {
         const columnName = prop.SETUP + "_" + prop.TENANT
         logger.info(columnName);
         
-        const query = `SELECT FIELD_NAME, ${columnName} FROM iContract_QC`;
+        const query = `SELECT FIELD_NAME, ${columnName} FROM TestData_eproc`;
+        //const query = `SELECT FIELD_NAME, ${columnName} FROM iContract_QC`;
         logger.info(query);
 
         return new Promise((resolve, reject) => {
@@ -71,8 +72,8 @@ module.exports = {
 
         const connectionObj = parser(connectionString);
 
-        // const query = `SELECT PAGE_NAME, ELEMENT_NAME, XPATH FROM eProc_UI_Elements`;
-        const query = `SELECT * FROM Cucumber_CodeCept_iContract_OR`;
+         const query = `SELECT PAGE_NAME, ELEMENT_NAME, XPATH FROM eProc_UI_Elements`;
+        //const query = `SELECT * FROM Cucumber_CodeCept_iContract_OR`;
 
         return new Promise((resolve, reject) => {
             let elementMap = new Map();
@@ -100,15 +101,26 @@ module.exports = {
                                 let mapValue;
 
                                 for (let [key, value] of Object.entries(rows[i])) {
-                                    if(key === "Page Name") {
+                                    
+                                    if(key === "PAGE_NAME") {
                                         mapKey = value;
                                     }
-                                    else if(key === "Element Name") {
+                                    else if(key === "ELEMENT_NAME") {
                                         mapKey = `${mapKey}/${value}`;
                                     }
-                                    else if(key === "Element Value") {
+                                    else if(key === "XPATH") {
                                         mapValue = value;
                                     }
+                                    
+                                    // if(key === "Page Name") {
+                                    //     mapKey = value;
+                                    // }
+                                    // else if(key === "Element Name") {
+                                    //     mapKey = `${mapKey}/${value}`;
+                                    // }
+                                    // else if(key === "Element Value") {
+                                    //     mapValue = value;
+                                    // }
 
                                 }
                                 elementMap.set(mapKey, mapValue);
