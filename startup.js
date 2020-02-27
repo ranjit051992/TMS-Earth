@@ -2,8 +2,8 @@ const { container: Container, codecept: Codecept } = require("codeceptjs");
 const logger = require("./Framework/FrameworkUtilities/Logger/logger");
 const databaseOperations = require("./Framework/FrameworkUtilities/DatabaseOperations/databaseOperations");
 
-require("./Framework/PropertiesConfigurator");
-const prop=global.confi_prop;
+const prop = require('./Framework/PropertiesConfigurator');
+global.confi_prop = prop;
 global.lang = 'en';
 const LOGIN_URL = 'http://login-rp.zycus.com/';
 const REST_API_URL = "https://dewdrops-rp.zycus.com";
@@ -32,9 +32,9 @@ async function runCodecept() {
             {
                 "require": "codeceptjs-chai"
             },
-            MyHelper: {
-                require: './CustomHelper/myHelper.js',
-              },
+            // MyHelper: {
+            //     require: './CustomHelper/myHelper.js',
+            //   },
         },
         include: {
             I: './steps_file',
@@ -89,11 +89,15 @@ async function runCodecept() {
 
     logger.info("before bootstrap");
 
-    // global.testData = await databaseOperations.getTestData();
+    global.testData = await databaseOperations.getTestData();
     
     global.uiElements = await databaseOperations.getUiElementXpath();
 
     global.lmt = await databaseOperations.getLMTDetails();
+
+    global.allkeys = await databaseOperations.getLMTKeys();
+
+    logger.info(lmtyuiop.getLabelFromKey(global.testData.get("NavigateToAuthoringContracts")))
 
     // codecept.runBootstrap(async (err) => {
         // load tests

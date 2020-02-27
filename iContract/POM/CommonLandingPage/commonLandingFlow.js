@@ -6,7 +6,7 @@ class commonLandingFlow{
 
     navigateToTab(applicationNameKey , tabKey , subtabKey){
         logger.info(tabKey);
-
+        const I = this;
         I.click(global.uiElements.get(commonLandingPageAction.HAMBURGER_MENU));
         I.seeElement(global.uiElements.get(commonLandingPageAction.SIDE_MENU_PANE));
         I.click(global.uiElements.get(commonLandingPageAction.APPLICATION_MENU).replace("<<applicationName>>",lmt.getLabel(applicationNameKey)));
