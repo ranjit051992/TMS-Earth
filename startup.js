@@ -2,8 +2,8 @@ const { container: Container, codecept: Codecept } = require("codeceptjs");
 const logger = require("./Framework/FrameworkUtilities/Logger/logger");
 const databaseOperations = require("./Framework/FrameworkUtilities/DatabaseOperations/databaseOperations");
 
-const prop = require('./Framework/PropertiesConfigurator');
-global.confi_prop = prop;
+require("./Framework/PropertiesConfigurator");
+const prop=global.confi_prop;
 global.lang = 'en';
 const LOGIN_URL = 'http://login-rp.zycus.com/';
 const REST_API_URL = "https://dewdrops-rp.zycus.com";

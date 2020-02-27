@@ -12,7 +12,7 @@ Feature: Spo
   
   # And i search po by description 
 
-@Non_COA @L1      
+@Non_COA @L2     
 Scenario: To verify that user is able to create a SPO with single & multiple line items and with attachments in Zycus eproc
 
   Given I am logged in eproc
