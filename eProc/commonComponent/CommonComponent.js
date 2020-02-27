@@ -1,5 +1,5 @@
 const {I} = inject();
-const dropdownAction = require("./CommonComponentObject");
+const commonKeywordObject = require("./CommonComponentObject");
 const logger = require("./../../Framework/FrameworkUtilities/Logger/logger");
 const prop= require("../../Framework/PropertiesConfigurator");
 module.exports={
@@ -9,10 +9,12 @@ module.exports={
                 if(typeof selectOption !== "undefined"){
                 I.fillField(dropdownElement, selectOption);
                 I.click(selectOption);
+                let value = await I.grabAttributeFrom(global.uiElements.get(dropdownElement), "value");
+                return value;
                 }
                 else{
-                    I.click(global.uiElements.get(dropdownAction.SearchAndSelectDropdown_Option));
-                    let selectedValue =  await I.grabAttributeFrom(global.uiElements.get(dropdownAction.SearchAndSelectDropdown_Option), "title");
+                    I.click(global.uiElements.get(commonKeywordObject.SearchAndSelectDropdown_Option));
+                    let selectedValue =  await I.grabAttributeFrom(global.uiElements.get(commonKeywordObject.SearchAndSelectDropdown_Option), "title");
                     return selectedValue;
                 }
             },
@@ -41,4 +43,15 @@ module.exports={
                 I.wait(prop.DEFAULT_MEDIUM_WAIT);
                 logger.info("Scrolled to Section "+sectionName);
             },
+    async clickOnActionMenuIcon() {
+        I.seeElement(global.uiElements.get(commonKeywordObject.ACTION_MENU_ICON));
+        I.click(global.uiElements.get(commonKeywordObject.ACTION_MENU_ICON));
+        logger.info("Clicked on action menu icon");
+    },
+    async clickOnActionMenuOption(option) {
+        let optionXpath = `//*[contains(@title,'${option}')]`;
+        I.seeElement(optionXpath);
+        I.click(optionXpath);
+        logger.info(`Clicked on action menu option --> ${option}`);
+    },
 };

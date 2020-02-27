@@ -172,4 +172,4 @@ class Spo
         this.billToAddress = billToAddress;
     }
 }
-module.exports = new Spo();
+module.exports = Spo;

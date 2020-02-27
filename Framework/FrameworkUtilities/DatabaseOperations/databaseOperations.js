@@ -101,24 +101,24 @@ module.exports = {
                                 let mapValue;
 
                                 for (let [key, value] of Object.entries(rows[i])) {
-                                    // if(key === "PAGE_NAME") {
-                                    //     mapKey = value;
-                                    // }
-                                    // else if(key === "ELEMENT_NAME") {
-                                    //     mapKey = `${mapKey}/${value}`;
-                                    // }
-                                    // else if(key === "XPATH") {
-                                    //     mapValue = value;
-                                    // }
-                                    if(key === "Page Name") {
+                                    if(key === "PAGE_NAME") {
                                         mapKey = value;
                                     }
-                                    else if(key === "Element Name") {
+                                    else if(key === "ELEMENT_NAME") {
                                         mapKey = `${mapKey}/${value}`;
                                     }
-                                    else if(key === "Element Value") {
+                                    else if(key === "XPATH") {
                                         mapValue = value;
                                     }
+                                    // if(key === "Page Name") {
+                                    //     mapKey = value;
+                                    // }
+                                    // else if(key === "Element Name") {
+                                    //     mapKey = `${mapKey}/${value}`;
+                                    // }
+                                    // else if(key === "Element Value") {
+                                    //     mapValue = value;
+                                    // }
 
                                 }
                                 elementMap.set(mapKey, mapValue);

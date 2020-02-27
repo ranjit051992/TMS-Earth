@@ -9,4 +9,6 @@ module.exports = {
     SPO_LINE_ITEMS_SECTION: "Line Items",
     SPO_TAXES_SECTION_SECTION: "Taxes",
     SPO_ADDITIONAL_DETAILS_SECTION: "Additional Details",
+    RECALL_ACTION_MENU_OPTION: "Recall Approval Request",
+    AUTO_GENERATED_COMMENT: "This is an auto generated comment",
 }

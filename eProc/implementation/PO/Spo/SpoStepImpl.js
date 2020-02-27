@@ -6,6 +6,8 @@ const prop = require("../../../../Framework/PropertiesConfigurator");
 const spoImpl = require("./SpoImpl");
 const catalogItem = require("../../../bo/CatalogItem");
 const iConstants = require("../../../constants/iConstants");
+const commonKeywordImpl = require("../../../commonComponent/CommonComponent");
+const poListingImpl = require("../PoListing/PoListingImpl");
 
 Given("I am on PO listing page", async function () {
    I.amOnPage(prop.poListingUrl)
@@ -22,21 +24,21 @@ When("I click on Create PO button", async function() {
 });
 
 When("I click on Create SPO button", async function() {
-   this.spo = objectCreation.getObjectOfStandardPO(1, "Catalog");
-   spoImpl.clickOnStandardPOButton();
+   this.spo = await objectCreation.getObjectOfStandardPO(1, "Catalog");
+   await spoImpl.clickOnStandardPOButton();
 });
 
 When("I fetch PO number", async function() {
-   let poNumber = spoImpl.fetchPONumber();
+   let poNumber = await spoImpl.fetchPONumber();
    this.spo.setPoNumber(poNumber);
 });
 
 When("I fill Order Description", async function() {
-   spoImpl.fillPODescription(this.spo.poDescription);
+   await spoImpl.fillPODescription(this.spo.poDescription);
 });
 
 When("I select supplier details", async function() {
-   spoImpl.fillSupplierDetails(spo);
+   await spoImpl.fillSupplierDetails(spo);
 });
 
 When("I select Buyer", async function() {
@@ -45,8 +47,8 @@ When("I select Buyer", async function() {
 });
 
 When("I add Purchase type", async function() {
-   spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_BASIC_DETAILS_SECTION);
-   spoImpl.selectPurchaseType(this.spo.purchaseType);
+   await spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_BASIC_DETAILS_SECTION);
+   await spoImpl.selectPurchaseType(this.spo.purchaseType);
 });
 
 When("I add Required by date", async function() {
@@ -58,13 +60,13 @@ When("I add Required by date", async function() {
 When("I search catalog item with {string}", async function(itemName) {
    spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_LINE_ITEMS_SECTION);
    spoImpl.clickOnAddLineItemButton();
-   spoImpl.enterItemName(this.spo.itemName);
-   spoImpl.selectItemOption(this.spo.itemName);
+   spoImpl.enterItemName(this.spo.items[0].itemName);
+   spoImpl.selectItemOption(this.spo.items[0].itemName);
 });
 
 When("I add costing and accounting details for that item", async function() {
    spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_LINE_ITEMS_SECTION);
-   spoImpl.clickOnCostBookingLink(this.spo.itemName);
+   spoImpl.clickOnCostBookingLink(this.spo.items[0].itemName);
    let glAccount = await spoImpl.fillGlAccount(this.spo.glAccount);
    this.spo.setGlAccount(glAccount);
    spoImpl.clickOnCostBookingSaveButton();
@@ -73,8 +75,8 @@ When("I add costing and accounting details for that item", async function() {
 When("I add 1 free text item with details", async function() {
    spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_LINE_ITEMS_SECTION);
    spoImpl.clickOnAddLineItemButton();
-   spoImpl.enterItemName(this.spo.itemName);
-   spoImpl.selectItemOption(this.spo.itemName);
+   spoImpl.enterItemName(this.spo.items[0].itemName);
+   spoImpl.selectItemOption(this.spo.items[0].itemName);
 });
 
 When("I add attachment at header level", async function() {
@@ -90,22 +92,26 @@ When("I search for the created po", async function() {
 });
 
 When("I click on option icon", async function() {
-   
+   await commonKeywordImpl.clickOnActionMenuIcon();
 });
 
 When("I click on Recall option", async function() {
-   
+   await commonKeywordImpl.clickOnActionMenuOption(iConstants.RECALL_ACTION_MENU_OPTION);
 });
 
 When("I enter recall comments", async function() {
-   
+   await poListingImpl.fillRecallApprovalRequestComments(iConstants.AUTO_GENERATED_COMMENT);
 });
 
 When("I click on Recall button", async function() {
-   
+   await poListingImpl.clickOnRecallButton();
 });
 
-Then("PO should be in draft status on po listing", async function() {
+When("I click on recalled success message Done button", async function() {
+   await poListingImpl.clickOnRecalledSuccessDoneButton();
+});
+
+Then("PO status should be draft", async function() {
    
 });
 
