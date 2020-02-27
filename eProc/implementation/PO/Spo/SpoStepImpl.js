@@ -2,7 +2,7 @@ const { I } = inject();
 const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger");
 const iSpoObject = require("./SpoObject");
 const objectCreation = require("../../../dataCreation/ObjectCreation")
-const prop = require("../../../../Framework/PropertiesConfigurator");
+const prop = global.confi_prop;
 const spoImpl = require("./SpoImpl");
 const catalogItem = require("../../../bo/CatalogItem");
 const iConstants = require("../../../constants/iConstants");
@@ -116,3 +116,4 @@ Then("I should be able to view the SPO with multiple items", async function() {
 Then("I should be able to download attachments", async function() {
 
 });
+

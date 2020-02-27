@@ -1,7 +1,7 @@
 
 // function readLangFile(){
 // let PropertiesReader = require('properties-reader');
-// const prop=require('./Framework/PropertiesConfigurator');
+// const prop=global.confi_prop;
 // global.lang = await I.grabAttributeFrom('//html', 'lang');
 // console.log(global.lang);
 // let filePath = './Resources/LMT/'+ prop.product +'/'+ global.lang + '/messages.properties';

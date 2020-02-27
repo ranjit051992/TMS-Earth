@@ -1,7 +1,7 @@
 const iCheckout= require("./CheckoutObject");
 const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger");
 const commonComponent = require("../..//..//commonComponent/CommonComponent");
-const prop = require("../../../../Framework/PropertiesConfigurator");
+const prop = global.confi_prop;
 //const requisitionBO = require("/..");
 
 module.exports={
