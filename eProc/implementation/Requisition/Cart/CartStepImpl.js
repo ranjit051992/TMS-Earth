@@ -3,7 +3,7 @@ const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger")
 const iCart = require("./CartObject");
 const cartImpl = require("./CartImpl");
 const onlinestoreImpl = require("../OnlineStore/OnlineStoreImpl");
-const prop=require("../../../../Framework/PropertiesConfigurator");
+const prop=global.confi_prop;
 const commonUtils = require("../../../../Framework/FrameworkUtilities/CommonUtilities");
 const faker = require('faker');
 

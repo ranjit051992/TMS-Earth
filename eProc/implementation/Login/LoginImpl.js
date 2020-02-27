@@ -3,7 +3,7 @@ const { I } = inject();
 const logger = require("../../../Framework/FrameworkUtilities/Logger/logger");
 const iLogin = require("./LoginObject");
 const onlinestore = require("../Requisition/OnlineStore/OnlineStoreImpl");
-const prop = require("../../../Framework/PropertiesConfigurator");
+const prop = global.confi_prop;
 const username = global.confi_prop.username;
 const password = global.confi_prop.password;
 

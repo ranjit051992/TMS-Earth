@@ -1,7 +1,7 @@
 const { I } = inject();
 const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger");
 const iSpoObject = require("./SpoObject");
-const prop = require("../../../../Framework/PropertiesConfigurator");
+const prop = global.confi_prop;
 const iConstants = require("../../../constants/iConstants");
 
 module.exports = {

@@ -1,8 +1,7 @@
 const { I } = inject();
 const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger");
 const iOnlineStore = require("./OnlineStoreObject");
-const prop = require("../../../../Framework/PropertiesConfigurator");
-
+const prop = global.confi_prop;
 module.exports={
 
     /** 
@@ -150,12 +149,7 @@ module.exports={
     */
    async addItemsToCart(noOfItem,itemType)
    {
-       cartImpl.clearCart();
-       for(let i=0; i<noOfItem;i++)
-       {
-           let item = commonUtils.splitData(i,itemType);
-           onlineStoreImpl.addItemToCart(item,faker.random.number(20));
-        }
+       
    }
 
    

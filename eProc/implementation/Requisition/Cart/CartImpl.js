@@ -3,7 +3,7 @@ const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger")
 const iCart = require("./CartObject");
 const iOnlineStore = require("../OnlineStore/OnlineStoreObject");
 const onlineStore = require("../OnlineStore/OnlineStoreImpl");
-const prop = require("../../../../Framework/PropertiesConfigurator");
+const prop = global.confi_prop;
 const iConstant = require("../../../constants/iConstants");
 
 module.exports = {
