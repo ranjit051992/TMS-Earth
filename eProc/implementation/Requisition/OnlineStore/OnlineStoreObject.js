@@ -14,7 +14,10 @@ module.exports = {
     ADD_TO_CART_BUTTON : "OnlineStore/ADD_TO_CART_BUTTON",
     ADD_TO_CART_SUCCESS_MSG :"OnlineStore/ADD_TO_CART_SUCCESS_MSG",
     SUPPLIER_NAME : "OnlineStore/SUPPLIER_NAME",
-
+    CART_ICON : "OnlineStore/CART_ICON",
+    CART_ITEM_ICON : "OnlineStore/CART_ITEM_ICON",
+    ONLINE_STORE_LINK : "OnlineStore/ONLINE_STORE_LINK",
+    SPINNER : "OnlineStore/SPINNER"
 
 };
 

@@ -10,6 +10,7 @@ module.exports = {
     SPO_TAXES_SECTION_SECTION: "Taxes",
     SPO_ADDITIONAL_DETAILS_SECTION: "Additional Details",
 
+
     CHECKOUT_BASIC_DETAILS_SECTION: "Basic details",
     CHECKOUT_ADDITIONAL_DETAILS_SECTION: "Additional Details",
     CHECKOUT_SHIPPING_DETAILS_SECTION: "Shipping Details",
@@ -23,4 +24,10 @@ module.exports = {
     SAVE_AS_DRAFT: "Save_As_Draft",
     CANCEL: "Cancel",
 
+    EMPTY_CART_MSG : "Cart is empty",
+    NA : "NA",
+
 };
+
+
+

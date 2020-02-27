@@ -1,18 +1,18 @@
+const faker = require("faker");
 const spo = require("../bo/Spo");
 const catalogItem = require("../bo/CatalogItem");
 const requisition = require("../bo/Requisition");
 const logger = require("../../Framework/FrameworkUtilities/Logger/logger");
 const commonUtilities = require("../../Framework/FrameworkUtilities/CommonUtilities");
-const faker = require("faker");
 const iConstants = require("../constants/iConstants");
+
 
 class ObjectCreation
 {
-    getObjectOfStandardPO(noOfItems,itemType)
+    async getObjectOfStandardPO(noOfItems,itemType)
     {
-        
-        //spo.setPoNumber();
-        spo.setPoDescription("AutomationSPO");
+        spo.setPoNumber(`Automation_Spo_${new Date().getTime()}`);
+        spo.setPoDescription(`Automation_Description_${new Date().getTime()}`);
         spo.setPurchaseType(global.testData.get("PURCHASE_TYPE"));
         spo.setCompany(global.testData.get("ORGANIZATION_UNIT/COMPANY_NAME"));
         spo.setBusinessUnit(global.testData.get("BUSINESS_UNIT_NAME"));

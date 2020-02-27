@@ -1,7 +1,7 @@
 const {I} = inject();
 const commonCompObject = require("./CommonComponentObject");
 const logger = require("./../../Framework/FrameworkUtilities/Logger/logger");
-const prop= require("../../Framework/PropertiesConfigurator");
+const prop= global.confi_prop;
 module.exports={
 
     async searchAndSelectFromDropdown(dropdownElement, selectOption){

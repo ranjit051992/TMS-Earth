@@ -2,10 +2,11 @@ const { I } = inject();
 const iCheckout= require("./CheckoutObject");
 const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger");
 const commonComponent = require("../..//..//commonComponent/CommonComponent");
-const prop = require("../../../../Framework/PropertiesConfigurator");
+const prop = global.confi_prop;
 const ObjectCreation = require("../../../dataCreation/ObjectCreation");
 const iConstants = require("../../../../eProc/constants/iConstants");
 const requisitionBO = require("../../../bo/Requisition");
+
 
 module.exports={
 

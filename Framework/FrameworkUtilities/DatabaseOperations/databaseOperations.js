@@ -15,6 +15,7 @@ module.exports = {
         logger.info(columnName);
         
         const query = `SELECT FIELD_NAME, ${columnName} FROM TestData_eproc`;
+        // const query = `SELECT FIELD_NAME, ${columnName} FROM iContract_QC`;
         logger.info(query);
 
         return new Promise((resolve, reject) => {
@@ -27,7 +28,7 @@ module.exports = {
             logger.info("Checking sql connection");
             connection.connect(function (error) {
                 if (!!error) {
-                    logger.info("Error");
+                    logger.info("Error1");
                 }
                 else {
                     logger.info("Connected");
@@ -71,8 +72,8 @@ module.exports = {
 
         const connectionObj = parser(connectionString);
 
-        // const query = `SELECT PAGE_NAME, ELEMENT_NAME, XPATH FROM eProc_UI_Elements`;
-        const query = "SELECT * FROM Cucumber_CodeCept_iContract_OR";
+        const query = "SELECT PAGE_NAME, ELEMENT_NAME, XPATH FROM eProc_UI_Elements";
+        // const query = `SELECT * FROM Cucumber_CodeCept_iContract_OR`;
 
         return new Promise((resolve, reject) => {
             let elementMap = new Map();
@@ -83,7 +84,7 @@ module.exports = {
             logger.info("Checking sql connection");
             connection.connect(function (error) {
                 if (!!error) {
-                    logger.info("Error");
+                    logger.info("Error2");
                 }
                 else {
                     logger.info("Connected");
@@ -100,6 +101,15 @@ module.exports = {
                                 let mapValue;
 
                                 for (let [key, value] of Object.entries(rows[i])) {
+                                    // if(key === "PAGE_NAME") {
+                                    //     mapKey = value;
+                                    // }
+                                    // else if(key === "ELEMENT_NAME") {
+                                    //     mapKey = `${mapKey}/${value}`;
+                                    // }
+                                    // else if(key === "XPATH") {
+                                    //     mapValue = value;
+                                    // }
                                     if(key === "Page Name") {
                                         mapKey = value;
                                     }
