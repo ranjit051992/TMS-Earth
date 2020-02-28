@@ -107,11 +107,11 @@ Feature: Checkout
 
     Then I should be able to view the requisition with free text item and the catalog items.
 
-@Non-COA @L1
+@tag23
     Scenario: To verify that user is able to see the approval hierarchy after raising a requisition
     Given I am logged in eProc
 
-    When I add a catalog item to cart
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I add Purchase Type
     And I add Required By Date

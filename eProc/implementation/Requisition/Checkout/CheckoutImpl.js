@@ -1,7 +1,8 @@
 const iCheckout= require("./CheckoutObject");
 const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger");
-const commonComponent = require("../..//..//commonComponent/CommonComponent");
-const prop = require("../../../../Framework/PropertiesConfigurator");
+const commonComponent = require("../../../commonKeywords/CommonComponent");
+const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
+const prop = global.confi_prop;
 //const requisitionBO = require("/..");
 
 module.exports={
@@ -15,11 +16,11 @@ module.exports={
     */
     async enterRequisitionName(reqName)
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.REQUISITION_NAME), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.REQUISITION_NAME), prop.DEFAULT_MEDIUM_WAIT);
-        I.clearField(global.uiElements.get(iCheckout.REQUISITION_NAME));
-        I.fillField(global.uiElements.get(iCheckout.REQUISITION_NAME), reqName);
-        reqName = await I.grabTextFrom(global.uiElements.get(iCheckout.REQUISITION_NAME));
+        I.waitForVisible(I.getElement(iCheckout.REQUISITION_NAME), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.REQUISITION_NAME), prop.DEFAULT_MEDIUM_WAIT);
+        I.clearField(I.getElement(iCheckout.REQUISITION_NAME));
+        I.fillField(I.getElement(iCheckout.REQUISITION_NAME), reqName);
+        reqName = await I.grabTextFrom(I.getElement(iCheckout.REQUISITION_NAME));
         logger.info(`Entered Requisition Name: ${reqName}`);
         return reqName;
     },
@@ -33,11 +34,11 @@ module.exports={
     */
     async fillOnBehalfOf(onBehalfOf)
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.ON_BEHALF_OF), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.ON_BEHALF_OF), prop.DEFAULT_MEDIUM_WAIT);
-        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.ON_BEHALF_OF), onBehalfOf);
+        I.waitForVisible(I.getElement(iCheckout.ON_BEHALF_OF), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.ON_BEHALF_OF), prop.DEFAULT_MEDIUM_WAIT);
+        commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.ON_BEHALF_OF), onBehalfOf);
         
-        onBehalfOf = await I.grabTextFrom(global.uiElements.get(iCheckout.ON_BEHALF_OF));
+        onBehalfOf = await I.grabTextFrom(I.getElement(iCheckout.ON_BEHALF_OF));
         logger.info(`Entered OnBehalf of : ${onBehalfOf}`);
         return onBehalfOf;
     },
@@ -48,9 +49,9 @@ module.exports={
     */
     clickOnBuyingUnitEditButton()
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.BUYING_UNIT_EDIT_ICON), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.BUYING_UNIT_EDIT_ICON), prop.DEFAULT_MEDIUM_WAIT);
-        I.click(global.uiElements.get(iCheckout.BUYING_UNIT_EDIT_ICON));
+        I.waitForVisible(I.getElement(iCheckout.BUYING_UNIT_EDIT_ICON), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.BUYING_UNIT_EDIT_ICON), prop.DEFAULT_MEDIUM_WAIT);
+        I.click(I.getElement(iCheckout.BUYING_UNIT_EDIT_ICON));
         logger.info("Clicked on buying Unit Edit Button");
     },
 
@@ -63,10 +64,10 @@ module.exports={
     */
     async fillCompany(companyName)
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.COMPANY_NAME), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.COMPANY_NAME), prop.DEFAULT_MEDIUM_WAIT);
-        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.COMPANY_NAME), companyName);
-        companyName = await I.grabTextFrom(global.uiElements.get(iCheckout.COMPANY_NAME));
+        I.waitForVisible(I.getElement(iCheckout.COMPANY_NAME), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.COMPANY_NAME), prop.DEFAULT_MEDIUM_WAIT);
+        commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.COMPANY_NAME), companyName);
+        companyName = await I.grabTextFrom(I.getElement(iCheckout.COMPANY_NAME));
         logger.info(`Entered Company Name: ${companyName}`);
         return companyName;
     },
@@ -79,10 +80,10 @@ module.exports={
      */
     async fillBusinessUnit(businessUnit)
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.BUSINESS_UNIT), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.BUSINESS_UNIT), prop.DEFAULT_MEDIUM_WAIT);
-        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.BUSINESS_UNIT), businessUnit);
-        businessUnit = await I.grabTextFrom(global.uiElements.get(iCheckout.BUSINESS_UNIT));
+        I.waitForVisible(I.getElement(iCheckout.BUSINESS_UNIT), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.BUSINESS_UNIT), prop.DEFAULT_MEDIUM_WAIT);
+        commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.BUSINESS_UNIT), businessUnit);
+        businessUnit = await I.grabTextFrom(I.getElement(iCheckout.BUSINESS_UNIT));
         logger.info(`Entered Business unit: ${businessUnit}`);
         return businessUnit;
     },
@@ -95,10 +96,10 @@ module.exports={
      */
     async fillLocation(location)
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.LOCATION), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.LOCATION), prop.DEFAULT_MEDIUM_WAIT);
-        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.LOCATION),location);
-        location = await I.grabTextFrom(global.uiElements.get(iCheckout.LOCATION));
+        I.waitForVisible(I.getElement(iCheckout.LOCATION), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.LOCATION), prop.DEFAULT_MEDIUM_WAIT);
+        commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.LOCATION),location);
+        location = await I.grabTextFrom(I.getElement(iCheckout.LOCATION));
         logger.info(`Entered Business unit: ${location}`);
         return location;
     },
@@ -111,10 +112,10 @@ module.exports={
      */
     async fillCurrency(currency)
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.CURRENCY), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.CURRENCY), prop.DEFAULT_MEDIUM_WAIT);
-        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.CURRENCY), currency);
-        location = await I.grabTextFrom(global.uiElements.get(iCheckout.CURRENCY));
+        I.waitForVisible(I.getElement(iCheckout.CURRENCY), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.CURRENCY), prop.DEFAULT_MEDIUM_WAIT);
+        commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.CURRENCY), currency);
+        location = await I.grabTextFrom(I.getElement(iCheckout.CURRENCY));
         logger.info(`Entered Business unit: ${currency}`);
         return currency;
     },
@@ -124,25 +125,25 @@ module.exports={
      */
     clickOnBuyingUnitDoneButton()
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.BUYING_UNIT_DONE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.BUYING_UNIT_DONE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
-        I.click(global.uiElements.get(iCheckout.BUYING_UNIT_DONE_BUTTON));
+        I.waitForVisible(I.getElement(iCheckout.BUYING_UNIT_DONE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.BUYING_UNIT_DONE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
+        I.click(I.getElement(iCheckout.BUYING_UNIT_DONE_BUTTON));
         logger.info("Clicked on Buying Inut Done Button");
     },
 
     clickOnUrgentRequirementYesButton()
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.URGENT_REQUIREMENT_YES_RADIO_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.URGENT_REQUIREMENT_YES_RADIO_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
-        I.click(global.uiElements.get(iCheckout.URGENT_REQUIREMENT_YES_RADIO_BUTTON));
+        I.waitForVisible(I.getElement(iCheckout.URGENT_REQUIREMENT_YES_RADIO_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.URGENT_REQUIREMENT_YES_RADIO_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
+        I.click(I.getElement(iCheckout.URGENT_REQUIREMENT_YES_RADIO_BUTTON));
         logger.info("Clicked on UrgentRequirement Yes Button ");
     },
 
     clickOnUrgentRequirementNoButton()
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.URGENT_REQUIREMENT_NO_RADIO_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.URGENT_REQUIREMENT_NO_RADIO_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
-        I.click(global.uiElements.get(iCheckout.URGENT_REQUIREMENT_NO_RADIO_BUTTON));
+        I.waitForVisible(I.getElement(iCheckout.URGENT_REQUIREMENT_NO_RADIO_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.URGENT_REQUIREMENT_NO_RADIO_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
+        I.click(I.getElement(iCheckout.URGENT_REQUIREMENT_NO_RADIO_BUTTON));
         logger.info("Clicked on UrgentRequirement NO Button ");
     },
 
@@ -151,9 +152,9 @@ module.exports={
      */
     clickOnReasonForOrderingLink()
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.REASON_FOR_ORDERING_LINK), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.REASON_FOR_ORDERING_LINK), prop.DEFAULT_MEDIUM_WAIT);
-        I.click(global.uiElements.get(iCheckout.REASON_FOR_ORDERING_LINK));
+        I.waitForVisible(I.getElement(iCheckout.REASON_FOR_ORDERING_LINK), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.REASON_FOR_ORDERING_LINK), prop.DEFAULT_MEDIUM_WAIT);
+        I.click(I.getElement(iCheckout.REASON_FOR_ORDERING_LINK));
         logger.info("Cliked on Reason For Ordering Link ");
     },
 
@@ -163,11 +164,11 @@ module.exports={
      */
     async enterReasonForOrdering(reasonForOrdering)
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.REASON_FOR_ORDERING_TEXTAREA), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.REASON_FOR_ORDERING_TEXTAREA), prop.DEFAULT_MEDIUM_WAIT);
-        I.clearField(global.uiElements.get(iCheckout.REASON_FOR_ORDERING_TEXTAREA));
-        I.fillField(global.uiElements.get(iCheckout.REASON_FOR_ORDERING_TEXTAREA), reasonForOrdering);
-        reasonForOrdering = await I.grabTextFrom(global.uiElements.get(iCheckout.REASON_FOR_ORDERING_TEXTAREA));
+        I.waitForVisible(I.getElement(iCheckout.REASON_FOR_ORDERING_TEXTAREA), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.REASON_FOR_ORDERING_TEXTAREA), prop.DEFAULT_MEDIUM_WAIT);
+        I.clearField(I.getElement(iCheckout.REASON_FOR_ORDERING_TEXTAREA));
+        I.fillField(I.getElement(iCheckout.REASON_FOR_ORDERING_TEXTAREA), reasonForOrdering);
+        reasonForOrdering = await I.grabTextFrom(I.getElement(iCheckout.REASON_FOR_ORDERING_TEXTAREA));
         logger.info(`Entered Reason For Ordering ${reasonForOrdering}`);
         return reasonForOrdering;
     },
@@ -176,9 +177,9 @@ module.exports={
      */
     clickOnCommentsForSupplierLink()
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.COMMENTS_FOR_SUPPLIER_LINK), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.COMMENTS_FOR_SUPPLIER_LINK), prop.DEFAULT_MEDIUM_WAIT);
-        I.click(global.uiElements.get(iCheckout.COMMENTS_FOR_SUPPLIER_LINK));
+        I.waitForVisible(I.getElement(iCheckout.COMMENTS_FOR_SUPPLIER_LINK), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.COMMENTS_FOR_SUPPLIER_LINK), prop.DEFAULT_MEDIUM_WAIT);
+        I.click(I.getElement(iCheckout.COMMENTS_FOR_SUPPLIER_LINK));
         logger.info("Cliked on Comments For Supplier Link ");
     },
 
@@ -188,11 +189,11 @@ module.exports={
      */
     async enterCommentsForSupplier(commentForSupplier)
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.COMMENTS_FOR_SUPPLIER_TEXTAREA), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.COMMENTS_FOR_SUPPLIER_TEXTAREA), prop.DEFAULT_MEDIUM_WAIT);
-        I.clearField(global.uiElements.get(iCheckout.COMMENTS_FOR_SUPPLIER_TEXTAREA));
-        I.fillField(global.uiElements.get(iCheckout.COMMENTS_FOR_SUPPLIER_TEXTAREA), commentForSupplier);
-        commentForSupplier = await I.grabTextFrom(global.uiElements.get(iCheckout.COMMENTS_FOR_SUPPLIER_TEXTAREA));
+        I.waitForVisible(I.getElement(iCheckout.COMMENTS_FOR_SUPPLIER_TEXTAREA), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.COMMENTS_FOR_SUPPLIER_TEXTAREA), prop.DEFAULT_MEDIUM_WAIT);
+        I.clearField(I.getElement(iCheckout.COMMENTS_FOR_SUPPLIER_TEXTAREA));
+        I.fillField(I.getElement(iCheckout.COMMENTS_FOR_SUPPLIER_TEXTAREA), commentForSupplier);
+        commentForSupplier = await I.grabTextFrom(I.getElement(iCheckout.COMMENTS_FOR_SUPPLIER_TEXTAREA));
         logger.info(`Entered Comments For Supplier ${commentForSupplier}`);
         return commentForSupplier;
     },
@@ -203,31 +204,31 @@ module.exports={
      */
     async selectPurchaseType(purchaseType)
     {
-        commonComponent.selectValueFromDropDown(global.uiElements.get(iCheckout.PURCHASE_TYPE), purchaseType);
-        purchaseType = await I.grabTextFrom(global.uiElements.get(iCheckout.PURCHASE_TYPE));
+        commonComponent.selectValueFromDropDown(I.getElement(iCheckout.PURCHASE_TYPE), purchaseType);
+        purchaseType = await I.grabTextFrom(I.getElement(iCheckout.PURCHASE_TYPE));
         return purchaseType;
     },
 
     async selectSettlementVia(settlementVia)
     {
-        commonComponent.selectValueFromDropDown(global.uiElements.get(iCheckout.SETTLEMENT_VIA), settlementVia);
-        settlementVia = await I.grabTextFrom(global.uiElements.get(iCheckout.SETTLEMENT_VIA));
+        commonComponent.selectValueFromDropDown(I.getElement(iCheckout.SETTLEMENT_VIA), settlementVia);
+        settlementVia = await I.grabTextFrom(I.getElement(iCheckout.SETTLEMENT_VIA));
         return settlementVia;
     },
 
     clickOnRetrospectivePurchaseYesButton()
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.RETROSPECTIVE_PURCHASE_YES_RADIO_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.RETROSPECTIVE_PURCHASE_YES_RADIO_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
-        I.click(global.uiElements.get(iCheckout.RETROSPECTIVE_PURCHASE_YES_RADIO_BUTTON));
+        I.waitForVisible(I.getElement(iCheckout.RETROSPECTIVE_PURCHASE_YES_RADIO_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.RETROSPECTIVE_PURCHASE_YES_RADIO_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
+        I.click(I.getElement(iCheckout.RETROSPECTIVE_PURCHASE_YES_RADIO_BUTTON));
         logger.info("Click On Retrospective Purchase Yes Button");
     },
 
     clickOnRetrospectivePurchaseNoButton()
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.RETROSPECTIVE_PURCHASE_NO_RADIO_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.RETROSPECTIVE_PURCHASE_NO_RADIO_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
-        I.click(global.uiElements.get(iCheckout.RETROSPECTIVE_PURCHASE_NO_RADIO_BUTTON));
+        I.waitForVisible(I.getElement(iCheckout.RETROSPECTIVE_PURCHASE_NO_RADIO_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.RETROSPECTIVE_PURCHASE_NO_RADIO_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
+        I.click(I.getElement(iCheckout.RETROSPECTIVE_PURCHASE_NO_RADIO_BUTTON));
         logger.info("Click On Retrospective Purchase No Button");
     },
 
@@ -246,8 +247,8 @@ module.exports={
      */
     async getDefaultShippingAddress()
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.DEFAULT_SHIPPING_ADDRESS), prop.DEFAULT_MEDIUM_WAIT);
-        let shippingAddress = await I.grabTextFrom(global.uiElements.get(iCheckout.DEFAULT_SHIPPING_ADDRESS));
+        I.waitForVisible(I.getElement(iCheckout.DEFAULT_SHIPPING_ADDRESS), prop.DEFAULT_MEDIUM_WAIT);
+        let shippingAddress = await I.grabTextFrom(I.getElement(iCheckout.DEFAULT_SHIPPING_ADDRESS));
         logger.info(`Default Shipping Address is ${shippingAddress}`);
         return shippingAddress;
     },
@@ -258,9 +259,9 @@ module.exports={
      */
     async fillDeliverTo(deliverTo)
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.DELIVER_TO), prop.DEFAULT_MEDIUM_WAIT);
-        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.DELIVER_TO), deliverTo);
-        deliverTo =  await I.grabTextFrom(global.uiElements.get(iCheckout.DELIVER_TO));
+        I.waitForVisible(I.getElement(iCheckout.DELIVER_TO), prop.DEFAULT_MEDIUM_WAIT);
+        commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.DELIVER_TO), deliverTo);
+        deliverTo =  await I.grabTextFrom(I.getElement(iCheckout.DELIVER_TO));
         logger.info(`Entered Deliver To is ${deliverTo}`);
         return deliverTo;
     },
@@ -275,9 +276,9 @@ module.exports={
      */
     clickOnAssignCostProjectYesButton()
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.ASSIGN_COST_PROJECT_YES), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.ASSIGN_COST_PROJECT_YES), prop.DEFAULT_MEDIUM_WAIT);
-        I.click(global.uiElements.get(iCheckout.ASSIGN_COST_PROJECT_YES));
+        I.waitForVisible(I.getElement(iCheckout.ASSIGN_COST_PROJECT_YES), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.ASSIGN_COST_PROJECT_YES), prop.DEFAULT_MEDIUM_WAIT);
+        I.click(I.getElement(iCheckout.ASSIGN_COST_PROJECT_YES));
         logger.info("Clicked On Assign Cost Project YES Button");
     },
 
@@ -286,9 +287,9 @@ module.exports={
      */
     clickOnAssignCostProjectNoButton()
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.ASSIGN_COST_PROJECT_NO), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.ASSIGN_COST_PROJECT_NO), prop.DEFAULT_MEDIUM_WAIT);
-        I.click(global.uiElements.get(iCheckout.ASSIGN_COST_PROJECT_NO));
+        I.waitForVisible(I.getElement(iCheckout.ASSIGN_COST_PROJECT_NO), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.ASSIGN_COST_PROJECT_NO), prop.DEFAULT_MEDIUM_WAIT);
+        I.click(I.getElement(iCheckout.ASSIGN_COST_PROJECT_NO));
         logger.info("Clicked On Assign Cost Project NO Button");
     },
 
@@ -298,9 +299,9 @@ module.exports={
      */
     async fillCostCenter(costCenter)
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.COST_CENTER), prop.DEFAULT_MEDIUM_WAIT);
-        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.COST_CENTER), costCenter);
-        costCenter = await I.grabTextFrom(global.uiElements.get(iCheckout.COST_CENTER));
+        I.waitForVisible(I.getElement(iCheckout.COST_CENTER), prop.DEFAULT_MEDIUM_WAIT);
+        commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.COST_CENTER), costCenter);
+        costCenter = await I.grabTextFrom(I.getElement(iCheckout.COST_CENTER));
         logger.info(`Entered Cost Center is : ${costCenter}`);
         return costCenter;
     },
@@ -324,9 +325,9 @@ module.exports={
      */
     async fillGLAccount(glAccount)
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.GL_ACCOUNT), prop.DEFAULT_MEDIUM_WAIT);
-        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.GL_ACCOUNT), glAccount);
-        glAccount = await I.grabTextFrom(global.uiElements.get(iCheckout.GL_ACCOUNT));
+        I.waitForVisible(I.getElement(iCheckout.GL_ACCOUNT), prop.DEFAULT_MEDIUM_WAIT);
+        commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.GL_ACCOUNT), glAccount);
+        glAccount = await I.grabTextFrom(I.getElement(iCheckout.GL_ACCOUNT));
         logger.info(`GL Account is: ${glAccount}`);
         return glAccount;
     },
@@ -337,9 +338,9 @@ module.exports={
      */
     async fillAssetCode(assetCode)
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.ASSET_CODE), prop.DEFAULT_MEDIUM_WAIT);
-        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.ASSET_CODE), assetCode);
-        assetCode = await I.grabTextFrom(global.uiElements.get(iCheckout.ASSET_CODE));
+        I.waitForVisible(I.getElement(iCheckout.ASSET_CODE), prop.DEFAULT_MEDIUM_WAIT);
+        commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.ASSET_CODE), assetCode);
+        assetCode = await I.grabTextFrom(I.getElement(iCheckout.ASSET_CODE));
         logger.info(`Asset Code is: ${assetCode}`);
         return assetCode;
     },
@@ -368,9 +369,9 @@ module.exports={
      */
     async fillBuyerInTextBox(buyerName)
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.BUYER_TEXTBOX), prop.DEFAULT_MEDIUM_WAIT);
-        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.BUYER_TEXTBOX), buyerName);
-        buyerName = await I.grabTextFrom(global.uiElements.get(iCheckout.BUYER_TEXTBOX));
+        I.waitForVisible(I.getElement(iCheckout.BUYER_TEXTBOX), prop.DEFAULT_MEDIUM_WAIT);
+        commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.BUYER_TEXTBOX), buyerName);
+        buyerName = await I.grabTextFrom(I.getElement(iCheckout.BUYER_TEXTBOX));
         logger.info(`Entered Buyer is: ${buyerName}`);
         return buyerName;
     },
@@ -380,9 +381,9 @@ module.exports={
      */
     clickInCostBookingSaveButton()
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.COST_BOOKING_SAVE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.COST_BOOKING_SAVE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
-        I.click(global.uiElements.get(iCheckout.COST_BOOKING_SAVE_BUTTON));
+        I.waitForVisible(I.getElement(iCheckout.COST_BOOKING_SAVE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.COST_BOOKING_SAVE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
+        I.click(I.getElement(iCheckout.COST_BOOKING_SAVE_BUTTON));
         logger.info("Clicked on Cost Booking Save Button");
     },
 
@@ -391,9 +392,9 @@ module.exports={
      */
     clickOnImDoneButton()
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.I_M_DONE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.I_M_DONE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
-        I.click(global.uiElements.get(iCheckout.I_M_DONE_BUTTON));
+        I.waitForVisible(I.getElement(iCheckout.I_M_DONE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.I_M_DONE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
+        I.click(I.getElement(iCheckout.I_M_DONE_BUTTON));
         logger.info("Clicked on I M Button");
     },
 
@@ -402,9 +403,9 @@ module.exports={
      */
     clickOnSaveAsDraftButton()
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.SAVE_AS_DRAFT), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.SAVE_AS_DRAFT), prop.DEFAULT_MEDIUM_WAIT);
-        I.click(global.uiElements.get(iCheckout.SAVE_AS_DRAFT));
+        I.waitForVisible(I.getElement(iCheckout.SAVE_AS_DRAFT), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.SAVE_AS_DRAFT), prop.DEFAULT_MEDIUM_WAIT);
+        I.click(I.getElement(iCheckout.SAVE_AS_DRAFT));
         logger.info("Clicked on Save As Draft Button");
     },
 
@@ -413,9 +414,9 @@ module.exports={
      */
     clickOnCancelButton()
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.CANCEL_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.CANCEL_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
-        I.click(global.uiElements.get(iCheckout.CANCEL_BUTTON));
+        I.waitForVisible(I.getElement(iCheckout.CANCEL_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.CANCEL_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
+        I.click(I.getElement(iCheckout.CANCEL_BUTTON));
         logger.info("Clicked on Cancel Button");
     },
 
@@ -424,9 +425,9 @@ module.exports={
      */
     clickOnContinueButton()
     {
-        I.waitForVisible(global.uiElements.get(iCheckout.CONTINUE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(global.uiElements.get(iCheckout.CONTINUE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
-        I.click(global.uiElements.get(iCheckout.CONTINUE_BUTTON));
+        I.waitForVisible(I.getElement(iCheckout.CONTINUE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iCheckout.CONTINUE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
+        I.click(I.getElement(iCheckout.CONTINUE_BUTTON));
         logger.info("Clicked on Continue Button");
     },
 
@@ -495,7 +496,7 @@ module.exports={
 
     async fillAdditionalDetails(requisitionBO)
     {
-        commonComponent.scrollToSection(iConstants.ADDITIONAL_DETAILS);
+        commonComponent.scrollToSection(lmtVar.getLabel(ADDITIONAL_DETAILS));
         return requisitionBO;
     }
 };

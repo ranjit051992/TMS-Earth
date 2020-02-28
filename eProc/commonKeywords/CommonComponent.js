@@ -1,7 +1,7 @@
 const {I} = inject();
 const commonKeywordObject = require("./CommonComponentObject");
 const logger = require("./../../Framework/FrameworkUtilities/Logger/logger");
-const prop= require("../../Framework/PropertiesConfigurator");
+const prop= global.confi_prop;
 module.exports={
 
     async searchAndSelectFromDropdown(dropdownElement, selectOption){
@@ -13,8 +13,8 @@ module.exports={
                 return value;
                 }
                 else{
-                    I.click(global.uiElements.get(commonKeywordObject.SearchAndSelectDropdown_Option));
-                    let selectedValue =  await I.grabAttributeFrom(global.uiElements.get(commonKeywordObject.SearchAndSelectDropdown_Option), "title");
+                    I.click(I.getElement(commonKeywordObject.SearchAndSelectDropdown_Option));
+                    let selectedValue =  await I.grabAttributeFrom(I.getElement(commonKeywordObject.SearchAndSelectDropdown_Option), "title");
                     return selectedValue;
                 }
             },

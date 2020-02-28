@@ -1,8 +1,9 @@
 const { I } = inject();
 const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger");
+const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp")
 const iSpoObject = require("./SpoObject");
 const objectCreation = require("../../../dataCreation/ObjectCreation")
-const prop = require("../../../../Framework/PropertiesConfigurator");
+const prop = global.confi_prop;
 const spoImpl = require("./SpoImpl");
 const catalogItem = require("../../../bo/CatalogItem");
 const iConstants = require("../../../constants/iConstants");
@@ -11,7 +12,7 @@ const poListingImpl = require("../PoListing/PoListingImpl");
 
 Given("I am on PO listing page", async function () {
    I.amOnPage(prop.poListingUrl)
-   await I.waitForInvisible(global.uiElements.get(iSpoObject.spinner), prop.DEFAULT_MEDIUM_WAIT);
+   await I.waitForInvisible(I.getElement(iSpoObject.spinner), prop.DEFAULT_MEDIUM_WAIT);
 });
 
 Given("I Create Standard po with {string} {string} item", async function (noOfItems, itemType) {
@@ -47,33 +48,33 @@ When("I select Buyer", async function() {
 });
 
 When("I add Purchase type", async function() {
-   await spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_BASIC_DETAILS_SECTION);
-   await spoImpl.selectPurchaseType(this.spo.purchaseType);
+   spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_BASIC_DETAILS_SECTION));
+   spoImpl.selectPurchaseType(this.spo.purchaseType);
 });
 
 When("I add Required by date", async function() {
-   spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_SHIPPING_DETAILS_SECTION);
+   spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_SHIPPING_DETAILS_SECTION));
    let requiredBy = await spoImpl.fetchRequiredBy()
    this.spo.setRequiredBy(requiredBy);
 });
 
 When("I search catalog item with {string}", async function(itemName) {
-   spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_LINE_ITEMS_SECTION);
+   spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_LINE_ITEMS_SECTION));
    spoImpl.clickOnAddLineItemButton();
    spoImpl.enterItemName(this.spo.items[0].itemName);
    spoImpl.selectItemOption(this.spo.items[0].itemName);
 });
 
 When("I add costing and accounting details for that item", async function() {
-   spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_LINE_ITEMS_SECTION);
-   spoImpl.clickOnCostBookingLink(this.spo.items[0].itemName);
+   spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_LINE_ITEMS_SECTION));
+   spoImpl.clickOnCostBookingLink(this.spo.itemName);
    let glAccount = await spoImpl.fillGlAccount(this.spo.glAccount);
    this.spo.setGlAccount(glAccount);
    spoImpl.clickOnCostBookingSaveButton();
 });
 
 When("I add 1 free text item with details", async function() {
-   spoImpl.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_LINE_ITEMS_SECTION);
+   spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_LINE_ITEMS_SECTION));
    spoImpl.clickOnAddLineItemButton();
    spoImpl.enterItemName(this.spo.items[0].itemName);
    spoImpl.selectItemOption(this.spo.items[0].itemName);
@@ -122,3 +123,4 @@ Then("I should be able to view the SPO with multiple items", async function() {
 Then("I should be able to download attachments", async function() {
 
 });
+

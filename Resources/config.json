@@ -6,7 +6,7 @@
         "SETUP": "RM",
         "TENANT": "ZCS",
         "browser": "chrome",
-        "host": "192.168.7.57",
+        "host": "127.0.0.1",
         "restart": "false",
         "port": 4444,
         "windowSize": "maximize",
@@ -22,10 +22,12 @@
         "DBuser": "gauge.poc",
         "DBpassword": "gauge@123",
         "username": "prashant.patil@zycus.com",
-        "password": "Pass@123"
+        "password": "Pass@123",
+        "testdataTable":"TestData_eproc",
+        "uiElementTable":"eProc_UI_Elements"
     },
     "iContract": {
-        "url": "https://dewdrops-partner.zycus.com/sso/login",
+        "url": "https://dewdrops-partner.zycus.com/",
         "poListingUrl": "https://dewdrops-partner.zycus.com/#eproc/purchaseorder/default/listing",
         "DDS_OnlineStore_Url": "https://dewdrops-partner.zycus.com/eproc/#/online-store",
         "SETUP": "RM",
@@ -47,6 +49,9 @@
         "DBuser": "teamicontract",
         "DBpassword": "iContract@123",
         "username": "dewdropsuser1@zycus.com",
-        "password": "pass@321"
+        "password": "pass@321",
+        "testdataTable":"iContract_QC",
+        "uiElementTable":"Cucumber_CodeCept_iContract_OR"      
+        
     }
 }

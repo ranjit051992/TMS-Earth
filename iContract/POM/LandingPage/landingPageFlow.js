@@ -9,6 +9,7 @@ class landingPageFlow {
         I.see(lmt.getLabel(buttonLabel));
         I.click(lmt.getLabel(buttonLabel));
         I.see(lmt.getLabel(transitionHeaderLabel));
+        
     }
 }
 
