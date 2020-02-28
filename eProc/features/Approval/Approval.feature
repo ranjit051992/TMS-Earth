@@ -3,23 +3,25 @@ Feature: Approval
 @L1
     Scenario: To verify Requisition details are  properly displayed in approval listing
 
-    Given I am logged in eproc 
-    And I have submit the requisition 
+    Given I am logged in eProc
+    //And I have submit the requisition
     And I have requisition In Approval status
     And I am on requisition approval listing page
 
-    When I check the Requester name displayed for the corresponding Requisition number
-    And I check the Received on date
-    And I check the Amount to be approved 
-    And I check the status of Requisition
+    When I search for that requisition name on approval listing
 
-    Then I should get all details, same as what entered while creating that requisition
+    Then I see the same requester
+    And I see the same Received on date
+    And I see the same Amount to be approved
+    And I see the same status of Requisition
+
+    
 
 
 @L1
     Scenario: To verify Purchase Order details are properly displayed in approval listing
 
-    Given I am logged in eproc 
+    Given I am logged in eProc
     And I have submit the Purchase order
     And I have PO In Approval status
     And I am on PO approval listing page
@@ -42,7 +44,7 @@ Feature: Approval
 
     When I check the Buyer name displayed for the corresponding BPO number
     And I check the Received on date
-    And I check the Amount to be approved 
+    And I check the Amount to be approved
     And I check the status of the BPO
 
     Then I should get all details, same as what entered while creating that BPO
@@ -51,14 +53,12 @@ Feature: Approval
 @L1
     Scenario: To verify that user is able to approve single/multiple Requisition
 
-    Given I am logged in eproc 
-    And I have submit 3 requisitions 
+    Given I am logged in eproc
+    And I have submit 3 requisitions
     And I have requisitions In Approval status
     And I am on requisition approval listing page
 
     When I Approve 1 requisition
-    And I fill in comments within popup
-    And I click on Approve
     And I Approve another 2 requisitions 
     And I fill in comments within popup
     And I click on Approve
