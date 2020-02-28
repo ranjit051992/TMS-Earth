@@ -1,13 +1,18 @@
 const { I } = inject();
 const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger");
 const iSpoObject = require("./SpoObject");
-const prop = require("../../../../Framework/PropertiesConfigurator");
+const prop = global.confi_prop
 const iConstants = require("../../../constants/iConstants");
 const commonComponent = require("../../../commonComponent/CommonComponent");
+const approvalImpl = require("../../Approval/ApprovalImpl");
+const poListingImpl = require("../PoListing/PoListingImpl");
+const poListingObject = require("../PoListing/PoListingObject");
 
 module.exports = {
     async clickOnCreatePOButton() {
-        I.click(global.uiElements.get(iSpoObject.createPOButton));
+        await I.seeElement(global.uiElements.get(iSpoObject.createPOButton));
+        await I.click(global.uiElements.get(iSpoObject.createPOButton));
+        logger.info("Clicked on Create PO button");
     },
     async clickOnStandardPOButton() {
         I.click(global.uiElements.get(iSpoObject.standardPOButton));
@@ -20,7 +25,7 @@ module.exports = {
         logger.info("Filled po number :" + poNumber);
     },
     async fetchPONumber() {
-        let poNumber = await I.grabTextFrom(global.uiElements.get(iSpoObject.poNumberTextbox), "value");
+        let poNumber = await I.grabAttributeFrom(global.uiElements.get(iSpoObject.poNumberTextbox), "value");
         logger.info("Fetched po number :" + poNumber);
         return poNumber;
     },
@@ -29,6 +34,7 @@ module.exports = {
         logger.info("Filled po description :" + poDescription);
     },
     async clickOnPurchaseTypeDropdown() {
+        I.seeElement(global.uiElements.get(iSpoObject.purchaseTypeDropdown));
         I.click(global.uiElements.get(iSpoObject.purchaseTypeDropdown));
     },
     async selectPurchaseType(purchaseType) {
@@ -263,10 +269,18 @@ module.exports = {
         logger.info(`Selected Deliver To --> ${option}`);
     },
     async selectTaxInclusive() {
-        await I.executeScript(function() {
-            document.getElementById("inclusive1").click();
+        let checked = await I.executeScript(function() {
+            return document.getElementById("inclusive1").checked;
         });
-        logger.info(`Selected Tax Inclusive`);
+        if(!checked) {
+            await I.executeScript(function() {
+                document.getElementById("inclusive1").click();
+            });
+            logger.info("Selected Tax Inclusive");
+        }
+        else {
+            logger.info("Tax Inclusive is already checked");
+        }
     },
     async clickRemoveTaxesConfirmButton() {
         I.click(global.uiElements.get(iSpoObject.REMOVE_TAXES_CONFIRM_BUTTON));
@@ -286,8 +300,9 @@ module.exports = {
         return requiredBy;
     },
     async createSpoFlow(spo) {
+        await poListingImpl.navigateToPoListing();
 
-        this.clickOnCreatePOButton();
+        await this.clickOnCreatePOButton();
 
         await this.clickOnStandardPOButton();
 
@@ -393,9 +408,9 @@ module.exports = {
         }
         this.clickonTab(global.uiElements.get(iSpoObject.TAB_NAME_LIST), iConstants.SPO_LINE_ITEMS_SECTION);
         this.clickOnAddLineItemButton();
-        this.enterItemName(this.spo.items[0].itemName);
-        this.selectItemOption(this.spo.items[0].itemName);
-        this.clickOnCostBookingLink(this.spo.items[0].itemName);
+        this.enterItemName(spo.items[0].itemName);
+        this.selectItemOption(spo.items[0].itemName);
+        this.clickOnCostBookingLink(spo.items[0].itemName);
 
         let glAccount = await this.fillGlAccount(spo.glAccount);
         spo.setGlAccount(glAccount);
@@ -423,5 +438,34 @@ module.exports = {
         await I.waitForInvisible(global.uiElements.get(iSpoObject.spinner), prop.DEFAULT_HIGH_WAIT);
         logger.info("Waited for loader to go off after submitting spo");
     },
+    async createAndReleaseSpoFlow(spo) {
+        spo = await this.createSpoFlow(spo);
+        await approvalImpl.approveSpo(spo.poNumber, iConstants.SEARCH_BY_DOC_NUMBER);
+        await poListingImpl.navigateToPoListing();
+        await commonComponent.searchDocOnListing(spo.poNumber, iConstants.SEARCH_BY_DOC_NUMBER);
+        let status = await poListingImpl.getPoStatus();
+        let flag = status.includes(iConstants.RELEASED_STATUS);
+        if(!flag) {
+            logger.info(`Failed to release spo because status is ${status} on po listing after approving`);
+            throw new Error(`Failed to release spo because status is ${status} on po listing after approving`);
+        }
+        else {
+            logger.info("Spo is released successfully");
+        }
+        return spo;
+    },
+    async clickOnSaveAsDraftButton() {
+        await I.seeElement(global.uiElements.get(iSpoObject.SPO_SAVE_AS_DRAFT_BUTTON));
+        await I.click(global.uiElements.get(iSpoObject.SPO_SAVE_AS_DRAFT_BUTTON));
+        await I.seeElement(global.uiElements.get(poListingObject.PO_NUMBER_LINK));
+        logger.info("Clicked on Save as Draft button");
+    },
+    async getItemNameOnSpoView(index) {
+        let itemNameXpath = `(//eproc-line-items-view//span[contains(@class,'text-body-link')])[${index}]`;
+        await I.seeElement(itemNameXpath);
+        let itemName = await I.grabTextFrom(itemNameXpath);
+        logger.info(`Retrieved item name --> ${itemName}`);
+        return itemName;
+    }
 
 }

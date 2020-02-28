@@ -11,4 +11,12 @@ module.exports = {
     SPO_ADDITIONAL_DETAILS_SECTION: "Additional Details",
     RECALL_ACTION_MENU_OPTION: "Recall Approval Request",
     AUTO_GENERATED_COMMENT: "This is an auto generated comment",
+    DRAFT_STATUS: "Draft",
+    SEARCH_BY_DOC_NUMBER: "Search by doc number",
+    SEARCH_BY_DOC_NAME_OR_DESCRIPTION: "Search by doc name or description",
+    APPROVED_STATUS: "Approved",
+    RELEASED_STATUS: "Released",
+    CLOSE_ACTION_MENU_OPTION: "Close",
+    CLOSED_STATUS: "Closed",
+    SPO_VIEW_LINE_ITEMS_SECTION: "Line Items",
 }
