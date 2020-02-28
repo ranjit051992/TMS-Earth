@@ -1,6 +1,6 @@
 const { I } = inject();
 const faker = require("faker");
-const spo = require("../bo/Spo");
+const spoBO = require("../bo/Spo");
 const catalogItem = require("../bo/CatalogItem")
 const requisition = require("../bo/Requisition")
 const logger = require("../../Framework/FrameworkUtilities/Logger/logger");
@@ -12,6 +12,7 @@ class ObjectCreation
 {
     async getObjectOfStandardPO(noOfItems,itemType)
     {
+        let spo = new spoBO();
         spo.setPoNumber(`Automation_Spo_${new Date().getTime()}`);
         spo.setPoDescription(`Automation_Description_${new Date().getTime()}`);
         spo.setPurchaseType(I.getData("PURCHASE_TYPE"));
@@ -28,8 +29,8 @@ class ObjectCreation
         spo.setBookCostAtLineItemLevel("No");
         spo.setBookCostToSingleMultipleCC("Yes");
         spo.setAssignCostProject("No");
-        spo.setItemName(I.getData(itemType));
-        spo.items  =  this.getArrayOfItems(noOfItems,itemType);
+        // spo.setItemName(I.getData(itemType));
+        spo.items = this.getArrayOfItems(noOfItems,itemType);
         spo.setGlAccount(I.getData("GL_ACCOUNT"));
         spo.setCostCenter(I.getData("COST_CENTER"));
         spo.setTermsAndConditions("This is an auto generated term and condition");
