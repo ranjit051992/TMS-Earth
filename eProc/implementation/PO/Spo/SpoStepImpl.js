@@ -7,10 +7,11 @@ const prop = global.confi_prop;
 const spoImpl = require("./SpoImpl");
 const catalogItem = require("../../../bo/CatalogItem");
 const iConstants = require("../../../constants/iConstants");
+const commonKeywordImpl = require("../../../commonComponent/CommonComponent");
+const poListingImpl = require("../PoListing/PoListingImpl");
 
 Given("I am on PO listing page", async function () {
-   I.amOnPage(prop.poListingUrl)
-   await I.waitForInvisible(I.getElement(iSpoObject.spinner), prop.DEFAULT_MEDIUM_WAIT);
+   await poListingImpl.navigateToPoListing();
 });
 
 Given("I Create Standard po with {string} {string} item", async function (noOfItems, itemType) {
@@ -19,25 +20,25 @@ Given("I Create Standard po with {string} {string} item", async function (noOfIt
 });
 
 When("I click on Create PO button", async function() {
-   spoImpl.clickOnCreatePOButton();
+   await spoImpl.clickOnCreatePOButton();
 });
 
 When("I click on Create SPO button", async function() {
-   this.spo = objectCreation.getObjectOfStandardPO(1, "Catalog");
-   spoImpl.clickOnStandardPOButton();
+   this.spo = await objectCreation.getObjectOfStandardPO(1, "Catalog");
+   await spoImpl.clickOnStandardPOButton();
 });
 
 When("I fetch PO number", async function() {
-   let poNumber = spoImpl.fetchPONumber();
+   let poNumber = await spoImpl.fetchPONumber();
    this.spo.setPoNumber(poNumber);
 });
 
 When("I fill Order Description", async function() {
-   spoImpl.fillPODescription(this.spo.poDescription);
+   await spoImpl.fillPODescription(this.spo.poDescription);
 });
 
 When("I select supplier details", async function() {
-   spoImpl.fillSupplierDetails(spo);
+   await spoImpl.fillSupplierDetails(spo);
 });
 
 When("I select Buyer", async function() {
@@ -59,8 +60,8 @@ When("I add Required by date", async function() {
 When("I search catalog item with {string}", async function(itemName) {
    spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_LINE_ITEMS_SECTION));
    spoImpl.clickOnAddLineItemButton();
-   spoImpl.enterItemName(this.spo.itemName);
-   spoImpl.selectItemOption(this.spo.itemName);
+   spoImpl.enterItemName(this.spo.items[0].itemName);
+   spoImpl.selectItemOption(this.spo.items[0].itemName);
 });
 
 When("I add costing and accounting details for that item", async function() {
@@ -74,8 +75,8 @@ When("I add costing and accounting details for that item", async function() {
 When("I add 1 free text item with details", async function() {
    spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_LINE_ITEMS_SECTION));
    spoImpl.clickOnAddLineItemButton();
-   spoImpl.enterItemName(this.spo.itemName);
-   spoImpl.selectItemOption(this.spo.itemName);
+   spoImpl.enterItemName(this.spo.items[0].itemName);
+   spoImpl.selectItemOption(this.spo.items[0].itemName);
 });
 
 When("I add attachment at header level", async function() {
@@ -87,27 +88,33 @@ When("I submit the PO", async function() {
 });
 
 When("I search for the created po", async function() {
-   
+   await I.amOnPage(prop.poListingUrl)
+   await commonKeywordImpl.searchDocOnListing(this.spo.poNumber, iConstants.SEARCH_BY_DOC_NUMBER);
 });
 
 When("I click on option icon", async function() {
-   
+   await commonKeywordImpl.clickOnActionMenuIcon();
 });
 
 When("I click on Recall option", async function() {
-   
+   await commonKeywordImpl.clickOnActionMenuOption(iConstants.RECALL_ACTION_MENU_OPTION);
 });
 
 When("I enter recall comments", async function() {
-   
+   await poListingImpl.fillRecallApprovalRequestComments(iConstants.AUTO_GENERATED_COMMENT);
 });
 
 When("I click on Recall button", async function() {
-   
+   await poListingImpl.clickOnRecallButton();
 });
 
-Then("PO should be in draft status on po listing", async function() {
-   
+When("I click on recalled success message Done button", async function() {
+   await poListingImpl.clickOnRecalledSuccessDoneButton();
+});
+
+Then("PO status should be draft", async function() {
+   let status = await poListingImpl.getPoStatus();
+   I.assertEqual(status.toString(), iConstants.DRAFT_STATUS);
 });
 
 Then("I should be able to view the SPO with multiple items", async function() {
@@ -118,3 +125,69 @@ Then("I should be able to download attachments", async function() {
 
 });
 
+Then("PO status should be draft", async function() {
+   let status = await poListingImpl.getPoStatus();
+   I.assertEqual(status.toString(), iConstants.DRAFT_STATUS);
+});
+
+Given("I have created and released a PO", async function() {
+   this.spo = await objectCreation.getObjectOfStandardPO(1, "Catalog");
+   this.spo.poNumber = "blue sanity -/1728";
+   this.spo = await spoImpl.createAndReleaseSpoFlow(this.spo);
+});
+
+When("I click on Close PO action against the PO", async function() {
+   await commonKeywordImpl.clickOnActionMenuOption(iConstants.CLOSE_ACTION_MENU_OPTION);
+});
+
+When("I enter close PO comments", async function() {
+   await poListingImpl.fillClosePoComments(iConstants.AUTO_GENERATED_COMMENT);
+});
+
+When("I click on Close PO button on the confirmation Popup", async function() {
+   await poListingImpl.clickOnClosePoButton();
+});
+
+When("I click on closed po success message Done button", async function() {
+   await poListingImpl.clickOnClosedPoSuccessDoneButton();
+});
+
+Then("I should be able to see the PO in closed status", async function() {
+   let status = await poListingImpl.getPoStatus();
+   I.assertEqual(status.toString(), iConstants.CLOSED_STATUS);
+});
+
+When("I Save PO as draft", async function() {
+   await spoImpl.clickOnSaveAsDraftButton();
+});
+
+When("I edit the drafted PO", async function() {
+   await poListingImpl.clickOnEditAction();
+});
+
+When("I add 1 catalog item", async function() {
+   // this.spo.items.push();     add data from db
+   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), iConstants.SPO_LINE_ITEMS_SECTION);
+   await spoImpl.clickOnAddLineItemButton();
+   await spoImpl.enterItemName(spo.items[1].itemName);
+   await spoImpl.selectItemOption(spo.items[1].itemName);
+   await spoImpl.clickOnCostBookingLink(spo.items[1].itemName);
+
+   let glAccount = await await spoImpl.fillGlAccount(spo.glAccount);
+   spo.setGlAccount(glAccount);
+   await spoImpl.clickOnCostBookingSaveButton();
+});
+
+Then("PO should be saved", async function() {
+   await poListingImpl.navigateToPoListing();
+   let docNumber = await commonKeywordImpl.getDocNumber();
+   I.assertEqual(docNumber.toString(), this.spo.poNumber);
+});
+
+Then("Item should be added", async function() {
+   await commonKeywordImpl.viewDocByDocNumber(this.spo.poNumber);
+   await I.seeElement(I.getElement(iSpoObject.PO_VIEW_BASIC_DETAILS_SECTION));
+   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), iConstants.SPO_VIEW_LINE_ITEMS_SECTION);
+   let itemName = await spoImpl.getItemNameOnSpoView(2);
+   I.assertEqual(itemName.toString(), this.spo.items[1].itemName);
+});

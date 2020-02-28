@@ -4,10 +4,16 @@ const iSpoObject = require("./SpoObject");
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp")
 const prop = global.confi_prop;
 const iConstants = require("../../../constants/iConstants");
+const commonComponent = require("../../../commonComponent/CommonComponent");
+const approvalImpl = require("../../Approval/ApprovalImpl");
+const poListingImpl = require("../PoListing/PoListingImpl");
+const poListingObject = require("../PoListing/PoListingObject");
 
 module.exports = {
-    clickOnCreatePOButton() {
-        I.click(I.getElement(iSpoObject.createPOButton));
+    async clickOnCreatePOButton() {
+        await I.seeElement(I.getElement(iSpoObject.createPOButton));
+        await I.click(I.getElement(iSpoObject.createPOButton));
+        logger.info("Clicked on Create PO button");
     },
     async clickOnStandardPOButton() {
         I.click(I.getElement(iSpoObject.standardPOButton));
@@ -15,27 +21,30 @@ module.exports = {
         I.saveScreenshot("CreateSpo.png");
         logger.info("Clicked on create standard po button.");
     },
-    fillPONumber(poNumber) {
+    async fillPONumber(poNumber) {
         I.fillField(I.getElement(iSpoObject.poNumberTextbox), poNumber);
         logger.info("Filled po number :" + poNumber);
     },
-    async  fetchPONumber() {
-        let poNumber = await I.grabTextFrom(I.getElement(iSpoObject.poNumberTextbox));
-        logger.info("Filled po number :" + poNumber[0]);
-        return poNumber[0];
+    async fetchPONumber() {
+        let poNumber = await I.grabAttributeFrom(I.getElement(iSpoObject.poNumberTextbox), "value");
+        logger.info("Fetched po number :" + poNumber);
+        return poNumber;
     },
-    fillPODescription(poDescription) {
+    async fillPODescription(poDescription) {
         I.fillField(I.getElement(iSpoObject.poDescriptionTextbox), poDescription);
         logger.info("Filled po description :" + poDescription);
     },
-    clickOnPurchaseTypeDropdown() {
+    async clickOnPurchaseTypeDropdown() {
+        I.seeElement(I.getElement(iSpoObject.purchaseTypeDropdown));
         I.click(I.getElement(iSpoObject.purchaseTypeDropdown));
     },
-    selectPurchaseType(purchaseType) {
+    async selectPurchaseType(purchaseType) {
+        this.clickOnPurchaseTypeDropdown();
+        I.seeElement("//a[contains(text(),'" + purchaseType + "')]");
         I.click("//a[contains(text(),'" + purchaseType + "')]");
         logger.info("Selected purchase type :" + purchaseType);
     },
-    clickOnBuyingUnitLink() {
+    async clickOnBuyingUnitLink() {
         I.click(I.getElement(iSpoObject.BUYING_UNIT_LINK));
         logger.info("Clicked on Buying Unit link");
     },
@@ -76,38 +85,38 @@ module.exports = {
         logger.info(`Clicked on OU modal Done button`);
         return billToAddress;
     },
-    fillSupplierName(supplierName) {
+    async fillSupplierName(supplierName) {
         I.fillField(I.getElement(iSpoObject.supplierNameTextbox), supplierName);
     },
-    selectSupplierName(supplierName) {
+    async selectSupplierName(supplierName) {
         I.click("//p[@title='" + supplierName + "']");
         logger.info("Selected supplier name :" + supplierName);
     },
-    fillSupplierAddress(address) {
+    async fillSupplierAddress(address) {
         I.fillField(I.getElement(iSpoObject.supplierAddressTextbox), address);
     },
-    selectSupplierAddress(address) {
+    async selectSupplierAddress(address) {
         I.click("//p[contains(text(),'" + address + "')]");
         logger.info("Selected supplier address :" + address);
     },
-    clickOnPaymentTermDropdown() {
+    async clickOnPaymentTermDropdown() {
         I.click(I.getElement(iSpoObject.paymentTermDropdown));
     },
-    selectPaymentTerm(paymentTerm) {
+    async selectPaymentTerm(paymentTerm) {
         I.click("//div[contains(@title,'" + paymentTerm + "')]");
         logger.info("Selected payment term :" + paymentTerm);
     },
-    clickOnDeliveryTermDropdown() {
+    async clickOnDeliveryTermDropdown() {
         I.click(I.getElement(iSpoObject.deliveryTermDropdown));
     },
-    selectDeliveryTerm(deliveryTerm) {
+    async selectDeliveryTerm(deliveryTerm) {
         I.click("//div[contains(@title,'" + deliveryTerm + "')]");
         logger.info("Selected delivery term :" + deliveryTerm);
     },
-    fillCurrency(currency) {
+    async fillCurrency(currency) {
         I.fillField(I.getElement(iSpoObject.currencyTextbox), currency);
     },
-    selectCurrency(currency) {
+    async selectCurrency(currency) {
         I.click("//span[contains(text(),'" + currency + "')]");
         logger.info("Selected currency :" + currency);
     },
@@ -117,7 +126,8 @@ module.exports = {
         buyer = await I.grabAttributeFrom(I.getElement(iSpoObject.buyerTextbox), "value");
         return buyer;
     },
-    selectBuyer(buyer) {
+    async selectBuyer(buyer) {
+        I.seeElement("//span[contains(text(),'" + buyer + "')]");
         I.click("//span[contains(text(),'" + buyer + "')]");
         logger.info("Selected buyer :" + buyer);
     },
@@ -158,17 +168,17 @@ module.exports = {
         I.wait(prop.DEFAULT_WAIT);
         logger.info(`Scrolled to section --> ${tabName}`);
     },
-    clickOnCostAllocationTab() {
+    async clickOnCostAllocationTab() {
         I.seeElement(I.getElement(iSpoObject.COST_ALLOCATION_TAB));
         I.click(I.getElement(iSpoObject.COST_ALLOCATION_TAB));
         logger.info("Clicked on Cost Allocation Tab");
     },
-    clickOnAssignCostNOButton() {
+    async clickOnAssignCostNOButton() {
         I.seeElement(I.getElement(iSpoObject.ASSIGN_COST_PROJECT_NO_RADIO_BUTTON));
         I.click(I.getElement(iSpoObject.ASSIGN_COST_PROJECT_NO_RADIO_BUTTON));
         logger.info("Clicked on Assign cost Project No Button");
     },
-    clickOnBookCostToSingle_MultipleCostCenter() {
+    async clickOnBookCostToSingle_MultipleCostCenter() {
         I.seeElement(I.getElement(iSpoObject.BOOK_COST_TO_SINGLE_MULTIPLE_COST_CENTER_RADIO_BUTTON));
         I.click(I.getElement(iSpoObject.BOOK_COST_TO_SINGLE_MULTIPLE_COST_CENTER_RADIO_BUTTON));
         logger.info("Clicked on Book Cost To Single/Multiple Cost center");
@@ -195,22 +205,22 @@ module.exports = {
         });
         logger.info(`Selected Default Receipt Creation`);
     },
-    clickOnAddLineItemButton() {
+    async clickOnAddLineItemButton() {
         I.seeElement(I.getElement(iSpoObject.ADD_LINE_ITEM_BUTTON));
         I.click(I.getElement(iSpoObject.ADD_LINE_ITEM_BUTTON));
         logger.info("Clicked on Add Line Item Button");
     },
-    enterItemName(itemName) {
+    async enterItemName(itemName) {
         I.seeElement(I.getElement(iSpoObject.ITEM_NAME_INPUT));
         I.fillField(I.getElement(iSpoObject.ITEM_NAME_INPUT), itemName);
         logger.info(`Entered item name: ${itemName}`);
     },
-    selectItemOption(itemName) {
+    async selectItemOption(itemName) {
         I.seeElement(I.getElement(iSpoObject.FIRST_ITEMNAME_OPTION));
         I.click(I.getElement(iSpoObject.FIRST_ITEMNAME_OPTION));
         logger.info(`Selected first item option: ${itemName}`);
     },
-    clickOnCostBookingLink(itemName) {
+    async clickOnCostBookingLink(itemName) {
         let costBookingLink = `(//span[contains(text(),'${itemName}')]//ancestor::dew-row//following-sibling::dew-row//dew-flex-item[3])`;
         I.seeElement(costBookingLink);
         I.click(costBookingLink);
@@ -226,53 +236,61 @@ module.exports = {
         logger.info(`Selected GlAccount: ${glAccount}`);
         return glAccount;
     },
-    clickOnCostBookingSaveButton() {
+    async clickOnCostBookingSaveButton() {
         I.seeElement(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
         I.click(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
         logger.info("Clicked on Save Button");
     },
-    clickOnRemoveAllTaxesButton() {
+    async clickOnRemoveAllTaxesButton() {
         I.seeElement(I.getElement(iSpoObject.REMOVE_ALL_TAXES_BUTTON));
         I.click(I.getElement(iSpoObject.REMOVE_ALL_TAXES_BUTTON));
         logger.info("Clicked on Remove All Taxes Button");
     },
-    clickOnSubmitPOButton() {
+    async clickOnSubmitPOButton() {
         I.seeElement(I.getElement(iSpoObject.SUBMIT_PO_BUTTON));
         I.click(I.getElement(iSpoObject.SUBMIT_PO_BUTTON));
         logger.info("Clicked on Submit PO Button");
     },
-    clickOnConfirmButton() {
+    async clickOnConfirmButton() {
         I.seeElement(I.getElement(iSpoObject.CONFIRM_BUTTON));
         I.click(I.getElement(iSpoObject.CONFIRM_BUTTON));
         logger.info("Clicked on Confirm button");
     },
-    selectOrganizationUnitOption(option) {
+    async selectOrganizationUnitOption(option) {
         let optionXpath = `//div[contains(text(),'${option}')]`;
         I.seeElement(optionXpath);
         I.click(optionXpath);
         logger.info(`Selected option --> ${option}`);
     },
-    selectDeliverToOption(option) {
+    async selectDeliverToOption(option) {
         let optionXpath = `//span[contains(text(),'${option}')]`;
         I.seeElement(optionXpath);
         I.click(optionXpath);
         logger.info(`Selected Deliver To --> ${option}`);
     },
     async selectTaxInclusive() {
-        await I.executeScript(function() {
-            document.getElementById("inclusive1").click();
+        let checked = await I.executeScript(function() {
+            return document.getElementById("inclusive1").checked;
         });
-        logger.info(`Selected Tax Inclusive`);
+        if(!checked) {
+            await I.executeScript(function() {
+                document.getElementById("inclusive1").click();
+            });
+            logger.info("Selected Tax Inclusive");
+        }
+        else {
+            logger.info("Tax Inclusive is already checked");
+        }
     },
-    clickRemoveTaxesConfirmButton() {
+    async clickRemoveTaxesConfirmButton() {
         I.click(I.getElement(iSpoObject.REMOVE_TAXES_CONFIRM_BUTTON));
         logger.info(`Clicked on Remove Taxes Confirm button`);
     },
-    fillTermsAndConditions(termsAndConditions) {
+    async fillTermsAndConditions(termsAndConditions) {
         I.fillField(I.getElement(iSpoObject.TERMS_AND_CONDITIONS_TEXTBOX), termsAndConditions);
         logger.info(`Entered terms and conditions --> ${termsAndConditions}`);
     },
-    fillNotes(notes) {
+    async fillNotes(notes) {
         I.fillField(I.getElement(iSpoObject.NOTES_TEXTBOX), notes);
         logger.info(`Entered notes --> ${notes}`);
     },
@@ -282,8 +300,9 @@ module.exports = {
         return requiredBy;
     },
     async createSpoFlow(spo) {
+        await poListingImpl.navigateToPoListing();
 
-        this.clickOnCreatePOButton();
+        await this.clickOnCreatePOButton();
 
         await this.clickOnStandardPOButton();
 
@@ -315,7 +334,6 @@ module.exports = {
         logger.info(`**************Filling Basic Details**************`);
         this.fillPONumber(spo.poNumber);
         this.fillPODescription(spo.poDescription);
-        this.clickOnPurchaseTypeDropdown();
         this.selectPurchaseType(spo.purchaseType);
         return spo;
     },
@@ -390,9 +408,9 @@ module.exports = {
         }
         this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_LINE_ITEMS_SECTION));
         this.clickOnAddLineItemButton();
-        this.enterItemName(spo.itemName);
-        this.selectItemOption(spo.itemName);
-        this.clickOnCostBookingLink(spo.itemName);
+        this.enterItemName(spo.items[0].itemName);
+        this.selectItemOption(spo.items[0].itemName);
+        this.clickOnCostBookingLink(spo.items[0].itemName);
 
         let glAccount = await this.fillGlAccount(spo.glAccount);
         spo.setGlAccount(glAccount);
@@ -420,5 +438,36 @@ module.exports = {
         await I.waitForInvisible(I.getElement(iSpoObject.spinner), prop.DEFAULT_HIGH_WAIT);
         logger.info("Waited for loader to go off after submitting spo");
     },
+    async createAndReleaseSpoFlow(spo) {
+        spo = await this.createSpoFlow(spo);
+        await this.navigateToApprovalListing();
+        //  click on spo tab
+        await approvalImpl.approveDoc(spo.poNumber, iConstants.SEARCH_BY_DOC_NUMBER);
+        await poListingImpl.navigateToPoListing();
+        await commonComponent.searchDocOnListing(spo.poNumber, iConstants.SEARCH_BY_DOC_NUMBER);
+        let status = await poListingImpl.getPoStatus();
+        let flag = status.includes(iConstants.RELEASED_STATUS);
+        if(!flag) {
+            logger.info(`Failed to release spo because status is ${status} on po listing after approving`);
+            throw new Error(`Failed to release spo because status is ${status} on po listing after approving`);
+        }
+        else {
+            logger.info("Spo is released successfully");
+        }
+        return spo;
+    },
+    async clickOnSaveAsDraftButton() {
+        await I.seeElement(I.getElement(iSpoObject.SPO_SAVE_AS_DRAFT_BUTTON));
+        await I.click(I.getElement(iSpoObject.SPO_SAVE_AS_DRAFT_BUTTON));
+        await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+        logger.info("Clicked on Save as Draft button");
+    },
+    async getItemNameOnSpoView(index) {
+        let itemNameXpath = `(//eproc-line-items-view//span[contains(@class,'text-body-link')])[${index}]`;
+        await I.seeElement(itemNameXpath);
+        let itemName = await I.grabTextFrom(itemNameXpath);
+        logger.info(`Retrieved item name --> ${itemName}`);
+        return itemName;
+    }
 
 }
