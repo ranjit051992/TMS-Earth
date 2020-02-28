@@ -5,6 +5,7 @@ const catalogItem = require("../bo/CatalogItem")
 const requisition = require("../bo/Requisition")
 const logger = require("../../Framework/FrameworkUtilities/Logger/logger");
 const commonUtilities = require("../../Framework/FrameworkUtilities/CommonUtilities")
+const prop = global.confi_prop;
 
 
 class ObjectCreation
@@ -81,7 +82,8 @@ class ObjectCreation
         requisition.retrospectivePurchase = "No";
         requisition.shipToDefaultAddress = "Yes";
         requisition.shipToAnotherAddress = "No";
-        requisition.deliverTo = I.getData("DELIVERES_TO/OWNER");
+        //requisition.deliverTo = I.getData("DELIVERES_TO/OWNER");
+        requisition.deliverTo = (prop.username);
         //requisition.requiredBy = faker.date.
         requisition.assignCostProject = "No";
         requisition.bookCostToSingleMultipleCC= "Yes";
@@ -92,6 +94,7 @@ class ObjectCreation
         requisition.assetCode = I.getData("COST_BOOKING_DETAILS_ASSET_CODE");
         requisition.buyer = I.getData("BUYER_NAME");
         requisition.itemName = I.getData("ITEM_NAME_FOR_SEARCHING");
+
         requisition.fillCBL = false;
         requisition.items  =  this.getArrayOfItems(noOfItems,itemType);
        

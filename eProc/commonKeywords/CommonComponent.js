@@ -1,20 +1,21 @@
 const {I} = inject();
-const dropdownAction = require("./CommonComponentObject");
-const logger = require("../../Framework/FrameworkUtilities/Logger/logger");
+const commonCompObject = require("./CommonComponentObject");
+const logger = require("./../../Framework/FrameworkUtilities/Logger/logger");
 const prop= global.confi_prop;
 module.exports={
 
-    async searchAndSelectFromDropdown(dropdownElement, selectOption){
+    async searchAndSelectFromDropdown(dropdownElement,searchValue, selectOptionXpath){
                 I.click(dropdownElement);
-                if(typeof selectOption !== "undefined"){
-                I.fillField(dropdownElement, selectOption);
-                I.click(selectOption);
-                }
-                else{
-                    I.click(I.getElement(dropdownAction.SearchAndSelectDropdown_Option));
-                    let selectedValue =  await I.grabAttributeFrom(I.getElement(dropdownAction.SearchAndSelectDropdown_Option), "title");
-                    return selectedValue;
-                }
+               // if(typeof searchValue !== "undefined"){
+                I.fillField(dropdownElement, searchValue);
+               // let optionXpath = `//div[contains(text(),'${selectOption}')]`
+                I.click(selectOptionXpath);
+               // }
+                // else{
+                //     I.click(global.uiElements.get(commonCompObject.SearchAndSelectDropdown_Option));
+                //     let selectedValue =  await I.grabAttributeFrom(global.uiElements.get(dropdownAction.SearchAndSelectDropdown_Option), "title");
+                //     return selectedValue;
+                // }
             },
 
             async selectValueFromDropDown(dropdownElement, selectOption)
@@ -40,5 +41,11 @@ module.exports={
                 I.scrollIntoView(sectionXapth);
                 I.wait(prop.DEFAULT_MEDIUM_WAIT);
                 logger.info("Scrolled to Section "+sectionName);
+            },
+
+            waitForLoadingSymbolNotDisplayed()
+            {
+                I.waitForInvisible(global.uiElements.get(commonCompObject.LOADING_SPINNER), prop.DEFAULT_HIGH_WAIT);
+                logger.info("Waited for Loading Symbol to go off");
             },
 };

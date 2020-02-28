@@ -7,7 +7,7 @@ Feature: Checkout
   And I navigate to Punchout with name
 
   When I add punchout item to cart 
-  And I Checkout
+  And I checkout
   And I submit requisition with data filled in all mandatory fields
 
   Then I should see the added punchout item with all the details on requisition view page
@@ -18,12 +18,12 @@ Feature: Checkout
   Scenario: To verify user is able to create a requisition for a free-text item or service
   Given I am logged in eProc
 
-  When I 'Create Request'
+  When I Create Request
   And I Add guided item/service
   And I Sourcing status
   And I add qty and price
   And I add items to cart
-  And I Checkout
+  And I checkout
   And I add data in Purchase Type and Required By field
   And I add GL account at line level
   And I submit requisition
@@ -48,29 +48,29 @@ Feature: Checkout
   Then I should contract linked to free text item on viewing the item
 
 
-@Non-COA @L1
+@Non-COA @L1 @costCenter
   Scenario: To verify that user is able to add Cost center information to the requisition.
   Given I am logged in eProc
 
-  When I add an item to cart 
+  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
   And I edit Cost Allocation section at header level
-  And I update cost center
-  And I Save it
+  And I update cost center "COST_CENTER"
+  And I navigate to Line level Cost Booking Details
 
-  Then I should be able to see updated cost center in Cost Allocation section 
+  Then I should be see the updated cost center on line level Cost Booking section 
 
-@Non-COA @L1
+@Non-COA @L1 @project
     Scenario: To verify that user is able to add Project information to the requisition.
     Given I am logged in eProc
 
-    When I add an item to cart 
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I edit Cost Allocation section at header level
-    And I update project
-    And I Save it
+    And I update project "PROJECT"
+    And I navigate to Line level Cost Booking Details
 
-    Then I should be able to see updated project in Cost Allocation section 
+    Then I should be see the updated project on line level Cost Booking section 
 
 @Non-COA @L1
     Scenario: To verify that user is able to add attachments to the requisition.
@@ -79,17 +79,17 @@ Feature: Checkout
     When I add an item to cart 
     And I checkout
     And I add an attachment
-
+    
     Then I should be able to see the attachment which is added
 
-@Non-COA @L1
+@Non-COA @L1 @createReq
     Scenario: To verify that user is able to copy any requisition and modify it to create a new requisition.
     Given I am logged in eProc
 
-    When I create a requisition with catalog items
-    And I copy that requisition
-    And I modify the fields(qty, add taxes) requisition
-    And I submit it
+    When I create requisition with "1" "ITEM_NAME_FOR_SEARCHING" item
+    # And I copy that requisition
+    # And I modify the fields(qty, add taxes) requisition
+    # And I submit it
 
     Then I should be able to see submitted requisition with updated details
 
@@ -126,7 +126,7 @@ Feature: Checkout
 
     When I add a catalog item to cart
     And I checkout
-    And I add a On Behalf user
+    And I add a On Behalf of user
     And I add Purchase Type
     And I add Required By Date
     And I add data in Cost Booking Details section at line level 
@@ -493,7 +493,7 @@ Feature: Checkout
   And I navigate to Punchout with name
 
   When I add punchout item to cart 
-  And I Checkout
+  And I checkout
   And I submit requisition with data filled in all mandatory fields
 
   Then I should see the added punchout item with all the details on requisition view page
@@ -504,12 +504,12 @@ Feature: Checkout
   Scenario: COA>>To verify user is able to create a requisition for a free-text item or service
   Given I am logged in eProc
 
-  When I 'Create Request'
+  When I Create Request
   And I Add guided item/service
   And I Sourcing status
   And I add qty and price
   And I add items to cart
-  And I Checkout
+  And I checkout
   And I add data in Purchase Type and Required By field
   And I add GL account at line level
   And I submit requisition
