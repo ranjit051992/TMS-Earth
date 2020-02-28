@@ -13,7 +13,7 @@ module.exports={
                 I.fillField(dropdownElement, searchValue);
                // let optionXpath = `//div[contains(text(),'${selectOption}')]`
                 I.click(selectOptionXpath);
-                let value = await I.grabAttributeFrom(I.getElement(dropdownElement), "value");
+                let value = await I.grabAttributeFrom(dropdownElement, "value");
                 return value;
                // }
                 // else{
@@ -51,7 +51,7 @@ module.exports={
 
             waitForLoadingSymbolNotDisplayed()
             {
-                I.waitForInvisible(global.uiElements.get(commonCompObject.LOADING_SPINNER), prop.DEFAULT_HIGH_WAIT);
+                I.waitForInvisible(I.getElement(commonKeywordObject.LOADING_SPINNER), prop.DEFAULT_HIGH_WAIT);
                 logger.info("Waited for Loading Symbol to go off");
             },
 

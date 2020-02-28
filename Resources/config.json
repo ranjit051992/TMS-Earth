@@ -22,8 +22,8 @@
         "DBdatabase": "Gauge_schema",
         "DBuser": "gauge.poc",
         "DBpassword": "gauge@123",
-        "username": "prashant.patil@zycus.com",
-        "password": "Pass@123",
+        "username": "auto.zcs2@zycus.com",
+        "password": "eProc@123",
         "testdataTable":"TestData_eproc",
         "uiElementTable":"eProc_UI_Elements"
     },

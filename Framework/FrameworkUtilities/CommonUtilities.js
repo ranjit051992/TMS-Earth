@@ -1,3 +1,4 @@
+const { I } = inject();
 const logger = require("../FrameworkUtilities/Logger/logger");
 
 class CommonUtilities

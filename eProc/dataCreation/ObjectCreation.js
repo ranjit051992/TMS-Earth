@@ -4,8 +4,9 @@ const spo = require("../dataCreation/bo/Spo");
 const catalogItem = require("../dataCreation/bo/CatalogItem")
 const requisition = require("../dataCreation/bo/Requisition")
 const logger = require("../../Framework/FrameworkUtilities/Logger/logger");
-const commonUtilities = require("../../Framework/FrameworkUtilities/CommonUtilities")
+const commonUtilities = require("../../Framework/FrameworkUtilities/CommonUtilities");
 const prop = global.confi_prop;
+const lmtVar = require("../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 
 
 class ObjectCreation
@@ -95,7 +96,7 @@ class ObjectCreation
         requisition.assetCode = I.getData("COST_BOOKING_DETAILS_ASSET_CODE");
         requisition.buyer = I.getData("BUYER_NAME");
         requisition.itemName = I.getData("ITEM_NAME_FOR_SEARCHING");
-
+        requisition.nextAction = lmtVar.getLabel("SUBMIT")
         requisition.fillCBL = false;
         requisition.items  =  this.getArrayOfItems(noOfItems,itemType);
        
