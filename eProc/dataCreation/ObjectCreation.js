@@ -1,8 +1,8 @@
 const { I } = inject();
 const faker = require("faker");
-const spoBO = require("../bo/Spo");
-const catalogItem = require("../bo/CatalogItem")
-const requisition = require("../bo/Requisition")
+const spo = require("../dataCreation/bo/Spo");
+const catalogItem = require("../dataCreation/bo/CatalogItem")
+const requisition = require("../dataCreation/bo/Requisition")
 const logger = require("../../Framework/FrameworkUtilities/Logger/logger");
 const commonUtilities = require("../../Framework/FrameworkUtilities/CommonUtilities")
 const prop = global.confi_prop;

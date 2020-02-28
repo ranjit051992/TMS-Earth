@@ -4,7 +4,7 @@ const objectCreation = require("../../../dataCreation/ObjectCreation");
 const checkoutImp = require("../Checkout/CheckoutImpl");
 const iCheckoutObject = require("../Checkout/CheckoutObject");
 const iConstants = require("../../../constants/iConstants");
-const commonComponent = require("../../../commonComponent/CommonComponent");
+const commonComponent = require("../../../commonKeywords/CommonComponent");
 
 
 When("I create requisition with {string} {string} item", async function(noOfItems, itemType) {
