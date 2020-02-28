@@ -1,4 +1,5 @@
 const {I} = inject();
+const lmtVar = require("../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const commonKeywordObject = require("./CommonComponentObject");
 const logger = require("./../../Framework/FrameworkUtilities/Logger/logger");
 const prop= global.confi_prop;
@@ -6,19 +7,21 @@ const poListingObject = require("../implementation/PO/PoListing/PoListingObject"
 
 module.exports={
 
-    async searchAndSelectFromDropdown(dropdownElement, selectOption){
+    async searchAndSelectFromDropdown(dropdownElement,searchValue, selectOptionXpath){
                 I.click(dropdownElement);
-                if(typeof selectOption !== "undefined"){
-                I.fillField(dropdownElement, selectOption);
-                I.click(selectOption);
+               // if(typeof searchValue !== "undefined"){
+                I.fillField(dropdownElement, searchValue);
+               // let optionXpath = `//div[contains(text(),'${selectOption}')]`
+                I.click(selectOptionXpath);
                 let value = await I.grabAttributeFrom(I.getElement(dropdownElement), "value");
                 return value;
-                }
-                else{
-                    I.click(I.getElement(commonKeywordObject.SearchAndSelectDropdown_Option));
-                    let selectedValue =  await I.grabAttributeFrom(I.getElement(commonKeywordObject.SearchAndSelectDropdown_Option), "title");
-                    return selectedValue;
-                }
+               // }
+                // else{
+                //     I.click(global.uiElements.get(commonCompObject.SearchAndSelectDropdown_Option));
+                //     let selectedValue =  await I.grabAttributeFrom(global.uiElements.get(dropdownAction.SearchAndSelectDropdown_Option), "title");
+                //     return selectedValue;
+                // }
+
             },
 
             async selectValueFromDropDown(dropdownElement, selectOption)
@@ -45,6 +48,13 @@ module.exports={
                 I.wait(prop.DEFAULT_MEDIUM_WAIT);
                 logger.info("Scrolled to Section "+sectionName);
             },
+
+            waitForLoadingSymbolNotDisplayed()
+            {
+                I.waitForInvisible(global.uiElements.get(commonCompObject.LOADING_SPINNER), prop.DEFAULT_HIGH_WAIT);
+                logger.info("Waited for Loading Symbol to go off");
+            },
+
     async enterDocNumberOrDescription(docDetail) {
         await I.seeElement(I.getElement(poListingObject.SEARCH_TEXTBOX));
         await I.click(I.getElement(poListingObject.SEARCH_TEXTBOX));
@@ -54,10 +64,10 @@ module.exports={
     },
     async selectDocOption(option) {
         let index;
-        if(option === iConstants.SEARCH_BY_DOC_NUMBER) {
+        if(option === lmtVar.getLabel("SEARCH_BY_DOC_NUMBER")) {
             index = 1;
         }
-        else if(option === iConstants.SEARCH_BY_DOC_NAME_OR_DESCRIPTION) {
+        else if(option === lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION")) {
             index = 2;
         }
         else {
@@ -77,7 +87,7 @@ module.exports={
      * this function will search for a doc on any listing page by doc number or doc name/description
      * @param {String} docDetail doc number/name/description.
      * 
-     * @param {String} searchBy search by number/name/description (eg. iConstants.SEARCH_BY_DOC_NUMBER, iConstants.SEARCH_BY_DOC_NAME_OR_DESCRIPTION)
+     * @param {String} searchBy search by number/name/description (eg. lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"), lmtVar.getLabel(")."SEARCH_BY_DOC_NAME_OR_DESCRIPTION)
      * 
      */
     async searchDocOnListing(docDetail, searchBy) {
@@ -98,14 +108,15 @@ module.exports={
         logger.info(`Clicked on action menu option --> ${option}`);
     },
     async getDocNumber(docName) {
-        await this.searchDocOnListing(docName, iConstants.SEARCH_BY_DOC_NAME_OR_DESCRIPTION);
+        await this.searchDocOnListing(docName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
         let docNumber = await I.grabTextFrom(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info(`Retrieved doc number --> ${docNumber}`);
         return docNumber;
     },
     async viewDocByDocNumber(docNumber) {
-        await this.searchDocOnListing(docNumber, iConstants.SEARCH_BY_DOC_NUMBER);
+        await this.searchDocOnListing(docNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
         await I.click(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info(`Clicked on document --> ${docNumber}`);
     },
+
 };

@@ -4,10 +4,11 @@ const dbKeys = require("../../../../Framework/FrameworkUtilities/DatabaseOperati
 const iOnlineStore = require("./OnlineStoreObject");
 const onlineStoreImpl = require("./OnlineStoreImpl");
 const cartImpl = require("../Cart/CartImpl");
-
 const prop=global.confi_prop;
 const commonUtils = require("../../../../Framework/FrameworkUtilities/CommonUtilities");
-const faker = require('faker');
+const faker = require("faker");
+const reqObj = require("../../../dataCreation/bo/Requisition");
+
 
 let map = new Map();
 
@@ -27,11 +28,15 @@ When("I search for {string} {string} items", async function (noOfItem,itemType) 
 When("I add {string} {string} items to cart", async function(noOfItem,itemType) {
 
    //onlineStoreImpl.addItemsToCart(noOfItem,itemType);
+  // let itemArray = new Array();
    cartImpl.clearCart();
-       for(let i=0; i<noOfItem;i++)
+   for(let i=0; i<noOfItem;i++)
        {
            let item = commonUtils.splitData(i,itemType);
            onlineStoreImpl.addItemToCart(item,faker.random.number(20));
+          // itemArray.push(item);
+          // console.log(itemArray);
         }
+       // this.itemArray;
 
 });

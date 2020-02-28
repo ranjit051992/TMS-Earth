@@ -1,12 +1,11 @@
 const { I } = inject();
 const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger");
-const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp")
+const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const iSpoObject = require("./SpoObject");
 const objectCreation = require("../../../dataCreation/ObjectCreation")
 const prop = global.confi_prop;
 const spoImpl = require("./SpoImpl");
-const catalogItem = require("../../../bo/CatalogItem");
-const iConstants = require("../../../constants/iConstants");
+const catalogItem = require("../../../dataCreation/bo/CatalogItem");
 const commonKeywordImpl = require("../../../commonComponent/CommonComponent");
 const poListingImpl = require("../PoListing/PoListingImpl");
 
@@ -47,25 +46,25 @@ When("I select Buyer", async function() {
 });
 
 When("I add Purchase type", async function() {
-   spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_BASIC_DETAILS_SECTION));
+   spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_BASIC_DETAILS_SECTION"));
    spoImpl.selectPurchaseType(this.spo.purchaseType);
 });
 
 When("I add Required by date", async function() {
-   spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_SHIPPING_DETAILS_SECTION));
+   spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_SHIPPING_DETAILS_SECTION"));
    let requiredBy = await spoImpl.fetchRequiredBy()
    this.spo.setRequiredBy(requiredBy);
 });
 
 When("I search catalog item with {string}", async function(itemName) {
-   spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_LINE_ITEMS_SECTION));
+   spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
    spoImpl.clickOnAddLineItemButton();
    spoImpl.enterItemName(this.spo.items[0].itemName);
    spoImpl.selectItemOption(this.spo.items[0].itemName);
 });
 
 When("I add costing and accounting details for that item", async function() {
-   spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_LINE_ITEMS_SECTION));
+   spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
    spoImpl.clickOnCostBookingLink(this.spo.itemName);
    let glAccount = await spoImpl.fillGlAccount(this.spo.glAccount);
    this.spo.setGlAccount(glAccount);
@@ -73,7 +72,7 @@ When("I add costing and accounting details for that item", async function() {
 });
 
 When("I add 1 free text item with details", async function() {
-   spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_LINE_ITEMS_SECTION));
+   spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
    spoImpl.clickOnAddLineItemButton();
    spoImpl.enterItemName(this.spo.items[0].itemName);
    spoImpl.selectItemOption(this.spo.items[0].itemName);
@@ -89,7 +88,7 @@ When("I submit the PO", async function() {
 
 When("I search for the created po", async function() {
    await I.amOnPage(prop.poListingUrl)
-   await commonKeywordImpl.searchDocOnListing(this.spo.poNumber, iConstants.SEARCH_BY_DOC_NUMBER);
+   await commonKeywordImpl.searchDocOnListing(this.spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
 });
 
 When("I click on option icon", async function() {
@@ -97,11 +96,11 @@ When("I click on option icon", async function() {
 });
 
 When("I click on Recall option", async function() {
-   await commonKeywordImpl.clickOnActionMenuOption(iConstants.RECALL_ACTION_MENU_OPTION);
+   await commonKeywordImpl.clickOnActionMenuOption(lmtVar.getLabel("RECALL_ACTION_MENU_OPTION"));
 });
 
 When("I enter recall comments", async function() {
-   await poListingImpl.fillRecallApprovalRequestComments(iConstants.AUTO_GENERATED_COMMENT);
+   await poListingImpl.fillRecallApprovalRequestComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
 });
 
 When("I click on Recall button", async function() {
@@ -114,7 +113,7 @@ When("I click on recalled success message Done button", async function() {
 
 Then("PO status should be draft", async function() {
    let status = await poListingImpl.getPoStatus();
-   I.assertEqual(status.toString(), iConstants.DRAFT_STATUS);
+   I.assertEqual(status.toString(), lmtVar.getLabel("DRAFT_STATUS"));
 });
 
 Then("I should be able to view the SPO with multiple items", async function() {
@@ -127,7 +126,7 @@ Then("I should be able to download attachments", async function() {
 
 Then("PO status should be draft", async function() {
    let status = await poListingImpl.getPoStatus();
-   I.assertEqual(status.toString(), iConstants.DRAFT_STATUS);
+   I.assertEqual(status.toString(), lmtVar.getLabel("DRAFT_STATUS"));
 });
 
 Given("I have created and released a PO", async function() {
@@ -137,11 +136,11 @@ Given("I have created and released a PO", async function() {
 });
 
 When("I click on Close PO action against the PO", async function() {
-   await commonKeywordImpl.clickOnActionMenuOption(iConstants.CLOSE_ACTION_MENU_OPTION);
+   await commonKeywordImpl.clickOnActionMenuOption(lmtVar.getLabel("CLOSE_ACTION_MENU_OPTION"));
 });
 
 When("I enter close PO comments", async function() {
-   await poListingImpl.fillClosePoComments(iConstants.AUTO_GENERATED_COMMENT);
+   await poListingImpl.fillClosePoComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
 });
 
 When("I click on Close PO button on the confirmation Popup", async function() {
@@ -154,7 +153,7 @@ When("I click on closed po success message Done button", async function() {
 
 Then("I should be able to see the PO in closed status", async function() {
    let status = await poListingImpl.getPoStatus();
-   I.assertEqual(status.toString(), iConstants.CLOSED_STATUS);
+   I.assertEqual(status.toString(), lmtVar.getLabel("CLOSED_STATUS"));
 });
 
 When("I Save PO as draft", async function() {
@@ -167,7 +166,7 @@ When("I edit the drafted PO", async function() {
 
 When("I add 1 catalog item", async function() {
    // this.spo.items.push();     add data from db
-   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), iConstants.SPO_LINE_ITEMS_SECTION);
+   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
    await spoImpl.clickOnAddLineItemButton();
    await spoImpl.enterItemName(spo.items[1].itemName);
    await spoImpl.selectItemOption(spo.items[1].itemName);
@@ -187,7 +186,7 @@ Then("PO should be saved", async function() {
 Then("Item should be added", async function() {
    await commonKeywordImpl.viewDocByDocNumber(this.spo.poNumber);
    await I.seeElement(I.getElement(iSpoObject.PO_VIEW_BASIC_DETAILS_SECTION));
-   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), iConstants.SPO_VIEW_LINE_ITEMS_SECTION);
+   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_VIEW_LINE_ITEMS_SECTION"));
    let itemName = await spoImpl.getItemNameOnSpoView(2);
    I.assertEqual(itemName.toString(), this.spo.items[1].itemName);
 });
