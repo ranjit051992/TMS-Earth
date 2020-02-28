@@ -10,6 +10,7 @@ class Spo
         let paymentTerm;
         let deliveryTerm;
         let currency;
+        let as;
         let buyer;
         let assignCostProject;
         let bookCostToSingleMultipleCC;
