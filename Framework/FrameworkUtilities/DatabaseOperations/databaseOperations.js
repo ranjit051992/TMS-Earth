@@ -101,24 +101,24 @@ module.exports = {
                                 let mapValue;
 
                                 for (let [key, value] of Object.entries(rows[i])) {
-                                    // if(key === "PAGE_NAME") {
-                                    //     mapKey = value;
-                                    // }
-                                    // else if(key === "ELEMENT_NAME") {
-                                    //     mapKey = `${mapKey}/${value}`;
-                                    // }
-                                    // else if(key === "XPATH") {
-                                    //     mapValue = value;
-                                    // }
-                                    if(key === "Page Name") {
+                                    if(key === "PAGE_NAME") {
                                         mapKey = value;
                                     }
-                                    else if(key === "Element Name") {
+                                    else if(key === "ELEMENT_NAME") {
                                         mapKey = `${mapKey}/${value}`;
                                     }
-                                    else if(key === "Element Value") {
+                                    else if(key === "XPATH") {
                                         mapValue = value;
                                     }
+                                    // if(key === "Page Name") {
+                                    //     mapKey = value;
+                                    // }
+                                    // else if(key === "Element Name") {
+                                    //     mapKey = `${mapKey}/${value}`;
+                                    // }
+                                    // else if(key === "Element Value") {
+                                    //     mapValue = value;
+                                    // }
 
                                 }
                                 elementMap.set(mapKey, mapValue);
@@ -179,6 +179,61 @@ module.exports = {
                             connection.destroy();
                             logger.info(`LMT map size --> ${LMTMap.size}`);
                             resolve(LMTMap);
+                        }
+                    });
+                }
+            });
+        });
+    },
+
+    async getLMTKeys(){
+        const prop = global.confi_prop;
+
+        const connectionString = "Data Source=tcp:"+prop.DBhost+",3306;Initial Catalog="+prop.DBdatabase+";User Id="+prop.DBuser+";Password="+prop.DBpassword+";";
+        logger.info("connectionString  : " + connectionString)
+
+        const connectionObj = parser(connectionString);
+
+        const query = `SELECT * FROM LMT`;
+
+        return new Promise((resolve, reject) => {
+            let getLMTKeys = new Map();
+
+            logger.info("Creating sql connection");
+            connection = mysql.createConnection(connectionObj);
+
+            logger.info("Checking sql connection");
+            connection.connect(function (error) {
+                if (!!error) {
+                    logger.info("Error");
+                }
+                else {
+                    logger.info("Connected");
+                    logger.info("Triggering sql query");
+                    connection.query(query, function (error, rows, fields) {
+                        if (!!error) {
+                            logger.info("Error in the query");
+                        }
+                        else {
+                            logger.info("SUCCESS!");
+
+                            for(let i = 0; i < rows.length; i++) {
+                                let mapKey;
+                                let LMTValueMap = new Map();
+                                for (let [key, value] of Object.entries(rows[i])) {
+                                    if(key === "en"){
+                                        mapKey = value
+                                    }else{
+                                        if(key === "Key"){
+                                            mapValue = value
+                                        }
+                                    }
+                                }
+                                getLMTKeys.set(mapKey, mapValue);
+                            }
+                            connection.destroy();
+                            logger.info(`LMT map size --> ${getLMTKeys.size}`);
+                            resolve(getLMTKeys);
                         }
                     });
                 }

@@ -6,7 +6,10 @@ const prop = global.confi_prop;
 const ObjectCreation = require("../../../dataCreation/ObjectCreation");
 const iConstants = require("../../../../eProc/constants/iConstants");
 const requisitionBO = require("../../../bo/Requisition");
-
+const cartImpl = require("../Cart/CartImpl");
+const iCart = require("../Cart/CartObject");
+const onlineStoreImpl = require("../OnlineStore/OnlineStoreImpl");
+const faker = require("faker");
 
 module.exports={
 
@@ -17,6 +20,17 @@ module.exports={
      */
     async createRequisitionFlow(requisitionBO)
     { 
+
+        cartImpl.clearCart();
+
+        onlineStoreImpl.addItemToCart(requisitionBO.itemName, faker.random.number(20));
+
+        onlineStoreImpl.clickOnCartIcon();
+
+        I.waitForVisible(global.uiElements.get(iCart.CART_ITEM_TABLE));
+        
+        cartImpl.clickOnCheckoutButton();
+
         requisitionBO = await this.fillBasicDetails(requisitionBO);
 
         requisitionBO = await this.fillAdditionalDetails(requisitionBO);
@@ -27,24 +41,24 @@ module.exports={
 
         requisitionBO = await this. fillItemDetails(requisitionBO);
 
-        if(requisitionBO.nextAction === iConstants.SUBMIT)
-        {
+        // if(requisitionBO.nextAction === iConstants.SUBMIT)
+        // {
             this.clickOnImDoneButton();
             I.wait(prop.DEFAULT_MEDIUM_WAIT);
             this.clickOnContinueButton();
             commonComponent.waitForLoadingSymbolNotDisplayed();
-        }
+        // }
 
-        else if(requisitionBO.nextAction === iConstants.SAVE_AS_DRAFT)
-        {
-            this.clickOnSaveAsDraftButton();
+        // else if(requisitionBO.nextAction === iConstants.SAVE_AS_DRAFT)
+        // {
+        //     this.clickOnSaveAsDraftButton();
            
-        }
+        // }
 
-        else if(requisitionBO.nextAction === iConstants.CANCEL)
-        {
-            this.clickOnCancelButton();
-        }
+        // else if(requisitionBO.nextAction === iConstants.CANCEL)
+        // {
+        //     this.clickOnCancelButton();
+        // }
 
         return requisitionBO;
 
@@ -63,8 +77,9 @@ module.exports={
         I.waitForClickable(global.uiElements.get(iCheckout.REQUISITION_NAME), prop.DEFAULT_MEDIUM_WAIT);
         I.clearField(global.uiElements.get(iCheckout.REQUISITION_NAME));
         I.fillField(global.uiElements.get(iCheckout.REQUISITION_NAME), reqName);
-        reqName = await I.grabTextFrom(global.uiElements.get(iCheckout.REQUISITION_NAME));
-        logger.info(`Entered Requisition Name: ${reqName}`);
+        //reqName = await I.grabTextFrom(global.uiElements.get(iCheckout.REQUISITION_NAME));
+        reqName = await I.grabAttributeFrom(global.uiElements.get(iCheckout.REQUISITION_NAME),"value");
+        logger.info(`Entered Requisition Name: ${reqName[0]}`);
         return reqName;
     },
 
@@ -79,7 +94,8 @@ module.exports={
     {
         I.waitForVisible(global.uiElements.get(iCheckout.ON_BEHALF_OF), prop.DEFAULT_MEDIUM_WAIT);
         I.waitForClickable(global.uiElements.get(iCheckout.ON_BEHALF_OF), prop.DEFAULT_MEDIUM_WAIT);
-        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.ON_BEHALF_OF), onBehalfOf);
+        let suggXpath = `//p[contains(text(),'${onBehalfOf}')]`;
+        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.ON_BEHALF_OF), onBehalfOf, suggXpath);
         
         onBehalfOf = await I.grabTextFrom(global.uiElements.get(iCheckout.ON_BEHALF_OF));
         logger.info(`Entered OnBehalf of : ${onBehalfOf}`);
@@ -109,7 +125,8 @@ module.exports={
     {
         I.waitForVisible(global.uiElements.get(iCheckout.COMPANY_NAME), prop.DEFAULT_MEDIUM_WAIT);
         I.waitForClickable(global.uiElements.get(iCheckout.COMPANY_NAME), prop.DEFAULT_MEDIUM_WAIT);
-        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.COMPANY_NAME), companyName);
+        let suggXpath = `//div[contains(text(),'${companyName}')]`;
+        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.COMPANY_NAME),companyName, suggXpath);
         companyName = await I.grabTextFrom(global.uiElements.get(iCheckout.COMPANY_NAME));
         logger.info(`Entered Company Name: ${companyName}`);
         return companyName;
@@ -125,7 +142,8 @@ module.exports={
     {
         I.waitForVisible(global.uiElements.get(iCheckout.BUSINESS_UNIT), prop.DEFAULT_MEDIUM_WAIT);
         I.waitForClickable(global.uiElements.get(iCheckout.BUSINESS_UNIT), prop.DEFAULT_MEDIUM_WAIT);
-        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.BUSINESS_UNIT), businessUnit);
+        let suggXpath = `//div[contains(text(),'${businessUnit}')]`;
+        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.BUSINESS_UNIT),businessUnit, suggXpath);
         businessUnit = await I.grabTextFrom(global.uiElements.get(iCheckout.BUSINESS_UNIT));
         logger.info(`Entered Business unit: ${businessUnit}`);
         return businessUnit;
@@ -141,7 +159,8 @@ module.exports={
     {
         I.waitForVisible(global.uiElements.get(iCheckout.LOCATION), prop.DEFAULT_MEDIUM_WAIT);
         I.waitForClickable(global.uiElements.get(iCheckout.LOCATION), prop.DEFAULT_MEDIUM_WAIT);
-        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.LOCATION),location);
+        let suggXpath = `//div[contains(text(),'${location}')]`;
+        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.LOCATION),location, suggXpath);
         location = await I.grabTextFrom(global.uiElements.get(iCheckout.LOCATION));
         logger.info(`Entered Business unit: ${location}`);
         return location;
@@ -157,7 +176,8 @@ module.exports={
     {
         I.waitForVisible(global.uiElements.get(iCheckout.CURRENCY), prop.DEFAULT_MEDIUM_WAIT);
         I.waitForClickable(global.uiElements.get(iCheckout.CURRENCY), prop.DEFAULT_MEDIUM_WAIT);
-        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.CURRENCY), currency);
+        let suggXpath = `//div[contains(text(),'${currency}')]`;
+        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.CURRENCY),currency, suggXpath);
         location = await I.grabTextFrom(global.uiElements.get(iCheckout.CURRENCY));
         logger.info(`Entered Business unit: ${currency}`);
         return currency;
@@ -257,7 +277,7 @@ module.exports={
      */
     clickOnPurchaseTypeYesButton()
     {
-        I.click(iCheckout.PURCHASE_TYPE_CONFIRM_POPUP_YES_BUTTON);
+        I.click(global.uiElements.get(iCheckout.PURCHASE_TYPE_CONFIRM_POPUP_YES_BUTTON));
         logger.info("Clicked on Purchase Type YES button");
     },
 
@@ -312,15 +332,35 @@ module.exports={
     async fillDeliverTo(deliverTo)
     {
         I.waitForVisible(global.uiElements.get(iCheckout.DELIVER_TO), prop.DEFAULT_MEDIUM_WAIT);
-        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.DELIVER_TO), deliverTo);
+        let suggXpath = `//span[contains(text(),'${deliverTo}')]`;
+        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.DELIVER_TO),deliverTo, suggXpath);
         deliverTo =  await I.grabTextFrom(global.uiElements.get(iCheckout.DELIVER_TO));
-        logger.info(`Entered Deliver To is ${deliverTo}`);
+        logger.info(`Entered Deliver To is ${deliverTo[0]}`);
         return deliverTo;
     },
 
-   selectRequiredBy()
-    {
+    async selectRequiredByDate() {
+        logger.info("Selecting date");
+        let day = new Date().getDate();
+        let dayXpath = `//div[text()='${day}']/..`;
+        I.click(I.getElement(iCheckout.REQUIRED_BY));
+        let numberOfElements = await I.grabNumberOfVisibleElements(dayXpath);
+        for (let i = 0; i < numberOfElements; i++) {
+            dayXpath = `(//div[text()='${day}']/..)[${i + 1}]`;
+            try {
+                await I.waitForEnabled(dayXpath, 2);
+                logger.info(`Date enabled for xpath --> ${dayXpath}`);
+                I.click(dayXpath);
+                logger.info(`Clicked on date ${day}`);
+                break;
+            } catch (e) {
+                logger.info(`Date disabled for xpath --> ${dayXpath}`);
+            }
 
+            if (i == numberOfElements) {
+                throw new Error(`Day --> ${day} not present in the datepicker`);
+            }
+        }
     },
 
     /**
@@ -348,15 +388,16 @@ module.exports={
     /**
      * fillCostCenter: Fills Cost Center
      * @param {*} costCenter 
-     * @returns costCenter
+     * @returns enterCostCenter
      */
     async fillCostCenter(costCenter)
     {
         I.waitForVisible(global.uiElements.get(iCheckout.COST_CENTER), prop.DEFAULT_MEDIUM_WAIT);
-        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.COST_CENTER), costCenter);
-        costCenter = await I.grabTextFrom(global.uiElements.get(iCheckout.COST_CENTER));
-        logger.info(`Entered Cost Center is : ${costCenter}`);
-        return costCenter;
+        let suggXpath = `//div[contains(text(),'${costCenter}')]`;
+        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.COST_CENTER),costCenter, suggXpath);
+        let enterCostCenter = await I.grabTextFrom(global.uiElements.get(iCheckout.COST_CENTER));
+        logger.info(`Entered Cost Center is : ${enterCostCenter}`);
+        return enterCostCenter;
     },
 
     /**
@@ -380,8 +421,9 @@ module.exports={
     async fillGLAccount(glAccount)
     {
         I.waitForVisible(global.uiElements.get(iCheckout.GL_ACCOUNT), prop.DEFAULT_MEDIUM_WAIT);
-        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.GL_ACCOUNT), glAccount);
-        glAccount = await I.grabTextFrom(global.uiElements.get(iCheckout.GL_ACCOUNT));
+        let suggXpath = `//div[contains(text(),'${glAccount}')]`;
+        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.GL_ACCOUNT),glAccount, suggXpath);
+        glAccount = await I.grabAttributeFrom(global.uiElements.get(iCheckout.GL_ACCOUNT), "value");
         logger.info(`GL Account is: ${glAccount}`);
         return glAccount;
     },
@@ -393,8 +435,9 @@ module.exports={
     async fillAssetCode(assetCode)
     {
         I.waitForVisible(global.uiElements.get(iCheckout.ASSET_CODE), prop.DEFAULT_MEDIUM_WAIT);
-        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.ASSET_CODE), assetCode);
-        assetCode = await I.grabTextFrom(global.uiElements.get(iCheckout.ASSET_CODE));
+        let suggXpath = "//div[contains(@class,'flex-column ac-main')]";
+        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.ASSET_CODE),assetCode, suggXpath);
+        assetCode = await I.grabAttributeFrom(global.uiElements.get(iCheckout.ASSET_CODE), "value");
         logger.info(`Asset Code is: ${assetCode}`);
         return assetCode;
     },
@@ -408,13 +451,18 @@ module.exports={
         let path = `//dew-default-tab-head[contains(text(),'${tabName}')]`;
         I.waitForVisible(path, prop.DEFAULT_MEDIUM_WAIT);
         I.waitForClickable(path, prop.DEFAULT_MEDIUM_WAIT);
-        I.click();
+        I.click(path);
         logger.info("Clicked on tab "+tabName);
     },
 
     selectBuyerDropDownOption(buyerOption)
     {
-        commonComponent.selectValueFromDropDown(global.uiElements.ge(iCheckout.BUYER_DROPDOWN_ICON), buyerOption);
+        //commonComponent.selectValueFromDropDown(global.uiElements.get(iCheckout.BUYER_DROPDOWN_ICON), buyerOption);
+        I.click(global.uiElements.get(iCheckout.BUYER_DROPDOWN_ICON));
+        I.wait(prop.DEFAULT_MEDIUM_WAIT);
+        let xpath = "//a[contains(text(),'Buyer')]";
+        I.click(xpath);
+        logger.info("Selected Assigned Buyer")
     },
 
     /**
@@ -424,16 +472,17 @@ module.exports={
     async fillBuyerInTextBox(buyerName)
     {
         I.waitForVisible(global.uiElements.get(iCheckout.BUYER_TEXTBOX), prop.DEFAULT_MEDIUM_WAIT);
-        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.BUYER_TEXTBOX), buyerName);
-        buyerName = await I.grabTextFrom(global.uiElements.get(iCheckout.BUYER_TEXTBOX));
+        let optionXpath = "//div[contains(@class,'flex-column ac-main')]";
+        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.BUYER_TEXTBOX),buyerName, optionXpath);
+        buyerName = await I.grabAttributeFrom(global.uiElements.get(iCheckout.BUYER_TEXTBOX), "value");
         logger.info(`Entered Buyer is: ${buyerName}`);
         return buyerName;
     },
 
     /**
-     * clickInCostBookingSaveButton: clicks on line Level details Save button
+     * clickOnCostBookingSaveButton: clicks on line Level details Save button
      */
-    clickInCostBookingSaveButton()
+    clickOnCostBookingSaveButton()
     {
         I.waitForVisible(global.uiElements.get(iCheckout.COST_BOOKING_SAVE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
         I.waitForClickable(global.uiElements.get(iCheckout.COST_BOOKING_SAVE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
@@ -555,10 +604,11 @@ module.exports={
      */
     async fillProject(project)
     {
-        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.PROJECT), project);
-        project = await I.grabTextFrom(global.uiElements.get(iCheckout.PROJECT));
-        logger.info("Entered Project is "+project);
-        return project;
+        let suggXpath = `//div[contains(text(),'${project}')]`;
+        commonComponent.searchAndSelectFromDropdown(global.uiElements.get(iCheckout.PROJECT),project, suggXpath);
+        let enteredProject = await I.grabAttributeFrom(global.uiElements.get(iCheckout.PROJECT), "value");
+        logger.info("Entered Project is "+enteredProject);
+        return enteredProject;
     },
 
     async fillAdditionalDetails(requisitionBO)
@@ -570,6 +620,7 @@ module.exports={
         {
             let purchaseType =  this.selectPurchaseType(requisitionBO.purchaseType);
             requisitionBO.setPurchaseType(purchaseType);
+            this.clickOnPurchaseTypeYesButton();
         }
 
         if(requisitionBO.settlementVia !== "undefined")
@@ -611,7 +662,9 @@ module.exports={
             //otherAddress
        }
 
-
+        let deliverto =  this.fillDeliverTo(requisitionBO.deliverTo);
+        requisitionBO.setDeliverTo(deliverto);
+        this.selectRequiredByDate();
 
         return requisitionBO;
     },
@@ -653,14 +706,12 @@ module.exports={
 
     },
 
-    async fillItemDetails()
+    async fillItemDetails(requisitionBO)
     {
         logger.info("*********Filling Requisition Item Details Details");
         commonComponent.scrollToSection(iConstants.CHECKOUT_ITEM_DETAILS_SECTION);
 
-        for(let i=0; i< requisitionBO.items.length; i++)
-        {
-            this.clickOnCostBookingLink(items[i]);
+        this.clickOnCostBookingLink(requisitionBO.itemName);
 
         if(requisitionBO.buyer !== "undefined")
         {
@@ -677,6 +728,7 @@ module.exports={
             /// assigned BuyerGroup code
         }
 
+        this.clickOnCostBookingTab();
         if(!prop.isCOA)
         {
             if(requisitionBO.glAccount !== "undefined")
@@ -686,27 +738,39 @@ module.exports={
             }
         }
 
+        // if(requisitionBO.assetCode !== "undefined")
+        // {
+        //     let assetCode = this.fillAssetCode(requisitionBO.assetCode);
+        //     requisitionBO.setAssetCode(assetCode);
+        // }
+
         if(prop.isCOA)
         {
             //fill COA form code
         }
         else
         {
-            clickInCostBookingSaveButton();
+            this.clickOnCostBookingSaveButton();
             commonComponent.waitForLoadingSymbolNotDisplayed();
+            I.wait(prop.DEFAULT_HIGH_WAIT);
         }
 
-        if(requisitionBO.assetCode !== "undefined")
-        {
-            let assetCode = this.fillAssetCode(requisitionBO.assetCode);
-            requisitionBO.setAssetCode(assetCode);
-        }
-        }
+       
+        
         return requisitionBO;
 
     },
 
- 
+    clickOnCostBookingTab()
+    {
+        this.clickOnTab(iConstants.CHECKOUT_COST_BOOKING_DETAILS_TAB);
+        logger.info("Clicked on Cost Booking Tab")
+    },
 
-
+    async fetchedTotalItemAmount()
+    {
+        let totalAmount = await grabTextFrom(global.uiElements.get(iCheckout.FETCHED_TOTAL_AMOUNT));
+        logger.info("Total amount is "+totalAmount);
+        return totalAmount;
+    }, 
 };

@@ -1,10 +1,10 @@
 const faker = require("faker");
 const spo = require("../bo/Spo");
-const catalogItem = require("../bo/CatalogItem");
-const requisition = require("../bo/Requisition");
+const catalogItem = require("../bo/CatalogItem")
+const requisition = require("../bo/Requisition")
 const logger = require("../../Framework/FrameworkUtilities/Logger/logger");
-const commonUtilities = require("../../Framework/FrameworkUtilities/CommonUtilities");
-const iConstants = require("../constants/iConstants");
+const commonUtilities = require("../../Framework/FrameworkUtilities/CommonUtilities")
+const prop = global.confi_prop;
 
 
 class ObjectCreation
@@ -59,7 +59,7 @@ class ObjectCreation
 
     getObjectOfCatalogItem(itemIndex)
     {
-        let catalog = new catalogItem();
+        let catalog = new catalogItem()
         catalog.setItemName(commonUtilities.splitData(1,"ITEM_NAME_FOR_SEARCHING"));
         catalog.quantity = faker.random.number(20);
         return catalog;
@@ -79,26 +79,22 @@ class ObjectCreation
         requisition.attachmentPath = "";
         requisition.settlementVia = "Invoice";
         requisition.retrospectivePurchase = "No";
-        requisition.setDefaultAddressOption = true;
         requisition.shipToDefaultAddress = "Yes";
         requisition.shipToAnotherAddress = "No";
-        requisition.setOtherAddressOption = false;
-        requisition.deliverTo = global.testData.get("DELIVERES_TO/OWNER");
+        //requisition.deliverTo = global.testData.get("DELIVERES_TO/OWNER");
+        requisition.deliverTo = (prop.username);
         //requisition.requiredBy = faker.date.
         requisition.assignCostProject = "No";
-        requisition.bookCostToSingleMultipleCC= true;
-        requisition.bookCostAtLineLevel = false;
+        requisition.bookCostToSingleMultipleCC= "Yes";
+        requisition.bookCostAtLineLevel = "No";
         requisition.costCenter = global.testData.get("COST_CENTER");
-        requisition.itemName = global.testData.get("ITEM_NAME_FOR_SEARCHING");
         requisition.glAccount = global.testData.get("GL_ACCOUNT");
         requisition.assetCode = global.testData.get("COST_BOOKING_DETAILS_ASSET_CODE");
         requisition.buyer = global.testData.get("BUYER_NAME");
-        requisition.buyerOption = "Buyer";
         requisition.itemName = global.testData.get("ITEM_NAME_FOR_SEARCHING");
         requisition.fillCBL = false;
-        requisition.fillCostAllocation = false;
         requisition.items  =  this.getArrayOfItems(noOfItems,itemType);
-        requisition.nextAction = iConstants.SUBMIT;
+       
         return requisition;
     }
 

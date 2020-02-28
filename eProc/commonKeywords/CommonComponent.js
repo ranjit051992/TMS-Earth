@@ -1,4 +1,5 @@
 const {I} = inject();
+
 const commonCompObject = require("./CommonComponentObject");
 const logger = require("./../../Framework/FrameworkUtilities/Logger/logger");
 const prop= global.confi_prop;
@@ -6,6 +7,7 @@ module.exports={
 
     async searchAndSelectFromDropdown(dropdownElement,searchValue, selectOptionXpath){
                 I.click(dropdownElement);
+
                // if(typeof searchValue !== "undefined"){
                 I.fillField(dropdownElement, searchValue);
                // let optionXpath = `//div[contains(text(),'${selectOption}')]`
@@ -45,7 +47,7 @@ module.exports={
 
             waitForLoadingSymbolNotDisplayed()
             {
-                I.waitForInvisible(global.uiElements.get(commonCompObject.LOADING_SPINNER), prop.DEFAULT_HIGH_WAIT);
+                I.waitForInvisible(global.uiElements.get(commonCompObject.LOADING_SPINNER), prop.CONDITIONAL_WAIT);
                 logger.info("Waited for Loading Symbol to go off");
             },
 };

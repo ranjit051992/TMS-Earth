@@ -7,7 +7,7 @@ Feature: Checkout
   And I navigate to Punchout with name
 
   When I add punchout item to cart 
-  And I click on checkout
+  And I checkout
   And I submit requisition with data filled in all mandatory fields
 
   Then I should see the added punchout item with all the details on requisition view page
@@ -23,7 +23,7 @@ Feature: Checkout
   And I Sourcing status
   And I add qty and price
   And I add items to cart
-  And I click on checkout
+  And I checkout
   And I add data in Purchase Type and Required By field
   And I add GL account at line level
   And I submit requisition
@@ -43,29 +43,29 @@ Feature: Checkout
   And I select supplier from the Suggested Supplier dropdown.
   And I add contract for the item
   And I add item to cart
-  And I click on checkout
+  And I checkout
 
   Then I should contract linked to free text item on viewing the item
 
 
-@Non-COA @L1
+@Non-COA @L1 @costCenter
   Scenario: To verify that user is able to add Cost center information to the requisition.
   Given I am logged in eProc
 
-  When I add an item to cart 
-  And I click on checkout
+  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+  And I checkout
   And I edit Cost Allocation section at header level
   And I update cost center "COST_CENTER"
   And I navigate to Line level Cost Booking Details
 
   Then I should be see the updated cost center on line level Cost Booking section 
 
-@Non-COA @L1
+@Non-COA @L1 @project
     Scenario: To verify that user is able to add Project information to the requisition.
     Given I am logged in eProc
 
-    When I add an item to cart 
-    And I click on checkout
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
     And I edit Cost Allocation section at header level
     And I update project "PROJECT"
     And I navigate to Line level Cost Booking Details
@@ -77,19 +77,19 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I add an item to cart 
-    And I click on checkout
+    And I checkout
     And I add an attachment
     
     Then I should be able to see the attachment which is added
 
-@Non-COA @L1
+@Non-COA @L1 @createReq
     Scenario: To verify that user is able to copy any requisition and modify it to create a new requisition.
     Given I am logged in eProc
 
-    When I create a requisition with catalog items
-    And I copy that requisition
-    And I modify the fields(qty, add taxes) requisition
-    And I submit it
+    When I create requisition with "1" "ITEM_NAME_FOR_SEARCHING" item
+    # And I copy that requisition
+    # And I modify the fields(qty, add taxes) requisition
+    # And I submit it
 
     Then I should be able to see submitted requisition with updated details
 
@@ -99,7 +99,7 @@ Feature: Checkout
 
     When I add a free text item to cart
     And I add 2 catalog items to cart
-    And I click on checkout
+    And I checkout
     And I add Purchase Type
     And I add Required By Date
     And I add data in Cost Booking Details section at line level 
@@ -125,7 +125,7 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I add a catalog item to cart
-    And I click on checkout
+    And I checkout
     And I add a On Behalf of user
     And I add Purchase Type
     And I add Required By Date
@@ -139,7 +139,7 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I add 2 catalog items to cart
-    And I click on checkout
+    And I checkout
     And I add Purchase Type
     And I add Required By Date
     And I add Costing split at header level by Percentage into 2 splits (50, 50)
@@ -159,7 +159,7 @@ Feature: Checkout
 
     When I enable the 'Automatically generate orders' for PO setting
     And I add a catalog item to cart
-    And I click on checkout
+    And I checkout
     And I add Purchase Type
     And I add Required By Date
     And I add data in Cost Booking Details section at line level 
@@ -181,7 +181,7 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I add a catalog item to cart
-    And I click on checkout
+    And I checkout
 
     Then I should see on header level Cost Booking section cost center should be populated
     And I should see on line level Cost Booking Details section cost center should be populated
@@ -191,7 +191,7 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I add a catalog item to cart
-    And I click on checkout
+    And I checkout
 
     Then I should see on header level in the Shipping Details section Default Shipping Address field should be auto populated
     And I should see on line level in the Shipping Details and Asset Tagging section Address field should be auto populated
@@ -201,7 +201,7 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I add a catalog item to cart
-    And I click on checkout
+    And I checkout
     And I add Purchase Type
     And I add Required By Date
     And I select Ship to Another Address in  Shipping Details section at header level
@@ -215,7 +215,7 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I add a catalog item to cart
-    And I click on checkout
+    And I checkout
     And I add Purchase Type
     And I add Required By Date
     And I add data in Cost Booking Details section at line level 
@@ -228,7 +228,7 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I add a catalog item to cart
-    And I click on checkout
+    And I checkout
     And I add Purchase Type
     And I add Required By Date
     And I select Ship to Another Address in  Shipping Details section at header level
@@ -246,7 +246,7 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I add a catalog item to cart
-    And I click on checkout
+    And I checkout
     And I add Purchase Type
     And I add Required By Date
     And I add data in Cost Booking Details section at line level 
@@ -262,7 +262,7 @@ Feature: Checkout
   And I navigate to Punchout page
 
   When I add a punchout item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add data in Cost Booking Details section at line level 
@@ -277,7 +277,7 @@ Feature: Checkout
   Given I am logged in eProc
 
   When I add a free text item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add data in Cost Booking Details section at line level 
@@ -295,7 +295,7 @@ Feature: Checkout
   When I add a punchout item to cart
   And I add a free text item to cart
   And I add a catalog item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add data in Cost Booking Details section at line level for all items
@@ -312,7 +312,7 @@ Feature: Checkout
   When I navigate to Setup> Customize> Workflow
   And I enable 'Allow buyer to modify requisition before approval:' setting
   And I add a catalog item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add data in Cost Booking Details section at line level
@@ -328,7 +328,7 @@ Feature: Checkout
   Given I am logged in eProc
 
   When I add a catalog item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add data in Cost Booking Details section at line level
@@ -346,7 +346,7 @@ Feature: Checkout
   Given I am logged in eProc
 
   When I add a catalog item to cart
-  And I click on checkout
+  And I checkout
   And I link Purchase Order in the Select Purchase Order field
 
   Then I should be see that the field name is updated to Select Purchase Order.
@@ -356,7 +356,7 @@ Feature: Checkout
   Given I am logged in eProc
 
   When I add a stock item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add data in Cost Booking Details section at line level
@@ -369,7 +369,7 @@ Feature: Checkout
   Given I am logged in eProc
 
   When I add a non stock item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add data in Cost Booking Details section at line level
@@ -382,7 +382,7 @@ Feature: Checkout
   Given I am logged in eProc
 
   When I add a catalog item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add data in Cost Booking Details section at line level
@@ -397,7 +397,7 @@ Feature: Checkout
   Given I am logged in eProc
 
   When I add a catalog item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I select Buyer Group at line level in Buyer section
@@ -412,7 +412,7 @@ Feature: Checkout
   Given I am logged in eProc
 
   When I add a catalog item with qty 2 to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add Delivery split at line level into 2 splits
@@ -428,7 +428,7 @@ Feature: Checkout
   Given I am logged in eProc
 
   When I add a catalog item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add data in Cost Booking Details section at line level 
@@ -454,7 +454,7 @@ Feature: Checkout
   Given I am logged in eProc
 
   When I add a catalog item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I Select Purchase Order
@@ -473,7 +473,7 @@ Feature: Checkout
 
   When I add a free text item
   And I add BPO to the free text item
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add data in Cost Booking Details section at line level 
@@ -493,7 +493,7 @@ Feature: Checkout
   And I navigate to Punchout with name
 
   When I add punchout item to cart 
-  And I click on checkout
+  And I checkout
   And I submit requisition with data filled in all mandatory fields
 
   Then I should see the added punchout item with all the details on requisition view page
@@ -509,7 +509,7 @@ Feature: Checkout
   And I Sourcing status
   And I add qty and price
   And I add items to cart
-  And I click on checkout
+  And I checkout
   And I add data in Purchase Type and Required By field
   And I add GL account at line level
   And I submit requisition
@@ -529,7 +529,7 @@ Feature: Checkout
   And I select supplier from the Suggested Supplier dropdown.
   And I add contract for the item
   And I add item to cart
-  And I click on checkout
+  And I checkout
 
   Then I should contract linked to free text item on viewing the item
 
@@ -539,7 +539,7 @@ Feature: Checkout
   Given I am logged in eProc
 
   When I add an item to cart 
-  And I click on checkout
+  And I checkout
   And I edit Cost Allocation section at header level
   And I update cost center
   And I Save it
@@ -551,7 +551,7 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I add an item to cart 
-    And I click on checkout
+    And I checkout
     And I edit Cost Allocation section at header level
     And I update project
     And I Save it
@@ -563,7 +563,7 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I add an item to cart 
-    And I click on checkout
+    And I checkout
     And I add an attachment
 
     Then I should be able to see the attachment which is added
@@ -585,7 +585,7 @@ Feature: Checkout
 
     When I add a free text item to cart
     And I add 2 catalog items to cart
-    And I click on checkout
+    And I checkout
     And I add Purchase Type
     And I add Required By Date
     And I add data in Cost Booking Details section at line level 
@@ -598,7 +598,7 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I add a catalog item to cart
-    And I click on checkout
+    And I checkout
     And I add Purchase Type
     And I add Required By Date
     And I add data in Cost Booking Details section at line level 
@@ -611,7 +611,7 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I add a catalog item to cart
-    And I click on checkout
+    And I checkout
     And I add a On Behalf user
     And I add Purchase Type
     And I add Required By Date
@@ -625,7 +625,7 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I add 2 catalog items to cart
-    And I click on checkout
+    And I checkout
     And I add Purchase Type
     And I add Required By Date
     And I add Costing split at header level by Percentage into 2 splits (50, 50)
@@ -645,7 +645,7 @@ Feature: Checkout
 
     When I enable the 'Automatically generate orders' for PO setting
     And I add a catalog item to cart
-    And I click on checkout
+    And I checkout
     And I add Purchase Type
     And I add Required By Date
     And I add data in Cost Booking Details section at line level 
@@ -667,7 +667,7 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I add a catalog item to cart
-    And I click on checkout
+    And I checkout
 
     Then I should see on header level Cost Booking section cost center should be populated
     And I should see on line level Cost Booking Details section cost center should be populated
@@ -677,7 +677,7 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I add a catalog item to cart
-    And I click on checkout
+    And I checkout
 
     Then I should see on header level in the Shipping Details section Default Shipping Address field should be auto populated
     And I should see on line level in the Shipping Details and Asset Tagging section Address field should be auto populated
@@ -687,7 +687,7 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I add a catalog item to cart
-    And I click on checkout
+    And I checkout
     And I add Purchase Type
     And I add Required By Date
     And I select Ship to Another Address in  Shipping Details section at header level
@@ -701,7 +701,7 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I add a catalog item to cart
-    And I click on checkout
+    And I checkout
     And I add Purchase Type
     And I add Required By Date
     And I add data in Cost Booking Details section at line level 
@@ -714,7 +714,7 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I add a catalog item to cart
-    And I click on checkout
+    And I checkout
     And I add Purchase Type
     And I add Required By Date
     And I select Ship to Another Address in  Shipping Details section at header level
@@ -732,7 +732,7 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I add a catalog item to cart
-    And I click on checkout
+    And I checkout
     And I add Purchase Type
     And I add Required By Date
     And I add data in Cost Booking Details section at line level 
@@ -748,7 +748,7 @@ Feature: Checkout
   And I navigate to Punchout page
 
   When I add a punchout item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add data in Cost Booking Details section at line level 
@@ -763,7 +763,7 @@ Feature: Checkout
   Given I am logged in eProc
 
   When I add a free text item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add data in Cost Booking Details section at line level 
@@ -781,7 +781,7 @@ Feature: Checkout
   When I add a punchout item to cart
   And I add a free text item to cart
   And I add a catalog item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add data in Cost Booking Details section at line level for all items
@@ -798,7 +798,7 @@ Feature: Checkout
   When I navigate to Setup> Customize> Workflow
   And I enable 'Allow buyer to modify requisition before approval:' setting
   And I add a catalog item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add data in Cost Booking Details section at line level
@@ -814,7 +814,7 @@ Feature: Checkout
   Given I am logged in eProc
 
   When I add a catalog item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add data in Cost Booking Details section at line level
@@ -832,7 +832,7 @@ Feature: Checkout
   Given I am logged in eProc
 
   When I add a catalog item to cart
-  And I click on checkout
+  And I checkout
   And I link Purchase Order in the Select Purchase Order field
 
   Then I should be see that the field name is updated to Select Purchase Order.
@@ -842,7 +842,7 @@ Feature: Checkout
   Given I am logged in eProc
 
   When I add a stock item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add data in Cost Booking Details section at line level
@@ -855,7 +855,7 @@ Feature: Checkout
   Given I am logged in eProc
 
   When I add a non stock item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add data in Cost Booking Details section at line level
@@ -868,7 +868,7 @@ Feature: Checkout
   Given I am logged in eProc
 
   When I add a catalog item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add data in Cost Booking Details section at line level
@@ -883,7 +883,7 @@ Feature: Checkout
   Given I am logged in eProc
 
   When I add a catalog item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I select Buyer Group at line level in Buyer section
@@ -898,7 +898,7 @@ Feature: Checkout
   Given I am logged in eProc
 
   When I add a catalog item with qty 2 to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add Delivery split at line level into 2 splits
@@ -914,7 +914,7 @@ Feature: Checkout
   Given I am logged in eProc
 
   When I add a catalog item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add data in Cost Booking Details section at line level 
@@ -940,7 +940,7 @@ Feature: Checkout
   Given I am logged in eProc
 
   When I add a catalog item to cart
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I Select Purchase Order
@@ -959,7 +959,7 @@ Feature: Checkout
 
   When I add a free text item
   And I add BPO to the free text item
-  And I click on checkout
+  And I checkout
   And I add Purchase Type
   And I add Required By Date
   And I add data in Cost Booking Details section at line level 

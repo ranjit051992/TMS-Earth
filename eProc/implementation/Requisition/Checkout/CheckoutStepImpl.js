@@ -7,11 +7,7 @@ const iConstants = require("../../../constants/iConstants");
 const commonComponent = require("../../../commonComponent/CommonComponent");
 
 
-Given("I click on checkout", async function(){
-    this.reqBO = await objectCreation.getObjectOfRequisition(1, "Catalog");
-});
-
-Given("I create requisition with {string} {string} item", async function(noOfItems, itemType) {
+When("I create requisition with {string} {string} item", async function(noOfItems, itemType) {
     let reqBo= await objectCreation.getObjectOfRequisition(noOfItems, itemType);
     this.reqBO = await checkoutImp.createRequisitionFlow(reqBo);
 });
@@ -21,18 +17,18 @@ When("I edit Cost Allocation section at header level", async function(){
 });
 
 When("I update cost center {string}", async function(costCenter){
-    this.costCenter = checkoutImp.fillCostCenter(costCenter);
+    this.costCenter = checkoutImp.fillCostCenter(global.testData.get(costCenter));
 
 });
 
 Given("I navigate to Line level Cost Booking Details", async function(){
     commonComponent.scrollToSection(iConstants.CHECKOUT_ITEM_DETAILS_SECTION);
-    checkoutImp.clickOnCostBookingLink(this.itemName);
+    checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);
 });
 
 Then("I should be see the updated cost center on line level Cost Booking section", async function(){
     let verifyCostCenter = fasle;
-    let fetchedCostCenter = await I.grabTextFrom(iCheckoutObject.FETCHED_COST_CENTER);
+    let fetchedCostCenter = await I.grabTextFrom(global.uiElements.get(iCheckoutObject.FETCHED_COST_CENTER));
     logger.info("Updated Cost Center is "+fetchedCostCenter);
     if(fetchedCostCenter === this.costCenter)
     {
@@ -43,19 +39,22 @@ Then("I should be see the updated cost center on line level Cost Booking section
 
 When("I update project {string}", async function(project){
     checkoutImp.clickOnAssignCostProjectYesButton();
-    this.project = checkoutImp.fillProject(project);
+    let value = await checkoutImp.fillProject(global.testData.get(project));
+    this.project = value.trim();
+    logger.info("this.project "+this.project)
 
 });
 
 Then("I should be see the updated project on line level Cost Booking section", async function(){
     let verifyProject = false;
-    let fetchedProject = await I.grabTextFrom(iCheckoutObject.FETCHED_PROJECT);
+    let fetchedProject = await I.grabTextFrom(global.uiElements.get(iCheckoutObject.FETCHED_PROJECT));
     logger.info("Updated Project is "+fetchedProject);
-    if(fetchedProject === this.project)
+    logger.info("this.project "+this.project)
+    if(fetchedProject.toString.trim() === this.project)
     {
         verifyProject = true;
     }
-    I.assertEqual(true, verifyProject);
+    I.assertEqual(verifyProject,true);
 });
 
 Given("I add Purchase Type", async function(){
