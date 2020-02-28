@@ -7,7 +7,7 @@ const cartImpl = require("../Cart/CartImpl");
 const prop=global.confi_prop;
 const commonUtils = require("../../../../Framework/FrameworkUtilities/CommonUtilities");
 const faker = require("faker");
-const reqObj = require("../../../bo/Requisition");
+const reqObj = require("../../../dataCreation/bo/Requisition");
 
 
 let map = new Map();

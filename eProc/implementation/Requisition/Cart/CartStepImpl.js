@@ -6,7 +6,7 @@ const onlinestoreImpl = require("../OnlineStore/OnlineStoreImpl");
 const prop=global.confi_prop;
 const commonUtils = require("../../../../Framework/FrameworkUtilities/CommonUtilities");
 const faker = require('faker');
-const reqObj = require("../../../bo/Requisition");
+const reqObj = require("../../../dataCreation/bo/Requisition");
 const objCreation= require("../../../dataCreation/ObjectCreation");
 
 Given("I checkout", function () {

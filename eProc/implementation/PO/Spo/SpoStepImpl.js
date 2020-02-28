@@ -5,7 +5,7 @@ const iSpoObject = require("./SpoObject");
 const objectCreation = require("../../../dataCreation/ObjectCreation")
 const prop = global.confi_prop;
 const spoImpl = require("./SpoImpl");
-const catalogItem = require("../../../bo/CatalogItem");
+const catalogItem = require("../../../dataCreation/bo/CatalogItem");
 const iConstants = require("../../../constants/iConstants");
 
 Given("I am on PO listing page", async function () {
