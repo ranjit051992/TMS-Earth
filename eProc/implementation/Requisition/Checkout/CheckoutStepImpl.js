@@ -3,8 +3,8 @@ const logger= require("./../../../../Framework/FrameworkUtilities//Logger/logger
 const objectCreation = require("../../../dataCreation/ObjectCreation");
 const checkoutImp = require("../Checkout/CheckoutImpl");
 const iCheckoutObject = require("../Checkout/CheckoutObject");
-const iConstants = require("../../../constants/iConstants");
 const commonComponent = require("../../../commonKeywords/CommonComponent");
+const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 
 
 When("I create requisition with {string} {string} item", async function(noOfItems, itemType) {
@@ -13,7 +13,7 @@ When("I create requisition with {string} {string} item", async function(noOfItem
 });
 
 When("I edit Cost Allocation section at header level", async function(){
-    commonComponent.scrollToSection(iConstants.CHECKOUT_COST_ALLOCATION_SECTION);
+    commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_COST_ALLOCATION_SECTION"));
 });
 
 When("I update cost center {string}", async function(costCenter){
@@ -22,7 +22,7 @@ When("I update cost center {string}", async function(costCenter){
 });
 
 Given("I navigate to Line level Cost Booking Details", async function(){
-    commonComponent.scrollToSection(iConstants.CHECKOUT_ITEM_DETAILS_SECTION);
+    commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
     checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);
 });
 
@@ -58,7 +58,7 @@ Then("I should be see the updated project on line level Cost Booking section", a
 });
 
 Given("I add Purchase Type", async function(){
-    commonComponent.scrollToSection(iConstants.CHECKOUT_ADDITIONAL_DETAILS_SECTION);
+    commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ADDITIONAL_DETAILS_SECTION"));
     checkoutImp.selectPurchaseType(this.reqBO.purchaseType);
     if(I.seeElement(iCheckoutObject.PURCHASE_TYPE_CONFIRM_POPUP))
     {

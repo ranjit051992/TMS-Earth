@@ -5,7 +5,6 @@ const commonComponent = require("../../../commonKeywords/CommonComponent");
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const prop = global.confi_prop;
 const ObjectCreation = require("../../../dataCreation/ObjectCreation");
-const iConstants = require("../../../../eProc/constants/iConstants");
 const requisitionBO = require("../../../dataCreation/bo/Requisition");
 const cartImpl = require("../Cart/CartImpl");
 const iCart = require("../Cart/CartObject");
@@ -42,7 +41,7 @@ module.exports={
 
         requisitionBO = await this. fillItemDetails(requisitionBO);
 
-        // if(requisitionBO.nextAction === iConstants.SUBMIT)
+        // if(requisitionBO.nextAction === lmtVar.getLabel("SUBMIT"))
         // {
             this.clickOnImDoneButton();
             I.wait(prop.DEFAULT_MEDIUM_WAIT);
@@ -50,13 +49,13 @@ module.exports={
             commonComponent.waitForLoadingSymbolNotDisplayed();
         // }
 
-        // else if(requisitionBO.nextAction === iConstants.SAVE_AS_DRAFT)
+        // else if(requisitionBO.nextAction === lmtVar.getLabel("SAVE_AS_DRAFT"))
         // {
         //     this.clickOnSaveAsDraftButton();
            
         // }
 
-        // else if(requisitionBO.nextAction === iConstants.CANCEL)
+        // else if(requisitionBO.nextAction === lmtVar.getLabel("CANCEL"))
         // {
         //     this.clickOnCancelButton();
         // }
@@ -542,7 +541,7 @@ module.exports={
     async fillBasicDetails(requisitionBO)
     {
         logger.info("*********Filling Requisition Basic Details");
-        commonComponent.scrollToSection(iConstants.CHECKOUT_BASIC_DETAILS_SECTION);
+        commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_BASIC_DETAILS_SECTION"));
         if(requisitionBO.reqName !== "undefined")
         {
            let reqName =  this.enterRequisitionName(requisitionBO.reqName);
@@ -619,7 +618,7 @@ module.exports={
     async fillAdditionalDetails(requisitionBO)
     {
         logger.info("*********Filling Requisition Additional Details");
-        commonComponent.scrollToSection(iConstants.CHECKOUT_ADDITIONAL_DETAILS_SECTION);
+        commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ADDITIONAL_DETAILS_SECTION"));
         
         if(requisitionBO.purchaseType !== "undefined")
         {
@@ -654,7 +653,7 @@ module.exports={
     async fillShippingDetails(requisitionBO)
     {
         logger.info("*********Filling Requisition Shipping Details");
-        commonComponent.scrollToSection(iConstants.CHECKOUT_SHIPPING_DETAILS_SECTION);
+        commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
 
        if(requisitionBO.isDefaultAddressOption === true)
        {
@@ -677,7 +676,7 @@ module.exports={
     async fillCostAllocation(requisitionBO)
     {
         logger.info("*********Filling Requisition Cost Allocation Details");
-        commonComponent.scrollToSection(iConstants.CHECKOUT_COST_ALLOCATION_SECTION);
+        commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_COST_ALLOCATION_SECTION"));
 
         if(requisitionBO.fillCostAllocation === true)
         {
@@ -714,13 +713,13 @@ module.exports={
     async fillItemDetails(requisitionBO)
     {
         logger.info("*********Filling Requisition Item Details Details");
-        commonComponent.scrollToSection(iConstants.CHECKOUT_ITEM_DETAILS_SECTION);
+        commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
 
         this.clickOnCostBookingLink(requisitionBO.itemName);
 
         if(requisitionBO.buyer !== "undefined")
         {
-            this.clickOnTab(iConstants.CHECKOUT_BUYER_TAB);
+            this.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
             this.selectBuyerDropDownOption(requisitionBO.buyerOption);
             let buyer = this.fillBuyerInTextBox(requisitionBO.buyer);
             requisitionBO.setBuyer(buyer);
@@ -729,7 +728,7 @@ module.exports={
 
         else if(requisitionBO.assignedBuyerGroup !== "undefined")
         {
-            this.clickOnTab(iConstants.CHECKOUT_BUYER_TAB);
+            this.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
             /// assigned BuyerGroup code
         }
 
@@ -768,7 +767,7 @@ module.exports={
 
     clickOnCostBookingTab()
     {
-        this.clickOnTab(iConstants.CHECKOUT_COST_BOOKING_DETAILS_TAB);
+        this.clickOnTab(lmtVar.getLabel("CHECKOUT_COST_BOOKING_DETAILS_TAB"));
         logger.info("Clicked on Cost Booking Tab")
     },
 

@@ -1,8 +1,8 @@
 const { I } = inject();
 const logger = require("../../../Framework/FrameworkUtilities/Logger/logger");
 const iSpoObject = require("../PO/Spo/SpoObject");
-const prop = global.confi_prop
-const iConstants = require("../../constants/iConstants");
+const prop = global.confi_prop;
+const lmtVar = require("../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const poListingObject = require("../PO/PoListing/PoListingObject");
 const approvalObject = require("./ApprovalObject");
 const commonKeywordImpl = require("../../commonComponent/CommonComponent");
@@ -39,14 +39,14 @@ module.exports = {
         await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
         await commonKeywordImpl.searchDocOnListing(docNumber, searchBy);
         await this.clickOnApproveAction();
-        await this.fillApprovalComments(iConstants.AUTO_GENERATED_COMMENT);
+        await this.fillApprovalComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
         await this.clickOnApproveSpoPopupApproveButton();
         await I.wait(prop.DEFAULT_WAIT);
         await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
         await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
         await commonKeywordImpl.searchDocOnListing(docNumber, searchBy);
         let status = await this.getSpoStatus();
-        let flag = status === iConstants.APPROVED_STATUS
+        let flag = status === lmtVar.getLabel("APPROVED_STATUS")
         if(!flag) {
             logger.info(`Failed to approve spo because status is ${status} on Approval listing after approving`);
             throw new Error(`Failed to approve spo because status is ${status} on Approval listing after approving`);

@@ -1,5 +1,5 @@
 const {I} = inject();
-
+const lmtVar = require("../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const commonKeywordObject = require("./CommonComponentObject");
 const logger = require("./../../Framework/FrameworkUtilities/Logger/logger");
 const prop= global.confi_prop;
@@ -64,10 +64,10 @@ module.exports={
     },
     async selectDocOption(option) {
         let index;
-        if(option === iConstants.SEARCH_BY_DOC_NUMBER) {
+        if(option === lmtVar.getLabel("SEARCH_BY_DOC_NUMBER")) {
             index = 1;
         }
-        else if(option === iConstants.SEARCH_BY_DOC_NAME_OR_DESCRIPTION) {
+        else if(option === lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION")) {
             index = 2;
         }
         else {
@@ -87,7 +87,7 @@ module.exports={
      * this function will search for a doc on any listing page by doc number or doc name/description
      * @param {String} docDetail doc number/name/description.
      * 
-     * @param {String} searchBy search by number/name/description (eg. iConstants.SEARCH_BY_DOC_NUMBER, iConstants.SEARCH_BY_DOC_NAME_OR_DESCRIPTION)
+     * @param {String} searchBy search by number/name/description (eg. lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"), lmtVar.getLabel(")."SEARCH_BY_DOC_NAME_OR_DESCRIPTION)
      * 
      */
     async searchDocOnListing(docDetail, searchBy) {
@@ -108,13 +108,13 @@ module.exports={
         logger.info(`Clicked on action menu option --> ${option}`);
     },
     async getDocNumber(docName) {
-        await this.searchDocOnListing(docName, iConstants.SEARCH_BY_DOC_NAME_OR_DESCRIPTION);
+        await this.searchDocOnListing(docName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
         let docNumber = await I.grabTextFrom(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info(`Retrieved doc number --> ${docNumber}`);
         return docNumber;
     },
     async viewDocByDocNumber(docNumber) {
-        await this.searchDocOnListing(docNumber, iConstants.SEARCH_BY_DOC_NUMBER);
+        await this.searchDocOnListing(docNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
         await I.click(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info(`Clicked on document --> ${docNumber}`);
     },
