@@ -10,6 +10,7 @@ const cartImpl = require("../Cart/CartImpl");
 const iCart = require("../Cart/CartObject");
 const onlineStoreImpl = require("../OnlineStore/OnlineStoreImpl");
 const faker = require("faker");
+const poListingObject = require("../../PO/PoListing/PoListingObject");
 
 module.exports={
 
@@ -41,13 +42,14 @@ module.exports={
 
         requisitionBO = await this. fillItemDetails(requisitionBO);
 
-        // if(requisitionBO.nextAction === lmtVar.getLabel("SUBMIT"))
-        // {
+         if(requisitionBO.nextAction === lmtVar.getLabel("SUBMIT"))
+         {
             this.clickOnImDoneButton();
             I.wait(prop.DEFAULT_MEDIUM_WAIT);
             this.clickOnContinueButton();
             commonComponent.waitForLoadingSymbolNotDisplayed();
-        // }
+            this.isRequisitionSubmitted();
+        }
 
         // else if(requisitionBO.nextAction === lmtVar.getLabel("SAVE_AS_DRAFT"))
         // {
@@ -98,8 +100,8 @@ module.exports={
         I.waitForVisible(I.getElement(iCheckout.ON_BEHALF_OF), prop.DEFAULT_MEDIUM_WAIT);
         I.waitForClickable(I.getElement(iCheckout.ON_BEHALF_OF), prop.DEFAULT_MEDIUM_WAIT);
         let suggXpath = `//p[contains(text(),'${onBehalfOf}')]`;
-        commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.ON_BEHALF_OF), onBehalfOf, suggXpath);
-        onBehalfOf = await I.grabTextFrom(I.getElement(iCheckout.ON_BEHALF_OF));
+        onBehalfOf = await commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.ON_BEHALF_OF), onBehalfOf, suggXpath);
+        //onBehalfOf = await I.grabTextFrom(I.getElement(iCheckout.ON_BEHALF_OF));
         logger.info(`Entered OnBehalf of : ${onBehalfOf}`);
         return onBehalfOf;
     },
@@ -129,9 +131,8 @@ module.exports={
         I.waitForVisible(I.getElement(iCheckout.COMPANY_NAME), prop.DEFAULT_MEDIUM_WAIT);
         I.waitForClickable(I.getElement(iCheckout.COMPANY_NAME), prop.DEFAULT_MEDIUM_WAIT);
         let suggXpath = `//div[contains(text(),'${companyName}')]`;
-        commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.COMPANY_NAME),companyName, suggXpath);
-        companyName = await I.grabTextFrom(I.getElement(iCheckout.COMPANY_NAME));
-
+        companyName = await commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.COMPANY_NAME),companyName, suggXpath);
+    
         logger.info(`Entered Company Name: ${companyName}`);
         return companyName;
     },
@@ -235,7 +236,7 @@ module.exports={
         I.waitForClickable(I.getElement(iCheckout.REASON_FOR_ORDERING_TEXTAREA), prop.DEFAULT_MEDIUM_WAIT);
         I.clearField(I.getElement(iCheckout.REASON_FOR_ORDERING_TEXTAREA));
         I.fillField(I.getElement(iCheckout.REASON_FOR_ORDERING_TEXTAREA), reasonForOrdering);
-        reasonForOrdering = await I.grabTextFrom(I.getElement(iCheckout.REASON_FOR_ORDERING_TEXTAREA));
+        reasonForOrdering = await I.grabAttributeFrom(I.getElement(iCheckout.REASON_FOR_ORDERING_TEXTAREA), "value");
         logger.info(`Entered Reason For Ordering ${reasonForOrdering}`);
         return reasonForOrdering;
     },
@@ -260,7 +261,7 @@ module.exports={
         I.waitForClickable(I.getElement(iCheckout.COMMENTS_FOR_SUPPLIER_TEXTAREA), prop.DEFAULT_MEDIUM_WAIT);
         I.clearField(I.getElement(iCheckout.COMMENTS_FOR_SUPPLIER_TEXTAREA));
         I.fillField(I.getElement(iCheckout.COMMENTS_FOR_SUPPLIER_TEXTAREA), commentForSupplier);
-        commentForSupplier = await I.grabTextFrom(I.getElement(iCheckout.COMMENTS_FOR_SUPPLIER_TEXTAREA));
+        commentForSupplier = await I.grabAttributeFrom(I.getElement(iCheckout.COMMENTS_FOR_SUPPLIER_TEXTAREA), "value");
         logger.info(`Entered Comments For Supplier ${commentForSupplier}`);
         return commentForSupplier;
     },
@@ -271,7 +272,7 @@ module.exports={
      */
     async selectPurchaseType(purchaseType)
     {
-        commonComponent.selectValueFromDropDown(I.getElement(iCheckout.PURCHASE_TYPE), purchaseType);
+        await commonComponent.selectValueFromDropDown(I.getElement(iCheckout.PURCHASE_TYPE), purchaseType);
         purchaseType = await I.grabTextFrom(I.getElement(iCheckout.PURCHASE_TYPE));
         return purchaseType;
     },
@@ -337,8 +338,7 @@ module.exports={
     {
         I.waitForVisible(I.getElement(iCheckout.DELIVER_TO), prop.DEFAULT_MEDIUM_WAIT);
         let suggXpath = `//span[contains(text(),'${deliverTo}')]`;
-        commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.DELIVER_TO),deliverTo, suggXpath);
-        deliverTo =  await I.grabAttributeFrom(I.getElement(iCheckout.DELIVER_TO), "value");
+        deliverTo = await commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.DELIVER_TO),deliverTo, suggXpath);
         logger.info(`Entered Deliver To is ${deliverTo}`);
         return deliverTo;
     },
@@ -398,8 +398,7 @@ module.exports={
     {
         I.waitForVisible(I.getElement(iCheckout.COST_CENTER), prop.DEFAULT_MEDIUM_WAIT);
         let suggXpath = `//div[contains(text(),'${costCenter}')]`;
-        commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.COST_CENTER),costCenter, suggXpath);
-        let enterCostCenter = await I.grabTextFrom(I.getElement(iCheckout.COST_CENTER));
+        let enterCostCenter = await commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.COST_CENTER),costCenter, suggXpath);
         logger.info(`Entered Cost Center is : ${enterCostCenter}`);
         return enterCostCenter;
     },
@@ -668,7 +667,7 @@ module.exports={
 
         let deliverto =  this.fillDeliverTo(requisitionBO.deliverTo);
         requisitionBO.setDeliverTo(deliverto);
-        this.selectRequiredByDate();
+       // this.selectRequiredByDate();
 
         return requisitionBO;
     },
@@ -777,4 +776,37 @@ module.exports={
         logger.info("Total amount is "+totalAmount);
         return totalAmount;
     }, 
+
+    async clickOnShippingDetailsAndAssetTagging()
+    {
+        await I.click(I.getElement(iCheckout.SHIPPING_DETAILS_AND_ASSET_TAGGING_LINK));
+        logger.info("Clicked on Shipping details and Asset Tagging")
+    },
+
+    async fetchedLineLevelAddress()
+    {
+        let address = await I.grabTextFrom(I.getElement(iCheckout.LINE_LEVEL_ADDRESS));
+        logger.info("Line Level Address is "+address);
+        return address;
+    },
+
+    async isRequisitionSubmitted()
+    {
+        let flag = false;
+        await I.waitForVisible(I.getElement(poListingObject.SEARCH_TEXTBOX), prop.DEFAULT_MEDIUM_WAIT);
+        let number = await I.grabNumberOfVisibleElements(I.getElement(poListingObject.SEARCH_TEXTBOX));
+        if(number>0)
+        {
+            flag = true;
+            logger.info("Requisition Created Successfully");
+        }
+        else if(await I.grabNumberOfVisibleElements(I.getElement(iCheckout.REQUISITION_NAME))>0)
+        {
+            flag = false;
+            logger.info("Requisition did not submit. Chekcout page is still displayed.");
+            throw new Exception("Requisition did not submit. Chekcout page is still displayed.");
+        }
+        return flag;
+
+    },
 };

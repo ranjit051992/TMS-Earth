@@ -135,8 +135,8 @@ module.exports={
     */
    async waitForOnlineStoreToLoad()
    {
-       I.waitForInvisible(I.getElement(iOnlineStore.SPINNER),prop.DEFAULT_MEDIUM_WAIT);
-       I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+       I.waitForInvisible(I.getElement(iOnlineStore.SPINNER),prop.DEFAULT_HIGH_WAIT);
+       I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_HIGH_WAIT);
        logger.info("Online Store page is loaded.");
    },
 

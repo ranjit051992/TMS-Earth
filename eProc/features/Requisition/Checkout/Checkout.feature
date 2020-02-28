@@ -87,9 +87,9 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I create requisition with "1" "ITEM_NAME_FOR_SEARCHING" item
-    # And I copy that requisition
-    # And I modify the fields(qty, add taxes) requisition
-    # And I submit it
+    And I copy that requisition
+    And I modify the fields(qty, add taxes) requisition
+    And I submit it
 
     Then I should be able to see submitted requisition with updated details
 
@@ -176,31 +176,33 @@ Feature: Checkout
 
     Then I should be able to see Required by date should be auto calculated as per lead time defined in the catalog setting in this page
 
-@Non-COA @L1
-    Scenario: To verify that System auto populates user's Cost center when a user is creating a requisition or PO.
+@Non-COA @L1 @autoCostCenter
+    Scenario: To verify that System auto populates user's Cost center when a user is creating a requisition.
     Given I am logged in eProc
 
-    When I add a catalog item to cart
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
 
     Then I should see on header level Cost Booking section cost center should be populated
+    And I navigate to Line level Cost Booking Details
     And I should see on line level Cost Booking Details section cost center should be populated
 
-@Non-COA @L1
+@Non-COA @L1 @defaultAddress
     Scenario: To verify that system auto populates user's default Delivery & Bill to address 
     Given I am logged in eProc
 
-    When I add a catalog item to cart
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
 
-    Then I should see on header level in the Shipping Details section Default Shipping Address field should be auto populated
-    And I should see on line level in the Shipping Details and Asset Tagging section Address field should be auto populated
+    Then I should see on header level, Shipping Details section Default Shipping Address field should be auto populated
+    And I navigate to Line level Shipping Details and Asset Tagging section
+    And I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated
 
 @Non-COA @L1
     Scenario: To verify that user is able to change the default Delivery & Bill to address in the requisition.
     Given I am logged in eProc
 
-    When I add a catalog item to cart
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I add Purchase Type
     And I add Required By Date

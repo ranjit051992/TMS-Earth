@@ -6,7 +6,7 @@ const objectCreation = require("../../../dataCreation/ObjectCreation")
 const prop = global.confi_prop;
 const spoImpl = require("./SpoImpl");
 const catalogItem = require("../../../dataCreation/bo/CatalogItem");
-const commonKeywordImpl = require("../../../commonComponent/CommonComponent");
+const commonKeywordImpl = require("../../../commonKeywords/CommonComponent");
 const poListingImpl = require("../PoListing/PoListingImpl");
 
 Given("I am on PO listing page", async function () {
