@@ -2,6 +2,8 @@ const {I} = inject();
 const commonKeywordObject = require("./CommonComponentObject");
 const logger = require("./../../Framework/FrameworkUtilities/Logger/logger");
 const prop= global.confi_prop;
+const poListingObject = require("../implementation/PO/PoListing/PoListingObject");
+
 module.exports={
 
     async searchAndSelectFromDropdown(dropdownElement, selectOption){
@@ -9,7 +11,7 @@ module.exports={
                 if(typeof selectOption !== "undefined"){
                 I.fillField(dropdownElement, selectOption);
                 I.click(selectOption);
-                let value = await I.grabAttributeFrom(global.uiElements.get(dropdownElement), "value");
+                let value = await I.grabAttributeFrom(I.getElement(dropdownElement), "value");
                 return value;
                 }
                 else{
@@ -43,15 +45,67 @@ module.exports={
                 I.wait(prop.DEFAULT_MEDIUM_WAIT);
                 logger.info("Scrolled to Section "+sectionName);
             },
+    async enterDocNumberOrDescription(docDetail) {
+        await I.seeElement(I.getElement(poListingObject.SEARCH_TEXTBOX));
+        await I.click(I.getElement(poListingObject.SEARCH_TEXTBOX));
+        await I.clearField(I.getElement(poListingObject.SEARCH_TEXTBOX));
+        await I.fillField(I.getElement(poListingObject.SEARCH_TEXTBOX), docDetail);
+        logger.info(`Entered search text --> ${docDetail}`);
+    },
+    async selectDocOption(option) {
+        let index;
+        if(option === iConstants.SEARCH_BY_DOC_NUMBER) {
+            index = 1;
+        }
+        else if(option === iConstants.SEARCH_BY_DOC_NAME_OR_DESCRIPTION) {
+            index = 2;
+        }
+        else {
+            throw new Error("Invalid search option!");
+        }
+
+        let optionXpath = `//dew-listing-search//div[contains(@class,'dropdown-menu')]//a[${index}]`;
+        logger.info(`optionXpath --> ${optionXpath}`);
+
+        await I.seeElement(optionXpath);
+        await I.click(optionXpath);
+        await I.wait(prop.DEFAULT_WAIT);
+        await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+        logger.info(`Selected doc option --> ${option}`);
+    },
+    /**
+     * this function will search for a doc on any listing page by doc number or doc name/description
+     * @param {String} docDetail doc number/name/description.
+     * 
+     * @param {String} searchBy search by number/name/description (eg. iConstants.SEARCH_BY_DOC_NUMBER, iConstants.SEARCH_BY_DOC_NAME_OR_DESCRIPTION)
+     * 
+     */
+    async searchDocOnListing(docDetail, searchBy) {
+        await this.enterDocNumberOrDescription(docDetail);
+        await this.selectDocOption(searchBy);
+        logger.info(`Searched for doc --> ${docDetail}`);
+    },
     async clickOnActionMenuIcon() {
-        I.seeElement(global.uiElements.get(commonKeywordObject.ACTION_MENU_ICON));
-        I.click(global.uiElements.get(commonKeywordObject.ACTION_MENU_ICON));
+        pause();
+        await I.seeElement(I.getElement(poListingObject.ACTION_MENU_ICON));
+        await I.click(I.getElement(poListingObject.ACTION_MENU_ICON));
         logger.info("Clicked on action menu icon");
     },
     async clickOnActionMenuOption(option) {
         let optionXpath = `//*[contains(@title,'${option}')]`;
-        I.seeElement(optionXpath);
-        I.click(optionXpath);
+        await I.seeElement(optionXpath);
+        await I.click(optionXpath);
         logger.info(`Clicked on action menu option --> ${option}`);
+    },
+    async getDocNumber(docName) {
+        await this.searchDocOnListing(docName, iConstants.SEARCH_BY_DOC_NAME_OR_DESCRIPTION);
+        let docNumber = await I.grabTextFrom(I.getElement(poListingObject.PO_NUMBER_LINK));
+        logger.info(`Retrieved doc number --> ${docNumber}`);
+        return docNumber;
+    },
+    async viewDocByDocNumber(docNumber) {
+        await this.searchDocOnListing(docNumber, iConstants.SEARCH_BY_DOC_NUMBER);
+        await I.click(I.getElement(poListingObject.PO_NUMBER_LINK));
+        logger.info(`Clicked on document --> ${docNumber}`);
     },
 };

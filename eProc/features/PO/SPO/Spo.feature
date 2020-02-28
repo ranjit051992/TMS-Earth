@@ -103,8 +103,6 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
   And I add Required by date
   And I search catalog item with "search_term"
   And I add costing and accounting details for that item
-  # And I add 1 free text item with details
-  # And I add attachment at header level
   And I submit the PO
   And I am on PO listing page
   And I search for the created po
@@ -133,14 +131,19 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
   Then I should be able to see the new items in the amended version
 
 
-@Non_COA @L1
+@Non_COA @L1 @92
   Scenario: To verify that user is able to close a SPO
 
   Given I am logged in eproc
   And I have created and released a PO
 
-  When I click on Close PO action against the PO
+  When I click on option icon
+  And I click on Close PO action against the PO
+  And I enter close PO comments
   And I click on Close PO button on the confirmation Popup
+  And I click on closed po success message Done button
+  And I am on PO listing page
+  And I search for the created po
 
   Then I should be able to see the PO in closed status
 
@@ -158,13 +161,13 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
   Then I should be able to see the PO in closed status
 
 
-@Non_COA @L1
+@Non_COA @L1 @94
   Scenario: To verify that user is able to cancel a SPO 
 
   Given I am logged in eproc
   And I have created and released a PO
 
-  When I view the PO created 
+  When I click on option icon
   And I click on Cancel PO action within Actions tab
   And I click on Cancel PO button on the confirmation Popup
 
@@ -364,25 +367,31 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
   Then I should not get apportioned amount assigned for total cost booking amount
 
 
-@Non_COA @L1
+@Non_COA @L1 @106
   Scenario: To verify that user is able to add item for the PO in draft state
 
   Given I am logged in eproc
   And I am on PO listing page 
 
-
-  When I click on Create SPO button
+  When I click on Create PO button
+  And I click on Create SPO button
+  And I fetch PO number
+  And I fill Order Description
+  And I add Purchase type
   And I select supplier details
-  And I add Purchase type 
+  And I select Buyer
   And I add Required by date
-  And I search catalog item with "search_term" 
+  And I search catalog item with "search_term"
   And I add costing and accounting details for that item
   And I Save PO as draft
-  And I edit the drafted PO 
-  And I add 1 free text item with details
+  And I am on PO listing page
+  And I search for the created po
+  And I edit the drafted PO
+  And I add 1 catalog item
   And I submit the PO 
 
-  Then I should be able to view the SPO with multiple items
+  Then PO should be saved
+  And Item should be added
 
 
 @Non_COA @L1
