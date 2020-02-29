@@ -19,6 +19,11 @@ Given("I Create Standard po with {string} {string} item", async function (noOfIt
    this.spo = await spoImpl.createSpoFlow(this.spo);
 });
 
+Given( "I Create {int} Standard po with {string} {string} item", async function (noOfPOs, noOfItems, itemType) {
+   this.POArray = await spoImpl.createMultiplePOs(noOfPOs, noOfItems, itemType);
+   logger.info("Required number of POs created")
+});
+
 When("I click on Create PO button", async function() {
    await spoImpl.clickOnCreatePOButton();
 });
@@ -190,4 +195,8 @@ Then("Item should be added", async function() {
    await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), iConstants.SPO_VIEW_LINE_ITEMS_SECTION);
    let itemName = await spoImpl.getItemNameOnSpoView(2);
    I.assertEqual(itemName.toString(), this.spo.items[1].itemName);
+});
+
+Given( "I have {int} POs In Approval status", async function() {
+   await spoImpl.checkMultiplePOStatus();
 });

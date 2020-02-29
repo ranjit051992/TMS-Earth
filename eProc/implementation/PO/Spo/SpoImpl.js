@@ -3,8 +3,7 @@ const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger")
 const iSpoObject = require("./SpoObject");
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp")
 const prop = global.confi_prop;
-const iConstants = require("../../../constants/iConstants");
-const commonComponent = require("../../../commonComponent/CommonComponent");
+const commonComponent = require("../../../commonKeywords/CommonComponent");
 const approvalImpl = require("../../Approval/ApprovalImpl");
 const poListingImpl = require("../PoListing/PoListingImpl");
 const poListingObject = require("../PoListing/PoListingObject");
@@ -468,6 +467,23 @@ module.exports = {
         let itemName = await I.grabTextFrom(itemNameXpath);
         logger.info(`Retrieved item name --> ${itemName}`);
         return itemName;
-    }
+    },
 
+    async createMultiplePOs(noOfPOs, noOfItems, itemType) {
+        let POArray = new Array();
+        for (let i=0; i<noOfPOs; i++)
+        {
+        POArray[i] = await ObjectCreation.getObjectOfStandardPO(noOfItems, itemType);
+        POArray[i] = await spoImpl.createSpoFlow(this.POArray[i]);
+        }
+        return POArray;
+    },
+
+    async checkMultiplePOStatus(POArray) {
+        for (let i=0; i<POArray.length; i++) {
+            POArray[i] = await commonComponent.searchDocOnListing(POArray[i].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            let status = await poListingImpl.getPoStatus();
+            I.assertEqual(status,lmtVar.getLabel("IN_APPROVAL_STATUS"));
+        }
+    }
 }

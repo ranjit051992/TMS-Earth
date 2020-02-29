@@ -37,7 +37,7 @@ Feature: Approval
 @L1
     Scenario: To verify BPO details are properly displayed in approval listing
 
-    Given I am logged in eproc 
+    Given I am logged in eProc 
     And I have submit the Blanket Purchase order
     And I have BPO In Approval status
     And I am on BPO approval listing page
@@ -53,7 +53,7 @@ Feature: Approval
 @L1
     Scenario: To verify that user is able to approve single/multiple Requisition
 
-    Given I am logged in eproc
+    Given I am logged in eProc
     And I have submit 3 requisitions
     And I have requisitions In Approval status
     And I am on requisition approval listing page
@@ -70,7 +70,7 @@ Feature: Approval
 @L1
     Scenario: To verify that user is able to reject single/multiple Requisition
 
-    Given I am logged in eproc 
+    Given I am logged in eProc 
     And I have submit 3 requisitions 
     And I have requisitions In Approval status
     And I am on requisition approval listing page
@@ -89,7 +89,7 @@ Feature: Approval
 @L1
     Scenario: To verify that user is able to delegate single/multiple Requisition
 
-    Given I am logged in eproc 
+    Given I am logged in eProc
     And I have submit 3 requisitions 
     And I have requisitions In Approval status
     And I am on requisition approval listing page
@@ -105,30 +105,25 @@ Feature: Approval
     Then the status of all the requisitions should be displayed as Delegated
 
 
-@L1
+@L1 @Run
     Scenario: To verify that user is able to approve single/multiple PO
 
-    Given I am logged in eproc 
-    And I have submit 3 POs 
-    And I have POs In Approval status
+    Given I am logged in eProc
+    And I Create 3 Standard po with "1" "ITEM_NAME_FOR_SEARCHING" item
+    And I have 3 POs In Approval status
     And I am on PO approval listing page
 
     When I Approve 1 PO
-    And I fill in comments within popup
-    And I click on Approve
-    And I Approve another 2 POs
-    And I fill in comments within popup
-    And I click on Approve
-    And I search for all the POs in the search filter
+    And I Approve 2 POs
 
-    Then the status of all the POs should be displayed as Approved
+    Then I should be able to see the status of all POs as Approved
 
 
 @L1
     Scenario: To verify that user is able to reject single/multiple PO
 
-    Given I am logged in eproc 
-    And I have submit 3 POs
+    Given I am logged in eProc 
+    And I Create 3 Standard po with "1" "ITEM_NAME_FOR_SEARCHING" item
     And I have POs In Approval status
     And I am on PO approval listing page
 
@@ -146,7 +141,7 @@ Feature: Approval
 @L1
     Scenario: To verify that user is able to delegate single/multiple PO
 
-    Given I am logged in eproc 
+    Given I am logged in eProc 
     And I have submit 3 POs
     And I have POs In Approval status
     And I am on PO approval listing page
@@ -165,7 +160,7 @@ Feature: Approval
 @L1
     Scenario: To verify that user is able to approve single/multiple BPO
 
-    Given I am logged in eproc 
+    Given I am logged in eProc 
     And I have submit 3 BPOs 
     And I have POs In Approval status
     And I am on PO approval listing page
@@ -184,7 +179,7 @@ Feature: Approval
 @L1
     Scenario: To verify that user is able to reject single/multiple BPO
 
-    Given I am logged in eproc 
+    Given I am logged in eProc 
     And I have submit 3 BPOs
     And I have POs In Approval status
     And I am on BPO approval listing page
@@ -203,7 +198,7 @@ Feature: Approval
 @L1
     Scenario: To verify that user is able to delegate single/multiple BPO
 
-    Given I am logged in eproc 
+    Given I am logged in eProc 
     And I have submit 3 BPOs
     And I have BPOs In Approval status
     And I am on BPO approval listing page
