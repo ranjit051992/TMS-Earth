@@ -17,7 +17,33 @@ module.exports = {
     CART_ICON : "OnlineStore/CART_ICON",
     CART_ITEM_ICON : "OnlineStore/CART_ITEM_ICON",
     ONLINE_STORE_LINK : "OnlineStore/ONLINE_STORE_LINK",
-    SPINNER : "OnlineStore/SPINNER"
+    SPINNER : "OnlineStore/SPINNER",
+    FAVORITE_ICON : "OnlineStore/FAVORITE_ICON",
+    NO_FAV_PRODUCT_DATA_MSG : "OnlineStore/FavoritesSection/Product/NO_FAV_PRODUCT_DATA_MSG",
+    VIEW_ALL_BUTTON : "OnlineStore/FavoritesSection/VIEW_ALL_BUTTON",
+    MULTISELECT_MENU_ICON : "OnlineStore/FavoritesPage/MULTISELECT_MENU_ICON",
+    MULTISELECT_MENU_OPTION : "OnlineStore/FavoritesPage/MULTISELECT_MENU_OPTION",
+    LOAD_MORE_BUTTON : "OnlineStore/FavoritesPage/LOAD_MORE_BUTTON",
+    NO_DATA_FOUND  : "OnlineStore/FavoritesPage/NO_DATA_FOUND",
+    ITEM_CHECKBOX  : "OnlineStore/ITEM_CHECKBOX",
+    UOM  : "OnlineStore/UOM",
+    UNIT_PRICE  : "OnlineStore/UNIT_PRICE",
+    USER_CURRENCY  : "OnlineStore/USER_CURRENCY",
+    SUPPLIER_NAME  : "OnlineStore/SUPPLIER_NAME",
+    ITEM_NAME  : "OnlineStore/ITEM_NAME",
+    COMPARE_BUTTON  : "OnlineStore/COMPARE_BUTTON",
+    COMPARE_GRID  : "OnlineStore/Compare/COMPARE_GRID",
+    COMPARE_UNIT_PRICE  : "OnlineStore/Compare/UNIT_PRICE",
+    SUPPLIER  : "OnlineStore/Compare/SUPPLIER",
+    COMPARE_ITEM_NAME  : "OnlineStore/Compare/ITEM_NAME",
+    FINAL_PRICE_AFTER_DISCOUNT  : "OnlineStore/Compare/FINAL_PRICE_AFTER_DISCOUNT",
+    COMPARE_COLUMN  : "OnlineStore/Compare/COMPARE_COLUMN",
+    BASKET_VIEW_ALL_BUTTON  : "OnlineStore/BasketSection/VIEW_ALL_BUTTON",
+    BASKET_NAME  : "OnlineStore/BasketPage/BASKET_NAME",
+    BASKET_SORT_ICON  : "OnlineStore/BasketPage/BASKET_SORT_ICON",
+    BASKET_SORT_ORDER_LABEL  : "OnlineStore/BasketPage/BASKET_SORT_ORDER_LABEL",
+
+
 
 };
 
