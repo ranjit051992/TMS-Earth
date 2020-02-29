@@ -78,18 +78,32 @@ module.exports = {
    async clearCart()
    {
         I.waitForInvisible("//eproc-cart-spotlight//span[contains(text(),'"+iConstant.NA+"')]",prop.DEFAULT_MEDIUM_WAIT);
-        // if(I.seeElement(global.uiElements.get(iOnlineStore.CART_ITEM_ICON)))
-        // {
+        let noOfElements = await I.grabNumberOfVisibleElements(global.uiElements.get(iOnlineStore.CART_ITEM_ICON));
+        logger.info("Cart Item count : "+noOfElements);
+        if(noOfElements>0)
+        {
             onlineStore.clickOnCartIcon();
             this.deleteAllItemsFromCart();
             onlineStore.clickOnOnlineStoreLink();
             onlineStore.waitForOnlineStoreToLoad();
             logger.info("Cart is cleared. Navigated to online store page.");
-        // }
-        // else
-        // {
-        //     logger.info("Cart is already empty.");
-        // }
+        }
+        else
+        {
+            logger.info("Cart is already empty.");
+        }
         
+   },
+
+   async checkItemsInCart(itemName)
+   {
+       let number = await I.grabNumberOfVisibleElements("//div[@class='table-body']//span[contains(text(),'"+itemName+"')]");
+       let isPresent = false;
+       if(number>0)
+       {
+           isPresent = true;
+       }
+
+       return isPresent;
    }
 }

@@ -3,7 +3,6 @@ const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger")
 const iSpoObject = require("./SpoObject");
 const prop = global.confi_prop;
 const iConstants = require("../../../constants/iConstants");
-
 module.exports = {
     clickOnCreatePOButton() {
         I.click(global.uiElements.get(iSpoObject.createPOButton));

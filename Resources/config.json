@@ -21,8 +21,8 @@
         "DBdatabase": "Gauge_schema",
         "DBuser": "gauge.poc",
         "DBpassword": "gauge@123",
-        "username": "prashant.patil@zycus.com",
-        "password": "Pass@123"
+        "username": "auto.zcs3@zycus.com",
+        "password": "eProc@123"
     },
     "iContract": {
         "url": "https://dewdrops-partner.zycus.com/sso/login",
