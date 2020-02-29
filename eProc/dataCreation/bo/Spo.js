@@ -31,6 +31,7 @@ class Spo
         this.receiptCreationDefault;
         this.taxInclusive;
         this.billToAddress;
+        this.status;
     }
     setPoNumber(poNumber)
     {
@@ -170,6 +171,11 @@ class Spo
     setBillToAddress(billToAddress)
     {
         this.billToAddress = billToAddress;
+    }
+
+    setStatus(status)
+    {
+        this.status = status;
     }
 }
 module.exports = Spo;
