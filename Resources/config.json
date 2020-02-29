@@ -22,8 +22,8 @@
         "DBdatabase": "Gauge_schema",
         "DBuser": "gauge.poc",
         "DBpassword": "gauge@123",
-        "username": "prashant.patil@zycus.com",
-        "password": "Pass@123",
+        "username": "auto.zcs2@zycus.com",
+        "password": "eProc@123",
         "testdataTable":"TestData_eproc",
         "uiElementTable":"eProc_UI_Elements"
     },
@@ -52,7 +52,33 @@
         "username": "dewdropsuser1@zycus.com",
         "password": "pass@321",
         "testdataTable":"iContract_QC",
-        "uiElementTable":"Cucumber_CodeCept_iContract_OR"      
-        
+        "uiElementTable":"Cucumber_CodeCept_iContract_OR"             
+    },
+    "eInvoice": {
+        "url": "https://dewdrops-qcvw.zycus.net",
+        "poListingUrl": "https://dewdrops-partner.zycus.com/eproc/#/purchaseorder/default/listing",
+        "DDS_OnlineStore_Url": "https://dewdrops-partner.zycus.com/eproc/#/online-store",
+        "SETUP": "QCVM",
+        "TENANT": "SUPPLIER_PORTAL_BUYER1",
+        "browser": "chrome",
+        "host": "127.0.0.1",
+        "restart": "false",
+        "port": 4444,
+        "windowSize": "maximize",
+        "stepFilePath": "./steps_file",
+        "projectName": "eInvoice_UI_Automation",
+        "DEFAULT_WAIT": "2",
+        "DEFAULT_LOW_WAIT": "5",
+        "DEFAULT_MEDIUM_WAIT": "10",
+        "DEFAULT_HIGH_WAIT": "15",
+        "CONDITIONAL_WAIT": "120",
+        "DBhost": "192.168.5.221",
+        "DBdatabase": "eInvoice_Schema",
+        "DBuser": "eInvoice",
+        "DBpassword": "eInvoice@123",
+        "username": "manish.l@zycus.com",
+        "password": "eInvoice@123",
+        "testdataTable":"TestData_eInvoice",
+        "uiElementTable":"eInvoice_UI_Elements"
     }
 }

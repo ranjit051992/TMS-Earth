@@ -1,10 +1,9 @@
 const { I } = inject();
 const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger");
 const iSpoObject = require("./SpoObject");
-const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp")
+const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const prop = global.confi_prop;
-const iConstants = require("../../../constants/iConstants");
-const commonComponent = require("../../../commonComponent/CommonComponent");
+const commonComponent = require("../../../commonKeywords/CommonComponent");
 const approvalImpl = require("../../Approval/ApprovalImpl");
 const poListingImpl = require("../PoListing/PoListingImpl");
 const poListingObject = require("../PoListing/PoListingObject");
@@ -339,7 +338,7 @@ module.exports = {
     },
     async fillBillingInformation(spo) {
         logger.info(`**************Filling Billing Information**************`);
-        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_BILLING_INFORMATION_SECTION));
+        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_BILLING_INFORMATION_SECTION"));
         this.clickOnBuyingUnitLink();
         await this.fillCompany(spo.company);
         await this.fillBusinessUnit(spo.businessUnit);
@@ -350,7 +349,7 @@ module.exports = {
     },
     async fillSupplierDetails(spo) {
         logger.info(`**************Filling Supplier Details**************`);
-        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_SUPPLIER_DETAILS_SECTION));
+        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_SUPPLIER_DETAILS_SECTION"));
         this.fillSupplierName(spo.supplierName);
         this.selectSupplierName(spo.supplierName);
         this.fillSupplierAddress(spo.supplierAddress);
@@ -365,14 +364,14 @@ module.exports = {
     },
     async fillBuyerAndOtherInformation(spo) {
         logger.info(`**************Filling Buyer and Other Information**************`);
-        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_BUYER_AND_OTHER_INFORMATION_SECTION));
+        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_BUYER_AND_OTHER_INFORMATION_SECTION"));
         let buyer = await this.fillBuyer(spo.buyer);
         spo.setBuyer(buyer);
         return spo
     },
     async fillShippingDetails(spo) {
         logger.info(`**************Filling Shipping Details**************`);
-        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_SHIPPING_DETAILS_SECTION));
+        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_SHIPPING_DETAILS_SECTION"));
         let deliverTo = await this.selectDeliverTo(spo.deliverTo);
         spo.setDeliverTo(deliverTo);
         // await this.selectRequiredByDate();
@@ -382,7 +381,7 @@ module.exports = {
     },
     async fillCostAllocation(spo) {
         logger.info(`**************Filling Cost Allocation**************`);
-        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_COST_ALLOCATION_SECTION));
+        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_COST_ALLOCATION_SECTION"));
         this.clickOnAssignCostNOButton();
         this.clickOnBookCostToSingle_MultipleCostCenter();
         let costCenter = await this.enterCostCenter(spo.costCenter);
@@ -391,7 +390,7 @@ module.exports = {
     },
     async fillControlSettings(spo) {
         logger.info(`**************Filling Control Settings**************`);
-        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_CONTROL_SETTINGS_SECTION));
+        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_CONTROL_SETTINGS_SECTION"));
         if (spo.receiptRuleAtHeaderLevel) {
             await this.selectReceiptCreationAtHeaderLevel();
             if (spo.receiptCreationDefault) {
@@ -406,7 +405,7 @@ module.exports = {
             await this.selectTaxInclusive();
             this.clickRemoveTaxesConfirmButton();
         }
-        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_LINE_ITEMS_SECTION));
+        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
         this.clickOnAddLineItemButton();
         this.enterItemName(spo.items[0].itemName);
         this.selectItemOption(spo.items[0].itemName);
@@ -419,13 +418,13 @@ module.exports = {
     },
     async fillTaxes(spo) {
         logger.info(`**************Filling Taxes**************`);
-        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_TAXES_SECTION_SECTION));
+        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_TAXES_SECTION_SECTION"));
         this.clickOnRemoveAllTaxesButton();
         return spo;
     },
     async fillAdditionalDetails(spo) {
         logger.info(`**************Filling Additional Details**************`);
-        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel(SPO_ADDITIONAL_DETAILS_SECTION));
+        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_ADDITIONAL_DETAILS_SECTION"));
         this.fillTermsAndConditions(spo.termsAndConditions);
         this.fillNotes(spo.notes);
         return spo;
@@ -442,11 +441,11 @@ module.exports = {
         spo = await this.createSpoFlow(spo);
         await this.navigateToApprovalListing();
         //  click on spo tab
-        await approvalImpl.approveDoc(spo.poNumber, iConstants.SEARCH_BY_DOC_NUMBER);
+        await approvalImpl.approveDoc(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
         await poListingImpl.navigateToPoListing();
-        await commonComponent.searchDocOnListing(spo.poNumber, iConstants.SEARCH_BY_DOC_NUMBER);
+        await commonComponent.searchDocOnListing(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
         let status = await poListingImpl.getPoStatus();
-        let flag = status.includes(iConstants.RELEASED_STATUS);
+        let flag = status.includes(lmtVar.getLabel("RELEASED_STATUS"));
         if(!flag) {
             logger.info(`Failed to release spo because status is ${status} on po listing after approving`);
             throw new Error(`Failed to release spo because status is ${status} on po listing after approving`);

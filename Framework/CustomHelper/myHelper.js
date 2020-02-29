@@ -21,7 +21,7 @@ class MyHelper extends Helper {
   // If you need to access other helpers
   // use: this.helpers['helperName']
   async clickIfVisible(selector, ...options) {
-    const helper = this.helpers['WebDriver'];
+    const helper = this.helpers["WebDriver"];
     try {
       const numVisible = await helper.grabNumberOfVisibleElements(selector);
 
@@ -29,7 +29,7 @@ class MyHelper extends Helper {
         return helper.click(selector, ...options);
       }
     } catch (err) {
-      console.log('Skipping operation as element is not visible');
+      console.log("Skipping operation as element is not visible");
     }
   }
 }

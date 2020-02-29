@@ -7,7 +7,7 @@ Feature: Checkout
   And I navigate to Punchout with name
 
   When I add punchout item to cart 
-  And I Checkout
+  And I checkout
   And I submit requisition with data filled in all mandatory fields
 
   Then I should see the added punchout item with all the details on requisition view page
@@ -18,12 +18,12 @@ Feature: Checkout
   Scenario: To verify user is able to create a requisition for a free-text item or service
   Given I am logged in eProc
 
-  When I 'Create Request'
+  When I Create Request
   And I Add guided item/service
   And I Sourcing status
   And I add qty and price
   And I add items to cart
-  And I Checkout
+  And I checkout
   And I add data in Purchase Type and Required By field
   And I add GL account at line level
   And I submit requisition
@@ -48,29 +48,29 @@ Feature: Checkout
   Then I should contract linked to free text item on viewing the item
 
 
-@Non-COA @L1
+@Non-COA @L1 @costCenter
   Scenario: To verify that user is able to add Cost center information to the requisition.
   Given I am logged in eProc
 
-  When I add an item to cart 
+  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
   And I edit Cost Allocation section at header level
-  And I update cost center
-  And I Save it
+  And I update cost center "COST_CENTER"
+  And I navigate to Line level Cost Booking Details
 
-  Then I should be able to see updated cost center in Cost Allocation section 
+  Then I should be see the updated cost center on line level Cost Booking section 
 
-@Non-COA @L1
+@Non-COA @L1 @project
     Scenario: To verify that user is able to add Project information to the requisition.
     Given I am logged in eProc
 
-    When I add an item to cart 
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I edit Cost Allocation section at header level
-    And I update project
-    And I Save it
+    And I update project "PROJECT"
+    And I navigate to Line level Cost Booking Details
 
-    Then I should be able to see updated project in Cost Allocation section 
+    Then I should be see the updated project on line level Cost Booking section 
 
 @Non-COA @L1
     Scenario: To verify that user is able to add attachments to the requisition.
@@ -79,14 +79,14 @@ Feature: Checkout
     When I add an item to cart 
     And I checkout
     And I add an attachment
-
+    
     Then I should be able to see the attachment which is added
 
-@Non-COA @L1
+@Non-COA @L1 @createReq
     Scenario: To verify that user is able to copy any requisition and modify it to create a new requisition.
     Given I am logged in eProc
 
-    When I create a requisition with catalog items
+    When I create requisition with "1" "ITEM_NAME_FOR_SEARCHING" item
     And I copy that requisition
     And I modify the fields(qty, add taxes) requisition
     And I submit it
@@ -126,7 +126,7 @@ Feature: Checkout
 
     When I add a catalog item to cart
     And I checkout
-    And I add a On Behalf user
+    And I add a On Behalf of user
     And I add Purchase Type
     And I add Required By Date
     And I add data in Cost Booking Details section at line level 
@@ -176,31 +176,33 @@ Feature: Checkout
 
     Then I should be able to see Required by date should be auto calculated as per lead time defined in the catalog setting in this page
 
-@Non-COA @L1
-    Scenario: To verify that System auto populates user's Cost center when a user is creating a requisition or PO.
+@Non-COA @L1 @autoCostCenter
+    Scenario: To verify that System auto populates user's Cost center when a user is creating a requisition.
     Given I am logged in eProc
 
-    When I add a catalog item to cart
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
 
     Then I should see on header level Cost Booking section cost center should be populated
+    And I navigate to Line level Cost Booking Details
     And I should see on line level Cost Booking Details section cost center should be populated
 
-@Non-COA @L1
+@Non-COA @L1 @defaultAddress
     Scenario: To verify that system auto populates user's default Delivery & Bill to address 
     Given I am logged in eProc
 
-    When I add a catalog item to cart
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
 
-    Then I should see on header level in the Shipping Details section Default Shipping Address field should be auto populated
-    And I should see on line level in the Shipping Details and Asset Tagging section Address field should be auto populated
+    Then I should see on header level, Shipping Details section Default Shipping Address field should be auto populated
+    And I navigate to Line level Shipping Details and Asset Tagging section
+    And I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated
 
 @Non-COA @L1
     Scenario: To verify that user is able to change the default Delivery & Bill to address in the requisition.
     Given I am logged in eProc
 
-    When I add a catalog item to cart
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I add Purchase Type
     And I add Required By Date
@@ -493,7 +495,7 @@ Feature: Checkout
   And I navigate to Punchout with name
 
   When I add punchout item to cart 
-  And I Checkout
+  And I checkout
   And I submit requisition with data filled in all mandatory fields
 
   Then I should see the added punchout item with all the details on requisition view page
@@ -504,12 +506,12 @@ Feature: Checkout
   Scenario: COA>>To verify user is able to create a requisition for a free-text item or service
   Given I am logged in eProc
 
-  When I 'Create Request'
+  When I Create Request
   And I Add guided item/service
   And I Sourcing status
   And I add qty and price
   And I add items to cart
-  And I Checkout
+  And I checkout
   And I add data in Purchase Type and Required By field
   And I add GL account at line level
   And I submit requisition

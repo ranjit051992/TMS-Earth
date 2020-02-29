@@ -4,7 +4,7 @@ const iCart = require("./CartObject");
 const iOnlineStore = require("../OnlineStore/OnlineStoreObject");
 const onlineStore = require("../OnlineStore/OnlineStoreImpl");
 const prop = global.confi_prop;
-const iConstant = require("../../../constants/iConstants");
+const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 
 module.exports = {
 
@@ -63,7 +63,7 @@ module.exports = {
        this.clickOnDeleteAllItemsButton();
        this.clickOnConfirmPopupYesButton();
        I.waitForVisible(I.getElement(iCart.ITEM_DELETE_SUCCESS_MSG),prop.DEFAULT_HIGH_WAIT);
-       I.see(iConstant.EMPTY_CART_MSG);
+       I.see(lmtVar.getLabel("EMPTY_CART_MSG"));
        logger.info("Cart is cleared.");
    },
 
@@ -77,7 +77,7 @@ module.exports = {
     */
    async clearCart()
    {
-        I.waitForInvisible("//eproc-cart-spotlight//span[contains(text(),'"+iConstant.NA+"')]",prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForInvisible("//eproc-cart-spotlight//span[contains(text(),'"+lmtVar.getLabel("NA")+"')]",prop.DEFAULT_MEDIUM_WAIT);
         // if(I.seeElement(I.getElement(iOnlineStore.CART_ITEM_ICON)))
         // {
             onlineStore.clickOnCartIcon();
