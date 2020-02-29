@@ -9,7 +9,7 @@ const faker = require('faker');
 const reqObj = require("../../../dataCreation/bo/Requisition");
 const objCreation= require("../../../dataCreation/ObjectCreation");
 
-Given("I checkout", function () {
+Given("I checkout", async function () {
 
     await onlinestoreImpl.clickOnCartIcon();
     await I.waitForVisible(I.getElement(iCart.CART_ITEM_TABLE));

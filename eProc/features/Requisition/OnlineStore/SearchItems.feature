@@ -51,7 +51,7 @@ Feature: OnlineStore
 
 
 
-@Non-COA @L1 
+@Non-COA @L1
   Scenario: To verify that user is able to Sort every column in basket
   Given I am logged in eProc
   And I navigate to Shopping Basket Page

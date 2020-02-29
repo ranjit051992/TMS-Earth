@@ -546,7 +546,7 @@ module.exports={
        let isSorted = false;
        if(sortOder===lmtVar.getLabel("ASCENDING_SORT_ORDER"))
        {
-           originalBaskets.sort();
+           await originalBaskets.sort();
            logger.info("A-Z : expected sort : "+originalBaskets+" Actual sort : "+sortedBaskets);
            if(JSON.stringify(originalBaskets)===JSON.stringify(sortedBaskets))
            {
@@ -555,13 +555,15 @@ module.exports={
        }
        else
        {
-            originalBaskets.sort();
-            originalBaskets.reverse()
+            await originalBaskets.sort();
+            await originalBaskets.reverse()
             logger.info("Z-A : expected sort : "+originalBaskets+" Actual sort : "+sortedBaskets);
 
             if(JSON.stringify(originalBaskets)===JSON.stringify(sortedBaskets))
             {
+               
                 isSorted = true;
+                logger.info("Valid sort Z-A");
             }
        }
        logger.info("Baskets sorted in '"+sortOder+"' : "+isSorted);
