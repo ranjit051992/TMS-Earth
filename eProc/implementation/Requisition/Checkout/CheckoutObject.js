@@ -48,7 +48,8 @@ module.exports= {
     //Item Details
     ADD_LINE_ITEM_BUTTON: "Checkout/ItemDetails/ADD_LINE_ITEM_BUTTON",
     FETCHED_TOTAL_AMOUNT: "Checkout/ItemDetails/FETCHED_TOTAL_AMOUNT",
-
+    SHIPPING_DETAILS_AND_ASSET_TAGGING_LINK: "Checkout/ItemDetails/SHIPPING_DETAILS_AND_ASSET_TAGGING_LINK",
+    
     //Cost booking Details
     GL_ACCOUNT: "Checkout/ItemDetails/CostBookingDetails/GL_ACCOUNT",
     ASSET_CODE: "Checkout/ItemDetails/CostBookingDetails/ASSET_CODE",
@@ -64,5 +65,8 @@ module.exports= {
     SAVE_AS_DRAFT: "Checkout/SAVE_AS_DRAFT",
     CANCEL_BUTTON: "Checkout/CANCEL_BUTTON",
     CONTINUE_BUTTON: "Checkout/CONTINUE_BUTTON",
+
+    //Shipping Details And Asset Tagging
+    LINE_LEVEL_ADDRESS: "Checkout/ItemDetails/Shipping Details And Asset Tagging/LINE_LEVEL_ADDRESS",
 
 };

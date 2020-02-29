@@ -17,7 +17,7 @@ When("I edit Cost Allocation section at header level", async function(){
 });
 
 When("I update cost center {string}", async function(costCenter){
-    this.costCenter = checkoutImp.fillCostCenter(global.testData.get(costCenter));
+    this.costCenter = await checkoutImp.fillCostCenter(global.testData.get(costCenter));
 
 });
 
@@ -27,10 +27,10 @@ Given("I navigate to Line level Cost Booking Details", async function(){
 });
 
 Then("I should be see the updated cost center on line level Cost Booking section", async function(){
-    let verifyCostCenter = fasle;
+    let verifyCostCenter = false;
     let fetchedCostCenter = await I.grabTextFrom(global.uiElements.get(iCheckoutObject.FETCHED_COST_CENTER));
     logger.info("Updated Cost Center is "+fetchedCostCenter);
-    if(fetchedCostCenter === this.costCenter)
+    if(fetchedCostCenter.toString() === this.costCenter.toString())
     {
         verifyCostCenter = true;
     }
@@ -39,8 +39,7 @@ Then("I should be see the updated cost center on line level Cost Booking section
 
 When("I update project {string}", async function(project){
     checkoutImp.clickOnAssignCostProjectYesButton();
-    let value = await checkoutImp.fillProject(global.testData.get(project));
-    this.project = value.trim();
+    this.project= await checkoutImp.fillProject(global.testData.get(project));
     logger.info("this.project "+this.project)
 
 });
@@ -50,7 +49,7 @@ Then("I should be see the updated project on line level Cost Booking section", a
     let fetchedProject = await I.grabTextFrom(global.uiElements.get(iCheckoutObject.FETCHED_PROJECT));
     logger.info("Updated Project is "+fetchedProject);
     logger.info("this.project "+this.project)
-    if(fetchedProject.toString.trim() === this.project)
+    if(fetchedProject.toString() === this.project.toString())
     {
         verifyProject = true;
     }
@@ -59,8 +58,9 @@ Then("I should be see the updated project on line level Cost Booking section", a
 
 Given("I add Purchase Type", async function(){
     commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ADDITIONAL_DETAILS_SECTION"));
-    checkoutImp.selectPurchaseType(this.reqBO.purchaseType);
-    if(I.seeElement(iCheckoutObject.PURCHASE_TYPE_CONFIRM_POPUP))
+    await checkoutImp.selectPurchaseType(this.reqBO.purchaseType);
+    let noOfEle = await I.grabNumberOfVisibleElements(I.getElement(iCheckoutObject.PURCHASE_TYPE_CONFIRM_POPUP))
+    if(noOfEle>0)
     {
         checkoutImp.clickOnPurchaseTypeYesButton();
     }
@@ -72,6 +72,57 @@ When("I add a On Behalf of user", async function(){
 
 When("I add Required By Date", async function(){
 
+});
+
+Then("I should see on header level Cost Booking section cost center should be populated", async function(){
+    let verifyCostCenter = false;
+    commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_COST_ALLOCATION_SECTION"));
+     this.fetchedCostCenter = await I.grabAttributeFrom(I.getElement(iCheckoutObject.COST_CENTER), "value");
+     logger.info("Header Level Cost Center---> "+this.fetchedCostCenter);
+    if(this.fetchedCostCenter.toString() !== null)
+    {
+        verifyCostCenter = true;
+    }
+    I.assertEqual(verifyCostCenter,true);
+
+});
+
+Then("I should see on line level Cost Booking Details section cost center should be populated", async function(){
+    let verifyLineLevelCC = false;
+    let lineCostCenter = await I.grabTextFrom(I.getElement(iCheckoutObject.FETCHED_COST_CENTER));
+    logger.info("Line Level Level Cost Center---> "+lineCostCenter);
+    if(lineCostCenter.toString() === this.fetchedCostCenter.toString())
+    {
+        verifyLineLevelCC = true;
+    }
+    I.assertEqual(verifyLineLevelCC,true);
+
+});
+
+Then("I should see on header level, Shipping Details section Default Shipping Address field should be auto populated", async function(){
+    let verifyHeaderAddress = false;
+    commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
+    this.defaultAddress = await checkoutImp.getDefaultShippingAddress();
+    if(this.defaultAddress.toString()!== null)
+    {
+        verifyHeaderAddress = true;
+    }
+    I.assertEqual(verifyHeaderAddress,true);
+});
+
+Then("I navigate to Line level Shipping Details and Asset Tagging section", async function(){
+    commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    checkoutImp.clickOnShippingDetailsAndAssetTagging();
+});
+
+Then("I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated", async function(){
+    let verifyLineAddress = false;
+    let lineLevelAddress = await checkoutImp.fetchedLineLevelAddress();
+    if(this.defaultAddress.includes(lineLevelAddress.toString()))
+    {
+        verifyLineAddress = true;
+    }
+    I.assertEqual(verifyLineAddress,true);
 });
 
 

@@ -5,7 +5,7 @@ const prop = global.confi_prop;
 const lmtVar = require("../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const poListingObject = require("../PO/PoListing/PoListingObject");
 const approvalObject = require("./ApprovalObject");
-const commonKeywordImpl = require("../../commonComponent/CommonComponent");
+const commonKeywordImpl = require("../../commonKeywords/CommonComponent");
 
 module.exports = {
     async navigateToApprovalListing() {
