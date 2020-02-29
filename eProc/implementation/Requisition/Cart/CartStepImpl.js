@@ -11,8 +11,27 @@ const objCreation= require("../../../dataCreation/ObjectCreation");
 
 Given("I checkout", function () {
 
-    onlinestoreImpl.clickOnCartIcon();
-    I.waitForVisible(I.getElement(iCart.CART_ITEM_TABLE));
-    cartImpl.clickOnCheckoutButton();
-    this.reqBO = objCreation.getObjectOfRequisition("1", "Catalog");
+    await onlinestoreImpl.clickOnCartIcon();
+    await I.waitForVisible(I.getElement(iCart.CART_ITEM_TABLE));
+    await cartImpl.clickOnCheckoutButton();
+    this.reqBO = await objCreation.getObjectOfRequisition("1", "Catalog");
+});
+
+
+Then("I should see {string} {string} items in Cart", async function(noOfItem,itemType){
+    let isPresent = true;
+
+    await onlinestoreImpl.clickOnCartIcon();
+    await I.waitForVisible(I.getElement(iCart.CART_ITEM_TABLE));
+    for (let i = 0; i < this.addedCartItems.length; i++) 
+    {
+       let flag = await cartImpl.checkItemsInCart(this.addedCartItems[i]);
+       if(flag ===false)
+       {
+           isPresent = false;
+       }
+    }
+    
+    I.assertEqual(isPresent,true);
+
 });

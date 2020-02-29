@@ -25,7 +25,8 @@
         "username": "auto.zcs2@zycus.com",
         "password": "eProc@123",
         "testdataTable":"TestData_eproc",
-        "uiElementTable":"eProc_UI_Elements"
+        "uiElementTable":"eProc_UI_Elements",
+
     },
     "iContract": {
         "url": "https://dewdrops-partner.zycus.com/",
