@@ -113,7 +113,9 @@ Feature: Checkout
 
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
+    And I enter Requisition Name
     And I add Purchase Type
+    And I add Settlement Via
     And I add Required By Date
     And I add data in Cost Booking Details section at line level 
     And I submit requisition
@@ -212,15 +214,18 @@ Feature: Checkout
 
     Then I should be able to see Deliver address as the Ship to Another Address on view requisition 
 
-@Non-COA @L1
+@Non-COA @L1 @reqApprovalStatus
     Scenario:  To verify that user is able to view approval Status
     Given I am logged in eProc
 
-    When I add a catalog item to cart
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
+    And I enter Requisition Name
     And I add Purchase Type
+    And I add Settlement Via
     And I add Required By Date
     And I add data in Cost Booking Details section at line level 
+    And I save it
     And I submit requisition
 
     Then I should be able see the status of requisition on the Listing page
@@ -229,7 +234,7 @@ Feature: Checkout
     Scenario: To verify that user is able to create any custom / One time delivery address while Check out and save it for future use
     Given I am logged in eProc
 
-    When I add a catalog item to cart
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I add Purchase Type
     And I add Required By Date
@@ -247,7 +252,7 @@ Feature: Checkout
     Scenario: To verify that user is able to add taxes at line item level in a requisition for catalog item
     Given I am logged in eProc
 
-    When I add a catalog item to cart
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I add Purchase Type
     And I add Required By Date
@@ -379,19 +384,22 @@ Feature: Checkout
 
   Then I should be able to view requisition with non stock item
 
-@Non-COA @L1
+@Non-COA @L1 @saveAsDraft
   Scenario: To verify requisition in draft and actions on it
   Given I am logged in eProc
 
-  When I add a catalog item to cart
+  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
+  And I enter Requisition Name
   And I add Purchase Type
+  And I add Settlement Via
   And I add Required By Date
   And I add data in Cost Booking Details section at line level
+  And I save it
   And I save requisition in Draft state
 
   Then I should be able to view the actions for the draft requisition on Listing page
-  And I should be able to Edit the requisition
+  And I should be able to Edit and submit the Draft requisition
   And I should be able to delete the requisition
 
 @Non-COA @L1

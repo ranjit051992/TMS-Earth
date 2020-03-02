@@ -109,13 +109,14 @@ module.exports={
 
     async selectValueFromDropDown(dropdownElement, selectOption)
     {
-        I.waitForVisible(dropdownElement, prop.DEFAULT_MEDIUM_WAIT);
-        I.click(dropdownElement);
+        await I.waitForVisible(dropdownElement, prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable(dropdownElement, prop.DEFAULT_MEDIUM_WAIT);
+        await I.click(dropdownElement);
         if(selectOption !== "undefined")
         {
             let xpath = `//*[contains(text(),'${selectOption}')]`;
-            I.scrollIntoView(xpath);
-            I.click(selectOption);
+            await I.scrollIntoView(xpath);
+            await I.click(selectOption);
             logger.info(`Selected Value from Drop Down: ${selectOption}`);
         }
         else
@@ -132,9 +133,9 @@ module.exports={
         logger.info("Scrolled to Section "+sectionName);
     },
 
-    waitForLoadingSymbolNotDisplayed()
+    async waitForLoadingSymbolNotDisplayed()
     {
-        I.waitForInvisible(I.getElement(commonKeywordObject.LOADING_SPINNER), prop.DEFAULT_HIGH_WAIT);
+        await I.waitForInvisible(I.getElement(commonKeywordObject.LOADING_SPINNER), prop.DEFAULT_HIGH_WAIT);
         logger.info("Waited for Loading Symbol to go off");
     },
 
@@ -290,4 +291,12 @@ module.exports={
             return await getElementViewportStatus(xpath, timeout[0]);
         }
     },
+
+    async getActionMenuOptions()
+    {
+        let options =  await I.grabAttributeFrom(I.getElement(poListingObject.ACTION_MENU_OPTIONS_LIST), "title");
+        logger.info("Action Menu Options are---> "+options)
+        return options;
+    },
+
 };
