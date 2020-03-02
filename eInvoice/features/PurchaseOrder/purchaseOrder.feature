@@ -1,4 +1,4 @@
-Feature:Purchase Order
+Feature: Purchase Order
 
     Background:
         Given I logged in to the application

@@ -1,4 +1,5 @@
-const I = actor();
+// const I = actor();
+const {I} = inject();
 const logger = require("../../../Framework/FrameworkUtilities/Logger/logger");
 const iInvoiceHome = require("./IinvoiceHome");
 
@@ -11,9 +12,13 @@ module.exports = {
   filterByStatus(status) {
     I.click(global.uiElements.get(iInvoiceHome.statusFilterIcon));
     I.fillField(global.uiElements.get(iInvoiceHome.searchField), status);
-    I.click(`//dew-popover-body//label[contains(text(),"${status}")]`);
+    //I.click(`//dew-popover-body//label[contains(text(),"${status}")]`);
     logger.info("Searched status :"+status);   
   },
+  selectStatus(status) {
+    I.click(`//dew-popover-body//label[contains(text(),"${status}")]`); 
+  },
+
 
   filterByInvoiceNumber(invoiceNumber) {
     I.click(global.uiElements.get(iInvoiceHome.invoiceFilterIcon));

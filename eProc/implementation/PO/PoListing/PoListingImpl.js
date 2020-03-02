@@ -3,6 +3,9 @@ const poListingObject = require("./PoListingObject");
 const prop=global.confi_prop;
 const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger");
 const iSpoObject = require("../Spo/SpoObject");
+const approvalObject = require("../../Approval/ApprovalObject");
+const commonKeywordImpl = require("../../../commonKeywords/CommonComponent");
+const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 
 module.exports = {
     async navigateToPoListing() {
@@ -61,6 +64,28 @@ module.exports = {
         await I.click(I.getElement(poListingObject.EDIT_ACTION));
         await I.seeElement(I.getElement(iSpoObject.poNumberTextbox));
         logger.info("Clicked on PO edit action");
+    },
+    async clickOnRemindApproverAction() {
+        await I.seeElement(I.getElement(approvalObject.APPROVE_ACTION));
+        await I.click(I.getElement(approvalObject.APPROVE_ACTION));
+        logger.info("Clicked on Remind Approver action");
+    },
+    async clickOnSuccessPopupDoneButton() {
+        await I.seeElement(I.getElement(poListingObject.RECALLED_SUCCESS_DONE_BUTTON));
+        await I.click(I.getElement(poListingObject.RECALLED_SUCCESS_DONE_BUTTON));
+        logger.info("Clicked on Success popup Done button");
+    },
+    async openPoInAmendMode(poNumber) {
+        await this.navigateToPoListing();
+        await commonKeywordImpl.searchDocOnListing(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        await commonKeywordImpl.clickOnActionMenuIcon();
+        await commonKeywordImpl.clickOnActionMenuOption(lmtVar.getLabel("AMEND_PO"));
+        await I.seeElement(I.getElement(iSpoObject.poDescriptionTextbox));
+        logger.info("Opened po in amend mode");
+    },
+    async clickOnPoNumber() {
+        await commonKeywordImpl.clickOnDocNumberLink();
+        await I.seeElement(I.getElement(iSpoObject.PO_VIEW_BASIC_DETAILS_SECTION));
     },
     
 }
