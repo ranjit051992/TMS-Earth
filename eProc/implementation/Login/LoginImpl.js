@@ -4,8 +4,6 @@ const logger = require("../../../Framework/FrameworkUtilities/Logger/logger");
 const iLogin = require("./LoginObject");
 const onlinestore = require("../Requisition/OnlineStore/OnlineStoreImpl");
 const prop = global.confi_prop;
-const username = global.confi_prop.username;
-const password = global.confi_prop.password;
 const commonKeywordImpl = require("../../commonKeywords/CommonComponent");
 
 module.exports = {
@@ -17,11 +15,11 @@ module.exports = {
         I.seeElement(I.getElement(iLogin.EMAIL_ADDRESS_GHOST_TEXTBOX));
         logger.info("Navigated to login page");
         I.click(I.getElement(iLogin.EMAIL_ADDRESS_GHOST_TEXTBOX));
-        I.fillField(I.getElement(iLogin.EMAIL_ADDRESS_TEXTBOX), username);
-        logger.info(`Entered email address --> ${username}`);
+        I.fillField(I.getElement(iLogin.EMAIL_ADDRESS_TEXTBOX), global.users.get("USERNAME"));
+        logger.info(`Entered email address --> ${global.users.get("USERNAME")}`);
         I.click(I.getElement(iLogin.PASSWORD_GHOST_TEXTBOX));
-        I.fillField(I.getElement(iLogin.PASSWORD_TEXTBOX), password);
-        logger.info(`Entered password --> ${password}`);
+        I.fillField(I.getElement(iLogin.PASSWORD_TEXTBOX), global.users.get("PASSWORD"));
+        logger.info(`Entered password --> ${global.users.get("PASSWORD")}`);
         I.click(I.getElement(iLogin.LOGIN_BUTTON));
         logger.info("Clicked on Login button");
        // I.waitForVisible(I.getElement(iLogin.DDS_LOGIN_PAGE));

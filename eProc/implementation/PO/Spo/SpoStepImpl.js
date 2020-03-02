@@ -48,13 +48,13 @@ When("I select supplier details", async function() {
 });
 
 When("I select Buyer", async function() {
-   let buyer = spoImpl.fillBuyer(this.spo.buyer);
+   let buyer = await spoImpl.fillBuyer(this.spo.buyer);
    this.spo.setBuyer(buyer);
 });
 
 When("I add Purchase type", async function() {
-   spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_BASIC_DETAILS_SECTION"));
-   spoImpl.selectPurchaseType(this.spo.purchaseType);
+   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_BASIC_DETAILS_SECTION"));
+   await spoImpl.selectPurchaseType(this.spo.purchaseType);
 });
 
 When("I add Required by date", async function() {
@@ -141,7 +141,7 @@ Then("PO status should be draft", async function() {
 
 Given("I have created and released a PO", async function() {
    this.spo = await objectCreation.getObjectOfStandardPO(1, "Catalog");
-   // this.spo.poNumber = "Automation_spo_287139784";
+   // this.spo.poNumber = "blue sanity -/2220";
    this.spo = await spoImpl.createAndReleaseSpoFlow(this.spo);
 });
 
@@ -188,6 +188,7 @@ When("I add 1 catalog item {string}", async function(itemName1) {
    let glAccount = await I.getData("GL_ACCOUNT");
    await spoImpl.fillGlAccount(glAccount);
    await spoImpl.clickOnCostBookingSaveButton();
+   await I.waitForInvisible(I.getElement(iSpoObject.GLACCOUNT));
 });
 
 Then("Item should be added {string} at index {int}", async function(itemName1, index) {
@@ -262,6 +263,8 @@ Then("I should be able to see the PO in Cancelled status", async function() {
 
 When("I click on Amend PO", async function() {
    await commonKeywordImpl.clickOnActionMenuOption(lmtVar.getLabel("AMEND_PO"));
+   await I.waitForVisible(I.getElement(iSpoObject.poDescriptionTextbox));
+   await I.waitForClickable(I.getElement(iSpoObject.poDescriptionTextbox));
 });
 
 When("I add amend PO comments", async function() {
@@ -270,7 +273,7 @@ When("I add amend PO comments", async function() {
 
 When("I submit the amendment", async function() {
    await spoImpl.submitPo();
-   await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+   await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
 });
 
 When("I view the amended PO", async function() {
@@ -299,6 +302,8 @@ When("I save the delivery address", async function() {
 Then("{string} delivery address should be displayed", async function(address1) {
    let addressFromDb = await I.getData(address1);
    let address = await spoImpl.getViewSpoLineLevelAddress();
+   logger.info(`Address from db --> ${addressFromDb}`);
+   logger.info(`Address from app --> ${address.toString()}`);
    let flag = address.toString().includes(addressFromDb.toString());
    I.assertEqual(true, flag);
 });
