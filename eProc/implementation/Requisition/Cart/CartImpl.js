@@ -63,12 +63,10 @@ module.exports = {
    async deleteAllItemsFromCart()
    {
        await this.clickOnDeleteAllItemsButton();
-       I.wait(prop.DEFAULT_WAIT);
        await this.clickOnConfirmPopupYesButton();
        //I.waitForVisible(I.getElement(iCart.ITEM_DELETE_SUCCESS_MSG),prop.DEFAULT_HIGH_WAIT);
       // I.see(lmtVar.getLabel("EMPTY_CART_MSG"));
        logger.info("Cart is cleared.");
-       I.wait(prop.DEFAULT_WAIT);
    },
 
    /** 
@@ -88,12 +86,10 @@ module.exports = {
         {
             await onlineStore.clickOnCartIcon();
             await this.deleteAllItemsFromCart();
-            I.wait(prop.DEFAULT_WAIT);
             await onlineStore.clickOnOnlineStoreLink();
             logger.info("Navigated to DDS Online Store page");
             await onlineStore.waitForOnlineStoreToLoad();
             logger.info("Cart is cleared. Navigated to online store page.");
-            I.wait(prop.DEFAULT_WAIT);
         }
         else
         {
