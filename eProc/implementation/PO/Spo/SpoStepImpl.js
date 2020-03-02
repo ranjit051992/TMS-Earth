@@ -9,11 +9,6 @@ const catalogItem = require("../../../dataCreation/bo/CatalogItem");
 const commonKeywordImpl = require("../../../commonKeywords/CommonComponent");
 const poListingImpl = require("../PoListing/PoListingImpl");
 const poListingObject = require("../PoListing/PoListingObject");
-<<<<<<< HEAD
-=======
-const commonKeywordObject = require("../../../commonKeywords/CommonComponentObject");
-const approvalObject = require("../../Approval/ApprovalObject");
->>>>>>> Shubham_29Feb_1
 
 Given("I am on PO listing page", async function () {
    await poListingImpl.navigateToPoListing();
