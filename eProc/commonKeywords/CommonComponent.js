@@ -8,11 +8,15 @@ const poListingObject = require("../implementation/PO/PoListing/PoListingObject"
 module.exports={
 
     async searchAndSelectFromDropdown(dropdownElement,searchValue, selectOptionXpath){
-                I.click(dropdownElement);
+                 await  I.waitForVisible(dropdownElement, prop.DEFAULT_MEDIUM_WAIT);
+                 await   I.waitForClickable(dropdownElement, prop.DEFAULT_MEDIUM_WAIT);
+                 await   I.click(dropdownElement);
                // if(typeof searchValue !== "undefined"){
-                I.fillField(dropdownElement, searchValue);
-               // let optionXpath = `//div[contains(text(),'${selectOption}')]`
-                I.click(selectOptionXpath);
+                await   I.clearField(dropdownElement);
+                await  I.fillField(dropdownElement, searchValue);
+                await   I.waitForVisible(selectOptionXpath, prop.DEFAULT_MEDIUM_WAIT);
+                await  I.waitForClickable(selectOptionXpath, prop.DEFAULT_MEDIUM_WAIT);
+                await   I.click(selectOptionXpath);
                 let value = await I.grabAttributeFrom(dropdownElement, "value");
                 return value;
                // }
@@ -26,13 +30,14 @@ module.exports={
 
             async selectValueFromDropDown(dropdownElement, selectOption)
             {
-                I.waitForVisible(dropdownElement, prop.DEFAULT_MEDIUM_WAIT);
-                I.click(dropdownElement);
+                await I.waitForVisible(dropdownElement, prop.DEFAULT_MEDIUM_WAIT);
+                await I.waitForClickable(dropdownElement, prop.DEFAULT_MEDIUM_WAIT);
+                await I.click(dropdownElement);
                 if(selectOption !== "undefined")
                 {
                     let xpath = `//*[contains(text(),'${selectOption}')]`;
-                    I.scrollIntoView(xpath);
-                    I.click(selectOption);
+                    await I.scrollIntoView(xpath);
+                    await I.click(selectOption);
                     logger.info(`Selected Value from Drop Down: ${selectOption}`);
                 }
                 else
@@ -49,9 +54,9 @@ module.exports={
                 logger.info("Scrolled to Section "+sectionName);
             },
 
-            waitForLoadingSymbolNotDisplayed()
+            async waitForLoadingSymbolNotDisplayed()
             {
-                I.waitForInvisible(I.getElement(commonKeywordObject.LOADING_SPINNER), prop.DEFAULT_HIGH_WAIT);
+               await I.waitForInvisible(I.getElement(commonKeywordObject.LOADING_SPINNER), prop.DEFAULT_HIGH_WAIT);
                 logger.info("Waited for Loading Symbol to go off");
             },
 
@@ -96,7 +101,6 @@ module.exports={
         logger.info(`Searched for doc --> ${docDetail}`);
     },
     async clickOnActionMenuIcon() {
-        pause();
         await I.seeElement(I.getElement(poListingObject.ACTION_MENU_ICON));
         await I.click(I.getElement(poListingObject.ACTION_MENU_ICON));
         logger.info("Clicked on action menu icon");
@@ -117,6 +121,14 @@ module.exports={
         await this.searchDocOnListing(docNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
         await I.click(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info(`Clicked on document --> ${docNumber}`);
+    },
+
+    async getActionMenuOptions()
+    {
+        
+        let options =  await I.grabAttributeFrom(I.getElement(poListingObject.ACTION_MENU_OPTIONS_LIST), "title");
+        logger.info("Action Menu Options are---> "+options)
+        return options;
     },
 
 };

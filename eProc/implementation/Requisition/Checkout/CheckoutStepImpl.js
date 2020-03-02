@@ -5,7 +5,8 @@ const checkoutImp = require("../Checkout/CheckoutImpl");
 const iCheckoutObject = require("../Checkout/CheckoutObject");
 const commonComponent = require("../../../commonKeywords/CommonComponent");
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
-
+const reqListing = require("../../Requisition/RequisitionListing/RequisitionListingImpl");
+const prop = global.confi_prop;
 
 When("I create requisition with {string} {string} item", async function(noOfItems, itemType) {
     let reqBo= await objectCreation.getObjectOfRequisition(noOfItems, itemType);
@@ -56,22 +57,18 @@ Then("I should be see the updated project on line level Cost Booking section", a
     I.assertEqual(verifyProject,true);
 });
 
-Given("I add Purchase Type", async function(){
+When("I add Purchase Type", async function(){
     commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ADDITIONAL_DETAILS_SECTION"));
     await checkoutImp.selectPurchaseType(this.reqBO.purchaseType);
-    let noOfEle = await I.grabNumberOfVisibleElements(I.getElement(iCheckoutObject.PURCHASE_TYPE_CONFIRM_POPUP))
-    if(noOfEle>0)
-    {
-        checkoutImp.clickOnPurchaseTypeYesButton();
-    }
+    
 });
 
 When("I add a On Behalf of user", async function(){
-    checkoutImp.fillOnBehalfOf(this.reqBO.onBehalfOf);
+    await checkoutImp.fillOnBehalfOf(this.reqBO.onBehalfOf);
 });
 
 When("I add Required By Date", async function(){
-
+    await checkoutImp.selectRequiredByDate();
 });
 
 Then("I should see on header level Cost Booking section cost center should be populated", async function(){
@@ -125,5 +122,35 @@ Then("I should see on line level, in Shipping Details and Asset Tagging section 
     I.assertEqual(verifyLineAddress,true);
 });
 
+When("I add data in Cost Booking Details section at line level", async function(){
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    await checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);
+    await checkoutImp.fillGLAccount(this.reqBO.glAccount);
+});
 
+When("I save it", async function(){
+    await checkoutImp.clickOnCostBookingSaveButton();
+    await commonComponent.waitForLoadingSymbolNotDisplayed();
+    await I.wait(prop.DEFAULT_MEDIUM_WAIT);
+});
 
+When("I save requisition in Draft state", async function(){
+   await checkoutImp.clickOnSaveAsDraftButton();
+   await commonComponent.waitForLoadingSymbolNotDisplayed();
+   await I.wait(prop.DEFAULT_MEDIUM_WAIT);
+   await reqListing.isRequisitionListingPageDisplayed() ;
+});
+
+When("I add Settlement Via", async function(){
+    await checkoutImp.selectSettlementVia(this.reqBO.settlementVia);
+});
+
+When("I enter Requisition Name", async function(){
+    this.reqName = await checkoutImp.enterRequisitionName(this.reqBO.reqName);
+
+});
+
+When("I submit requisition", async function(){
+    await checkoutImp.submitRequisition();
+    await commonComponent.waitForLoadingSymbolNotDisplayed();
+});

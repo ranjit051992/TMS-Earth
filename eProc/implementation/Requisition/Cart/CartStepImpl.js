@@ -8,11 +8,13 @@ const commonUtils = require("../../../../Framework/FrameworkUtilities/CommonUtil
 const faker = require('faker');
 const reqObj = require("../../../dataCreation/bo/Requisition");
 const objCreation= require("../../../dataCreation/ObjectCreation");
+const checkoutObj = require("../../Requisition/Checkout/CheckoutObject");
 
 Given("I checkout", function () {
 
     onlinestoreImpl.clickOnCartIcon();
     I.waitForVisible(I.getElement(iCart.CART_ITEM_TABLE));
     cartImpl.clickOnCheckoutButton();
+    I.waitForVisible(I.getElement(checkoutObj.REQUISITION_NAME));
     this.reqBO = objCreation.getObjectOfRequisition("1", "Catalog");
 });
