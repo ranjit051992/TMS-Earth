@@ -1,4 +1,5 @@
-const I = actor();
+// const I = actor();
+const {I} = inject();
 const iLogin = require("./Ilogin");
 module.exports = {
     login(userName, password) {

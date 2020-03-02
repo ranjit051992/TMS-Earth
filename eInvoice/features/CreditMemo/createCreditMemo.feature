@@ -1,4 +1,4 @@
-Feature:Credit Memo Creation
+Feature: Credit Memo Creation
     User can create credit memo with or without reference
 
     Background:

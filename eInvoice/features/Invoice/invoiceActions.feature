@@ -1,4 +1,4 @@
-Feature:Invocie Actions
+Feature: Invocie Actions
 
    Background:
       Given I logged in to the application

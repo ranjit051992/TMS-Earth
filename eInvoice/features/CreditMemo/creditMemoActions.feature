@@ -1,4 +1,4 @@
-Feature:Credit Memo Actions
+Feature: Credit Memo Actions
 
  Background:
     Given I logged in to the application
