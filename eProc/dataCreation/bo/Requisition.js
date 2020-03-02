@@ -38,6 +38,14 @@ class Requisition
         this.fillCBL;
         this.fillCostAllocation;
         this.nextAction;
+        this.customAddressName;
+        this.customAddressStreet1;
+        this.customAddressStreet2;
+        this.customAddressCountry;
+        this.customAddressState;
+        this.customAddressZip;
+        this.customAddressCity;
+
         //let items = [];
     }
 

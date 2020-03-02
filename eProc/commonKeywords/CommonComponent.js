@@ -32,7 +32,7 @@ module.exports={
                 {
                     let xpath = `//*[contains(text(),'${selectOption}')]`;
                     I.scrollIntoView(xpath);
-                    I.click(selectOption);
+                    I.click(xpath);
                     logger.info(`Selected Value from Drop Down: ${selectOption}`);
                 }
                 else

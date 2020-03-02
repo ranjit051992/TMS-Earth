@@ -18,12 +18,22 @@ When("I search for {string} {string} items", async function (noOfItem, itemType)
 
     await cartImpl.clearCart();
     let itemArray = new Array();
-    for (let i = 0; i < noOfItem; i++) {
-        let item = await commonUtils.splitData(i, itemType);
+    if((itemType.indexOf('[')) > 0 && noOfItem==="1")
+    {
+        let item = await I.getData(itemType);
         await onlineStoreImpl.searchItem(item);
         itemArray.push(item);
-
     }
+    else
+    {
+        for (let i = 0; i < noOfItem; i++) {
+        
+            let item = await I.getData(itemType+"["+i+"]");
+            await onlineStoreImpl.searchItem(item);
+            itemArray.push(item);
+        }
+    }
+   
     this.addedItems = itemArray;
 
 });
@@ -35,11 +45,21 @@ When("I add {string} {string} items to cart", async function (noOfItem, itemType
     await cartImpl.clearCart();
     let itemArray = new Array();
 
-    for (let i = 0; i < noOfItem; i++) {
-        let item = commonUtils.splitData(i, itemType);
-        onlineStoreImpl.addItemToCart(item, faker.random.number(20));
+    if((itemType.indexOf('[')) > 0 && noOfItem==="1")
+    {
+        let item = await I.getData(itemType);
+        await onlineStoreImpl.searchItem(item);
         itemArray.push(item);
+    }
+    else
+    {
+        for (let i = 0; i < noOfItem; i++) 
+        {
+            let item = await I.getData(itemType+"["+i+"]");
+            await onlineStoreImpl.addItemToCart(item, faker.random.number(20));
+            itemArray.push(item);
 
+        }
     }
     this.addedCartItems = itemArray;
 
@@ -49,9 +69,12 @@ When("I add {string} {string} items to cart", async function (noOfItem, itemType
 Then("I should see all the matching items for {string} on Listing", async function (itemType) {
 
     let isPresent = true;
-    for (let i = 0; i < this.addedItems.length; i++) {
+    
+    for (let i = 0; i < this.addedItems.length; i++) 
+    {
         let flag = await onlineStoreImpl.checkSearchItemReqults(this.addedItems[i]);
-        if (flag === false) {
+        if (flag === false) 
+        {
             isPresent = false;
         }
     }
@@ -64,14 +87,24 @@ Then("I should see all the matching items for {string} on Listing", async functi
 
 When("I search and add {string} {string} items as Favourite", async function (noOfItem, itemType) {
     let favoriteItemMap = new Map();
-    for (let i = 0; i < noOfItem; i++) 
-    {
-        let item = commonUtils.splitData(i, itemType);
-        await onlineStoreImpl.searchItem(item);
-        let totalFavoritesMarked = await onlineStoreImpl.clickOnFavoritesIcon(item);
-        I.wait(10);
-        favoriteItemMap.set(item,totalFavoritesMarked);
 
+    if(itemType.indexOf('[') > 0 && noOfItem==="1")
+    {
+        let item = await I.getData(itemType);
+        await onlineStoreImpl.searchItem(item);
+        itemArray.push(item);
+    }
+    else
+    {
+        for (let i = 0; i < noOfItem; i++) 
+        {
+            let item = await I.getData(itemType+"["+i+"]");
+            await onlineStoreImpl.searchItem(item);
+            let totalFavoritesMarked = await onlineStoreImpl.clickOnFavoritesIcon(item);
+            favoriteItemMap.set(item,totalFavoritesMarked);
+        }
+
+        
     }
     this.addedFavoriteItems = favoriteItemMap;
 
@@ -161,4 +194,12 @@ Then("I should see all baskets sorted from basket name",async function()
 {
     let isSorted = await onlineStoreImpl.verifySortedBaskets(this.sortOrder,this.originalBaskets,this.sortedBaskets);
     I.assertEqual(isSorted,true);
+});
+
+Given("I navigate to OnlineStore",async function()
+{
+   // await onlineStoreImpl.clickOnOnlineStoreLink();
+   await I.amOnPage(prop.DDS_OnlineStore_Url);
+   await onlineStoreImpl.waitForOnlineStoreToLoad();
+  
 });
