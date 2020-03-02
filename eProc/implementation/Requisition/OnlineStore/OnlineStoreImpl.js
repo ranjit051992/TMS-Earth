@@ -127,9 +127,9 @@ module.exports={
    async clickOnOnlineStoreLink()
    {
 
-       await I.scrollIntoView(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
-       await I.waitForVisible(I.getElement(iOnlineStore.ONLINE_STORE_LINK),prop.DEFAULT_MEDIUM_WAIT);
-       await I.click(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
+       I.scrollIntoView(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
+       I.waitForVisible(I.getElement(iOnlineStore.ONLINE_STORE_LINK),prop.DEFAULT_MEDIUM_WAIT);
+       I.click(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
    },
 
    /** 
@@ -141,8 +141,8 @@ module.exports={
     */
    async waitForOnlineStoreToLoad()
    {
-       await I.waitForInvisible(I.getElement(iOnlineStore.SPINNER),prop.DEFAULT_HIGH_WAIT);
-       await I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_HIGH_WAIT);
+       I.waitForInvisible(I.getElement(iOnlineStore.SPINNER),prop.DEFAULT_HIGH_WAIT);
+       I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_HIGH_WAIT);
        logger.info("Online Store page is loaded.");
    },
 

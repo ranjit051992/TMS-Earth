@@ -75,7 +75,7 @@ class ObjectCreation
         requisition.company = I.getData("ORGANIZATION_UNIT/COMPANY_NAME");
         requisition.businessUnit = I.getData("BUSINESS_UNIT_NAME");
         requisition.location = I.getData("LOCATION_NAME");
-        requisition.urgentRequirement = I.getData("No");
+       // requisition.urgentRequirement = I.getData("No");
         requisition.reasonForOrdering = I.getData("REASON_FOR_ORDERING");
         requisition.commentsForSupplier = I.getData("COMMENTS_FOR_SUPPLIERS");
         requisition.purchaseType = I.getData("PURCHASE_TYPE");

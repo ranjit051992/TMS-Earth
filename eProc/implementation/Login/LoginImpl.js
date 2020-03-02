@@ -23,7 +23,7 @@ module.exports = {
         logger.info(`Entered password --> ${password}`);
         I.click(I.getElement(iLogin.LOGIN_BUTTON));
         logger.info("Clicked on Login button");
-        I.waitForVisible(I.getElement(iLogin.DDS_LOGIN_PAGE));
+       // I.waitForVisible(I.getElement(iLogin.DDS_LOGIN_PAGE));
 
         I.amOnPage(global.confi_prop.DDS_OnlineStore_Url);
         I.waitForVisible(I.getElement(iLogin.REQ_TABLE_OPTION_ICON));
