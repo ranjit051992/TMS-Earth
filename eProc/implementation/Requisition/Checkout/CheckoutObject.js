@@ -65,6 +65,7 @@ module.exports= {
     SAVE_AS_DRAFT: "Checkout/SAVE_AS_DRAFT",
     CANCEL_BUTTON: "Checkout/CANCEL_BUTTON",
     CONTINUE_BUTTON: "Checkout/CONTINUE_BUTTON",
+    UPDATE_DRAFT_BUTTON: "Checkout/UPDATE_DRAFT_BUTTON",
 
     //Shipping Details And Asset Tagging
     LINE_LEVEL_ADDRESS: "Checkout/ItemDetails/Shipping Details And Asset Tagging/LINE_LEVEL_ADDRESS",
