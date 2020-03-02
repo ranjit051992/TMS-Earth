@@ -1,8 +1,9 @@
+const {I} = inject();
 const logger = require("../FrameworkUtilities/Logger/logger");
 
 class CommonUtilities
 {
-    splitData(index,key)
+    async splitData(index,key)
     {
         let value;
         let mapValue = I.getData(key);
@@ -23,7 +24,6 @@ class CommonUtilities
                 value = arrayVal[0];
             }
         }
-       
         return value;
     }
 }

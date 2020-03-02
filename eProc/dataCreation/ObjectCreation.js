@@ -1,6 +1,6 @@
 const { I } = inject();
 const faker = require("faker");
-const spo = require("../dataCreation/bo/Spo");
+const spoBO = require("../dataCreation/bo/Spo");
 const catalogItem = require("../dataCreation/bo/CatalogItem")
 const requisition = require("../dataCreation/bo/Requisition")
 const logger = require("../../Framework/FrameworkUtilities/Logger/logger");
@@ -29,8 +29,7 @@ class ObjectCreation
         spo.setBookCostAtLineItemLevel("No");
         spo.setBookCostToSingleMultipleCC("Yes");
         spo.setAssignCostProject("No");
-        // spo.setItemName(I.getData(itemType));
-        spo.items = this.getArrayOfItems(noOfItems,itemType);
+        spo.items = await this.getArrayOfItems(noOfItems,itemType);
         spo.setGlAccount(I.getData("GL_ACCOUNT"));
         spo.setCostCenter(I.getData("COST_CENTER"));
         spo.setTermsAndConditions("This is an auto generated term and condition");
@@ -41,28 +40,26 @@ class ObjectCreation
         return spo;
     }
 
-    getArrayOfItems(noOfItems,itemType)
+    async getArrayOfItems(noOfItems,itemType)
     {
-        
         let catalogItems = new Array();
         
         if(itemType==="Catalog")
         {
             for(let i =0;i<noOfItems;i++)
             {
-                let catalog = this.getObjectOfCatalogItem(i);
+                let catalog = await this.getObjectOfCatalogItem(i);
                 catalogItems[i] = catalog;
             }
         }
-
         
         return catalogItems;
     }
 
-    getObjectOfCatalogItem(itemIndex)
+    async getObjectOfCatalogItem(itemIndex)
     {
         let catalog = new catalogItem()
-        catalog.setItemName(commonUtilities.splitData(1,"ITEM_NAME_FOR_SEARCHING"));
+        catalog.setItemName(await commonUtilities.splitData(1,"ITEM_NAME_FOR_SEARCHING"));
         catalog.quantity = faker.random.number(20);
         return catalog;
     }

@@ -25,7 +25,8 @@
         "username": "prashant.patil@zycus.com",
         "password": "Pass@123",
         "testdataTable":"TestData_eproc",
-        "uiElementTable":"eProc_UI_Elements"
+        "uiElementTable":"eProc_UI_Elements",
+        "LOGIN_WITH_PASSWORD_MANAGER": false
     },
     "iContract": {
         "url": "https://dewdrops-partner.zycus.com/",
