@@ -1,17 +1,7 @@
 const { I } = inject();
 //const prop = require("../../../Framework/PropertiesConfigurator");
 const invoiceHomePage = require("../../pages/Invoice/invoiceHomePage");
-const loginPage = require("../../pages/Login/loginPage");
-const homePage = require("../../../eInvoice/pages/Home/homePage");
 const prop = global.confi_prop;
-
-Given('I logged in to the application', function () {
-    loginPage.login('poorva.qa2@zycus.com', 'Pass@123');
-});
-
-Given('I navigate to Invoice module', function () {
-    homePage.selectModule('Invoices');
-});
 
 Given('I search for a status', function () {
     invoiceHomePage.filterByStatus('Approved');
