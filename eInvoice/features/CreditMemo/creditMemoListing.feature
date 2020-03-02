@@ -1,4 +1,4 @@
-Feature:Credit Memo Listing
+Feature: Credit Memo Listing
 
  Background:
     Given I logged in to the application

@@ -1,4 +1,5 @@
-const I = actor();
+// const I = actor();
+const {I} = inject();
 module.exports = {
     menuBtn: ".menu-btn",
     listing: "dew-listing",
