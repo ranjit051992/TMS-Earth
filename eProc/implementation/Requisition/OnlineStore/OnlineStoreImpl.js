@@ -111,7 +111,6 @@ module.exports={
    async addItemToCart(itemName,quantity)
    {
         await this.searchItem(itemName);
-        I.wait(prop.DEFAULT_WAIT);
         await this.fillItemQuantity(itemName,quantity);
         await this.clickOnAddToCartButton(itemName);
         I.waitForVisible(I.getElement(iOnlineStore.ADD_TO_CART_SUCCESS_MSG),prop.DEFAULT_MEDIUM_WAIT);

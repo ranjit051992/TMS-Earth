@@ -24,17 +24,13 @@ When("I navigate to Buyers Desk", async function() {
     requisition.reqName = await checkoutImpl.fetchCreatedRequisitionName();
     logger.info('Requisiton Name is : '+reqBo.reqName);
     I.amOnPage(prop.DDS_AllRequests_Url);
-    I.wait(prop.DEFAULT_WAIT);
     await approvalImpl.approveDoc(requisition.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-    I.wait(prop.DEFAULT_WAIT);
     I.amOnPage(prop.DDS_BuyersDesk_Url)   
-    I.wait(prop.DEFAULT_WAIT);
 
  });
 
  When("I filter with Requisition number field", async function() {
    logger.info("Requsition number to be searched is "+requisition.reqNumber);
-  // buyersDeskImpl.FilterWithRequisitionNumber(requisition.reqNumber);
   await buyersDeskImpl.SearchRequisitionNumber(requisition.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
 
 

@@ -23,15 +23,10 @@ module.exports={
     { 
 
         cartImpl.clearCart();
-        I.wait(prop.DEFAULT_WAIT);
         await onlineStoreImpl.addItemToCart(requisitionBO.itemName, faker.random.number(20));
-        I.wait(prop.DEFAULT_WAIT);
         onlineStoreImpl.clickOnCartIcon();
-        I.wait(prop.DEFAULT_WAIT);
         I.waitForVisible(I.getElement(iCart.CART_ITEM_TABLE));
-        I.wait(prop.DEFAULT_WAIT);
         await cartImpl.clickOnCheckoutButton();
-        I.wait(prop.DEFAULT_WAIT);
         requisitionBO = await this.fillBasicDetails(requisitionBO);
 
         requisitionBO = await this.fillAdditionalDetails(requisitionBO);
@@ -45,7 +40,6 @@ module.exports={
          if(requisitionBO.nextAction === lmtVar.getLabel("SUBMIT"))
          {
             this.clickOnImDoneButton();
-            I.wait(prop.DEFAULT_MEDIUM_WAIT);
             this.clickOnContinueButton();
             commonComponent.waitForLoadingSymbolNotDisplayed();
             this.isRequisitionSubmitted();
@@ -72,7 +66,6 @@ module.exports={
         I.waitForVisible(I.getElement(iCart.REQUISITION_NUMBER),prop.DEFAULT_MEDIUM_WAIT);
         let reuisitionNo = await I.grabTextFrom(I.getElement(iCart.REQUISITION_NUMBER));
         logger.info("Created Requisition number is : "+reuisitionNo);
-        I.wait(prop.DEFAULT_WAIT);
         return reuisitionNo;
    },
 
