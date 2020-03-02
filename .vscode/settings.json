@@ -15,7 +15,8 @@
     "cucumberautocomplete.steps": [
         "./eProc/implementation/**/*.js",
         "./iContract/implementation/**/*.js",
+        "./eInvoice/implementation/**/*.js"
     ],
-    "cucumberautocomplete.syncfeatures": ["./Contract/feature/*.feature","./eProc/features/**/*.feature"],
+    "cucumberautocomplete.syncfeatures": ["./Contract/feature/*.feature","./eProc/features/**/*.feature","./eInvoice/features/**/*.feature"],
     "cucumberautocomplete.strictGherkinCompletion": true
 }

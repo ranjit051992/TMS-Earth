@@ -3,25 +3,28 @@ const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger")
 const iSpoObject = require("./SpoObject");
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const prop = global.confi_prop;
-const commonComponent = require("../../../commonKeywords/CommonComponent");
+const commonKeywordImpl = require("../../../commonKeywords/CommonComponent");
 const approvalImpl = require("../../Approval/ApprovalImpl");
 const poListingImpl = require("../PoListing/PoListingImpl");
 const poListingObject = require("../PoListing/PoListingObject");
 
+
 module.exports = {
     async clickOnCreatePOButton() {
-        await I.seeElement(I.getElement(iSpoObject.createPOButton));
+        await I.waitForVisible(I.getElement(iSpoObject.createPOButton));
         await I.click(I.getElement(iSpoObject.createPOButton));
         logger.info("Clicked on Create PO button");
     },
     async clickOnStandardPOButton() {
-        I.click(I.getElement(iSpoObject.standardPOButton));
+        await I.waitForVisible(I.getElement(iSpoObject.standardPOButton));
+        await I.click(I.getElement(iSpoObject.standardPOButton));
         await I.waitForVisible(I.getElement(iSpoObject.poNumberTextbox), prop.DEFAULT_MEDIUM_WAIT);
         I.saveScreenshot("CreateSpo.png");
         logger.info("Clicked on create standard po button.");
     },
     async fillPONumber(poNumber) {
-        I.fillField(I.getElement(iSpoObject.poNumberTextbox), poNumber);
+        await I.waitForVisible(I.getElement(iSpoObject.poNumberTextbox));
+        await I.fillField(I.getElement(iSpoObject.poNumberTextbox), poNumber);
         logger.info("Filled po number :" + poNumber);
     },
     async fetchPONumber() {
@@ -30,111 +33,138 @@ module.exports = {
         return poNumber;
     },
     async fillPODescription(poDescription) {
-        I.fillField(I.getElement(iSpoObject.poDescriptionTextbox), poDescription);
+        await I.waitForVisible(I.getElement(iSpoObject.poDescriptionTextbox));
+        await I.fillField(I.getElement(iSpoObject.poDescriptionTextbox), poDescription);
         logger.info("Filled po description :" + poDescription);
     },
     async clickOnPurchaseTypeDropdown() {
-        I.seeElement(I.getElement(iSpoObject.purchaseTypeDropdown));
-        I.click(I.getElement(iSpoObject.purchaseTypeDropdown));
+        await I.waitForVisible(I.getElement(iSpoObject.purchaseTypeDropdown));
+        await I.click(I.getElement(iSpoObject.purchaseTypeDropdown));
     },
     async selectPurchaseType(purchaseType) {
-        this.clickOnPurchaseTypeDropdown();
-        I.seeElement("//a[contains(text(),'" + purchaseType + "')]");
-        I.click("//a[contains(text(),'" + purchaseType + "')]");
+        await this.clickOnPurchaseTypeDropdown();
+        await I.waitForVisible("//a[contains(text(),'" + purchaseType + "')]");
+        await I.click("//a[contains(text(),'" + purchaseType + "')]");
         logger.info("Selected purchase type :" + purchaseType);
     },
     async clickOnBuyingUnitLink() {
-        I.click(I.getElement(iSpoObject.BUYING_UNIT_LINK));
+        await I.waitForVisible(I.getElement(iSpoObject.BUYING_UNIT_LINK));
+        await I.click(I.getElement(iSpoObject.BUYING_UNIT_LINK));
         logger.info("Clicked on Buying Unit link");
     },
     async fillCompany(company) {
-        I.click(I.getElement(iSpoObject.COMPANY_TEXTBOX));
-        I.clearField(I.getElement(iSpoObject.COMPANY_TEXTBOX));
-        I.fillField(I.getElement(iSpoObject.COMPANY_TEXTBOX), company);
-        this.selectOrganizationUnitOption(company);
+        await I.waitForVisible(I.getElement(iSpoObject.COMPANY_TEXTBOX));
+        await I.click(I.getElement(iSpoObject.COMPANY_TEXTBOX));
+        await I.clearField(I.getElement(iSpoObject.COMPANY_TEXTBOX));
+        await I.fillField(I.getElement(iSpoObject.COMPANY_TEXTBOX), company);
+        await this.selectOrganizationUnitOption(company);
         company = await I.grabAttributeFrom(I.getElement(iSpoObject.COMPANY_TEXTBOX), "value");
         logger.info(`Selected company --> ${company}`);
         return company;
     },
     async fillBusinessUnit(businessUnit) {
-        I.click(I.getElement(iSpoObject.BUSINESS_UNIT_TEXTBOX));
-        I.clearField(I.getElement(iSpoObject.BUSINESS_UNIT_TEXTBOX));
-        I.fillField(I.getElement(iSpoObject.BUSINESS_UNIT_TEXTBOX), businessUnit);
-        this.selectOrganizationUnitOption(businessUnit);
+        await I.waitForVisible(I.getElement(iSpoObject.BUSINESS_UNIT_TEXTBOX));
+        await I.click(I.getElement(iSpoObject.BUSINESS_UNIT_TEXTBOX));
+        await I.clearField(I.getElement(iSpoObject.BUSINESS_UNIT_TEXTBOX));
+        await I.fillField(I.getElement(iSpoObject.BUSINESS_UNIT_TEXTBOX), businessUnit);
+        await this.selectOrganizationUnitOption(businessUnit);
         businessUnit = await I.grabAttributeFrom(I.getElement(iSpoObject.BUSINESS_UNIT_TEXTBOX), "value");
         logger.info(`Selected business unit --> ${businessUnit}`);
         return businessUnit;
     },
     async fillLocation(location) {
-        I.click(I.getElement(iSpoObject.LOCATION_TEXTBOX));
-        I.clearField(I.getElement(iSpoObject.LOCATION_TEXTBOX));
-        I.fillField(I.getElement(iSpoObject.LOCATION_TEXTBOX), location);
-        this.selectOrganizationUnitOption(location);
+        await I.waitForVisible(I.getElement(iSpoObject.LOCATION_TEXTBOX));
+        await I.click(I.getElement(iSpoObject.LOCATION_TEXTBOX));
+        await I.clearField(I.getElement(iSpoObject.LOCATION_TEXTBOX));
+        await I.fillField(I.getElement(iSpoObject.LOCATION_TEXTBOX), location);
+        await this.selectOrganizationUnitOption(location);
         location = await I.grabAttributeFrom(I.getElement(iSpoObject.LOCATION_TEXTBOX), "value");
         logger.info(`Selected location --> ${location}`);
         return location;
     },
     async clickOnOuModalDoneButton() {
-        I.click(I.getElement(iSpoObject.OU_MODAL_DONE_BUTTON));
+        await I.waitForVisible(I.getElement(iSpoObject.OU_MODAL_DONE_BUTTON));
+        await I.click(I.getElement(iSpoObject.OU_MODAL_DONE_BUTTON));
         await I.waitForInvisible(I.getElement(iSpoObject.OU_MODAL_DONE_BUTTON));
         logger.info(`Clicked on OU modal Done button`);
     },
     async fetchBillToAddress() {
+        await I.waitForVisible(I.getElement(iSpoObject.BILL_TO_ADDRESS_VALUE));
         let billToAddress = await I.grabTextFrom(I.getElement(iSpoObject.BILL_TO_ADDRESS_VALUE));
         logger.info(`Clicked on OU modal Done button`);
         return billToAddress;
     },
     async fillSupplierName(supplierName) {
-        I.fillField(I.getElement(iSpoObject.supplierNameTextbox), supplierName);
+        await I.waitForVisible(I.getElement(iSpoObject.supplierNameTextbox), supplierName);
+        await I.fillField(I.getElement(iSpoObject.supplierNameTextbox), supplierName);
     },
     async selectSupplierName(supplierName) {
-        I.click("//p[@title='" + supplierName + "']");
+        let supplierNameXpath = "//p[@title='" + supplierName + "']";
+        await I.waitForVisible(supplierNameXpath);
+        await I.click(supplierNameXpath);
         logger.info("Selected supplier name :" + supplierName);
     },
     async fillSupplierAddress(address) {
-        I.fillField(I.getElement(iSpoObject.supplierAddressTextbox), address);
+        await I.waitForVisible(I.getElement(iSpoObject.supplierAddressTextbox), address);
+        await I.fillField(I.getElement(iSpoObject.supplierAddressTextbox), address);
     },
     async selectSupplierAddress(address) {
-        I.click("//p[contains(text(),'" + address + "')]");
+        let supplierAddressXpath = "//p[contains(text(),'" + address + "')]";
+        await I.waitForVisible(supplierAddressXpath);
+        await I.click(supplierAddressXpath);
         logger.info("Selected supplier address :" + address);
     },
     async clickOnPaymentTermDropdown() {
-        I.click(I.getElement(iSpoObject.paymentTermDropdown));
+        await I.waitForVisible(I.getElement(iSpoObject.paymentTermDropdown));
+        await I.click(I.getElement(iSpoObject.paymentTermDropdown));
     },
     async selectPaymentTerm(paymentTerm) {
-        I.click("//div[contains(@title,'" + paymentTerm + "')]");
+        let paymentTermXpath = "//div[contains(@title,'" + paymentTerm + "')]";
+        await I.scrollIntoView(paymentTermXpath);
+        await I.wait(prop.DEFAULT_WAIT);
+        await I.waitForVisible(paymentTermXpath);
+        await I.click(paymentTermXpath);
         logger.info("Selected payment term :" + paymentTerm);
+        return paymentTerm;
     },
     async clickOnDeliveryTermDropdown() {
-        I.click(I.getElement(iSpoObject.deliveryTermDropdown));
+        await I.waitForVisible(I.getElement(iSpoObject.deliveryTermDropdown));
+        await I.click(I.getElement(iSpoObject.deliveryTermDropdown));
     },
     async selectDeliveryTerm(deliveryTerm) {
-        I.click("//div[contains(@title,'" + deliveryTerm + "')]");
+        let deliveryTermXpath = "//div[contains(@title,'" + deliveryTerm + "')]";
+        await I.waitForVisible(deliveryTermXpath);
+        await I.click(deliveryTermXpath);
         logger.info("Selected delivery term :" + deliveryTerm);
     },
     async fillCurrency(currency) {
-        I.fillField(I.getElement(iSpoObject.currencyTextbox), currency);
+        await I.waitForVisible(I.getElement(iSpoObject.currencyTextbox));
+        await I.fillField(I.getElement(iSpoObject.currencyTextbox), currency);
     },
     async selectCurrency(currency) {
-        I.click("//span[contains(text(),'" + currency + "')]");
+        let currencyXpath = "//span[contains(text(),'" + currency + "')]";
+        await I.waitForVisible(currencyXpath);
+        await I.click(currencyXpath);
         logger.info("Selected currency :" + currency);
     },
     async fillBuyer(buyer) {
-        I.fillField(I.getElement(iSpoObject.buyerTextbox), buyer);
-        this.selectBuyer(buyer);
+        await I.waitForVisible(I.getElement(iSpoObject.buyerTextbox));
+        await I.fillField(I.getElement(iSpoObject.buyerTextbox), buyer);
+        await this.selectBuyer(buyer);
         buyer = await I.grabAttributeFrom(I.getElement(iSpoObject.buyerTextbox), "value");
         return buyer;
     },
     async selectBuyer(buyer) {
-        I.seeElement("//span[contains(text(),'" + buyer + "')]");
-        I.click("//span[contains(text(),'" + buyer + "')]");
+        await I.waitForVisible("//span[contains(text(),'" + buyer + "')]");
+        await I.click("//span[contains(text(),'" + buyer + "')]");
         logger.info("Selected buyer :" + buyer);
     },
     async selectDeliverTo(deliverTo) {
-        I.click(I.getElement(iSpoObject.DELIVER_TO_TEXTBOX));
-        I.clearField(I.getElement(iSpoObject.DELIVER_TO_TEXTBOX));
-        I.fillField(I.getElement(iSpoObject.DELIVER_TO_TEXTBOX), deliverTo);
-        this.selectDeliverToOption(deliverTo);
+        await I.waitForVisible(I.getElement(iSpoObject.DELIVER_TO_TEXTBOX));
+        await I.click(I.getElement(iSpoObject.DELIVER_TO_TEXTBOX));
+        await I.clearField(I.getElement(iSpoObject.DELIVER_TO_TEXTBOX));
+        await I.fillField(I.getElement(iSpoObject.DELIVER_TO_TEXTBOX), deliverTo);
+        await this.selectDeliverToOption(deliverTo);
         deliverTo = await I.grabAttributeFrom(I.getElement(iSpoObject.DELIVER_TO_TEXTBOX), "value");
         logger.info(`Selected deliverTo -->${deliverTo}`);
         return deliverTo;
@@ -162,138 +192,143 @@ module.exports = {
             }
         }
     },
-    async  clickonTab(tabList, tabName) {
-        I.scrollIntoView("//dew-section//div[contains(text(),'" + tabName + "')]");
-        I.wait(prop.DEFAULT_WAIT);
+    async clickonTab(tabList, tabName) {
+        await I.scrollIntoView("//dew-section//div[contains(text(),'" + tabName + "')]");
+        await I.wait(prop.DEFAULT_WAIT);
         logger.info(`Scrolled to section --> ${tabName}`);
     },
     async clickOnCostAllocationTab() {
-        I.seeElement(I.getElement(iSpoObject.COST_ALLOCATION_TAB));
-        I.click(I.getElement(iSpoObject.COST_ALLOCATION_TAB));
+        await I.waitForVisible(I.getElement(iSpoObject.COST_ALLOCATION_TAB));
+        await I.click(I.getElement(iSpoObject.COST_ALLOCATION_TAB));
         logger.info("Clicked on Cost Allocation Tab");
     },
     async clickOnAssignCostNOButton() {
-        I.seeElement(I.getElement(iSpoObject.ASSIGN_COST_PROJECT_NO_RADIO_BUTTON));
-        I.click(I.getElement(iSpoObject.ASSIGN_COST_PROJECT_NO_RADIO_BUTTON));
+        await I.waitForVisible(I.getElement(iSpoObject.ASSIGN_COST_PROJECT_NO_RADIO_BUTTON));
+        await I.click(I.getElement(iSpoObject.ASSIGN_COST_PROJECT_NO_RADIO_BUTTON));
         logger.info("Clicked on Assign cost Project No Button");
     },
     async clickOnBookCostToSingle_MultipleCostCenter() {
-        I.seeElement(I.getElement(iSpoObject.BOOK_COST_TO_SINGLE_MULTIPLE_COST_CENTER_RADIO_BUTTON));
-        I.click(I.getElement(iSpoObject.BOOK_COST_TO_SINGLE_MULTIPLE_COST_CENTER_RADIO_BUTTON));
+        await I.waitForVisible(I.getElement(iSpoObject.BOOK_COST_TO_SINGLE_MULTIPLE_COST_CENTER_RADIO_BUTTON));
+        await I.click(I.getElement(iSpoObject.BOOK_COST_TO_SINGLE_MULTIPLE_COST_CENTER_RADIO_BUTTON));
         logger.info("Clicked on Book Cost To Single/Multiple Cost center");
     },
     async enterCostCenter(costCenter) {
-        I.seeElement(I.getElement(iSpoObject.COST_CENTER_INPUT_FIELD));
-        I.fillField(I.getElement(iSpoObject.COST_CENTER_INPUT_FIELD), costCenter);
+        await I.waitForVisible(I.getElement(iSpoObject.COST_CENTER_INPUT_FIELD));
+        await I.fillField(I.getElement(iSpoObject.COST_CENTER_INPUT_FIELD), costCenter);
         const xpath = `//div[contains(text(),'${costCenter}')]`;
-        I.waitForVisible(xpath, prop.DEFAULT_MEDIUM_WAIT);
-        I.click(xpath);
+        await I.waitForVisible(xpath, prop.DEFAULT_MEDIUM_WAIT);
+        await I.click(xpath);
         costCenter = await I.grabAttributeFrom(I.getElement(iSpoObject.COST_CENTER_INPUT_FIELD), "value");
         logger.info(`Enter Cost Center: ${costCenter}`);
         return costCenter;
     },
     async selectReceiptCreationAtHeaderLevel() {
-        await I.executeScript(function() {
-            document.getElementById("customControlValidation2").click();
-        });
-        logger.info(`Selected Receipt Creation at Header Level`);
+        await I.waitForElement(I.getElement(iSpoObject.RECEIPT_CREATION_HEADER_LEVEL_BUTTON));
+        await commonKeywordImpl.clickUsingJsByXpath(I.getElement(iSpoObject.RECEIPT_CREATION_HEADER_LEVEL_BUTTON));
+        logger.info("Selected Receipt Creation at Header Level");
     },
     async selectDefaultReceiptCreation() {
-        await I.executeScript(function() {
-            document.getElementById("customRadioInline1").click();
-        });
-        logger.info(`Selected Default Receipt Creation`);
+        await I.waitForElement(I.getElement(iSpoObject.RECEIPT_HEADER_LEVEL_DEFAULT_RADIO_BUTTON));
+        await commonKeywordImpl.clickUsingJsByXpath(I.getElement(iSpoObject.RECEIPT_HEADER_LEVEL_DEFAULT_RADIO_BUTTON));
+        logger.info("Selected Default Receipt Creation");
     },
     async clickOnAddLineItemButton() {
-        I.seeElement(I.getElement(iSpoObject.ADD_LINE_ITEM_BUTTON));
-        I.click(I.getElement(iSpoObject.ADD_LINE_ITEM_BUTTON));
+        await I.waitForVisible(I.getElement(iSpoObject.ADD_LINE_ITEM_BUTTON));
+        await I.click(I.getElement(iSpoObject.ADD_LINE_ITEM_BUTTON));
         logger.info("Clicked on Add Line Item Button");
     },
     async enterItemName(itemName) {
-        I.seeElement(I.getElement(iSpoObject.ITEM_NAME_INPUT));
-        I.fillField(I.getElement(iSpoObject.ITEM_NAME_INPUT), itemName);
+        await I.waitForVisible(I.getElement(iSpoObject.ITEM_NAME_INPUT));
+        await I.fillField(I.getElement(iSpoObject.ITEM_NAME_INPUT), itemName);
         logger.info(`Entered item name: ${itemName}`);
     },
     async selectItemOption(itemName) {
-        I.seeElement(I.getElement(iSpoObject.FIRST_ITEMNAME_OPTION));
-        I.click(I.getElement(iSpoObject.FIRST_ITEMNAME_OPTION));
+        await I.waitForVisible(I.getElement(iSpoObject.FIRST_ITEMNAME_OPTION));
+        await I.click(I.getElement(iSpoObject.FIRST_ITEMNAME_OPTION));
         logger.info(`Selected first item option: ${itemName}`);
     },
     async clickOnCostBookingLink(itemName) {
         let costBookingLink = `(//span[contains(text(),'${itemName}')]//ancestor::dew-row//following-sibling::dew-row//dew-flex-item[3])`;
-        I.seeElement(costBookingLink);
-        I.click(costBookingLink);
+        await I.waitForVisible(costBookingLink);
+        await I.click(costBookingLink);
         logger.info("Clicked on Cost booking Link");
     },
     async fillGlAccount(glAccount) {
-        I.seeElement(I.getElement(iSpoObject.GLACCOUNT));
-        I.fillField(I.getElement(iSpoObject.GLACCOUNT), glAccount);
+        await I.waitForVisible(I.getElement(iSpoObject.GLACCOUNT));
+        await I.fillField(I.getElement(iSpoObject.GLACCOUNT), glAccount);
         let glAccountSuggXpath = `//div[contains(text(),'${glAccount}')]`;
-        I.waitForVisible(glAccountSuggXpath, prop.DEFAULT_MEDIUM_WAIT);
-        I.click(glAccountSuggXpath);
+        await I.waitForVisible(glAccountSuggXpath, prop.DEFAULT_MEDIUM_WAIT);
+        await I.click(glAccountSuggXpath);
         glAccount = await I.grabAttributeFrom(I.getElement(iSpoObject.GLACCOUNT), "value");
         logger.info(`Selected GlAccount: ${glAccount}`);
         return glAccount;
     },
     async clickOnCostBookingSaveButton() {
-        I.seeElement(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
-        I.click(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
+        await I.waitForVisible(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
+        await I.click(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
+        await I.waitForVisible(I.getElement(iSpoObject.poDescriptionTextbox));
         logger.info("Clicked on Save Button");
     },
     async clickOnRemoveAllTaxesButton() {
-        I.seeElement(I.getElement(iSpoObject.REMOVE_ALL_TAXES_BUTTON));
-        I.click(I.getElement(iSpoObject.REMOVE_ALL_TAXES_BUTTON));
+        await I.waitForVisible(I.getElement(iSpoObject.REMOVE_ALL_TAXES_BUTTON));
+        await I.click(I.getElement(iSpoObject.REMOVE_ALL_TAXES_BUTTON));
         logger.info("Clicked on Remove All Taxes Button");
     },
     async clickOnSubmitPOButton() {
-        I.seeElement(I.getElement(iSpoObject.SUBMIT_PO_BUTTON));
-        I.click(I.getElement(iSpoObject.SUBMIT_PO_BUTTON));
+        await I.waitForVisible(I.getElement(iSpoObject.SUBMIT_PO_BUTTON));
+        await I.click(I.getElement(iSpoObject.SUBMIT_PO_BUTTON));
         logger.info("Clicked on Submit PO Button");
     },
     async clickOnConfirmButton() {
-        I.seeElement(I.getElement(iSpoObject.CONFIRM_BUTTON));
-        I.click(I.getElement(iSpoObject.CONFIRM_BUTTON));
+        await I.waitForVisible(I.getElement(iSpoObject.CONFIRM_BUTTON));
+        await I.click(I.getElement(iSpoObject.CONFIRM_BUTTON));
         logger.info("Clicked on Confirm button");
     },
     async selectOrganizationUnitOption(option) {
         let optionXpath = `//div[contains(text(),'${option}')]`;
-        I.seeElement(optionXpath);
-        I.click(optionXpath);
+        await I.waitForVisible(optionXpath);
+        await I.click(optionXpath);
         logger.info(`Selected option --> ${option}`);
     },
     async selectDeliverToOption(option) {
         let optionXpath = `//span[contains(text(),'${option}')]`;
-        I.seeElement(optionXpath);
-        I.click(optionXpath);
+        await I.waitForVisible(optionXpath);
+        await I.click(optionXpath);
         logger.info(`Selected Deliver To --> ${option}`);
     },
     async selectTaxInclusive() {
-        let checked = await I.executeScript(function() {
-            return document.getElementById("inclusive1").checked;
-        });
-        if(!checked) {
-            await I.executeScript(function() {
-                document.getElementById("inclusive1").click();
-            });
+        await I.waitForElement(I.getElement(iSpoObject.SPO_TAX_INCLUSIVE));
+        let selected = await commonKeywordImpl.isSelectedByXpath(I.getElement(iSpoObject.SPO_TAX_INCLUSIVE));
+        if(!selected) {
+            await commonKeywordImpl.clickUsingJsByXpath(I.getElement(iSpoObject.SPO_TAX_INCLUSIVE));
             logger.info("Selected Tax Inclusive");
         }
         else {
-            logger.info("Tax Inclusive is already checked");
+            logger.info("Tax Inclusive is already selected");
         }
     },
     async clickRemoveTaxesConfirmButton() {
-        I.click(I.getElement(iSpoObject.REMOVE_TAXES_CONFIRM_BUTTON));
-        logger.info(`Clicked on Remove Taxes Confirm button`);
+        let flag = await commonKeywordImpl.waitForElementVisible(I.getElement(iSpoObject.REMOVE_TAXES_CONFIRM_BUTTON), 90);
+        if(flag) {
+            await I.click(I.getElement(iSpoObject.REMOVE_TAXES_CONFIRM_BUTTON));
+            logger.info("Clicked on Remove taxes confirm button");
+        }
+        else {
+            logger.info("Remove taxes confirm button not displayed");
+        }
     },
     async fillTermsAndConditions(termsAndConditions) {
-        I.fillField(I.getElement(iSpoObject.TERMS_AND_CONDITIONS_TEXTBOX), termsAndConditions);
+        await I.waitForVisible(I.getElement(iSpoObject.TERMS_AND_CONDITIONS_TEXTBOX));
+        await I.fillField(I.getElement(iSpoObject.TERMS_AND_CONDITIONS_TEXTBOX), termsAndConditions);
         logger.info(`Entered terms and conditions --> ${termsAndConditions}`);
     },
     async fillNotes(notes) {
-        I.fillField(I.getElement(iSpoObject.NOTES_TEXTBOX), notes);
+        await I.waitForVisible(I.getElement(iSpoObject.NOTES_TEXTBOX));
+        await I.fillField(I.getElement(iSpoObject.NOTES_TEXTBOX), notes);
         logger.info(`Entered notes --> ${notes}`);
     },
     async fetchRequiredBy() {
+        await I.waitForVisible(I.getElement(iSpoObject.REQUIRED_BY));
         let requiredBy = await I.grabAttributeFrom(I.getElement(iSpoObject.REQUIRED_BY), "value");
         logger.info(`Selected Required By -->${requiredBy}`);
         return requiredBy;
@@ -327,19 +362,30 @@ module.exports = {
 
         await this.submitPo();
 
+        await poListingImpl.navigateToPoListing();
+
+        await commonKeywordImpl.searchDocOnListing(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+
+        let poNumber = await commonKeywordImpl.getDocNumber();
+
+        if(!poNumber.toString() === spo.poNumber) {
+            logger.info(`PO is not submitted. PO number fetched after submission --> ${poNumber}`);
+            throw new Error(`PO is not submitted. PO number fetched after submission --> ${poNumber}`);
+        }
+
         return spo;
     },
     async fillBasicDetails(spo) {
         logger.info(`**************Filling Basic Details**************`);
-        this.fillPONumber(spo.poNumber);
-        this.fillPODescription(spo.poDescription);
-        this.selectPurchaseType(spo.purchaseType);
+        await this.fillPONumber(spo.poNumber);
+        await this.fillPODescription(spo.poDescription);
+        await this.selectPurchaseType(spo.purchaseType);
         return spo;
     },
     async fillBillingInformation(spo) {
         logger.info(`**************Filling Billing Information**************`);
-        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_BILLING_INFORMATION_SECTION"));
-        this.clickOnBuyingUnitLink();
+        await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_BILLING_INFORMATION_SECTION"));
+        await this.clickOnBuyingUnitLink();
         await this.fillCompany(spo.company);
         await this.fillBusinessUnit(spo.businessUnit);
         await this.fillLocation(spo.location);
@@ -349,48 +395,48 @@ module.exports = {
     },
     async fillSupplierDetails(spo) {
         logger.info(`**************Filling Supplier Details**************`);
-        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_SUPPLIER_DETAILS_SECTION"));
-        this.fillSupplierName(spo.supplierName);
-        this.selectSupplierName(spo.supplierName);
-        this.fillSupplierAddress(spo.supplierAddress);
-        this.selectSupplierAddress(spo.supplierAddress)
-        this.clickOnPaymentTermDropdown();
-        this.selectPaymentTerm(spo.paymentTerm);
-        this.clickOnDeliveryTermDropdown();
-        this.selectDeliveryTerm(spo.deliveryTerm);
-        this.fillCurrency(spo.currency);
-        this.selectCurrency(spo.currency);
+        await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_SUPPLIER_DETAILS_SECTION"));
+        await this.fillSupplierName(spo.supplierName);
+        await this.selectSupplierName(spo.supplierName);
+        await this.fillSupplierAddress(spo.supplierAddress);
+        await this.selectSupplierAddress(spo.supplierAddress)
+        await this.clickOnPaymentTermDropdown();
+        await this.selectPaymentTerm(spo.paymentTerm);
+        await this.clickOnDeliveryTermDropdown();
+        await this.selectDeliveryTerm(spo.deliveryTerm);
+        await this.fillCurrency(spo.currency);
+        await this.selectCurrency(spo.currency);
         return spo
     },
     async fillBuyerAndOtherInformation(spo) {
         logger.info(`**************Filling Buyer and Other Information**************`);
-        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_BUYER_AND_OTHER_INFORMATION_SECTION"));
+        await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_BUYER_AND_OTHER_INFORMATION_SECTION"));
         let buyer = await this.fillBuyer(spo.buyer);
         spo.setBuyer(buyer);
         return spo
     },
     async fillShippingDetails(spo) {
         logger.info(`**************Filling Shipping Details**************`);
-        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_SHIPPING_DETAILS_SECTION"));
+        await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_SHIPPING_DETAILS_SECTION"));
         let deliverTo = await this.selectDeliverTo(spo.deliverTo);
         spo.setDeliverTo(deliverTo);
         // await this.selectRequiredByDate();
-        let requiredBy = this.fetchRequiredBy();
+        let requiredBy = await this.fetchRequiredBy();
         spo.setRequiredBy(requiredBy);
         return spo;
     },
     async fillCostAllocation(spo) {
         logger.info(`**************Filling Cost Allocation**************`);
-        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_COST_ALLOCATION_SECTION"));
-        this.clickOnAssignCostNOButton();
-        this.clickOnBookCostToSingle_MultipleCostCenter();
+        await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_COST_ALLOCATION_SECTION"));
+        await this.clickOnAssignCostNOButton();
+        await this.clickOnBookCostToSingle_MultipleCostCenter();
         let costCenter = await this.enterCostCenter(spo.costCenter);
         spo.setCostCenter(costCenter);
         return spo;
     },
     async fillControlSettings(spo) {
         logger.info(`**************Filling Control Settings**************`);
-        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_CONTROL_SETTINGS_SECTION"));
+        await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_CONTROL_SETTINGS_SECTION"));
         if (spo.receiptRuleAtHeaderLevel) {
             await this.selectReceiptCreationAtHeaderLevel();
             if (spo.receiptCreationDefault) {
@@ -402,37 +448,41 @@ module.exports = {
     async fillLineItems(spo) {
         logger.info(`**************Filling Line Items**************`);
         if(spo.taxInclusive) {
+            await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_TAXES_SECTION_SECTION"));
             await this.selectTaxInclusive();
-            this.clickRemoveTaxesConfirmButton();
+            await this.clickRemoveTaxesConfirmButton();
         }
-        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
-        this.clickOnAddLineItemButton();
-        this.enterItemName(spo.items[0].itemName);
-        this.selectItemOption(spo.items[0].itemName);
-        this.clickOnCostBookingLink(spo.items[0].itemName);
 
-        let glAccount = await this.fillGlAccount(spo.glAccount);
-        spo.setGlAccount(glAccount);
-        this.clickOnCostBookingSaveButton();
+        for(let i = 0; i < spo.items.length; i++) {
+            await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
+            await this.clickOnAddLineItemButton();
+            await this.enterItemName(spo.items[i].itemName);
+            await this.selectItemOption(spo.items[i].itemName);
+            await this.clickOnCostBookingLink(spo.items[i].itemName);
+            let glAccount = await this.fillGlAccount(spo.glAccount);
+            // spo.setGlAccount(glAccount);
+            await this.clickOnCostBookingSaveButton();
+        }
+
         return spo;
     },
     async fillTaxes(spo) {
         logger.info(`**************Filling Taxes**************`);
-        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_TAXES_SECTION_SECTION"));
-        this.clickOnRemoveAllTaxesButton();
+        await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_TAXES_SECTION_SECTION"));
+        await this.clickOnRemoveAllTaxesButton();
         return spo;
     },
     async fillAdditionalDetails(spo) {
         logger.info(`**************Filling Additional Details**************`);
-        this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_ADDITIONAL_DETAILS_SECTION"));
-        this.fillTermsAndConditions(spo.termsAndConditions);
-        this.fillNotes(spo.notes);
+        await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_ADDITIONAL_DETAILS_SECTION"));
+        await this.fillTermsAndConditions(spo.termsAndConditions);
+        await this.fillNotes(spo.notes);
         return spo;
     },
     async submitPo() {
         logger.info(`**************Submitting SPO**************`);
-        this.clickOnSubmitPOButton();
-        this.clickOnConfirmButton();
+        await this.clickOnSubmitPOButton();
+        await this.clickOnConfirmButton();
         await I.waitForVisible(I.getElement(iSpoObject.spinner));
         await I.waitForInvisible(I.getElement(iSpoObject.spinner), prop.DEFAULT_HIGH_WAIT);
         logger.info("Waited for loader to go off after submitting spo");
@@ -443,7 +493,7 @@ module.exports = {
         //  click on spo tab
         await approvalImpl.approveDoc(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
         await poListingImpl.navigateToPoListing();
-        await commonComponent.searchDocOnListing(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        await commonKeywordImpl.searchDocOnListing(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
         let status = await poListingImpl.getPoStatus();
         let flag = status.includes(lmtVar.getLabel("RELEASED_STATUS"));
         if(!flag) {
@@ -456,17 +506,72 @@ module.exports = {
         return spo;
     },
     async clickOnSaveAsDraftButton() {
-        await I.seeElement(I.getElement(iSpoObject.SPO_SAVE_AS_DRAFT_BUTTON));
-        await I.click(I.getElement(iSpoObject.SPO_SAVE_AS_DRAFT_BUTTON));
-        await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+        let saveAsDraftButtonXpath = `//button[contains(@aria-label,'${lmtVar.getLabel("SAVE_AS_DRAFT")}')]`;
+        logger.info(`Save as Draft button xpath --> ${saveAsDraftButtonXpath}`);
+        await I.waitForVisible(saveAsDraftButtonXpath);
+        await I.click(saveAsDraftButtonXpath);
         logger.info("Clicked on Save as Draft button");
     },
     async getItemNameOnSpoView(index) {
         let itemNameXpath = `(//eproc-line-items-view//span[contains(@class,'text-body-link')])[${index}]`;
-        await I.seeElement(itemNameXpath);
+        await I.waitForVisible(itemNameXpath);
         let itemName = await I.grabTextFrom(itemNameXpath);
         logger.info(`Retrieved item name --> ${itemName}`);
         return itemName;
+    },
+    async clickOnSpoViewActionMenuOption(option) {
+        let optionXpath = `//div[contains(text(),'${option}')]`;
+        await I.scrollIntoView(optionXpath);
+        I.wait(prop.DEFAULT_WAIT);
+        await I.waitForVisible(optionXpath);
+        await I.click(optionXpath);
+        logger.info(`Clicked on option --> ${option}`);
+    },
+    async fillViewSpoCancelPopupComments(comments) {
+        await I.waitForVisible(I.getElement(iSpoObject.CANCEL_SPO_POPUP_COMMENTS_TEXTAREA));
+        await I.click(I.getElement(iSpoObject.CANCEL_SPO_POPUP_COMMENTS_TEXTAREA));
+        await I.clearField(I.getElement(iSpoObject.CANCEL_SPO_POPUP_COMMENTS_TEXTAREA));
+        await I.fillField(I.getElement(iSpoObject.CANCEL_SPO_POPUP_COMMENTS_TEXTAREA), comments);
+        logger.info(`Entered comments --> ${comments}`);
+    },
+    async clickOnViewSpoPopupCancelButton() {
+        await I.waitForVisible(I.getElement(iSpoObject.CANCEL_SPO_POPUP_CANCEL_BUTTON));
+        await I.click(I.getElement(iSpoObject.CANCEL_SPO_POPUP_CANCEL_BUTTON));
+        logger.info("Clicked on Cancel button");
+    },
+    async fillAmendPoComments(comments) {
+        await I.scrollIntoView(I.getElement(iSpoObject.AMEND_PO_COMMENTS_TEXTAREA));
+        await I.wait(prop.DEFAULT_WAIT);
+        await I.waitForVisible(I.getElement(iSpoObject.AMEND_PO_COMMENTS_TEXTAREA));
+        await I.click(I.getElement(iSpoObject.AMEND_PO_COMMENTS_TEXTAREA));
+        await I.clearField(I.getElement(iSpoObject.AMEND_PO_COMMENTS_TEXTAREA));
+        await I.fillField(I.getElement(iSpoObject.AMEND_PO_COMMENTS_TEXTAREA), comments);
+        logger.info(`Entered po amend comments --> ${comments}`);
+    },
+    async clickOnShippingDetailsLink(itemName) {
+        let shippingDetailsLinkXpath = `(//span[contains(text(),'${itemName}')]//ancestor::dew-row//following-sibling::dew-row//dew-flex-item[1])`;
+        await I.waitForVisible(shippingDetailsLinkXpath);
+        await I.click(shippingDetailsLinkXpath);
+        logger.info("Clicked on Shipping Details Link");
+    },
+    async fillLineLevelAddress(address) {
+        address = await commonKeywordImpl.searchAndSelectFromDropdown(I.getElement(iSpoObject.LINE_LEVEL_ADDRESS_TEXTBOX), address, I.getElement(iSpoObject.LINE_LEVEL_ADDRESS_OPTION));
+        logger.info(`Selected delivery address --> ${address}`);
+        return address;
+    },
+    async getViewSpoLineLevelAddress() {
+        await I.waitForVisible(I.getElement(iSpoObject.VIEW_SPO_LINE_LEVEL_ADDRESS));
+        let address = await I.grabTextFrom(I.getElement(iSpoObject.VIEW_SPO_LINE_LEVEL_ADDRESS));
+        logger.info(`Retrieved address --> ${address}`);
+        return address;
+    },
+    async getSpoViewPaymentTermValue() {
+        let paymentTermXpath = `//eproc-supplier-information-view//div[contains(text(),'${lmtVar.getLabel("PAYMENT_TERMS_LABEL")}')]/../following-sibling::div`;
+        logger.info(`paymentTermXpath --> ${paymentTermXpath}`);
+        await I.waitForVisible(paymentTermXpath);
+        let paymentTerm = await (await I.grabTextFrom(paymentTermXpath, "value")).toString().trim();
+        logger.info("Retrieved payment term :" + paymentTerm);
+        return paymentTerm;
     },
 
     async createMultiplePOs(noOfPOs, noOfItems, itemType) {

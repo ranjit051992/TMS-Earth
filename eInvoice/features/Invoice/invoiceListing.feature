@@ -1,4 +1,4 @@
-Feature:Invoice Listing
+Feature: Invoice Listing
 
     Background:
         Given User logged in to the application

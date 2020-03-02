@@ -17,9 +17,9 @@ module.exports = {
     */
    async clickOnCheckoutButton()
    {
-       I.waitForVisible(I.getElement(iCart.CHECKOUT_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
-       I.waitForClickable(I.getElement(iCart.CHECKOUT_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
-       I.click(I.getElement(iCart.CHECKOUT_BUTTON));
+       await I.waitForVisible(I.getElement(iCart.CHECKOUT_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
+       await I.waitForClickable(I.getElement(iCart.CHECKOUT_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
+       await I.click(I.getElement(iCart.CHECKOUT_BUTTON));
        logger.info(`clicked on Checkout button`); 
    },
 
@@ -32,9 +32,9 @@ module.exports = {
     */
    async clickOnDeleteAllItemsButton()
    {
-       I.waitForVisible(I.getElement(iCart.DELETE_ALL_ITEMS_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
-       I.waitForClickable(I.getElement(iCart.DELETE_ALL_ITEMS_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
-       I.click(I.getElement(iCart.DELETE_ALL_ITEMS_BUTTON));
+       await I.waitForVisible(I.getElement(iCart.DELETE_ALL_ITEMS_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
+       await I.waitForClickable(I.getElement(iCart.DELETE_ALL_ITEMS_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
+       await I.click(I.getElement(iCart.DELETE_ALL_ITEMS_BUTTON));
    },
 
    /** 
@@ -46,9 +46,9 @@ module.exports = {
     */
    async clickOnConfirmPopupYesButton()
    {
-       I.waitForVisible(I.getElement(iCart.CONFIRM_POPUP_YES_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
-       I.waitForClickable(I.getElement(iCart.CONFIRM_POPUP_YES_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
-       I.click(I.getElement(iCart.CONFIRM_POPUP_YES_BUTTON));
+       await I.waitForVisible(I.getElement(iCart.CONFIRM_POPUP_YES_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
+       await I.waitForClickable(I.getElement(iCart.CONFIRM_POPUP_YES_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
+       await I.click(I.getElement(iCart.CONFIRM_POPUP_YES_BUTTON));
    },
     
     /** 
@@ -60,10 +60,10 @@ module.exports = {
     */
    async deleteAllItemsFromCart()
    {
-       this.clickOnDeleteAllItemsButton();
-       this.clickOnConfirmPopupYesButton();
-       I.waitForVisible(I.getElement(iCart.ITEM_DELETE_SUCCESS_MSG),prop.DEFAULT_HIGH_WAIT);
-       I.see(lmtVar.getLabel("EMPTY_CART_MSG"));
+       await this.clickOnDeleteAllItemsButton();
+       await this.clickOnConfirmPopupYesButton();
+       await I.waitForVisible(I.getElement(iCart.ITEM_DELETE_SUCCESS_MSG),prop.DEFAULT_HIGH_WAIT);
+       await I.see(lmtVar.getLabel("EMPTY_CART_MSG"));
        logger.info("Cart is cleared.");
    },
 
@@ -77,19 +77,33 @@ module.exports = {
     */
    async clearCart()
    {
-        I.waitForInvisible("//eproc-cart-spotlight//span[contains(text(),'"+lmtVar.getLabel("NA")+"')]",prop.DEFAULT_MEDIUM_WAIT);
-        // if(I.seeElement(I.getElement(iOnlineStore.CART_ITEM_ICON)))
-        // {
-            onlineStore.clickOnCartIcon();
-            this.deleteAllItemsFromCart();
-            onlineStore.clickOnOnlineStoreLink();
-            onlineStore.waitForOnlineStoreToLoad();
+        await I.waitForInvisible("//eproc-cart-spotlight//span[contains(text(),'"+lmtVar.getLabel("NA")+"')]",prop.DEFAULT_MEDIUM_WAIT);
+        let noOfElements = await I.grabNumberOfVisibleElements(global.uiElements.get(iOnlineStore.CART_ITEM_ICON));
+        logger.info("Cart Item count : "+noOfElements);
+        if(noOfElements>0)
+        {
+            await onlineStore.clickOnCartIcon();
+            await this.deleteAllItemsFromCart();
+            await onlineStore.clickOnOnlineStoreLink();
+            await onlineStore.waitForOnlineStoreToLoad();
             logger.info("Cart is cleared. Navigated to online store page.");
-        // }
-        // else
-        // {
-        //     logger.info("Cart is already empty.");
-        // }
+        }
+        else
+        {
+            logger.info("Cart is already empty.");
+        }
         
+   },
+
+   async checkItemsInCart(itemName)
+   {
+       let number = await I.grabNumberOfVisibleElements("//div[@class='table-body']//span[contains(text(),'"+itemName+"')]");
+       let isPresent = false;
+       if(number>0)
+       {
+           isPresent = true;
+       }
+
+       return isPresent;
    }
 }

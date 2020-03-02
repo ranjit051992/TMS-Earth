@@ -8,12 +8,13 @@ const spoImpl = require("./SpoImpl");
 const catalogItem = require("../../../dataCreation/bo/CatalogItem");
 const commonKeywordImpl = require("../../../commonKeywords/CommonComponent");
 const poListingImpl = require("../PoListing/PoListingImpl");
+const poListingObject = require("../PoListing/PoListingObject");
 
 Given("I am on PO listing page", async function () {
    await poListingImpl.navigateToPoListing();
 });
 
-Given("I Create Standard po with {string} {string} item", async function (noOfItems, itemType) {
+Given("I Create Standard po with {int} {string} item", async function (noOfItems, itemType) {
    this.spo = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
    this.spo = await spoImpl.createSpoFlow(this.spo);
 });
@@ -62,18 +63,21 @@ When("I add Required by date", async function() {
 });
 
 When("I search catalog item with {string}", async function(itemName) {
-   spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
-   spoImpl.clickOnAddLineItemButton();
-   spoImpl.enterItemName(this.spo.items[0].itemName);
-   spoImpl.selectItemOption(this.spo.items[0].itemName);
+   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
+   await spoImpl.clickOnAddLineItemButton();
+   await spoImpl.enterItemName(this.spo.items[0].itemName);
+   await spoImpl.selectItemOption(this.spo.items[0].itemName);
 });
 
 When("I add costing and accounting details for that item", async function() {
-   spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
-   spoImpl.clickOnCostBookingLink(this.spo.itemName);
+   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
+   await spoImpl.clickOnCostBookingLink(this.spo.items[0].itemName);
    let glAccount = await spoImpl.fillGlAccount(this.spo.glAccount);
    this.spo.setGlAccount(glAccount);
-   spoImpl.clickOnCostBookingSaveButton();
+   await spoImpl.clickOnCostBookingSaveButton();
+   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_TAXES_SECTION_SECTION"));
+   await spoImpl.selectTaxInclusive();
+   await spoImpl.clickRemoveTaxesConfirmButton();
 });
 
 When("I add 1 free text item with details", async function() {
@@ -92,7 +96,7 @@ When("I submit the PO", async function() {
 });
 
 When("I search for the created po", async function() {
-   await I.amOnPage(prop.poListingUrl)
+   await poListingImpl.navigateToPoListing();
    await commonKeywordImpl.searchDocOnListing(this.spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
 });
 
@@ -136,7 +140,7 @@ Then("PO status should be draft", async function() {
 
 Given("I have created and released a PO", async function() {
    this.spo = await objectCreation.getObjectOfStandardPO(1, "Catalog");
-   this.spo.poNumber = "blue sanity -/1728";
+   // this.spo.poNumber = "Automation_spo_287139784";
    this.spo = await spoImpl.createAndReleaseSpoFlow(this.spo);
 });
 
@@ -163,39 +167,153 @@ Then("I should be able to see the PO in closed status", async function() {
 
 When("I Save PO as draft", async function() {
    await spoImpl.clickOnSaveAsDraftButton();
+   await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
 });
 
 When("I edit the drafted PO", async function() {
    await poListingImpl.clickOnEditAction();
 });
 
-When("I add 1 catalog item", async function() {
-   // this.spo.items.push();     add data from db
+When("I add 1 catalog item {string}", async function(itemName1) {
+   this.spo.items[1] = objectCreation.getArrayOfItems(1, "Catalog");
+   this.spo.items[1].itemName = await I.getData(itemName1);
+   logger.info(`Retrieved item from db --> ${this.spo.items[1].itemName}`);
    await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
    await spoImpl.clickOnAddLineItemButton();
-   await spoImpl.enterItemName(spo.items[1].itemName);
-   await spoImpl.selectItemOption(spo.items[1].itemName);
-   await spoImpl.clickOnCostBookingLink(spo.items[1].itemName);
+   await spoImpl.enterItemName(this.spo.items[1].itemName);
+   await spoImpl.selectItemOption(this.spo.items[1].itemName);
+   await spoImpl.clickOnCostBookingLink(this.spo.items[1].itemName);
 
-   let glAccount = await await spoImpl.fillGlAccount(spo.glAccount);
-   spo.setGlAccount(glAccount);
+   let glAccount = await I.getData("GL_ACCOUNT");
+   await spoImpl.fillGlAccount(glAccount);
    await spoImpl.clickOnCostBookingSaveButton();
 });
 
-Then("PO should be saved", async function() {
-   await poListingImpl.navigateToPoListing();
-   let docNumber = await commonKeywordImpl.getDocNumber();
-   I.assertEqual(docNumber.toString(), this.spo.poNumber);
+Then("Item should be added {string} at index {int}", async function(itemName1, index) {
+   let itemNameFromDb = I.getData(itemName1);
+   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_VIEW_LINE_ITEMS_SECTION"));
+   let itemName = await spoImpl.getItemNameOnSpoView(index);
+   I.assertEqual(itemName.toString(), itemNameFromDb.toString());
 });
 
-Then("Item should be added", async function() {
-   await commonKeywordImpl.viewDocByDocNumber(this.spo.poNumber);
-   await I.seeElement(I.getElement(iSpoObject.PO_VIEW_BASIC_DETAILS_SECTION));
-   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_VIEW_LINE_ITEMS_SECTION"));
-   let itemName = await spoImpl.getItemNameOnSpoView(2);
-   I.assertEqual(itemName.toString(), this.spo.items[1].itemName);
+Given("I have submitted a SPO with a catalog item", async function() {
+   this.spo = await objectCreation.getObjectOfStandardPO(1, "Catalog");
+   this.spo = await spoImpl.createSpoFlow(this.spo);
+});
+
+Given("the PO is in In Approval status", async function() {
+   await poListingImpl.navigateToPoListing();
+   await commonKeywordImpl.searchDocOnListing(this.spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+   let status = await poListingImpl.getPoStatus();
+   let flag = status.toString() === lmtVar.getLabel("IN_APPROVAL_STATUS");
+   if(!flag) {
+      logger.info(`PO status is not ${lmtVar.getLabel("IN_APPROVAL_STATUS")}. Current status is ${status}`);
+      throw new Error(`PO status is not ${lmtVar.getLabel("IN_APPROVAL_STATUS")}. Current status is ${status}`);
+   }
+   else {
+      logger.info(`PO status is ${lmtVar.getLabel("SEARCH_BY_DOC_NUMBER")}`);
+   }
+});
+
+When("I click on Remind approver action against the PO", async function() {
+   await poListingImpl.clickOnRemindApproverAction();
+});
+
+Then("I should be able to send reminder to the approver", async function() {
+   await poListingImpl.clickOnSuccessPopupDoneButton();
+});
+
+When("I view the PO", async function() {
+   await poListingImpl.clickOnPoNumber();
+});
+
+When("I click on Cancel PO action within Actions tab", async function() {
+   await commonKeywordImpl.clickOnActionMenuIcon();
+   await spoImpl.clickOnSpoViewActionMenuOption(lmtVar.getLabel("CANCEL"));
+});
+
+When("I fill Cancel comments", async function() {
+   await spoImpl.fillViewSpoCancelPopupComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
+});
+
+When("I click on Cancel PO button on the confirmation Popup", async function() {
+   await spoImpl.clickOnViewSpoPopupCancelButton();
 });
 
 Given( "I have {int} POs In Approval status", async function() {
    await spoImpl.checkMultiplePOStatus();
+});
+
+Then("I should be able to see the PO in Cancelled status", async function() {
+   await poListingImpl.clickOnSuccessPopupDoneButton();
+   await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+   await commonKeywordImpl.searchDocOnListing(this.spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+   let status = await poListingImpl.getPoStatus();
+   let flag = status.toString() === lmtVar.getLabel("CANCELLED_STATUS");
+   if(!flag) {
+      logger.info(`PO status is not ${lmtVar.getLabel("CANCELLED_STATUS")}. Current status is --> ${status}`);
+      throw new Error(`PO status is not ${lmtVar.getLabel("CANCELLED_STATUS")}. Current status is --> ${status}`);
+   }
+   else {
+      logger.info("PO is Cancelled successfully");
+   }
+});
+
+When("I click on Amend PO", async function() {
+   await commonKeywordImpl.clickOnActionMenuOption(lmtVar.getLabel("AMEND_PO"));
+});
+
+When("I add amend PO comments", async function() {
+   await spoImpl.fillAmendPoComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
+});
+
+When("I submit the amendment", async function() {
+   await spoImpl.submitPo();
+   await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+});
+
+When("I view the amended PO", async function() {
+   await poListingImpl.clickOnPoNumber();
+});
+
+When("I scroll to Line Item section", async function() {
+   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
+});
+
+When("I click on Shipping Details link for item {string}", async function(itemName1) {
+   let itemName = await I.getData(itemName1);
+   await spoImpl.clickOnShippingDetailsLink(itemName);
+});
+
+When("I change the delivery address at line level to {string}", async function(address1) {
+   let address = await I.getData(address1);
+   await spoImpl.fillLineLevelAddress(address);
+});
+
+When("I save the delivery address", async function() {
+   await spoImpl.clickOnCostBookingSaveButton();
+   await I.seeElement(I.getElement(iSpoObject.poDescriptionTextbox));
+});
+
+Then("{string} delivery address should be displayed", async function(address1) {
+   let addressFromDb = await I.getData(address1);
+   let address = await spoImpl.getViewSpoLineLevelAddress();
+   let flag = address.toString().includes(addressFromDb.toString());
+   I.assertEqual(true, flag);
+});
+
+When("I change the payment term at line level to {string}", async function(paymentTerm1) {
+   let paymentTerm = await I.getData(paymentTerm1);
+   await spoImpl.clickOnPaymentTermDropdown();
+   await spoImpl.selectPaymentTerm(paymentTerm);
+});
+
+When("I scroll to Supplier Details section", async function() {
+   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_SUPPLIER_DETAILS_SECTION"));
+});
+
+Then("{string} payment term should be displayed", async function(paymentTerm1) {
+   let paymentTermFromDb = await I.getData(paymentTerm1);
+   let paymentTerm = await spoImpl.getSpoViewPaymentTermValue();
+   I.assertEqual(paymentTerm.toString(), paymentTermFromDb.toString());
 });
