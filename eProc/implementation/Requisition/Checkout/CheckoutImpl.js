@@ -23,7 +23,7 @@ module.exports={
     { 
 
         cartImpl.clearCart();
-
+        I.wait(prop.DEFAULT_WAIT);
         await onlineStoreImpl.addItemToCart(requisitionBO.itemName, faker.random.number(20));
         I.wait(prop.DEFAULT_WAIT);
         onlineStoreImpl.clickOnCartIcon();
@@ -74,6 +74,13 @@ module.exports={
         logger.info("Created Requisition number is : "+reuisitionNo);
         I.wait(prop.DEFAULT_WAIT);
         return reuisitionNo;
+   },
+
+   async fetchCreatedRequisitionName()
+   {
+        let reuisitionName = await I.grabTextFrom(I.getElement(iCart.REQUISITION_NAME));
+        logger.info("Created Requisition name is : "+reuisitionName);
+        return reuisitionName;
    },
  /** 
      * enterRequisitionName Enters Requsition Name

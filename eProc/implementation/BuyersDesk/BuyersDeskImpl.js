@@ -34,6 +34,15 @@ module.exports = {
         logger.info("Searched Requisition number is : "+requisitionNo);
         I.wait(prop.DEFAULT_WAIT);
         return requisitionNo;
+   },
+
+   async fetchSearchedRequisitionName()
+   {
+        I.waitForVisible(I.getElement(iBuyersDeskObject.REQUISITION_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
+        let requisitionName = await I.grabTextFrom(I.getElement(iBuyersDeskObject.REQUISITION_NAME_LISTING));
+        logger.info("Searched Requisition name is : "+requisitionName);
+        I.wait(prop.DEFAULT_WAIT);
+        return requisitionName;
    }
 
 }

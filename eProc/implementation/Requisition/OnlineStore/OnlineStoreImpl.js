@@ -96,8 +96,8 @@ module.exports={
    {
        await this.fillSearchItem(itemName);
        await this.clickOnSearchIcon();
-       await I.waitForVisible("//span[contains(text(),'"+itemName+"')]",prop.DEFAULT_MEDIUM_WAIT);
-       await I.seeElement("//span[contains(text(),'"+itemName+"')]");
+       I.waitForVisible("//span[contains(text(),'"+itemName+"')]",prop.DEFAULT_MEDIUM_WAIT);
+       I.seeElement("//span[contains(text(),'"+itemName+"')]");
        logger.info("Item is searched.");
    },
 
@@ -111,9 +111,10 @@ module.exports={
    async addItemToCart(itemName,quantity)
    {
         await this.searchItem(itemName);
+        I.wait(prop.DEFAULT_WAIT);
         await this.fillItemQuantity(itemName,quantity);
         await this.clickOnAddToCartButton(itemName);
-        await I.waitForVisible(I.getElement(iOnlineStore.ADD_TO_CART_SUCCESS_MSG),prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForVisible(I.getElement(iOnlineStore.ADD_TO_CART_SUCCESS_MSG),prop.DEFAULT_MEDIUM_WAIT);
         logger.info("Add to cart success msg is displayed. Item "+itemName+" is added to cart.");
    },
 

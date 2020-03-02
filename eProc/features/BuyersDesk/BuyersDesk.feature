@@ -49,7 +49,7 @@ Feature: BuyersDesk
     Scenario: To verify requisition name filter on buyer's desk 
     Given I am logged in eProc
 
-    When I navigate to Buyer Desk
+    When I navigate to Buyer Desk "1" "ITEM_NAME_FOR_SEARCHING"
     And I filter with requisition name field
 
     Then I should be see the data on the page on the basis on requisition name field

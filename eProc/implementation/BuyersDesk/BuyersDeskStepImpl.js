@@ -21,6 +21,8 @@ When("I navigate to Buyers Desk", async function() {
     this.reqBO = await checkoutImpl.createRequisitionFlow(reqBo);
     requisition.reqNumber = await checkoutImpl.fetchCreatedRequisitionNumber();
     logger.info('Requisition number created is : '+requisition.reqNumber);
+    requisition.reqName = await checkoutImpl.fetchCreatedRequisitionName();
+    logger.info('Requisiton Name is : '+reqBo.reqName);
     I.amOnPage(prop.DDS_AllRequests_Url);
     I.wait(prop.DEFAULT_WAIT);
     await approvalImpl.approveDoc(requisition.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
@@ -31,12 +33,17 @@ When("I navigate to Buyers Desk", async function() {
  });
 
  When("I filter with Requisition number field", async function() {
-   logger.info("Requsition number to be searched is "+requisition.reqNumber)
+   logger.info("Requsition number to be searched is "+requisition.reqNumber);
   // buyersDeskImpl.FilterWithRequisitionNumber(requisition.reqNumber);
   await buyersDeskImpl.SearchRequisitionNumber(requisition.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
 
 
  });
+
+ When("I filter with requisition name field", async function() {
+  logger.info("Requsition name to be searched is "+requisition.reqName);
+  await buyersDeskImpl.SearchRequisitionNumber(requisition.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+});
 
  When("I select multiple requisition with same currency, supplier, delivery address from listing page", async function() {
  
@@ -49,3 +56,10 @@ When("I navigate to Buyers Desk", async function() {
   I.assertEqual(searchedReqNo.toString(), requisition.reqNumber);
 
 });
+
+Then("I should be see the data on the page on the basis on requisition name field", async function() {
+  
+  let searchedReqName = await buyersDeskImpl.fetchSearchedRequisitionName();
+  I.assertEqual(searchedReqName.toString(), requisition.reqName);
+
+})
