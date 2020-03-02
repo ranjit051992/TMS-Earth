@@ -7,6 +7,7 @@ const commonKeywordImpl = require("../../../commonKeywords/CommonComponent");
 const approvalImpl = require("../../Approval/ApprovalImpl");
 const poListingImpl = require("../PoListing/PoListingImpl");
 const poListingObject = require("../PoListing/PoListingObject");
+const objectCreation = require("../../../dataCreation/ObjectCreation")
 
 
 module.exports = {
@@ -578,8 +579,8 @@ module.exports = {
         let POArray = new Array();
         for (let i=0; i<noOfPOs; i++)
         {
-        POArray[i] = await ObjectCreation.getObjectOfStandardPO(noOfItems, itemType);
-        POArray[i] = await spoImpl.createSpoFlow(this.POArray[i]);
+        POArray[i] = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
+        POArray[i] = await this.createSpoFlow(POArray[i]);
         }
         return POArray;
     },
