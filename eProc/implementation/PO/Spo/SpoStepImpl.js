@@ -16,7 +16,13 @@ Given("I am on PO listing page", async function () {
 
 Given("I Create Standard po with {int} {string} item", async function (noOfItems, itemType) {
    this.spo = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
+   //this.spo.poNumber = "Automation_Spo_1583163241883";
    this.spo = await spoImpl.createSpoFlow(this.spo);
+});
+
+Given( "I Create {int} Standard po with {string} {string} item", async function (noOfPOs, noOfItems, itemType) {
+   this.POArray = await spoImpl.createMultiplePOs(noOfPOs, noOfItems, itemType);
+   logger.info("Required number of POs created")
 });
 
 When("I click on Create PO button", async function() {
@@ -235,6 +241,10 @@ When("I click on Cancel PO button on the confirmation Popup", async function() {
    await spoImpl.clickOnViewSpoPopupCancelButton();
 });
 
+Given( "I have {int} POs In Approval status", async function() {
+   await spoImpl.checkMultiplePOStatus();
+});
+
 Then("I should be able to see the PO in Cancelled status", async function() {
    await poListingImpl.clickOnSuccessPopupDoneButton();
    await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
@@ -307,4 +317,11 @@ Then("{string} payment term should be displayed", async function(paymentTerm1) {
    let paymentTermFromDb = await I.getData(paymentTerm1);
    let paymentTerm = await spoImpl.getSpoViewPaymentTermValue();
    I.assertEqual(paymentTerm.toString(), paymentTermFromDb.toString());
+});
+
+Given( "I have PO with In Approval status", async function() {
+   await I.waitForVisible(I.getElement(poListingObject.SEARCH_TEXTBOX));
+   await commonKeywordImpl.searchDocOnListing(this.spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+   let status = await poListingImpl.getPoStatus();
+   I.assertEqual(status.toString(), lmtVar.getLabel("IN_APPROVAL_STATUS"));
 });

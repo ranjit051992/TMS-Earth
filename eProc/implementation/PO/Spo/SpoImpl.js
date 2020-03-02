@@ -7,6 +7,7 @@ const commonKeywordImpl = require("../../../commonKeywords/CommonComponent");
 const approvalImpl = require("../../Approval/ApprovalImpl");
 const poListingImpl = require("../PoListing/PoListingImpl");
 const poListingObject = require("../PoListing/PoListingObject");
+const objectCreation = require("../../../dataCreation/ObjectCreation")
 
 
 module.exports = {
@@ -574,4 +575,21 @@ module.exports = {
         return paymentTerm;
     },
 
+    async createMultiplePOs(noOfPOs, noOfItems, itemType) {
+        let POArray = new Array();
+        for (let i=0; i<noOfPOs; i++)
+        {
+        POArray[i] = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
+        POArray[i] = await this.createSpoFlow(POArray[i]);
+        }
+        return POArray;
+    },
+
+    async checkMultiplePOStatus(POArray) {
+        for (let i=0; i<POArray.length; i++) {
+            POArray[i] = await commonComponent.searchDocOnListing(POArray[i].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            let status = await poListingImpl.getPoStatus();
+            I.assertEqual(status,lmtVar.getLabel("IN_APPROVAL_STATUS"));
+        }
+    }
 }

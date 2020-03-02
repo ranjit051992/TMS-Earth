@@ -140,7 +140,7 @@ module.exports={
     },
 
     async enterDocNumberOrDescription(docDetail) {
-        await I.seeElement(I.getElement(poListingObject.SEARCH_TEXTBOX));
+        await I.waitForVisible(I.getElement(poListingObject.SEARCH_TEXTBOX));
         await I.click(I.getElement(poListingObject.SEARCH_TEXTBOX));
         await I.clearField(I.getElement(poListingObject.SEARCH_TEXTBOX));
         await I.fillField(I.getElement(poListingObject.SEARCH_TEXTBOX), docDetail);
@@ -161,10 +161,10 @@ module.exports={
         let optionXpath = `//dew-listing-search//div[contains(@class,'dropdown-menu')]//a[${index}]`;
         logger.info(`optionXpath --> ${optionXpath}`);
 
-        await I.seeElement(optionXpath);
+        await I.waitForVisible(optionXpath);
         await I.click(optionXpath);
         await I.wait(prop.DEFAULT_WAIT);
-        await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info(`Selected doc option --> ${option}`);
     },
     /**
