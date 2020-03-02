@@ -32,9 +32,10 @@ Then ("I see the same requester", () => {
 });
 
 Then ("I see the same Received on date", () => {
-    let date = ApprovalImpl.fetchReceivedOnDateOnReqApprovalListing();
-    let day = new Date().getDate();
-    I.assertEqual(day,date);
+    let receivedOn = ApprovalImpl.fetchReceivedOnDateOnReqApprovalListing();
+    let day = new Date();
+    let today = day.getMonth()+"/"+day.getDate()+"/"+day.getFullYear();
+    I.assertEqual(today, receivedOn);
 });
 
 Then ("I see the same Amount to be approved", () => {
@@ -93,23 +94,23 @@ Then ("I should be able to see the status of all POs as Delegated", async functi
     await ApprovalImpl.checkMultiplePOStatus();
 });
 
-Given ("I search for that PO name on PO approval listing", async function() {
-    await I.click(I.getElement(iApprovalObject.SEARCH_FIELD));
+When ("I search for that PO name on PO approval listing", async function() {
+    await I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
     await commonKeywordImpl.searchDocOnListing(this.spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-    I.waitForVisible(poListingObject.PO_NUMBER_LINK);
 });
 
 Then ("I see the same Buyer name displayed for the corresponding PO number", async function() {
-    await I.waitForVisible(poListingObject.PO_NUMBER_LINK);
-    let buyerName = await ApprovalImpl.fetchBuyerOnPoApprovalListing();
-    I.assertEqual(buyerName, this.spo.buyer);
+    //await I.waitForVisible(poListingObject.PO_NUMBER_LINK);
+    let buyerName = await ApprovalImpl.fetchBuyerOnPoApprovalListing(this.spo.buyer);
+    I.assertEqual(buyerName, this.spo.buyer.substring(0,9));
 });
 
 Then ("I see the same Received on date on PO Approval listing", async function() {
-    await I.waitForVisible(poListingObject.PO_NUMBER_LINK);
-    let date = await ApprovalImpl.fetchReceivedOnDateOnPOApprovalListing();
-    let day = new Date().getDate();
-    I.assertEqual(day, date);
+    //await I.waitForVisible(poListingObject.PO_NUMBER_LINK);
+    let receivedOn = await ApprovalImpl.fetchReceivedOnDateOnPOApprovalListing();
+    let day = new Date();
+    let today = day.getMonth()+"/"+day.getDate()+"/"+day.getFullYear();
+    I.assertEqual(today, receivedOn);
 });
 
 

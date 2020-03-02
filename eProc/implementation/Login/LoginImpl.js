@@ -29,7 +29,7 @@ module.exports = {
         I.amOnPage(global.confi_prop.DDS_OnlineStore_Url);
         I.waitForVisible(I.getElement(iLogin.REQ_TABLE_OPTION_ICON));
         logger.info("Navigated to DDS Online Store page");
-        onlinestore.waitForOnlineStoreToLoad();
+        //onlinestore.waitForOnlineStoreToLoad();
     },
     async loginWithPasswordManager() {
         logger.info("Logging with password manager");
