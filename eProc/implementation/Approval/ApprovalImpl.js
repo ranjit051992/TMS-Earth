@@ -47,14 +47,13 @@ module.exports = {
         return status;
     },
     async approveDoc(docNumber, searchBy){
-        await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+        I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
         await commonKeywordImpl.searchDocOnListing(docNumber, searchBy);
         await this.clickOnApproveAction();
         await this.fillApprovalComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
         await this.clickOnApproveSpoPopupApproveButton();
-        await I.wait(prop.DEFAULT_WAIT);
-        await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
-        await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
+        I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+        I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
         await commonKeywordImpl.searchDocOnListing(docNumber, searchBy);
         let status = await this.getSpoStatus();
         let flag = status === lmtVar.getLabel("APPROVED_STATUS")

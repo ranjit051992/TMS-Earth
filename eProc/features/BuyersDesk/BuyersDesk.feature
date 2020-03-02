@@ -21,7 +21,7 @@ Feature: BuyersDesk
     Scenario: To verify if buyer is able to convert Requisition to PO based on different criteria 
     Given I am logged in eProc
 
-    When I navigate to Buyers Desk
+    When I navigate to Buyers Desk 
     And I select multiple requisition with same currency, supplier, delivery address from listing page
     And I convert it to PO from listing
 
@@ -40,7 +40,7 @@ Feature: BuyersDesk
     Scenario: To verify filters on buyer's desk status filter
     Given I am logged in eProc
 
-    When I navigate to Buyer Desk
+    When I navigate to Buyer Desk "1" "ITEM_NAME_FOR_SEARCHING"
     And I filter with Requisition number field
 
     Then I should be see the data on the page on the basis on Requisition number field
@@ -49,7 +49,7 @@ Feature: BuyersDesk
     Scenario: To verify requisition name filter on buyer's desk 
     Given I am logged in eProc
 
-    When I navigate to Buyer Desk
+    When I navigate to Buyer Desk "1" "ITEM_NAME_FOR_SEARCHING"
     And I filter with requisition name field
 
     Then I should be see the data on the page on the basis on requisition name field

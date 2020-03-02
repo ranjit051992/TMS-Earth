@@ -205,6 +205,7 @@ class Requisition
     {
         this.nextAction = nextAction;
     }
+
 }
 
 module.exports = new Requisition();

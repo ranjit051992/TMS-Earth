@@ -96,8 +96,8 @@ module.exports={
    {
        await this.fillSearchItem(itemName);
        await this.clickOnSearchIcon();
-       await I.waitForVisible("//span[contains(text(),'"+itemName+"')]",prop.DEFAULT_MEDIUM_WAIT);
-       await I.seeElement("//span[contains(text(),'"+itemName+"')]");
+       I.waitForVisible("//span[contains(text(),'"+itemName+"')]",prop.DEFAULT_MEDIUM_WAIT);
+       I.seeElement("//span[contains(text(),'"+itemName+"')]");
        logger.info("Item is searched.");
    },
 
@@ -113,7 +113,7 @@ module.exports={
         await this.searchItem(itemName);
         await this.fillItemQuantity(itemName,quantity);
         await this.clickOnAddToCartButton(itemName);
-        await I.waitForVisible(I.getElement(iOnlineStore.ADD_TO_CART_SUCCESS_MSG),prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForVisible(I.getElement(iOnlineStore.ADD_TO_CART_SUCCESS_MSG),prop.DEFAULT_MEDIUM_WAIT);
         logger.info("Add to cart success msg is displayed. Item "+itemName+" is added to cart.");
    },
 
@@ -127,9 +127,9 @@ module.exports={
    async clickOnOnlineStoreLink()
    {
 
-       await I.scrollIntoView(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
-       await I.waitForVisible(I.getElement(iOnlineStore.ONLINE_STORE_LINK),prop.DEFAULT_MEDIUM_WAIT);
-       await I.click(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
+       I.scrollIntoView(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
+       I.waitForVisible(I.getElement(iOnlineStore.ONLINE_STORE_LINK),prop.DEFAULT_MEDIUM_WAIT);
+       I.click(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
    },
 
    /** 
@@ -141,8 +141,8 @@ module.exports={
     */
    async waitForOnlineStoreToLoad()
    {
-       await I.waitForInvisible(I.getElement(iOnlineStore.SPINNER),prop.DEFAULT_HIGH_WAIT);
-       await I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_HIGH_WAIT);
+       I.waitForInvisible(I.getElement(iOnlineStore.SPINNER),prop.DEFAULT_HIGH_WAIT);
+       I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_HIGH_WAIT);
        logger.info("Online Store page is loaded.");
    },
 

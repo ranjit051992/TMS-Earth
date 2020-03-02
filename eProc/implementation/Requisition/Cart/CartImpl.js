@@ -17,11 +17,13 @@ module.exports = {
     */
    async clickOnCheckoutButton()
    {
-       await I.waitForVisible(I.getElement(iCart.CHECKOUT_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
-       await I.waitForClickable(I.getElement(iCart.CHECKOUT_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
-       await I.click(I.getElement(iCart.CHECKOUT_BUTTON));
+       I.waitForVisible(I.getElement(iCart.CHECKOUT_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
+       I.waitForClickable(I.getElement(iCart.CHECKOUT_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
+       I.click(I.getElement(iCart.CHECKOUT_BUTTON));
        logger.info(`clicked on Checkout button`); 
    },
+
+
 
    /** 
      * clicks on checkout button
@@ -32,9 +34,9 @@ module.exports = {
     */
    async clickOnDeleteAllItemsButton()
    {
-       await I.waitForVisible(I.getElement(iCart.DELETE_ALL_ITEMS_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
-       await I.waitForClickable(I.getElement(iCart.DELETE_ALL_ITEMS_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
-       await I.click(I.getElement(iCart.DELETE_ALL_ITEMS_BUTTON));
+       I.waitForVisible(I.getElement(iCart.DELETE_ALL_ITEMS_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
+       I.waitForClickable(I.getElement(iCart.DELETE_ALL_ITEMS_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
+       I.click(I.getElement(iCart.DELETE_ALL_ITEMS_BUTTON));
    },
 
    /** 
@@ -46,9 +48,9 @@ module.exports = {
     */
    async clickOnConfirmPopupYesButton()
    {
-       await I.waitForVisible(I.getElement(iCart.CONFIRM_POPUP_YES_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
-       await I.waitForClickable(I.getElement(iCart.CONFIRM_POPUP_YES_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
-       await I.click(I.getElement(iCart.CONFIRM_POPUP_YES_BUTTON));
+       I.waitForVisible(I.getElement(iCart.CONFIRM_POPUP_YES_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
+       I.waitForClickable(I.getElement(iCart.CONFIRM_POPUP_YES_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
+       I.click(I.getElement(iCart.CONFIRM_POPUP_YES_BUTTON));
    },
     
     /** 
@@ -62,8 +64,8 @@ module.exports = {
    {
        await this.clickOnDeleteAllItemsButton();
        await this.clickOnConfirmPopupYesButton();
-       await I.waitForVisible(I.getElement(iCart.ITEM_DELETE_SUCCESS_MSG),prop.DEFAULT_HIGH_WAIT);
-       await I.see(lmtVar.getLabel("EMPTY_CART_MSG"));
+       //I.waitForVisible(I.getElement(iCart.ITEM_DELETE_SUCCESS_MSG),prop.DEFAULT_HIGH_WAIT);
+      // I.see(lmtVar.getLabel("EMPTY_CART_MSG"));
        logger.info("Cart is cleared.");
    },
 
@@ -77,7 +79,7 @@ module.exports = {
     */
    async clearCart()
    {
-        await I.waitForInvisible("//eproc-cart-spotlight//span[contains(text(),'"+lmtVar.getLabel("NA")+"')]",prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForInvisible("//eproc-cart-spotlight//span[contains(text(),'"+lmtVar.getLabel("NA")+"')]",prop.DEFAULT_MEDIUM_WAIT);
         let noOfElements = await I.grabNumberOfVisibleElements(global.uiElements.get(iOnlineStore.CART_ITEM_ICON));
         logger.info("Cart Item count : "+noOfElements);
         if(noOfElements>0)
@@ -85,6 +87,7 @@ module.exports = {
             await onlineStore.clickOnCartIcon();
             await this.deleteAllItemsFromCart();
             await onlineStore.clickOnOnlineStoreLink();
+            logger.info("Navigated to DDS Online Store page");
             await onlineStore.waitForOnlineStoreToLoad();
             logger.info("Cart is cleared. Navigated to online store page.");
         }
