@@ -1,21 +1,21 @@
 Feature: Spo
 
-  Background:
-    Given I am logged in eProc
+  # Background:
+  #   Given I am logged in eProc
 
-  @omtag
-  Scenario: Create Standard PO
+  # @spotag
+  # Scenario: Create Standard PO
 
-  Given I am on PO listing page
+  # Given I am on PO listing page
     
-  And I Create Standard po with "2" "ITEM_NAME_FOR_SEARCHING" item
+  # And I Create Standard po with 1 "Catalog" item
   
   # And i search po by descr/iption 
 
 @Non_COA @L2     
 Scenario: To verify that user is able to create a SPO with single & multiple line items and with attachments in Zycus eproc
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I am on PO listing page 
 
 
@@ -35,34 +35,37 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 @Non_COA @L1
   Scenario: To verify that user is able to create a Req_PO with single and multiple line items and with attachments in Zycus eproc
 
-  Given I am logged in eproc 
+  Given I am logged in eProc 
   And I have submitted a requisition with two catalog items and header level attachments
 
   When I convert the requisition to PO
   And I navigate to PO listing
-  And I view the PO created
+  And I view the PO
 
   Then I should be able to see all the added items and attachments
 
 
-@Non_COA @L1
+@Non_COA @L1 @87
   Scenario: To verify that user is able to amend an existing PO to add more item
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created and released a PO
 
-  When I click on Amend PO
-  And I add a catalog item to it
+  When I click on option icon
+  And I click on Amend PO
+  And I add 1 catalog item "ITEM_NAME_FOR_SEARCHING[1]"
+  And I add amend PO comments
   And I submit the amendment
+  And I search for the created po
   And I view the amended PO
 
-  Then I should be able to see the new items in the amended version
+  Then Item should be added "ITEM_NAME_FOR_SEARCHING[1]" at index 2
 
 
 @Non_COA @L1
   Scenario: To verify that user is able to amend an existing PO to add more item via requisition
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created and released a PO
   And I have created a requisition with that PO linked
 
@@ -73,24 +76,32 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
   Then I should be able to see the new item added in the amended version.
 
 
-@Non_COA @L1
+@Non_COA @L1 @89
   Scenario: To verify that user is able to change the delivery address on PO amend
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created and released a PO
 
-  When I click on Amend PO
-  And I change the delivery address at line level
+  When I click on option icon
+  And I click on Amend PO
+  And I scroll to Line Item section
+  And I click on Shipping Details link for item "ITEM_NAME_FOR_SEARCHING"
+  And I change the delivery address at line level to "SPO_SHIP_TO_ADDRESS[1]"
+  And I save the delivery address
+  And I add amend PO comments
   And I submit the amendment
+  And I search for the created po
   And I view the amended PO
+  And I scroll to Line Item section
+  And I click on Shipping Details link for item "ITEM_NAME_FOR_SEARCHING"
 
-  Then I should be able to see the new items in the amended version
+  Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 
 
 @Non_COA @L1 @90
   Scenario: To verify that user is able to recall a PO after it is submitted
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I am on PO listing page
 
   When I click on Create PO button
@@ -117,24 +128,29 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
   Then PO status should be draft
 
 
-@Non_COA @L1
+@Non_COA @L1 @91
   Scenario: To verify that user is able to change the payment terms on PO amend
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created and released a PO
 
-  When I click on Amend PO
-  And I change the payment term at line level
+  When I click on option icon
+  And I click on Amend PO
+  And I scroll to Supplier Details section
+  And I change the payment term at line level to "PAYMENT_TERMS[1]"
+  And I add amend PO comments
   And I submit the amendment
+  And I search for the created po
   And I view the amended PO
+  And I scroll to Supplier Details section
 
-  Then I should be able to see the new items in the amended version
+  Then "PAYMENT_TERMS[1]" payment term should be displayed
 
 
 @Non_COA @L1 @92
   Scenario: To verify that user is able to close a SPO
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created and released a PO
 
   When I click on option icon
@@ -151,7 +167,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 @Non_COA @L1
   Scenario: To verify that user is able to close a Req_PO
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created a requisition 
   And I have converted it to PO
 
@@ -164,11 +180,12 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 @Non_COA @L1 @94
   Scenario: To verify that user is able to cancel a SPO 
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created and released a PO
 
-  When I click on option icon
+  When I view the PO
   And I click on Cancel PO action within Actions tab
+  And I fill Cancel comments
   And I click on Cancel PO button on the confirmation Popup
 
   Then I should be able to see the PO in Cancelled status
@@ -177,11 +194,11 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 @Non_COA @L1
   Scenario: To verify that user is able to cancel a Req_PO
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created a requisition 
   And I have converted it to PO
 
-  When I view the PO created 
+  When I view the PO
   And I click on Cancel PO action within Actions tab
   And I click on Cancel PO button on the confirmation Popup
 
@@ -191,7 +208,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 @Non_COA @L1
   Scenario: To verify that user is able to cancel a BPO
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created and released a BPO
 
   When I view the BPO created 
@@ -204,7 +221,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 @Non_COA @L1
   Scenario: To verify that user is able to create a blanket PO with attachments in Zycus P2P
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I am on PO listing page 
 
 
@@ -226,7 +243,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 @Non_COA @L1
   Scenario: To verify that user is able to choose a start date and an End Date
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I am on PO listing page 
 
 
@@ -246,7 +263,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 @Non_COA @L1
   Scenario: To verify that user is able to choose a spend limit
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I am on PO listing page 
 
 
@@ -268,7 +285,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 @Non_COA @L1
   Scenario: To verify that user is able to create PO releases against Blanket PO
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created a Blanket PO with a catalog item
 
   When I click on Create Release action against the BPO created
@@ -282,7 +299,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 @Non_COA @L1
   Scenario: To verify that user is able to view all the released orders generated against a  BPO on a new tab called "Release Orders"
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created a Blanket PO with a catalog item
   And I have created a release against the BPO.
 
@@ -295,7 +312,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 @Non_COA @L1
   Scenario: To verify that the PO Line item numbering when linking a new PR to an Amended PO should be unique (per item) with respect to all the versions of a PO existing in the system
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created and released a PO with a catalog item
   And I have created a requisition with that PO linked
 
@@ -308,7 +325,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 @Non_COA @L1
   Scenario: To verify that user is able to tag a free text item to a particular Blanket PO
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I am on PO listing page 
 
 
@@ -370,7 +387,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 @Non_COA @L1 @106
   Scenario: To verify that user is able to add item for the PO in draft state
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I am on PO listing page 
 
   When I click on Create PO button
@@ -387,31 +404,32 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
   And I am on PO listing page
   And I search for the created po
   And I edit the drafted PO
-  And I add 1 catalog item
+  And I add 1 catalog item "ITEM_NAME_FOR_SEARCHING[1]"
   And I submit the PO 
+  And I search for the created po
+  And I view the PO
 
-  Then PO should be saved
-  And Item should be added
+  Then Item should be added "ITEM_NAME_FOR_SEARCHING[1]" at index 2
 
 
 @Non_COA @L1
   Scenario: To verify that user is able to add item for the PO in draft state
 
-  Given I am logged in eproc 
+  Given I am logged in eProc 
   And I have submitted a requisition with a catalog item 
 
   When I navigate to Buyers desk listing
   And I click on Convert to PO button for the requisition created
   And I Save PO as draft
-  And I view the PO created
+  And I view the PO
 
   Then I should be able to see all the added items and attachments
 
 
-@Non_COA @L1
+@Non_COA @L1 @108
   Scenario: To verify remind approver action for SPO
 
-  Given I am logged in eproc 
+  Given I am logged in eProc 
   And I have submitted a SPO with a catalog item
   And the PO is in In Approval status
 
@@ -423,7 +441,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 @Non_COA @L1
   Scenario: To verify remind approver for req to PO
 
-  Given I am logged in eproc 
+  Given I am logged in eProc 
   And I have submitted a requisition with a catalog item 
 
   When I navigate to Buyers desk listing
@@ -437,7 +455,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 @Non_COA @L1
   Scenario: To verify the create invoice action within SPO
 
-  Given I am logged in eproc 
+  Given I am logged in eProc 
   And I have submitted a SPO with a catalog item
   And I approved the PO to release it.
 
@@ -454,7 +472,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 @Non_COA @L1
   Scenario: To verify the cancel action on invoice within SPO
 
-  Given I am logged in eproc 
+  Given I am logged in eProc 
   And I have submitted a SPO with a catalog item
   And approved the PO to release it.
 
@@ -474,7 +492,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 @Non_COA @L1
   Scenario: To verify the close action on invoice within SPO
 
-  Given I am logged in eproc 
+  Given I am logged in eProc 
   And I have submitted a SPO with a catalog item
   And approved the PO to release it.
 
@@ -494,7 +512,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 @Non_COA @L1
   Scenario: To verify the create invoice action within Req_PO
 
-  Given I am logged in eproc 
+  Given I am logged in eProc 
   And I have created a Req_PO with a catalog item
   And approved that PO to release it.
 
@@ -513,7 +531,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 @Non_COA @L1
   Scenario: To verify the cancel action on invoice within Req_PO
 
-  Given I am logged in eproc 
+  Given I am logged in eProc 
   And I have created a Req_PO with a catalog item
   And approved that PO to release it.
 
@@ -535,7 +553,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 @Non_COA @L1
   Scenario: To verify the close action on invoice within Req_PO
 
-  Given I am logged in eproc 
+  Given I am logged in eProc 
   And I have created a Req_PO with a catalog item
   And approved that PO to release it.
 
@@ -557,7 +575,7 @@ Scenario: To verify that user is able to create a SPO with single & multiple lin
 @COA @L1      
 Scenario: COA _ To verify that user is able to create a SPO with single & multiple line items and with attachments in Zycus eproc
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I am on PO listing page 
 
 
@@ -577,12 +595,12 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify that user is able to create a Req_PO with single and multiple line items and with attachments in Zycus eproc
 
-  Given I am logged in eproc 
+  Given I am logged in eProc 
   And I have submitted a requisition with two catalog items and header level attachments
 
   When I convert the requisition to PO
   And I navigate to PO listing
-  And I view the PO created
+  And I view the PO
 
   Then I should be able to see all the added items and attachments
 
@@ -590,7 +608,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify that user is able to amend an existing PO to add more item
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created and released a PO
 
   When I click on Amend PO
@@ -604,7 +622,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify that user is able to amend an existing PO to add more item via requisition
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created and released a PO
   And I have created a requisition with that PO linked
 
@@ -618,7 +636,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify that user is able to change the delivery address on PO amend
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created and released a PO
 
   When I click on Amend PO
@@ -632,7 +650,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify that user is able to recall a PO after it is submitted
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I am on PO listing page 
 
 
@@ -653,7 +671,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify that user is able to change the payment terms on PO amend
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created and released a PO
 
   When I click on Amend PO
@@ -667,7 +685,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify that user is able to close a SPO
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created and released a PO
 
   When I click on Close PO action against the PO
@@ -679,7 +697,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify that user is able to close a Req_PO
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created a requisition 
   And I have converted it to PO
 
@@ -692,10 +710,10 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify that user is able to cancel a SPO 
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created and released a PO
 
-  When I view the PO created 
+  When I view the PO
   And I click on Cancel PO action within Actions tab
   And I click on Cancel PO button on the confirmation Popup
 
@@ -705,11 +723,11 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify that user is able to cancel a Req_PO
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created a requisition 
   And I have converted it to PO
 
-  When I view the PO created 
+  When I view the PO
   And I click on Cancel PO action within Actions tab
   And I click on Cancel PO button on the confirmation Popup
 
@@ -719,7 +737,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify that user is able to cancel a BPO
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created and released a BPO
 
   When I view the BPO created 
@@ -732,7 +750,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify that user is able to create a blanket PO with attachments in Zycus P2P
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I am on PO listing page 
 
 
@@ -754,7 +772,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify that user is able to choose a start date and an End Date
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I am on PO listing page 
 
 
@@ -774,7 +792,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify that user is able to choose a spend limit
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I am on PO listing page 
 
 
@@ -796,7 +814,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify that user is able to create PO releases against Blanket PO
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created a Blanket PO with a catalog item
 
   When I click on Create Release action against the BPO created
@@ -810,7 +828,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify that user is able to view all the released orders generated against a  BPO on a new tab called "Release Orders"
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created a Blanket PO with a catalog item
   And I have created a release against the BPO.
 
@@ -823,7 +841,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify that the PO Line item numbering when linking a new PR to an Amended PO should be unique (per item) with respect to all the versions of a PO existing in the system
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I have created and released a PO with a catalog item
   And I have created a requisition with that PO linked
 
@@ -836,7 +854,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify that user is able to tag a free text item to a particular Blanket PO
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I am on PO listing page 
 
 
@@ -898,7 +916,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify that user is able to add item for the PO in draft state
 
-  Given I am logged in eproc
+  Given I am logged in eProc
   And I am on PO listing page 
 
 
@@ -919,13 +937,13 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify that user is able to add item for the PO in draft state
 
-  Given I am logged in eproc 
+  Given I am logged in eProc 
   And I have submitted a requisition with a catalog item 
 
   When I navigate to Buyers desk listing
   And I click on Convert to PO button for the requisition created
   And I Save PO as draft
-  And I view the PO created
+  And I view the PO
 
   Then I should be able to see all the added items and attachments
 
@@ -933,7 +951,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify remind approver action for SPO
 
-  Given I am logged in eproc 
+  Given I am logged in eProc 
   And I have submitted a SPO with a catalog item
   And the PO is in In Approval status
 
@@ -945,7 +963,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify remind approver for req to PO
 
-  Given I am logged in eproc 
+  Given I am logged in eProc 
   And I have submitted a requisition with a catalog item 
 
   When I navigate to Buyers desk listing
@@ -959,7 +977,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify the create invoice action within SPO
 
-  Given I am logged in eproc 
+  Given I am logged in eProc 
   And I have submitted a SPO with a catalog item
   And I approved the PO to release it.
 
@@ -976,7 +994,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify the cancel action on invoice within SPO
 
-  Given I am logged in eproc 
+  Given I am logged in eProc 
   And I have submitted a SPO with a catalog item
   And approved the PO to release it.
 
@@ -996,7 +1014,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify the close action on invoice within SPO
 
-  Given I am logged in eproc 
+  Given I am logged in eProc 
   And I have submitted a SPO with a catalog item
   And approved the PO to release it.
 
@@ -1016,7 +1034,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify the create invoice action within Req_PO
 
-  Given I am logged in eproc 
+  Given I am logged in eProc 
   And I have created a Req_PO with a catalog item
   And approved that PO to release it.
 
@@ -1035,7 +1053,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify the cancel action on invoice within Req_PO
 
-  Given I am logged in eproc 
+  Given I am logged in eProc 
   And I have created a Req_PO with a catalog item
   And approved that PO to release it.
 
@@ -1057,7 +1075,7 @@ Scenario: COA _ To verify that user is able to create a SPO with single & multip
 @COA @L1
   Scenario: COA _ To verify the close action on invoice within Req_PO
 
-  Given I am logged in eproc 
+  Given I am logged in eProc 
   And I have created a Req_PO with a catalog item
   And approved that PO to release it.
 
