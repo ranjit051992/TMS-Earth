@@ -238,5 +238,84 @@ module.exports = {
                 }
             });
         });
+    },
+
+    async getUser() {
+        const prop = global.confi_prop;
+        const connectionString = "Data Source=tcp:" + prop.DBhost + ",3306;Initial Catalog=" + prop.DBdatabase + ";User Id=" + prop.DBuser + ";Password=" + prop.DBpassword + ";";
+        //logger.info("connectionString  : " + connectionString);
+        const connectionObj = parser(connectionString);
+
+        //logger.info(columnName);
+        const query = `SELECT USERNAME,PASSWORD  FROM ${prop.UserTable} WHERE flag='true'`;
+        //logger.info(query);
+        return new Promise((resolve, reject) => {
+            let testDataMap = new Map();
+            //logger.info("Creating sql connection");
+            connection = mysql.createConnection(connectionObj);
+            //logger.info("Checking sql connection");
+            connection.connect(function (error) {
+                if (!!error) {
+                    //logger.info("Error1");
+                }
+                else {
+                    //logger.info("Connected");
+                    //logger.info("Triggering sql query");
+                    connection.query(query, function (error, rows, fields) {
+                        if (!!error) {
+                            //logger.info("Error in the query");
+                        }
+                        else {
+                            //logger.info("SUCCESS!");
+                            for (let i = 0; i < rows.length; i++) {
+                                let mapKey;
+                                let mapValue;
+                                testDataMap.set("USERNAME", rows[i].USERNAME);
+                                testDataMap.set("PASSWORD", rows[i].PASSWORD);
+                            }
+                            connection.destroy();
+                            //logger.info(`user map size --> ${testDataMap.size}`);
+                            resolve(testDataMap);
+                        }
+                    });
+                }
+            });
+        });
+    },
+
+    async updateUSER(userName,status) {
+        const prop = global.confi_prop;
+        //logger.info("userName  : " + userName);
+        const connectionString = "Data Source=tcp:" + prop.DBhost + ",3306;Initial Catalog=" + prop.DBdatabase + ";User Id=" + prop.DBuser + ";Password=" + prop.DBpassword + ";";
+        //logger.info("connectionString  : " + connectionString);
+        const connectionObj = parser(connectionString);
+        const query = `UPDATE eProc_credentials SET FLAG='${status}' WHERE USERNAME='${userName}'`;
+        //logger.info(query);
+        return new Promise((resolve, reject) => {
+            let testDataMap = new Map();
+            //logger.info("Creating sql connection");
+            connection = mysql.createConnection(connectionObj);
+            //logger.info("Checking sql connection");
+            connection.connect(function (error) {
+                if (!!error) {
+                    //logger.info("Error1");
+                }
+                else {
+                    //logger.info("Connected");
+                    //logger.info("Triggering sql query");
+                    connection.query(query, function (error, rows, fields) {
+                        if (!!error) {
+                            //logger.info("Error in the query");
+                            connection.destroy();
+                        }
+                        else {
+                            //logger.info("SUCCESS!");
+                            connection.destroy();
+                            resolve("RESOLVED");
+                        }
+                    });
+                }
+            });
+        });
     }
 };

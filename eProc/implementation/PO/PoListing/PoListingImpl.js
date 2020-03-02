@@ -11,24 +11,24 @@ module.exports = {
     async navigateToPoListing() {
         await I.amOnPage(prop.poListingUrl);
         await I.waitForInvisible(I.getElement(iSpoObject.spinner), prop.DEFAULT_MEDIUM_WAIT);
-        await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info("Navigated to Po Listing page");
     },
     async fillRecallApprovalRequestComments(comments) {
-        await I.seeElement(I.getElement(poListingObject.RECALL_APPROVAL_REQUEST_COMMENTS_TEXTAREA));
+        await I.waitForVisible(I.getElement(poListingObject.RECALL_APPROVAL_REQUEST_COMMENTS_TEXTAREA));
         await I.click(I.getElement(poListingObject.RECALL_APPROVAL_REQUEST_COMMENTS_TEXTAREA));
         await I.clearField(I.getElement(poListingObject.RECALL_APPROVAL_REQUEST_COMMENTS_TEXTAREA));
         await I.fillField(I.getElement(poListingObject.RECALL_APPROVAL_REQUEST_COMMENTS_TEXTAREA), comments);
         logger.info(`Entered recall comments --> ${comments}`);
     },
     async clickOnRecallButton() {
-        await I.seeElement(I.getElement(poListingObject.RECALL_APPROVAL_REQUEST_RECALL_BUTTON));
+        await I.waitForVisible(I.getElement(poListingObject.RECALL_APPROVAL_REQUEST_RECALL_BUTTON));
         await I.click(I.getElement(poListingObject.RECALL_APPROVAL_REQUEST_RECALL_BUTTON));
-        await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info("Clicked on Recall button");
     },
     async clickOnRecalledSuccessDoneButton() {
-        await I.seeElement(I.getElement(poListingObject.RECALLED_SUCCESS_DONE_BUTTON));
+        await I.waitForVisible(I.getElement(poListingObject.RECALLED_SUCCESS_DONE_BUTTON));
         await I.click(I.getElement(poListingObject.RECALLED_SUCCESS_DONE_BUTTON));
         logger.info("Clicked on Recalled Success Done button");
     },
@@ -36,42 +36,42 @@ module.exports = {
         await I.scrollIntoView(I.getElement(poListingObject.PO_STATUS));
         await I.wait(prop.DEFAULT_WAIT);
         logger.info("Scrolled to Status column");
-        await I.seeElement(I.getElement(poListingObject.PO_STATUS));
+        await I.waitForVisible(I.getElement(poListingObject.PO_STATUS));
         let status = await I.grabTextFrom(I.getElement(poListingObject.PO_STATUS));
         logger.info(`Retrieved status --> ${status}`);
         return status;
     },
     async fillClosePoComments(comments) {
-        await I.seeElement(I.getElement(poListingObject.CLOSE_PO_POPUP_COMMENTS_TEXTAREA));
+        await I.waitForVisible(I.getElement(poListingObject.CLOSE_PO_POPUP_COMMENTS_TEXTAREA));
         await I.click(I.getElement(poListingObject.CLOSE_PO_POPUP_COMMENTS_TEXTAREA));
         await I.clearField(I.getElement(poListingObject.CLOSE_PO_POPUP_COMMENTS_TEXTAREA));
         await I.fillField(I.getElement(poListingObject.CLOSE_PO_POPUP_COMMENTS_TEXTAREA), comments);
         logger.info(`Entered close po comments --> ${comments}`);
     },
     async clickOnClosePoButton() {
-        await I.seeElement(I.getElement(poListingObject.CLOSE_PO_POPUP_CLOSE_PO_BUTTON));
+        await I.waitForVisible(I.getElement(poListingObject.CLOSE_PO_POPUP_CLOSE_PO_BUTTON));
         await I.click(I.getElement(poListingObject.CLOSE_PO_POPUP_CLOSE_PO_BUTTON));
         logger.info("Clicked on Close PO button");
     },
     async clickOnClosedPoSuccessDoneButton() {
-        await I.seeElement(I.getElement(poListingObject.RECALLED_SUCCESS_DONE_BUTTON));
+        await I.waitForVisible(I.getElement(poListingObject.RECALLED_SUCCESS_DONE_BUTTON));
         await I.click(I.getElement(poListingObject.RECALLED_SUCCESS_DONE_BUTTON));
-        await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info("Clicked on Closed PO Success Done button");
     },
     async clickOnEditAction() {
-        await I.seeElement(I.getElement(poListingObject.EDIT_ACTION));
+        await I.waitForVisible(I.getElement(poListingObject.EDIT_ACTION));
         await I.click(I.getElement(poListingObject.EDIT_ACTION));
-        await I.seeElement(I.getElement(iSpoObject.poNumberTextbox));
+        await I.waitForVisible(I.getElement(iSpoObject.poNumberTextbox));
         logger.info("Clicked on PO edit action");
     },
     async clickOnRemindApproverAction() {
-        await I.seeElement(I.getElement(approvalObject.APPROVE_ACTION));
+        await I.waitForVisible(I.getElement(approvalObject.APPROVE_ACTION));
         await I.click(I.getElement(approvalObject.APPROVE_ACTION));
         logger.info("Clicked on Remind Approver action");
     },
     async clickOnSuccessPopupDoneButton() {
-        await I.seeElement(I.getElement(poListingObject.RECALLED_SUCCESS_DONE_BUTTON));
+        await I.waitForVisible(I.getElement(poListingObject.RECALLED_SUCCESS_DONE_BUTTON));
         await I.click(I.getElement(poListingObject.RECALLED_SUCCESS_DONE_BUTTON));
         logger.info("Clicked on Success popup Done button");
     },
@@ -80,12 +80,12 @@ module.exports = {
         await commonKeywordImpl.searchDocOnListing(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
         await commonKeywordImpl.clickOnActionMenuIcon();
         await commonKeywordImpl.clickOnActionMenuOption(lmtVar.getLabel("AMEND_PO"));
-        await I.seeElement(I.getElement(iSpoObject.poDescriptionTextbox));
+        await I.waitForVisible(I.getElement(iSpoObject.poDescriptionTextbox));
         logger.info("Opened po in amend mode");
     },
     async clickOnPoNumber() {
         await commonKeywordImpl.clickOnDocNumberLink();
-        await I.seeElement(I.getElement(iSpoObject.PO_VIEW_BASIC_DETAILS_SECTION));
+        await I.waitForVisible(I.getElement(iSpoObject.PO_VIEW_BASIC_DETAILS_SECTION));
     },
     
 }

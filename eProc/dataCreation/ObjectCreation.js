@@ -26,7 +26,8 @@ class ObjectCreation
         spo.setDeliveryTerm(I.getData("DELIVERY_TERMS"));
         spo.setCurrency(I.getData("CURRENCY_TYPE"));
         spo.setBuyer(I.getData("BUYER_NAME"));
-        spo.setDeliverTo(I.getData("DELIVERES_TO/OWNER"));
+        // spo.setDeliverTo(I.getData("DELIVERES_TO/OWNER"));
+        spo.setDeliverTo(global.users.get("USERNAME"));
         spo.setBookCostAtLineItemLevel("No");
         spo.setBookCostToSingleMultipleCC("Yes");
         spo.setAssignCostProject("No");
@@ -61,6 +62,7 @@ class ObjectCreation
     {
         let catalog = new catalogItem()
         catalog.setItemName(await commonUtilities.splitData(1,"ITEM_NAME_FOR_SEARCHING"));
+        // catalog.setItemName(I.getData("ITEM_NAME_FOR_SEARCHING[3]"));
         catalog.quantity = faker.random.number(20);
         return catalog;
     }
@@ -82,7 +84,7 @@ class ObjectCreation
         requisition.shipToDefaultAddress = "Yes";
         requisition.shipToAnotherAddress = "No";
         //requisition.deliverTo = I.getData("DELIVERES_TO/OWNER");
-        requisition.deliverTo = (prop.username);
+        requisition.deliverTo = (global.users.get("USERNAME"));
         //requisition.requiredBy = faker.date.
         requisition.assignCostProject = "No";
         requisition.bookCostToSingleMultipleCC= "Yes";
