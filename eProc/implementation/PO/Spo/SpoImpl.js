@@ -7,6 +7,7 @@ const commonComponent = require("../../../commonKeywords/CommonComponent");
 const approvalImpl = require("../../Approval/ApprovalImpl");
 const poListingImpl = require("../PoListing/PoListingImpl");
 const poListingObject = require("../PoListing/PoListingObject");
+const objectCreation = require("../../../dataCreation/ObjectCreation")
 
 module.exports = {
     async clickOnCreatePOButton() {
@@ -262,10 +263,10 @@ module.exports = {
         logger.info(`Selected option --> ${option}`);
     },
     async selectDeliverToOption(option) {
-        let optionXpath = `//span[contains(text(),'${option}')]`;
-        I.seeElement(optionXpath);
-        I.click(optionXpath);
-        logger.info(`Selected Deliver To --> ${option}`);
+        let optionXpath = await `//span[contains(text(),'${option}')]`;
+        await I.seeElement(optionXpath);
+        await I.click(optionXpath);
+        await logger.info(`Selected Deliver To --> ${option}`);
     },
     async selectTaxInclusive() {
         let checked = await I.executeScript(function() {
@@ -473,8 +474,8 @@ module.exports = {
         let POArray = new Array();
         for (let i=0; i<noOfPOs; i++)
         {
-        POArray[i] = await ObjectCreation.getObjectOfStandardPO(noOfItems, itemType);
-        POArray[i] = await spoImpl.createSpoFlow(this.POArray[i]);
+        POArray[i] = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
+        POArray[i] = await this.createSpoFlow(POArray[i]);
         }
         return POArray;
     },

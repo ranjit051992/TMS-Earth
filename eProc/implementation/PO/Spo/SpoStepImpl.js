@@ -8,6 +8,9 @@ const spoImpl = require("./SpoImpl");
 const catalogItem = require("../../../dataCreation/bo/CatalogItem");
 const commonKeywordImpl = require("../../../commonKeywords/CommonComponent");
 const poListingImpl = require("../PoListing/PoListingImpl");
+const poListingObject = require("../PoListing/PoListingObject");
+const commonKeywordObject = require("../../../commonKeywords/CommonComponentObject");
+const approvalObject = require("../../Approval/ApprovalObject");
 
 Given("I am on PO listing page", async function () {
    await poListingImpl.navigateToPoListing();
@@ -198,4 +201,11 @@ Then("Item should be added", async function() {
 
 Given( "I have {int} POs In Approval status", async function() {
    await spoImpl.checkMultiplePOStatus();
+});
+
+Given( "I have PO with In Approval status", async function() {
+   await I.waitForVisible(I.getElement(poListingObject.SEARCH_TEXTBOX));
+   await commonKeywordImpl.searchDocOnListing(this.spo.poNumber, approvalObject.SEARCH_BY_DOC_NUMBER);
+   let status = await spoImpl.getPoStatus()
+   I.assertEqual(status, lmtVar.getLabel(IN_APPROVAL_STATUS));
 });

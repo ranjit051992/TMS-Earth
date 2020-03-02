@@ -1,6 +1,6 @@
 const { I } = inject();
 const faker = require("faker");
-const spo = require("../dataCreation/bo/Spo");
+const spoBO = require("../dataCreation/bo/Spo");
 const catalogItem = require("../dataCreation/bo/CatalogItem")
 const requisition = require("../dataCreation/bo/Requisition")
 const logger = require("../../Framework/FrameworkUtilities/Logger/logger");
