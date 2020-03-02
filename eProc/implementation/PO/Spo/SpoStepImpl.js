@@ -9,11 +9,8 @@ const catalogItem = require("../../../dataCreation/bo/CatalogItem");
 const commonKeywordImpl = require("../../../commonKeywords/CommonComponent");
 const poListingImpl = require("../PoListing/PoListingImpl");
 const poListingObject = require("../PoListing/PoListingObject");
-<<<<<<< HEAD
-=======
 const commonKeywordObject = require("../../../commonKeywords/CommonComponentObject");
 const approvalObject = require("../../Approval/ApprovalObject");
->>>>>>> Shubham_29Feb_1
 
 Given("I am on PO listing page", async function () {
    await poListingImpl.navigateToPoListing();
@@ -21,6 +18,7 @@ Given("I am on PO listing page", async function () {
 
 Given("I Create Standard po with {int} {string} item", async function (noOfItems, itemType) {
    this.spo = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
+   //this.spo.poNumber = "Automation_Spo_1583163241883";
    this.spo = await spoImpl.createSpoFlow(this.spo);
 });
 
@@ -325,7 +323,7 @@ Then("{string} payment term should be displayed", async function(paymentTerm1) {
 
 Given( "I have PO with In Approval status", async function() {
    await I.waitForVisible(I.getElement(poListingObject.SEARCH_TEXTBOX));
-   await commonKeywordImpl.searchDocOnListing(this.spo.poNumber, approvalObject.SEARCH_BY_DOC_NUMBER);
-   let status = await spoImpl.getPoStatus()
-   I.assertEqual(status, lmtVar.getLabel(IN_APPROVAL_STATUS));
+   await commonKeywordImpl.searchDocOnListing(this.spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+   let status = await poListingImpl.getPoStatus();
+   I.assertEqual(status.toString(), lmtVar.getLabel("IN_APPROVAL_STATUS"));
 });
