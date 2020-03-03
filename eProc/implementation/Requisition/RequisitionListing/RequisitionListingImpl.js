@@ -116,4 +116,12 @@ module.exports = {
             }  
         }
     },
+
+
+    async searchAndViewReqByName(reqName)
+    {
+        let reqNumber = await this.getRequisitionNumber(reqName);
+        await this.searchRequisitionByReqNumber(reqNumber);
+        await this.viewRequisition(reqNumber);
+    },
 };
