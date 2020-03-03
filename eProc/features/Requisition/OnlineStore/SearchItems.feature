@@ -35,6 +35,14 @@ Feature: OnlineStore
   And I click on compare items
   Then I should see the selected items compared against multiple parameters name, price, currency, UOM, Supplier
 
+@Non-COA @L1 @os1
+  Scenario: To verify that user is able to Sort every column in basket
+  Given I am logged in eProc
+  And I navigate to Shopping Basket Page
+
+  When I click on basket name sorting option
+
+  Then I should see all baskets sorted from basket name
 
 
 # @Non-COA @L1
@@ -47,18 +55,6 @@ Feature: OnlineStore
 #   And I select Yes in the confirmation pop up
 
 #   Then I should see 'No Results Found' in the  Review Items page.
-
-
-
-
-@Non-COA @L1 @os1
-  Scenario: To verify that user is able to Sort every column in basket
-  Given I am logged in eProc
-  And I navigate to Shopping Basket Page
-
-  When I click on basket name sorting option
-
-  Then I should see all baskets sorted from basket name
 
 
 # @Non-COA @L1

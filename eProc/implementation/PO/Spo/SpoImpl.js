@@ -8,7 +8,7 @@ const approvalImpl = require("../../Approval/ApprovalImpl");
 const poListingImpl = require("../PoListing/PoListingImpl");
 const poListingObject = require("../PoListing/PoListingObject");
 const objectCreation = require("../../../dataCreation/ObjectCreation")
-
+const coaImpl = require("../../Coa/CoaImpl");
 
 module.exports = {
     async clickOnCreatePOButton() {
@@ -19,7 +19,7 @@ module.exports = {
     async clickOnStandardPOButton() {
         await I.waitForVisible(I.getElement(iSpoObject.standardPOButton));
         await I.click(I.getElement(iSpoObject.standardPOButton));
-        await I.waitForVisible(I.getElement(iSpoObject.poNumberTextbox), prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForVisible(I.getElement(iSpoObject.poNumberTextbox));
         I.saveScreenshot("CreateSpo.png");
         logger.info("Clicked on create standard po button.");
     },
@@ -267,6 +267,7 @@ module.exports = {
     async clickOnCostBookingSaveButton() {
         await I.waitForVisible(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
         await I.click(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
+        await I.click(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
         await I.waitForVisible(I.getElement(iSpoObject.poDescriptionTextbox));
         logger.info("Clicked on Save Button");
     },
@@ -309,7 +310,7 @@ module.exports = {
         }
     },
     async clickRemoveTaxesConfirmButton() {
-        let flag = await commonKeywordImpl.waitForElementVisible(I.getElement(iSpoObject.REMOVE_TAXES_CONFIRM_BUTTON), 90);
+        let flag = await commonKeywordImpl.waitForElementPresent(I.getElement(iSpoObject.REMOVE_TAXES_CONFIRM_BUTTON), prop.DEFAULT_WAIT);
         if(flag) {
             await I.click(I.getElement(iSpoObject.REMOVE_TAXES_CONFIRM_BUTTON));
             logger.info("Clicked on Remove taxes confirm button");
@@ -460,9 +461,15 @@ module.exports = {
             await this.enterItemName(spo.items[i].itemName);
             await this.selectItemOption(spo.items[i].itemName);
             await this.clickOnCostBookingLink(spo.items[i].itemName);
-            let glAccount = await this.fillGlAccount(spo.glAccount);
-            // spo.setGlAccount(glAccount);
-            await this.clickOnCostBookingSaveButton();
+            if(prop.isCOA) {
+                await coaImpl.fillCoaForm();
+                
+            }
+            else {
+                let glAccount = await this.fillGlAccount(spo.glAccount);
+                // spo.setGlAccount(glAccount);
+                await this.clickOnCostBookingSaveButton();
+            }
         }
 
         return spo;
@@ -484,19 +491,21 @@ module.exports = {
         logger.info(`**************Submitting SPO**************`);
         await this.clickOnSubmitPOButton();
         await this.clickOnConfirmButton();
-        await I.waitForVisible(I.getElement(iSpoObject.spinner));
+        // await I.waitForVisible(I.getElement(iSpoObject.spinner));
         await I.waitForInvisible(I.getElement(iSpoObject.spinner), prop.DEFAULT_HIGH_WAIT);
         logger.info("Waited for loader to go off after submitting spo");
     },
     async createAndReleaseSpoFlow(spo) {
         spo = await this.createSpoFlow(spo);
-        await this.navigateToApprovalListing();
-        //  click on spo tab
+        await approvalImpl.navigateToApprovalListing();
+        await approvalImpl.navigateToPOApprovalListingTab();
         await approvalImpl.approveDoc(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        await I.wait(prop.DEFAULT_MEDIUM_WAIT);
         await poListingImpl.navigateToPoListing();
         await commonKeywordImpl.searchDocOnListing(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
         let status = await poListingImpl.getPoStatus();
-        let flag = status.includes(lmtVar.getLabel("RELEASED_STATUS"));
+        logger.info(`Status in db --> ${lmtVar.getLabel("RELEASED_STATUS")}`);
+        let flag = status.toString().includes(lmtVar.getLabel("RELEASED_STATUS"));
         if(!flag) {
             logger.info(`Failed to release spo because status is ${status} on po listing after approving`);
             throw new Error(`Failed to release spo because status is ${status} on po listing after approving`);
@@ -543,6 +552,8 @@ module.exports = {
     async fillAmendPoComments(comments) {
         await I.scrollIntoView(I.getElement(iSpoObject.AMEND_PO_COMMENTS_TEXTAREA));
         await I.wait(prop.DEFAULT_WAIT);
+        await I.scrollIntoView(I.getElement(iSpoObject.AMEND_PO_COMMENTS_TEXTAREA));
+        await I.wait(prop.DEFAULT_WAIT);
         await I.waitForVisible(I.getElement(iSpoObject.AMEND_PO_COMMENTS_TEXTAREA));
         await I.click(I.getElement(iSpoObject.AMEND_PO_COMMENTS_TEXTAREA));
         await I.clearField(I.getElement(iSpoObject.AMEND_PO_COMMENTS_TEXTAREA));
@@ -556,7 +567,17 @@ module.exports = {
         logger.info("Clicked on Shipping Details Link");
     },
     async fillLineLevelAddress(address) {
-        address = await commonKeywordImpl.searchAndSelectFromDropdown(I.getElement(iSpoObject.LINE_LEVEL_ADDRESS_TEXTBOX), address, I.getElement(iSpoObject.LINE_LEVEL_ADDRESS_OPTION));
+        // address = await commonKeywordImpl.searchAndSelectFromDropdown(I.getElement(iSpoObject.LINE_LEVEL_ADDRESS_TEXTBOX), address, I.getElement(iSpoObject.LINE_LEVEL_ADDRESS_OPTION));
+        await I.waitForVisible(I.getElement(iSpoObject.LINE_LEVEL_ADDRESS_TEXTBOX));        
+        await I.click(I.getElement(iSpoObject.LINE_LEVEL_ADDRESS_TEXTBOX));
+        await I.clearField(I.getElement(iSpoObject.LINE_LEVEL_ADDRESS_TEXTBOX));
+        await I.fillField(I.getElement(iSpoObject.LINE_LEVEL_ADDRESS_TEXTBOX), address);
+        await I.wait(prop.DEFAULT_WAIT);
+        await I.waitForVisible(I.getElement(iSpoObject.LINE_LEVEL_ADDRESS_OPTION));
+        await I.click(I.getElement(iSpoObject.LINE_LEVEL_ADDRESS_OPTION));
+        address = await I.grabAttributeFrom(I.getElement(iSpoObject.LINE_LEVEL_ADDRESS_TEXTBOX), "value");
+        // return value;
+
         logger.info(`Selected delivery address --> ${address}`);
         return address;
     },

@@ -1,12 +1,12 @@
 const { I } = inject();
 const logger = require("../../../Framework/FrameworkUtilities/Logger/logger");
-const iSpoObject = require("../PO/Spo/SpoObject");
+// const iSpoObject = require("../PO/Spo/SpoObject");
 const prop = global.confi_prop;
 const lmtVar = require("../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const poListingObject = require("../PO/PoListing/PoListingObject");
 const approvalObject = require("./ApprovalObject");
 const commonKeywordImpl = require("../../commonKeywords/CommonComponent");
-const spoImpl = require("../../implementation/PO/Spo/SpoImpl");
+// const spoImpl = require("../../implementation/PO/Spo/SpoImpl");
 
 module.exports = {
     async navigateToApprovalListing() {
@@ -92,9 +92,10 @@ module.exports = {
     },
 
     async navigateToPOApprovalListingTab() {
-        I.seeElement(I.getElement(approvalObject.SPO_TAB));
-        I.click(I.getElement(approvalObject.SPO_TAB));
-        I.seeElement(I.getElement(approvalObject.SEARCH_FIELD));
+        await I.waitForVisible(I.getElement(approvalObject.SPO_TAB));
+        await I.waitForClickable(I.getElement(approvalObject.SPO_TAB));
+        await I.click(I.getElement(approvalObject.SPO_TAB));
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info("I am on PO approval listing");
     },
 
