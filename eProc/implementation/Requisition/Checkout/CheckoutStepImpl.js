@@ -7,6 +7,8 @@ const commonComponent = require("../../../commonKeywords/CommonComponent");
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const reqListing = require("../../Requisition/RequisitionListing/RequisitionListingImpl");
 const prop = global.confi_prop;
+const viewReqImpl = require("../ViewRequisition/ViewRequisitionImpl");
+const faker = require("faker");
 
 When("I create requisition with {string} {string} item", async function(noOfItems, itemType) {
     let reqBo= await objectCreation.getObjectOfRequisition(noOfItems, itemType);
@@ -154,3 +156,151 @@ When("I submit requisition", async function(){
     await checkoutImp.submitRequisition();
     await commonComponent.waitForLoadingSymbolNotDisplayed();
 });
+
+
+Given("I add an attachment {string}", async function(filePath){
+
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ADDITIONAL_DETAILS_SECTION"));
+    filePath = I.getData(filePath);
+    logger.info("File path is : "+filePath);
+    await checkoutImp.addAttachments(filePath);
+    this.attachment = filePath;
+});
+
+Then("I should be able to see the attachment which is added", async function(){
+
+    let isPresent  = await checkoutImp.checkAddedAttachment(this.attachment);
+     I.assertEqual(isPresent,true);
+ });
+
+Given("I link Purchase Order {string} in the Select Purchase Order field", async function(po){
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ADDITIONAL_DETAILS_SECTION"));
+    await checkoutImp.selectPurchaseOrder(po);
+    await checkoutImp.clickOnSelectedPOContinueButton();
+    this.purchaseOrder = await checkoutImp.getSelectedPurchaseOrder();;
+});
+
+
+Then("I should be see that the field name is updated to Select Purchase Order", async function(){
+
+   let selectedPO = await checkoutImp.getSelectedPurchaseOrder();
+   let isSelected = false;
+    if(selectedPO.toString()===this.purchaseOrder.toString())
+    {
+        isSelected = true;
+    }
+
+    I.assertEqual(isSelected,true);
+});
+
+
+Given("I select {string} at line level in Buyer section", async function(buyerGroup) {
+
+    await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
+    await checkoutImp.selectBuyerGroupOption();
+    let group = I.getData(buyerGroup);
+    await checkoutImp.fillBuyerInTextBox(group);
+    await checkoutImp.getBuyer();
+    this.buyerGroup = group;
+});
+
+Given("I select buyer {string} at line level in Buyer section", async function(buyer){
+
+    await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
+    let value = I.getData(buyer);
+    await checkoutImp.fillBuyerInTextBox(value);
+    await checkoutImp.getBuyer();
+    this.buyerName = value.substring(0,value.indexOf('@'));
+});
+
+Then("I should be able to view requisition with buyer as the buyer group which was assigned", async function(){
+
+    await reqListing.searchAndViewReqByName(this.reqName);
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    await checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);     
+    await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
+    let group = await checkoutImp.getBuyer();
+
+    let isEqual = false;
+    if(group===this.buyerGroup)
+    {
+        isEqual = true;
+    }
+     I.assertEqual(isEqual,true);
+ });
+
+
+ Then("I should be able to view requisition with buyer which was assigned", async function(){
+
+    await reqListing.searchAndViewReqByName(this.reqName);
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    await checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);     
+    await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
+    let buyer = await checkoutImp.getBuyer();
+
+    let isEqual = false;
+    if(buyer===this.buyerName)
+    {
+        isEqual = true;
+    }
+     I.assertEqual(isEqual,true);
+ });
+
+
+ When("I select Ship to Another Address in  Shipping Details section at header level", async function(){
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
+    await checkoutImp.clickOnShipToAnotherAddressButton();
+});
+
+When("I Create New address", async function(){
+    this.reqBO.customAddressName = "Automation_Address"+faker.random.alphaNumeric(10);
+    this.reqBO.customAddressStreet1 = "Automation_Street1"+faker.random.alphaNumeric(10);
+    this.reqBO.customAddressStreet2 = "Automation_Street2"+faker.random.alphaNumeric(10);
+    this.reqBO.customAddressCountry = I.getData("COUNTRY");
+    this.reqBO.customAddressCity   = "Automation_City"+faker.random.alphaNumeric(10);
+    await checkoutImp.createNewShippingAddress(this.reqBO);
+});
+
+When("I check the Save checkbox", async function(){
+    await checkoutImp.clickOnSaveCheckbox();
+});
+
+When("I create the address", async function(){
+    this.customAddress = await (await checkoutImp.clickOnCreateAddress()).toString();
+});
+
+
+Then("I should be able to see new Deliver address as the Ship to Another Address on view requisition", async function(){
+
+    await reqListing.searchAndViewReqByName(this.reqName);
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
+    let actualAddress = this.customAddress.toString();
+    let address = await viewReqImpl.getShipToAnotherAddress();
+    let isEqual = false;
+    if(address.toString()===actualAddress.toString())
+    {
+        isEqual = true;
+    }
+
+     
+    this.isAddressSaved = isEqual;
+    
+    //I.assertEqual(isEqual,true);
+ });
+
+ Then("I should be able to see the saved address on creating a new requisition", async function(){
+    let addressName = this.customAddress.toString();
+    addressName = addressName.substring(0,addressName.indexOf(','));
+    await checkoutImp.fillShipToAnotherAddress(addressName);
+    await checkoutImp.selectExistingShipToAnotherAddress();
+    let address = await checkoutImp.getCustomShippingAddress();
+    let isEqual = false;
+    if(address===this.customAddress)
+    {
+        isEqual = true;
+    }
+
+
+    I.assertEqual((isEqual && this.isAddressSaved),true);
+ });
+

@@ -39,10 +39,7 @@ module.exports={
 
         if(requisitionBO.nextAction === lmtVar.getLabel("SUBMIT"))
         {
-            this.clickOnImDoneButton();
-            this.clickOnContinueButton();
-            commonComponent.waitForLoadingSymbolNotDisplayed();
-            this.isRequisitionSubmitted();
+            await this.submitRequisition();
         }
 
         else if(requisitionBO.nextAction === lmtVar.getLabel("SAVE_AS_DRAFT"))
@@ -304,7 +301,12 @@ module.exports={
 
     async selectSettlementVia(settlementVia)
     {
-        await commonComponent.selectValueFromDropDown(I.getElement(iCheckout.SETTLEMENT_VIA), settlementVia);
+        //await commonComponent.selectValueFromDropDown(I.getElement(iCheckout.SETTLEMENT_VIA), settlementVia);
+        await I.waitForVisible(I.getElement(iCheckout.SETTLEMENT_VIA));
+        await I.waitForClickable(I.getElement(iCheckout.SETTLEMENT_VIA));
+        await I.click(I.getElement(iCheckout.SETTLEMENT_VIA));
+        await I.waitForVisible("//a[contains(text(),'"+settlementVia+"')]");
+        await I.click("//a[contains(text(),'"+settlementVia+"')]");
         settlementVia = await I.grabTextFrom(I.getElement(iCheckout.SETTLEMENT_VIA));
         logger.info(`Selected Settement Via option is ---> ${settlementVia}`);
         return settlementVia;
@@ -328,22 +330,49 @@ module.exports={
 
     async selectPurchaseOrder(purchaseOrder)
     {
-
+        await I.waitForVisible(I.getElement(iCheckout.SELECT_PURCHASE_ORDER),prop.DEFAULT_HIGH_WAIT);
+        await I.waitForClickable(I.getElement(iCheckout.SELECT_PURCHASE_ORDER),prop.DEFAULT_HIGH_WAIT);
+        //commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.SELECT_PURCHASE_ORDER),purchaseOrder,"//dew-col[contains(text(),'"+purchaseOrder+"')]")
+        await I.fillField(I.getElement(iCheckout.SELECT_PURCHASE_ORDER),purchaseOrder);
+        await I.waitForVisible("//dew-col[contains(text(),'"+purchaseOrder+"')]",prop.DEFAULT_MEDIUM_WAIT);
+        await I.click("//dew-col[contains(text(),'"+purchaseOrder+"')]");
     },
 
     async addAttachments(attachmentFile)
     {
+        logger.info(`filepath-------${attachmentFile.toString()}`);
+    //    await I.fillField(I.getElement(iCheckout.ADD_ATTACHMENTS),"\\\\192.168.3.40\\AutomationSharing\\Katalon_File_Attachment\\RM\\validation.jpg");
+      await I.fillField(I.getElement(iCheckout.ADD_ATTACHMENTS),attachmentFile.toString());
 
     },
 
+    async checkAddedAttachment(attachmentFile)
+    {
+        let attachment = attachmentFile.substring(attachmentFile.lastIndexOf("\\"),attachmentFile.length);
+        attachment = attachment.replace("\\","");
+        logger.info("attachement name "+attachment);
+
+        await I.waitForVisible("//span[contains(@title,'"+attachment+"')]",prop.DEFAULT_HIGH_WAIT);
+        let noOfElement = await I.grabNumberOfVisibleElements("//span[contains(@title,'"+attachment+"')]");
+        let isPresent = false;
+        if(noOfElement>0)
+        {
+            isPresent = true;
+            logger.info("attachement present");
+        }
+
+        return isPresent;
+    },
+    
     /**
      * getDefaultShippingAddress fetched Default shipping address
      */
     async getDefaultShippingAddress()
     {
-        I.waitForVisible(I.getElement(iCheckout.DEFAULT_SHIPPING_ADDRESS), prop.DEFAULT_MEDIUM_WAIT);
-        let shippingAddress = await I.grabTextFrom(I.getElement(iCheckout.DEFAULT_SHIPPING_ADDRESS));
-        logger.info(`Default Shipping Address is ---> ${shippingAddress}`);
+
+        I.waitForVisible(I.getElement(iCheckout.DEFAULT_SHIPPING_ADDRESS_TEXTBOX), prop.DEFAULT_MEDIUM_WAIT);
+        let shippingAddress = await I.grabTextFrom(I.getElement(iCheckout.DEFAULT_SHIPPING_ADDRESS_TEXTBOX));
+        logger.info(`Default Shipping Address is ${shippingAddress}`);
         return shippingAddress;
     },
 
@@ -476,26 +505,16 @@ module.exports={
         logger.info("Clicked on tab "+tabName);
     },
 
-    async selectBuyerDropDownOption(buyerOption)
-    {
-        //commonComponent.selectValueFromDropDown(I.getElement(iCheckout.BUYER_DROPDOWN_ICON), buyerOption);
-        I.click(I.getElement(iCheckout.BUYER_DROPDOWN_ICON));
-        I.wait(prop.DEFAULT_MEDIUM_WAIT);
-        let xpath = "//a[contains(text(),'Buyer')]";
-        I.click(xpath);
-        logger.info("Selected Assigned Buyer")
-    },
-
     /**
      * fillBuyerInTextBox: fills Buyer in text box
      * @param {*} buyerName 
      */
     async fillBuyerInTextBox(buyerName)
     {
-        I.waitForVisible(I.getElement(iCheckout.BUYER_TEXTBOX), prop.DEFAULT_MEDIUM_WAIT);
-        let optionXpath = "//div[contains(@class,'flex-column ac-main')]";
-        commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.BUYER_TEXTBOX),buyerName, optionXpath);
-        buyerName = await I.grabAttributeFrom(I.getElement(iCheckout.BUYER_TEXTBOX), "value");
+        await I.waitForVisible(I.getElement(iCheckout.BUYER_TEXTBOX), prop.DEFAULT_MEDIUM_WAIT);
+        //let buyer = buyerName.substring(0,buyerName.indexOf('@'));
+        await commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.BUYER_TEXTBOX),buyerName, I.getElement(iCheckout.BUYER_SUGGESTION_OPTION));
+        await I.saveScreenshot("BuyerGroup.png");
         logger.info(`Entered Buyer is: ${buyerName}`);
         return buyerName;
     },
@@ -737,7 +756,6 @@ module.exports={
         if(requisitionBO.buyer !== "undefined")
         {
             this.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
-            this.selectBuyerDropDownOption(requisitionBO.buyerOption);
             let buyer = this.fillBuyerInTextBox(requisitionBO.buyer);
             requisitionBO.setBuyer(buyer);
 
@@ -834,6 +852,49 @@ module.exports={
         await I.waitForClickable(I.getElement(iCheckout.UPDATE_DRAFT_BUTTON));
         await I.click(I.getElement(iCheckout.UPDATE_DRAFT_BUTTON));
         logger.info("Clicked on Update Draft");
+
+    },
+
+    async clickOnSelectedPOContinueButton()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.SELECT_PURCHASE_ORDER_CONTINUE_BUTTON),prop.DEFAULT_HIGH_WAIT);
+        await I.waitForClickable(I.getElement(iCheckout.SELECT_PURCHASE_ORDER_CONTINUE_BUTTON),prop.DEFAULT_HIGH_WAIT);
+        await I.click(I.getElement(iCheckout.SELECT_PURCHASE_ORDER_CONTINUE_BUTTON));   
+    },
+
+    async getSelectedPurchaseOrder()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.SELECT_PURCHASE_ORDER),prop.DEFAULT_HIGH_WAIT);
+        await I.waitForClickable(I.getElement(iCheckout.SELECT_PURCHASE_ORDER),prop.DEFAULT_HIGH_WAIT);
+        let po = await I.grabAttributeFrom(I.getElement(iCheckout.SELECT_PURCHASE_ORDER),"value");
+        logger.info("Po found : "+po.toString().trim());
+        return po;
+
+    },
+
+    async clickOnShipToAnotherAddressButton()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.SHIP_TO_ANOTHER_ADDRESS_BUTTON),prop.DEFAULT_HIGH_WAIT);
+        await I.click(I.getElement(iCheckout.SHIP_TO_ANOTHER_ADDRESS_BUTTON));
+        logger.info("Clicked on Ship to another radio button");
+    },
+
+    async selectBuyerGroupOption()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.BUYER_DROPDOWN_ICON),prop.DEFAULT_HIGH_WAIT);
+        await commonComponent.selectValueFromDropDown(I.getElement(iCheckout.BUYER_DROPDOWN_ICON),lmtVar.getLabel("BUYER_GROUP"));
+    }, 
+
+     /**
+     * fetch selected buyer/group name
+     * @return  buyer/group name
+     */
+    async getBuyer()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.SELECTED_BUYER), prop.DEFAULT_MEDIUM_WAIT);
+        let buyer = await I.grabTextFrom(I.getElement(iCheckout.SELECTED_BUYER));
+        logger.info(`Entered Buyer is: ${buyer}`);
+        return buyer;
     },
 
     async submitRequisition()
@@ -844,4 +905,114 @@ module.exports={
         await commonComponent.waitForLoadingSymbolNotDisplayed();
         await this.isRequisitionSubmitted();
     },
+
+    async fillShipToAnotherAddress(addressName)
+    {
+        await I.waitForVisible(I.getElement(iCheckout.SHIP_TO_ANOTHER_ADDRESS_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable(I.getElement(iCheckout.SHIP_TO_ANOTHER_ADDRESS_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+        await I.clearField(I.getElement(iCheckout.SHIP_TO_ANOTHER_ADDRESS_TEXTBOX));
+        await I.fillField(I.getElement(iCheckout.SHIP_TO_ANOTHER_ADDRESS_TEXTBOX),addressName);
+    },
+
+    async clickOnCreateNewAddressOption()
+    {
+        await I.waitForVisible("//div[contains(text(),'"+lmtVar.getLabel("CREATE_NEW_ADDRESS")+"')]",prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable("//div[contains(text(),'"+lmtVar.getLabel("CREATE_NEW_ADDRESS")+"')]",prop.DEFAULT_MEDIUM_WAIT);
+        await I.click("//div[contains(text(),'"+lmtVar.getLabel("CREATE_NEW_ADDRESS")+"')]");
+    },
+
+    async fillAddressName(addressName)
+    {
+        await I.waitForVisible(I.getElement(iCheckout.ADDRESS_NAME_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable(I.getElement(iCheckout.ADDRESS_NAME_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+        await I.clearField(I.getElement(iCheckout.ADDRESS_NAME_TEXTBOX));
+        await I.fillField(I.getElement(iCheckout.ADDRESS_NAME_TEXTBOX),addressName);
+    },
+
+    async fillStreet1(street)
+    {
+        await I.waitForVisible(I.getElement(iCheckout.STREET_ONE_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable(I.getElement(iCheckout.STREET_ONE_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+        await I.clearField(I.getElement(iCheckout.STREET_ONE_TEXTBOX));
+        await I.fillField(I.getElement(iCheckout.STREET_ONE_TEXTBOX),street);
+    },
+
+    async fillStreet2(street)
+    {
+        await I.waitForVisible(I.getElement(iCheckout.STREET_TWO_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable(I.getElement(iCheckout.STREET_TWO_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+        await I.clearField(I.getElement(iCheckout.STREET_TWO_TEXTBOX));
+        await I.fillField(I.getElement(iCheckout.STREET_TWO_TEXTBOX),street);
+    },
+
+    async fillCountry(country)
+    {
+        await I.waitForVisible(I.getElement(iCheckout.COUNTRY_DROPDOWN),prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable(I.getElement(iCheckout.COUNTRY_DROPDOWN),prop.DEFAULT_MEDIUM_WAIT);
+        await commonComponent.selectValueFromDropDown(I.getElement(iCheckout.COUNTRY_DROPDOWN),country);  
+    },
+
+    async fillCity(city)
+    {
+        await I.waitForVisible(I.getElement(iCheckout.CITY_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable(I.getElement(iCheckout.CITY_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+        await I.clearField(I.getElement(iCheckout.CITY_TEXTBOX));
+        await I.fillField(I.getElement(iCheckout.CITY_TEXTBOX),city);    
+    },
+
+    async clickOnSaveCheckbox()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.SAVE_FOR_NEXT_TIME_CHECKBOX),prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable(I.getElement(iCheckout.SAVE_FOR_NEXT_TIME_CHECKBOX),prop.DEFAULT_MEDIUM_WAIT);
+        await I.click(I.getElement(iCheckout.SAVE_FOR_NEXT_TIME_CHECKBOX));
+    },
+
+    async clickOnCreateAddressButton()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.CREATE_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable(I.getElement(iCheckout.CREATE_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
+        await I.click(I.getElement(iCheckout.CREATE_BUTTON));
+    },
+
+    async getCustomShippingAddress()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.SHIP_TO_ANOTHER_ADDRESS_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable(I.getElement(iCheckout.SHIP_TO_ANOTHER_ADDRESS_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+        let address = await I.grabAttributeFrom(I.getElement(iCheckout.SHIP_TO_ANOTHER_ADDRESS_TEXTBOX),"value");
+        address = address.toString().replace('\n','').trim();
+        logger.info("Custom Address is : "+address);
+        return address;
+    },
+
+    async createNewShippingAddress(reqBo)
+    {
+        await this.fillShipToAnotherAddress(reqBo.customAddressName);
+        await this.clickOnCreateNewAddressOption();
+        await this.fillAddressName(reqBo.customAddressName);
+        await this.fillStreet1(reqBo.customAddressStreet1);
+        await this.fillStreet2(reqBo.customAddressStreet2);
+        await this.fillCountry(reqBo.customAddressCountry);
+        await this.fillCity(reqBo.customAddressCity);
+        
+    },
+
+    async clickOnCreateAddress()
+    {
+        await this.clickOnCreateAddressButton();
+        await commonComponent.waitForLoadingSymbolNotDisplayed();
+        let address = await this.getCustomShippingAddress();
+        return address;
+    },
+
+   
+
+    async selectExistingShipToAnotherAddress()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.CUSTOM_ADDRESS_SUGGESTION),prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable(I.getElement(iCheckout.CUSTOM_ADDRESS_SUGGESTION),prop.DEFAULT_MEDIUM_WAIT);
+        await I.click(I.getElement(iCheckout.CUSTOM_ADDRESS_SUGGESTION));
+        
+    },
+
+
 };

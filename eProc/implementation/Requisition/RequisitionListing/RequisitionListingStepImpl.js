@@ -64,18 +64,13 @@ Then("I should be able to Edit and submit the Draft requisition", async function
     
 });
 
+
 Then("I should be able to delete the requisition", async function(){
     let isReqDeleted = false;
     await reqListingImpl.deleteRequisition(this.reqNumber);
-    await reqListingImpl.searchRequisitionByReqNumber(this.reqNumber);
-    await I.wait(prop.DEFAULT_MEDIUM_WAIT);
-    let noOfEle = await I.grabNumberOfVisibleElements(I.getElement(reqListingObject.REQUISITION_LISTING_PAGE));
-    if(!noOfEle>0)
-    {
-        isReqDeleted = true;
-        logger.info("Deleted Draft Requisition Successfully")
-    }
-
+    isReqDeleted = await commonComponent.isElementPresent(I.getElement(reqListingObject.NO_RECORDS_FOUND));
+    logger.info("Deleted Draft Requisition Successfully")
+   
     I.assertEqual(isReqDeleted, true);
 });
 

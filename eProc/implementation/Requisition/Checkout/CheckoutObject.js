@@ -27,12 +27,23 @@ module.exports= {
     RETROSPECTIVE_PURCHASE_NO_RADIO_BUTTON: "Checkout/AdditionalDetails/RETROSPECTIVE_PURCHASE_NO_RADIO_BUTTON",
     SELECT_PURCHASE_ORDER: "Checkout/AdditionalDetails/SELECT_PURCHASE_ORDER",
     ADD_ATTACHMENTS: "Checkout/AdditionalDetails/ADD_ATTACHMENTS",
+    SELECT_PURCHASE_ORDER_CONTINUE_BUTTON: "Checkout/AdditionalDetails/SELECT_PURCHASE_ORDER_CONTINUE_BUTTON",
+    VIEW_SELECTED_PO_LINK: "Checkout/AdditionalDetails/VIEW_SELECTED_PO_LINK",
 
     //Shipping Details
-    DEFAULT_SHIPPING_ADDRESS: "Checkout/ShippingDetails/DEFAULT_SHIPPING_ADDRESS",
-    SHIP_TO_ANOTHER_ADDRESS: "Checkout/ShippingDetails/SHIP_TO_ANOTHER_ADDRESS",
+    DEFAULT_SHIPPING_ADDRESS_TEXTBOX: "Checkout/ShippingDetails/DEFAULT_SHIPPING_ADDRESS",
+    SHIP_TO_ANOTHER_ADDRESS_BUTTON: "Checkout/ShippingDetails/SHIP_TO_ANOTHER_ADDRESS_BUTTON",
     DELIVER_TO: "Checkout/ShippingDetails/DELIVER_TO",
     REQUIRED_BY: "Checkout/ShippingDetails/REQUIRED_BY",
+    SHIP_TO_ANOTHER_ADDRESS_TEXTBOX: "Checkout/ShippingDetails/SHIP_TO_ANOTHER_ADDRESS_TEXTBOX",
+    ADDRESS_NAME_TEXTBOX: "Checkout/ShippingDetails/ADDRESS_NAME_TEXTBOX",
+    STREET_ONE_TEXTBOX: "Checkout/ShippingDetails/STREET_ONE_TEXTBOX",
+    STREET_TWO_TEXTBOX: "Checkout/ShippingDetails/STREET_TWO_TEXTBOX",
+    COUNTRY_DROPDOWN: "Checkout/ShippingDetails/COUNTRY_DROPDOWN",
+    CITY_TEXTBOX: "Checkout/ShippingDetails/CITY_TEXTBOX",
+    CREATE_BUTTON: "Checkout/ShippingDetails/CREATE_BUTTON",
+    SAVE_FOR_NEXT_TIME_CHECKBOX: "Checkout/ShippingDetails/SAVE_FOR_NEXT_TIME_CHECKBOX",
+    CUSTOM_ADDRESS_SUGGESTION: "Checkout/ShippingDetails/CUSTOM_ADDRESS_SUGGESTION",
 
     //Cost Allocation
     ASSIGN_COST_PROJECT_YES: "Checkout/CostAllocation/ASSIGN_COST_PROJECT_YES",
@@ -59,6 +70,9 @@ module.exports= {
     //Buyers Tab
     BUYER_DROPDOWN_ICON: "Checkout/ItemDetails/BuyersTab/BUYER_DROPDOWN_ICON",
     BUYER_TEXTBOX: "Checkout/ItemDetails/BuyersTab/BUYER_TEXTBOX",
+    SELECTED_BUYER: "Checkout/ItemDetails/BuyersTab/SELECTED_BUYER",
+    BUYER_SUGGESTION_OPTION: "Checkout/ItemDetails/BuyersTab/BUYER_SUGGESTION_OPTION",
+
 
     //Checkout Page Footer's buttons
     I_M_DONE_BUTTON: "Checkout/I_M_DONE_BUTTON",
@@ -69,5 +83,6 @@ module.exports= {
 
     //Shipping Details And Asset Tagging
     LINE_LEVEL_ADDRESS: "Checkout/ItemDetails/Shipping Details And Asset Tagging/LINE_LEVEL_ADDRESS",
+
 
 };
