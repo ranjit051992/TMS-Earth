@@ -17,7 +17,7 @@ exports.config = {
       default_medium_wait: prop.DEFAULT_MEDIUM_WAIT,
       default_high_wait: prop.DEFAULT_HIGH_WAIT,
     },
-    "ChaiWrapper":
+    ChaiWrapper:
     {
       "require": "codeceptjs-chai"
     },
@@ -27,7 +27,7 @@ exports.config = {
     },
   },
   bootstrap: "./bootstrap.js",
-  "teardown": "./bootstrap.js",
+  teardown: "./bootstrap.js",
   include: {
     I: prop.stepFilePath,
   },
@@ -53,7 +53,7 @@ exports.config = {
       enabled: true,
       services: ["selenium-standalone"]
     },
-    "allure": {
+    allure: {
       enabled: true
     }
   }
