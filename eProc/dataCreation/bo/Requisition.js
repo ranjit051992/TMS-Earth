@@ -46,6 +46,12 @@ class Requisition
         this.customAddressZip;
         this.customAddressCity;
 
+
+        this.isApplyTaxItemLevel;
+        this.taxType;
+        this.TaxName;
+        this.taxRate;
+        this.taxAmount;
         //let items = [];
     }
 
@@ -214,6 +220,30 @@ class Requisition
         this.nextAction = nextAction;
     }
 
+    setTaxType(taxType)
+    {
+        this.taxType = taxType;
+    }
+
+    setTaxName(taxName)
+    {
+        this.taxName = taxName;
+    }
+
+    setTaxRate(taxRate)
+    {
+        this.taxRate = taxRate;
+    }
+
+    setTaxAmount(taxAmount)
+    {
+        this.taxAmount = taxAmount;
+    }
+
+    setApplyTaxItemLevel(isApplyTaxItemLevel)
+	{
+		this.isApplyTaxItemLevel = isApplyTaxItemLevel;
+	}
 }
 
 module.exports = new Requisition();

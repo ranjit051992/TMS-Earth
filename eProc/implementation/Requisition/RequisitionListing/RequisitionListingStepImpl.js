@@ -93,3 +93,12 @@ Then("I should be able see the status of requisition on the Listing page", async
 
     I.assertEqual(verifyReqStatus, true);
 });
+
+When("I copy that requisition", async function(){
+    await reqListingImpl.navigateToRequisitionListing();
+
+    this.reqNumber = await reqListingImpl.getRequisitionNumber(this.reqBO.reqName);
+
+    await reqListingImpl.copyRequisition(this.reqNumber);
+    logger.info(`Requisition ${this.reqNumber} is Copied Successfully`);
+});

@@ -43,6 +43,7 @@ When("I add {string} {string} items to cart", async function (noOfItem, itemType
 
     //onlineStoreImpl.addItemsToCart(noOfItem,itemType);
     await cartImpl.clearCart();
+    await I.wait(prop.DEFAULT_WAIT);
     let itemArray = new Array();
 
     if((itemType.indexOf('[')) > 0 && noOfItem==="1")

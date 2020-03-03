@@ -83,6 +83,13 @@ module.exports= {
 
     //Shipping Details And Asset Tagging
     LINE_LEVEL_ADDRESS: "Checkout/ItemDetails/Shipping Details And Asset Tagging/LINE_LEVEL_ADDRESS",
+    
+    //Taxes tab
+    TAX_TYPE_DROPDOWN: "Checkout/ItemDetails/Taxes/TAX_TYPE_DROPDOWN",
+    TAX_NAME_DROPDOWN: "Checkout/ItemDetails/Taxes/TAX_NAME_DROPDOWN",
+    TAX_RATE_TEXTBOX: "Checkout/ItemDetails/Taxes/TAX_RATE_TEXTBOX",
+    TAX_AMOUNT_TEXTBOX: "Checkout/ItemDetails/Taxes/TAX_AMOUNT_TEXTBOX",
+    REMOVE_ALL_TAXES_BUTTON: "Checkout/ItemDetails/Taxes/REMOVE_ALL_TAXES_BUTTON",
 
 
 };
