@@ -31,11 +31,12 @@ exports.config = {
   include: {
     I: prop.stepFilePath,
   },
-  multiple: {
-    parallel: {
-      // Splits tests into 2 chunks
-      chunks: 2
-    }
+   multiple: {
+        sanityCases: {
+          // Splits tests into 2 chunks
+          chunks: 2
+        }
+      
       },
     gherkin: {
      //features: './iRequest/features/**/**.feature',
