@@ -109,6 +109,7 @@
         "username": "sneha.kumari@zycus.com",
         "password": "Zycus@123",
         "testdataTable": "TestData_iRequest",
-        "uiElementTable": "iRequest_UI_Elements"
+        "uiElementTable": "iRequest_UI_Elements",
+        "UserTable":"iRequest_credentials"
     }
 }
