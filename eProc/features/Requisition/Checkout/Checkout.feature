@@ -1,7 +1,7 @@
 Feature: Checkout
 
 
-@Non-COA @L1 @Priyanka
+@Non-COA @L1 @Priyanka @autox
   Scenario: To verify that user is able to add Cost center information to the requisition.
   Given I am logged in eProc
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -11,7 +11,7 @@ Feature: Checkout
   And I navigate to Line level Cost Booking Details
   Then I should be see the updated cost center on line level Cost Booking section
 
-@Non-COA @L1 @sanity
+@Non-COA @L1 @sanity @autox
     Scenario: To verify that user is able to add Project information to the requisition.
     Given I am logged in eProc
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -21,7 +21,7 @@ Feature: Checkout
     And I navigate to Line level Cost Booking Details
     Then I should be see the updated project on line level Cost Booking section
 
-@Non-COA @L1 @sanity
+@Non-COA @L1 @sanity @autox
     Scenario: To verify that System auto populates user's Cost center when a user is creating a requisition.
     Given I am logged in eProc
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -30,7 +30,7 @@ Feature: Checkout
     And I navigate to Line level Cost Booking Details
     And I should see on line level Cost Booking Details section cost center should be populated
 
-@Non-COA @L1 @sanity
+@Non-COA @L1 @sanity @autox
     Scenario: To verify that system auto populates user's default Delivery & Bill to address 
     Given I am logged in eProc
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -39,7 +39,7 @@ Feature: Checkout
     And I navigate to Line level Shipping Details and Asset Tagging section
     And I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated
 
-@Non-COA @L1 @sanity
+@Non-COA @L1 @sanity @autox
     Scenario:  To verify that user is able to view approval Status
     Given I am logged in eProc
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -53,7 +53,7 @@ Feature: Checkout
     And I submit requisition
     Then I should be able see the status of requisition on the Listing page
 
-@Non-COA @L1 @sanity
+@Non-COA @L1 @sanity @autox
   Scenario: To verify requisition in draft and actions on it
   Given I am logged in eProc
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -69,7 +69,7 @@ Feature: Checkout
   And I should be able to Edit and submit the Draft requisition
   And I should be able to delete the requisition
 
-@Non-COA @L1 @attach 
+@Non-COA @L1 @attach @autox
     Scenario: To verify that user is able to add attachments to the requisition.
     Given I am logged in eProc
 
@@ -79,7 +79,7 @@ Feature: Checkout
     
     Then I should be able to see the attachment which is added
 
-@Non-COA @L1  @Snehal
+@Non-COA @L1  @Snehal @autox
     Scenario: To verify that user is able to create any custom / One time delivery address while Check out and save it for future use
     Given I am logged in eProc
 
@@ -104,7 +104,7 @@ Feature: Checkout
     And I select Ship to Another Address in  Shipping Details section at header level
     And I should be able to see the saved address on creating a new requisition
 
-@Non-COA @L1 @Snehal @buyer
+@Non-COA @L1 @Snehal @buyer @autox
   Scenario: To verify that the 'Select Purchase Order' field
   Given I am logged in eProc
 
@@ -114,7 +114,7 @@ Feature: Checkout
 
   Then I should be see that the field name is updated to Select Purchase Order
 
-@Non-COA @L1  @Snehal 
+@Non-COA @L1  @Snehal @autox
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer group
   Given I am logged in eProc
 
@@ -131,7 +131,7 @@ Feature: Checkout
 
   Then I should be able to view requisition with buyer as the buyer group which was assigned
 
-@Non-COA @L1 @Snehal 
+@Non-COA @L1 @Snehal @autox
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer
   Given I am logged in eProc
 
