@@ -48,7 +48,7 @@ Feature: Checkout
   Then I should contract linked to free text item on viewing the item
 
 
-@Non-COA @L1 @sanity
+@Non-COA @L1 @Priyanka
   Scenario: To verify that user is able to add Cost center information to the requisition.
   Given I am logged in eProc
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -68,7 +68,7 @@ Feature: Checkout
     And I navigate to Line level Cost Booking Details
     Then I should be see the updated project on line level Cost Booking section
 
-@Non-COA @L1 @attach @Snehal
+@Non-COA @L1 @attach 
     Scenario: To verify that user is able to add attachments to the requisition.
     Given I am logged in eProc
 
