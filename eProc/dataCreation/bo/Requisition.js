@@ -52,6 +52,7 @@ class Requisition
         this.TaxName;
         this.taxRate;
         this.taxAmount;
+        this.reqAmount;
         //let items = [];
     }
 
@@ -244,6 +245,10 @@ class Requisition
 	{
 		this.isApplyTaxItemLevel = isApplyTaxItemLevel;
 	}
+    setreqAmount(reqAmount)
+    {
+        this.reqAmount = reqAmount;
+    }
 }
 
 module.exports = new Requisition();

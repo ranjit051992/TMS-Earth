@@ -15,18 +15,18 @@ Feature: Approval
 #     And I see the same Amount to be approved
 #     And I see the same status of Requisition
 
-@L1 @Run @autox
-    Scenario: To verify Purchase Order details are properly displayed in approval listing
+# @L1 @Success
+#     Scenario: To verify Purchase Order details are properly displayed in approval listing
 
-    Given I am logged in eProc
-    And I Create Standard po with 1 "Catalog" item
-    And I have PO with In Approval status
-    And I am on PO approval listing page
+#     Given I am logged in eProc
+#     And I Create Standard po with 1 "Catalog" item
+#     And I have PO with In Approval status
+#     And I am on PO approval listing page
 
-    When I search for that PO name on PO approval listing
+#     When I search for that PO name on PO approval listing
 
-    Then I see the same Buyer name displayed for the corresponding PO number
-    And I see the same Received on date on PO Approval listing
+#     Then I see the same Buyer name displayed for the corresponding PO number
+#     And I see the same Received on date on PO Approval listing
     # And I see the same Amount to be approved on PO Approval listing
     # And I see the same status of Requisition on PO Approval listing
 
@@ -46,21 +46,21 @@ Feature: Approval
 #     Then I should get all details, same as what entered while creating that BPO
 
 
-# @L1
-#     Scenario: To verify that user is able to approve single/multiple Requisition
+@L1
+    Scenario: To verify that user is able to approve single/multiple Requisition
 
-#     Given I am logged in eProc
-#     And I have submit 3 requisitions
-#     And I have requisitions In Approval status
-#     And I am on requisition approval listing page
+    Given I am logged in eProc
+    And I have submit 3 requisitions
+    And I have requisitions In Approval status
+    And I am on requisition approval listing page
 
-#     When I Approve 1 requisition
-#     And I Approve another 2 requisitions 
-#     And I fill in comments within popup
-#     And I click on Approve
-#     And I search for all the requisitions in the search filter
+    When I Approve 1 requisition
+    And I Approve another 2 requisitions 
+    And I fill in comments within popup
+    And I click on Approve
+    And I search for all the requisitions in the search filter
 
-#     Then the status of all the requisitions should be displayed as Approved
+    Then the status of all the requisitions should be displayed as Approved
 
 
 # @L1

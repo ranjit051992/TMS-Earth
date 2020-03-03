@@ -7,10 +7,14 @@ const commonComponent = require("../../../commonKeywords/CommonComponent");
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const reqListing = require("../../Requisition/RequisitionListing/RequisitionListingImpl");
 const prop = global.confi_prop;
+<<<<<<< HEAD
 const viewReqImpl = require("../ViewRequisition/ViewRequisitionImpl");
 const faker = require("faker");
+=======
+const iApprovalObject = require("../../Approval/ApprovalObject");
+>>>>>>> Shubham_2Mar_6
 
-When("I create requisition with {string} {string} item", async function(noOfItems, itemType) {
+When("I create requisition with {int} {string} item", async function(noOfItems, itemType) {
     let reqBo= await objectCreation.getObjectOfRequisition(noOfItems, itemType);
     this.reqBO = await checkoutImp.createRequisitionFlow(reqBo);
 });
@@ -310,4 +314,15 @@ When("I modify the field quantity", async function(){
 When("I add taxes", async function(){
     this.reqBO = await checkoutImp.updateTaxDetails(this.reqBO);
 });
+
+Given( "I Create {int} requisitions with {int} {string} item", async function (noOfReqs, noOfItems, itemType) {
+    this.reqArray = await checkoutImp.createMultipleReqs(noOfReqs, noOfItems, itemType);
+    logger.info("Required number of POs created")
+ });
+
+ Given( "I have {int} Requisitions In Approval status", async function() {
+    I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
+    await checkoutImp.checkMultipleReqStatus();
+ });
+
 
