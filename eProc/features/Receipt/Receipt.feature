@@ -1,6 +1,6 @@
 Feature: Receipt
 
-@L1 @Receipt
+@L1 @Receipt @autox
     Scenario: To verify that buyer is able to save as draft or create a receipt for the items received
 
     Given I am logged in eproc

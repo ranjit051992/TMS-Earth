@@ -141,7 +141,7 @@ Then("PO status should be draft", async function() {
 
 Given("I have created and released a PO", async function() {
    this.spo = await objectCreation.getObjectOfStandardPO(1, "Catalog");
-   // this.spo.poNumber = "blue sanity -/2220";
+   // this.spo.poNumber = "Automation_Spo_1583217623620";
    this.spo = await spoImpl.createAndReleaseSpoFlow(this.spo);
 });
 

@@ -267,6 +267,7 @@ module.exports = {
     async clickOnCostBookingSaveButton() {
         await I.waitForVisible(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
         await I.click(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
+        await I.click(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
         await I.waitForVisible(I.getElement(iSpoObject.poDescriptionTextbox));
         logger.info("Clicked on Save Button");
     },
@@ -503,7 +504,8 @@ module.exports = {
         await poListingImpl.navigateToPoListing();
         await commonKeywordImpl.searchDocOnListing(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
         let status = await poListingImpl.getPoStatus();
-        let flag = status.includes(lmtVar.getLabel("RELEASED_STATUS"));
+        logger.info(`Status in db --> ${lmtVar.getLabel("RELEASED_STATUS")}`);
+        let flag = status.toString().includes(lmtVar.getLabel("RELEASED_STATUS"));
         if(!flag) {
             logger.info(`Failed to release spo because status is ${status} on po listing after approving`);
             throw new Error(`Failed to release spo because status is ${status} on po listing after approving`);
