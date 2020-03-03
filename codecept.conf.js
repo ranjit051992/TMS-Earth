@@ -35,7 +35,11 @@ exports.config = {
     parallel: {
       // Splits tests into 2 chunks
       chunks: 2
-    }
+    },
+     sanityCases: {
+      // Splits tests into 2 chunks
+      chunks: 2
+    }
   },
   gherkin: {
     features: "./eProc/features/**/**/*.feature",
