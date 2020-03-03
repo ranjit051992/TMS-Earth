@@ -32,6 +32,7 @@ class Spo
         this.taxInclusive;
         this.billToAddress;
         this.status;
+        this.PoAmount;
     }
     setPoNumber(poNumber)
     {
@@ -176,6 +177,11 @@ class Spo
     setStatus(status)
     {
         this.status = status;
+    }
+
+    setPoAmount(PoAmount)
+    {
+        this.PoAmount = PoAmount;
     }
 }
 module.exports = Spo;

@@ -38,6 +38,7 @@ class Requisition
         this.fillCBL;
         this.fillCostAllocation;
         this.nextAction;
+        this.reqAmount;
         //let items = [];
     }
 
@@ -206,6 +207,10 @@ class Requisition
         this.nextAction = nextAction;
     }
 
+    setreqAmount(reqAmount)
+    {
+        this.reqAmount = reqAmount;
+    }
 }
 
 module.exports = new Requisition();

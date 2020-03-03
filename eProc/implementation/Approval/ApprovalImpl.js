@@ -68,25 +68,26 @@ module.exports = {
     },
 
     async fetchRequesterNameOnReqApprovalListing() {
-        let name = await I.grabTextFrom(I.getElement(approvalObject.REQUESTER_NAME));
+        I.waitForVisible(I.getElement(approvalObject.REQUESTER_NAME));
+        let requester = await I.grabTextFrom(I.getElement(approvalObject.REQUESTER_NAME));
         logger.info("Requester name fetched from listing");
-        return name;
+        return requester;
     },
 
     async fetchReceivedOnDateOnReqApprovalListing() {
-        let date = await I.grabTextFrom(I.getElement.get(approvalObject.RECEIVED_ON));
+        let date = await I.grabTextFrom(I.getElement(approvalObject.RECEIVED_ON));
         logger.info("Received on date fetched from listing");
         return date;
     },
 
     async fetchAmountToBeApprovedOnReqApprovalListing() {
-        let amount = await I.grabTextFrom(I.getElement.get(approvalObject.AMOUNT_TO_BE_APPROVED));
+        let amount = await I.grabTextFrom(I.getElement(approvalObject.AMOUNT_TO_BE_APPROVED));
         logger.info("Amount to be approved fetched from listing");
         return amount;
     },
 
     async fetchReqStatusOnReqApprovalListing() {
-        let status = await I.grabTextFrom(I.getElement.get(approvalObject.STATUS));
+        let status = await I.grabTextFrom(I.getElement(approvalObject.STATUS));
         logger.info("Requisition status fetched from listing");
         return status;
     },
@@ -253,7 +254,7 @@ module.exports = {
     },
 
     async fetchBuyerOnPoApprovalListing(buyer) {
-        let username = buyer.substring(0,9);
+        let username = buyer.toString().substring(0,str.indexOf("@"));
         let buyerXpath = `//span[contains(text(),'${username}')]`;
         let buyerName = await I.grabTextFrom(buyerXpath);
         logger.info("Requester name fetched from listing");
@@ -267,13 +268,13 @@ module.exports = {
     },
 
     async fetchAmountToBeApprovedOnPoApprovalListing() {
-        let amount = await I.grabTextFrom(I.getElement.get(approvalObject.AMOUNT_TO_BE_APPROVED_SPO));
+        let amount = await I.grabTextFrom(I.getElement(approvalObject.AMOUNT_TO_BE_APPROVED_SPO));
         logger.info("Amount to be approved fetched from listing");
         return amount;
     },
 
-    async fetchReqStatusOnPoApprovalListing() {
-        let status = await I.grabTextFrom(I.getElement.get(approvalObject.STATUS_SPO));
+    async fetchPoStatusOnPoApprovalListing() {
+        let status = await I.grabTextFrom(I.getElement(approvalObject.STATUS_SPO));
         logger.info("PO status fetched from listing");
         return status;
     },

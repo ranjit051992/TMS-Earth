@@ -11,6 +11,8 @@ const iCart = require("../Cart/CartObject");
 const onlineStoreImpl = require("../OnlineStore/OnlineStoreImpl");
 const faker = require("faker");
 const poListingObject = require("../../PO/PoListing/PoListingObject");
+const reqListingImpl = require("../../Requisition/RequisitionListing/RequisitionListingImpl");
+const iApprovalObject = require("../../Approval/ApprovalObject");
 
 module.exports={
 
@@ -35,7 +37,8 @@ module.exports={
 
         requisitionBO = await this.fillCostAllocation(requisitionBO);
 
-        requisitionBO = await this. fillItemDetails(requisitionBO);
+        requisitionBO = await this.fillItemDetails(requisitionBO);
+
 
         if(requisitionBO.nextAction === lmtVar.getLabel("SUBMIT"))
         {
@@ -45,6 +48,7 @@ module.exports={
             this.isRequisitionSubmitted();
         }
 
+     
         else if(requisitionBO.nextAction === lmtVar.getLabel("SAVE_AS_DRAFT"))
         {
           await this.clickOnSaveAsDraftButton();
@@ -297,7 +301,8 @@ module.exports={
      * clickOnPurchaseTypeYesButton: Clicks on Yes Button on Confirm Pop after selecting PurchaseType
      */
     async clickOnPurchaseTypeYesButton()
-    {
+    {   
+        I.waitForVisible(I.getElement(iCheckout.PURCHASE_TYPE_CONFIRM_POPUP_YES_BUTTON));
         await  I.click(I.getElement(iCheckout.PURCHASE_TYPE_CONFIRM_POPUP_YES_BUTTON));
         logger.info("Clicked on Purchase Type YES button");
     },
@@ -730,9 +735,9 @@ module.exports={
     async fillItemDetails(requisitionBO)
     {
         logger.info("*********Filling Requisition Item Details Details");
-        commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+        await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
 
-        this.clickOnCostBookingLink(requisitionBO.itemName);
+        await this.clickOnCostBookingLink(requisitionBO.itemName);
 
         if(requisitionBO.buyer !== "undefined")
         {
@@ -776,6 +781,10 @@ module.exports={
             I.wait(prop.DEFAULT_HIGH_WAIT);
         }
 
+        I.waitForVisible(I.getElement(iCheckout.REQUISITION_AMOUNT));
+        let reqAmount = I.grabTextFrom(I.getElement(iCheckout.REQUISITION_AMOUNT));
+        requisitionBO.setreqAmount(reqAmount);
+        logger.info(`Req Amount is ${reqAmount}`);
        
         
         return requisitionBO;
@@ -843,5 +852,25 @@ module.exports={
         await this.clickOnContinueButton();
         await commonComponent.waitForLoadingSymbolNotDisplayed();
         await this.isRequisitionSubmitted();
+    },
+
+    async createMultipleReqs(noOfReqs, noOfItems, itemType) {
+        let reqArray = new Array();
+        for (let i=0; i<noOfReqs; i++)
+        {
+        reqArray[i] = await objectCreation.getObjectOfRequisition(noOfItems, itemType);
+        reqArray[i] = await this.createRequisitionFlow(reqArray[i]);
+        }
+        return reqArray;
+    },
+
+    async checkMultipleReqStatus(reqArray) {
+        I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
+        for (let i=0; i<reqArray.length; i++) {
+            reqArray[i] = await commonComponent.searchDocOnListing(reqArray[i].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            let status = await reqListingImpl.getRequisitionStatus();
+            I.assertEqual(status, lmtVar.getLabel("IN_APPROVAL_STATUS"));
+            logger.info(`${status} matches with ${lmtVar.getLabel("IN_APPROVAL_STATUS")}`);
+        }
     },
 };

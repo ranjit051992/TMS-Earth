@@ -70,4 +70,6 @@ module.exports= {
     //Shipping Details And Asset Tagging
     LINE_LEVEL_ADDRESS: "Checkout/ItemDetails/Shipping Details And Asset Tagging/LINE_LEVEL_ADDRESS",
 
+    // Header Level details
+    REQUISITION_AMOUNT: "Checkout/REQUISITION_AMOUNT",
 };
