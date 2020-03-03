@@ -168,7 +168,7 @@ Then("I should be able to see the PO in closed status", async function() {
 
 When("I Save PO as draft", async function() {
    await spoImpl.clickOnSaveAsDraftButton();
-   await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+   await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
 });
 
 When("I edit the drafted PO", async function() {
@@ -248,7 +248,7 @@ Given( "I have {int} POs In Approval status", async function() {
 
 Then("I should be able to see the PO in Cancelled status", async function() {
    await poListingImpl.clickOnSuccessPopupDoneButton();
-   await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+   await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
    await commonKeywordImpl.searchDocOnListing(this.spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
    let status = await poListingImpl.getPoStatus();
    let flag = status.toString() === lmtVar.getLabel("CANCELLED_STATUS");
@@ -296,7 +296,7 @@ When("I change the delivery address at line level to {string}", async function(a
 
 When("I save the delivery address", async function() {
    await spoImpl.clickOnCostBookingSaveButton();
-   await I.seeElement(I.getElement(iSpoObject.poDescriptionTextbox));
+   await I.waitForVisible(I.getElement(iSpoObject.poDescriptionTextbox));
 });
 
 Then("{string} delivery address should be displayed", async function(address1) {
