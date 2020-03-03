@@ -504,9 +504,8 @@ module.exports = {
         await poListingImpl.navigateToPoListing();
         await commonKeywordImpl.searchDocOnListing(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
         let status = await poListingImpl.getPoStatus();
-        logger.info(`Status on po listing --> ${status}`);
         logger.info(`Status in db --> ${lmtVar.getLabel("RELEASED_STATUS")}`);
-        let flag = status.includes(lmtVar.getLabel("RELEASED_STATUS"));
+        let flag = status.toString().includes(lmtVar.getLabel("RELEASED_STATUS"));
         if(!flag) {
             logger.info(`Failed to release spo because status is ${status} on po listing after approving`);
             throw new Error(`Failed to release spo because status is ${status} on po listing after approving`);

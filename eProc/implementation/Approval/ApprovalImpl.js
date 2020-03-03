@@ -93,8 +93,9 @@ module.exports = {
 
     async navigateToPOApprovalListingTab() {
         await I.waitForVisible(I.getElement(approvalObject.SPO_TAB));
+        await I.waitForClickable(I.getElement(approvalObject.SPO_TAB));
         await I.click(I.getElement(approvalObject.SPO_TAB));
-        await I.waitForVisible(I.getElement(approvalObject.SEARCH_FIELD));
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info("I am on PO approval listing");
     },
 
