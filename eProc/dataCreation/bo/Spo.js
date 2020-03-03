@@ -32,6 +32,10 @@ class Spo
         this.taxInclusive;
         this.billToAddress;
         this.status;
+        this.fillCbl;
+        this.fillShippingDetails;
+        this.fillControlSettings;
+        this.fillAdditionalDetails;
     }
     setPoNumber(poNumber)
     {
@@ -177,5 +181,24 @@ class Spo
     {
         this.status = status;
     }
+
+    setFillCbl(fillCbl)
+    {
+        this.fillCbl = fillCbl;
+    }
+
+    setFillShippingDetails(fillShippingDetails) {
+        this.fillShippingDetails = fillShippingDetails;
+    }
+
+    setFillControlSettings(fillControlSettings) 
+    {
+        this.fillControlSettings = fillControlSettings;
+    }
+
+    setFillAdditionalDetails(fillAdditionalDetails) {
+        this.fillAdditionalDetails = fillAdditionalDetails;
+    }
+
 }
 module.exports = Spo;

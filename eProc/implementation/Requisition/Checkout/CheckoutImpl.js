@@ -11,6 +11,7 @@ const iCart = require("../Cart/CartObject");
 const onlineStoreImpl = require("../OnlineStore/OnlineStoreImpl");
 const faker = require("faker");
 const poListingObject = require("../../PO/PoListing/PoListingObject");
+const coaImpl = require("../../Coa/CoaImpl");
 
 module.exports={
 
@@ -764,32 +765,35 @@ module.exports={
             /// assigned BuyerGroup code
         }
 
-        await this.clickOnCostBookingTab();
-        if(!prop.isCOA)
-        {
-            if(requisitionBO.glAccount !== "undefined")
-            {
-               let glAccount = await this.fillGLAccount(requisitionBO.glAccount);
-               requisitionBO.setGlAccount(glAccount);
-            }
-        }
+        this.clickOnCostBookingTab();
 
-        if(requisitionBO.assetCode !== "undefined")
-        {
-            let assetCode = await this.fillAssetCode(requisitionBO.assetCode);
-            requisitionBO.setAssetCode(assetCode);
-        }
+        await coaImpl.fillCoaDetails();
 
-        if(prop.isCOA)
-        {
-            //fill COA form code
-        }
-        else
-        {
-            await this.clickOnCostBookingSaveButton();
-            await commonComponent.waitForLoadingSymbolNotDisplayed();
-            await I.wait(prop.DEFAULT_HIGH_WAIT);
-        }
+        // if(!prop.isCoa)
+        // {
+        //     if(requisitionBO.glAccount !== "undefined")
+        //     {
+        //        let glAccount =  this.fillGLAccount(requisitionBO.glAccount);
+        //        requisitionBO.setGlAccount(glAccount);
+        //     }
+        // }
+
+        // // if(requisitionBO.assetCode !== "undefined")
+        // // {
+        // //     let assetCode = this.fillAssetCode(requisitionBO.assetCode);
+        // //     requisitionBO.setAssetCode(assetCode);
+        // // }
+
+        // if(prop.isCoa)
+        // {
+        //     //fill COA form code
+        // }
+        // else
+        // {
+        //     this.clickOnCostBookingSaveButton();
+        //     commonComponent.waitForLoadingSymbolNotDisplayed();
+        //     I.wait(prop.DEFAULT_HIGH_WAIT);
+        // }
 
         return requisitionBO;
 

@@ -97,7 +97,7 @@ module.exports={
        await this.fillSearchItem(itemName);
        await this.clickOnSearchIcon();
        await I.waitForVisible("//span[contains(text(),'"+itemName+"')]",prop.DEFAULT_MEDIUM_WAIT);
-       await I.seeElement("//span[contains(text(),'"+itemName+"')]");
+       await I.waitForVisible("//span[contains(text(),'"+itemName+"')]");
        logger.info("Item is searched.");
    },
 
