@@ -17,10 +17,10 @@ exports.config = {
       default_medium_wait: prop.DEFAULT_MEDIUM_WAIT,
       default_high_wait: prop.DEFAULT_HIGH_WAIT,
     },
-    ChaiWrapper:
-    {
-      require: "codeceptjs-chai"
-    },
+   // "ChaiWrapper":
+    // {
+    //   "require": "codeceptjs-chai"
+    // },
     MyHelper:
     {
       require: "./Framework/CustomHelper/myHelper.js",
