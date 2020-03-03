@@ -8,6 +8,7 @@ const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI1
 const reqListing = require("../../Requisition/RequisitionListing/RequisitionListingImpl");
 const prop = global.confi_prop;
 const viewReqImpl = require("../ViewRequisition/ViewRequisitionImpl");
+const faker = require("faker");
 
 When("I create requisition with {string} {string} item", async function(noOfItems, itemType) {
     let reqBo= await objectCreation.getObjectOfRequisition(noOfItems, itemType);
@@ -176,7 +177,7 @@ Given("I link Purchase Order {string} in the Select Purchase Order field", async
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ADDITIONAL_DETAILS_SECTION"));
     await checkoutImp.selectPurchaseOrder(po);
     await checkoutImp.clickOnSelectedPOContinueButton();
-    this.purchaseOrder = po;
+    this.purchaseOrder = await checkoutImp.getSelectedPurchaseOrder();;
 });
 
 
@@ -184,7 +185,7 @@ Then("I should be see that the field name is updated to Select Purchase Order", 
 
    let selectedPO = await checkoutImp.getSelectedPurchaseOrder();
    let isSelected = false;
-    if(selectedPO===this.purchaseOrder.toString())
+    if(selectedPO.toString()===this.purchaseOrder.toString())
     {
         isSelected = true;
     }
@@ -199,6 +200,7 @@ Given("I select {string} at line level in Buyer section", async function(buyerGr
     await checkoutImp.selectBuyerGroupOption();
     let group = I.getData(buyerGroup);
     await checkoutImp.fillBuyerInTextBox(group);
+    await checkoutImp.getBuyer();
     this.buyerGroup = group;
 });
 
@@ -207,13 +209,13 @@ Given("I select buyer {string} at line level in Buyer section", async function(b
     await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
     let value = I.getData(buyer);
     await checkoutImp.fillBuyerInTextBox(value);
+    await checkoutImp.getBuyer();
     this.buyerName = value.substring(0,value.indexOf('@'));
 });
 
 Then("I should be able to view requisition with buyer as the buyer group which was assigned", async function(){
 
-    await reqListing.viewRequisition(this.reqName);
-
+    await reqListing.searchAndViewReqByName(this.reqName);
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
     await checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);     
     await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
@@ -230,7 +232,7 @@ Then("I should be able to view requisition with buyer as the buyer group which w
 
  Then("I should be able to view requisition with buyer which was assigned", async function(){
 
-    await reqListing.viewRequisition(this.reqName);
+    await reqListing.searchAndViewReqByName(this.reqName);
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
     await checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);     
     await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
@@ -270,7 +272,7 @@ When("I create the address", async function(){
 
 Then("I should be able to see new Deliver address as the Ship to Another Address on view requisition", async function(){
 
-    await reqListing.viewRequisition(this.reqName);
+    await reqListing.searchAndViewReqByName(this.reqName);
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
     let actualAddress = this.customAddress.toString();
     let address = await viewReqImpl.getShipToAnotherAddress();

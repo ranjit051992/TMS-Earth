@@ -116,7 +116,7 @@ module.exports={
         {
             let xpath = `//*[contains(text(),'${selectOption}')]`;
             await I.scrollIntoView(xpath);
-            await I.click(selectOption);
+            await I.click(xpath);
             logger.info(`Selected Value from Drop Down: ${selectOption}`);
         }
         else

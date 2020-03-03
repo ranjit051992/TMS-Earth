@@ -301,7 +301,12 @@ module.exports={
 
     async selectSettlementVia(settlementVia)
     {
-        await commonComponent.selectValueFromDropDown(I.getElement(iCheckout.SETTLEMENT_VIA), settlementVia);
+        //await commonComponent.selectValueFromDropDown(I.getElement(iCheckout.SETTLEMENT_VIA), settlementVia);
+        await I.waitForVisible(I.getElement(iCheckout.SETTLEMENT_VIA));
+        await I.waitForClickable(I.getElement(iCheckout.SETTLEMENT_VIA));
+        await I.click(I.getElement(iCheckout.SETTLEMENT_VIA));
+        await I.waitForVisible("//a[contains(text(),'"+settlementVia+"')]");
+        await I.click("//a[contains(text(),'"+settlementVia+"')]");
         settlementVia = await I.grabTextFrom(I.getElement(iCheckout.SETTLEMENT_VIA));
         logger.info(`Selected Settement Via option is ---> ${settlementVia}`);
         return settlementVia;
@@ -327,8 +332,10 @@ module.exports={
     {
         await I.waitForVisible(I.getElement(iCheckout.SELECT_PURCHASE_ORDER),prop.DEFAULT_HIGH_WAIT);
         await I.waitForClickable(I.getElement(iCheckout.SELECT_PURCHASE_ORDER),prop.DEFAULT_HIGH_WAIT);
-        commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.SELECT_PURCHASE_ORDER),purchaseOrder,"//dew-col[contains(text(),'"+purchaseOrder+"')]")
-         
+        //commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.SELECT_PURCHASE_ORDER),purchaseOrder,"//dew-col[contains(text(),'"+purchaseOrder+"')]")
+        await I.fillField(I.getElement(iCheckout.SELECT_PURCHASE_ORDER),purchaseOrder);
+        await I.waitForVisible("//dew-col[contains(text(),'"+purchaseOrder+"')]",prop.DEFAULT_MEDIUM_WAIT);
+        await I.click("//dew-col[contains(text(),'"+purchaseOrder+"')]");
     },
 
     async addAttachments(attachmentFile)
@@ -504,10 +511,10 @@ module.exports={
      */
     async fillBuyerInTextBox(buyerName)
     {
-        I.waitForVisible(I.getElement(iCheckout.BUYER_TEXTBOX), prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForVisible(I.getElement(iCheckout.BUYER_TEXTBOX), prop.DEFAULT_MEDIUM_WAIT);
         //let buyer = buyerName.substring(0,buyerName.indexOf('@'));
-        commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.BUYER_TEXTBOX),buyerName, I.getElement(iCheckout.BUYER_SUGGESTION_OPTION));
-        I.saveScreenshot("BuyerGroup.png");
+        await commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.BUYER_TEXTBOX),buyerName, I.getElement(iCheckout.BUYER_SUGGESTION_OPTION));
+        await I.saveScreenshot("BuyerGroup.png");
         logger.info(`Entered Buyer is: ${buyerName}`);
         return buyerName;
     },
@@ -860,7 +867,7 @@ module.exports={
         await I.waitForVisible(I.getElement(iCheckout.SELECT_PURCHASE_ORDER),prop.DEFAULT_HIGH_WAIT);
         await I.waitForClickable(I.getElement(iCheckout.SELECT_PURCHASE_ORDER),prop.DEFAULT_HIGH_WAIT);
         let po = await I.grabAttributeFrom(I.getElement(iCheckout.SELECT_PURCHASE_ORDER),"value");
-        logger.info("Po found : "+po);
+        logger.info("Po found : "+po.toString().trim());
         return po;
 
     },

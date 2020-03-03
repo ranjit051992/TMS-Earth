@@ -40,6 +40,7 @@ module.exports = {
      */
     async getRequisitionNumber(reqName)
     {
+        await commomComponent.searchDocOnListing(reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
         let reqNumber = await commomComponent.getDocNumber(reqName);
         return reqNumber;
     },
@@ -52,7 +53,7 @@ module.exports = {
 
     async viewRequisition(reqNumber)
     {
-        await commomComponent.viewDocByDocNumber(reqNumber);
+        await commomComponent.clickOnDocNumberLink();
         
     },
 

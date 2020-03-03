@@ -1,6 +1,6 @@
 Feature: OnlineStore
 
-@Non-COA @L1 
+@Non-COA @L1 @online
   Scenario: To verify that user is able to search a particular item or service.
   Given I am logged in eProc
 
@@ -17,7 +17,7 @@ Feature: OnlineStore
   Then I should see all the added Items to favorite can be viewed from 'My Favorites' tab
 
 
-@Non-COA @L1 
+@Non-COA @L1 @online
   Scenario: To verify that user is able to add an item from Hosted Catalog to the Cart.
   Given I am logged in eProc
 
@@ -26,7 +26,7 @@ Feature: OnlineStore
   Then I should see "2" "ITEM_NAME_FOR_SEARCHING" items in Cart
 
 
-@Non-COA @L1
+@Non-COA @L1 @online
   Scenario: To verify that user is be able to compare items within a catalog
   Given I am logged in eProc
 
@@ -35,7 +35,7 @@ Feature: OnlineStore
   And I click on compare items
   Then I should see the selected items compared against multiple parameters name, price, currency, UOM, Supplier
 
-@Non-COA @L1 @os1
+@Non-COA @L1 @Basket
   Scenario: To verify that user is able to Sort every column in basket
   Given I am logged in eProc
   And I navigate to Shopping Basket Page

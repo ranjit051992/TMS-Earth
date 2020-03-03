@@ -79,7 +79,7 @@ Feature: Checkout
     
     Then I should be able to see the attachment which is added
 
-@Non-COA @L1 @customAddress @Snehal
+@Non-COA @L1  @Snehal
     Scenario: To verify that user is able to create any custom / One time delivery address while Check out and save it for future use
     Given I am logged in eProc
 
@@ -104,17 +104,17 @@ Feature: Checkout
     And I select Ship to Another Address in  Shipping Details section at header level
     And I should be able to see the saved address on creating a new requisition
 
-@Non-COA @L1 @Snehal
+@Non-COA @L1 @Snehal @buyer
   Scenario: To verify that the 'Select Purchase Order' field
   Given I am logged in eProc
 
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
-  And I link Purchase Order "blue sanity -/2202" in the Select Purchase Order field
+  And I link Purchase Order "blue sanity" in the Select Purchase Order field
 
   Then I should be see that the field name is updated to Select Purchase Order
 
-@Non-COA @L1  @Snehal
+@Non-COA @L1  @Snehal 
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer group
   Given I am logged in eProc
 
@@ -131,7 +131,7 @@ Feature: Checkout
 
   Then I should be able to view requisition with buyer as the buyer group which was assigned
 
-@Non-COA @L1 @test @Snehal
+@Non-COA @L1 @Snehal 
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer
   Given I am logged in eProc
 
