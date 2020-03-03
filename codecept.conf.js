@@ -36,10 +36,11 @@ exports.config = {
       // Splits tests into 2 chunks
       chunks: 2
     }
-  },
-  gherkin: {
-    features: "./eProc/features/**/**/*.feature",
-    steps: "./eProc/implementation/**/**/*.js"
+      },
+    gherkin: {
+     //features: './iRequest/features/**/**.feature',
+     features: './iRequest/features/GuideMe/GuideMe.feature',
+      steps: './iRequest/implementation/**/**.js'
   },
   name: prop.projectName,
   plugins: {

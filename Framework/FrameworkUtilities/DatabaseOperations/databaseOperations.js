@@ -14,8 +14,9 @@ module.exports = {
         const columnName = prop.SETUP + "_" + prop.TENANT;
         logger.info(columnName);
         
-        const query = `SELECT FIELD_NAME, ${columnName} FROM ${prop.testdataTable}`;
-   
+        //const query = `SELECT FIELD_NAME, ${columnName} FROM ${prop.testdataTable}`;
+        
+        const query = `SELECT FIELD_NAME, QCVM_SupplierPortalBuyer1 FROM ${prop.testdataTable}`;
         logger.info(query);
 
         return new Promise((resolve, reject) => {
