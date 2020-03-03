@@ -13,7 +13,7 @@ Feature: Spo
   # And i search po by descr/iption 
 
 
-@Non_COA @L1 @87
+@Non_COA @L1 @87 @99333232
   Scenario: To verify that user is able to amend an existing PO to add more item
 
   Given I am logged in eProc
@@ -30,7 +30,7 @@ Feature: Spo
   Then Item should be added "ITEM_NAME_FOR_SEARCHING[1]" at index 2
 
 
-@Non_COA @L1 @89
+@Non_COA @L1 @89 @99333232
   Scenario: To verify that user is able to change the delivery address on PO amend
 
   Given I am logged in eProc
@@ -52,7 +52,7 @@ Feature: Spo
 Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 
 
-@Non_COA @L1 @90
+@Non_COA @L1 @90 @99333232
   Scenario: To verify that user is able to recall a PO after it is submitted
 
   Given I am logged in eProc
@@ -82,7 +82,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
   Then PO status should be draft
 
 
-@Non_COA @L1 @91
+@Non_COA @L1 @91 @99333232
   Scenario: To verify that user is able to change the payment terms on PO amend
 
   Given I am logged in eProc
@@ -101,7 +101,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
   Then "PAYMENT_TERMS[1]" payment term should be displayed
 
 
-@Non_COA @L1 @92
+@Non_COA @L1 @92 @99333232
   Scenario: To verify that user is able to close a SPO
 
   Given I am logged in eProc
@@ -118,7 +118,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
   Then I should be able to see the PO in closed status
 
 
-@Non_COA @L1 @94
+@Non_COA @L1 @94 @99333232
   Scenario: To verify that user is able to cancel a SPO 
 
   Given I am logged in eProc
@@ -132,7 +132,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
   Then I should be able to see the PO in Cancelled status
 
 
-@Non_COA @L1 @108
+@Non_COA @L1 @106 @99333232
   Scenario: To verify that user is able to add item for the PO in draft state
 
   Given I am logged in eProc
@@ -160,7 +160,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
   Then Item should be added "ITEM_NAME_FOR_SEARCHING[1]" at index 2
 
 
-@Non_COA @L1 @108
+@Non_COA @L1 @108 @99333232
   Scenario: To verify remind approver action for SPO
 
   Given I am logged in eProc 
