@@ -39,6 +39,10 @@ class ObjectCreation
         spo.setReceiptRuleAtHeaderLevel(true);
         spo.setReceiptCreationDefault(true);
         spo.setTaxInclusive(true);
+        spo.setFillCbl(false);
+        spo.setFillShippingDetails(false);
+        spo.setFillControlSettings(false);
+        spo.setFillAdditionalDetails(false);
         return spo;
     }
 
@@ -62,7 +66,6 @@ class ObjectCreation
     {
         let catalog = new catalogItem()
         catalog.setItemName(await commonUtilities.splitData(1,"ITEM_NAME_FOR_SEARCHING"));
-        // catalog.setItemName(I.getData("ITEM_NAME_FOR_SEARCHING[3]"));
         catalog.quantity = faker.random.number(20);
         return catalog;
     }

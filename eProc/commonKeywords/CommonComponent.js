@@ -81,7 +81,8 @@ async function getElementViewportStatus(xpath, timeout) {
         });
     }
     else {
-        throw new Error(`Element '${xpath}' is not present after ${timeout} sec`);
+        // throw new Error(`Element '${xpath}' is not present after ${timeout} sec`);
+        return isPresent;
     }
 }
 
@@ -160,7 +161,6 @@ module.exports={
 
         let optionXpath = `//dew-listing-search//div[contains(@class,'dropdown-menu')]//a[${index}]`;
         logger.info(`optionXpath --> ${optionXpath}`);
-
         await I.waitForVisible(optionXpath);
         await I.click(optionXpath);
         await I.wait(prop.DEFAULT_WAIT);
@@ -191,13 +191,14 @@ module.exports={
         logger.info(`Clicked on action menu option --> ${option}`);
     },
     async getDocNumber() {
-        await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         let docNumber = await I.grabTextFrom(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info(`Retrieved doc number --> ${docNumber}`);
         return docNumber;
     },
     async clickOnDocNumberLink() {
-        await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
         await I.click(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info("Clicked on document number");
     },
@@ -219,7 +220,13 @@ module.exports={
      */
     async isEnabledByXpath(xpath) {
         return await I.executeScript(function(xpath) {
-            return document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.disabled;
+            let flag = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.disabled;
+            if(flag) {
+                return false;
+            }
+            else {
+                return true;
+            }
         }, xpath);
     },
     /**

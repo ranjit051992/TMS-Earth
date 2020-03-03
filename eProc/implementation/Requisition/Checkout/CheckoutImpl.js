@@ -11,6 +11,7 @@ const iCart = require("../Cart/CartObject");
 const onlineStoreImpl = require("../OnlineStore/OnlineStoreImpl");
 const faker = require("faker");
 const poListingObject = require("../../PO/PoListing/PoListingObject");
+const coaImpl = require("../../Coa/CoaImpl");
 
 module.exports={
 
@@ -750,31 +751,34 @@ module.exports={
         }
 
         this.clickOnCostBookingTab();
-        if(!prop.isCOA)
-        {
-            if(requisitionBO.glAccount !== "undefined")
-            {
-               let glAccount =  this.fillGLAccount(requisitionBO.glAccount);
-               requisitionBO.setGlAccount(glAccount);
-            }
-        }
 
-        // if(requisitionBO.assetCode !== "undefined")
+        await coaImpl.fillCoaDetails();
+
+        // if(!prop.isCoa)
         // {
-        //     let assetCode = this.fillAssetCode(requisitionBO.assetCode);
-        //     requisitionBO.setAssetCode(assetCode);
+        //     if(requisitionBO.glAccount !== "undefined")
+        //     {
+        //        let glAccount =  this.fillGLAccount(requisitionBO.glAccount);
+        //        requisitionBO.setGlAccount(glAccount);
+        //     }
         // }
 
-        if(prop.isCOA)
-        {
-            //fill COA form code
-        }
-        else
-        {
-            this.clickOnCostBookingSaveButton();
-            commonComponent.waitForLoadingSymbolNotDisplayed();
-            I.wait(prop.DEFAULT_HIGH_WAIT);
-        }
+        // // if(requisitionBO.assetCode !== "undefined")
+        // // {
+        // //     let assetCode = this.fillAssetCode(requisitionBO.assetCode);
+        // //     requisitionBO.setAssetCode(assetCode);
+        // // }
+
+        // if(prop.isCoa)
+        // {
+        //     //fill COA form code
+        // }
+        // else
+        // {
+        //     this.clickOnCostBookingSaveButton();
+        //     commonComponent.waitForLoadingSymbolNotDisplayed();
+        //     I.wait(prop.DEFAULT_HIGH_WAIT);
+        // }
 
        
         
