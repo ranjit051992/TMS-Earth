@@ -87,23 +87,30 @@ async function getElementViewportStatus(xpath, timeout) {
 
 module.exports={
 
+    /**
+     * Search and Select Value from drop down
+     * @param {*} dropdownElement 
+     * @param {*} searchValue 
+     * @param {*} selectOptionXpath 
+     * @returns selectedValue
+     */
     async searchAndSelectFromDropdown(dropdownElement, searchValue, selectOptionXpath){
-        await I.waitForVisible(dropdownElement);        
+        await I.waitForVisible(dropdownElement); 
+        await I.waitForClickable(dropdownElement);
         await I.click(dropdownElement);
         await I.clearField(dropdownElement);
-        // if(typeof searchValue !== "undefined"){
-        await I.fillField(dropdownElement, searchValue);
-        // let optionXpath = `//div[contains(text(),'${selectOption}')]`
-        await I.waitForVisible(selectOptionXpath);
-        await I.click(selectOptionXpath);
-        let value = await I.grabAttributeFrom(dropdownElement, "value");
-        return value;
-        // }
-        // else{
-        //     I.click(global.uiElements.get(commonCompObject.SearchAndSelectDropdown_Option));
-        //     let selectedValue =  await I.grabAttributeFrom(global.uiElements.get(dropdownAction.SearchAndSelectDropdown_Option), "title");
-        //     return selectedValue;
-        // }
+        if(searchValue.toString() !== null)
+        {
+            await I.fillField(dropdownElement, searchValue);
+            await I.waitForVisible(selectOptionXpath);
+            await I.click(selectOptionXpath);
+            let value = await I.grabAttributeFrom(dropdownElement, "value");
+            return value;
+         }
+        else
+        {
+            throw new Error("Search Value is Invalid.....");
+        }
 
     },
 
@@ -128,8 +135,8 @@ module.exports={
     async scrollToSection(sectionName)
     {
         let sectionXapth = `//div[contains(text(),'${sectionName}')]`;
-        I.scrollIntoView(sectionXapth);
-        I.wait(prop.DEFAULT_MEDIUM_WAIT);
+        await I.scrollIntoView(sectionXapth);
+        await  I.wait(prop.DEFAULT_MEDIUM_WAIT);
         logger.info("Scrolled to Section "+sectionName);
     },
 

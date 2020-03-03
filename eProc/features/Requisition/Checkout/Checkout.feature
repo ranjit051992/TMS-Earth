@@ -48,7 +48,7 @@ Feature: Checkout
   Then I should contract linked to free text item on viewing the item
 
 
-@Non-COA @L1 @costCenter
+@Non-COA @L1 @sanity
   Scenario: To verify that user is able to add Cost center information to the requisition.
   Given I am logged in eProc
 
@@ -60,7 +60,7 @@ Feature: Checkout
 
   Then I should be see the updated cost center on line level Cost Booking section 
 
-@Non-COA @L1 @project
+@Non-COA @L1 @sanity
     Scenario: To verify that user is able to add Project information to the requisition.
     Given I am logged in eProc
 
@@ -82,16 +82,17 @@ Feature: Checkout
     
     Then I should be able to see the attachment which is added
 
-@Non-COA @L1 @createReq
+@Non-COA @L1 @copyRequisition
     Scenario: To verify that user is able to copy any requisition and modify it to create a new requisition.
     Given I am logged in eProc
 
     When I create requisition with "1" "ITEM_NAME_FOR_SEARCHING" item
     And I copy that requisition
-    And I modify the fields(qty, add taxes) requisition
-    And I submit it
+    And I modify the field quantity
+    And I add taxes
+    And I submit requisition
 
-    Then I should be able to see submitted requisition with updated details
+    # Then I should be able to see submitted requisition with updated details
 
 @Non-COA @L1
     Scenario: To verify that user is able to create free text line item and items from Hosted Catalog in a single PR.
@@ -126,7 +127,7 @@ Feature: Checkout
     Scenario: To verify that user should be able to buy items on behalf of other individuals. 
     Given I am logged in eProc
 
-    When I add a catalog item to cart
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I add a On Behalf of user
     And I add Purchase Type
@@ -178,7 +179,7 @@ Feature: Checkout
 
     Then I should be able to see Required by date should be auto calculated as per lead time defined in the catalog setting in this page
 
-@Non-COA @L1 @autoCostCenter
+@Non-COA @L1 @sanity
     Scenario: To verify that System auto populates user's Cost center when a user is creating a requisition.
     Given I am logged in eProc
 
@@ -189,7 +190,7 @@ Feature: Checkout
     And I navigate to Line level Cost Booking Details
     And I should see on line level Cost Booking Details section cost center should be populated
 
-@Non-COA @L1 @defaultAddress
+@Non-COA @L1 @sanity
     Scenario: To verify that system auto populates user's default Delivery & Bill to address 
     Given I am logged in eProc
 
@@ -214,7 +215,7 @@ Feature: Checkout
 
     Then I should be able to see Deliver address as the Ship to Another Address on view requisition 
 
-@Non-COA @L1 @reqApprovalStatus
+@Non-COA @L1 @sanity
     Scenario:  To verify that user is able to view approval Status
     Given I am logged in eProc
 
@@ -384,7 +385,7 @@ Feature: Checkout
 
   Then I should be able to view requisition with non stock item
 
-@Non-COA @L1 @saveAsDraft
+@Non-COA @L1 @sanity
   Scenario: To verify requisition in draft and actions on it
   Given I am logged in eProc
 
@@ -463,7 +464,7 @@ Feature: Checkout
   Scenario: To verify the behavior of requisition who has PO attached to them
   Given I am logged in eProc
 
-  When I add a catalog item to cart
+  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
   And I add Purchase Type
   And I add Required By Date

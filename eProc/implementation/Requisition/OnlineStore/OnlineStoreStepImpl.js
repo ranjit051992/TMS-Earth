@@ -33,11 +33,12 @@ When("I add {string} {string} items to cart", async function (noOfItem, itemType
 
     //onlineStoreImpl.addItemsToCart(noOfItem,itemType);
     await cartImpl.clearCart();
+    await I.wait(prop.DEFAULT_WAIT);
     let itemArray = new Array();
 
     for (let i = 0; i < noOfItem; i++) {
-        let item = commonUtils.splitData(i, itemType);
-        onlineStoreImpl.addItemToCart(item, faker.random.number(20));
+        let item = await commonUtils.splitData(i, itemType);
+        await onlineStoreImpl.addItemToCart(item, faker.random.number(20));
         itemArray.push(item);
 
     }

@@ -96,7 +96,9 @@ class ObjectCreation
         requisition.nextAction = lmtVar.getLabel("SUBMIT")
         requisition.fillCBL = false;
         requisition.items  =  this.getArrayOfItems(noOfItems,itemType);
-       
+        requisition.taxType = I.getData("TAX_TYPE");
+        requisition.taxName = I.getData("TAX_NAME");
+        requisition.setApplyTaxItemLevel = false;
         return requisition;
     }
 
