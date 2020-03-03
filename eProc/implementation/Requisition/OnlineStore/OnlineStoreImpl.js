@@ -15,11 +15,11 @@ module.exports={
     async fillSearchItem(itemName)
     {
 
-        I.scrollIntoView(I.getElement(iOnlineStore.SEARCH_TEXTBOX));
-        I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
-        I.waitForClickable(I.getElement(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
-        I.clearField(I.getElement(iOnlineStore.SEARCH_TEXTBOX));
-        I.fillField(I.getElement(iOnlineStore.SEARCH_TEXTBOX),itemName);
+        await I.scrollIntoView(I.getElement(iOnlineStore.SEARCH_TEXTBOX));
+        await I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable(I.getElement(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+        await I.clearField(I.getElement(iOnlineStore.SEARCH_TEXTBOX));
+        await I.fillField(I.getElement(iOnlineStore.SEARCH_TEXTBOX),itemName);
         logger.info(`Entered item name : ${itemName}`);
         
     },
@@ -33,9 +33,9 @@ module.exports={
     */
    async clickOnSearchIcon()
    {
-       I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
-       I.waitForClickable(I.getElement(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
-       I.pressKey('Enter');
+       await I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+       await I.waitForClickable(I.getElement(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+       await I.pressKey('Enter');
        logger.info(`clicked on Search icon`);
        
    },
@@ -48,11 +48,11 @@ module.exports={
     */
    async fillItemQuantity(itemName,quantity)
    {
-       I.waitForVisible("//span[contains(text(),'"+itemName+"')]//ancestor::dew-card//input[@aria-label='Quantity']",prop.DEFAULT_MEDIUM_WAIT);
-       I.waitForClickable("//span[contains(text(),'"+itemName+"')]//ancestor::dew-card//input[@aria-label='Quantity']",prop.DEFAULT_MEDIUM_WAIT);
-       I.clearField("//span[contains(text(),'"+itemName+"')]//ancestor::dew-card//input[@aria-label='Quantity']");
-       I.fillField("//span[contains(text(),'"+itemName+"')]//ancestor::dew-card//input[@aria-label='Quantity']",quantity);
-       logger.info(`Entered item quantity : ${quantity}`);
+        await I.waitForVisible("//span[contains(text(),'"+itemName+"')]//ancestor::dew-card//input[@aria-label='Quantity']",prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable("//span[contains(text(),'"+itemName+"')]//ancestor::dew-card//input[@aria-label='Quantity']",prop.DEFAULT_MEDIUM_WAIT);
+        await  I.clearField("//span[contains(text(),'"+itemName+"')]//ancestor::dew-card//input[@aria-label='Quantity']");
+        await  I.fillField("//span[contains(text(),'"+itemName+"')]//ancestor::dew-card//input[@aria-label='Quantity']",quantity);
+        logger.info(`Entered item quantity : ${quantity}`);
    },
 
    /** 
@@ -64,10 +64,10 @@ module.exports={
     */
    async clickOnAddToCartButton(itemName)
    {
-       I.waitForVisible("//span[contains(text(),'"+itemName+"')]//ancestor::dew-card//button[contains(@class,'btn primary')]",prop.DEFAULT_MEDIUM_WAIT);
-       I.waitForClickable("//span[contains(text(),'"+itemName+"')]//ancestor::dew-card//button[contains(@class,'btn primary')]",prop.DEFAULT_MEDIUM_WAIT);
-       I.click("//span[contains(text(),'"+itemName+"')]//ancestor::dew-card//button[contains(@class,'btn primary')]");
-       logger.info(`clicked on add to cart button`); 
+        await I.waitForVisible("//span[contains(text(),'"+itemName+"')]//ancestor::dew-card//button[contains(@class,'btn primary')]",prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable("//span[contains(text(),'"+itemName+"')]//ancestor::dew-card//button[contains(@class,'btn primary')]",prop.DEFAULT_MEDIUM_WAIT);
+        await I.click("//span[contains(text(),'"+itemName+"')]//ancestor::dew-card//button[contains(@class,'btn primary')]");
+        logger.info(`clicked on add to cart button`); 
    },
 
    /** 
@@ -83,7 +83,7 @@ module.exports={
        I.waitForClickable(I.getElement(iOnlineStore.CART_ICON),prop.DEFAULT_MEDIUM_WAIT);
        I.click(I.getElement(iOnlineStore.CART_ICON));
        logger.info(`clicked on Cart icon`); 
-   },
+   }, 
 
    /** 
      * fill search item name in search field & hit search icon
@@ -96,8 +96,8 @@ module.exports={
    {
        await this.fillSearchItem(itemName);
        await this.clickOnSearchIcon();
-       I.waitForVisible("//span[contains(text(),'"+itemName+"')]",prop.DEFAULT_MEDIUM_WAIT);
-       I.seeElement("//span[contains(text(),'"+itemName+"')]");
+       await I.waitForVisible("//span[contains(text(),'"+itemName+"')]",prop.DEFAULT_MEDIUM_WAIT);
+       await I.seeElement("//span[contains(text(),'"+itemName+"')]");
        logger.info("Item is searched.");
    },
 
@@ -113,7 +113,7 @@ module.exports={
         await this.searchItem(itemName);
         await this.fillItemQuantity(itemName,quantity);
         await this.clickOnAddToCartButton(itemName);
-        I.waitForVisible(I.getElement(iOnlineStore.ADD_TO_CART_SUCCESS_MSG),prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForVisible(I.getElement(iOnlineStore.ADD_TO_CART_SUCCESS_MSG),prop.DEFAULT_MEDIUM_WAIT);
         logger.info("Add to cart success msg is displayed. Item "+itemName+" is added to cart.");
    },
 
@@ -127,9 +127,11 @@ module.exports={
    async clickOnOnlineStoreLink()
    {
 
-       I.scrollIntoView(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
-       I.waitForVisible(I.getElement(iOnlineStore.ONLINE_STORE_LINK),prop.DEFAULT_MEDIUM_WAIT);
-       I.click(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
+      await I.scrollIntoView(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
+      await I.waitForVisible(I.getElement(iOnlineStore.ONLINE_STORE_LINK),prop.DEFAULT_HIGH_WAIT);
+      await I.waitForClickable(I.getElement(iOnlineStore.ONLINE_STORE_LINK),prop.DEFAULT_HIGH_WAIT);
+      await I.click(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
+      await I.wait(prop.DEFAULT_MEDIUM_WAIT);
    },
 
    /** 
@@ -141,9 +143,9 @@ module.exports={
     */
    async waitForOnlineStoreToLoad()
    {
-       I.waitForInvisible(I.getElement(iOnlineStore.SPINNER),prop.DEFAULT_HIGH_WAIT);
-       I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_HIGH_WAIT);
-       logger.info("Online Store page is loaded.");
+    await I.waitForInvisible(I.getElement(iOnlineStore.SPINNER),prop.DEFAULT_HIGH_WAIT);
+    await I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX),prop.DEFAULT_HIGH_WAIT);
+    await logger.info("Online Store page is loaded.");
    },
 
     /** 

@@ -196,16 +196,17 @@ Feature: Checkout
 
 
 
-# @Non-COA @L1 @createReq
-#     Scenario: To verify that user is able to copy any requisition and modify it to create a new requisition.
-#     Given I am logged in eProc
+@Non-COA @L1 @copyReq
+    Scenario: To verify that user is able to copy any requisition and modify it to create a new requisition.
+    Given I am logged in eProc
 
-#     When I create requisition with "1" "ITEM_NAME_FOR_SEARCHING" item
-#     And I copy that requisition
-#     And I modify the fields(qty, add taxes) requisition
-#     And I submit it
+    When I create requisition with "1" "ITEM_NAME_FOR_SEARCHING" item
+    And I copy that requisition
+    And I modify the field quantity
+    And I add taxes
+    And I submit requisition
 
-#     Then I should be able to see submitted requisition with updated details
+    Then I should be able to see submitted requisition with updated details
 
 # @Non-COA @L1
 #     Scenario: To verify that user is able to create free text line item and items from Hosted Catalog in a single PR.

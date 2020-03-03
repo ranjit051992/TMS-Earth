@@ -16,7 +16,7 @@ When("I create requisition with {string} {string} item", async function(noOfItem
 });
 
 When("I edit Cost Allocation section at header level", async function(){
-    commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_COST_ALLOCATION_SECTION"));
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_COST_ALLOCATION_SECTION"));
 });
 
 When("I update cost center {string}", async function(costCenter){
@@ -25,8 +25,8 @@ When("I update cost center {string}", async function(costCenter){
 });
 
 Given("I navigate to Line level Cost Booking Details", async function(){
-    commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
-    checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);
+   await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+   await checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);
 });
 
 Then("I should be see the updated cost center on line level Cost Booking section", async function(){
@@ -41,10 +41,9 @@ Then("I should be see the updated cost center on line level Cost Booking section
 });
 
 When("I update project {string}", async function(project){
-    checkoutImp.clickOnAssignCostProjectYesButton();
+    await checkoutImp.clickOnAssignCostProjectYesButton();
     this.project= await checkoutImp.fillProject(global.testData.get(project));
-    logger.info("this.project "+this.project)
-
+    logger.info("I update project ---> "+this.project);
 });
 
 Then("I should be see the updated project on line level Cost Booking section", async function(){
@@ -137,9 +136,7 @@ When("I save it", async function(){
 });
 
 When("I save requisition in Draft state", async function(){
-   await checkoutImp.clickOnSaveAsDraftButton();
-   await commonComponent.waitForLoadingSymbolNotDisplayed();
-   await I.wait(prop.DEFAULT_MEDIUM_WAIT);
+   await checkoutImp.saveRequisitionAsDraft();
    await reqListing.isRequisitionListingPageDisplayed() ;
 });
 
@@ -156,7 +153,6 @@ When("I submit requisition", async function(){
     await checkoutImp.submitRequisition();
     await commonComponent.waitForLoadingSymbolNotDisplayed();
 });
-
 
 Given("I add an attachment {string}", async function(filePath){
 
@@ -303,4 +299,15 @@ Then("I should be able to see new Deliver address as the Ship to Another Address
 
     I.assertEqual((isEqual && this.isAddressSaved),true);
  });
+
+When("I modify the field quantity", async function(){
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    let quantity = faker.random.number(20);
+    this.updateQuantity =  await checkoutImp.enterItemLevelQuantity(this.reqBO.itemName, quantity);
+    logger.info("Modified quantity is---> "+this.updateQuantity);
+});
+
+When("I add taxes", async function(){
+    this.reqBO = await checkoutImp.updateTaxDetails(this.reqBO);
+});
 
