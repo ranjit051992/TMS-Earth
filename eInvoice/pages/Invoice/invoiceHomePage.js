@@ -8,6 +8,9 @@ module.exports = {
     I.click(global.uiElements.get(iInvoiceHome.addInvoiceBtn));
   },
 
+  saveView(){
+
+  },
   filterByStatus(status) {
     I.click(global.uiElements.get(iInvoiceHome.statusFilterIcon));
     I.fillField(global.uiElements.get(iInvoiceHome.searchField), status);
@@ -17,7 +20,6 @@ module.exports = {
   selectStatus(status) {
     I.click(`//dew-popover-body//label[contains(text(),"${status}")]`); 
   },
-
 
   filterByInvoiceNumber(invoiceNumber) {
     I.click(global.uiElements.get(iInvoiceHome.invoiceFilterIcon));

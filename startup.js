@@ -43,8 +43,8 @@ async function runCodecept() {
         },
 
         gherkin: {
-            features: './iContract/features/**/*.feature',
-            steps: './iContract/implementation/**/*.js'
+            features: './eInvoice/features/**/*.feature',
+            steps: './eInvoice/implementation/**/*.js'
         },
 
         name: 'BDD_UI_Automation',

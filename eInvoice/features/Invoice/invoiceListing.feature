@@ -1,8 +1,8 @@
 Feature: Invoice Listing
 
     Background:
-        Given User logged in to the application
-
+        Given I logged in to the application
+    @listing
     Scenario: Verify that the user is able to view all the invoices on listing page
         Given I navigate to Invoice module
         When I am on the invoice listing page
@@ -10,7 +10,7 @@ Feature: Invoice Listing
 
     Scenario: Save filter
         Given I navigate to Invoice module
-        And I filter invoice
+        And I filter invoices
         When I save view
         Then I should be able to save and see the desired invoices on invoice listing
 

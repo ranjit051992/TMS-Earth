@@ -19,6 +19,11 @@ exports.config = {
       default_low_wait: prop.DEFAULT_LOW_WAIT,
       default_medium_wait: prop.DEFAULT_MEDIUM_WAIT,
       default_high_wait: prop.DEFAULT_HIGH_WAIT,
+      smartWait: 5000,
+      timeouts: {
+        "script": 10000,
+        "page load": 10000
+      }
     }, 
     "ChaiWrapper" : 
     {
@@ -35,8 +40,8 @@ exports.config = {
     I: prop.stepFilePath,
   },
   multiple: {
-    sanityCases: {
-      // grep:"@Sanity",
+    sanity: {
+       //grep:"",
           chunks: 1
         },
     Regression:{
@@ -45,8 +50,8 @@ exports.config = {
     }
       },
   gherkin: {
-    features: "./eProc/features/**/**/**.feature",
-    steps: "./eProc/implementation/**/**/**.js"
+    features: "./eInvoice/features/Invoice/**.feature",
+    steps: "./eInvoice/implementation/**/**.js"
 }, 
   name: prop.projectName,
   plugins: {
