@@ -3,6 +3,7 @@ const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger")
 const iOnlineStore = require("./OnlineStoreObject");
 const prop = global.confi_prop;
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
+const commonComponent = require("../../../commonKeywords/CommonComponent")
 
 module.exports={
 
@@ -127,11 +128,11 @@ module.exports={
    async clickOnOnlineStoreLink()
    {
 
-      await I.scrollIntoView(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
-      await I.waitForVisible(I.getElement(iOnlineStore.ONLINE_STORE_LINK),prop.DEFAULT_HIGH_WAIT);
-      await I.waitForClickable(I.getElement(iOnlineStore.ONLINE_STORE_LINK),prop.DEFAULT_HIGH_WAIT);
-      await I.click(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
-      await I.wait(prop.DEFAULT_MEDIUM_WAIT);
+      //await I.scrollIntoView(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
+      I.waitForVisible(I.getElement(iOnlineStore.ONLINE_STORE_LINK),prop.DEFAULT_HIGH_WAIT);
+    //   I.waitForClickable(I.getElement(iOnlineStore.ONLINE_STORE_LINK),prop.DEFAULT_HIGH_WAIT);
+      I.click(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
+      await commonComponent.waitForLoadingSymbolNotDisplayed();
    },
 
    /** 

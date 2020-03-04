@@ -17,15 +17,15 @@ Feature: BuyersDesk
 
 #     Then I should be able to view the requisition in edit mode
 
-# @Non-COA @L1
-#     Scenario: To verify if buyer is able to convert Requisition to PO based on different criteria 
-#     Given I am logged in eProc
+@Non-COA @L1
+    Scenario: To verify if buyer is able to convert Requisition to PO based on different criteria 
+    Given I am logged in eProc
 
-#     When I navigate to Buyers Desk 
-#     And I select multiple requisition with same currency, supplier, delivery address from listing page
-#     And I convert it to PO from listing
+    When I navigate to Buyers Desk "1" "ITEM_NAME_FOR_SEARCHING" "2"
+    And I select multiple "2" requisition with same currency, supplier, delivery address from listing page
+    And I convert it to PO from listing
 
-#     Then I should be able to create a PO with multiple requisition merged into one
+   # Then I should be able to create a PO with multiple requisition merged into one
 
 # @Non-COA @L1
 #     Scenario: To verify filters on buyer's desk status filter
@@ -36,23 +36,23 @@ Feature: BuyersDesk
 
 #     Then I should be see the data on the page with the filtered status
 
-# @Non-COA @L1
-#     Scenario: To verify filters on buyer's desk status filter
-#     Given I am logged in eProc
+ @Non-COA @L1
+     Scenario: To verify filters on buyer's desk status filter
+     Given I am logged in eProc
 
-#     When I navigate to Buyer Desk "1" "ITEM_NAME_FOR_SEARCHING"
-#     And I filter with Requisition number field
+     When I navigate to Buyer Desk "1" "ITEM_NAME_FOR_SEARCHING"
+     And I filter with Requisition number field
 
-#     Then I should be see the data on the page on the basis on Requisition number field
+     Then I should be see the data on the page on the basis on Requisition number field
 
-# @Non-COA @L1
-#     Scenario: To verify requisition name filter on buyer's desk 
-#     Given I am logged in eProc
+ @Non-COA @L1
+     Scenario: To verify requisition name filter on buyer's desk 
+     Given I am logged in eProc
 
-#     When I navigate to Buyer Desk "1" "ITEM_NAME_FOR_SEARCHING"
-#     And I filter with requisition name field
+     When I navigate to Buyer Desk "1" "ITEM_NAME_FOR_SEARCHING"
+     And I filter with requisition name field
 
-#     Then I should be see the data on the page on the basis on requisition name field
+     Then I should be see the data on the page on the basis on requisition name field
 
 # @Non-COA @L1
 #     Scenario: To verify requestor filter on buyer's desk 
@@ -72,14 +72,14 @@ Feature: BuyersDesk
 
 #     Then I should be see the data on the page on the basis on Received on field
 
-# @Non-COA @L1
-#     Scenario: To verify Assigned Buyer filter on buyer's desk 
-#     Given I am logged in eProc
+ @Non-COA @L1
+     Scenario: To verify Assigned Buyer filter on buyer's desk 
+     Given I am logged in eProc
 
-#     When I navigate to Buyer Desk
-#     And I filter any buyer
+    When I navigate to Buyer Desk "1" "ITEM_NAME_FOR_SEARCHING"
+    And I filter any buyer "BUYER_NAME"
 
-#     Then I should be see the data on the page with the filtered buyer
+     Then I should be see the data on the page with the filtered buyer
 
 # @Non-COA @L1
 #     Scenario: To verify Purchase Amount filter on buyer's desk 

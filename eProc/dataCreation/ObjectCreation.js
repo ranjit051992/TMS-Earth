@@ -81,7 +81,7 @@ class ObjectCreation
         requisition.reasonForOrdering = I.getData("REASON_FOR_ORDERING");
         requisition.commentsForSupplier = I.getData("COMMENTS_FOR_SUPPLIERS");
         requisition.purchaseType = I.getData("PURCHASE_TYPE");
-        requisition.attachmentPath = "";
+        requisition.attachmentPath = "undefined";
         requisition.settlementVia = "Invoice";
         requisition.retrospectivePurchase = "No";
         requisition.shipToDefaultAddress = "Yes";
@@ -97,6 +97,7 @@ class ObjectCreation
         requisition.glAccount = I.getData("GL_ACCOUNT");
         requisition.assetCode = I.getData("COST_BOOKING_DETAILS_ASSET_CODE");
         requisition.buyer = I.getData("BUYER_NAME");
+        requisition.assignedBuyerGroup = "undefined";
         requisition.itemName = I.getData("ITEM_NAME_FOR_SEARCHING");
         requisition.nextAction = lmtVar.getLabel("SUBMIT")
         requisition.fillCBL = false;
