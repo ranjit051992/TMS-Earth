@@ -7,7 +7,8 @@ Feature:Invoice Creation
 
     @sanity
     Scenario: Create non po invoice
-        Given I add non po invoice details
+        #Given I add non po invoice details
+        Given I create an invoice
         And I add supplier information
         And I add basic details
         And I add items

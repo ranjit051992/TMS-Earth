@@ -6,6 +6,7 @@ module.exports = {
     remitAddressField: 'commonElements/REMIT_ADDRESS_FIELD',
     firstRemitAddress: 'commonElements/FIRST_REMIT_ADDRESS',
     requesterField: 'commonElements/REQUESTER_FIELD',
+    purchaseTypeField: 'commonElements/PURCHASE_TYPE_FIELD',
     companyField: 'commonElements/COMPANY_FIELD',
     businessUnitField: 'commonElements/BUSINESS_UNIT_FIELD',
     locationField: 'commonElements/LOCATION_FIELD',

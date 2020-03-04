@@ -31,6 +31,10 @@ module.exports = {
         I.fillField(global.uiElements.get(iCommon.requesterField), requester);
         I.click(`//div[@class="ac-body"]//span[text()="${requester}"]`);
     },
+    selectPurchaseType(purchaseType) {
+        I.click(global.uiElements.get(iCommon.purchaseTypeField));
+        I.click(`//div[@class="dropdown-content pointer ps scrollable ps--active-y"]//div[text()="${purchaseType}"]`);
+    },
     addCBL(company, businessUnit, location) {
         I.clearField(global.uiElements.get(iCommon.companyField));
         I.fillField(global.uiElements.get(iCommon.companyField), company);

@@ -1,13 +1,12 @@
-const { I } = inject();
+const { I,randomNumber } = inject();
 const iCreateInvoice = require("./IcreateInvoice");
-let NON_PO="Non_Po";
+const commonElements = require("../../pages/Common/commonElements");
+const invoiceHomePage = require("../../pages/Invoice/invoiceHomePage");
+const addInvoicePage = require("../../pages/Invoice/addInvoicePage");
+let NON_PO="NON_PO";
 module.exports = {  
     clickOnBasicDetailsTab() {
         I.click(global.uiElements.get(iCreateInvoice.basicDetailsTab));
-    },
-    selectPurchaseType(purchaseType) {
-        I.click(this.purchaseTypeField);
-        I.click(`//div[@class="dropdown-content pointer ps scrollable ps--active-y"]//div[text()="${purchaseType}"]`);
     },
     clickOnBillingAndCostBookingDetailsTab() {
         I.click(global.uiElements.get(iCreateInvoice.billingAndCostBookingTab));
@@ -23,7 +22,27 @@ module.exports = {
     },
     createInvoice(type) {
         if(type==NON_PO){
-
+            invoiceHomePage.clickOnAddInvoiceBtn();
+            addInvoicePage.selectNonPoInvoice();
+            commonElements.selectSupplier(global.testData.get("SUPPLIER"));
+            var randomNumber=commonElements.getRandomNumber(5);
+            addInvoicePage.enterInvocieNumber(randomNumber);
+            addInvoicePage.selectInvoiceDate();
+            commonElements.clickOnNextBtn();
+            commonElements.selectAddress();
+            commonElements.selectRemitToAddress();
+            this.clickOnBasicDetailsTab();
+            commonElements.selectRequester(global.testData.get("REQUESTER"));
+            commonElements.selectPurchaseType(global.testData.get("PURCHASE_TYPE"));
+            this.clickOnAddItemsTab();
+            commonElements.addItem(global.testData.get("ITEM_NAME"),global.testData.get("CATEGORY"),global.testData.get("QTY_OR_AMT"),global.testData.get("UOM"),global.testData.get("PRICE"));
+            this.clickOnBillingAndCostBookingDetailsTab();
+            commonElements.addCBL(global.testData.get("COMPANY"),global.testData.get("BUSINESS_UNIT"),global.testData.get("LOCATION"));
+            commonElements.addCostBookingDetails(global.testData.get("BU"),global.testData.get("COST_CENTER"),global.testData.get("PERCENTAGE"));
+            this.clickOnAddItemsTab();
+            commonElements.selectGLAccount(global.testData.get("GL_ACCOUNT"))
+            commonElements.clickOnSubmitBtn();
+            this.clickOnSendForConfirmationBtn();
         }
     }
 }
