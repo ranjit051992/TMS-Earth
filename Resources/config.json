@@ -11,7 +11,11 @@
         "SETUP": "RM",
         "TENANT": "ZCS",
         "browser": "chrome",
+<<<<<<< HEAD
         "host": "192.168.3.26",
+=======
+        "host": "192.168.6.167",
+>>>>>>> Shubham_3Mar_1
         "restart": "false",
         "port": 4444,
         "windowSize": "maximize",
