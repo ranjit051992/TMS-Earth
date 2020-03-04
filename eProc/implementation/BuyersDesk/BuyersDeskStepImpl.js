@@ -11,8 +11,9 @@ const checkoutImpl = require("./../Requisition/Checkout/CheckoutImpl");
 const cartImpl = require("./../Requisition/Cart/CartImpl");
 const onlineStoreImpl = require("./../Requisition/Cart/CartImpl");
 
-When("I navigate to Buyers Desk", async function() {
-  
+When("I navigate to Buyer Desk", async function() {
+  I.amOnPage(global.confi_prop.DDS_BuyersDesk_Url);
+  logger.info("Navigated to Buyers Desk Page")
 
  });
 
@@ -58,4 +59,19 @@ Then("I should be see the data on the page on the basis on requisition name fiel
   let searchedReqName = await buyersDeskImpl.fetchSearchedRequisitionName();
   I.assertEqual(searchedReqName.toString(), requisition.reqName);
 
-})
+});
+
+When ("I filter with Purchase Amount between {string} and {string}" , async function(maxValue,minValue){
+   buyersDeskImpl.clickPurchaseAmountFilter();
+   buyersDeskImpl.fillPurchaseAmount(maxValue,minValue);
+
+});
+
+
+
+When ("I filter with {string} status", async function(status){
+  buyersDeskImpl.clickonStatusFilterButton();
+  buyersDeskImpl.clickPurchaseAmountFilter(status);
+
+});
+
