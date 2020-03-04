@@ -27,12 +27,23 @@ module.exports= {
     RETROSPECTIVE_PURCHASE_NO_RADIO_BUTTON: "Checkout/AdditionalDetails/RETROSPECTIVE_PURCHASE_NO_RADIO_BUTTON",
     SELECT_PURCHASE_ORDER: "Checkout/AdditionalDetails/SELECT_PURCHASE_ORDER",
     ADD_ATTACHMENTS: "Checkout/AdditionalDetails/ADD_ATTACHMENTS",
+    SELECT_PURCHASE_ORDER_CONTINUE_BUTTON: "Checkout/AdditionalDetails/SELECT_PURCHASE_ORDER_CONTINUE_BUTTON",
+    VIEW_SELECTED_PO_LINK: "Checkout/AdditionalDetails/VIEW_SELECTED_PO_LINK",
 
     //Shipping Details
-    DEFAULT_SHIPPING_ADDRESS: "Checkout/ShippingDetails/DEFAULT_SHIPPING_ADDRESS",
-    SHIP_TO_ANOTHER_ADDRESS: "Checkout/ShippingDetails/SHIP_TO_ANOTHER_ADDRESS",
+    DEFAULT_SHIPPING_ADDRESS_TEXTBOX: "Checkout/ShippingDetails/DEFAULT_SHIPPING_ADDRESS",
+    SHIP_TO_ANOTHER_ADDRESS_BUTTON: "Checkout/ShippingDetails/SHIP_TO_ANOTHER_ADDRESS_BUTTON",
     DELIVER_TO: "Checkout/ShippingDetails/DELIVER_TO",
     REQUIRED_BY: "Checkout/ShippingDetails/REQUIRED_BY",
+    SHIP_TO_ANOTHER_ADDRESS_TEXTBOX: "Checkout/ShippingDetails/SHIP_TO_ANOTHER_ADDRESS_TEXTBOX",
+    ADDRESS_NAME_TEXTBOX: "Checkout/ShippingDetails/ADDRESS_NAME_TEXTBOX",
+    STREET_ONE_TEXTBOX: "Checkout/ShippingDetails/STREET_ONE_TEXTBOX",
+    STREET_TWO_TEXTBOX: "Checkout/ShippingDetails/STREET_TWO_TEXTBOX",
+    COUNTRY_DROPDOWN: "Checkout/ShippingDetails/COUNTRY_DROPDOWN",
+    CITY_TEXTBOX: "Checkout/ShippingDetails/CITY_TEXTBOX",
+    CREATE_BUTTON: "Checkout/ShippingDetails/CREATE_BUTTON",
+    SAVE_FOR_NEXT_TIME_CHECKBOX: "Checkout/ShippingDetails/SAVE_FOR_NEXT_TIME_CHECKBOX",
+    CUSTOM_ADDRESS_SUGGESTION: "Checkout/ShippingDetails/CUSTOM_ADDRESS_SUGGESTION",
 
     //Cost Allocation
     ASSIGN_COST_PROJECT_YES: "Checkout/CostAllocation/ASSIGN_COST_PROJECT_YES",
@@ -42,23 +53,43 @@ module.exports= {
     COST_CENTER: "Checkout/CostAllocation/COST_CENTER",
     PROJECT: "Checkout/CostAllocation/PROJECT",
     PERCENTAGE: "Checkout/CostAllocation/PERCENTAGE",
+    FETCHED_COST_CENTER: "Checkout/CostAllocation/FETCHED_COST_CENTER",
+    FETCHED_PROJECT : "Checkout/CostAllocation/FETCHED_PROJECT",
 
     //Item Details
     ADD_LINE_ITEM_BUTTON: "Checkout/ItemDetails/ADD_LINE_ITEM_BUTTON",
-
+    FETCHED_TOTAL_AMOUNT: "Checkout/ItemDetails/FETCHED_TOTAL_AMOUNT",
+    SHIPPING_DETAILS_AND_ASSET_TAGGING_LINK: "Checkout/ItemDetails/SHIPPING_DETAILS_AND_ASSET_TAGGING_LINK",
+    
     //Cost booking Details
     GL_ACCOUNT: "Checkout/ItemDetails/CostBookingDetails/GL_ACCOUNT",
     ASSET_CODE: "Checkout/ItemDetails/CostBookingDetails/ASSET_CODE",
     COST_BOOKING_SAVE_BUTTON: "Checkout/ItemDetails/CostBookingDetails/SAVE_BUTTON",
 
+
     //Buyers Tab
     BUYER_DROPDOWN_ICON: "Checkout/ItemDetails/BuyersTab/BUYER_DROPDOWN_ICON",
     BUYER_TEXTBOX: "Checkout/ItemDetails/BuyersTab/BUYER_TEXTBOX",
+    SELECTED_BUYER: "Checkout/ItemDetails/BuyersTab/SELECTED_BUYER",
+    BUYER_SUGGESTION_OPTION: "Checkout/ItemDetails/BuyersTab/BUYER_SUGGESTION_OPTION",
+
 
     //Checkout Page Footer's buttons
     I_M_DONE_BUTTON: "Checkout/I_M_DONE_BUTTON",
     SAVE_AS_DRAFT: "Checkout/SAVE_AS_DRAFT",
     CANCEL_BUTTON: "Checkout/CANCEL_BUTTON",
     CONTINUE_BUTTON: "Checkout/CONTINUE_BUTTON",
+    UPDATE_DRAFT_BUTTON: "Checkout/UPDATE_DRAFT_BUTTON",
+
+    //Shipping Details And Asset Tagging
+    LINE_LEVEL_ADDRESS: "Checkout/ItemDetails/Shipping Details And Asset Tagging/LINE_LEVEL_ADDRESS",
+    
+    //Taxes tab
+    TAX_TYPE_DROPDOWN: "Checkout/ItemDetails/Taxes/TAX_TYPE_DROPDOWN",
+    TAX_NAME_DROPDOWN: "Checkout/ItemDetails/Taxes/TAX_NAME_DROPDOWN",
+    TAX_RATE_TEXTBOX: "Checkout/ItemDetails/Taxes/TAX_RATE_TEXTBOX",
+    TAX_AMOUNT_TEXTBOX: "Checkout/ItemDetails/Taxes/TAX_AMOUNT_TEXTBOX",
+    REMOVE_ALL_TAXES_BUTTON: "Checkout/ItemDetails/Taxes/REMOVE_ALL_TAXES_BUTTON",
+
 
 };

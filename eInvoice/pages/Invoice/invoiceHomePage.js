@@ -9,7 +9,7 @@ module.exports = {
   },
 
   saveView(){
-
+    
   },
   filterByStatus(status) {
     I.click(global.uiElements.get(iInvoiceHome.statusFilterIcon));

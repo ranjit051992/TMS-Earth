@@ -17,7 +17,9 @@ class Requisition
         this.attachmentPath;
         this.settlementVia;
         this.retrospectivePurchase;
+        this.isDefaultAddressOption;
         this.shipToDefaultAddress;
+        this.isOtherAddressOption;
         this.shipToAnotherAddress;
         this.deliverTo;
         this.requiredBy;
@@ -25,12 +27,32 @@ class Requisition
         this.bookCostToSingleMultipleCC;
         this.bookCostAtLineLevel;
         this.costCenter;
+        this.project;
         this.itemName;
         this.glAccount;
         this.assetCode;
         this.buyer;
+        this.buyerOption;
+        this.assignedBuyerGroup;
         this.items = [];
         this.fillCBL;
+        this.fillCostAllocation;
+        this.nextAction;
+        this.customAddressName;
+        this.customAddressStreet1;
+        this.customAddressStreet2;
+        this.customAddressCountry;
+        this.customAddressState;
+        this.customAddressZip;
+        this.customAddressCity;
+        this.reqNumbers = [];
+
+
+        this.isApplyTaxItemLevel;
+        this.taxType;
+        this.TaxName;
+        this.taxRate;
+        this.taxAmount;
         //let items = [];
     }
 
@@ -41,7 +63,7 @@ class Requisition
 
     setReqNumber(reqNumber)
     {
-        this.reqNumber = reqNumber
+        this.reqNumber = reqNumber;
     }
 
     setOnBehalfOf(onBehalfOf)
@@ -102,6 +124,16 @@ class Requisition
     setShipToDefaultAddress(shipToDefaultAddress)
     {
         this.shipToDefaultAddress = shipToDefaultAddress;
+    }
+
+    setDefaultAddressOption(defaultAddressOption)
+    {
+        this.defaultAddressOption = defaultAddressOption;
+    }
+
+    setOtherAddressOption(OtherAddressOption)
+    {
+        this.OtherAddressOption = OtherAddressOption;
     }
 
     setShipToAnotherAddress(shipToAnotherAddress)
@@ -168,6 +200,51 @@ class Requisition
     {
         this.fillCBL = fillCBL;
     }
+
+    setProject(project)
+    {
+        this.project = project;
+    }
+
+    setBuyerOption(buyerOption)
+    {
+        this.buyerOption = buyerOption;
+    }
+
+    setFillCostAllocation(fillCostAllocation)
+    {
+        this.fillCostAllocation = fillCostAllocation;
+    }
+
+    setNextAction(nextAction)
+    {
+        this.nextAction = nextAction;
+    }
+
+    setTaxType(taxType)
+    {
+        this.taxType = taxType;
+    }
+
+    setTaxName(taxName)
+    {
+        this.taxName = taxName;
+    }
+
+    setTaxRate(taxRate)
+    {
+        this.taxRate = taxRate;
+    }
+
+    setTaxAmount(taxAmount)
+    {
+        this.taxAmount = taxAmount;
+    }
+
+    setApplyTaxItemLevel(isApplyTaxItemLevel)
+	{
+		this.isApplyTaxItemLevel = isApplyTaxItemLevel;
+	}
 }
 
 module.exports = new Requisition();

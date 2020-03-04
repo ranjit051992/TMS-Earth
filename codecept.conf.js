@@ -1,10 +1,7 @@
 require("./Framework/PropertiesConfigurator");
-
-
-const prop=global.confi_prop;
+const prop = global.confi_prop;
 global.lang = 'en';
 exports.config = {
- 
   tests: "./*_test.js",
   output: "./output",
   helpers: {
@@ -19,40 +16,36 @@ exports.config = {
       default_low_wait: prop.DEFAULT_LOW_WAIT,
       default_medium_wait: prop.DEFAULT_MEDIUM_WAIT,
       default_high_wait: prop.DEFAULT_HIGH_WAIT,
-      smartWait: 5000,
-      timeouts: {
-        "script": 10000,
-        "page load": 10000
-      }
-    }, 
-    "ChaiWrapper" : 
-    {
-      "require": "codeceptjs-chai"
     },
-    MyHelper: 
+   ChaiWrapper:
     {
-       require: "./Framework/CustomHelper/myHelper.js",
+      require: "codeceptjs-chai"
     },
-
+    MyHelper:
+    {
+      require: "./Framework/CustomHelper/myHelper.js",
+    },
   },
   bootstrap: "./bootstrap.js",
+  teardown: "./bootstrap.js",
   include: {
     I: prop.stepFilePath,
   },
-  multiple: {
-    sanity: {
-       //grep:"",
-          chunks: 1
-        },
-    Regression:{
-      // grep:"@Regression",
-          chunks: 2
-    }
-      },
+  multiple: {
+    parallel: {
+      // Splits tests into 2 chunks
+      chunks: 5
+    },
+     sanityCases: {
+      // Splits tests into 2 chunks
+      chunks: 2
+    }
+  },
   gherkin: {
-    features: "./eInvoice/features/Invoice/**.feature",
-    steps: "./eInvoice/implementation/**/**.js"
-}, 
+    features: "./eProc/features/**/**/*.feature",
+    steps: "./eProc/implementation/**/**/*.js"
+  },
+ 
   name: prop.projectName,
   plugins: {
     retryFailedStep: {
@@ -61,9 +54,12 @@ exports.config = {
     screenshotOnFail: {
       enabled: true
     },
-    wdio:{
-      enabled:true,
-      services:["selenium-standalone"]
-  }
+    wdio: {
+      enabled: true,
+      services: ["selenium-standalone"]
+    },
+    allure: {
+      enabled: true
+    }
   }
 };

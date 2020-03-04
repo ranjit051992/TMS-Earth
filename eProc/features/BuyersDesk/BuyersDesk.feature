@@ -1,452 +1,452 @@
 Feature: BuyersDesk
 
 
-@Non-COA @L1
-    Scenario: To verify if Buyer is able to edit the requisition.
-    Given I am logged in eProc
+# @Non-COA @L1
+#     Scenario: To verify if Buyer is able to edit the requisition.
+#     Given I am logged in eProc
 
-    When I add a catalog item to cart
-    And I checkout
-    And I add Purchase Type
-    And I add Required By Date
-    And I add data in Cost Booking Details section at line level 
-    And I submit requisition
-    And I approve requisition
-    And I navigate to Buyer Desk
-    And I edit the requisition
+#     When I add a catalog item to cart
+#     And I checkout
+#     And I add Purchase Type
+#     And I add Required By Date
+#     And I add data in Cost Booking Details section at line level 
+#     And I submit requisition
+#     And I approve requisition
+#     And I navigate to Buyer Desk
+#     And I edit the requisition
 
-    Then I should be able to view the requisition in edit mode
+#     Then I should be able to view the requisition in edit mode
 
 @Non-COA @L1
     Scenario: To verify if buyer is able to convert Requisition to PO based on different criteria 
     Given I am logged in eProc
 
-    When I navigate to Buyers Desk
-    And I select multiple requisition with same currency, supplier, delivery address from listing page
+    When I navigate to Buyers Desk "1" "ITEM_NAME_FOR_SEARCHING" "2"
+    And I select multiple "2" requisition with same currency, supplier, delivery address from listing page
     And I convert it to PO from listing
 
-    Then I should be able to create a PO with multiple requisition merged into one
+   # Then I should be able to create a PO with multiple requisition merged into one
 
-@Non-COA @L1
-    Scenario: To verify filters on buyer's desk status filter
-    Given I am logged in eProc
+# @Non-COA @L1
+#     Scenario: To verify filters on buyer's desk status filter
+#     Given I am logged in eProc
 
-    When I navigate to Buyer Desk
-    And I filter any status
+#     When I navigate to Buyer Desk
+#     And I filter any status
 
-    Then I should be see the data on the page with the filtered status
+#     Then I should be see the data on the page with the filtered status
 
-@Non-COA @L1
-    Scenario: To verify filters on buyer's desk status filter
-    Given I am logged in eProc
+ @Non-COA @L1
+     Scenario: To verify filters on buyer's desk status filter
+     Given I am logged in eProc
 
-    When I navigate to Buyer Desk
-    And I filter with Requisition number field
+     When I navigate to Buyer Desk "1" "ITEM_NAME_FOR_SEARCHING"
+     And I filter with Requisition number field
 
-    Then I should be see the data on the page on the basis on Requisition number field
+     Then I should be see the data on the page on the basis on Requisition number field
 
-@Non-COA @L1
-    Scenario: To verify requisition name filter on buyer's desk 
-    Given I am logged in eProc
+ @Non-COA @L1
+     Scenario: To verify requisition name filter on buyer's desk 
+     Given I am logged in eProc
 
-    When I navigate to Buyer Desk
-    And I filter with requisition name field
+     When I navigate to Buyer Desk "1" "ITEM_NAME_FOR_SEARCHING"
+     And I filter with requisition name field
 
-    Then I should be see the data on the page on the basis on requisition name field
+     Then I should be see the data on the page on the basis on requisition name field
 
-@Non-COA @L1
-    Scenario: To verify requestor filter on buyer's desk 
-    Given I am logged in eProc
+# @Non-COA @L1
+#     Scenario: To verify requestor filter on buyer's desk 
+#     Given I am logged in eProc
 
-    When I navigate to Buyer Desk
-    And I filter with Requestor field
+#     When I navigate to Buyer Desk
+#     And I filter with Requestor field
 
-    Then I should be see the data on the page on the basis on Requestor field
+#     Then I should be see the data on the page on the basis on Requestor field
 
-@Non-COA @L1
-    Scenario: To verify Received On filter on buyer's desk 
-    Given I am logged in eProc
+# @Non-COA @L1
+#     Scenario: To verify Received On filter on buyer's desk 
+#     Given I am logged in eProc
 
-    When I navigate to Buyer Desk
-    And I filter with Received on field
+#     When I navigate to Buyer Desk
+#     And I filter with Received on field
 
-    Then I should be see the data on the page on the basis on Received on field
+#     Then I should be see the data on the page on the basis on Received on field
 
-@Non-COA @L1
-    Scenario: To verify Assigned Buyer filter on buyer's desk 
-    Given I am logged in eProc
+ @Non-COA @L1
+     Scenario: To verify Assigned Buyer filter on buyer's desk 
+     Given I am logged in eProc
 
-    When I navigate to Buyer Desk
-    And I filter any buyer
+    When I navigate to Buyer Desk "1" "ITEM_NAME_FOR_SEARCHING"
+    And I filter any buyer "BUYER_NAME"
 
-    Then I should be see the data on the page with the filtered buyer
+     Then I should be see the data on the page with the filtered buyer
 
-@Non-COA @L1
-    Scenario: To verify Purchase Amount filter on buyer's desk 
-    Given I am logged in eProc
+# @Non-COA @L1
+#     Scenario: To verify Purchase Amount filter on buyer's desk 
+#     Given I am logged in eProc
 
-    When I navigate to Buyer Desk
-    And I filter with Purchase Amount
+#     When I navigate to Buyer Desk
+#     And I filter with Purchase Amount
 
-    Then I should be see the data on the page with the filtered amount
+#     Then I should be see the data on the page with the filtered amount
 
-@Non-COA @L1
-    Scenario: To verify filters on Upcoming Requisition status filter
-    Given I am logged in eProc
+# @Non-COA @L1
+#     Scenario: To verify filters on Upcoming Requisition status filter
+#     Given I am logged in eProc
 
-    When I navigate to Upcoming Requisition
-    And I filter with Requisition number field
+#     When I navigate to Upcoming Requisition
+#     And I filter with Requisition number field
 
-    Then I should be see the data on the page on the basis on Requisition number field
+#     Then I should be see the data on the page on the basis on Requisition number field
 
-@Non-COA @L1
-    Scenario: To verify requisition name filter on Upcoming Requisition
-    Given I am logged in eProc
+# @Non-COA @L1
+#     Scenario: To verify requisition name filter on Upcoming Requisition
+#     Given I am logged in eProc
 
-    When I navigate to Upcoming Requisition
-    And I filter with requisition name field
+#     When I navigate to Upcoming Requisition
+#     And I filter with requisition name field
 
-    Then I should be see the data on the page on the basis on requisition name field
+#     Then I should be see the data on the page on the basis on requisition name field
 
-@Non-COA @L1
-    Scenario: To verify requestor filter on Upcoming Requisition
-    Given I am logged in eProc
+# @Non-COA @L1
+#     Scenario: To verify requestor filter on Upcoming Requisition
+#     Given I am logged in eProc
 
-    When I navigate to Upcoming Requisition
-    And I filter with Requestor field
+#     When I navigate to Upcoming Requisition
+#     And I filter with Requestor field
 
-    Then I should be see the data on the page on the basis on Requestor field
+#     Then I should be see the data on the page on the basis on Requestor field
 
-@Non-COA @L1
-    Scenario: To verify Submitted On filter on Upcoming Requisition
-    Given I am logged in eProc
+# @Non-COA @L1
+#     Scenario: To verify Submitted On filter on Upcoming Requisition
+#     Given I am logged in eProc
 
-    When I navigate to Upcoming Requisition
-    And I filter with Submitted on field
+#     When I navigate to Upcoming Requisition
+#     And I filter with Submitted on field
 
-    Then I should be see the data on the page on the basis on Submitted on field
+#     Then I should be see the data on the page on the basis on Submitted on field
 
-@Non-COA @L1
-    Scenario: To verify Assigned Buyer filter on Upcoming Requisition
-    Given I am logged in eProc
-
-    When I navigate to Upcoming Requisition
-    And I filter any buyer
-
-    Then I should be see the data on the page with the filtered buyer
-
-@Non-COA @L1
-    Scenario: To verify Purchase Amount filter on Upcoming Requisition
-    Given I am logged in eProc
-
-    When I navigate to Upcoming Requisition
-    And I filter with Purchase Amount
-
-    Then I should be see the data on the page with the filtered amount
-
-@Non-COA @L1
-    Scenario: To verify that Buyer is able to view ordered requisitions
-    Given I am logged in eProc
-
-    When I navigate to Buyers Desk
-    And I filter Released requisition
-    And I view any requisition
-
-    Then I should be able to view the requisition with all details
-
-@Non-COA @L1
-    Scenario: To verify that Buyer is able to change buyer
-    Given I am logged in eProc
-
-    When I add a catalog item to cart
-    And I checkout
-    And I add Purchase Type
-    And I add Required By Date
-    And I add data in Cost Booking Details section at line level
-    And I submit requisition
-    And I approve the requisition
-    And I navigate to Buyers Desk
-    And I edit the requisition on Buyers Desk
-    And I update Assigned Buyer at  line level for item
-    And I save it
-
-    Then I should not be see the update Buyer for the requisition on Buyer Desk Listing
-    And I should be able to see updated Buyer on Requisition page also.
-
-@Non-COA @L1
-    Scenario: To verify that user(buyer) is not allowed to modify the requisition.
-    Given I am logged in eProc
-
-    When I add a catalog item to cart
-    And I checkout
-    And I add Purchase Type
-    And I add Required By Date
-    And I add data in Cost Booking Details section at line level
-    And I submit requisition
-    And I approve the requisition
-    And I navigate to Buyers Desk
-    And I return the requisition on Buyers Desk
-    And I allow requestor to resubmit the requisition
-
-    Then I should not be see the requisition In Returned for Amendment State on Requisition Listing
+# @Non-COA @L1
+#     Scenario: To verify Assigned Buyer filter on Upcoming Requisition
+#     Given I am logged in eProc
+
+#     When I navigate to Upcoming Requisition
+#     And I filter any buyer
+
+#     Then I should be see the data on the page with the filtered buyer
+
+# @Non-COA @L1
+#     Scenario: To verify Purchase Amount filter on Upcoming Requisition
+#     Given I am logged in eProc
+
+#     When I navigate to Upcoming Requisition
+#     And I filter with Purchase Amount
+
+#     Then I should be see the data on the page with the filtered amount
+
+# @Non-COA @L1
+#     Scenario: To verify that Buyer is able to view ordered requisitions
+#     Given I am logged in eProc
+
+#     When I navigate to Buyers Desk
+#     And I filter Released requisition
+#     And I view any requisition
+
+#     Then I should be able to view the requisition with all details
+
+# @Non-COA @L1
+#     Scenario: To verify that Buyer is able to change buyer
+#     Given I am logged in eProc
+
+#     When I add a catalog item to cart
+#     And I checkout
+#     And I add Purchase Type
+#     And I add Required By Date
+#     And I add data in Cost Booking Details section at line level
+#     And I submit requisition
+#     And I approve the requisition
+#     And I navigate to Buyers Desk
+#     And I edit the requisition on Buyers Desk
+#     And I update Assigned Buyer at  line level for item
+#     And I save it
+
+#     Then I should not be see the update Buyer for the requisition on Buyer Desk Listing
+#     And I should be able to see updated Buyer on Requisition page also.
+
+# @Non-COA @L1
+#     Scenario: To verify that user(buyer) is not allowed to modify the requisition.
+#     Given I am logged in eProc
+
+#     When I add a catalog item to cart
+#     And I checkout
+#     And I add Purchase Type
+#     And I add Required By Date
+#     And I add data in Cost Booking Details section at line level
+#     And I submit requisition
+#     And I approve the requisition
+#     And I navigate to Buyers Desk
+#     And I return the requisition on Buyers Desk
+#     And I allow requestor to resubmit the requisition
+
+#     Then I should not be see the requisition In Returned for Amendment State on Requisition Listing
 
-@Non-COA @L1
-    Scenario: To verify that user(buyer) is not allowed to modify the requisition.
-    Given I am logged in eProc
+# @Non-COA @L1
+#     Scenario: To verify that user(buyer) is not allowed to modify the requisition.
+#     Given I am logged in eProc
 
-    When I add a catalog item to cart
-    And I checkout
-    And I add Purchase Type
-    And I add Required By Date
-    And I add data in Cost Booking Details section at line level
-    And I submit requisition
-    And I approve the requisition
-    And I navigate to Buyers Desk
-    And I return the requisition on Buyers Desk
-    And I do not allow requestor to resubmit the requisition
+#     When I add a catalog item to cart
+#     And I checkout
+#     And I add Purchase Type
+#     And I add Required By Date
+#     And I add data in Cost Booking Details section at line level
+#     And I submit requisition
+#     And I approve the requisition
+#     And I navigate to Buyers Desk
+#     And I return the requisition on Buyers Desk
+#     And I do not allow requestor to resubmit the requisition
 
-    Then I should not be see the requisition In Rejected State on Requisition Listing
+#     Then I should not be see the requisition In Rejected State on Requisition Listing
 
-@Non-COA @L1
-    Scenario: To verify that user(buyer) is not allowed to modify the requisition.
-    Given I am logged in eProc
+# @Non-COA @L1
+#     Scenario: To verify that user(buyer) is not allowed to modify the requisition.
+#     Given I am logged in eProc
 
-    When I add a catalog item to cart
-    And I checkout
-    And I add Purchase Type
-    And I add Required By Date
-    And I add data in Cost Booking Details section at line level
-    And I submit requisition
-    And I approve the requisition
-    And I navigate to Buyers Desk
-    And I convert the requisition PO on Buyers Desk
-    And I navigate to Purchase Order
-    And I cancel the Purchase Order when it is in Parked status
+#     When I add a catalog item to cart
+#     And I checkout
+#     And I add Purchase Type
+#     And I add Required By Date
+#     And I add data in Cost Booking Details section at line level
+#     And I submit requisition
+#     And I approve the requisition
+#     And I navigate to Buyers Desk
+#     And I convert the requisition PO on Buyers Desk
+#     And I navigate to Purchase Order
+#     And I cancel the Purchase Order when it is in Parked status
 
-    Then I should not be see the requisition in Pending Order state on Buyers desk
+#     Then I should not be see the requisition in Pending Order state on Buyers desk
 
 
-@COA @L1
-    Scenario: COA>>To verify if Buyer is able to edit the requisition.
-    Given I am logged in eProc
+# @COA @L1
+#     Scenario: COA>>To verify if Buyer is able to edit the requisition.
+#     Given I am logged in eProc
 
-    When I add a catalog item to cart
-    And I checkout
-    And I add Purchase Type
-    And I add Required By Date
-    And I add data in Cost Booking Details section at line level 
-    And I submit requisition
-    And I approve requisition
-    And I navigate to Buyer Desk
-    And I edit the requisition
+#     When I add a catalog item to cart
+#     And I checkout
+#     And I add Purchase Type
+#     And I add Required By Date
+#     And I add data in Cost Booking Details section at line level 
+#     And I submit requisition
+#     And I approve requisition
+#     And I navigate to Buyer Desk
+#     And I edit the requisition
 
-    Then I should be able to view the requisition in edit mode
+#     Then I should be able to view the requisition in edit mode
 
-@COA @L1
-    Scenario: COA>>To verify if buyer is able to convert Requisition to PO based on different criteria 
-    Given I am logged in eProc
+# @COA @L1
+#     Scenario: COA>>To verify if buyer is able to convert Requisition to PO based on different criteria 
+#     Given I am logged in eProc
 
-    When I navigate to Buyers Desk
-    And I select multiple requisition with same currency, supplier, delivery address from listing page
-    And I convert it to PO from listing
+#     When I navigate to Buyers Desk
+#     And I select multiple requisition with same currency, supplier, delivery address from listing page
+#     And I convert it to PO from listing
 
-    Then I should be able to create a PO with multiple requisition merged into one
+#     Then I should be able to create a PO with multiple requisition merged into one
 
-@COA @L1
-    Scenario: COA>>To verify filters on buyer's desk status filter
-    Given I am logged in eProc
+# @COA @L1
+#     Scenario: COA>>To verify filters on buyer's desk status filter
+#     Given I am logged in eProc
 
-    When I navigate to Buyer Desk
-    And I filter any status
+#     When I navigate to Buyer Desk
+#     And I filter any status
 
-    Then I should be see the data on the page with the filtered status
+#     Then I should be see the data on the page with the filtered status
 
-@COA @L1
-    Scenario: COA>>To verify filters on buyer's desk status filter
-    Given I am logged in eProc
+# @COA @L1
+#     Scenario: COA>>To verify filters on buyer's desk status filter
+#     Given I am logged in eProc
 
-    When I navigate to Buyer Desk
-    And I filter with Requisition number field
+#     When I navigate to Buyer Desk
+#     And I filter with Requisition number field
 
-    Then I should be see the data on the page on the basis on Requisition number field
+#     Then I should be see the data on the page on the basis on Requisition number field
 
-@COA @L1
-    Scenario: COA>>To verify requisition name filter on buyer's desk 
-    Given I am logged in eProc
+# @COA @L1
+#     Scenario: COA>>To verify requisition name filter on buyer's desk 
+#     Given I am logged in eProc
 
-    When I navigate to Buyer Desk
-    And I filter with requisition name field
+#     When I navigate to Buyer Desk
+#     And I filter with requisition name field
 
-    Then I should be see the data on the page on the basis on requisition name field
+#     Then I should be see the data on the page on the basis on requisition name field
 
-@COA @L1
-    Scenario: COA>>To verify requestor filter on buyer's desk 
-    Given I am logged in eProc
+# @COA @L1
+#     Scenario: COA>>To verify requestor filter on buyer's desk 
+#     Given I am logged in eProc
 
-    When I navigate to Buyer Desk
-    And I filter with Requestor field
+#     When I navigate to Buyer Desk
+#     And I filter with Requestor field
 
-    Then I should be see the data on the page on the basis on Requestor field
+#     Then I should be see the data on the page on the basis on Requestor field
 
-@COA @L1
-    Scenario: COA>>To verify Received On filter on buyer's desk 
-    Given I am logged in eProc
+# @COA @L1
+#     Scenario: COA>>To verify Received On filter on buyer's desk 
+#     Given I am logged in eProc
 
-    When I navigate to Buyer Desk
-    And I filter with Received on field
+#     When I navigate to Buyer Desk
+#     And I filter with Received on field
 
-    Then I should be see the data on the page on the basis on Received on field
+#     Then I should be see the data on the page on the basis on Received on field
 
-@COA @L1
-    Scenario: COA>>To verify Assigned Buyer filter on buyer's desk 
-    Given I am logged in eProc
+# @COA @L1
+#     Scenario: COA>>To verify Assigned Buyer filter on buyer's desk 
+#     Given I am logged in eProc
 
-    When I navigate to Buyer Desk
-    And I filter any buyer
+#     When I navigate to Buyer Desk
+#     And I filter any buyer
 
-    Then I should be see the data on the page with the filtered buyer
+#     Then I should be see the data on the page with the filtered buyer
 
-@COA @L1
-    Scenario: COA>>To verify Purchase Amount filter on buyer's desk 
-    Given I am logged in eProc
+# @COA @L1
+#     Scenario: COA>>To verify Purchase Amount filter on buyer's desk 
+#     Given I am logged in eProc
 
-    When I navigate to Buyer Desk
-    And I filter with Purchase Amount
+#     When I navigate to Buyer Desk
+#     And I filter with Purchase Amount
 
-    Then I should be see the data on the page with the filtered amount
+#     Then I should be see the data on the page with the filtered amount
 
-@COA @L1
-    Scenario: COA>>To verify filters on Upcoming Requisition status filter
-    Given I am logged in eProc
+# @COA @L1
+#     Scenario: COA>>To verify filters on Upcoming Requisition status filter
+#     Given I am logged in eProc
 
-    When I navigate to Upcoming Requisition
-    And I filter with Requisition number field
+#     When I navigate to Upcoming Requisition
+#     And I filter with Requisition number field
 
-    Then I should be see the data on the page on the basis on Requisition number field
+#     Then I should be see the data on the page on the basis on Requisition number field
 
-@COA @L1
-    Scenario: COA>>To verify requisition name filter on Upcoming Requisition
-    Given I am logged in eProc
+# @COA @L1
+#     Scenario: COA>>To verify requisition name filter on Upcoming Requisition
+#     Given I am logged in eProc
 
-    When I navigate to Upcoming Requisition
-    And I filter with requisition name field
+#     When I navigate to Upcoming Requisition
+#     And I filter with requisition name field
 
-    Then I should be see the data on the page on the basis on requisition name field
+#     Then I should be see the data on the page on the basis on requisition name field
 
-@COA @L1
-    Scenario: COA>>To verify requestor filter on Upcoming Requisition
-    Given I am logged in eProc
+# @COA @L1
+#     Scenario: COA>>To verify requestor filter on Upcoming Requisition
+#     Given I am logged in eProc
 
-    When I navigate to Upcoming Requisition
-    And I filter with Requestor field
+#     When I navigate to Upcoming Requisition
+#     And I filter with Requestor field
 
-    Then I should be see the data on the page on the basis on Requestor field
+#     Then I should be see the data on the page on the basis on Requestor field
 
-@COA @L1
-    Scenario: COA>>To verify Submitted On filter on Upcoming Requisition
-    Given I am logged in eProc
+# @COA @L1
+#     Scenario: COA>>To verify Submitted On filter on Upcoming Requisition
+#     Given I am logged in eProc
 
-    When I navigate to Upcoming Requisition
-    And I filter with Submitted on field
+#     When I navigate to Upcoming Requisition
+#     And I filter with Submitted on field
 
-    Then I should be see the data on the page on the basis on Submitted on field
+#     Then I should be see the data on the page on the basis on Submitted on field
 
-@COA @L1
-    Scenario: COA>>To verify Assigned Buyer filter on Upcoming Requisition
-    Given I am logged in eProc
+# @COA @L1
+#     Scenario: COA>>To verify Assigned Buyer filter on Upcoming Requisition
+#     Given I am logged in eProc
 
-    When I navigate to Upcoming Requisition
-    And I filter any buyer
+#     When I navigate to Upcoming Requisition
+#     And I filter any buyer
 
-    Then I should be see the data on the page with the filtered buyer
+#     Then I should be see the data on the page with the filtered buyer
 
-@COA @L1
-    Scenario: COA>>To verify Purchase Amount filter on Upcoming Requisition
-    Given I am logged in eProc
+# @COA @L1
+#     Scenario: COA>>To verify Purchase Amount filter on Upcoming Requisition
+#     Given I am logged in eProc
 
-    When I navigate to Upcoming Requisition
-    And I filter with Purchase Amount
+#     When I navigate to Upcoming Requisition
+#     And I filter with Purchase Amount
 
-    Then I should be see the data on the page with the filtered amount
+#     Then I should be see the data on the page with the filtered amount
 
-@COA @L1
-    Scenario: COA>>To verify that Buyer is able to view ordered requisitions
-    Given I am logged in eProc
+# @COA @L1
+#     Scenario: COA>>To verify that Buyer is able to view ordered requisitions
+#     Given I am logged in eProc
 
-    When I navigate to Buyers Desk
-    And I filter Released requisition
-    And I view any requisition
+#     When I navigate to Buyers Desk
+#     And I filter Released requisition
+#     And I view any requisition
 
-    Then I should be able to view the requisition with all details
+#     Then I should be able to view the requisition with all details
 
-@COA @L1
-    Scenario: COA>>To verify that Buyer is able to change buyer
-    Given I am logged in eProc
+# @COA @L1
+#     Scenario: COA>>To verify that Buyer is able to change buyer
+#     Given I am logged in eProc
 
-    When I add a catalog item to cart
-    And I checkout
-    And I add Purchase Type
-    And I add Required By Date
-    And I add data in Cost Booking Details section at line level
-    And I submit requisition
-    And I approve the requisition
-    And I navigate to Buyers Desk
-    And I edit the requisition on Buyers Desk
-    And I update Assigned Buyer at  line level for item
-    And I save it
+#     When I add a catalog item to cart
+#     And I checkout
+#     And I add Purchase Type
+#     And I add Required By Date
+#     And I add data in Cost Booking Details section at line level
+#     And I submit requisition
+#     And I approve the requisition
+#     And I navigate to Buyers Desk
+#     And I edit the requisition on Buyers Desk
+#     And I update Assigned Buyer at  line level for item
+#     And I save it
 
-    Then I should not be see the update Buyer for the requisition on Buyer Desk Listing
-    And I should be able to see updated Buyer on Requisition page also.
+#     Then I should not be see the update Buyer for the requisition on Buyer Desk Listing
+#     And I should be able to see updated Buyer on Requisition page also.
 
-@COA @L1
-    Scenario: COA>>To verify that user(buyer) is not allowed to modify the requisition.
-    Given I am logged in eProc
+# @COA @L1
+#     Scenario: COA>>To verify that user(buyer) is not allowed to modify the requisition.
+#     Given I am logged in eProc
 
-    When I add a catalog item to cart
-    And I checkout
-    And I add Purchase Type
-    And I add Required By Date
-    And I add data in Cost Booking Details section at line level
-    And I submit requisition
-    And I approve the requisition
-    And I navigate to Buyers Desk
-    And I return the requisition on Buyers Desk
-    And I allow requestor to resubmit the requisition
+#     When I add a catalog item to cart
+#     And I checkout
+#     And I add Purchase Type
+#     And I add Required By Date
+#     And I add data in Cost Booking Details section at line level
+#     And I submit requisition
+#     And I approve the requisition
+#     And I navigate to Buyers Desk
+#     And I return the requisition on Buyers Desk
+#     And I allow requestor to resubmit the requisition
 
-    Then I should not be see the requisition In Returned for Amendment State on Requisition Listing
+#     Then I should not be see the requisition In Returned for Amendment State on Requisition Listing
 
-@COA @L1
-    Scenario: COA>>To verify that user(buyer) is not allowed to modify the requisition.
-    Given I am logged in eProc
+# @COA @L1
+#     Scenario: COA>>To verify that user(buyer) is not allowed to modify the requisition.
+#     Given I am logged in eProc
 
-    When I add a catalog item to cart
-    And I checkout
-    And I add Purchase Type
-    And I add Required By Date
-    And I add data in Cost Booking Details section at line level
-    And I submit requisition
-    And I approve the requisition
-    And I navigate to Buyers Desk
-    And I return the requisition on Buyers Desk
-    And I do not allow requestor to resubmit the requisition
+#     When I add a catalog item to cart
+#     And I checkout
+#     And I add Purchase Type
+#     And I add Required By Date
+#     And I add data in Cost Booking Details section at line level
+#     And I submit requisition
+#     And I approve the requisition
+#     And I navigate to Buyers Desk
+#     And I return the requisition on Buyers Desk
+#     And I do not allow requestor to resubmit the requisition
 
-    Then I should not be see the requisition In Rejected State on Requisition Listing
+#     Then I should not be see the requisition In Rejected State on Requisition Listing
 
-@COA @L1
-    Scenario: COA>>To verify that user(buyer) is not allowed to modify the requisition.
-    Given I am logged in eProc
+# @COA @L1
+#     Scenario: COA>>To verify that user(buyer) is not allowed to modify the requisition.
+#     Given I am logged in eProc
 
-    When I add a catalog item to cart
-    And I checkout
-    And I add Purchase Type
-    And I add Required By Date
-    And I add data in Cost Booking Details section at line level
-    And I submit requisition
-    And I approve the requisition
-    And I navigate to Buyers Desk
-    And I convert the requisition PO on Buyers Desk
-    And I navigate to Purchase Order
-    And I cancel the Purchase Order when it is in Parked status
+#     When I add a catalog item to cart
+#     And I checkout
+#     And I add Purchase Type
+#     And I add Required By Date
+#     And I add data in Cost Booking Details section at line level
+#     And I submit requisition
+#     And I approve the requisition
+#     And I navigate to Buyers Desk
+#     And I convert the requisition PO on Buyers Desk
+#     And I navigate to Purchase Order
+#     And I cancel the Purchase Order when it is in Parked status
 
-    Then I should not be see the requisition in Pending Order state on Buyers desk
+#     Then I should not be see the requisition in Pending Order state on Buyers desk
 

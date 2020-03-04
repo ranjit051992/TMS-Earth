@@ -4,7 +4,7 @@ const iCart = require("./CartObject");
 const iOnlineStore = require("../OnlineStore/OnlineStoreObject");
 const onlineStore = require("../OnlineStore/OnlineStoreImpl");
 const prop = global.confi_prop;
-const iConstant = require("../../../constants/iConstants");
+const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 
 module.exports = {
 
@@ -22,6 +22,8 @@ module.exports = {
        I.click(I.getElement(iCart.CHECKOUT_BUTTON));
        logger.info(`clicked on Checkout button`); 
    },
+
+
 
    /** 
      * clicks on checkout button
@@ -60,10 +62,10 @@ module.exports = {
     */
    async deleteAllItemsFromCart()
    {
-       this.clickOnDeleteAllItemsButton();
-       this.clickOnConfirmPopupYesButton();
+       await this.clickOnDeleteAllItemsButton();
+       await this.clickOnConfirmPopupYesButton();
        I.waitForVisible(I.getElement(iCart.ITEM_DELETE_SUCCESS_MSG),prop.DEFAULT_HIGH_WAIT);
-       I.see(iConstant.EMPTY_CART_MSG);
+       I.see(lmtVar.getLabel("EMPTY_CART_MSG"));
        logger.info("Cart is cleared.");
    },
 
@@ -77,19 +79,34 @@ module.exports = {
     */
    async clearCart()
    {
-        I.waitForInvisible("//eproc-cart-spotlight//span[contains(text(),'"+iConstant.NA+"')]",prop.DEFAULT_MEDIUM_WAIT);
-        // if(I.seeElement(I.getElement(iOnlineStore.CART_ITEM_ICON)))
-        // {
-            onlineStore.clickOnCartIcon();
-            this.deleteAllItemsFromCart();
-            onlineStore.clickOnOnlineStoreLink();
-            onlineStore.waitForOnlineStoreToLoad();
+        I.waitForInvisible("//eproc-cart-spotlight//span[contains(text(),'"+lmtVar.getLabel("NA")+"')]",prop.DEFAULT_MEDIUM_WAIT);
+        let noOfElements = await I.grabNumberOfVisibleElements(global.uiElements.get(iOnlineStore.CART_ITEM_ICON));
+        logger.info("Cart Item count : "+noOfElements);
+        if(noOfElements>0)
+        {
+            await onlineStore.clickOnCartIcon();
+            await this.deleteAllItemsFromCart();
+            await onlineStore.clickOnOnlineStoreLink();
+            logger.info("Navigated to DDS Online Store page");
+            await onlineStore.waitForOnlineStoreToLoad();
             logger.info("Cart is cleared. Navigated to online store page.");
-        // }
-        // else
-        // {
-        //     logger.info("Cart is already empty.");
-        // }
+        }
+        else
+        {
+            logger.info("Cart is already empty.");
+        }
         
+   },
+
+   async checkItemsInCart(itemName)
+   {
+       let number = await I.grabNumberOfVisibleElements("//div[@class='table-body']//span[contains(text(),'"+itemName+"')]");
+       let isPresent = false;
+       if(number>0)
+       {
+           isPresent = true;
+       }
+
+       return isPresent;
    }
 }

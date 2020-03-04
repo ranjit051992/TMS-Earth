@@ -7,6 +7,11 @@ const commonUtils = require("../../../Framework/FrameworkUtilities/CommonUtiliti
 const faker = require('faker');
 
 
-Given("I am logged in eProc", function () {
-    loginImpl.login();
+Given("I am logged in eProc", async function () {
+    if(!prop.LOGIN_WITH_PASSWORD_MANAGER) {
+        await loginImpl.login();
+    }
+    else {
+        await loginImpl.loginWithPasswordManager();
+    }
 });
