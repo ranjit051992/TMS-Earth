@@ -11,7 +11,7 @@ const reqListingImpl = require("../Requisition/RequisitionListing/RequisitionLis
 
 Given ("I am on requisition approval listing page", async function() {
     await I.amOnPage(prop.All_Approval_Listing);
-    await I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
+    await I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD), prop.DEFAULT_MEDIUM_WAIT);
 });
 
 Given ("I have requisition In Approval status", async function() {

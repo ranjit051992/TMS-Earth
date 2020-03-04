@@ -33,6 +33,10 @@ class Spo
         this.billToAddress;
         this.status;
         this.PoAmount;
+        this.fillCbl;
+        this.fillShippingDetails;
+        this.fillControlSettings;
+        this.fillAdditionalDetails;
     }
     setPoNumber(poNumber)
     {
@@ -183,5 +187,23 @@ class Spo
     {
         this.PoAmount = PoAmount;
     }
+    setFillCbl(fillCbl)
+    {
+        this.fillCbl = fillCbl;
+    }
+
+    setFillShippingDetails(fillShippingDetails) {
+        this.fillShippingDetails = fillShippingDetails;
+    }
+
+    setFillControlSettings(fillControlSettings) 
+    {
+        this.fillControlSettings = fillControlSettings;
+    }
+
+    setFillAdditionalDetails(fillAdditionalDetails) {
+        this.fillAdditionalDetails = fillAdditionalDetails;
+    }
+
 }
 module.exports = Spo;

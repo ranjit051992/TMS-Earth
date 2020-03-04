@@ -7,12 +7,9 @@ const commonComponent = require("../../../commonKeywords/CommonComponent");
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const reqListing = require("../../Requisition/RequisitionListing/RequisitionListingImpl");
 const prop = global.confi_prop;
-<<<<<<< HEAD
 const viewReqImpl = require("../ViewRequisition/ViewRequisitionImpl");
 const faker = require("faker");
-=======
 const iApprovalObject = require("../../Approval/ApprovalObject");
->>>>>>> Shubham_2Mar_6
 
 When("I create requisition with {int} {string} item", async function(noOfItems, itemType) {
     let reqBo= await objectCreation.getObjectOfRequisition(noOfItems, itemType);
@@ -103,7 +100,7 @@ Then("I should see on line level Cost Booking Details section cost center should
 
 Then("I should see on header level, Shipping Details section Default Shipping Address field should be auto populated", async function(){
     let verifyHeaderAddress = false;
-    commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
     this.defaultAddress = await checkoutImp.getDefaultShippingAddress();
     if(this.defaultAddress.toString()!== null)
     {
@@ -311,8 +308,8 @@ When("I modify the field quantity", async function(){
     logger.info("Modified quantity is---> "+this.updateQuantity);
 });
 
-When("I add taxes", async function(){
-    this.reqBO = await checkoutImp.updateTaxDetails(this.reqBO);
+When("I add Tax Details at line level", async function(){
+    this.reqBO = await checkoutImp.fillTaxDetailsAtLineLevel(this.reqBO);
 });
 
 Given( "I Create {int} requisitions with {int} {string} item", async function (noOfReqs, noOfItems, itemType) {

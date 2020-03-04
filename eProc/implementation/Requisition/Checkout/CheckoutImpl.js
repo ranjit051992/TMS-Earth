@@ -13,6 +13,7 @@ const faker = require("faker");
 const poListingObject = require("../../PO/PoListing/PoListingObject");
 const reqListingImpl = require("../../Requisition/RequisitionListing/RequisitionListingImpl");
 const iApprovalObject = require("../../Approval/ApprovalObject");
+const coaImpl = require("../../Coa/CoaImpl");
 
 module.exports={
 
@@ -24,11 +25,12 @@ module.exports={
     async createRequisitionFlow(requisitionBO)
     { 
 
-        cartImpl.clearCart();
+        await cartImpl.clearCart();
         await onlineStoreImpl.addItemToCart(requisitionBO.itemName, faker.random.number(20));
-        onlineStoreImpl.clickOnCartIcon();
-        I.waitForVisible(I.getElement(iCart.CART_ITEM_TABLE));
+        await onlineStoreImpl.clickOnCartIcon();
+        await I.waitForVisible(I.getElement(iCart.CART_ITEM_TABLE));
         await cartImpl.clickOnCheckoutButton();
+
         requisitionBO = await this.fillBasicDetails(requisitionBO);
 
         requisitionBO = await this.fillAdditionalDetails(requisitionBO);
@@ -374,8 +376,8 @@ module.exports={
      */
     async getDefaultShippingAddress()
     {
-        await I.waitForVisible(I.getElement(iCheckout.DEFAULT_SHIPPING_ADDRESS), prop.DEFAULT_MEDIUM_WAIT);
-        let shippingAddress = await I.grabTextFrom(I.getElement(iCheckout.DEFAULT_SHIPPING_ADDRESS));
+        await I.waitForVisible(I.getElement(iCheckout.DEFAULT_SHIPPING_ADDRESS_TEXTBOX), prop.DEFAULT_MEDIUM_WAIT);
+        let shippingAddress = await I.grabTextFrom(I.getElement(iCheckout.DEFAULT_SHIPPING_ADDRESS_TEXTBOX));
         logger.info(`Default Shipping Address is ---> ${shippingAddress}`);
         return shippingAddress;
     },
@@ -680,9 +682,9 @@ module.exports={
             await this.clickOnRetrospectivePurchaseNoButton();
         }
 
-        if(requisitionBO.attachmentPath !== "undefined")
+        if(requisitionBO.attachmentPath.toString() !== null)
         {
-            await this.addAttachments();
+            await this.addAttachments(requisitionBO.attachmentPath.toString());
         }
 
         return requisitionBO;
@@ -769,32 +771,35 @@ module.exports={
             /// assigned BuyerGroup code
         }
 
-        await this.clickOnCostBookingTab();
-        if(!prop.isCOA)
-        {
-            if(requisitionBO.glAccount !== "undefined")
-            {
-               let glAccount = await this.fillGLAccount(requisitionBO.glAccount);
-               requisitionBO.setGlAccount(glAccount);
-            }
-        }
+        this.clickOnCostBookingTab();
 
-        if(requisitionBO.assetCode !== "undefined")
-        {
-            let assetCode = await this.fillAssetCode(requisitionBO.assetCode);
-            requisitionBO.setAssetCode(assetCode);
-        }
+        await coaImpl.fillCoaDetails();
 
-        if(prop.isCOA)
-        {
-            //fill COA form code
-        }
-        else
-        {
-            await this.clickOnCostBookingSaveButton();
-            await commonComponent.waitForLoadingSymbolNotDisplayed();
-            await I.wait(prop.DEFAULT_HIGH_WAIT);
-        }
+        // if(!prop.isCoa)
+        // {
+        //     if(requisitionBO.glAccount !== "undefined")
+        //     {
+        //        let glAccount =  this.fillGLAccount(requisitionBO.glAccount);
+        //        requisitionBO.setGlAccount(glAccount);
+        //     }
+        // }
+
+        // // if(requisitionBO.assetCode !== "undefined")
+        // // {
+        // //     let assetCode = this.fillAssetCode(requisitionBO.assetCode);
+        // //     requisitionBO.setAssetCode(assetCode);
+        // // }
+
+        // if(prop.isCoa)
+        // {
+        //     //fill COA form code
+        // }
+        // else
+        // {
+        //     this.clickOnCostBookingSaveButton();
+        //     commonComponent.waitForLoadingSymbolNotDisplayed();
+        //     I.wait(prop.DEFAULT_HIGH_WAIT);
+        // }
 
         I.waitForVisible(I.getElement(iCheckout.REQUISITION_AMOUNT));
         let reqAmount = I.grabTextFrom(I.getElement(iCheckout.REQUISITION_AMOUNT));
@@ -1029,7 +1034,7 @@ module.exports={
      */
     async enterItemLevelQuantity(itemName, quantity)
     {
-        let xpath = `//span[contains(text(),'${itemName}')]//following::dew-col//input[@formcontrolname='${quantity}']`;
+        let xpath = `//span[contains(text(),'${itemName}')]//following::dew-col//input[@formcontrolname='quantity']`;
         await I.waitForVisible(xpath);
         await I.waitForClickable(xpath);
         await I.click(xpath);
@@ -1111,7 +1116,7 @@ module.exports={
         await I.wait(prop.DEFAULT_MEDIUM_WAIT);
     },
 
-    async updateTaxDetails(requisitionBO)
+    async fillTaxDetailsAtLineLevel(requisitionBO)
     {
         await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
         await this.clickOnCostBookingLink(requisitionBO.itemName);

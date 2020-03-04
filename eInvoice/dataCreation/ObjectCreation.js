@@ -1,9 +1,9 @@
-const spo = require("../bo/Spo");
+const invoice = require("../bo/invoice");
 class ObjectCreation
 {
-    getObjectOfStandardPO(noOfItems,itemType)
+    getInvoiceObject(noOfItems,itemType)
     {
-        //spo.setPoNumber();
+        invoice.setSupplier(I.getData("SUPPLIER"));
         spo.setPoDescription("AutomationSPO");
         spo.setPurchaseType(global.testData.get("PURCHASE_TYPE"));
         spo.setSupplierName(global.testData.get("SUPPLIER_NAME"));

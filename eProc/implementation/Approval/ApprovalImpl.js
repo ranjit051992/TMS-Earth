@@ -11,33 +11,33 @@ const commonKeywordImpl = require("../../commonKeywords/CommonComponent");
 module.exports = {
     async navigateToApprovalListing() {
         await I.amOnPage(prop.DDS_Approval_Listing);
-        await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info("Navigated to approval listing page");
     },
     async clickOnApproveAction(){
-        await I.seeElement(I.getElement(approvalObject.APPROVE_ACTION));
+        await I.waitForVisible(I.getElement(approvalObject.APPROVE_ACTION));
         await I.click(I.getElement(approvalObject.APPROVE_ACTION));
         logger.info("Clicked on Approve action");
     },
     async clickOnRejectAction(){
-        await I.seeElement(I.getElement(approvalObject.REJECT_ACTION));
+        await I.waitForVisible(I.getElement(approvalObject.REJECT_ACTION));
         await I.click(I.getElement(approvalObject.REJECT_ACTION));
         logger.info("Clicked on Reject action");
     },
     async fillApprovalComments(comments) {
-        await I.seeElement(I.getElement(approvalObject.APPROVE_SPO_POPUP_COMMENT_TEXTAREA));
+        await I.waitForVisible(I.getElement(approvalObject.APPROVE_SPO_POPUP_COMMENT_TEXTAREA));
         await I.click(I.getElement(approvalObject.APPROVE_SPO_POPUP_COMMENT_TEXTAREA));
         await I.clearField(I.getElement(approvalObject.APPROVE_SPO_POPUP_COMMENT_TEXTAREA));
         await I.fillField(I.getElement(approvalObject.APPROVE_SPO_POPUP_COMMENT_TEXTAREA), comments);
         logger.info(`Entered approval comments --> ${comments}`);
     },
     async clickOnApproveSpoPopupApproveButton() {
-        await I.seeElement(I.getElement(approvalObject.APPROVE_SPO_POPUP_APPROVE_BUTTON));
+        await I.waitForVisible(I.getElement(approvalObject.APPROVE_SPO_POPUP_APPROVE_BUTTON));
         await I.click(I.getElement(approvalObject.APPROVE_SPO_POPUP_APPROVE_BUTTON));
         logger.info("Clicked on Approve button");
     },
     async clickOnRejectSpoPopupRejectButton() {
-        await I.seeElement(I.getElement(approvalObject.APPROVE_SPO_POPUP_APPROVE_BUTTON));
+        await I.waitForVisible(I.getElement(approvalObject.APPROVE_SPO_POPUP_APPROVE_BUTTON));
         await I.click(I.getElement(approvalObject.APPROVE_SPO_POPUP_APPROVE_BUTTON));
         logger.info("Clicked on Reject button");
     },
@@ -47,13 +47,13 @@ module.exports = {
         return status;
     },
     async approveDoc(docNumber, searchBy){
-        I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         await commonKeywordImpl.searchDocOnListing(docNumber, searchBy);
         await this.clickOnApproveAction();
         await this.fillApprovalComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
         await this.clickOnApproveSpoPopupApproveButton();
-        I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
-        I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
         await commonKeywordImpl.searchDocOnListing(docNumber, searchBy);
         let status = await this.getSpoStatus();
         let flag = status === lmtVar.getLabel("APPROVED_STATUS")
@@ -97,6 +97,7 @@ module.exports = {
         await I.waitForClickable(I.getElement(approvalObject.SPO_TAB));
         await I.click(I.getElement(approvalObject.SPO_TAB));
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info("I am on PO approval listing");
     },
 
@@ -137,13 +138,13 @@ module.exports = {
     },
     
     async rejectDoc(docNumber, searchBy){
-        await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         await commonKeywordImpl.searchDocOnListing(docNumber, searchBy);
         await this.clickOnRejectAction();
         await this.fillApprovalComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
         await this.clickOnRejectSpoPopupRejectButton();
         await I.wait(prop.DEFAULT_WAIT);
-        await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
         await commonKeywordImpl.searchDocOnListing(docNumber, searchBy);
         let status = await this.getSpoStatus();
@@ -177,7 +178,7 @@ module.exports = {
     },
 
     async delegateDoc(docNumber, searchBy){
-        await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         await commonKeywordImpl.searchDocOnListing(docNumber, searchBy);
         await commonKeywordImpl.clickOnActionMenuIcon();
         await commonKeywordImpl.clickOnActionMenuOption(lmtVar.getLabel("DELEGATE_ACTION"));
@@ -185,7 +186,7 @@ module.exports = {
         await this.fillReasonForDelegate(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
         await this.clickOnDelegateSpoPopupDelegateButton();
         await I.wait(prop.DEFAULT_WAIT);
-        await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
         await commonKeywordImpl.searchDocOnListing(docNumber, searchBy);
         let status = await this.getSpoStatus();
@@ -201,7 +202,7 @@ module.exports = {
     },
 
     async fillReasonForDelegate(comments) {
-        await I.seeElement(I.getElement(approvalObject.DELEGATE_SPO_POPUP_REASON_TEXTBOX));
+        await I.waitForVisible(I.getElement(approvalObject.DELEGATE_SPO_POPUP_REASON_TEXTBOX));
         await I.click(I.getElement(approvalObject.DELEGATE_SPO_POPUP_REASON_TEXTBOX));
         await I.clearField(I.getElement(approvalObject.DELEGATE_SPO_POPUP_REASON_TEXTBOX));
         await I.fillField(I.getElement(approvalObject.DELEGATE_SPO_POPUP_REASON_TEXTBOX), comments);
@@ -210,7 +211,7 @@ module.exports = {
     },
 
     async clickOnDelegateSpoPopupDelegateButton() {
-        await I.seeElement(I.getElement(approvalObject.DELEGATE_ACTION_POPUP_DELEGATE_BUTTON));
+        await I.waitForVisible(I.getElement(approvalObject.DELEGATE_ACTION_POPUP_DELEGATE_BUTTON));
         await I.click(I.getElement(approvalObject.DELEGATE_ACTION_POPUP_DELEGATE_BUTTON));
         logger.info("Clicked on delegate button");
     },
@@ -227,7 +228,7 @@ module.exports = {
 
     async selectDelegateApprovalToOption(option) {
         let optionXpath = await `//span[contains(text(),'${option}')]`;
-        await I.seeElement(optionXpath);
+        await I.waitForVisible(optionXpath);
         await I.click(optionXpath);
         await logger.info(`Selected Delegate Approval To user --> ${option}`);
     },
@@ -240,7 +241,7 @@ module.exports = {
             })
             await this.clearSearchField();
         }
-        await I.seeElement(I.getElement(approvalObject.FOOTER_DELEGATE_ACTION));
+        await I.waitForVisible(I.getElement(approvalObject.FOOTER_DELEGATE_ACTION));
         await I.click(I.getElement(approvalObject.FOOTER_DELEGATE_ACTION));
         await selectDelegateApprovalToUser(POArray[i].deliverTo);
         await this.fillReasonForDelegate(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
