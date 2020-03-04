@@ -34,7 +34,7 @@ exports.config = {
   multiple: {
     parallel: {
       // Splits tests into 2 chunks
-      chunks: 2
+      chunks: 5
     },
      sanityCases: {
       // Splits tests into 2 chunks

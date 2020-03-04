@@ -32,8 +32,8 @@ When("I navigate to PO listing", async function(){
 });
 
 When("I search for the po", async function(){
-    // const poNumber = spo.poNumber;
-    await receiptImpl.searchPONumber("TMSSANTSRY/20/3020");
+    const poNumber = spo.poNumber;
+    await receiptImpl.searchPONumber(poNumber);
 });
 
 When("I view the created PO", async function(){
