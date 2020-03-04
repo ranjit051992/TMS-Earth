@@ -22,11 +22,12 @@ module.exports={
     async createRequisitionFlow(requisitionBO)
     { 
 
-        cartImpl.clearCart();
+        await cartImpl.clearCart();
         await onlineStoreImpl.addItemToCart(requisitionBO.itemName, faker.random.number(20));
-        onlineStoreImpl.clickOnCartIcon();
-        I.waitForVisible(I.getElement(iCart.CART_ITEM_TABLE));
+        await onlineStoreImpl.clickOnCartIcon();
+        await I.waitForVisible(I.getElement(iCart.CART_ITEM_TABLE));
         await cartImpl.clickOnCheckoutButton();
+
         requisitionBO = await this.fillBasicDetails(requisitionBO);
 
         requisitionBO = await this.fillAdditionalDetails(requisitionBO);
@@ -369,8 +370,8 @@ module.exports={
      */
     async getDefaultShippingAddress()
     {
-        await I.waitForVisible(I.getElement(iCheckout.DEFAULT_SHIPPING_ADDRESS), prop.DEFAULT_MEDIUM_WAIT);
-        let shippingAddress = await I.grabTextFrom(I.getElement(iCheckout.DEFAULT_SHIPPING_ADDRESS));
+        await I.waitForVisible(I.getElement(iCheckout.DEFAULT_SHIPPING_ADDRESS_TEXTBOX), prop.DEFAULT_MEDIUM_WAIT);
+        let shippingAddress = await I.grabTextFrom(I.getElement(iCheckout.DEFAULT_SHIPPING_ADDRESS_TEXTBOX));
         logger.info(`Default Shipping Address is ---> ${shippingAddress}`);
         return shippingAddress;
     },
@@ -675,9 +676,9 @@ module.exports={
             await this.clickOnRetrospectivePurchaseNoButton();
         }
 
-        if(requisitionBO.attachmentPath !== "undefined")
+        if(requisitionBO.attachmentPath.toString() !== null)
         {
-            await this.addAttachments();
+            await this.addAttachments(requisitionBO.attachmentPath.toString());
         }
 
         return requisitionBO;
@@ -1019,7 +1020,7 @@ module.exports={
      */
     async enterItemLevelQuantity(itemName, quantity)
     {
-        let xpath = `//span[contains(text(),'${itemName}')]//following::dew-col//input[@formcontrolname='${quantity}']`;
+        let xpath = `//span[contains(text(),'${itemName}')]//following::dew-col//input[@formcontrolname='quantity']`;
         await I.waitForVisible(xpath);
         await I.waitForClickable(xpath);
         await I.click(xpath);
@@ -1101,7 +1102,7 @@ module.exports={
         await I.wait(prop.DEFAULT_MEDIUM_WAIT);
     },
 
-    async updateTaxDetails(requisitionBO)
+    async fillTaxDetailsAtLineLevel(requisitionBO)
     {
         await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
         await this.clickOnCostBookingLink(requisitionBO.itemName);

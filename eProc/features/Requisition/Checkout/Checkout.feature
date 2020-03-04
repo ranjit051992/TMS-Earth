@@ -30,7 +30,7 @@ Feature: Checkout
     And I navigate to Line level Cost Booking Details
     And I should see on line level Cost Booking Details section cost center should be populated
 
-@Non-COA @L1 @sanity
+@Non-COA @L1 @Shipping
     Scenario: To verify that system auto populates user's default Delivery & Bill to address 
     Given I am logged in eProc
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -53,7 +53,7 @@ Feature: Checkout
     And I submit requisition
     Then I should be able see the status of requisition on the Listing page
 
-@Non-COA @L1 @sanity
+@Non-COA @L1 @draftReq
   Scenario: To verify requisition in draft and actions on it
   Given I am logged in eProc
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -203,7 +203,7 @@ Feature: Checkout
     When I create requisition with "1" "ITEM_NAME_FOR_SEARCHING" item
     And I copy that requisition
     And I modify the field quantity
-    And I add taxes
+    And I add Tax Details at line level
     And I submit requisition
 
     Then I should be able to see submitted requisition with updated details
@@ -309,20 +309,20 @@ Feature: Checkout
 #     Then I should be able to see Deliver address as the Ship to Another Address on view requisition 
 
 
-# @Non-COA @L1
-#     Scenario: To verify that user is able to add taxes at line item level in a requisition for catalog item
-#     Given I am logged in eProc
+@Non-COA @L1
+    Scenario: To verify that user is able to add taxes at line item level in a requisition for catalog item
+    Given I am logged in eProc
 
-#     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
-#     And I checkout
-#     And I add Purchase Type
-#     And I add Required By Date
-#     And I add data in Cost Booking Details section at line level 
-#     And I add Tax Details at line level
-#     And I save it
-#     And I submit requisition
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I add Purchase Type
+    And I add Required By Date
+    And I add data in Cost Booking Details section at line level 
+    And I add Tax Details at line level
+    And I save it
+    And I submit requisition
 
-#     Then I should be able see the taxes added on view requisition
+    Then I should be able see the taxes added on view requisition
 
 # @Non-COA @L1
 #   Scenario: To verify that user is able to add taxes at line item level in a requisition for punchout item
