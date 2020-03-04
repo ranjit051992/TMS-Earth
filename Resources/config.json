@@ -1,9 +1,9 @@
 {
     "eProc": {
-        "url": "https://login-rp.zycus.com/sso/login",
+        "url": "https://login-partner.zycus.com/sso/login",
         "poListingUrl": "https://dewdrops-rp.zycus.com/eproc/#/purchaseorder/default/listing",
-        "DDS_OnlineStore_Url": "https://dewdrops-rp.zycus.com/eproc/#/online-store",
-        "DDS_Requisition_Listing": "https://dewdrops-rp.zycus.com/eproc/#/requisition/requisition",
+        "DDS_OnlineStore_Url": "https://dewdrops-partner.zycus.com/eproc/#/online-store",
+        "DDS_Requisition_Listing": "https://dewdrops-partner.zycus.com/eproc/#/requisition/requisition",
         "DDS_Approval_Listing": "https://dewdrops-rp.zycus.com/eproc/#/approval/allRequest/requisition",
         "DDS_BuyersDesk_Url": "https://dewdrops-rp.zycus.com/eproc/#/buyersdesk/default/listing",
         "DDS_AllRequests_Url": "https://dewdrops-rp.zycus.com/eproc/#/approval/allRequest/requisition",
@@ -11,7 +11,7 @@
         "SETUP": "RM",
         "TENANT": "ZCS",
         "browser": "chrome",
-        "host": "192.168.3.26",
+        "host": "192.168.6.227",
         "restart": "false",
         "port": 4444,
         "windowSize": "maximize",
