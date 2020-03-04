@@ -72,6 +72,9 @@ module.exports = {
         await I.waitForVisible(I.getElement(reqListingObj.REQUISITION_STATUS));
         let reqStatus = await I.grabTextFrom(I.getElement(reqListingObj.REQUISITION_STATUS));
         logger.info(`Requisition status is ---->${reqStatus}`);
+
+       // await commomComponent.getValueForColumn(lmtVar.getLabel("STATUS_COLUMN"));
+       // logger.info(`Requisition status is ---->${reqStatus}`);
         return reqStatus;
     },
 
@@ -125,6 +128,7 @@ module.exports = {
 
     async searchAndViewReqByName(reqName)
     {
+        await this.navigateToRequisitionListing();
         let reqNumber = await this.getRequisitionNumber(reqName);
         await this.searchRequisitionByReqNumber(reqNumber);
         await this.viewRequisition(reqNumber);

@@ -45,6 +45,7 @@ class Requisition
         this.customAddressState;
         this.customAddressZip;
         this.customAddressCity;
+        this.reqNumbers = [];
         this.isApplyTaxItemLevel;
         this.taxType;
         this.TaxName;

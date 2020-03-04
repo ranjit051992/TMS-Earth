@@ -10,6 +10,7 @@ const prop = global.confi_prop;
 const viewReqImpl = require("../ViewRequisition/ViewRequisitionImpl");
 const faker = require("faker");
 const iApprovalObject = require("../../Approval/ApprovalObject");
+const coaImp = require("../../Coa/CoaImpl");
 
 When("I create requisition with {int} {string} item", async function(noOfItems, itemType) {
     let reqBo= await objectCreation.getObjectOfRequisition(noOfItems, itemType);
@@ -128,8 +129,12 @@ When("I add data in Cost Booking Details section at line level", async function(
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
     await checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);
     await checkoutImp.fillGLAccount(this.reqBO.glAccount);
+    //await coaImp.fillCoaDetails();
 });
 
+/**
+ * Click on COA Save button
+ */
 When("I save it", async function(){
     await checkoutImp.clickOnCostBookingSaveButton();
     await commonComponent.waitForLoadingSymbolNotDisplayed();
@@ -167,6 +172,7 @@ Given("I add an attachment {string}", async function(filePath){
 Then("I should be able to see the attachment which is added", async function(){
 
     let isPresent  = await checkoutImp.checkAddedAttachment(this.attachment);
+    I.saveScreenshot("Upload Attachment.png");
      I.assertEqual(isPresent,true);
  });
 
@@ -308,8 +314,15 @@ When("I modify the field quantity", async function(){
     logger.info("Modified quantity is---> "+this.updateQuantity);
 });
 
-When("I add Tax Details at line level", async function(){
+When("I add Taxes", async function(){
     this.reqBO = await checkoutImp.fillTaxDetailsAtLineLevel(this.reqBO);
+    await checkoutImp.clickOnCostBookingSaveButton();
+    await commonComponent.waitForLoadingSymbolNotDisplayed();
+});
+
+When("I add Tax Details at line level", async function(){
+    await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_TAXES_TAB"));
+    this.reqBO = await checkoutImp.fillTaxDetails(this.reqBO);
 });
 
 Given( "I Create {int} requisitions with {int} {string} item", async function (noOfReqs, noOfItems, itemType) {
@@ -323,3 +336,8 @@ Given( "I Create {int} requisitions with {int} {string} item", async function (n
  });
 
 
+When("I fetch Requisition Name", async function()
+{
+    this.reqName = await I.grabAttributeFrom(I.getElement(iCheckoutObject.REQUISITION_NAME));
+    logger.info("Fetched Requisition Name is "+this.reqName);
+});
