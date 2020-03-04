@@ -32,8 +32,8 @@ When("I navigate to PO listing", async function(){
 });
 
 When("I search for the po", async function(){
-    // const poNumber = spo.poNumber;
-    await receiptImpl.searchPONumber("TMSSANTSRY/20/3020");
+    let poNumber = this.spo.poNumber;
+    await receiptImpl.searchPONumber(poNumber);
 });
 
 When("I view the created PO", async function(){
@@ -73,8 +73,8 @@ Then("I should be able to see the status of reciept created as Draft", async fun
 
 //**************************Create receipt with partial items : SPO**************************
 
-When("I select the only the first item", async function(){
-    await receiptImpl.clickFirstItemSelectionCheckbox();
+When("I update the quantity", async function(){
+    await receiptImpl.updateReceivedQty();
 });
 
 When("I click on Create Receipt button", async function(){
@@ -112,4 +112,9 @@ When("I submit the receipt", async function(){
 When("I delete the receipt in draft status from receipt listing page", async function(){
     await receiptImpl.clickDeleteAction();
     await receiptImpl.clickDeleteActionConfirmation();
+});
+
+Then("I should be able to delete the receipt in draft status", async function(){
+    let noDataText = await receiptImpl.verifyNoDataAvailable();
+    I.assertEqual(noDataText, lmtVar.getLabel("NO_DATA_AVAILABLE"));
 });
