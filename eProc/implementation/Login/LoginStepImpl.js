@@ -9,7 +9,7 @@ const faker = require('faker');
 
 Given("I am logged in eProc", async function () {
     if(!prop.LOGIN_WITH_PASSWORD_MANAGER) {
-        loginImpl.login();
+        await loginImpl.login();
     }
     else {
         await loginImpl.loginWithPasswordManager();
