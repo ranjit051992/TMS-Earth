@@ -53,7 +53,7 @@ Feature: Checkout
     And I submit requisition
     Then I should be able see the status of requisition on the Listing page
 
-@Non-COA @L1  
+@Non-COA @L1 
   Scenario: To verify requisition in draft and actions on it
   Given I am logged in eProc
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -69,7 +69,7 @@ Feature: Checkout
   And I should be able to Edit and submit the Draft requisition
   And I should be able to delete the requisition
 
-@Non-COA @L1 
+@Non-COA @L1
     Scenario: To verify that user is able to add attachments to the requisition.
     Given I am logged in eProc
 
@@ -196,14 +196,15 @@ Feature: Checkout
 
 
 
-@Non-COA @L1 @copy
+@Non-COA @L1
     Scenario: To verify that user is able to copy any requisition and modify it to create a new requisition.
     Given I am logged in eProc
 
     When I create requisition with "1" "ITEM_NAME_FOR_SEARCHING" item
     And I copy that requisition
+    And I fetch Requisition Name
     And I modify the field quantity
-    And I add Tax Details at line level
+    And I add Taxes
     And I submit requisition
 
     Then I should be able to see submitted requisition with updated details
@@ -309,20 +310,22 @@ Feature: Checkout
 #     Then I should be able to see Deliver address as the Ship to Another Address on view requisition 
 
 
-# @Non-COA @L1
-#     Scenario: To verify that user is able to add taxes at line item level in a requisition for catalog item
-#     Given I am logged in eProc
+@Non-COA @L1
+    Scenario: To verify that user is able to add taxes at line item level in a requisition for catalog item
+    Given I am logged in eProc
 
-#     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
-#     And I checkout
-#     And I add Purchase Type
-#     And I add Required By Date
-#     And I add data in Cost Booking Details section at line level 
-#     And I add Tax Details at line level
-#     And I save it
-#     And I submit requisition
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I enter Requisition Name
+    And I add Purchase Type
+    And I add Settlement Via
+    And I add Required By Date
+    And I add data in Cost Booking Details section at line level 
+    And I add Tax Details at line level
+    And I save it
+    And I submit requisition
 
-#     Then I should be able see the taxes added on view requisition
+    Then I should be able see the taxes added on view requisition
 
 # @Non-COA @L1
 #   Scenario: To verify that user is able to add taxes at line item level in a requisition for punchout item
@@ -598,16 +601,17 @@ Feature: Checkout
 
 #     Then I should be able to see the attachment which is added
 
-# @COA @L1
-#     Scenario: COA>>To verify that user is able to copy any requisition and modify it to create a new requisition.
-#     Given I am logged in eProc
+@COA @L1
+    Scenario: COA>>To verify that user is able to copy any requisition and modify it to create a new requisition.
+    Given I am logged in eProc
 
-#     When I create a requisition with catalog items
-#     And I copy that requisition
-#     And I modify the fields(qty, add taxes) requisition
-#     And I submit it
+    When I create requisition with "1" "ITEM_NAME_FOR_SEARCHING" item
+    And I copy that requisition
+    And I modify the field quantity
+    And I add Taxes
+    And I submit requisition
 
-#     Then I should be able to see submitted requisition with updated details
+    Then I should be able to see submitted requisition with updated details
 
 # @COA @L1
 #     Scenario: COA>>To verify that user is able to create free text line item and items from Hosted Catalog in a single PR.

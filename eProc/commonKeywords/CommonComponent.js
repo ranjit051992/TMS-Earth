@@ -313,4 +313,43 @@ module.exports={
         return options;
     },
 
+    async getValueForColumn(columnName)
+    {
+        let columnIndex = this.getColumnIndexOnListingPage(columnName);
+        let columnHeaderXpath = I.getElement(commonKeywordObject.ALL_COLUMN_HEADER_TEXT);
+        columnHeaderXpath = "(" + columnHeaderXpath + "/..)[" + Number(columnIndex) + "]//dew-row[contains(@class,'list-body')]//span";
+		logger.info("Xpath for retrieving column value --> " + columnHeaderXpath);
+		let columnValue = await I.grabTextFrom(columnHeaderXpath);
+		logger.info("Retrieved value for column " + columnName + " is --> " + columnValue);
+		return columnValue;
+    },
+
+    async getColumnIndexOnListingPage(columnName)
+    {
+        let columnIndex = 0;
+        let columnHeaderXpath = I.getElement(commonKeywordObject.ALL_COLUMN_HEADER_TEXT)+"//span[contains(@class,'text-subhead-b')]";
+        let noOfHeaders = await I.grabNumberOfVisibleElements(I.getElement(commonKeywordObject.ALL_COLUMN_HEADER_TEXT));
+        if(noOfHeaders>0)
+        {
+            for(let i=0; i< noOfHeaders; i++)
+            {
+                let columnXpath = "(" + columnHeaderXpath + ")["+ Number(i)+1 +"])" ;
+                let columnNameRetrive = await I.grabTextFrom(columnXpath);
+                logger.info("Column Name retrive is ---> "+columnNameRetrive);
+
+                if(columnNameRetrive.toUpperCase() === columnName.toUpperCase())
+                {
+                    columnIndex = i+1;
+                    logger.info("Column Index is---> "+columnIndex);
+                    break;
+                }
+            }
+        }
+        else
+        {
+            throw new Error("Column Headers not found");
+            
+        }
+        return columnIndex;
+    },
 };

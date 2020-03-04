@@ -9,11 +9,11 @@ Feature:Invoice Creation
     Scenario: Create non po invoice
         Given I create an invoice
         #Given I add non po invoice details
-        And I add supplier information
-        And I add basic details
-        And I add items
-        And I add billing and cost booking details
-        When I submit the invoice
+        #And I add supplier information
+        #And I add basic details
+        #And I add items
+        #And I add billing and cost booking details
+        #When I submit the invoice
         Then I should be able to see the created invoice on invoice listing
 
     Scenario: Create po invoice
