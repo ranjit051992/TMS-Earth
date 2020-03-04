@@ -45,6 +45,7 @@ exports.config = {
     features: "./eProc/features/**/**/*.feature",
     steps: "./eProc/implementation/**/**/*.js"
   },
+ 
   name: prop.projectName,
   plugins: {
     retryFailedStep: {
