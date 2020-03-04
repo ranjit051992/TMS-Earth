@@ -35,6 +35,14 @@ module.exports = {
         I.click(global.uiElements.get(iCommon.purchaseTypeField));
         I.click(`//div[@class="dropdown-content pointer ps scrollable ps--active-y"]//div[text()="${purchaseType}"]`);
     },
+    addAttachment() {
+        I.attachFile(global.uiElements.get(iCommon.attachmentField),'ProcureToPay.png');
+    },
+    addAttachmentFromExisting() {
+        I.click(global.uiElements.get(iCommon.pickFromExistingBtn));
+        I.click(global.uiElements.get(iCommon.firstFile));
+        I.click(global.uiElements.get(iCommon.doneBtn));
+    },
     addCBL(company, businessUnit, location) {
         I.clearField(global.uiElements.get(iCommon.companyField));
         I.fillField(global.uiElements.get(iCommon.companyField), company);

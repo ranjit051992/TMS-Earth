@@ -34,6 +34,8 @@ module.exports = {
             this.clickOnBasicDetailsTab();
             commonElements.selectRequester(global.testData.get("REQUESTER"));
             commonElements.selectPurchaseType(global.testData.get("PURCHASE_TYPE"));
+            //commonElements.addAttachment();
+            commonElements.addAttachmentFromExisting();
             this.clickOnAddItemsTab();
             commonElements.addItem(global.testData.get("ITEM_NAME"),global.testData.get("CATEGORY"),global.testData.get("QTY_OR_AMT"),global.testData.get("UOM"),global.testData.get("PRICE"));
             this.clickOnBillingAndCostBookingDetailsTab();
