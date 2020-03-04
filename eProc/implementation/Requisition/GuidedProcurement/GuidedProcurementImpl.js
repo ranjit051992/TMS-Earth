@@ -10,16 +10,30 @@ module.exports= {
         await this.clickOnAddItemServiceButton();
         await this.fillShortDescription();  //pass parameter
         await this.selectProductCategory(); //pass category
-        if(guidedItem.selectGoods) {
+        if(guidedItem.itemType === lmtVar.getLabel("ITEM_TYPE_GOODS")) {
             await this.selectItemTypeGoods();
         }
+        else {
+            logger.info(`Incorrect Item type passed --> ${guidedItem.itemType}`);
+            throw new Error(`Incorrect Item type passed --> ${guidedItem.itemType}`);
+        }
         
-        if(guidedItem.selectQuantity) {
+        if(guidedItem.receiveBy === lmtVar.getLabel("RECEIVE_BY_QUANTITY")) {
             await this.selectReceiveByQuantity();
         }
-        else if(guidedItem.selectAmount) {
+        else if(lmtVar.getLabel("RECEIVE_BY_AMOUNT")) {
             await this.selectReceiveByAmount();
         }
+        else {
+            logger.info(`Incorrect Receive By passed --> ${guidedItem.receiveBy}`);
+            throw new Error(`Incorrect Receive By passed --> ${guidedItem.receiveBy}`);
+        }
+
+        await this.fillMarketPrice();   //pass market price
+
+        await this.fillQuantity();  //pass quantity
+
+        await this.fillUom();   //pass uom
     },
     async clickOnAddItemServiceButton() {
         await I.waitForVisible(I.getElement(iGuided.ADD_ITEM_SERVICE_BUTTON));
@@ -69,6 +83,12 @@ module.exports= {
         await I.fillField(I.getElement(iGuided.PO_GUIDED_ITEM_MARKET_PRICE_TEXTBOX), price);
         logger.info(`Filled quantity --> ${quantity}`);
         return price;
+    },
+    async fillUom(uom) {
+        let optionXpath = `//span[text()='${uom}']`;
+        uom = await commonKeywordImpl.searchAndSelectFromDropdown(I.getElement(iGuided.PO_GUIDED_ITEM_UOM_TEXTBOX), uom, optionXpath);
+        logger.info(`Selected Uom --> ${uom}`);
+        return uom;
     }
      
 };

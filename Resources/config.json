@@ -1,6 +1,6 @@
 {
     "eProc": {
-        "url": "https://login-partner.zycus.com/sso/login",
+        "url": "https://dewdrops-partner.zycus.com/eproc/#/online-store",
         "poListingUrl": "https://dewdrops-partner.zycus.com/eproc/#/purchaseorder/default/listing",
         "DDS_OnlineStore_Url": "https://dewdrops-partner.zycus.com/eproc/#/online-store",
         "DDS_Requisition_Listing": "https://dewdrops-partner.zycus.com/eproc/#/requisition/requisition",
@@ -30,7 +30,7 @@
         "uiElementTable":"eProc_UI_Elements",
         "UserTable":"eProc_credentials",
         "LOGIN_WITH_PASSWORD_MANAGER": false,
-        "isCOA": false
+        "isCoa": false
     },
     "iContract": {
         "url": "https://dewdrops-partner.zycus.com/",

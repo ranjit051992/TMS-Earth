@@ -44,6 +44,7 @@ module.exports = {
     },
     async selectPurchaseType(purchaseType) {
         await this.clickOnPurchaseTypeDropdown();
+        await I.scrollIntoView("//a[contains(text(),'" + purchaseType + "')]");
         await I.waitForVisible("//a[contains(text(),'" + purchaseType + "')]");
         await I.click("//a[contains(text(),'" + purchaseType + "')]");
         logger.info("Selected purchase type :" + purchaseType);
@@ -134,6 +135,7 @@ module.exports = {
     },
     async selectDeliveryTerm(deliveryTerm) {
         let deliveryTermXpath = "//div[contains(@title,'" + deliveryTerm + "')]";
+        await I.scrollIntoView(deliveryTermXpath);
         await I.waitForVisible(deliveryTermXpath);
         await I.click(deliveryTermXpath);
         logger.info("Selected delivery term :" + deliveryTerm);
