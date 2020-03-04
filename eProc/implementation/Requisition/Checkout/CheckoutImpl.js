@@ -680,9 +680,9 @@ module.exports={
             await this.clickOnRetrospectivePurchaseNoButton();
         }
 
-        if(requisitionBO.attachmentPath !== "undefined")
+        if(requisitionBO.attachmentPath.toString() !== null)
         {
-            await this.addAttachments();
+            await this.addAttachments(requisitionBO.attachmentPath.toString());
         }
 
         return requisitionBO;

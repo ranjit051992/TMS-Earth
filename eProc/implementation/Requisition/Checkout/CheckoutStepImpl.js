@@ -7,12 +7,9 @@ const commonComponent = require("../../../commonKeywords/CommonComponent");
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const reqListing = require("../../Requisition/RequisitionListing/RequisitionListingImpl");
 const prop = global.confi_prop;
-<<<<<<< HEAD
 const viewReqImpl = require("../ViewRequisition/ViewRequisitionImpl");
 const faker = require("faker");
-=======
 const iApprovalObject = require("../../Approval/ApprovalObject");
->>>>>>> Shubham_2Mar_6
 
 When("I create requisition with {int} {string} item", async function(noOfItems, itemType) {
     let reqBo= await objectCreation.getObjectOfRequisition(noOfItems, itemType);

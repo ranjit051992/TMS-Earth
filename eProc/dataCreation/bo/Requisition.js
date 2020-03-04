@@ -45,14 +45,13 @@ class Requisition
         this.customAddressState;
         this.customAddressZip;
         this.customAddressCity;
-
-
         this.isApplyTaxItemLevel;
         this.taxType;
         this.TaxName;
         this.taxRate;
         this.taxAmount;
         this.reqAmount;
+        this.status;
         //let items = [];
     }
 
@@ -244,10 +243,16 @@ class Requisition
     setApplyTaxItemLevel(isApplyTaxItemLevel)
 	{
 		this.isApplyTaxItemLevel = isApplyTaxItemLevel;
-	}
+    }
+    
     setreqAmount(reqAmount)
     {
         this.reqAmount = reqAmount;
+    }
+
+    setStatus(status)
+    {
+        this.status = status;
     }
 }
 
