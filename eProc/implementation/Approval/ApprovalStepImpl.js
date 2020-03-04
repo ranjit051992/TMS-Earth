@@ -127,14 +127,30 @@ Then ("I see the same status of SPO on PO Approval listing", async function() {
 
 When ("I Approve 1 Requisition", async function() {
     await ApprovalImpl.approveDoc(reqArray[0].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-    let status = await ApprovalImpl.checkApprovalStatus();
-    this.reqArray[0].setStatus(status);
+    let status = await ApprovalImpl.checkReqStatus();
+    I.assertEqual(status, lmtVar(getLabel("APPROVED_STATUS")));
 });
 
 When ("I Approve 2 Requisitions", async function() {
     this.reqArray = await ApprovalImpl.approveMultipleReqs(reqArray[i].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    logger.info("All Requisitions are in Approved status")
 });
 
 Then ("I should be able to see the status of all Requisitions as Approved", async function() {
+    await ApprovalImpl.checkMultipleReqStatus(reqArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+});
+
+When ("I Reject 1 Requisition", async function() {
+    await ApprovalImpl.rejectDoc(reqArray[0].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    let status = await ApprovalImpl.checkReqStatus();
+    I.assertEqual(status, lmtVar.getLabel("REJECTED_STATUS"));
+});
+
+When ("I Reject 2 Requisitions", async function() {
+    this.reqArray = await ApprovalImpl.rejectMultipleReqs(reqArray[i].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    logger.info("All Requisitions are in Approved status")
+});
+
+Then ("I should be able to see the status of all Requisitions as Rejected", async function() {
     await ApprovalImpl.checkMultipleReqStatus(reqArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
 });

@@ -771,7 +771,7 @@ module.exports={
             /// assigned BuyerGroup code
         }
 
-        this.clickOnCostBookingTab();
+        await this.clickOnCostBookingTab();
 
         await coaImpl.fillCoaDetails();
 
