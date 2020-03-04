@@ -64,8 +64,8 @@ module.exports = {
    {
        await this.clickOnDeleteAllItemsButton();
        await this.clickOnConfirmPopupYesButton();
-       //I.waitForVisible(I.getElement(iCart.ITEM_DELETE_SUCCESS_MSG),prop.DEFAULT_HIGH_WAIT);
-      // I.see(lmtVar.getLabel("EMPTY_CART_MSG"));
+       I.waitForVisible(I.getElement(iCart.ITEM_DELETE_SUCCESS_MSG),prop.DEFAULT_HIGH_WAIT);
+       I.see(lmtVar.getLabel("EMPTY_CART_MSG"));
        logger.info("Cart is cleared.");
    },
 
