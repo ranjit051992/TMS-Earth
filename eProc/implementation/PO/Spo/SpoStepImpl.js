@@ -95,6 +95,8 @@ When("I add attachment at header level", async function() {
 
 When("I submit the PO", async function() {
    await spoImpl.submitPo();
+   await commonKeywordImpl.waitForElementVisible(iSpoObject.spinner);
+   await I.waitForInvisible(I.getElement(iSpoObject.spinner));
 });
 
 When("I search for the created po", async function() {
