@@ -1,4 +1,5 @@
-require("./Framework/PropertiesConfigurator");
+const parsing= require("./Framework/PropertiesConfigurator");
+parsing("eProc");
 const prop = global.confi_prop;
 global.lang = 'en';
 exports.config = {
