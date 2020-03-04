@@ -12,7 +12,7 @@ module.exports = {
     {
         logger.info(global.confi_prop.url);
         I.amOnPage(global.confi_prop.url);
-        I.waitForVisible(I.getElement(iLogin.EMAIL_ADDRESS_GHOST_TEXTBOX));
+        I.seeElement(I.getElement(iLogin.EMAIL_ADDRESS_GHOST_TEXTBOX));
         logger.info("Navigated to login page");
         I.click(I.getElement(iLogin.EMAIL_ADDRESS_GHOST_TEXTBOX));
         I.fillField(I.getElement(iLogin.EMAIL_ADDRESS_TEXTBOX), global.users.get("USERNAME"));
