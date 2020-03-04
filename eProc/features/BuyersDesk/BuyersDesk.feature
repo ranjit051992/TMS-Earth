@@ -5,7 +5,7 @@ Feature: BuyersDesk
 #     Scenario: To verify if Buyer is able to edit the requisition.
 #     Given I am logged in eProc
 
-#     When I add a catalog item to cart
+#     When I add "1" "ITEM_NAME_FOR_SEARCHING" to cart
 #     And I checkout
 #     And I add Purchase Type
 #     And I add Required By Date
@@ -27,14 +27,14 @@ Feature: BuyersDesk
 
    # Then I should be able to create a PO with multiple requisition merged into one
 
-# @Non-COA @L1
+# @konica
 #     Scenario: To verify filters on buyer's desk status filter
 #     Given I am logged in eProc
 
-#     When I navigate to Buyer Desk
-#     And I filter any status
+#     When I navigate to Buyer Desk 
+#     And I filter with "IN PROCESS" status
 
-#     Then I should be see the data on the page with the filtered status
+    #Then I should be see the data on the page with the filtered status
 
  @Non-COA @L1
      Scenario: To verify filters on buyer's desk status filter
@@ -81,14 +81,14 @@ Feature: BuyersDesk
 
      Then I should be see the data on the page with the filtered buyer
 
-# @Non-COA @L1
-#     Scenario: To verify Purchase Amount filter on buyer's desk 
-#     Given I am logged in eProc
+@konica
+    Scenario: To verify Purchase Amount filter on buyer's desk 
+    Given I am logged in eProc
 
-#     When I navigate to Buyer Desk
-#     And I filter with Purchase Amount
+    When I navigate to Buyer Desk
+    And I filter with Purchase Amount "10" and "100"
 
-#     Then I should be see the data on the page with the filtered amount
+   # Then I should be see the data on the page with the filtered amount
 
 # @Non-COA @L1
 #     Scenario: To verify filters on Upcoming Requisition status filter
