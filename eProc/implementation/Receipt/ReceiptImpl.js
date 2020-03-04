@@ -50,6 +50,11 @@ module.exports = {
     },
     async clickSelectionCheckbox()
     {
+        await I.waitForVisible(I.getElement(iReceiptObject.ALL_ITEM_SELECTION_CHECKBOX));
+        await I.click(I.getElement(iReceiptObject.ALL_ITEM_SELECTION_CHECKBOX));
+    },
+    async clickFirstItemSelectionCheckbox()
+    {
         await I.waitForVisible(I.getElement(iReceiptObject.FIRST_ITEM_SELECTION_CHECKBOX));
         await I.click(I.getElement(iReceiptObject.FIRST_ITEM_SELECTION_CHECKBOX));
     },
@@ -58,7 +63,7 @@ module.exports = {
         await I.waitForVisible(I.getElement(iReceiptObject.SAVE_AS_DRAFT_BUTTON));
         await I.click(I.getElement(iReceiptObject.SAVE_AS_DRAFT_BUTTON));
         logger.info("Receipt/ ReturnNote saved as draft");
-        I.saveScreenshot("Clicked on Save as Draft");
+        I.saveScreenshot("ReceiptDraft.png");
     },
     async clickSubmitReceipt()
     {

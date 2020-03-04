@@ -1,13 +1,12 @@
-// const I = actor();
 const {I} = inject();
 const logger = require("../../../Framework/FrameworkUtilities/Logger/logger");
 const iInvoiceHome = require("./IinvoiceHome");
 
 module.exports = {
 
-  // clickOnAddInvoiceBtn() {
-  //   I.click(global.uiElements.get(iInvoiceHome.addInvoiceBtn));
-  // },
+  clickOnAddInvoiceBtn() {
+    I.click(global.uiElements.get(iInvoiceHome.addInvoiceBtn));
+  },
 
   filterByStatus(status) {
     I.click(global.uiElements.get(iInvoiceHome.statusFilterIcon));

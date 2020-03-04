@@ -1,12 +1,18 @@
 Feature:Invoice Creation
-    User can create a po/non po invoice.
+    I can create a po/non po invoice.
 
     Background:
         Given I logged in to the application
         And I navigate to Invoice module
 
+    @sanity
     Scenario: Create non po invoice
-        Given I fill the invoice details
+        Given I create an invoice
+        #Given I add non po invoice details
+        And I add supplier information
+        And I add basic details
+        And I add items
+        And I add billing and cost booking details
         When I submit the invoice
         Then I should be able to see the created invoice on invoice listing
 

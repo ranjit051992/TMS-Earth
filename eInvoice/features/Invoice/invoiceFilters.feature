@@ -5,13 +5,11 @@ Feature: Filter Invoices
         Given I logged in to the application
         And I navigate to Invoice module
 
-    @sanity
     Scenario: Filter invoice by status
         Given I search for a status
         When I select it
         Then I should be able to see the invoices with the desired status
         
-    @sanity
     Scenario: Filter invoice by invoice number
         Given I search for a invoice number
         When I apply it

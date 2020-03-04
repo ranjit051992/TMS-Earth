@@ -9,6 +9,7 @@ const catalogItem = require("../../../dataCreation/bo/CatalogItem");
 const commonKeywordImpl = require("../../../commonKeywords/CommonComponent");
 const poListingImpl = require("../PoListing/PoListingImpl");
 const poListingObject = require("../PoListing/PoListingObject");
+const coaImpl = require("../../Coa/CoaImpl");
 
 Given("I am on PO listing page", async function () {
    await poListingImpl.navigateToPoListing();
@@ -73,7 +74,7 @@ When("I search catalog item with {string}", async function(itemName) {
 When("I add costing and accounting details for that item", async function() {
    await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
    await spoImpl.clickOnCostBookingLink(this.spo.items[0].itemName);
-   let glAccount = await spoImpl.fillGlAccount(this.spo.glAccount);
+   let glAccount = await coaImpl.fillGlAccount(this.spo.glAccount);
    this.spo.setGlAccount(glAccount);
    await spoImpl.clickOnCostBookingSaveButton();
    await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_TAXES_SECTION_SECTION"));
@@ -186,8 +187,8 @@ When("I add 1 catalog item {string}", async function(itemName1) {
    await spoImpl.clickOnCostBookingLink(this.spo.items[1].itemName);
 
    let glAccount = await I.getData("GL_ACCOUNT");
-   await spoImpl.fillGlAccount(glAccount);
-   await spoImpl.clickOnCostBookingSaveButton();
+   await coaImpl.fillGlAccount(glAccount);
+   await coaImpl.clickOnCostBookingSaveButton();
    await I.waitForInvisible(I.getElement(iSpoObject.GLACCOUNT));
 });
 

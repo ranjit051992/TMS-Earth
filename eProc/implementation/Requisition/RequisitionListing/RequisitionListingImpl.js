@@ -128,6 +128,7 @@ module.exports = {
         let reqNumber = await this.getRequisitionNumber(reqName);
         await this.searchRequisitionByReqNumber(reqNumber);
         await this.viewRequisition(reqNumber);
+        await commomComponent.waitForLoadingSymbolNotDisplayed();
     },
 
     /**
@@ -146,7 +147,7 @@ module.exports = {
                 await commomComponent.clickOnActionMenuIcon();
                 await commomComponent.clickOnActionMenuOption(lmtVar.getLabel("COPY_ACTION"));
                 await commomComponent.waitForLoadingSymbolNotDisplayed();
-                await checkoutImpl.waitForVisible(I.getElement(checkoutObject.REQUISITION_NAME));
+                await I.waitForVisible(I.getElement(checkoutObject.REQUISITION_NAME));
             }
             else
             {
