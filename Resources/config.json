@@ -7,6 +7,7 @@
         "DDS_Approval_Listing": "https://dewdrops-partner.zycus.com/eproc/#/approval/allRequest/requisition",
         "DDS_BuyersDesk_Url": "https://dewdrops-partner.zycus.com/eproc/#/buyersdesk/default/listing",
         "DDS_AllRequests_Url": "https://dewdrops-partner.zycus.com/eproc/#/approval/allRequest/requisition",
+
         "PASSWORD_MANAGER_URL": "https://passmanager.zycus.com/PassTrixMain.cc",
         "SETUP": "RM",
         "TENANT": "ZCS",

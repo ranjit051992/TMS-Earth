@@ -34,7 +34,7 @@ module.exports={
         requisitionBO = await this.fillAdditionalDetails(requisitionBO);
 
         requisitionBO = await this.fillShippingDetails(requisitionBO);
-
+        
         requisitionBO = await this.fillCostAllocation(requisitionBO);
 
         requisitionBO = await this. fillItemDetails(requisitionBO);
@@ -1112,9 +1112,11 @@ module.exports={
         await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
         await this.clickOnCostBookingLink(requisitionBO.itemName);
         requisitionBO = this.fillTaxDetails(requisitionBO);
-        await checkoutImp.clickOnCostBookingSaveButton();
-        await commonComponent.waitForLoadingSymbolNotDisplayed();
+        //await checkoutImp.clickOnCostBookingSaveButton();
+        //await commonComponent.waitForLoadingSymbolNotDisplayed();
 
         return requisitionBO;
     },
+
+
 };
