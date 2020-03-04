@@ -128,9 +128,9 @@ module.exports={
    async clickOnOnlineStoreLink()
    {
 
-      //await I.scrollIntoView(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
+      await I.scrollIntoView(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
       I.waitForVisible(I.getElement(iOnlineStore.ONLINE_STORE_LINK),prop.DEFAULT_HIGH_WAIT);
-    //   I.waitForClickable(I.getElement(iOnlineStore.ONLINE_STORE_LINK),prop.DEFAULT_HIGH_WAIT);
+      I.waitForClickable(I.getElement(iOnlineStore.ONLINE_STORE_LINK),prop.DEFAULT_HIGH_WAIT);
       I.click(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
       await commonComponent.waitForLoadingSymbolNotDisplayed();
    },
