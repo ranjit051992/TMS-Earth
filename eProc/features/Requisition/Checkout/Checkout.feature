@@ -196,7 +196,7 @@ Feature: Checkout
 
 
 
-@Non-COA @L1 
+@Non-COA @L1 @copy
     Scenario: To verify that user is able to copy any requisition and modify it to create a new requisition.
     Given I am logged in eProc
 
