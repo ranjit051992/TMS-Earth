@@ -9,19 +9,16 @@ const requisitionBo = require("../../dataCreation/bo/Requisition")
 
 module.exports = {
 
-<<<<<<< HEAD
     clickonStatusFilterButton(){
-        I.click(I.getElement(iBuyersDeskObject.FILTER_BUTTON))
+        I.click(I.getElement(iBuyersDeskObject.STATUS_FILTER))
     },
     
     clickOnStatusApplyButton(){
         I.click(I.getElement(iBuyersDeskObject.BUYER_DESK_STATUS_APPLY));  
         },
-=======
     // clickonStatusFilterButton(){
     //     I.click(I.getElement(iBuyersDeskObject.FILTER_BUTTON))
     // },
->>>>>>> 953f619f7aa07299c552473cf8a22361166f0b92
 
     // FilterWithRequisitionNumber(reqNumber){
     //     this.clickonStatusFilterButton();
@@ -50,19 +47,19 @@ module.exports = {
         return requisitionName;
    },
 
-<<<<<<< HEAD
    async clickPurchaseAmountFilter(){
         I.click(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_FILTER));
+    
   },
 
   async fillPurchaseAmount(maxValue,minValue)
   {
     I.waitForVisible(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT),prop.DEFAULT_MEDIUM_WAIT);
-    await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT,minValue));
-    logger.info("Entered the min value " +minValue);
-    await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MAX_INPUT,maxValue));
-    logger.info("Entered the min value " +maxValue);
-    this.clickOnStatusApplyButton();
+    // await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT,minValue));
+    // logger.info("Entered the min value " +minValue);
+    // await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MAX_INPUT,maxValue));
+    // logger.info("Entered the min value " +maxValue);
+    // this.clickOnStatusApplyButton();
   },
 
   async filterStatus(status)
@@ -96,7 +93,22 @@ module.exports = {
     logger.info("Status selected is Rejected");
     this.clickOnStatusApplyButton();
    }
-=======
+
+   else if(incomingstatus == "Cancelled")
+   {
+    I.checkOption(I.getElement(iBuyersDeskObject.STATUS_FILTER));
+    logger.info("Status selected is Cancelled");
+    this.clickOnStatusApplyButton();
+   }
+     else if(incomingstatus == "Closed")
+   {
+    I.checkOption(I.getElement(iBuyersDeskObject.STATUS_FILTER));
+    logger.info("Status selected is Closed");
+    this.clickOnStatusApplyButton();
+   }
+ 
+  },
+
    async fetchSearchedBuyer()
    {
         I.waitForVisible(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
@@ -175,23 +187,22 @@ module.exports = {
     async convertToPO(){
         I.waitForVisible(I.getElement(iBuyersDeskObject.CONVERT_PO_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
         I.click(I.getElement(iBuyersDeskObject.CONVERT_PO_BUTTON));
+    },
+
+    async fetchPurchaseAmount(){
+        I.waitForVisible(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
+        let purchaseamount = await I.grabTextFrom(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_LISTING));
+        return purchaseamount;
+
+    },
+
+    async fetchStatus(){
+        I.waitForVisible(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
+        let status = await I.grabTextFrom(I.getElement(iBuyersDeskObject.STATUS_LISTING));
+        return status;
+
     }
-
->>>>>>> 953f619f7aa07299c552473cf8a22361166f0b92
-
-   else if(incomingstatus == "Cancelled")
-  {
-   I.checkOption(I.getElement(iBuyersDeskObject.STATUS_FILTER));
-   logger.info("Status selected is Cancelled");
-   this.clickOnStatusApplyButton();
-  }
-    else if(incomingstatus == "Closed")
-  {
-   I.checkOption(I.getElement(iBuyersDeskObject.STATUS_FILTER));
-   logger.info("Status selected is Closed");
-   this.clickOnStatusApplyButton();
-  }
-},
+ 
 
 
 }

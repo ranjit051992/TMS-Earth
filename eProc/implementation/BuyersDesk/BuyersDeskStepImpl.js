@@ -11,11 +11,11 @@ const checkoutImpl = require("./../Requisition/Checkout/CheckoutImpl");
 const cartImpl = require("./../Requisition/Cart/CartImpl");
 const onlineStore = require("../Requisition/OnlineStore/OnlineStoreObject");
 
-<<<<<<< HEAD
 When("I navigate to Buyer Desk", async function() {
   I.amOnPage(global.confi_prop.DDS_BuyersDesk_Url);
   logger.info("Navigated to Buyers Desk Page")
-=======
+});
+
 When("I navigate to Buyers Desk {string} {string} {string}", async function(noOfItems, itemType, noOfReq) {
   let reqNumberArray = new Array();
   for(let i =0;i<noOfReq;i++)
@@ -36,7 +36,6 @@ When("I navigate to Buyers Desk {string} {string} {string}", async function(noOf
       await approvalImpl.approveDoc(requisition.reqNumbers[i], lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
      }
      I.amOnPage(prop.DDS_BuyersDesk_Url);
->>>>>>> 953f619f7aa07299c552473cf8a22361166f0b92
 
  });
 
@@ -98,8 +97,7 @@ Then("I should be see the data on the page on the basis on requisition name fiel
 
 });
 
-<<<<<<< HEAD
-When ("I filter with Purchase Amount between {string} and {string}" , async function(maxValue,minValue){
+When ("I filter with Purchase Amount {string} and {string}" , async function(maxValue,minValue){
    buyersDeskImpl.clickPurchaseAmountFilter();
    buyersDeskImpl.fillPurchaseAmount(maxValue,minValue);
 
@@ -108,12 +106,29 @@ When ("I filter with Purchase Amount between {string} and {string}" , async func
 
 
 When ("I filter with {string} status", async function(status){
+  logger.info("Status to be searched"+status);
   buyersDeskImpl.clickonStatusFilterButton();
-  buyersDeskImpl.clickPurchaseAmountFilter(status);
+  buyersDeskImpl.filterStatus(requisition.status);
 
 });
 
-=======
+
+
+Then ("I should be see the data on the page with the filtered amount", async function(){
+   let fetchPurchaseAmount = await buyersDeskImpl.fetchPurchaseAmount();
+   logger.info('Searched Puchase amount '+fetchPurchaseAmount);
+   if (fetchPurchaseAmount>minValue && fetchPurchaseAmount<maxValue)
+   {
+    logger.info("Purchase Amount is given in the given range");
+   }
+
+}); 
+  Then("I should be see the data on the page with the filtered status", async function(){
+    let fetchedStatus = await buyersDeskImpl.fetchStatus();
+    logger.info('Searched Status '+fStatus);
+    I.assertEqual(fetchedStatus.toString(),requisition.status.toString());  
+
+});
 
 Then("I should be see the data on the page with the filtered buyer", async function() {
   let searchedBuyer = await buyersDeskImpl.fetchSearchedBuyer();
@@ -121,5 +136,4 @@ Then("I should be see the data on the page with the filtered buyer", async funct
   logger.info('Requisition Buyer is '+requisition.buyer);
   I.assertEqual(searchedBuyer.toString(), requisition.buyer.toString());
    
-})
->>>>>>> 953f619f7aa07299c552473cf8a22361166f0b92
+});
