@@ -10,61 +10,42 @@ Then("I should be able to see submitted requisition with updated details", async
     let isReqUpdated = false;
     let verifyQuantity = false;
     let verifyTaxes = false;
-
     await reqListingImpl.searchAndViewReqByName(this.reqName);
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
-
     this.fetchQuantity = await viewReqImpl.fetchQuantity(this.reqBO.itemName);
-    if(this.updateQuantity.toString().trim().includes(this.fetchQuantity.toString().trim()))
+    
+    if(this.fetchQuantity.toString().trim().includes(this.updateQuantity.toString().trim()))
     {
         verifyQuantity = true;
-        logger.info("Verified updated Quantity");
+        logger.info("Verified updated Quantity-->"+verifyQuantity);
     }
-
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
-    let taxDetailsMap = new Map();
+   
     let taxValueArray = new Array();
-
-    taxDetailsMap = await viewReqImpl.fetchTaxesDetails(this.reqBO.itemName);
-    logger.info("Tax Deatils Map--->>"+taxDetailsMap);
-    let itr = taxDetailsMap.keys();
-    for(let key of itr)
-    {
-        let value = taxDetailsMap.get(key);
-        taxValueArray.push(value);
-    }
-
-    if(taxValueArray.includes(this.reqBO.taxType))
+    taxValueArray = await viewReqImpl.fetchTaxesDetails(this.reqBO.itemName);
+    logger.info("Tax Deatils Array--->>"+taxValueArray);
+    
+    if(taxValueArray.toString().includes(this.reqBO.taxType.toString()) && taxValueArray.includes(this.reqBO.taxName.toString()))
     {
         verifyTaxes = true;
+        logger.info("Verified updated Taxes-->"+verifyTaxes);
     }
-
     isReqUpdated = (verifyQuantity && verifyTaxes);
-
     I.assertEqual(isReqUpdated, true);
-
 });
-
 Then("I should be able see the taxes added on view requisition", async function(){
     let verifyTaxes = false;
-
     await reqListingImpl.searchAndViewReqByName(this.reqBO.reqName);
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
-    let taxDetailsMap = new Map();
+   
     let taxValueArray = new Array();
-
-    taxDetailsMap = await viewReqImpl.fetchTaxesDetails(this.reqBO.itemName);
-    logger.info("Tax Deatils Map--->>"+taxDetailsMap);
-    let itr = taxDetailsMap.keys();
-    for(let key of itr)
-    {
-        let value = taxDetailsMap.get(key);
-        taxValueArray.push(value);
-    }
-
-    if(taxValueArray.includes(this.reqBO.taxType) && taxValueArray.includes(this.reqBO.taxName))
+    taxValueArray = await viewReqImpl.fetchTaxesDetails(this.reqBO.itemName);
+    logger.info("Tax Deatils Array--->>"+taxValueArray);
+    
+    if(taxValueArray.toString().includes(this.reqBO.taxType.toString()) && taxValueArray.includes(this.reqBO.taxName.toString()))
     {
         verifyTaxes = true;
+        logger.info("Verified updated Taxes-->"+verifyTaxes);
     }
-
+    I.assertEqual(verifyTaxes, true);
 });

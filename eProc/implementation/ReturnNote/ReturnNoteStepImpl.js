@@ -10,6 +10,7 @@ const iLogin = require("../../implementation/Login/LoginImpl")
 const prop = global.confi_prop;
 const lmtVar = require("../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp")
 const spo = require("../../dataCreation/bo/Spo")
+const commonComponent =require("../../commonKeywords/CommonComponent")
 
 Given("I am logged in eproc", async function(){
     await iLogin.login();
@@ -54,7 +55,7 @@ When("I create a Receipt", async function(){
 
 
 When("I click on the Create return note option", async function(){
-    await receiptImpl.createReceipt();
+    await returnNoteImpl.createReturnNote();
 });
 
 When("I select the items", async function(){
@@ -74,14 +75,13 @@ When("I enter Return Method", async function(){
 });
 
 When("I save the return note as draft", async function(){
-    await receiptImpl.clickSaveAsDraft();
+    await returnNoteImpl.clickReturnNoteSaveAsDraft();
     //logged a bug to remove confirmation here 
 });
 
 Then("I should be able to see the return note in draft status", async function(){
-    let status = await receiptImpl.fetchStatus().toString();
-    await I.assertEqual(status, lmtVar.getLabel(DRAFT_STATUS));
-
+    let status = await receiptImpl.fetchStatus();
+    await I.assertEqual(status, lmtVar.getLabel("DRAFT_STATUS"));
 });
 
 When("I submit the return note", async function(){
@@ -90,18 +90,20 @@ When("I submit the return note", async function(){
 });
 
 Then("I should be able to see the return note created", async function(){
-    let status = await receiptImpl.fetchStatus().toString();
-    await I.assertEqual(status, lmtVar.getLabel(CONFIRMED_STATUS));
+    let returnStatus = await receiptImpl.fetchStatus();
+    await I.assertEqual(returnStatus, lmtVar.getLabel("RETURNED_STATUS"));
 });   
 
 
 When("I delete the return note in draft status", async function(){
+    this.returnNoteNumber = await returnNoteImpl.getReturnNoteNumber();
     await receiptImpl.clickDeleteAction();
     await receiptImpl.clickDeleteActionConfirmation();
 });
 
-// Then("I should be able to delete the return note in draft state", async function(){
-    
-// });
+Then("I should be able to delete the return note in draft state", async function(){
+    let status = await commonComponent.waitForElementVisible(`//a[contains(text(),'${this.returnNoteNumber}')]`);
+    await I.assertEqual(status, "false");
+});
     
 

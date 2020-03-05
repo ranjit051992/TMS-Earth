@@ -116,5 +116,9 @@ When("I delete the receipt in draft status from receipt listing page", async fun
 
 Then("I should be able to delete the receipt in draft status", async function(){
     let noDataText = await receiptImpl.verifyNoDataAvailable();
-    I.assertEqual(noDataText, lmtVar.getLabel("NO_DATA_AVAILABLE"));
+    I.assertEqual(noDataText, lmtVar.getLabel("NO_DATA_AVAILABLE"));    
+});
+
+When("I have Receipt created", async function(){
+    await receiptImpl.receiptCreation();
 });

@@ -31,7 +31,7 @@ When("I click on Create PO button", async function() {
 });
 
 When("I click on Create SPO button", async function() {
-   this.spo = await objectCreation.getObjectOfStandardPO(1, "Catalog");
+   this.spo = await objectCreation.getObjectOfStandardPO(1, "ITEM_NAME_FOR_SEARCHING");
    await spoImpl.clickOnStandardPOButton();
 });
 
@@ -143,7 +143,7 @@ Then("PO status should be draft", async function() {
 });
 
 Given("I have created and released a PO", async function() {
-   this.spo = await objectCreation.getObjectOfStandardPO(1, "Catalog");
+   this.spo = await objectCreation.getObjectOfStandardPO(1, "ITEM_NAME_FOR_SEARCHING");
    // this.spo.poNumber = "Automation_Spo_1583217623620";
    this.spo = await spoImpl.createAndReleaseSpoFlow(this.spo);
 });
@@ -202,7 +202,7 @@ Then("Item should be added {string} at index {int}", async function(itemName1, i
 });
 
 Given("I have submitted a SPO with a catalog item", async function() {
-   this.spo = await objectCreation.getObjectOfStandardPO(1, "Catalog");
+   this.spo = await objectCreation.getObjectOfStandardPO(1, "ITEM_NAME_FOR_SEARCHING");
    this.spo = await spoImpl.createSpoFlow(this.spo);
 });
 
@@ -332,4 +332,5 @@ Given( "I have PO with In Approval status", async function() {
    await commonKeywordImpl.searchDocOnListing(this.spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
    let status = await poListingImpl.getPoStatus();
    I.assertEqual(status.toString(), lmtVar.getLabel("IN_APPROVAL_STATUS"));
+   this.spo.buyer = global.users.get("USERNAME");
 });

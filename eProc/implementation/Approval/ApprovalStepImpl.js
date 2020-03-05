@@ -115,20 +115,22 @@ When ("I search for that PO name on PO approval listing", async function() {
 });
 
 Then ("I see the same Buyer name displayed for the corresponding PO number", async function() {
-    let buyerName = await ApprovalImpl.fetchBuyerOnPoApprovalListing(this.spo.buyer);
+    logger.info(`*******${this.spo.buyer.toString()}************`);
+    let buyerName = await ApprovalImpl.fetchBuyerOnPoApprovalListing(this.spo.buyer.toString());
     I.assertEqual(buyerName, this.spo.buyer.toString().substring(0,9));
 });
 
 Then ("I see the same Received on date on PO Approval listing", async function() {
     let receivedOn = await ApprovalImpl.fetchReceivedOnDateOnPOApprovalListing();
-    let day = new Date();
-    let today = "0"+(day.getMonth()+1)+"/"+"0"+day.getDate()+"/"+day.getFullYear();
-    I.assertEqual(today, receivedOn);
+    let PODate = await new Date(receivedOn.toString()).toLocaleDateString(); 
+    let sysDate = await new Date().toLocaleDateString();
+    logger.info(`*****${PODate === sysDate}*****`);
+    I.assertEqual(PODate, sysDate);
 });
 
 Then ("I see the same Amount to be approved on PO Approval listing", async function() {
     let amount = await ApprovalImpl.fetchAmountToBeApprovedOnPoApprovalListing();
-    let poTotal = await this.spo.PoAmount;
+    let poTotal = await this.spo.PoAmount.toString();
     I.assertEqual(amount, poTotal);
 });
 
