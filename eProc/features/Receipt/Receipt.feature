@@ -4,7 +4,7 @@ Feature: Receipt
     Scenario: To verify that buyer is able to save as draft or create a receipt for the items received
 
     Given I am logged in eProc
-    And I Create Standard po with 1 "Catalog" item
+    And I have created and released a PO
 
     When I navigate to PO listing
     And I search for the po
@@ -40,7 +40,7 @@ Feature: Receipt
     Scenario: To verify that buyer is able to create a receipt for the partial items received
 
     Given I am logged in eProc
-    And I Create Standard po with 2 "Catalog" item
+    And I have created and released a PO
 
     When I navigate to PO listing
     And I search for the po
@@ -98,7 +98,7 @@ Feature: Receipt
     Scenario: To verify that buyer is able to delete the receipt which is in draft state
 
     Given I am logged in eProc
-    And I Create Standard po with 1 "Catalog" item
+    And I have created and released a PO
 
     When I navigate to PO listing
     And I search for the po

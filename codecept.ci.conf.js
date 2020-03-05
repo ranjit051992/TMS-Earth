@@ -9,14 +9,23 @@ exports.config = {
     WebDriver: {
       url: prop.url,
       browser: prop.browser,
-      host: prop.host,
-      port: prop.port,
+      host: '10.70.1.128',
+      // port: prop.port,
       restart: prop.restart,
       windowSize: prop.windowSize,
       waitForTimeout: 30000,
       default_low_wait: prop.DEFAULT_LOW_WAIT,
       default_medium_wait: prop.DEFAULT_MEDIUM_WAIT,
       default_high_wait: prop.DEFAULT_HIGH_WAIT,
+      desiredCapabilities: {
+        pageLoadStrategy: 'none',
+        'selenoid:options': {
+          enableVNC: true,
+          enableVideo: false
+      }
+    }
+
+
     },
    ChaiWrapper:
     {
@@ -36,17 +45,12 @@ exports.config = {
     parallel: {
       // Splits tests into 2 chunks
       chunks: 5
-    },
-     sanityCases: {
-      // Splits tests into 2 chunks
-      chunks: 2
-    }
+    }
   },
   gherkin: {
     features: "./eProc/features/**/**/*.feature",
     steps: "./eProc/implementation/**/**/*.js"
   },
- 
   name: prop.projectName,
   plugins: {
     retryFailedStep: {
