@@ -84,5 +84,15 @@ module.exports= {
     //Shipping Details And Asset Tagging
     LINE_LEVEL_ADDRESS: "Checkout/ItemDetails/Shipping Details And Asset Tagging/LINE_LEVEL_ADDRESS",
 
+    MARK_TO_ADD_APPROVERS_CHECKBOX: "Checkout/Workflow/MARK_TO_ADD_APPROVERS_CHECKBOX",
+
+    ADD_ADHOC_APPROVER_BUTTON: "RFA/Workflow/ADD_ADHOC_APPROVER_BUTTON",
+    SELECT_APPROVER_TEXTBOX: "RFA/Workflow/AdhocApproverModal/SELECT_APPROVER_TEXTBOX",
+    REQUIRE_APPROVAL_AFTER: "RFA/Workflow/AdhocApproverModal/REQUIRE_APPROVAL_AFTER",
+    ADHOC_APPROVER_SUBMIT_BUTTON: "RFA/Workflow/AdhocApproverModal/SUBMIT_BUTTON",
+    WORKFLOW_NODE: "RFA/Workflow/WORKFLOW_NODE",
+
+
+
 
 };

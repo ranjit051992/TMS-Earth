@@ -69,7 +69,7 @@ Feature: Checkout
   And I should be able to Edit and submit the Draft requisition
   And I should be able to delete the requisition
 
-@Non-COA @L1 @attach 
+@Non-COA @L1 @snehal 
     Scenario: To verify that user is able to add attachments to the requisition.
     Given I am logged in eProc
 
@@ -79,7 +79,7 @@ Feature: Checkout
     
     Then I should be able to see the attachment which is added
 
-@Non-COA @L1  @Snehal
+@Non-COA @L1  @snehal
     Scenario: To verify that user is able to create any custom / One time delivery address while Check out and save it for future use
     Given I am logged in eProc
 
@@ -104,7 +104,7 @@ Feature: Checkout
     And I select Ship to Another Address in  Shipping Details section at header level
     And I should be able to see the saved address on creating a new requisition
 
-@Non-COA @L1 @Snehal @buyer
+@Non-COA @L1 @snehal
   Scenario: To verify that the 'Select Purchase Order' field
   Given I am logged in eProc
 
@@ -114,7 +114,7 @@ Feature: Checkout
 
   Then I should be see that the field name is updated to Select Purchase Order
 
-@Non-COA @L1  @Snehal 
+@Non-COA @L1  @snehal  @buyer
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer group
   Given I am logged in eProc
 
@@ -131,7 +131,7 @@ Feature: Checkout
 
   Then I should be able to view requisition with buyer as the buyer group which was assigned
 
-@Non-COA @L1 @Snehal 
+@Non-COA @L1 @snehal 
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer
   Given I am logged in eProc
 
@@ -148,6 +148,38 @@ Feature: Checkout
 
   Then I should be able to view requisition with buyer which was assigned
   
+
+@Non-COA @L1 @snehal
+  Scenario: To verify that user is able to add approver in requisition workflow if activity if assigned to him/her
+  Given I am logged in eProc
+
+  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+  And I checkout
+  And I enter Requisition Name
+  And I add Purchase Type
+  And I add Required By Date
+  And I add data in Cost Booking Details section at line level 
+  And I check Mark for adding approvers checkbox in workflow section
+  And I click on Next button
+  And I should be add adhoc approver "WORKFLOW_APPROVER" after "REQUIRE_APPROVAL_AFTER_REQUESTER" on Ready for Approval page
+  And I submit requisition
+
+  Then I should be able to view the requisition with adhoc approver added in the workflow
+
+@Non-COA @L1
+  Scenario: To verify that user is able to raise a request with stock items
+  Given I am logged in eProc
+
+  When I add "1" "SEARCH_ITEM_STOCK" items to cart
+  And I checkout
+  And I enter Requisition Name
+  And I add Purchase Type
+  And I add Required By Date
+  And I add data in Cost Booking Details section at line level
+  And I submit requisition
+
+  Then I should be able to view requisition with stock item
+
 # @Non-COA @L1
 #   Scenario: To verify that user is be able to raise a request using Punchout
 #   Given I am logged in eProc
@@ -452,21 +484,7 @@ Feature: Checkout
 #   Then I should be able to view the requisition with the delivery split
 #   And I should see that the address is updated
 
-# @Non-COA @L1
-#   Scenario: To verify that user is able to add approver in requisition workflow if activity if assigned to him/her
-#   Given I am logged in eProc
 
-#   When I add a catalog item to cart
-#   And I checkout
-#   And I add Purchase Type
-#   And I add Required By Date
-#   And I add data in Cost Booking Details section at line level 
-#   And I check Mark for adding approvers checkbox in workflow section
-#   And I click on Next button
-#   And I should be add adhoc approver on Ready for Approval page
-#   And I submit requisition
-
-#   Then I should be able to view the requisition with adhoc approver added in the workflow
 
 # @Non-COA @L1
 #   Scenario: To verify that user is  able to close requisition
