@@ -70,8 +70,8 @@ Given ("I am on PO approval listing page", async function() {
 });
 
 When ("I Approve 1 PO", async function() {
-    await ApprovalImpl.approveDoc(POArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-    let status = await ApprovalImpl.checkPOApprovalStatus();
+    await ApprovalImpl.approveDoc(this.POArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    let status = await ApprovalImpl.checkPOApprovalStatus(this.POArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
     this.POArray[0].setStatus(status); 
 });
 
