@@ -376,6 +376,9 @@ module.exports = {
             logger.info("Spo is submitted successfully");
         }
 
+        spo.status = await poListingImpl.getPoStatus();
+        logger.info(`PO status is --> ${spo.status.toString()}`);
+
         return spo;
     },
     async fillBasicDetails(spo) {
@@ -497,21 +500,38 @@ module.exports = {
     },
     async createAndReleaseSpoFlow(spo) {
         spo = await this.createSpoFlow(spo);
-        await approvalImpl.navigateToApprovalListing();
-        await approvalImpl.navigateToPOApprovalListingTab();
-        await approvalImpl.approveDoc(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-        await I.wait(prop.DEFAULT_MEDIUM_WAIT);
-        await poListingImpl.navigateToPoListing();
-        await commonKeywordImpl.searchDocOnListing(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-        let status = await poListingImpl.getPoStatus();
-        logger.info(`Status in db --> ${lmtVar.getLabel("RELEASED_STATUS")}`);
-        let flag = status.toString().includes(lmtVar.getLabel("RELEASED_STATUS"));
-        if(!flag) {
-            logger.info(`Failed to release spo because status is ${status} on po listing after approving`);
-            throw new Error(`Failed to release spo because status is ${status} on po listing after approving`);
+        if(spo.status.toString() === lmtVar.getLabel("IN_APPROVAL_STATUS")) {
+            await approvalImpl.navigateToApprovalListing();
+            await approvalImpl.navigateToPOApprovalListingTab();
+            await approvalImpl.approveDoc(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            await approvalImpl.checkPOApprovalStatus(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            let status = await approvalImpl.getSpoStatus();
+
+            let flag = status.toString() === lmtVar.getLabel("APPROVED_STATUS")
+            if(!flag) {
+                logger.info(`Failed to approve spo because status is ${status} on Approval listing after approving`);
+                throw new Error(`Failed to approve spo because status is ${status} on Approval listing after approving`);
+            }
+            else {
+                logger.info("Spo is approved successfully");
+            }
+            
+            await I.wait(prop.DEFAULT_MEDIUM_WAIT);
+            await poListingImpl.navigateToPoListing();
+            await commonKeywordImpl.searchDocOnListing(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            status = await poListingImpl.getPoStatus();
+            logger.info(`Status in db --> ${lmtVar.getLabel("RELEASED_STATUS")}`);
+            flag = status.toString().includes(lmtVar.getLabel("RELEASED_STATUS"));
+            if(!flag) {
+                logger.info(`Failed to release spo because status is ${status} on po listing after approving`);
+                throw new Error(`Failed to release spo because status is ${status} on po listing after approving`);
+            }
+            else {
+                logger.info("Spo is released successfully");
+            }
         }
         else {
-            logger.info("Spo is released successfully");
+            logger.info(`PO status after submission was ${spo.status} and not ${lmtVar.getLabel("IN_APPROVAL_STATUS")}. Hence, not executing the Approve PO action.`);
         }
         return spo;
     },

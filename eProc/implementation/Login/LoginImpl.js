@@ -21,6 +21,7 @@ module.exports = {
         // I.click(I.getElement(iLogin.PASSWORD_GHOST_TEXTBOX));
         await I.fillField(I.getElement(iLogin.PASSWORD_TEXTBOX), global.users.get("PASSWORD"));
         logger.info(`Entered password --> ${global.users.get("PASSWORD")}`);
+        await I.wait(prop.DEFAULT_WAIT);
         await I.click(I.getElement(iLogin.LOGIN_BUTTON));
         await I.waitForInvisible(I.getElement(iLogin.LOGIN_BUTTON));
         logger.info("Clicked on Login button");
