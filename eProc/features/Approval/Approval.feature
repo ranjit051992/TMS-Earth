@@ -1,6 +1,6 @@
 Feature: Approval
 
-@L1 
+@Non-COA 
     Scenario: To verify Requisition details are  properly displayed in approval listing
 
     Given I am logged in eProc
@@ -15,7 +15,7 @@ Feature: Approval
     And I see the same Amount to be approved
     And I see the same status of Requisition
 
-@L1
+@Non-COA @Run
     Scenario: To verify Purchase Order details are properly displayed in approval listing
 
     Given I am logged in eProc
@@ -28,9 +28,9 @@ Feature: Approval
     Then I see the same Buyer name displayed for the corresponding PO number
     And I see the same Received on date on PO Approval listing
     And I see the same Amount to be approved on PO Approval listing
-    And I see the same status of Requisition on PO Approval listing
+    And I see the same status of SPO on PO Approval listing
 
-# @L1
+# @Non-COA
 #     Scenario: To verify BPO details are properly displayed in approval listing
 
 #     Given I am logged in eProc 
@@ -46,7 +46,7 @@ Feature: Approval
 #     Then I should get all details, same as what entered while creating that BPO
 
 
-# @L1
+# @Non-COA
 #     Scenario: To verify that user is able to approve single/multiple Requisition
 
 #     Given I am logged in eProc
@@ -60,7 +60,7 @@ Feature: Approval
 #     Then I should be able to see the status of all Requisitions as Approved
 
 
-# @L1
+# @Non-COA
 #     Scenario: To verify that user is able to reject single/multiple Requisition
 
 #     Given I am logged in eProc 
@@ -74,7 +74,7 @@ Feature: Approval
 #     Then I should be able to see the status of all Requisitions as Rejected
 
 
-# @L1
+# @Non-COA
 #     Scenario: To verify that user is able to delegate single/multiple Requisition
 
 #     Given I am logged in eProc
@@ -93,7 +93,7 @@ Feature: Approval
 #     Then the status of all the requisitions should be displayed as Delegated
 
 
-# @L1 
+# @Non-COA
 #     Scenario: To verify that user is able to approve single/multiple PO
 
 #     Given I am logged in eProc
@@ -107,7 +107,7 @@ Feature: Approval
 #     Then I should be able to see the status of all POs as Approved
 
 
-# @L1
+# @Non-COA
 #     Scenario: To verify that user is able to reject single/multiple PO
 
 #     Given I am logged in eProc 
@@ -121,7 +121,7 @@ Feature: Approval
 #     Then I should be able to see the status of all POs as Rejected
 
 
-# @L1
+# @Non-COA
 #     Scenario: To verify that user is able to delegate single/multiple PO
 
 #     Given I am logged in eProc 
@@ -135,7 +135,7 @@ Feature: Approval
 #     Then I should be able to see the status of all POs as Delegated
 
 
-# @L1
+# @Non-COA
 #     Scenario: To verify that user is able to approve single/multiple BPO
 
 #     Given I am logged in eProc
@@ -154,7 +154,7 @@ Feature: Approval
 #     Then the status of all the BPOs should be displayed as Approved
 
 
-# @L1
+# @Non-COA
 #     Scenario: To verify that user is able to reject single/multiple BPO
 
 #     Given I am logged in eProc 
@@ -173,7 +173,7 @@ Feature: Approval
 #     Then the status of all the BPOs should be displayed as Rejected
 
 
-# @L1
+# @Non-COA
 #     Scenario: To verify that user is able to delegate single/multiple BPO
 
 #     Given I am logged in eProc 
