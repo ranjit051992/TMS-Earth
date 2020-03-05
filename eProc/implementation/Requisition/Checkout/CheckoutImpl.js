@@ -883,7 +883,12 @@ module.exports={
     async selectBuyerGroupOption()
     {
         await I.waitForVisible(I.getElement(iCheckout.BUYER_DROPDOWN_ICON),prop.DEFAULT_HIGH_WAIT);
-        await commonComponent.selectValueFromDropDown(I.getElement(iCheckout.BUYER_DROPDOWN_ICON),lmtVar.getLabel("BUYER_GROUP"));
+        //await commonComponent.selectValueFromDropDown(I.getElement(iCheckout.BUYER_DROPDOWN_ICON),lmtVar.getLabel("BUYER_GROUP"));
+        await I.waitForClickable(I.getElement(iCheckout.BUYER_DROPDOWN_ICON),prop.DEFAULT_MEDIUM_WAIT);
+        await I.click(I.getElement(iCheckout.BUYER_DROPDOWN_ICON));
+        await I.waitForVisible("//a[contains(text(),'"+lmtVar.getLabel("BUYER_GROUP")+"')]");
+        await I.click("//a[contains(text(),'"+lmtVar.getLabel("BUYER_GROUP")+"')]");
+
     }, 
 
      /**
@@ -1032,15 +1037,16 @@ module.exports={
 
     async clickOnAddAdhocApproverButton()
     {
-        await I.waitForVisible(I.getElement(iCheckout.ADD_ADHOC_APPROVER_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
-        await I.waitForClickable(I.getElement(iCheckout.ADD_ADHOC_APPROVER_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
+        await I.scrollIntoView(I.getElement(iCheckout.ADD_ADHOC_APPROVER_BUTTON));
+        await I.waitForVisible(I.getElement(iCheckout.ADD_ADHOC_APPROVER_BUTTON));
+        await I.waitForClickable(I.getElement(iCheckout.ADD_ADHOC_APPROVER_BUTTON));
         await I.click(I.getElement(iCheckout.ADD_ADHOC_APPROVER_BUTTON));
     },
 
     async fillApprover(approver)
     {
         await commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.SELECT_APPROVER_TEXTBOX),approver,"//span[contains(text(),'"+approver+"')]");
-        let selectedApprover = await I.grabAttributeFrom(I.getElement(iCheckout.SELECT_APPROVER_TEXTBOX));
+        let selectedApprover = await I.grabAttributeFrom(I.getElement(iCheckout.SELECT_APPROVER_TEXTBOX),'value');
         return selectedApprover.toString();
     },
 
@@ -1164,6 +1170,7 @@ module.exports={
 
     async fetchWorkflowNodes()
     {
+        await I.scrollIntoView(I.getElement(iCheckout.WORKFLOW_NODE));
         await I.waitForVisible(I.getElement(iCheckout.WORKFLOW_NODE),prop.DEFAULT_MEDIUM_WAIT);
         let workflowNodes = await I.grabTextFrom(I.getElement(iCheckout.WORKFLOW_NODE));
         logger.info("Workflow nodes are : "+workflowNodes);
@@ -1178,7 +1185,9 @@ module.exports={
             await this.clickOnImDoneButton();
             await this.clickOnContinueButton();
             await commonComponent.waitForLoadingSymbolNotDisplayed();
-            await I.waitForVisible(I.getElement(iCheckout.ADD_ADHOC_APPROVER_BUTTON),prop.DEFAULT_HIGH_WAIT);
+            await I.waitForElement(I.getElement(iCheckout.ADD_ADHOC_APPROVER_BUTTON));
+            await I.scrollIntoView(I.getElement(iCheckout.ADD_ADHOC_APPROVER_BUTTON));
+
         }
     },
 
@@ -1190,7 +1199,8 @@ module.exports={
         await this.fillRequireApprovalAfter(approvalAfter);
         await this.clickOnAdhocApproverSubmitButton();
         await commonComponent.waitForLoadingSymbolNotDisplayed();
-        await I.waitForVisible(I.getElement(iCheckout.WORKFLOW_NODE),prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForVisible(I.getElement(iCheckout.WORKFLOW_NODE));
+        await this.fetchWorkflowNodes();
     },
 
     

@@ -459,7 +459,7 @@ module.exports = {
      */
     async fetchBasketNames() {
         await I.waitForVisible(I.getElement(iOnlineStore.BASKET_NAME), prop.DEFAULT_MEDIUM_WAIT);
-        let basketNames = await I.grabTextFrom(I.getElement(iOnlineStore.BASKET_NAME));
+        let basketNames = await I.grabAttributeFrom(I.getElement(iOnlineStore.BASKET_NAME),'title');
         logger.info("Total baskets present are : " + basketNames);
         return basketNames;
     },
