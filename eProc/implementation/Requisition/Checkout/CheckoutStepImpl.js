@@ -11,6 +11,7 @@ const viewReqImpl = require("../ViewRequisition/ViewRequisitionImpl");
 const faker = require("faker");
 const iApprovalObject = require("../../Approval/ApprovalObject");
 const coaImp = require("../../Coa/CoaImpl");
+const iViewReq = require("../../Requisition/ViewRequisition/ViewRequisitionObject");
 
 When("I create requisition with {int} {string} item", async function(noOfItems, itemType) {
     this.reqBO= await objectCreation.getObjectOfRequisition(noOfItems, itemType);
@@ -283,12 +284,11 @@ Then("I should be able to see new Deliver address as the Ship to Another Address
     let actualAddress = this.customAddress.toString();
     let address = await viewReqImpl.getShipToAnotherAddress();
     let isEqual = false;
-    if(address.toString()===actualAddress.toString())
+    if(address.toString()===actualAddress.toString()) 
     {
         isEqual = true;
     }
-
-     
+    
     this.isAddressSaved = isEqual;
     
     //I.assertEqual(isEqual,true);
@@ -394,4 +394,30 @@ Then("I should be able to view requisition with stock item", async function(){
 
 });
 
+When("I select any existing address as shipping address", async function()
+{
+    await I.click(I.getElement(iCheckoutObject.SHIP_TO_ANOTHER_ADDRESS_TEXTBOX));
+    await checkoutImp.selectExistingShipToAnotherAddress();
+    this.anotherAddress = await checkoutImp.getCustomShippingAddress();
+
+});
+
+Then("I should be able to see Deliver address as the Ship to Another Address on view requisition", async function(){
+
+    await reqListing.searchAndViewReqByName(this.reqName);
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
+    let actualAddress = this.anotherAddress.toString();
+    let address = await viewReqImpl.getShipToAnotherAddress();
+    let isEqual = await commonComponent.isElementPresent(I.getElement(iViewReq.REQ_SHIP_TO_ANOTHER_ADDRESS_LABEL));
+    if(address.toString()===actualAddress.toString() && isEqual) 
+    {
+        isEqual = true;
+    }
+    else
+    {
+        isEqual = false;
+    }
+    
+    I.assertEqual(isEqual,true);
+ });
 
