@@ -100,17 +100,18 @@ module.exports = {
      * @returns onBehalfOf  
      * 
     */
-    async fillOnBehalfOf(onBehalfOf) {
+   
+   async fillOnBehalfOf(onBehalfOf)
+   {
 
         await I.waitForVisible(I.getElement(iCheckout.ON_BEHALF_OF), prop.DEFAULT_MEDIUM_WAIT);
         await I.waitForClickable(I.getElement(iCheckout.ON_BEHALF_OF), prop.DEFAULT_MEDIUM_WAIT);
-        logger.info('On Behalf of Shan :' + onBehalfOf);
-        let suggXpath = `//p[contains(text(),'${onBehalfOf}')]`;
-        onBehalfOf = await commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.ON_BEHALF_OF), onBehalfOf, suggXpath);
-        //onBehalfOf = await I.grabTextFrom(I.getElement(iCheckout.ON_BEHALF_OF));
-        logger.info(`Entered OnBehalf of : ${onBehalfOf}`);
-        return onBehalfOf;
-    },
+       let suggXpath = `//p[contains(text(),'${onBehalfOf}')]`;
+       onBehalfOf = await commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.ON_BEHALF_OF), onBehalfOf, suggXpath);
+       //onBehalfOf = await I.grabTextFrom(I.getElement(iCheckout.ON_BEHALF_OF));
+       logger.info(`Entered OnBehalf of : ${onBehalfOf}`);
+       return onBehalfOf;
+   },
 
     /** 
     * click on Buying Unit Edit Button
@@ -1053,17 +1054,20 @@ module.exports = {
         await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
         await this.clickOnCostBookingLink(requisitionBO.itemName);
         requisitionBO = this.fillTaxDetails(requisitionBO);
-        //await checkoutImp.clickOnCostBookingSaveButton();
-        //await commonComponent.waitForLoadingSymbolNotDisplayed();
-
+        
         return requisitionBO;
     },
 
+   
     async createMultipleReqs(noOfReqs, noOfItems, itemType) {
         let reqArray = new Array();
-        for (let i = 0; i < noOfReqs; i++) {
-            reqArray[i] = await objectCreation.getObjectOfRequisition(noOfItems, itemType);
-            reqArray[i] = await this.createRequisitionFlow(reqArray[i]);
+        for (let i=0; i<noOfReqs; i++)
+        {
+        let reqBO = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
+        reqBO = await this.createRequisitionFlow(reqBO);
+        reqArray.push(reqBO);
+        //I.waitForVisible();
+        I.amOnPage(prop.DDS_OnlineStore_Url);
         }
         return reqArray;
     },
