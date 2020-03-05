@@ -106,14 +106,14 @@ Feature: Checkout
     And I select Ship to Another Address in  Shipping Details section at header level
     And I should be able to see the saved address on creating a new requisition
 
-@Non-COA @L1   
+@Non-COA @L1  @po
 
   Scenario: To verify that the 'Select Purchase Order' field
   Given I am logged in eProc
-
+  And I Create Standard po with 1 "ITEM_NAME_FOR_SEARCHING" item
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
-  And I link Purchase Order "blue sanity" in the Select Purchase Order field
+  And I link Purchase Order " " in the Select Purchase Order field
 
   Then I should be see that the field name is updated to Select Purchase Order
 

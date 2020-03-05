@@ -177,8 +177,9 @@ Then("I should be able to see the attachment which is added", async function(){
  });
 
 Given("I link Purchase Order {string} in the Select Purchase Order field", async function(po){
+    let poNumber = this.spo.poNumber;
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ADDITIONAL_DETAILS_SECTION"));
-    await checkoutImp.selectPurchaseOrder(po);
+    await checkoutImp.selectPurchaseOrder(poNumber.toString());
     await checkoutImp.clickOnSelectedPOContinueButton();
     this.purchaseOrder = await checkoutImp.getSelectedPurchaseOrder();;
 });

@@ -460,8 +460,13 @@ module.exports = {
     async fetchBasketNames() {
         await I.waitForVisible(I.getElement(iOnlineStore.BASKET_NAME), prop.DEFAULT_MEDIUM_WAIT);
         let basketNames = await I.grabAttributeFrom(I.getElement(iOnlineStore.BASKET_NAME),'title');
-        logger.info("Total baskets present are : " + basketNames);
-        return basketNames;
+        let baskets = new Array();
+        for(let name of basketNames)
+        {
+            baskets.push(name.toString().toLowerCase())
+        }
+        logger.info("Total baskets present are : " + baskets);
+        return baskets;
     },
 
     async getCurrentSortOrder() {
