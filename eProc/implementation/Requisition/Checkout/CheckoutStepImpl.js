@@ -11,6 +11,7 @@ const viewReqImpl = require("../ViewRequisition/ViewRequisitionImpl");
 const faker = require("faker");
 const iApprovalObject = require("../../Approval/ApprovalObject");
 const coaImp = require("../../Coa/CoaImpl");
+const iViewReq = require("../../Requisition/ViewRequisition/ViewRequisitionObject");
 
 When("I create requisition with {int} {string} item", async function(noOfItems, itemType) {
     this.reqBO= await objectCreation.getObjectOfRequisition(noOfItems, itemType);
@@ -128,6 +129,7 @@ Then("I should see on line level, in Shipping Details and Asset Tagging section 
 
 When("I add data in Cost Booking Details section at line level", async function(){
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    let reqItems = this.reqBO.items;
     await checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);
     //await checkoutImp.fillGLAccount(this.reqBO.glAccount);
     await coaImp.fillCoaDetails();
@@ -178,8 +180,9 @@ Then("I should be able to see the attachment which is added", async function(){
  });
 
 Given("I link Purchase Order {string} in the Select Purchase Order field", async function(po){
+    let poNumber = this.spo.poNumber;
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ADDITIONAL_DETAILS_SECTION"));
-    await checkoutImp.selectPurchaseOrder(po);
+    await checkoutImp.selectPurchaseOrder(poNumber.toString());
     await checkoutImp.clickOnSelectedPOContinueButton();
     this.purchaseOrder = await checkoutImp.getSelectedPurchaseOrder();;
 });
@@ -251,7 +254,7 @@ Then("I should be able to view requisition with buyer as the buyer group which w
  });
 
 
- When("I select Ship to Another Address in  Shipping Details section at header level", async function(){
+When("I select Ship to Another Address in  Shipping Details section at header level", async function(){
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
     await checkoutImp.clickOnShipToAnotherAddressButton();
 });
@@ -281,12 +284,11 @@ Then("I should be able to see new Deliver address as the Ship to Another Address
     let actualAddress = this.customAddress.toString();
     let address = await viewReqImpl.getShipToAnotherAddress();
     let isEqual = false;
-    if(address.toString()===actualAddress.toString())
+    if(address.toString()===actualAddress.toString()) 
     {
         isEqual = true;
     }
-
-     
+    
     this.isAddressSaved = isEqual;
     
     //I.assertEqual(isEqual,true);
@@ -304,8 +306,8 @@ Then("I should be able to see new Deliver address as the Ship to Another Address
         isEqual = true;
     }
 
-
     I.assertEqual((isEqual && this.isAddressSaved),true);
+
  });
 
 When("I modify the field quantity", async function(){
@@ -342,3 +344,80 @@ When("I fetch Requisition Name", async function()
     this.reqName = await I.grabAttributeFrom(I.getElement(iCheckoutObject.REQUISITION_NAME), "value");
     logger.info("Fetched Requisition Name is "+this.reqName);
 });
+
+ When("I check Mark for adding approvers checkbox in workflow section", async function(){
+    await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_WORKFLOW_SECTION"));
+
+    await checkoutImp.selectMarkApproverCheckbox();
+
+});
+
+When("I click on Next button", async function(){
+    await checkoutImp.createRFAReq();
+});
+
+When("I should be add adhoc approver {string} after {string} on Ready for Approval page", async function(approver,approvalAfter){
+    approver = I.getData(approver);
+    approvalAfter = lmtVar.getLabel(approvalAfter);
+    await checkoutImp.addAdhocApprover(approver,approvalAfter);
+    this.adhocApprover = approver;
+});
+
+Then("I should be able to view the requisition with adhoc approver added in the workflow", async function(){
+
+    await reqListing.searchAndViewReqByName(this.reqName);
+    await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    let workflowNodes = await checkoutImp.fetchWorkflowNodes();
+    let isPresent = false;
+    for(let node of workflowNodes)
+    {
+        if(node.includes(lmtVar.getLabel("ADHOC_APPROVER")))
+        {
+            // if(node.includes(this.adhocApprover.toString()))
+            // {
+                isPresent = true;
+            //}
+        }
+    }
+
+    logger.info("Adhoc approver present : "+isPresent);
+
+    I.assertEqual(isPresent,true);
+});
+
+Then("I should be able to view requisition with stock item", async function(){
+
+    await reqListing.searchAndViewReqByName(this.reqName);
+    await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    let isPresent = await viewReqImpl.checkLineItems(this.addedCartItems);
+    I.assertEqual(isPresent,true);
+
+});
+
+When("I select any existing address as shipping address", async function()
+{
+    await I.click(I.getElement(iCheckoutObject.SHIP_TO_ANOTHER_ADDRESS_TEXTBOX));
+    await checkoutImp.selectExistingShipToAnotherAddress();
+    this.anotherAddress = await checkoutImp.getCustomShippingAddress();
+
+});
+
+Then("I should be able to see Deliver address as the Ship to Another Address on view requisition", async function(){
+
+    await reqListing.searchAndViewReqByName(this.reqName);
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
+    let actualAddress = this.anotherAddress.toString();
+    let address = await viewReqImpl.getShipToAnotherAddress();
+    let isEqual = await commonComponent.isElementPresent(I.getElement(iViewReq.REQ_SHIP_TO_ANOTHER_ADDRESS_LABEL));
+    if(address.toString()===actualAddress.toString() && isEqual) 
+    {
+        isEqual = true;
+    }
+    else
+    {
+        isEqual = false;
+    }
+    
+    I.assertEqual(isEqual,true);
+ });
+
