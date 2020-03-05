@@ -7,7 +7,7 @@ Feature: Invoice Listing
         Given I navigate to Invoice module
         When I am on the invoice listing page
         Then I should be able to view all the invoices
-
+    @listing
     Scenario: Save filter
         Given I navigate to Invoice module
         And I filter invoices

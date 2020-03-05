@@ -4,25 +4,21 @@ Feature: Filter Invoices
     Background:
         Given I logged in to the application
         And I navigate to Invoice module
-
+    @filters
     Scenario: Filter invoice by status
-        Given I search for a status
-        When I select it
+        When I filter invoice by status
         Then I should be able to see the invoices with the desired status
-        
+    @filters   
     Scenario: Filter invoice by invoice number
-        Given I search for a invoice number
-        When I apply it
+        When I filter invoice by invoice number
         Then I should be able to see the invoice with the desired invoice number
-
+    @filters
     Scenario: Filter invoice by supplier
-        Given I search for a supplier
-        When I select it
+        When I filter invoice by supplier
         Then I should be able to see the invocies with the desired supplier
-
+    @filters
     Scenario: Filter invoice by reference number
-        Given I search for a reference number
-        When I apply it
+        When I filter invoice by reference number
         Then I should be able to see the invoice with the desired reference number
 
     Scenario: Filter invoice by invoice date
