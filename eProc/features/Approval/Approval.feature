@@ -15,7 +15,7 @@ Feature: Approval
 #     And I see the same Amount to be approved
 #     And I see the same status of Requisition
 
-@L1 @Run @autox
+@L1 @Non-COA @Run @autox
     Scenario: To verify Purchase Order details are properly displayed in approval listing
 
     Given I am logged in eProc
