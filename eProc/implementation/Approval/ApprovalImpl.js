@@ -51,12 +51,12 @@ module.exports = {
         I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         await commonKeywordImpl.searchDocOnListing(docNumber, searchBy);
         await this.clickOnApproveAction();
-        await this.fillApprovalCommrovalComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
+        await this.fillApprovalComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
         await this.clickOnApproveSpoPopupApproveButton();
     },
-    async checkPOApprovalStatus() {
-        I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
-        I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
+    async checkPOApprovalStatus(docNumber, searchBy) {
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
         await commonKeywordImpl.searchDocOnListing(docNumber, searchBy);
         let status = await this.getSpoStatus();
         return status;
