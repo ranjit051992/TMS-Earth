@@ -4,19 +4,19 @@ Feature: Filter Credit Memos
     Background:
         Given I logged in to the application
         And I navigate to CreditMemo module
-    @cmfilter
+    @L1
     Scenario: Filter credit memo by status
         When I filter credit memo by status
         Then I should be able to see the credit memos with the desired status
-    @cmfilter
+    @L1
     Scenario: Filter credit memo by credit memo number
         When I filter credit memo by credit memo number
         Then I should be able to see the credit memo with the desired credit memo number
-    @cmfilter
+    @L1
     Scenario: Filter credit memo by supplier
         When I filter credit memo by supplier
         Then I should be able to see the credit memos with the desired supplier
-    @cmfilter
+    @L1
     Scenario: Filter credit memo by reference number
         When I filter credit memo by reference number
         Then I should be able to see the credit memo with the desired reference number
