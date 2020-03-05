@@ -8,6 +8,7 @@ const commonUtilities = require("../../Framework/FrameworkUtilities/CommonUtilit
 const prop = global.confi_prop;
 const lmtVar = require("../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const guidedItemBo = require("../dataCreation/bo/GuidedItem")
+const stockItemBo = require("../dataCreation/bo/StockItem")
 
 
 class ObjectCreation
@@ -49,18 +50,26 @@ class ObjectCreation
 
     async getArrayOfItems(noOfItems,itemType)
     {
-        let catalogItems = new Array();
+        let items = new Array();
         
-        if(itemType==="Catalog")
+        if(itemType==="ITEM_NAME_FOR_SEARCHING")
         {
             for(let i =0;i<noOfItems;i++)
             {
                 let catalog = await this.getObjectOfCatalogItem(i);
-                catalogItems[i] = catalog;
+                items[i] = catalog;
+            }
+        }
+        if(itemType==="SEARCH_ITEM_STOCK")
+        {
+            for(let i =0;i<noOfItems;i++)
+            {
+                let stock = await this.getObjectOfStockItem(i);
+                items[i] = stock;
             }
         }
         
-        return catalogItems;
+        return items;
     }
 
     async getObjectOfCatalogItem(itemIndex)
@@ -95,12 +104,11 @@ class ObjectCreation
         requisition.bookCostToSingleMultipleCC= "Yes";
         requisition.bookCostAtLineLevel = "No";
         requisition.costCenter = I.getData("COST_CENTER");
-        requisition.itemName = I.getData("ITEM_NAME_FOR_SEARCHING");
+        requisition.itemName = I.getData(itemType);
         requisition.glAccount = I.getData("GL_ACCOUNT");
         requisition.assetCode = I.getData("COST_BOOKING_DETAILS_ASSET_CODE");
         requisition.buyer = I.getData("BUYER_NAME");
         requisition.assignedBuyerGroup = "undefined";
-        requisition.itemName = I.getData("ITEM_NAME_FOR_SEARCHING");
         requisition.nextAction = lmtVar.getLabel("SUBMIT")
         requisition.fillCBL = false;
         requisition.items  =  this.getArrayOfItems(noOfItems,itemType);
@@ -127,6 +135,14 @@ class ObjectCreation
         guidedItem.zeroPriceItem = true;
         guidedItem.buyerReviewRequired = true;
         return guidedItem;
+    }
+
+    getObjectOfStockItem(index)
+    {
+        let stockItem = new stockItemBo();
+        stockItem.itemName = I.getData("SEARCH_ITEM_STOCK");
+        stockItem.quantity = faker.random.number(50);
+        return stockItem;
     }
     
 }

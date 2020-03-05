@@ -128,6 +128,7 @@ Then("I should see on line level, in Shipping Details and Asset Tagging section 
 
 When("I add data in Cost Booking Details section at line level", async function(){
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    let reqItems = this.reqBO.items;
     await checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);
     await checkoutImp.fillGLAccount(this.reqBO.glAccount);
     //await coaImp.fillCoaDetails();
@@ -178,8 +179,9 @@ Then("I should be able to see the attachment which is added", async function(){
  });
 
 Given("I link Purchase Order {string} in the Select Purchase Order field", async function(po){
+    let poNumber = this.spo.poNumber;
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ADDITIONAL_DETAILS_SECTION"));
-    await checkoutImp.selectPurchaseOrder(po);
+    await checkoutImp.selectPurchaseOrder(poNumber.toString());
     await checkoutImp.clickOnSelectedPOContinueButton();
     this.purchaseOrder = await checkoutImp.getSelectedPurchaseOrder();;
 });
@@ -344,6 +346,8 @@ When("I fetch Requisition Name", async function()
 });
 
  When("I check Mark for adding approvers checkbox in workflow section", async function(){
+    await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_WORKFLOW_SECTION"));
+
     await checkoutImp.selectMarkApproverCheckbox();
 
 });

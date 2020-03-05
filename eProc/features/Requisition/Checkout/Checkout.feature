@@ -106,18 +106,18 @@ Feature: Checkout
     And I select Ship to Another Address in  Shipping Details section at header level
     And I should be able to see the saved address on creating a new requisition
 
-@Non-COA @L1   
+@Non-COA @L1  @po
 
   Scenario: To verify that the 'Select Purchase Order' field
   Given I am logged in eProc
-
+  And I Create Standard po with 1 "ITEM_NAME_FOR_SEARCHING" item
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
-  And I link Purchase Order "blue sanity" in the Select Purchase Order field
+  And I link Purchase Order " " in the Select Purchase Order field
 
   Then I should be see that the field name is updated to Select Purchase Order
 
-@Non-COA @L1   
+@Non-COA @L1  @buyer
 
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer group
   Given I am logged in eProc
@@ -154,16 +154,18 @@ Feature: Checkout
   Then I should be able to view requisition with buyer which was assigned
   
 
-@Non-COA @L1
-  Scenario: To verify that user is able to add approver in requisition workflow if activity if assigned to him/her
+@Non-COA @L1 @adhoc
+  Scenario: To verify that user is able to add approver in requisition workflow if activity is assigned to him/her
   Given I am logged in eProc
 
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
   And I enter Requisition Name
   And I add Purchase Type
+  And I add Settlement Via
   And I add Required By Date
   And I add data in Cost Booking Details section at line level 
+  And I save it
   And I check Mark for adding approvers checkbox in workflow section
   And I click on Next button
   And I should be add adhoc approver "WORKFLOW_APPROVER" after "REQUIRE_APPROVAL_AFTER_REQUESTER" on Ready for Approval page
@@ -171,7 +173,7 @@ Feature: Checkout
 
   Then I should be able to view the requisition with adhoc approver added in the workflow
 
-@Non-COA @L1
+@Non-COA @L1 
   Scenario: To verify that user is able to raise a request with stock items
   Given I am logged in eProc
 
@@ -179,8 +181,10 @@ Feature: Checkout
   And I checkout
   And I enter Requisition Name
   And I add Purchase Type
+  And I add Settlement Via
   And I add Required By Date
   And I add data in Cost Booking Details section at line level
+  And I save it
   And I submit requisition
 
   Then I should be able to view requisition with stock item

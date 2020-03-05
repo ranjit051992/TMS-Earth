@@ -16,7 +16,7 @@ Given("I checkout", async function () {
     await I.waitForVisible(I.getElement(iCart.CART_ITEM_TABLE), prop.DEFAULT_MEDIUM_WAIT);
     await cartImpl.clickOnCheckoutButton();
     await I.waitForVisible(I.getElement(checkoutObj.REQUISITION_NAME));
-    this.reqBO = await objCreation.getObjectOfRequisition("1", "Catalog");
+    //this.reqBO = await objCreation.getObjectOfRequisition("1", "Catalog");
 });
 
 
