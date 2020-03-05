@@ -198,7 +198,7 @@ Feature: Checkout
     Scenario: To verify that user is able to copy any requisition and modify it to create a new requisition.
     Given I am logged in eProc
 
-    When I create requisition with "1" "ITEM_NAME_FOR_SEARCHING" item
+    When I create requisition with 1 "ITEM_NAME_FOR_SEARCHING" item
     And I copy that requisition
     And I fetch Requisition Name
     And I modify the field quantity
@@ -581,7 +581,7 @@ Feature: Checkout
     Scenario: COA>>To verify that user is able to copy any requisition and modify it to create a new requisition.
     Given I am logged in eProc
 
-    When I create requisition with "1" "ITEM_NAME_FOR_SEARCHING" item
+    When I create requisition with 1 "ITEM_NAME_FOR_SEARCHING" item
     And I copy that requisition
     And I modify the field quantity
     And I add Tax Details at line level
