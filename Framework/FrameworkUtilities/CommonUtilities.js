@@ -6,7 +6,7 @@ class CommonUtilities
     async splitData(index,key)
     {
         let value;
-        let mapValue = I.getData(key);
+        let mapValue = await I.getData(key);
         if(typeof mapValue =='undefined')
         {
             logger.info("Getting null from testData for given field : "+key);

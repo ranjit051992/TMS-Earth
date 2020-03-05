@@ -5,6 +5,7 @@ const iOnlineStore = require("../OnlineStore/OnlineStoreObject");
 const onlineStore = require("../OnlineStore/OnlineStoreImpl");
 const prop = global.confi_prop;
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
+const commonComponent = require("../../../commonKeywords/CommonComponent");
 
 module.exports = {
 
@@ -64,8 +65,8 @@ module.exports = {
    {
        await this.clickOnDeleteAllItemsButton();
        await this.clickOnConfirmPopupYesButton();
-       //I.waitForVisible(I.getElement(iCart.ITEM_DELETE_SUCCESS_MSG),prop.DEFAULT_HIGH_WAIT);
-      // I.see(lmtVar.getLabel("EMPTY_CART_MSG"));
+       I.waitForVisible(I.getElement(iCart.ITEM_DELETE_SUCCESS_MSG),prop.DEFAULT_HIGH_WAIT);
+       I.see(lmtVar.getLabel("EMPTY_CART_MSG"));
        logger.info("Cart is cleared.");
    },
 
@@ -80,6 +81,7 @@ module.exports = {
    async clearCart()
    {
         I.waitForInvisible("//eproc-cart-spotlight//span[contains(text(),'"+lmtVar.getLabel("NA")+"')]",prop.DEFAULT_MEDIUM_WAIT);
+        await commonComponent.waitForElementVisible(global.uiElements.get(iOnlineStore.CART_ITEM_ICON), prop.DEFAULT_MEDIUM_WAIT);
         let noOfElements = await I.grabNumberOfVisibleElements(global.uiElements.get(iOnlineStore.CART_ITEM_ICON));
         logger.info("Cart Item count : "+noOfElements);
         if(noOfElements>0)

@@ -44,6 +44,7 @@ module.exports = {
     },
     async selectPurchaseType(purchaseType) {
         await this.clickOnPurchaseTypeDropdown();
+        await I.scrollIntoView("//a[contains(text(),'" + purchaseType + "')]");
         await I.waitForVisible("//a[contains(text(),'" + purchaseType + "')]");
         await I.click("//a[contains(text(),'" + purchaseType + "')]");
         logger.info("Selected purchase type :" + purchaseType);
@@ -134,6 +135,7 @@ module.exports = {
     },
     async selectDeliveryTerm(deliveryTerm) {
         let deliveryTermXpath = "//div[contains(@title,'" + deliveryTerm + "')]";
+        await I.scrollIntoView(deliveryTermXpath);
         await I.waitForVisible(deliveryTermXpath);
         await I.click(deliveryTermXpath);
         logger.info("Selected delivery term :" + deliveryTerm);
@@ -143,7 +145,7 @@ module.exports = {
         await I.fillField(I.getElement(iSpoObject.currencyTextbox), currency);
     },
     async selectCurrency(currency) {
-        let currencyXpath = "//span[contains(text(),'" + currency + "')]";
+        let currencyXpath = "//div[@class='p-2 pointer']//span[contains(text(),'" + currency + "')]";
         await I.waitForVisible(currencyXpath);
         await I.click(currencyXpath);
         logger.info("Selected currency :" + currency);
@@ -254,16 +256,6 @@ module.exports = {
         await I.click(costBookingLink);
         logger.info("Clicked on Cost booking Link");
     },
-    async fillGlAccount(glAccount) {
-        await I.waitForVisible(I.getElement(iSpoObject.GLACCOUNT));
-        await I.fillField(I.getElement(iSpoObject.GLACCOUNT), glAccount);
-        let glAccountSuggXpath = `//div[contains(text(),'${glAccount}')]`;
-        await I.waitForVisible(glAccountSuggXpath, prop.DEFAULT_MEDIUM_WAIT);
-        await I.click(glAccountSuggXpath);
-        glAccount = await I.grabAttributeFrom(I.getElement(iSpoObject.GLACCOUNT), "value");
-        logger.info(`Selected GlAccount: ${glAccount}`);
-        return glAccount;
-    },
     async clickOnCostBookingSaveButton() {
         await I.waitForVisible(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
         await I.click(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
@@ -358,11 +350,17 @@ module.exports = {
 
         spo = await this.fillLineItems(spo);
 
+        spo = await this.storePoAmount(spo);
+
         spo = await this.fillTaxes(spo);
 
         spo = await this.fillAdditionalDetails(spo);
 
         await this.submitPo();
+
+        await commonKeywordImpl.waitForElementVisible(iSpoObject.spinner);
+
+        await I.waitForInvisible(I.getElement(iSpoObject.spinner));
 
         await poListingImpl.navigateToPoListing();
 
@@ -373,6 +371,9 @@ module.exports = {
         if(!poNumber.toString() === spo.poNumber) {
             logger.info(`PO is not submitted. PO number fetched after submission --> ${poNumber}`);
             throw new Error(`PO is not submitted. PO number fetched after submission --> ${poNumber}`);
+        }
+        else {
+            logger.info("Spo is submitted successfully");
         }
 
         return spo;
@@ -387,11 +388,13 @@ module.exports = {
     async fillBillingInformation(spo) {
         logger.info(`**************Filling Billing Information**************`);
         await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_BILLING_INFORMATION_SECTION"));
-        await this.clickOnBuyingUnitLink();
-        await this.fillCompany(spo.company);
-        await this.fillBusinessUnit(spo.businessUnit);
-        await this.fillLocation(spo.location);
-        await this.clickOnOuModalDoneButton();
+        if(spo.fillCbl) {
+            await this.clickOnBuyingUnitLink();
+            await this.fillCompany(spo.company);
+            await this.fillBusinessUnit(spo.businessUnit);
+            await this.fillLocation(spo.location);
+            await this.clickOnOuModalDoneButton();
+        }
         spo.setBillToAddress(this.fetchBillToAddress());
         return spo;
     },
@@ -418,31 +421,37 @@ module.exports = {
         return spo
     },
     async fillShippingDetails(spo) {
-        logger.info(`**************Filling Shipping Details**************`);
-        await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_SHIPPING_DETAILS_SECTION"));
-        let deliverTo = await this.selectDeliverTo(spo.deliverTo);
-        spo.setDeliverTo(deliverTo);
-        // await this.selectRequiredByDate();
-        let requiredBy = await this.fetchRequiredBy();
-        spo.setRequiredBy(requiredBy);
+        if(spo.fillShippingDetails) {
+            logger.info(`**************Filling Shipping Details**************`);
+            await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_SHIPPING_DETAILS_SECTION"));
+            let deliverTo = await this.selectDeliverTo(spo.deliverTo);
+            spo.setDeliverTo(deliverTo);
+            // await this.selectRequiredByDate();
+            let requiredBy = await this.fetchRequiredBy();
+            spo.setRequiredBy(requiredBy);
+        }
         return spo;
     },
     async fillCostAllocation(spo) {
-        logger.info(`**************Filling Cost Allocation**************`);
-        await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_COST_ALLOCATION_SECTION"));
-        await this.clickOnAssignCostNOButton();
-        await this.clickOnBookCostToSingle_MultipleCostCenter();
-        let costCenter = await this.enterCostCenter(spo.costCenter);
-        spo.setCostCenter(costCenter);
+        if(!prop.isCoa) {
+            logger.info(`**************Filling Cost Allocation**************`);
+            await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_COST_ALLOCATION_SECTION"));
+            await this.clickOnAssignCostNOButton();
+            await this.clickOnBookCostToSingle_MultipleCostCenter();
+            let costCenter = await this.enterCostCenter(spo.costCenter);
+            spo.setCostCenter(costCenter);
+        }
         return spo;
     },
     async fillControlSettings(spo) {
-        logger.info(`**************Filling Control Settings**************`);
-        await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_CONTROL_SETTINGS_SECTION"));
-        if (spo.receiptRuleAtHeaderLevel) {
-            await this.selectReceiptCreationAtHeaderLevel();
-            if (spo.receiptCreationDefault) {
-                await this.selectDefaultReceiptCreation();
+        if(spo.fillControlSettings) {
+            logger.info(`**************Filling Control Settings**************`);
+            await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_CONTROL_SETTINGS_SECTION"));
+            if (spo.receiptRuleAtHeaderLevel) {
+                await this.selectReceiptCreationAtHeaderLevel();
+                if (spo.receiptCreationDefault) {
+                    await this.selectDefaultReceiptCreation();
+                }
             }
         }
         return spo;
@@ -461,15 +470,7 @@ module.exports = {
             await this.enterItemName(spo.items[i].itemName);
             await this.selectItemOption(spo.items[i].itemName);
             await this.clickOnCostBookingLink(spo.items[i].itemName);
-            if(prop.isCOA) {
-                await coaImpl.fillCoaForm();
-                
-            }
-            else {
-                let glAccount = await this.fillGlAccount(spo.glAccount);
-                // spo.setGlAccount(glAccount);
-                await this.clickOnCostBookingSaveButton();
-            }
+            await coaImpl.fillCoaDetails();
         }
 
         return spo;
@@ -481,19 +482,18 @@ module.exports = {
         return spo;
     },
     async fillAdditionalDetails(spo) {
-        logger.info(`**************Filling Additional Details**************`);
-        await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_ADDITIONAL_DETAILS_SECTION"));
-        await this.fillTermsAndConditions(spo.termsAndConditions);
-        await this.fillNotes(spo.notes);
+        if(spo.fillAdditionalDetails) {
+            logger.info(`**************Filling Additional Details**************`);
+            await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_ADDITIONAL_DETAILS_SECTION"));
+            await this.fillTermsAndConditions(spo.termsAndConditions);
+            await this.fillNotes(spo.notes);
+        }
         return spo;
     },
     async submitPo() {
         logger.info(`**************Submitting SPO**************`);
         await this.clickOnSubmitPOButton();
         await this.clickOnConfirmButton();
-        // await I.waitForVisible(I.getElement(iSpoObject.spinner));
-        await I.waitForInvisible(I.getElement(iSpoObject.spinner), prop.DEFAULT_HIGH_WAIT);
-        logger.info("Waited for loader to go off after submitting spo");
     },
     async createAndReleaseSpoFlow(spo) {
         spo = await this.createSpoFlow(spo);
@@ -612,5 +612,13 @@ module.exports = {
             let status = await poListingImpl.getPoStatus();
             I.assertEqual(status,lmtVar.getLabel("IN_APPROVAL_STATUS"));
         }
+    },
+
+    async storePoAmount(spo) {
+        I.scrollIntoView(I.getElement(iSpoObject.TOTAL_ORDER_AMOUNT));
+        I.waitForVisible(I.getElement(iSpoObject.TOTAL_ORDER_AMOUNT));
+        let PoAmount = await I.grabTextFrom(I.getElement(iSpoObject.TOTAL_ORDER_AMOUNT));
+        spo.setPoAmount(PoAmount);
+        return spo;
     }
 }

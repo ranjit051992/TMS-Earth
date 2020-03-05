@@ -11,20 +11,15 @@ const spo = require("../../dataCreation/bo/Spo")
 
 
 //********************************Save a receipt as draft for SPO********************************
+// Given("I navigate to PO listing", async function(){
+//     await I.amOnPage(prop.poListingUrl)
+//     await I.waitForInvisible(I.getElement(iSpoObject.spinner), prop.DEFAULT_MEDIUM_WAIT);
+// });
 
-Given("I am logged in eproc", async function(){
-    await iLogin.login();
-});
-
-Given("I navigate to PO listing", async function(){
-    await I.amOnPage(prop.poListingUrl)
-    await I.waitForInvisible(I.getElement(iSpoObject.spinner), prop.DEFAULT_MEDIUM_WAIT);
-});
-
-Given("I Create Standard po with {string} {string} item", async function (noOfItems, itemType){
-    this.spo = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
-    this.spo = await spoImpl.createSpoFlow(this.spo);
- });
+// Given("I Create Standard po with {string} {string} item", async function (noOfItems, itemType){
+//     this.spo = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
+//     this.spo = await spoImpl.createSpoFlow(this.spo);
+//  });
 
 // Given("I have approved the PO to release it", async function()
 // {
@@ -37,7 +32,7 @@ When("I navigate to PO listing", async function(){
 });
 
 When("I search for the po", async function(){
-    const poNumber = spo.poNumber;
+    const poNumber = this.spo.poNumber;
     await receiptImpl.searchPONumber(poNumber);
 });
 
@@ -63,8 +58,8 @@ When("I save the receipt as draft", async function(){
 });
 
 Then("I should be able to see the status of reciept created as Draft", async function(){
-    let status = receiptImpl.fetchStatus().toString();
-    await I.assertEqual(status, lmtVar.getLabel(DRAFT_STATUS));
+    let status = await receiptImpl.fetchStatus();
+    await I.assertEqual(status, lmtVar.getLabel("DRAFT_STATUS"));
 
 });
 
@@ -78,18 +73,18 @@ Then("I should be able to see the status of reciept created as Draft", async fun
 
 //**************************Create receipt with partial items : SPO**************************
 
-When("I enter received qty less than ordered qty", async function(){
-    await receiptImpl.enterReceivedQty();  
+When("I update the quantity", async function(){
+    await receiptImpl.updateReceivedQty();
 });
 
 When("I click on Create Receipt button", async function(){
-    await receiptImpl.clickSubmit();
+    await receiptImpl.clickSubmitReceipt()
     await receiptImpl.clickConfirmation();
 });
 
 Then("I should be able to see the status of receipt as confirmed on Receipt Listing", async function(){
-    let status = await receiptImpl.fetchStatus().toString();
-    I.assertEqual(status, lmtVar.getLabel(CONFIRMED_STATUS));
+    let status = await receiptImpl.fetchStatus();
+    I.assertEqual(status, lmtVar.getLabel("CONFIRMED_STATUS"));
 });
 
 
@@ -117,4 +112,9 @@ When("I submit the receipt", async function(){
 When("I delete the receipt in draft status from receipt listing page", async function(){
     await receiptImpl.clickDeleteAction();
     await receiptImpl.clickDeleteActionConfirmation();
+});
+
+Then("I should be able to delete the receipt in draft status", async function(){
+    let noDataText = await receiptImpl.verifyNoDataAvailable();
+    I.assertEqual(noDataText, lmtVar.getLabel("NO_DATA_AVAILABLE"));
 });

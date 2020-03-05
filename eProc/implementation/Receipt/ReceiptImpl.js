@@ -50,15 +50,21 @@ module.exports = {
     },
     async clickSelectionCheckbox()
     {
-        await I.waitForVisible(I.getElement(iReceiptObject.FIRST_ITEM_SELECTION_CHECKBOX));
-        await I.click(I.getElement(iReceiptObject.FIRST_ITEM_SELECTION_CHECKBOX));
+        await I.waitForVisible(I.getElement(iReceiptObject.ALL_ITEM_SELECTION_CHECKBOX));
+        await I.click(I.getElement(iReceiptObject.ALL_ITEM_SELECTION_CHECKBOX));
+    },
+    async updateReceivedQty()
+    {
+        await I.waitForVisible(I.getElement(iReceiptObject.RECEIVED_QTY_RECEIPT));
+        await I.click(I.getElement(iReceiptObject.RECEIVED_QTY_RECEIPT));
+        await I.fillField(I.getElement(iReceiptObject.RECEIVED_QTY_RECEIPT), 1);
     },
     async clickSaveAsDraft()
     {
         await I.waitForVisible(I.getElement(iReceiptObject.SAVE_AS_DRAFT_BUTTON));
         await I.click(I.getElement(iReceiptObject.SAVE_AS_DRAFT_BUTTON));
         logger.info("Receipt/ ReturnNote saved as draft");
-        I.saveScreenshot("Clicked on Save as Draft");
+        I.saveScreenshot("ReceiptDraft.png");
     },
     async clickSubmitReceipt()
     {
@@ -84,5 +90,11 @@ module.exports = {
         await I.click(I.getElement(iReceiptObject.RECEIVED_QTY));
         await I.fillField(I.getElement(iReceiptObject.RECEIVED_QTY), 1);
     },
+    async verifyNoDataAvailable()
+    {
+        let noDataText = await I.grabTextFrom(I.getElement(iReceiptObject.NO_DATA_AVAILABLE_TEXT));
+        return noDataText;
+    },
+ 
 
 }

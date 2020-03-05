@@ -39,6 +39,10 @@ class ObjectCreation
         spo.setReceiptRuleAtHeaderLevel(true);
         spo.setReceiptCreationDefault(true);
         spo.setTaxInclusive(true);
+        spo.setFillCbl(false);
+        spo.setFillShippingDetails(false);
+        spo.setFillControlSettings(false);
+        spo.setFillAdditionalDetails(false);
         return spo;
     }
 
@@ -62,7 +66,6 @@ class ObjectCreation
     {
         let catalog = new catalogItem()
         catalog.setItemName(await commonUtilities.splitData(1,"ITEM_NAME_FOR_SEARCHING"));
-        // catalog.setItemName(I.getData("ITEM_NAME_FOR_SEARCHING[3]"));
         catalog.quantity = faker.random.number(20);
         return catalog;
     }
@@ -70,7 +73,8 @@ class ObjectCreation
     getObjectOfRequisition(noOfItems,itemType)
      {
          requisition.reqName = "Automation_Req"+faker.random.number(200000);
-        requisition.onBehalfOf = I.getData("ON_BEHALF_OF_WITH_RIGHT_USER");
+        //requisition.onBehalfOf = I.getData("ON_BEHALF_OF_WITH_RIGHT_USER");
+        requisition.onBehalfOf = (global.users.get("USERNAME"));
         requisition.company = I.getData("ORGANIZATION_UNIT/COMPANY_NAME");
         requisition.businessUnit = I.getData("BUSINESS_UNIT_NAME");
         requisition.location = I.getData("LOCATION_NAME");
@@ -78,7 +82,7 @@ class ObjectCreation
         requisition.reasonForOrdering = I.getData("REASON_FOR_ORDERING");
         requisition.commentsForSupplier = I.getData("COMMENTS_FOR_SUPPLIERS");
         requisition.purchaseType = I.getData("PURCHASE_TYPE");
-        requisition.attachmentPath = "";
+        requisition.attachmentPath = "\\\\192.168.3.40\\AutomationSharing\\Katalon_File_Attachment\\QCVM";
         requisition.settlementVia = "Invoice";
         requisition.retrospectivePurchase = "No";
         requisition.shipToDefaultAddress = "Yes";
@@ -94,11 +98,14 @@ class ObjectCreation
         requisition.glAccount = I.getData("GL_ACCOUNT");
         requisition.assetCode = I.getData("COST_BOOKING_DETAILS_ASSET_CODE");
         requisition.buyer = I.getData("BUYER_NAME");
+        requisition.assignedBuyerGroup = "undefined";
         requisition.itemName = I.getData("ITEM_NAME_FOR_SEARCHING");
         requisition.nextAction = lmtVar.getLabel("SUBMIT")
         requisition.fillCBL = false;
         requisition.items  =  this.getArrayOfItems(noOfItems,itemType);
-       
+        requisition.taxType = I.getData("TAX_TYPE");
+        requisition.taxName = I.getData("TAX_NAME");
+        requisition.setApplyTaxItemLevel = false;
         return requisition;
     }
 

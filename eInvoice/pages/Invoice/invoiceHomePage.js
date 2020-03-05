@@ -1,14 +1,16 @@
-// const I = actor();
 const {I} = inject();
 const logger = require("../../../Framework/FrameworkUtilities/Logger/logger");
 const iInvoiceHome = require("./IinvoiceHome");
 
 module.exports = {
 
-  // clickOnAddInvoiceBtn() {
-  //   I.click(global.uiElements.get(iInvoiceHome.addInvoiceBtn));
-  // },
+  clickOnAddInvoiceBtn() {
+    I.click(global.uiElements.get(iInvoiceHome.addInvoiceBtn));
+  },
 
+  saveView(){
+    
+  },
   filterByStatus(status) {
     I.click(global.uiElements.get(iInvoiceHome.statusFilterIcon));
     I.fillField(global.uiElements.get(iInvoiceHome.searchField), status);
@@ -18,7 +20,6 @@ module.exports = {
   selectStatus(status) {
     I.click(`//dew-popover-body//label[contains(text(),"${status}")]`); 
   },
-
 
   filterByInvoiceNumber(invoiceNumber) {
     I.click(global.uiElements.get(iInvoiceHome.invoiceFilterIcon));

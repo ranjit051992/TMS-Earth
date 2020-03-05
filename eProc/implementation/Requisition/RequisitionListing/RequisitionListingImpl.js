@@ -17,6 +17,10 @@ module.exports = {
         logger.info("Navigated to Requisition Listing page");
     },
 
+    /**
+     * Verifies if the Requisition Listing Page is loaded or not
+     * @return boolean
+     */
     async isRequisitionListingPageDisplayed()
     {
         let flag = false;
@@ -40,6 +44,7 @@ module.exports = {
      */
     async getRequisitionNumber(reqName)
     {
+        await commomComponent.searchDocOnListing(reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
         let reqNumber = await commomComponent.getDocNumber(reqName);
         return reqNumber;
     },
@@ -52,7 +57,7 @@ module.exports = {
 
     async viewRequisition(reqNumber)
     {
-        await commomComponent.viewDocByDocNumber(reqNumber);
+        await commomComponent.clickOnDocNumberLink();
         
     },
 
@@ -67,6 +72,9 @@ module.exports = {
         await I.waitForVisible(I.getElement(reqListingObj.REQUISITION_STATUS));
         let reqStatus = await I.grabTextFrom(I.getElement(reqListingObj.REQUISITION_STATUS));
         logger.info(`Requisition status is ---->${reqStatus}`);
+
+       // await commomComponent.getValueForColumn(lmtVar.getLabel("STATUS_COLUMN"));
+       // logger.info(`Requisition status is ---->${reqStatus}`);
         return reqStatus;
     },
 
@@ -96,7 +104,7 @@ module.exports = {
 
        await this.searchRequisitionByReqNumber(reqNumber);
 
-        let reqStatus = await reqListingImpl.getRequisitionStatus();
+        let reqStatus = await this.getRequisitionStatus();
         if(reqStatus.toString().trim() === lmtVar.getLabel("DRAFT_STATUS"))
         {
             await commomComponent.clickOnActionMenuIcon();
@@ -106,14 +114,56 @@ module.exports = {
                 await I.waitForVisible(I.getElement(reqListingObj.DELETE_CONFIRM_YES_BUTTON))
                 await I.waitForClickable(I.getElement(reqListingObj.DELETE_CONFIRM_YES_BUTTON));
                 await I.click(I.getElement(reqListingObj.DELETE_CONFIRM_YES_BUTTON));
-                await I.wait(prop.DEFAULT_MEDIUM_WAIT);
-                if(await I.grabNumberOfVisibleElements(I.getElement(reqListingObj.DELETE_SUCCESS_MESSAGE))>0)
-                {
+                logger.info("Clicked on Delete Confirm Yes Button")
+               // if(await I.grabNumberOfVisibleElements(I.getElement(reqListingObj.DELETE_SUCCESS_MESSAGE))>0)
+               // {
                     await I.waitForVisible(I.getElement(reqListingObj.DELETE_SUCCESS_MESSAGE_OK_BUTTON));
                     I.click(I.getElement(reqListingObj.DELETE_SUCCESS_MESSAGE_OK_BUTTON));
                     logger.info("Clicked on OK Button");
-                }
+               // }
             }  
+        }
+    },
+
+
+    async searchAndViewReqByName(reqName)
+    {
+        await this.navigateToRequisitionListing();
+        let reqNumber = await this.getRequisitionNumber(reqName);
+        await this.searchRequisitionByReqNumber(reqNumber);
+        await this.viewRequisition(reqNumber);
+        await commomComponent.waitForLoadingSymbolNotDisplayed();
+    },
+
+    /**
+     * copyRequisition: Copy's the given Requisition
+     * @param {String} reqNumber 
+     */
+    async copyRequisition(reqNumber)
+    {
+       await this.navigateToRequisitionListing();
+
+        if(this.isRequisitionListingPageDisplayed())
+        {
+            if(reqNumber.toString() !== null)
+            {
+                await this.searchRequisitionByReqNumber(reqNumber);
+                await commomComponent.clickOnActionMenuIcon();
+                await commomComponent.clickOnActionMenuOption(lmtVar.getLabel("COPY_ACTION"));
+                await commomComponent.waitForLoadingSymbolNotDisplayed();
+                await I.waitForVisible(I.getElement(checkoutObject.REQUISITION_NAME));
+            }
+            else
+            {
+                logger.info("Requisition number is NULL.....");
+                throw new Error("Requisition number is NULL.....");
+            }
+
+        }
+        else
+        {
+            logger.info("Requisition Listing Page is not loaded.....");
+            throw new Error("Requisition Listing Page is not loaded.....")
         }
     },
 };

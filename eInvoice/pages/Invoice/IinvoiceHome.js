@@ -1,5 +1,5 @@
 module.exports = {
-    //addInvoiceBtn: '//span[contains(text(),"Add Invoice ")]',
+    addInvoiceBtn: 'invoiceHomePage/ADD_INVOICE_BTN',
     searchField: 'invoiceHomePage/SEARCH_FIELD',
     statusFilterIcon: 'invoiceHomePage/STATUS_FILTER_ICON',
     applyBtn: 'invoiceHomePage/APPLY_BTN',

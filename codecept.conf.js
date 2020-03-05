@@ -1,4 +1,5 @@
-require("./Framework/PropertiesConfigurator");
+const parsing= require("./Framework/PropertiesConfigurator");
+parsing("eProc");
 const prop = global.confi_prop;
 global.lang = 'en';
 exports.config = {
@@ -43,6 +44,7 @@ exports.config = {
      features: './iRequest/features/GuideMe/GuideMe.feature',
       steps: './iRequest/implementation/**/**.js'
   },
+ 
   name: prop.projectName,
   plugins: {
     retryFailedStep: {

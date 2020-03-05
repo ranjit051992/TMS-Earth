@@ -1,67 +1,61 @@
 Feature: Checkout
 
 
-@Non-COA @L1 @autox
-  Scenario: To verify that user is able to create requisition with assigned buyer as buyer group or single buyer
+@Non-COA @L1 
+  Scenario: To verify that user is able to add Cost center information to the requisition.
   Given I am logged in eProc
-
-  When I add a catalog item to cart
+  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
-  And I add Purchase Type
-  And I add Required By Date
-  And I select Buyer Group at line level in Buyer section
-  And I add data in Cost Booking Details section at line level
-  And I save it
-  And I submit requisition
+  And I edit Cost Allocation section at header level
+  And I update cost center "COST_CENTER"
+  And I navigate to Line level Cost Booking Details
+  Then I should be see the updated cost center on line level Cost Booking section
 
-  Then I should be able to view requisition with buyer as the buyer group which was assigned
-
-
-@Non-COA @L1 @autox
-  Scenario: To verify that the 'Select Purchase Order' field
-  Given I am logged in eProc
-
-  When I add a catalog item to cart
-  And I checkout
-  And I link Purchase Order in the Select Purchase Order field
-
-  Then I should be see that the field name is updated to Select Purchase Order.
-
-
-@Non-COA @L1 @autox
-    Scenario: To verify that user is able to add attachments to the requisition.
+@Non-COA @L1  
+    Scenario: To verify that user is able to add Project information to the requisition.
     Given I am logged in eProc
-
-    When I add an item to cart 
-    And I checkout
-    And I add an attachment
-    
-    Then I should be able to see the attachment which is added
-
-
-@Non-COA @L1 @autox
-    Scenario: To verify that user is able to create any custom / One time delivery address while Check out and save it for future use
-    Given I am logged in eProc
-
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
+    And I edit Cost Allocation section at header level
+    And I update project "PROJECT"
+    And I navigate to Line level Cost Booking Details
+    Then I should be see the updated project on line level Cost Booking section
+
+@Non-COA @L1  
+    Scenario: To verify that System auto populates user's Cost center when a user is creating a requisition.
+    Given I am logged in eProc
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    Then I should see on header level Cost Booking section cost center should be populated
+    And I navigate to Line level Cost Booking Details
+    And I should see on line level Cost Booking Details section cost center should be populated
+
+@Non-COA @L1  
+    Scenario: To verify that system auto populates user's default Delivery & Bill to address 
+    Given I am logged in eProc
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    Then I should see on header level, Shipping Details section Default Shipping Address field should be auto populated
+    And I navigate to Line level Shipping Details and Asset Tagging section
+    And I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated
+
+@Non-COA @L1  
+    Scenario:  To verify that user is able to view approval Status
+    Given I am logged in eProc
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I enter Requisition Name
     And I add Purchase Type
+    And I add Settlement Via
     And I add Required By Date
-    And I select Ship to Another Address in  Shipping Details section at header level
-    And I Create New address
-    And I check the Save checkbox
-    And I create the address
     And I add data in Cost Booking Details section at line level 
+    And I save it
     And I submit requisition
+    Then I should be able see the status of requisition on the Listing page
 
-    Then I should be able to see new Deliver address as the Ship to Another Address on view requisition 
-    And I should be able to see the saved address on creating a new requisition
-
-
-@Non-COA @L1 @saveAsDraft @autox
+@Non-COA @L1 
   Scenario: To verify requisition in draft and actions on it
   Given I am logged in eProc
-
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
   And I enter Requisition Name
@@ -71,14 +65,57 @@ Feature: Checkout
   And I add data in Cost Booking Details section at line level
   And I save it
   And I save requisition in Draft state
-
   Then I should be able to view the actions for the draft requisition on Listing page
   And I should be able to Edit and submit the Draft requisition
   And I should be able to delete the requisition
 
+@Non-COA @L1
+    Scenario: To verify that user is able to add attachments to the requisition.
+    Given I am logged in eProc
 
-@Non-COA @L1 @reqApprovalStatus @autox
-  Scenario:  To verify that user is able to view approval Status
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I add an attachment "ATTACHMENT_PATH"
+    
+    Then I should be able to see the attachment which is added
+
+@Non-COA @L1   
+    Scenario: To verify that user is able to create any custom / One time delivery address while Check out and save it for future use
+    Given I am logged in eProc
+
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I enter Requisition Name
+    And I add Purchase Type
+    And I add Settlement Via
+    And I add Required By Date
+    And I select Ship to Another Address in  Shipping Details section at header level
+    And I Create New address
+    And I check the Save checkbox
+    And I create the address
+    And I add data in Cost Booking Details section at line level
+    And I save it 
+    And I submit requisition
+
+    Then I should be able to see new Deliver address as the Ship to Another Address on view requisition 
+    And I navigate to OnlineStore
+    And I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I select Ship to Another Address in  Shipping Details section at header level
+    And I should be able to see the saved address on creating a new requisition
+
+@Non-COA @L1   
+  Scenario: To verify that the 'Select Purchase Order' field
+  Given I am logged in eProc
+
+  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+  And I checkout
+  And I link Purchase Order "blue sanity" in the Select Purchase Order field
+
+  Then I should be see that the field name is updated to Select Purchase Order
+
+@Non-COA @L1   
+  Scenario: To verify that user is able to create requisition with assigned buyer as buyer group
   Given I am logged in eProc
 
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -87,63 +124,30 @@ Feature: Checkout
   And I add Purchase Type
   And I add Settlement Via
   And I add Required By Date
-  And I add data in Cost Booking Details section at line level 
+  And I add data in Cost Booking Details section at line level
+  And I select "BUYER_GROUP" at line level in Buyer section
   And I save it
   And I submit requisition
 
-  Then I should be able see the status of requisition on the Listing page
+  Then I should be able to view requisition with buyer as the buyer group which was assigned
 
-
-@Non-COA @L1 @costCenter @autox
-  Scenario: To verify that user is able to add Cost center information to the requisition.
+@Non-COA @L1  
+  Scenario: To verify that user is able to create requisition with assigned buyer as buyer
   Given I am logged in eProc
 
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
-  And I edit Cost Allocation section at header level
-  And I update cost center "COST_CENTER"
-  And I navigate to Line level Cost Booking Details
+  And I enter Requisition Name
+  And I add Purchase Type
+  And I add Settlement Via
+  And I add Required By Date
+  And I add data in Cost Booking Details section at line level
+  And I select buyer "BUYER_NAME" at line level in Buyer section
+  And I save it
+  And I submit requisition
 
-  Then I should be see the updated cost center on line level Cost Booking section
-
-
-@Non-COA @L1 @project @autox
-  Scenario: To verify that user is able to add Project information to the requisition.
-  Given I am logged in eProc
-
-  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
-  And I checkout
-  And I edit Cost Allocation section at header level
-  And I update project "PROJECT"
-  And I navigate to Line level Cost Booking Details
-
-  Then I should be see the updated project on line level Cost Booking section
-
-
-@Non-COA @L1 @autoCostCenter @autox
-  Scenario: To verify that System auto populates user's Cost center when a user is creating a requisition.
-  Given I am logged in eProc
-
-  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
-  And I checkout
-
-  Then I should see on header level Cost Booking section cost center should be populated
-  And I navigate to Line level Cost Booking Details
-  And I should see on line level Cost Booking Details section cost center should be populated
-
-
-@Non-COA @L1 @defaultAddress @autox
-  Scenario: To verify that system auto populates user's default Delivery & Bill to address 
-  Given I am logged in eProc
-
-  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
-  And I checkout
-
-  Then I should see on header level, Shipping Details section Default Shipping Address field should be auto populated
-  And I navigate to Line level Shipping Details and Asset Tagging section
-  And I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated
-
-
+  Then I should be able to view requisition with buyer which was assigned
+  
 # @Non-COA @L1
 #   Scenario: To verify that user is be able to raise a request using Punchout
 #   Given I am logged in eProc
@@ -192,16 +196,18 @@ Feature: Checkout
 
 
 
-# @Non-COA @L1 @createReq
-#     Scenario: To verify that user is able to copy any requisition and modify it to create a new requisition.
-#     Given I am logged in eProc
+@Non-COA @L1
+    Scenario: To verify that user is able to copy any requisition and modify it to create a new requisition.
+    Given I am logged in eProc
 
-#     When I create requisition with "1" "ITEM_NAME_FOR_SEARCHING" item
-#     And I copy that requisition
-#     And I modify the fields(qty, add taxes) requisition
-#     And I submit it
+    When I create requisition with "1" "ITEM_NAME_FOR_SEARCHING" item
+    And I copy that requisition
+    And I fetch Requisition Name
+    And I modify the field quantity
+    And I add Taxes
+    And I submit requisition
 
-#     Then I should be able to see submitted requisition with updated details
+    Then I should be able to see submitted requisition with updated details
 
 # @Non-COA @L1
 #     Scenario: To verify that user is able to create free text line item and items from Hosted Catalog in a single PR.
@@ -304,20 +310,22 @@ Feature: Checkout
 #     Then I should be able to see Deliver address as the Ship to Another Address on view requisition 
 
 
-# @Non-COA @L1
-#     Scenario: To verify that user is able to add taxes at line item level in a requisition for catalog item
-#     Given I am logged in eProc
+@Non-COA @L1
+    Scenario: To verify that user is able to add taxes at line item level in a requisition for catalog item
+    Given I am logged in eProc
 
-#     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
-#     And I checkout
-#     And I add Purchase Type
-#     And I add Required By Date
-#     And I add data in Cost Booking Details section at line level 
-#     And I add Tax Details at line level
-#     And I save it
-#     And I submit requisition
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I enter Requisition Name
+    And I add Purchase Type
+    And I add Settlement Via
+    And I add Required By Date
+    And I add data in Cost Booking Details section at line level 
+    And I add Tax Details at line level
+    And I save it
+    And I submit requisition
 
-#     Then I should be able see the taxes added on view requisition
+    Then I should be able see the taxes added on view requisition
 
 # @Non-COA @L1
 #   Scenario: To verify that user is able to add taxes at line item level in a requisition for punchout item
@@ -593,16 +601,17 @@ Feature: Checkout
 
 #     Then I should be able to see the attachment which is added
 
-# @COA @L1
-#     Scenario: COA>>To verify that user is able to copy any requisition and modify it to create a new requisition.
-#     Given I am logged in eProc
+@COA @L1
+    Scenario: COA>>To verify that user is able to copy any requisition and modify it to create a new requisition.
+    Given I am logged in eProc
 
-#     When I create a requisition with catalog items
-#     And I copy that requisition
-#     And I modify the fields(qty, add taxes) requisition
-#     And I submit it
+    When I create requisition with "1" "ITEM_NAME_FOR_SEARCHING" item
+    And I copy that requisition
+    And I modify the field quantity
+    And I add Taxes
+    And I submit requisition
 
-#     Then I should be able to see submitted requisition with updated details
+    Then I should be able to see submitted requisition with updated details
 
 # @COA @L1
 #     Scenario: COA>>To verify that user is able to create free text line item and items from Hosted Catalog in a single PR.

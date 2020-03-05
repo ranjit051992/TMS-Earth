@@ -9,6 +9,7 @@ const catalogItem = require("../../../dataCreation/bo/CatalogItem");
 const commonKeywordImpl = require("../../../commonKeywords/CommonComponent");
 const poListingImpl = require("../PoListing/PoListingImpl");
 const poListingObject = require("../PoListing/PoListingObject");
+const coaImpl = require("../../Coa/CoaImpl");
 
 Given("I am on PO listing page", async function () {
    await poListingImpl.navigateToPoListing();
@@ -73,7 +74,7 @@ When("I search catalog item with {string}", async function(itemName) {
 When("I add costing and accounting details for that item", async function() {
    await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
    await spoImpl.clickOnCostBookingLink(this.spo.items[0].itemName);
-   let glAccount = await spoImpl.fillGlAccount(this.spo.glAccount);
+   let glAccount = await coaImpl.fillGlAccount(this.spo.glAccount);
    this.spo.setGlAccount(glAccount);
    await spoImpl.clickOnCostBookingSaveButton();
    await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_TAXES_SECTION_SECTION"));
@@ -94,6 +95,8 @@ When("I add attachment at header level", async function() {
 
 When("I submit the PO", async function() {
    await spoImpl.submitPo();
+   await commonKeywordImpl.waitForElementVisible(iSpoObject.spinner);
+   await I.waitForInvisible(I.getElement(iSpoObject.spinner));
 });
 
 When("I search for the created po", async function() {
@@ -168,7 +171,7 @@ Then("I should be able to see the PO in closed status", async function() {
 
 When("I Save PO as draft", async function() {
    await spoImpl.clickOnSaveAsDraftButton();
-   await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+   await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
 });
 
 When("I edit the drafted PO", async function() {
@@ -186,8 +189,8 @@ When("I add 1 catalog item {string}", async function(itemName1) {
    await spoImpl.clickOnCostBookingLink(this.spo.items[1].itemName);
 
    let glAccount = await I.getData("GL_ACCOUNT");
-   await spoImpl.fillGlAccount(glAccount);
-   await spoImpl.clickOnCostBookingSaveButton();
+   await coaImpl.fillGlAccount(glAccount);
+   await coaImpl.clickOnCostBookingSaveButton();
    await I.waitForInvisible(I.getElement(iSpoObject.GLACCOUNT));
 });
 
@@ -248,7 +251,7 @@ Given( "I have {int} POs In Approval status", async function() {
 
 Then("I should be able to see the PO in Cancelled status", async function() {
    await poListingImpl.clickOnSuccessPopupDoneButton();
-   await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+   await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
    await commonKeywordImpl.searchDocOnListing(this.spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
    let status = await poListingImpl.getPoStatus();
    let flag = status.toString() === lmtVar.getLabel("CANCELLED_STATUS");
@@ -296,7 +299,7 @@ When("I change the delivery address at line level to {string}", async function(a
 
 When("I save the delivery address", async function() {
    await spoImpl.clickOnCostBookingSaveButton();
-   await I.seeElement(I.getElement(iSpoObject.poDescriptionTextbox));
+   await I.waitForVisible(I.getElement(iSpoObject.poDescriptionTextbox));
 });
 
 Then("{string} delivery address should be displayed", async function(address1) {

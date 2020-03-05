@@ -81,29 +81,37 @@ async function getElementViewportStatus(xpath, timeout) {
         });
     }
     else {
-        throw new Error(`Element '${xpath}' is not present after ${timeout} sec`);
+        // throw new Error(`Element '${xpath}' is not present after ${timeout} sec`);
+        return isPresent;
     }
 }
 
 module.exports={
 
+    /**
+     * Search and Select Value from drop down
+     * @param {*} dropdownElement 
+     * @param {*} searchValue 
+     * @param {*} selectOptionXpath 
+     * @returns selectedValue
+     */
     async searchAndSelectFromDropdown(dropdownElement, searchValue, selectOptionXpath){
-        await I.waitForVisible(dropdownElement);        
+        await I.waitForVisible(dropdownElement); 
+        await I.waitForClickable(dropdownElement);
         await I.click(dropdownElement);
         await I.clearField(dropdownElement);
-        // if(typeof searchValue !== "undefined"){
-        await I.fillField(dropdownElement, searchValue);
-        // let optionXpath = `//div[contains(text(),'${selectOption}')]`
-        await I.waitForVisible(selectOptionXpath);
-        await I.click(selectOptionXpath);
-        let value = await I.grabAttributeFrom(dropdownElement, "value");
-        return value;
-        // }
-        // else{
-        //     I.click(global.uiElements.get(commonCompObject.SearchAndSelectDropdown_Option));
-        //     let selectedValue =  await I.grabAttributeFrom(global.uiElements.get(dropdownAction.SearchAndSelectDropdown_Option), "title");
-        //     return selectedValue;
-        // }
+        if(searchValue.toString() !== null)
+        {
+            await I.fillField(dropdownElement, searchValue);
+            await I.waitForVisible(selectOptionXpath);
+            await I.click(selectOptionXpath);
+            let value = await I.grabAttributeFrom(dropdownElement, "value");
+            return value;
+         }
+        else
+        {
+            throw new Error("Search Value is Invalid.....");
+        }
 
     },
 
@@ -116,7 +124,7 @@ module.exports={
         {
             let xpath = `//*[contains(text(),'${selectOption}')]`;
             await I.scrollIntoView(xpath);
-            await I.click(selectOption);
+            await I.click(xpath);
             logger.info(`Selected Value from Drop Down: ${selectOption}`);
         }
         else
@@ -128,8 +136,8 @@ module.exports={
     async scrollToSection(sectionName)
     {
         let sectionXapth = `//div[contains(text(),'${sectionName}')]`;
-        I.scrollIntoView(sectionXapth);
-        I.wait(prop.DEFAULT_MEDIUM_WAIT);
+        await I.scrollIntoView(sectionXapth);
+        await  I.wait(prop.DEFAULT_MEDIUM_WAIT);
         logger.info("Scrolled to Section "+sectionName);
     },
 
@@ -160,7 +168,6 @@ module.exports={
 
         let optionXpath = `//dew-listing-search//div[contains(@class,'dropdown-menu')]//a[${index}]`;
         logger.info(`optionXpath --> ${optionXpath}`);
-
         await I.waitForVisible(optionXpath);
         await I.click(optionXpath);
         await I.wait(prop.DEFAULT_WAIT);
@@ -180,24 +187,25 @@ module.exports={
         logger.info(`Searched for doc --> ${docDetail}`);
     },
     async clickOnActionMenuIcon() {
-        await I.seeElement(I.getElement(poListingObject.ACTION_MENU_ICON));
+        await I.waitForVisible(I.getElement(poListingObject.ACTION_MENU_ICON));
         await I.click(I.getElement(poListingObject.ACTION_MENU_ICON));
         logger.info("Clicked on action menu icon");
     },
     async clickOnActionMenuOption(option) {
         let optionXpath = `//*[contains(@title,'${option}')]`;
-        await I.seeElement(optionXpath);
+        await I.waitForVisible(optionXpath);
         await I.click(optionXpath);
         logger.info(`Clicked on action menu option --> ${option}`);
     },
     async getDocNumber() {
-        await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         let docNumber = await I.grabTextFrom(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info(`Retrieved doc number --> ${docNumber}`);
         return docNumber;
     },
     async clickOnDocNumberLink() {
-        await I.seeElement(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
         await I.click(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info("Clicked on document number");
     },
@@ -219,7 +227,13 @@ module.exports={
      */
     async isEnabledByXpath(xpath) {
         return await I.executeScript(function(xpath) {
-            return document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.disabled;
+            let flag = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.disabled;
+            if(flag) {
+                return false;
+            }
+            else {
+                return true;
+            }
         }, xpath);
     },
     /**
@@ -299,4 +313,43 @@ module.exports={
         return options;
     },
 
+    async getValueForColumn(columnName)
+    {
+        let columnIndex = this.getColumnIndexOnListingPage(columnName);
+        let columnHeaderXpath = I.getElement(commonKeywordObject.ALL_COLUMN_HEADER_TEXT);
+        columnHeaderXpath = "(" + columnHeaderXpath + "/..)[" + Number(columnIndex) + "]//dew-row[contains(@class,'list-body')]//span";
+		logger.info("Xpath for retrieving column value --> " + columnHeaderXpath);
+		let columnValue = await I.grabTextFrom(columnHeaderXpath);
+		logger.info("Retrieved value for column " + columnName + " is --> " + columnValue);
+		return columnValue;
+    },
+
+    async getColumnIndexOnListingPage(columnName)
+    {
+        let columnIndex = 0;
+        let columnHeaderXpath = I.getElement(commonKeywordObject.ALL_COLUMN_HEADER_TEXT)+"//span[contains(@class,'text-subhead-b')]";
+        let noOfHeaders = await I.grabNumberOfVisibleElements(I.getElement(commonKeywordObject.ALL_COLUMN_HEADER_TEXT));
+        if(noOfHeaders>0)
+        {
+            for(let i=0; i< noOfHeaders; i++)
+            {
+                let columnXpath = "(" + columnHeaderXpath + ")["+ Number(i)+1 +"])" ;
+                let columnNameRetrive = await I.grabTextFrom(columnXpath);
+                logger.info("Column Name retrive is ---> "+columnNameRetrive);
+
+                if(columnNameRetrive.toUpperCase() === columnName.toUpperCase())
+                {
+                    columnIndex = i+1;
+                    logger.info("Column Index is---> "+columnIndex);
+                    break;
+                }
+            }
+        }
+        else
+        {
+            throw new Error("Column Headers not found");
+            
+        }
+        return columnIndex;
+    },
 };

@@ -38,6 +38,21 @@ class Requisition
         this.fillCBL;
         this.fillCostAllocation;
         this.nextAction;
+        this.customAddressName;
+        this.customAddressStreet1;
+        this.customAddressStreet2;
+        this.customAddressCountry;
+        this.customAddressState;
+        this.customAddressZip;
+        this.customAddressCity;
+        this.reqNumbers = [];
+        this.isApplyTaxItemLevel;
+        this.taxType;
+        this.TaxName;
+        this.taxRate;
+        this.taxAmount;
+        this.reqAmount;
+        this.status;
         //let items = [];
     }
 
@@ -206,6 +221,40 @@ class Requisition
         this.nextAction = nextAction;
     }
 
+    setTaxType(taxType)
+    {
+        this.taxType = taxType;
+    }
+
+    setTaxName(taxName)
+    {
+        this.taxName = taxName;
+    }
+
+    setTaxRate(taxRate)
+    {
+        this.taxRate = taxRate;
+    }
+
+    setTaxAmount(taxAmount)
+    {
+        this.taxAmount = taxAmount;
+    }
+
+    setApplyTaxItemLevel(isApplyTaxItemLevel)
+	{
+		this.isApplyTaxItemLevel = isApplyTaxItemLevel;
+    }
+    
+    setreqAmount(reqAmount)
+    {
+        this.reqAmount = reqAmount;
+    }
+
+    setStatus(status)
+    {
+        this.status = status;
+    }
 }
 
 module.exports = new Requisition();

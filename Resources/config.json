@@ -1,17 +1,17 @@
 {
     "eProc": {
-        "url": "http://login-partner.zycus.com/sso/login",
+        "url": "https://dewdrops-partner.zycus.com/eproc/#/online-store",
         "poListingUrl": "https://dewdrops-partner.zycus.com/eproc/#/purchaseorder/default/listing",
         "DDS_OnlineStore_Url": "https://dewdrops-partner.zycus.com/eproc/#/online-store",
         "DDS_Requisition_Listing": "https://dewdrops-partner.zycus.com/eproc/#/requisition/requisition",
         "DDS_Approval_Listing": "https://dewdrops-partner.zycus.com/eproc/#/approval/allRequest/requisition",
         "DDS_BuyersDesk_Url": "https://dewdrops-partner.zycus.com/eproc/#/buyersdesk/default/listing",
-        "DDS_AllRequests_Url": "https://partner-zcs.zycus.com/eproc/#/approval/allRequest/requisition",
+        "DDS_AllRequests_Url": "https://dewdrops-partner.zycus.com/eproc/#/approval/allRequest/requisition",
         "PASSWORD_MANAGER_URL": "https://passmanager.zycus.com/PassTrixMain.cc",
         "SETUP": "RM",
         "TENANT": "ZCS",
         "browser": "chrome",
-        "host": "192.168.7.57",
+        "host": "192.168.6.167",
         "restart": "false",
         "port": 4444,
         "windowSize": "maximize",
@@ -30,7 +30,7 @@
         "uiElementTable":"eProc_UI_Elements",
         "UserTable":"eProc_credentials",
         "LOGIN_WITH_PASSWORD_MANAGER": false,
-        "isCOA": false
+        "isCoa": false
     },
     "iContract": {
         "url": "https://dewdrops-partner.zycus.com/",
