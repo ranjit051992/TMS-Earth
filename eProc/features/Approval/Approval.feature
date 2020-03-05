@@ -1,6 +1,6 @@
 Feature: Approval
 
-@L1 
+@Non-COA 
     Scenario: To verify Requisition details are  properly displayed in approval listing
 
     Given I am logged in eProc
@@ -15,7 +15,7 @@ Feature: Approval
     And I see the same Amount to be approved
     And I see the same status of Requisition
 
-@L1
+@Non-COA 
     Scenario: To verify Purchase Order details are properly displayed in approval listing
 
     Given I am logged in eProc
@@ -28,9 +28,9 @@ Feature: Approval
     Then I see the same Buyer name displayed for the corresponding PO number
     And I see the same Received on date on PO Approval listing
     And I see the same Amount to be approved on PO Approval listing
-    And I see the same status of Requisition on PO Approval listing
+    And I see the same status of SPO on PO Approval listing
 
-# @L1
+# @Non-COA
 #     Scenario: To verify BPO details are properly displayed in approval listing
 
 #     Given I am logged in eProc 
@@ -46,35 +46,35 @@ Feature: Approval
 #     Then I should get all details, same as what entered while creating that BPO
 
 
-# @L1
-#     Scenario: To verify that user is able to approve single/multiple Requisition
+@Non-COA
+    Scenario: To verify that user is able to approve single/multiple Requisition
 
-#     Given I am logged in eProc
-#     And I Create 3 requisitions with 1 "Catalog" item
-#     And I have 3 Requisitions In Approval status
-#     And I am on requisition approval listing page
+    Given I am logged in eProc
+    And I Create 3 requisitions with 1 "Catalog" item
+    And I have 3 Requisitions In Approval status
+    And I am on requisition approval listing page
 
-#     When I Approve 1 Requisition
-#     And I Approve 2 Requisitions 
+    When I Approve 1 Requisition
+    And I Approve 2 Requisitions 
 
-#     Then I should be able to see the status of all Requisitions as Approved
+    Then I should be able to see the status of all Requisitions as Approved
 
 
-# @L1
-#     Scenario: To verify that user is able to reject single/multiple Requisition
+@Non-COA
+    Scenario: To verify that user is able to reject single/multiple Requisition
 
-#     Given I am logged in eProc 
-#     And I Create 3 requisitions with 1 "Catalog" item
-#     And I have 3 Requisitions In Approval status
-#     And I am on requisition approval listing page
+    Given I am logged in eProc 
+    And I Create 3 requisitions with 1 "Catalog" item
+    And I have 3 Requisitions In Approval status
+    And I am on requisition approval listing page
 
-#     When I Reject 1 Requisition
-#     And I Reject 2 Requisitions 
+    When I Reject 1 Requisition
+    And I Reject 2 Requisitions 
     
-#     Then I should be able to see the status of all Requisitions as Rejected
+    Then I should be able to see the status of all Requisitions as Rejected
 
 
-# @L1
+# @Non-COA
 #     Scenario: To verify that user is able to delegate single/multiple Requisition
 
 #     Given I am logged in eProc
@@ -93,49 +93,49 @@ Feature: Approval
 #     Then the status of all the requisitions should be displayed as Delegated
 
 
-# @L1 
-#     Scenario: To verify that user is able to approve single/multiple PO
+@Non-COA
+    Scenario: To verify that user is able to approve single/multiple PO
 
-#     Given I am logged in eProc
-#     And I Create 3 Standard po with "1" "ITEM_NAME_FOR_SEARCHING" item
-#     And I have 3 POs In Approval status
-#     And I am on PO approval listing page
+    Given I am logged in eProc
+    And I Create 3 Standard po with "1" "ITEM_NAME_FOR_SEARCHING" item
+    And I have 3 POs In Approval status
+    And I am on PO approval listing page
 
-#     When I Approve 1 PO
-#     And I Approve 2 POs
+    When I Approve 1 PO
+    And I Approve 2 POs
 
-#     Then I should be able to see the status of all POs as Approved
-
-
-# @L1
-#     Scenario: To verify that user is able to reject single/multiple PO
-
-#     Given I am logged in eProc 
-#     And I Create 3 Standard po with "1" "ITEM_NAME_FOR_SEARCHING" item
-#     And I have 3 POs In Approval status
-#     And I am on PO approval listing page
-
-#     When I Reject 1 PO
-#     And I Reject 2 POs
-
-#     Then I should be able to see the status of all POs as Rejected
+    Then I should be able to see the status of all POs as Approved
 
 
-# @L1
-#     Scenario: To verify that user is able to delegate single/multiple PO
+@Non-COA
+    Scenario: To verify that user is able to reject single/multiple PO
 
-#     Given I am logged in eProc 
-#     And I Create 3 Standard po with "1" "ITEM_NAME_FOR_SEARCHING" item
-#     And I have 3 POs In Approval status
-#     And I am on PO approval listing page
+    Given I am logged in eProc 
+    And I Create 3 Standard po with "1" "ITEM_NAME_FOR_SEARCHING" item
+    And I have 3 POs In Approval status
+    And I am on PO approval listing page
 
-#     When I Delegate 1 PO
-#     And I Delegate 2 POs
+    When I Reject 1 PO
+    And I Reject 2 POs
 
-#     Then I should be able to see the status of all POs as Delegated
+    Then I should be able to see the status of all POs as Rejected
 
 
-# @L1
+@Non-COA
+    Scenario: To verify that user is able to delegate single/multiple PO
+
+    Given I am logged in eProc 
+    And I Create 3 Standard po with "1" "ITEM_NAME_FOR_SEARCHING" item
+    And I have 3 POs In Approval status
+    And I am on PO approval listing page
+
+    When I Delegate 1 PO
+    And I Delegate 2 POs
+
+    Then I should be able to see the status of all POs as Delegated
+
+
+# @Non-COA
 #     Scenario: To verify that user is able to approve single/multiple BPO
 
 #     Given I am logged in eProc
@@ -154,7 +154,7 @@ Feature: Approval
 #     Then the status of all the BPOs should be displayed as Approved
 
 
-# @L1
+# @Non-COA
 #     Scenario: To verify that user is able to reject single/multiple BPO
 
 #     Given I am logged in eProc 
@@ -173,7 +173,7 @@ Feature: Approval
 #     Then the status of all the BPOs should be displayed as Rejected
 
 
-# @L1
+# @Non-COA
 #     Scenario: To verify that user is able to delegate single/multiple BPO
 
 #     Given I am logged in eProc 
