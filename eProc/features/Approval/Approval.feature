@@ -1,6 +1,6 @@
 Feature: Approval
 
-@Non-COA 
+@L1 @Non-COA
     Scenario: To verify Requisition details are  properly displayed in approval listing
 
     Given I am logged in eProc

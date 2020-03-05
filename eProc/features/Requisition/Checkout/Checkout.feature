@@ -94,7 +94,7 @@ Feature: Checkout
     And I check the Save checkbox
     And I create the address
     And I add data in Cost Booking Details section at line level
-    And I save it 
+    #And I save it 
     And I submit requisition
 
     Then I should be able to see new Deliver address as the Ship to Another Address on view requisition 
@@ -349,7 +349,7 @@ Feature: Checkout
     And I select Ship to Another Address in  Shipping Details section at header level
     And I select any existing address as shipping address
     And I add data in Cost Booking Details section at line level 
-    And I save it
+    #And I save it
     And I submit requisition
 
     Then I should be able to see Deliver address as the Ship to Another Address on view requisition 
