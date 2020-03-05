@@ -350,6 +350,8 @@ module.exports = {
 
         spo = await this.fillLineItems(spo);
 
+        spo = await this.storePoAmount(spo);
+
         spo = await this.fillTaxes(spo);
 
         spo = await this.fillAdditionalDetails(spo);
@@ -502,10 +504,22 @@ module.exports = {
             await approvalImpl.navigateToApprovalListing();
             await approvalImpl.navigateToPOApprovalListingTab();
             await approvalImpl.approveDoc(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            await approvalImpl.checkPOApprovalStatus();
+            let status = await this.getSpoStatus();
+
+            let flag = status.toString() === lmtVar.getLabel("APPROVED_STATUS")
+            if(!flag) {
+                logger.info(`Failed to approve spo because status is ${status} on Approval listing after approving`);
+                throw new Error(`Failed to approve spo because status is ${status} on Approval listing after approving`);
+            }
+            else {
+                logger.info("Spo is approved successfully");
+            }
+            
             await I.wait(prop.DEFAULT_MEDIUM_WAIT);
             await poListingImpl.navigateToPoListing();
             await commonKeywordImpl.searchDocOnListing(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-            let status = await poListingImpl.getPoStatus();
+            status = await poListingImpl.getPoStatus();
             logger.info(`Status in db --> ${lmtVar.getLabel("RELEASED_STATUS")}`);
             let flag = status.toString().includes(lmtVar.getLabel("RELEASED_STATUS"));
             if(!flag) {
@@ -618,5 +632,13 @@ module.exports = {
             let status = await poListingImpl.getPoStatus();
             I.assertEqual(status,lmtVar.getLabel("IN_APPROVAL_STATUS"));
         }
+    },
+
+    async storePoAmount(spo) {
+        I.scrollIntoView(I.getElement(iSpoObject.TOTAL_ORDER_AMOUNT));
+        I.waitForVisible(I.getElement(iSpoObject.TOTAL_ORDER_AMOUNT));
+        let PoAmount = await I.grabTextFrom(I.getElement(iSpoObject.TOTAL_ORDER_AMOUNT));
+        spo.setPoAmount(PoAmount);
+        return spo;
     }
 }

@@ -32,6 +32,7 @@ class Spo
         this.taxInclusive;
         this.billToAddress;
         this.status;
+        this.PoAmount;
         this.fillCbl;
         this.fillShippingDetails;
         this.fillControlSettings;
@@ -182,6 +183,10 @@ class Spo
         this.status = status;
     }
 
+    setPoAmount(PoAmount)
+    {
+        this.PoAmount = PoAmount;
+    }
     setFillCbl(fillCbl)
     {
         this.fillCbl = fillCbl;

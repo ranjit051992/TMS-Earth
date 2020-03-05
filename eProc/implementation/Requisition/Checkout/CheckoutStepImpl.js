@@ -9,11 +9,13 @@ const reqListing = require("../../Requisition/RequisitionListing/RequisitionList
 const prop = global.confi_prop;
 const viewReqImpl = require("../ViewRequisition/ViewRequisitionImpl");
 const faker = require("faker");
+const iApprovalObject = require("../../Approval/ApprovalObject");
 const coaImp = require("../../Coa/CoaImpl");
 
-When("I create requisition with {string} {string} item", async function(noOfItems, itemType) {
-    let reqBo= await objectCreation.getObjectOfRequisition(noOfItems, itemType);
-    this.reqBO = await checkoutImp.createRequisitionFlow(reqBo);
+When("I create requisition with {int} {string} item", async function(noOfItems, itemType) {
+    this.reqBO= await objectCreation.getObjectOfRequisition(noOfItems, itemType);
+    this.reqBO = await checkoutImp.createRequisitionFlow(this.reqBO);
+    //this.reqBO.reqNumber = "37480000";
 });
 
 When("I edit Cost Allocation section at header level", async function(){
@@ -323,6 +325,17 @@ When("I add Tax Details at line level", async function(){
     await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_TAXES_TAB"));
     this.reqBO = await checkoutImp.fillTaxDetails(this.reqBO);
 });
+
+Given( "I Create {int} requisitions with {int} {string} item", async function (noOfReqs, noOfItems, itemType) {
+    this.reqArray = await checkoutImp.createMultipleReqs(noOfReqs, noOfItems, itemType);
+    logger.info("Required number of POs created")
+ });
+
+ Given( "I have {int} Requisitions In Approval status", async function() {
+    I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
+    await checkoutImp.checkMultipleReqStatus();
+ });
+
 
 When("I fetch Requisition Name", async function()
 {
