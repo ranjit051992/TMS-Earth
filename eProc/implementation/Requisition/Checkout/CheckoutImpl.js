@@ -1016,6 +1016,43 @@ module.exports={
         
     },
 
+    async selectMarkApproverCheckbox()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.MARK_TO_ADD_APPROVERS_CHECKBOX),prop.DEFAULT_MEDIUM_WAIT);
+        await I.click(I.getElement(iCheckout.MARK_TO_ADD_APPROVERS_CHECKBOX));
+
+    },
+
+    async selectMarkApproverCheckbox()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.MARK_TO_ADD_APPROVERS_CHECKBOX),prop.DEFAULT_MEDIUM_WAIT);
+        await I.click(I.getElement(iCheckout.MARK_TO_ADD_APPROVERS_CHECKBOX));
+
+    },
+
+    async clickOnAddAdhocApproverButton()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.ADD_ADHOC_APPROVER_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable(I.getElement(iCheckout.ADD_ADHOC_APPROVER_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
+        await I.click(I.getElement(iCheckout.ADD_ADHOC_APPROVER_BUTTON));
+    },
+
+    async fillApprover(approver)
+    {
+        await commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.SELECT_APPROVER_TEXTBOX),approver,"//span[contains(text(),'"+approver+"')]");
+        let selectedApprover = await I.grabAttributeFrom(I.getElement(iCheckout.SELECT_APPROVER_TEXTBOX));
+        return selectedApprover.toString();
+    },
+
+    async fillRequireApprovalAfter(approvalAfter)
+    {
+        await I.waitForVisible(I.getElement(iCheckout.REQUIRE_APPROVAL_AFTER),prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable(I.getElement(iCheckout.REQUIRE_APPROVAL_AFTER),prop.DEFAULT_MEDIUM_WAIT);
+        await I.click(I.getElement(iCheckout.REQUIRE_APPROVAL_AFTER));
+        await I.waitForVisible(I.getElement(iCheckout.REQUIRE_APPROVAL_AFTER),prop.DEFAULT_MEDIUM_WAIT);
+        await I.click("//div[contains(@title,'"+approvalAfter+"')]");
+
+    },
 
     /**
      * Enters quantity at Line Level for specified Item
@@ -1118,5 +1155,43 @@ module.exports={
         return requisitionBO;
     },
 
+    async clickOnAdhocApproverSubmitButton()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.ADHOC_APPROVER_SUBMIT_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable(I.getElement(iCheckout.ADHOC_APPROVER_SUBMIT_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
+        await I.click(I.getElement(iCheckout.ADHOC_APPROVER_SUBMIT_BUTTON));
+    },
 
+    async fetchWorkflowNodes()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.WORKFLOW_NODE),prop.DEFAULT_MEDIUM_WAIT);
+        let workflowNodes = await I.grabTextFrom(I.getElement(iCheckout.WORKFLOW_NODE));
+        logger.info("Workflow nodes are : "+workflowNodes);
+        return workflowNodes;
+    },
+
+    async createRFAReq()
+    {
+        let val = await I.grabTextFrom(I.getElement(iCheckout.I_M_DONE_BUTTON));
+        if(val.toString()===lmtVar.getLabel("NEXT"))
+        {
+            await this.clickOnImDoneButton();
+            await this.clickOnContinueButton();
+            await commonComponent.waitForLoadingSymbolNotDisplayed();
+            await I.waitForVisible(I.getElement(iCheckout.ADD_ADHOC_APPROVER_BUTTON),prop.DEFAULT_HIGH_WAIT);
+        }
+    },
+
+    async addAdhocApprover(approver,approvalAfter)
+    {
+        await this.clickOnAddAdhocApproverButton();
+        await I.waitForVisible(I.getElement(iCheckout.SELECT_APPROVER_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+        await this.fillApprover(approver);
+        await this.fillRequireApprovalAfter(approvalAfter);
+        await this.clickOnAdhocApproverSubmitButton();
+        await commonComponent.waitForLoadingSymbolNotDisplayed();
+        await I.waitForVisible(I.getElement(iCheckout.WORKFLOW_NODE),prop.DEFAULT_MEDIUM_WAIT);
+    },
+
+    
 };

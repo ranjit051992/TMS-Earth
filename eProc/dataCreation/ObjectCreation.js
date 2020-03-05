@@ -7,6 +7,7 @@ const logger = require("../../Framework/FrameworkUtilities/Logger/logger");
 const commonUtilities = require("../../Framework/FrameworkUtilities/CommonUtilities");
 const prop = global.confi_prop;
 const lmtVar = require("../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
+const guidedItemBo = require("../dataCreation/bo/GuidedItem")
 
 
 class ObjectCreation
@@ -109,6 +110,24 @@ class ObjectCreation
         return requisition;
     }
 
+    getObjectOfGuidedItem(index)
+    {
+        let guidedItem = new guidedItemBo();
+        guidedItem.itemName = "GuidedItem_"+faker.random.number(500000);
+        guidedItem.category = I.getData("ITEM_CATEGORY_FOR_SEARCHING");
+        guidedItem.partNumber = faker.random.number(10000);
+        guidedItem.description = "Description_"+faker.random.alphaNumeric(10);
+        guidedItem.type = I.getData("ITEM_TYPE");
+        guidedItem.receiveBillBy = I.getData("RECEIVE_BY");
+        guidedItem.sourcingStatus = I.getData("SOURCING_STATUS_OPTION");
+        guidedItem.quantity = faker.random.number(20);
+        guidedItem.uom = I.getData("ITEM_UOM");
+        guidedItem.price = faker.random.number(200);
+        guidedItem.currency = I.getData("ITEM_CURRENCY");
+        guidedItem.zeroPriceItem = true;
+        guidedItem.buyerReviewRequired = true;
+        return guidedItem;
+    }
     
 }
 

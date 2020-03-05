@@ -43,7 +43,7 @@ module.exports = {
     BASKET_SORT_ICON  : "OnlineStore/BasketPage/BASKET_SORT_ICON",
     BASKET_SORT_ORDER_LABEL  : "OnlineStore/BasketPage/BASKET_SORT_ORDER_LABEL",
 
-
+    CREATE_REQUEST_BUTTON : "OnlineStore/CREATE_REQUEST_BUTTON",
 
 };
 

@@ -249,7 +249,7 @@ Then("I should be able to view requisition with buyer as the buyer group which w
  });
 
 
- When("I select Ship to Another Address in  Shipping Details section at header level", async function(){
+When("I select Ship to Another Address in  Shipping Details section at header level", async function(){
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
     await checkoutImp.clickOnShipToAnotherAddressButton();
 });
@@ -302,8 +302,8 @@ Then("I should be able to see new Deliver address as the Ship to Another Address
         isEqual = true;
     }
 
-
     I.assertEqual((isEqual && this.isAddressSaved),true);
+
  });
 
 When("I modify the field quantity", async function(){
@@ -329,3 +329,51 @@ When("I fetch Requisition Name", async function()
     this.reqName = await I.grabAttributeFrom(I.getElement(iCheckoutObject.REQUISITION_NAME));
     logger.info("Fetched Requisition Name is "+this.reqName);
 });
+
+ When("I check Mark for adding approvers checkbox in workflow section", async function(){
+    await checkoutImp.selectMarkApproverCheckbox();
+
+});
+
+When("I click on Next button", async function(){
+    await checkoutImp.createRFAReq();
+});
+
+When("I should be add adhoc approver {string} after {string} on Ready for Approval page", async function(approver,approvalAfter){
+    approver = I.getData(approver);
+    approvalAfter = lmtVar.getLabel(approvalAfter);
+    await checkoutImp.addAdhocApprover(approver,approvalAfter);
+    this.adhocApprover = approver;
+});
+
+Then("I should be able to view the requisition with adhoc approver added in the workflow", async function(){
+
+    await reqListing.searchAndViewReqByName(this.reqName);
+    await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    let workflowNodes = await checkoutImp.fetchWorkflowNodes();
+    let isPresent = false;
+    for(let node of workflowNodes)
+    {
+        if(node.includes(lmtVar.getLabel("ADHOC_APPROVER")))
+        {
+            if(node.includes(this.adhocApprover.toString()))
+            {
+                isPresent = true;
+            }
+        }
+    }
+
+    logger.info("Adhoc approver present : "+isPresent);
+
+    I.assertEqual(isPresent,true);
+});
+
+Then("I should be able to view requisition with stock item", async function(){
+
+    await reqListing.searchAndViewReqByName(this.reqName);
+    await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    let isPresent = await viewReqImpl.checkLineItems(this.addedCartItems);
+    I.assertEqual(isPresent,true);
+
+});
+

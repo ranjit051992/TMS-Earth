@@ -55,4 +55,24 @@ module.exports = {
     },
 
     
+    async checkLineItems(items)
+    {
+        let isPresent = false;
+        let flag = 1;
+        for(let item of items)
+        {
+            let check = await commonComponent.waitForElementVisible("//span[contains(@title,'"+item+"')]");
+            if(!check)
+            {
+                flag = 1;
+            }
+        }
+
+        if(flag===1)
+        {
+            isPresent = true;
+        }
+
+        return isPresent;
+    },
 }
