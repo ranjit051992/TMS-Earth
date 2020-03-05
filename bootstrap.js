@@ -1,6 +1,6 @@
 const databaseOperations = require("./Framework/FrameworkUtilities/DatabaseOperations/databaseOperations");
 const lmtVar = require("./Framework/FrameworkUtilities/i18nUtil/readI18NProp")
-const logger = require("../dd-ui-automation/Framework/FrameworkUtilities/Logger/logger");
+const logger = require("./Framework/FrameworkUtilities/Logger/logger");
 module.exports = {
         bootstrap: async function () {
                 global.testData = await databaseOperations.getTestData();
