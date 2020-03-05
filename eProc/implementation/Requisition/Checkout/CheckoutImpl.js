@@ -935,13 +935,15 @@ module.exports = {
     },
 
     async selectMarkApproverCheckbox() {
+        await I.waitForElement(I.getElement(iCheckout.MARK_TO_ADD_APPROVERS_CHECKBOX));
+        await I.scrollIntoView(I.getElement(iCheckout.MARK_TO_ADD_APPROVERS_CHECKBOX));
         await I.waitForVisible(I.getElement(iCheckout.MARK_TO_ADD_APPROVERS_CHECKBOX), prop.DEFAULT_MEDIUM_WAIT);
         await I.click(I.getElement(iCheckout.MARK_TO_ADD_APPROVERS_CHECKBOX));
 
     },
 
     async selectMarkApproverCheckbox() {
-        await I.waitForVisible(I.getElement(iCheckout.MARK_TO_ADD_APPROVERS_CHECKBOX), prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForVisible(I.getElement(iCheckout.MARK_TO_ADD_APPROVERS_CHECKBOX));
         await I.click(I.getElement(iCheckout.MARK_TO_ADD_APPROVERS_CHECKBOX));
 
     },
@@ -949,6 +951,7 @@ module.exports = {
     async clickOnAddAdhocApproverButton()
     {
         await I.scrollIntoView(I.getElement(iCheckout.ADD_ADHOC_APPROVER_BUTTON));
+        await I.scrollPageToBottom();
         await I.waitForVisible(I.getElement(iCheckout.ADD_ADHOC_APPROVER_BUTTON));
         await I.waitForClickable(I.getElement(iCheckout.ADD_ADHOC_APPROVER_BUTTON));
         await I.click(I.getElement(iCheckout.ADD_ADHOC_APPROVER_BUTTON));
@@ -1091,7 +1094,7 @@ module.exports = {
     async fetchWorkflowNodes()
     {
         await I.scrollIntoView(I.getElement(iCheckout.WORKFLOW_NODE));
-        await I.waitForVisible(I.getElement(iCheckout.WORKFLOW_NODE),prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForVisible(I.getElement(iCheckout.WORKFLOW_NODE));
         let workflowNodes = await I.grabTextFrom(I.getElement(iCheckout.WORKFLOW_NODE));
         logger.info("Workflow nodes are : " + workflowNodes);
         return workflowNodes;

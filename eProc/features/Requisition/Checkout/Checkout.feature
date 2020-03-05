@@ -164,7 +164,7 @@ Feature: Checkout
   And I add Settlement Via
   And I add Required By Date
   And I add data in Cost Booking Details section at line level 
-  And I save it
+  # And I save it
   And I check Mark for adding approvers checkbox in workflow section
   And I click on Next button
   And I should be add adhoc approver "WORKFLOW_APPROVER" after "REQUIRE_APPROVAL_AFTER_REQUESTER" on Ready for Approval page
@@ -172,7 +172,7 @@ Feature: Checkout
 
   Then I should be able to view the requisition with adhoc approver added in the workflow
 
-@Non-COA @L1 
+@Non-COA @L1 @SEARCH_ITEM_STOCK
   Scenario: To verify that user is able to raise a request with stock items
   Given I am logged in eProc
 
@@ -180,10 +180,9 @@ Feature: Checkout
   And I checkout
   And I enter Requisition Name
   And I add Purchase Type
-  And I add Settlement Via
   And I add Required By Date
   And I add data in Cost Booking Details section at line level
-  And I save it
+  # And I save it
   And I submit requisition
 
   Then I should be able to view requisition with stock item
@@ -457,19 +456,6 @@ Feature: Checkout
 
 #   Then I should not be allowed to edit the requisition
 
-
-# @Non-COA @L1
-#   Scenario: To verify that user is able to raise a request with stock items
-#   Given I am logged in eProc
-
-#   When I add a stock item to cart
-#   And I checkout
-#   And I add Purchase Type
-#   And I add Required By Date
-#   And I add data in Cost Booking Details section at line level
-#   And I submit requisition
-
-#   Then I should be able to view requisition with stock item
 
 # @Non-COA @L1
 #   Scenario: To verify that user is able to raise a request with non stock items
@@ -747,23 +733,30 @@ Feature: Checkout
 
     Then I should be able see the status of requisition on the Listing page
 
-# @COA @L1
-#     Scenario: COA>>To verify that user is able to create any custom / One time delivery address while Check out and save it for future use
-#     Given I am logged in eProc
+@COA @L1
+    Scenario: COA>>To verify that user is able to create any custom / One time delivery address while Check out and save it for future use
+    Given I am logged in eProc
 
-#     When I add a catalog item to cart
-#     And I checkout
-#     And I add Purchase Type
-#     And I add Required By Date
-#     And I select Ship to Another Address in  Shipping Details section at header level
-#     And I Create New address
-#     And I check the Save checkbox
-#     And I create the address
-#     And I add data in Cost Booking Details section at line level 
-#     And I submit requisition
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I enter Requisition Name
+    And I add Purchase Type
+    And I add Settlement Via
+    And I add Required By Date
+    And I select Ship to Another Address in  Shipping Details section at header level
+    And I Create New address
+    And I check the Save checkbox
+    And I create the address
+    And I add data in Cost Booking Details section at line level
+    # And I save it 
+    And I submit requisition
 
-#     Then I should be able to see new Deliver address as the Ship to Another Address on view requisition 
-#     And I should be able to see the saved address on creating a new requisition
+    Then I should be able to see new Deliver address as the Ship to Another Address on view requisition 
+    And I navigate to OnlineStore
+    And I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I select Ship to Another Address in  Shipping Details section at header level
+    And I should be able to see the saved address on creating a new requisition
 
 @COA @L1
     Scenario: COA>>To verify that user is able to add taxes at line item level in a requisition for catalog item
@@ -877,18 +870,18 @@ Feature: Checkout
 
 #   Then I should be see that the field name is updated to Select Purchase Order.
 
-# @COA @L1
-#   Scenario: COA>>To verify that user is able to raise a request with stock items
-#   Given I am logged in eProc
+@COA @L1
+  Scenario: COA>>To verify that user is able to raise a request with stock items
+  Given I am logged in eProc
 
-#   When I add a stock item to cart
-#   And I checkout
-#   And I add Purchase Type
-#   And I add Required By Date
-#   And I add data in Cost Booking Details section at line level
-#   And I submit requisition
+  When I add "1" "SEARCH_ITEM_STOCK" items to cart
+  And I checkout
+  And I add Purchase Type
+  And I add Required By Date
+  And I add data in Cost Booking Details section at line level
+  And I submit requisition
 
-#   Then I should be able to view requisition with stock item
+  Then I should be able to view requisition with stock item
 
 # @COA @L1
 #   Scenario: COA>>To verify that user is able to raise a request with non stock items
@@ -918,20 +911,41 @@ Feature: Checkout
   And I should be able to Edit and submit the Draft requisition
   And I should be able to delete the requisition
 
-# @COA @L1
-#   Scenario: COA>>To verify that user is able to create requisition with assigned buyer as buyer group or single buyer
-#   Given I am logged in eProc
+@COA @L1  @buyer
 
-#   When I add a catalog item to cart
-#   And I checkout
-#   And I add Purchase Type
-#   And I add Required By Date
-#   And I select Buyer Group at line level in Buyer section
-#   And I add data in Cost Booking Details section at line level
-#   And I save it
-#   And I submit requisition
+  Scenario: To verify that user is able to create requisition with assigned buyer as buyer group
+  Given I am logged in eProc
 
-#   Then I should be able to view requisition with buyer as the buyer group which was assigned
+  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+  And I checkout
+  And I enter Requisition Name
+  And I add Purchase Type
+  And I add Settlement Via
+  And I add Required By Date
+  And I add data in Cost Booking Details section at line level
+  And I select "BUYER_GROUP" at line level in Buyer section
+  And I save it
+  And I submit requisition
+
+  Then I should be able to view requisition with buyer as the buyer group which was assigned
+
+@COA @L1  
+
+  Scenario: To verify that user is able to create requisition with assigned buyer as buyer
+  Given I am logged in eProc
+
+  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+  And I checkout
+  And I enter Requisition Name
+  And I add Purchase Type
+  And I add Settlement Via
+  And I add Required By Date
+  And I add data in Cost Booking Details section at line level
+  And I select buyer "BUYER_NAME" at line level in Buyer section
+  And I save it
+  And I submit requisition
+
+  Then I should be able to view requisition with buyer which was assigned
 
 # @COA @L1
 #   Scenario: COA>>To verify that user is able to create requisition with conditions of delivery address
@@ -949,21 +963,24 @@ Feature: Checkout
 #   Then I should be able to view the requisition with the delivery split
 #   And I should see that the address is updated
 
-# @COA @L1
-#   Scenario: COA>>To verify that user is able to add approver in requisition workflow if activity if assigned to him/her
-#   Given I am logged in eProc
+@COA @L1
+  Scenario: COA>>To verify that user is able to add approver in requisition workflow if activity if assigned to him/her
+  Given I am logged in eProc
 
-#   When I add a catalog item to cart
-#   And I checkout
-#   And I add Purchase Type
-#   And I add Required By Date
-#   And I add data in Cost Booking Details section at line level 
-#   And I check Mark for adding approvers checkbox in workflow section
-#   And I click on Next button
-#   And I should be add adhoc approver on Ready for Approval page
-#   And I submit requisition
+  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+  And I checkout
+  And I enter Requisition Name
+  And I add Purchase Type
+  And I add Settlement Via
+  And I add Required By Date
+  And I add data in Cost Booking Details section at line level 
+  # And I save it
+  And I check Mark for adding approvers checkbox in workflow section
+  And I click on Next button
+  And I should be add adhoc approver "WORKFLOW_APPROVER" after "REQUIRE_APPROVAL_AFTER_REQUESTER" on Ready for Approval page
+  And I submit requisition
 
-#   Then I should be able to view the requisition with adhoc approver added in the workflow
+  Then I should be able to view the requisition with adhoc approver added in the workflow
 
 # @COA @L1
 #   Scenario: COA>>To verify that user is  able to close requisition
