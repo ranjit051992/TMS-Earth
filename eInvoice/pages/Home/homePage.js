@@ -2,7 +2,7 @@
 const {I} = inject();
 module.exports = {
     menuBtn: ".menu-btn",
-    listing: "dew-listing",
+    //listing: "dew-listing",
     selectModule(productName,moduleName) {
         I.click(this.menuBtn);
         I.wait(2);

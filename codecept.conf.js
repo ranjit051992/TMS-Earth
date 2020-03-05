@@ -14,6 +14,11 @@ exports.config = {
       restart: prop.restart,
       windowSize: prop.windowSize,
       waitForTimeout: 30000,
+      smartWait: 5000,
+      timeouts: {
+        "script": 10000,
+        "page load": 10000
+      },
       default_low_wait: prop.DEFAULT_LOW_WAIT,
       default_medium_wait: prop.DEFAULT_MEDIUM_WAIT,
       default_high_wait: prop.DEFAULT_HIGH_WAIT,
