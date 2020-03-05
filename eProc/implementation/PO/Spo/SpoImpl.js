@@ -350,6 +350,8 @@ module.exports = {
 
         spo = await this.fillLineItems(spo);
 
+        spo = await this.storePoAmount(spo);
+
         spo = await this.fillTaxes(spo);
 
         spo = await this.fillAdditionalDetails(spo);
@@ -610,5 +612,13 @@ module.exports = {
             let status = await poListingImpl.getPoStatus();
             I.assertEqual(status,lmtVar.getLabel("IN_APPROVAL_STATUS"));
         }
+    },
+
+    async storePoAmount(spo) {
+        I.scrollIntoView(I.getElement(iSpoObject.TOTAL_ORDER_AMOUNT));
+        I.waitForVisible(I.getElement(iSpoObject.TOTAL_ORDER_AMOUNT));
+        let PoAmount = await I.grabTextFrom(I.getElement(iSpoObject.TOTAL_ORDER_AMOUNT));
+        spo.setPoAmount(PoAmount);
+        return spo;
     }
 }

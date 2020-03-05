@@ -92,4 +92,6 @@ module.exports= {
     REMOVE_ALL_TAXES_BUTTON: "Checkout/ItemDetails/Taxes/REMOVE_ALL_TAXES_BUTTON",
 
 
+    // Header Level details
+    REQUISITION_AMOUNT: "Checkout/REQUISITION_AMOUNT",
 };

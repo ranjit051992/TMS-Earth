@@ -11,6 +11,8 @@ const iCart = require("../Cart/CartObject");
 const onlineStoreImpl = require("../OnlineStore/OnlineStoreImpl");
 const faker = require("faker");
 const poListingObject = require("../../PO/PoListing/PoListingObject");
+const reqListingImpl = require("../../Requisition/RequisitionListing/RequisitionListingImpl");
+const iApprovalObject = require("../../Approval/ApprovalObject");
 const coaImpl = require("../../Coa/CoaImpl");
 
 module.exports={
@@ -37,13 +39,15 @@ module.exports={
         
         requisitionBO = await this.fillCostAllocation(requisitionBO);
 
-        requisitionBO = await this. fillItemDetails(requisitionBO);
+        requisitionBO = await this.fillItemDetails(requisitionBO);
+
 
         if(requisitionBO.nextAction === lmtVar.getLabel("SUBMIT"))
         {
             await this.submitRequisition();
         }
 
+     
         else if(requisitionBO.nextAction === lmtVar.getLabel("SAVE_AS_DRAFT"))
         {
           await this.saveRequisitionAsDraft();
@@ -297,7 +301,8 @@ module.exports={
      * clickOnPurchaseTypeYesButton: Clicks on Yes Button on Confirm Pop after selecting PurchaseType
      */
     async clickOnPurchaseTypeYesButton()
-    {
+    {   
+        I.waitForVisible(I.getElement(iCheckout.PURCHASE_TYPE_CONFIRM_POPUP_YES_BUTTON));
         await  I.click(I.getElement(iCheckout.PURCHASE_TYPE_CONFIRM_POPUP_YES_BUTTON));
         logger.info("Clicked on Purchase Type YES button");
     },
@@ -796,7 +801,13 @@ module.exports={
         //     commonComponent.waitForLoadingSymbolNotDisplayed();
         //     I.wait(prop.DEFAULT_HIGH_WAIT);
         // }
-
+        await I.scrollIntoView(I.getElement(iCheckout.REQUISITION_AMOUNT));
+        await I.waitForVisible(I.getElement(iCheckout.REQUISITION_AMOUNT));
+        let reqAmount = await I.grabTextFrom(I.getElement(iCheckout.REQUISITION_AMOUNT));
+        requisitionBO.setreqAmount(reqAmount.toString());
+        logger.info(`Req Amount is ${reqAmount.toString()}`);
+       
+        
         return requisitionBO;
 
     },
@@ -906,7 +917,6 @@ module.exports={
         await commonComponent.waitForLoadingSymbolNotDisplayed();
         await this.isRequisitionSubmitted();
     },
-
 
     async fillShipToAnotherAddress(addressName)
     {
@@ -1118,5 +1128,24 @@ module.exports={
         return requisitionBO;
     },
 
+    async createMultipleReqs(noOfReqs, noOfItems, itemType) {
+        let reqArray = new Array();
+        for (let i=0; i<noOfReqs; i++)
+        {
+        reqArray[i] = await objectCreation.getObjectOfRequisition(noOfItems, itemType);
+        reqArray[i] = await this.createRequisitionFlow(reqArray[i]);
+        }
+        return reqArray;
+    },
+
+    async checkMultipleReqStatus(reqArray) {
+        I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
+        for (let i=0; i<reqArray.length; i++) {
+            reqArray[i] = await commonComponent.searchDocOnListing(reqArray[i].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            let status = await reqListingImpl.getRequisitionStatus();
+            I.assertEqual(status, lmtVar.getLabel("IN_APPROVAL_STATUS"));
+            logger.info(`${status} matches with ${lmtVar.getLabel("IN_APPROVAL_STATUS")}`);
+        }
+    },
 
 };
