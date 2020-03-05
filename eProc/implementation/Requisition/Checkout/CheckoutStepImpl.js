@@ -180,9 +180,9 @@ Then("I should be able to see the attachment which is added", async function(){
  });
 
 Given("I link Purchase Order {string} in the Select Purchase Order field", async function(po){
-    let poNumber = this.spo.poNumber;
+    //let poNumber = this.spo.poNumber;
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ADDITIONAL_DETAILS_SECTION"));
-    await checkoutImp.selectPurchaseOrder(poNumber.toString());
+    await checkoutImp.selectPurchaseOrder(po);
     await checkoutImp.clickOnSelectedPOContinueButton();
     this.purchaseOrder = await checkoutImp.getSelectedPurchaseOrder();;
 });
@@ -351,7 +351,6 @@ When("I fetch Requisition Name", async function()
 
  When("I check Mark for adding approvers checkbox in workflow section", async function(){
     await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_WORKFLOW_SECTION"));
-
     await checkoutImp.selectMarkApproverCheckbox();
 
 });
@@ -370,7 +369,8 @@ When("I should be add adhoc approver {string} after {string} on Ready for Approv
 Then("I should be able to view the requisition with adhoc approver added in the workflow", async function(){
 
     await reqListing.searchAndViewReqByName(this.reqName);
-    await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    //await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+   // await I.scrollPageToBottom();
     let workflowNodes = await checkoutImp.fetchWorkflowNodes();
     let isPresent = false;
     for(let node of workflowNodes)
