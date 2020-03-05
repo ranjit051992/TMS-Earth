@@ -19,3 +19,6 @@ Given('I navigate to workflow module', function () {
 Given('I navigate to workflow module', function () {
     homePage.selectModule('eInvoice','eForm');
 });
+Given('I navigates to Recurring Contracts module', function () {
+    homePage.selectModule('eInvoice','Recurring Contracts');
+});
