@@ -1,7 +1,7 @@
 // in this file you can append custom step methods to 'I' object
 const { I } = inject();
 var randomstring = require("randomstring");
-const logger = require("../dd-ui-automation/Framework/FrameworkUtilities/Logger/logger");
+const logger = require("./Framework/FrameworkUtilities/Logger/logger");
 module.exports = function () {
   return actor({
 

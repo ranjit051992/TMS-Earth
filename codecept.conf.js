@@ -37,20 +37,19 @@ exports.config = {
   include: {
     I: prop.stepFilePath,
   },
-  multiple: {
-    parallel: {
-      // Splits tests into 2 chunks
-      chunks: 5
-    },
-     sanityCases: {
-      // Splits tests into 2 chunks
-      chunks: 2
-    }
+   multiple: {
+        sanityCases: {
+          // Splits tests into 2 chunks
+          chunks: 2
+        }
+      
+      },
+    gherkin: {
+     //features: './iRequest/features/**/**.feature',
+     features: './iRequest/features/GuideMe/GuideMe.feature',
+      steps: './iRequest/implementation/**/**.js'
   },
-  gherkin: {
-    features: "./eInvoice/features/RecurringContract/**.feature",
-    steps: "./eInvoice/implementation/**/**.js"
-}, 
+ 
   name: prop.projectName,
   plugins: {
     retryFailedStep: {
