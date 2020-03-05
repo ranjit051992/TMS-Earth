@@ -1,6 +1,6 @@
 Feature: Approval
 
-@L1 
+@L1 @Non-COA
     Scenario: To verify Requisition details are  properly displayed in approval listing
 
     Given I am logged in eProc
@@ -15,7 +15,7 @@ Feature: Approval
     And I see the same Amount to be approved
     And I see the same status of Requisition
 
-@L1
+@L1 @Non-COA
     Scenario: To verify Purchase Order details are properly displayed in approval listing
 
     Given I am logged in eProc

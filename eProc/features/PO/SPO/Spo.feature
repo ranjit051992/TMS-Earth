@@ -13,7 +13,7 @@ Feature: Spo
   # And i search po by descr/iption 
 
 
-@Non_COA @L1 @87 @autox
+@Non-COA @L1 @87 @autox
   Scenario: To verify that user is able to amend an existing PO to add more item
 
   Given I am logged in eProc
@@ -30,7 +30,7 @@ Feature: Spo
   Then Item should be added "ITEM_NAME_FOR_SEARCHING[1]" at index 2
 
 
-@Non_COA @L1 @89 @autox
+@Non-COA @L1 @89 @autox
   Scenario: To verify that user is able to change the delivery address on PO amend
 
   Given I am logged in eProc
@@ -52,7 +52,7 @@ Feature: Spo
 Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 
 
-@Non_COA @L1 @90 @autox
+@Non-COA @L1 @90 @autox
   Scenario: To verify that user is able to recall a PO after it is submitted
 
   Given I am logged in eProc
@@ -82,7 +82,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
   Then PO status should be draft
 
 
-@Non_COA @L1 @91 @autox
+@Non-COA @L1 @91 @autox
   Scenario: To verify that user is able to change the payment terms on PO amend
 
   Given I am logged in eProc
@@ -101,7 +101,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
   Then "PAYMENT_TERMS[1]" payment term should be displayed
 
 
-@Non_COA @L1 @92 @autox
+@Non-COA @L1 @92 @autox
   Scenario: To verify that user is able to close a SPO
 
   Given I am logged in eProc
@@ -118,7 +118,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
   Then I should be able to see the PO in closed status
 
 
-@Non_COA @L1 @94 @autox
+@Non-COA @L1 @94 @autox
   Scenario: To verify that user is able to cancel a SPO 
 
   Given I am logged in eProc
@@ -132,7 +132,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
   Then I should be able to see the PO in Cancelled status
 
 
-@Non_COA @L1 @106 @autox
+@Non-COA @L1 @106 @autox
   Scenario: To verify that user is able to add item for the PO in draft state
 
   Given I am logged in eProc
@@ -160,7 +160,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
   Then Item should be added "ITEM_NAME_FOR_SEARCHING[1]" at index 2
 
 
-@Non_COA @L1 @108 @autox
+@Non-COA @L1 @108 @autox
   Scenario: To verify remind approver action for SPO
 
   Given I am logged in eProc 
@@ -172,7 +172,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
   Then I should be able to send reminder to the approver
 
 
-# @Non_COA @L2     
+# @Non-COA @L2     
 # Scenario: To verify that user is able to create a SPO with single & multiple line items and with attachments in Zycus eproc
 
 #   Given I am logged in eProc
@@ -192,7 +192,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then I should be able to view the SPO with multiple items and attachments
 
 
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: To verify that user is able to create a Req_PO with single and multiple line items and with attachments in Zycus eproc
 
 #   Given I am logged in eProc 
@@ -205,7 +205,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then I should be able to see all the added items and attachments
 
 
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: To verify that user is able to amend an existing PO to add more item via requisition
 
 #   Given I am logged in eProc
@@ -219,7 +219,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then I should be able to see the new item added in the amended version.
 
 
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: To verify that user is able to close a Req_PO
 
 #   Given I am logged in eProc
@@ -232,7 +232,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then I should be able to see the PO in closed status
 
 
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: To verify that user is able to cancel a Req_PO
 
 #   Given I am logged in eProc
@@ -246,7 +246,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then I should be able to see the PO in Cancelled status
 
 
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: To verify that user is able to cancel a BPO
 
 #   Given I am logged in eProc
@@ -259,7 +259,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then I should be able to see the BPO in Cancelled status
 
  
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: To verify that user is able to create a blanket PO with attachments in Zycus P2P
 
 #   Given I am logged in eProc
@@ -281,7 +281,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then I should be able to view the BPO with multiple items and attachments 
 
 
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: To verify that user is able to choose a start date and an End Date
 
 #   Given I am logged in eProc
@@ -301,7 +301,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then I should be able to view the BPO with Validity To and From dates selected
 
   
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: To verify that user is able to choose a spend limit
 
 #   Given I am logged in eProc
@@ -323,7 +323,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then I should be able to view the BPO with Order Value entered
 
 
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: To verify that user is able to create PO releases against Blanket PO
 
 #   Given I am logged in eProc
@@ -337,7 +337,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then I should be able to view the details filled in Release (Supplier, item name, item price, GL Account)
 
 
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: To verify that user is able to view all the released orders generated against a  BPO on a new tab called "Release Orders"
 
 #   Given I am logged in eProc
@@ -350,7 +350,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then the Release created against the BPO should be listed there
 
 
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: To verify that the PO Line item numbering when linking a new PR to an Amended PO should be unique (per item) with respect to all the versions of a PO existing in the system
 
 #   Given I am logged in eProc
@@ -363,7 +363,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then I should be able to see the new item with unique line item number
 
 
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: To verify that user is able to tag a free text item to a particular Blanket PO
 
 #   Given I am logged in eProc
@@ -383,7 +383,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then I should be able to view the BPO with free text item added ot it
 
 
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: Taxes and Freight and other charges to get apportioned to the line items when setting is set to Yes
 
 #   Given I am logged into CMD
@@ -404,7 +404,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then I should get apportioned amount assigned for total cost booking amount
 
 
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: Taxes and Freight and other charges to get apportioned to the line items when setting is set to NO
 
 #   Given I am logged into CMD
@@ -425,7 +425,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then I should not get apportioned amount assigned for total cost booking amount
 
 
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: To verify that user is able to add item for the PO in draft state
 
 #   Given I am logged in eProc 
@@ -439,7 +439,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then I should be able to see all the added items and attachments
 
 
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: To verify remind approver for req to PO
 
 #   Given I am logged in eProc 
@@ -453,7 +453,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then I should be able to send reminder to the approver
 
 
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: To verify the create invoice action within SPO
 
 #   Given I am logged in eProc 
@@ -470,7 +470,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then I should see the status of the PO to Fully invoiced
 
  
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: To verify the cancel action on invoice within SPO
 
 #   Given I am logged in eProc 
@@ -490,7 +490,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then I should be able to see the status of invoice as Cancelled
 
 
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: To verify the close action on invoice within SPO
 
 #   Given I am logged in eProc 
@@ -510,7 +510,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then I should be able to see the status of invoice as Closed
 
 
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: To verify the create invoice action within Req_PO
 
 #   Given I am logged in eProc 
@@ -529,7 +529,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then I should be able to see the status of PO as Fully invoiced
 
  
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: To verify the cancel action on invoice within Req_PO
 
 #   Given I am logged in eProc 
@@ -551,7 +551,7 @@ Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 #   Then I should be able to see the status of invoice as Cancelled
 
 
-# @Non_COA @L1
+# @Non-COA @L1
 #   Scenario: To verify the close action on invoice within Req_PO
 
 #   Given I am logged in eProc 

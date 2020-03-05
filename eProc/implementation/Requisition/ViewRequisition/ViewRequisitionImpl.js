@@ -34,9 +34,8 @@ module.exports = {
         await I.waitForVisible(taxLinkPath);
         await I.click(taxLinkPath);
         logger.info("Clicked on Taxes Link");
-
-        let taxDetailsMap = new Map();
-
+        //let taxDetailsMap = new Map();
+        let taxDetailsArray = new Array();
         let noOfHeaders = await I.grabNumberOfVisibleElements(I.getElement(iViewReqObject.TAXES_HEADER_COLUMN));
         //let noOfValus = await I.grabNumberOfVisibleElements(I.getElement(iViewReqObject.TAXES_VALUE_COLUMN));
         let i=1;
@@ -44,14 +43,15 @@ module.exports = {
         {
             let headerXpath = (I.getElement(iViewReqObject.TAXES_HEADER_COLUMN)+"["+i+"]");
             let colValueXpath = (I.getElement(iViewReqObject.TAXES_VALUE_COLUMN)+"["+i+"]");
-
             let headerValue = await I.grabTextFrom(headerXpath);
             let colValue = await I.grabTextFrom(colValueXpath);
             logger.info("headerValue "+headerValue+" "+"colValue "+colValue);
-            taxDetailsMap.set(headerValue, colValue);
+           // taxDetailsMap.set(headerValue, colValue);
+           taxDetailsArray.push(colValue);
             i++;
         }
-        return taxDetailsMap;
+       // return taxDetailsMap;
+       return taxDetailsArray;
     },
 
     

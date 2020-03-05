@@ -51,7 +51,7 @@ module.exports = {
         I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         await commonKeywordImpl.searchDocOnListing(docNumber, searchBy);
         await this.clickOnApproveAction();
-        await this.fillApprovalCommrovalComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
+        await this.fillApprovalComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
         await this.clickOnApproveSpoPopupApproveButton();
     },
     async checkPOApprovalStatus() {
