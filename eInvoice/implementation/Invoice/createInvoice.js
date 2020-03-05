@@ -1,15 +1,15 @@
-const { I,randomNumber } = inject();
+const { I } = inject();
 const commonElements = require("../../pages/Common/commonElements");
 const invoiceHomePage = require("../../pages/Invoice/invoiceHomePage");
 const addInvoicePage = require("../../pages/Invoice/addInvoicePage");
 const createInvoicePage = require("../../pages/Invoice/createInvoicePage");
 let NON_PO="NON_PO"
+let randomNumber=commonElements.getRandomNumber(5);
 
 Given('I add non po invoice details', function () {
   invoiceHomePage.clickOnAddInvoiceBtn();
   addInvoicePage.selectNonPoInvoice();
   commonElements.selectSupplier(global.testData.get("SUPPLIER"));
-  var randomNumber=commonElements.getRandomNumber(5);
   addInvoicePage.enterInvocieNumber(randomNumber);
   addInvoicePage.selectInvoiceDate();
   commonElements.clickOnNextBtn();
@@ -50,6 +50,6 @@ Then('I should be able to see the created invoice on invoice listing', function 
 });
 
 Given('I create an invoice', function () {
-  createInvoicePage.createInvoice(NON_PO)
+  createInvoicePage.createInvoice(NON_PO,randomNumber)
 });
 
