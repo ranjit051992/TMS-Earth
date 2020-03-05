@@ -103,15 +103,114 @@ module.exports = {
     {
         await I.waitForVisible(I.getElement(iGuided.ADD_ITEM_SERVICE_BUTTON));
         await I.waitForClickable(I.getElement(iGuided.ADD_ITEM_SERVICE_BUTTON));
-        await I.click(I.getElement(iGuided.ADD_ITEM_SERVICE_BUTTON),itemName);
+        await I.click(I.getElement(iGuided.ADD_ITEM_SERVICE_BUTTON));
     },
 
-    async fillCategory()
+    async fillCategory(category)
     {
-        await I.waitForVisible(I.getElement(iGuided.ADD_ITEM_SERVICE_BUTTON));
-        await I.waitForClickable(I.getElement(iGuided.ADD_ITEM_SERVICE_BUTTON));
-        await I.click(I.getElement(iGuided.ADD_ITEM_SERVICE_BUTTON),itemName);
-    }
+        await commonKeywordImpl.searchAndSelectFromDropdown(I.getElement(iGuided.CATEGORY_TEXTBOX),category,"//span[contains(text(),'"+category+"')]");
+    },
 
+    async clickOnGoodsRadioButton()
+    {
+        await I.waitForVisible(I.getElement(iGuided.ITEM_TYPE_GOODS_RADIO_BUTTON));
+        await I.waitForClickable(I.getElement(iGuided.ITEM_TYPE_GOODS_RADIO_BUTTON));
+        await I.click(I.getElement(iGuided.ITEM_TYPE_GOODS_RADIO_BUTTON));
+    },
+
+    async clickOnServiceRadioButton()
+    {
+        await I.waitForVisible(I.getElement(iGuided.ITEM_TYPE_SERVICE_RADIO_BUTTON));
+        await I.waitForClickable(I.getElement(iGuided.ITEM_TYPE_SERVICE_RADIO_BUTTON));
+        await I.click(I.getElement(iGuided.ITEM_TYPE_SERVICE_RADIO_BUTTON));
+    },
+
+    async clickOnQuantityRadioButton()
+    {
+        await I.waitForVisible(I.getElement(iGuided.RECEIVE_BY_QUANTITY_RADIO_BUTTON));
+        await I.waitForClickable(I.getElement(iGuided.RECEIVE_BY_QUANTITY_RADIO_BUTTON));
+        await I.click(I.getElement(iGuided.RECEIVE_BY_QUANTITY_RADIO_BUTTON));
+    },
+
+    async clickOnAmountRadioButton()
+    {
+        await I.waitForVisible(I.getElement(iGuided.RECEIVE_BY_AMOUNT_RADIO_BUTTON));
+        await I.waitForClickable(I.getElement(iGuided.RECEIVE_BY_AMOUNT_RADIO_BUTTON));
+        await I.click(I.getElement(iGuided.RECEIVE_BY_AMOUNT_RADIO_BUTTON));
+    },
+
+    async clickOnQuotedBySupplierRadioButton()
+    {
+        await I.waitForVisible(I.getElement(iGuided.QUOTED_BY_SUPPLIER_RADIO_BUTTON));
+        await I.waitForClickable(I.getElement(iGuided.QUOTED_BY_SUPPLIER_RADIO_BUTTON));
+        await I.click(I.getElement(iGuided.QUOTED_BY_SUPPLIER_RADIO_BUTTON));
+    },
+
+    async clickOnEstimatedPriceRadioButton()
+    {
+        await I.waitForVisible(I.getElement(iGuided.ESTIMATED_PRICE_RADIO_BUTTON));
+        await I.waitForClickable(I.getElement(iGuided.ESTIMATED_PRICE_RADIO_BUTTON));
+        await I.click(I.getElement(iGuided.ESTIMATED_PRICE_RADIO_BUTTON));
+    },
+
+    async clickOnNeedAQuoteRadioButton()
+    {
+        await I.waitForVisible(I.getElement(iGuided.NEED_A_QUOTE_RADIO_BUTTON));
+        await I.waitForClickable(I.getElement(iGuided.NEED_A_QUOTE_RADIO_BUTTON));
+        await I.click(I.getElement(iGuided.NEED_A_QUOTE_RADIO_BUTTON));
+    },
+
+    async fillQuantity(quantity)
+    {
+        await I.waitForVisible(I.getElement(iGuided.QUANTITY_TEXTBOX));
+        await I.waitForClickable(I.getElement(iGuided.QUANTITY_TEXTBOX));
+        await I.clearField(I.getElement(iGuided.QUANTITY_TEXTBOX));
+        await I.fillField(I.getElement(iGuided.QUANTITY_TEXTBOX),quantity);
+    },
+
+    async fillUom(uom)
+    {
+        await commonKeywordImpl.searchAndSelectFromDropdown(I.getElement(iGuided.UOM_TEXTBOX),uom,"//span[contains(text(),'"+uom+"')]");
+    },
+
+    async fillPrice(price)
+    {
+        await I.waitForVisible(I.getElement(iGuided.PRICE_TEXTBOX));
+        await I.waitForClickable(I.getElement(iGuided.PRICE_TEXTBOX));
+        await I.clearField(I.getElement(iGuided.PRICE_TEXTBOX));
+        await I.fillField(I.getElement(iGuided.PRICE_TEXTBOX),price);
+    },
+
+    async fillCurrency(currency)
+    {
+        await commonKeywordImpl.searchAndSelectFromDropdown(I.getElement(iGuided.CURRENCY_TEXTBOX),currency,"//span[contains(text(),'"+currency+"')]");
+    },
+
+    async clickOnZeroPriceItemCheckbox()
+    {
+        await I.waitForVisible(I.getElement(iGuided.ZERO_PRICE_ITEM_CHECKBOX));
+        await I.click(I.getElement(iGuided.ZERO_PRICE_ITEM_CHECKBOX));
+    },
+
+    async clickOnBuyerReviewYesRadioButton()
+    {
+        await I.waitForVisible(I.getElement(iGuided.BUYER_REVIEW_REQUIRED_YES_CHECKBOX));
+        await I.waitForClickable(I.getElement(iGuided.ESTIMATED_PRICE_RADIO_BUTTON));
+        await I.click(I.getElement(iGuided.ESTIMATED_PRICE_RADIO_BUTTON));
+    },
+
+    async clickOnBuyerReviewNoRadioButton()
+    {
+        await I.waitForVisible(I.getElement(iGuided.NEED_A_QUOTE_RADIO_BUTTON));
+        await I.waitForClickable(I.getElement(iGuided.NEED_A_QUOTE_RADIO_BUTTON));
+        await I.click(I.getElement(iGuided.NEED_A_QUOTE_RADIO_BUTTON));
+    },
+
+    async clickOnDoneButton()
+    {
+        await I.waitForVisible(I.getElement(iGuided.DONE_BUTTON));
+        await I.waitForClickable(I.getElement(iGuided.DONE_BUTTON));
+        await I.click(I.getElement(iGuided.DONE_BUTTON));
+    },
 
 };

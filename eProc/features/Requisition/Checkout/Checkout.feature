@@ -110,10 +110,11 @@ Feature: Checkout
 
   Scenario: To verify that the 'Select Purchase Order' field
   Given I am logged in eProc
-  And I Create Standard po with 1 "ITEM_NAME_FOR_SEARCHING" item
+  #And I Create Standard po with 1 "ITEM_NAME_FOR_SEARCHING" item
+  #And I navigate to OnlineStore
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
-  And I link Purchase Order " " in the Select Purchase Order field
+  And I link Purchase Order "blue sanity" in the Select Purchase Order field
 
   Then I should be see that the field name is updated to Select Purchase Order
 
@@ -336,19 +337,23 @@ Feature: Checkout
 #     Then I should be able to see Required by date should be auto calculated as per lead time defined in the catalog setting in this page
 
 
-# @Non-COA @L1
-#     Scenario: To verify that user is able to change the default Delivery & Bill to address in the requisition.
-#     Given I am logged in eProc
+@Non-COA @L1 @addr
+    Scenario: To verify that user is able to change the default Delivery & Bill to address in the requisition.
+    Given I am logged in eProc
 
-#     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
-#     And I checkout
-#     And I add Purchase Type
-#     And I add Required By Date
-#     And I select Ship to Another Address in  Shipping Details section at header level
-#     And I add data in Cost Booking Details section at line level 
-#     And I submit requisition
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I enter Requisition Name
+    And I add Purchase Type
+    And I add Settlement Via
+    And I add Required By Date
+    And I select Ship to Another Address in  Shipping Details section at header level
+    And I select any existing address as shipping address
+    And I add data in Cost Booking Details section at line level 
+    And I save it
+    And I submit requisition
 
-#     Then I should be able to see Deliver address as the Ship to Another Address on view requisition 
+    Then I should be able to see Deliver address as the Ship to Another Address on view requisition 
 
 
 @Non-COA @L1
