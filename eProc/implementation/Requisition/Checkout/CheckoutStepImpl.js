@@ -13,8 +13,9 @@ const iApprovalObject = require("../../Approval/ApprovalObject");
 const coaImp = require("../../Coa/CoaImpl");
 
 When("I create requisition with {int} {string} item", async function(noOfItems, itemType) {
-    let reqBo= await objectCreation.getObjectOfRequisition(noOfItems, itemType);
-    this.reqBO = await checkoutImp.createRequisitionFlow(reqBo);
+    this.reqBO= await objectCreation.getObjectOfRequisition(noOfItems, itemType);
+    this.reqBO = await checkoutImp.createRequisitionFlow(this.reqBO);
+    //this.reqBO.reqNumber = "37480000";
 });
 
 When("I edit Cost Allocation section at header level", async function(){

@@ -1,6 +1,6 @@
 Feature: Approval
 
-@L1 @Run
+@L1 
     Scenario: To verify Requisition details are  properly displayed in approval listing
 
     Given I am logged in eProc
@@ -46,32 +46,32 @@ Feature: Approval
 #     Then I should get all details, same as what entered while creating that BPO
 
 
-@L1
-    Scenario: To verify that user is able to approve single/multiple Requisition
+# @L1
+#     Scenario: To verify that user is able to approve single/multiple Requisition
 
-    Given I am logged in eProc
-    And I Create 3 requisitions with 1 "Catalog" item
-    And I have 3 Requisitions In Approval status
-    And I am on requisition approval listing page
+#     Given I am logged in eProc
+#     And I Create 3 requisitions with 1 "Catalog" item
+#     And I have 3 Requisitions In Approval status
+#     And I am on requisition approval listing page
 
-    When I Approve 1 Requisition
-    And I Approve 2 Requisitions 
+#     When I Approve 1 Requisition
+#     And I Approve 2 Requisitions 
 
-    Then I should be able to see the status of all Requisitions as Approved
+#     Then I should be able to see the status of all Requisitions as Approved
 
 
-@L1
-    Scenario: To verify that user is able to reject single/multiple Requisition
+# @L1
+#     Scenario: To verify that user is able to reject single/multiple Requisition
 
-    Given I am logged in eProc 
-    And I Create 3 requisitions with 1 "Catalog" item
-    And I have 3 Requisitions In Approval status
-    And I am on requisition approval listing page
+#     Given I am logged in eProc 
+#     And I Create 3 requisitions with 1 "Catalog" item
+#     And I have 3 Requisitions In Approval status
+#     And I am on requisition approval listing page
 
-    When I Reject 1 Requisition
-    And I Reject 2 Requisitions 
+#     When I Reject 1 Requisition
+#     And I Reject 2 Requisitions 
     
-    Then I should be able to see the status of all Requisitions as Rejected
+#     Then I should be able to see the status of all Requisitions as Rejected
 
 
 # @L1
