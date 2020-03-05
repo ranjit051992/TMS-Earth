@@ -1132,8 +1132,11 @@ module.exports={
         let reqArray = new Array();
         for (let i=0; i<noOfReqs; i++)
         {
-        reqArray[i] = await objectCreation.getObjectOfRequisition(noOfItems, itemType);
-        reqArray[i] = await this.createRequisitionFlow(reqArray[i]);
+        let reqBO = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
+        reqBO = await this.createRequisitionFlow(reqBO);
+        reqArray.push(reqBO);
+        //I.waitForVisible();
+        I.amOnPage(prop.DDS_OnlineStore_Url);
         }
         return reqArray;
     },
