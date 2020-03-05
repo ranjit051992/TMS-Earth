@@ -108,7 +108,6 @@ module.exports={
 
          await I.waitForVisible(I.getElement(iCheckout.ON_BEHALF_OF), prop.DEFAULT_MEDIUM_WAIT);
          await I.waitForClickable(I.getElement(iCheckout.ON_BEHALF_OF), prop.DEFAULT_MEDIUM_WAIT);
-         logger.info('On Behalf of Shan :'+onBehalfOf);
         let suggXpath = `//p[contains(text(),'${onBehalfOf}')]`;
         onBehalfOf = await commonComponent.searchAndSelectFromDropdown(I.getElement(iCheckout.ON_BEHALF_OF), onBehalfOf, suggXpath);
         //onBehalfOf = await I.grabTextFrom(I.getElement(iCheckout.ON_BEHALF_OF));
@@ -1112,9 +1111,7 @@ module.exports={
         await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
         await this.clickOnCostBookingLink(requisitionBO.itemName);
         requisitionBO = this.fillTaxDetails(requisitionBO);
-        //await checkoutImp.clickOnCostBookingSaveButton();
-        //await commonComponent.waitForLoadingSymbolNotDisplayed();
-
+        
         return requisitionBO;
     },
 

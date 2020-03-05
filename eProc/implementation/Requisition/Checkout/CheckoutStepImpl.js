@@ -127,8 +127,8 @@ Then("I should see on line level, in Shipping Details and Asset Tagging section 
 When("I add data in Cost Booking Details section at line level", async function(){
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
     await checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);
-    await checkoutImp.fillGLAccount(this.reqBO.glAccount);
-    //await coaImp.fillCoaDetails();
+    //await checkoutImp.fillGLAccount(this.reqBO.glAccount);
+    await coaImp.fillCoaDetails();
 });
 
 /**
@@ -313,19 +313,18 @@ When("I modify the field quantity", async function(){
     logger.info("Modified quantity is---> "+this.updateQuantity);
 });
 
-When("I add Taxes", async function(){
-    this.reqBO = await checkoutImp.fillTaxDetailsAtLineLevel(this.reqBO);
-    await checkoutImp.clickOnCostBookingSaveButton();
-    await commonComponent.waitForLoadingSymbolNotDisplayed();
-});
+// When("I add Taxes", async function(){
+//     this.reqBO = await checkoutImp.fillTaxDetailsAtLineLevel(this.reqBO);
+//     await checkoutImp.clickOnCostBookingSaveButton();
+//     await commonComponent.waitForLoadingSymbolNotDisplayed();
+// });
 
 When("I add Tax Details at line level", async function(){
-    await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_TAXES_TAB"));
-    this.reqBO = await checkoutImp.fillTaxDetails(this.reqBO);
+    this.reqBO = await checkoutImp.fillTaxDetailsAtLineLevel(this.reqBO);
 });
 
 When("I fetch Requisition Name", async function()
 {
-    this.reqName = await I.grabAttributeFrom(I.getElement(iCheckoutObject.REQUISITION_NAME));
+    this.reqName = await I.grabAttributeFrom(I.getElement(iCheckoutObject.REQUISITION_NAME), "value");
     logger.info("Fetched Requisition Name is "+this.reqName);
 });

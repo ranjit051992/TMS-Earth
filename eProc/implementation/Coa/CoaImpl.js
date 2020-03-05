@@ -35,7 +35,7 @@ module.exports = {
         logger.info("Coa form filled successfully");
     },
     async fillNonCoaForm() {
-       // await this.fillGlAccount(I.getData("GL_ACCOUNT"));
+        await this.fillGlAccount(I.getData("GL_ACCOUNT"));
         
         await this.clickOnCostBookingSaveButton();
 
