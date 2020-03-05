@@ -42,8 +42,8 @@ exports.config = {
     }
   },
   gherkin: {
-    features: "./eProc/features/**/**/*.feature",
-    steps: "./eProc/implementation/**/**/*.js"
+    features: "./eInvoice/features/Invoice/**.feature",
+    steps: "./eInvoice/implementation/**/**.js"
   },
  
   name: prop.projectName,
