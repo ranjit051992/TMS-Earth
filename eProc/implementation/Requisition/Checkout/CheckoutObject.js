@@ -102,4 +102,6 @@ module.exports= {
 
 
 
+    // Header Level details
+    REQUISITION_AMOUNT: "Checkout/REQUISITION_AMOUNT",
 };

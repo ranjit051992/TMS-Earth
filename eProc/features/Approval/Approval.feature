@@ -1,21 +1,21 @@
 Feature: Approval
 
-# @L1
-#     Scenario: To verify Requisition details are  properly displayed in approval listing
+@L1 
+    Scenario: To verify Requisition details are  properly displayed in approval listing
 
-#     Given I am logged in eProc
-#     And I create requisition with "1" "ITEM_NAME_FOR_SEARCHING" item
-#     And I have requisition In Approval status
-#     And I am on requisition approval listing page
+    Given I am logged in eProc
+    And I create requisition with 1 "catalog" item
+    And I have requisition In Approval status
+    And I am on requisition approval listing page
 
-#     When I search for that requisition name on approval listing
+    When I search for that requisition name on approval listing
 
-#     Then I see the same requester
-#     And I see the same Received on date
-#     And I see the same Amount to be approved
-#     And I see the same status of Requisition
+    Then I see the same requester
+    And I see the same Received on date
+    And I see the same Amount to be approved
+    And I see the same status of Requisition
 
-@L1 @Run @autox
+@L1
     Scenario: To verify Purchase Order details are properly displayed in approval listing
 
     Given I am logged in eProc
@@ -27,8 +27,8 @@ Feature: Approval
 
     Then I see the same Buyer name displayed for the corresponding PO number
     And I see the same Received on date on PO Approval listing
-    # And I see the same Amount to be approved on PO Approval listing
-    # And I see the same status of Requisition on PO Approval listing
+    And I see the same Amount to be approved on PO Approval listing
+    And I see the same status of Requisition on PO Approval listing
 
 # @L1
 #     Scenario: To verify BPO details are properly displayed in approval listing
@@ -50,36 +50,28 @@ Feature: Approval
 #     Scenario: To verify that user is able to approve single/multiple Requisition
 
 #     Given I am logged in eProc
-#     And I have submit 3 requisitions
-#     And I have requisitions In Approval status
+#     And I Create 3 requisitions with 1 "Catalog" item
+#     And I have 3 Requisitions In Approval status
 #     And I am on requisition approval listing page
 
-#     When I Approve 1 requisition
-#     And I Approve another 2 requisitions 
-#     And I fill in comments within popup
-#     And I click on Approve
-#     And I search for all the requisitions in the search filter
+#     When I Approve 1 Requisition
+#     And I Approve 2 Requisitions 
 
-#     Then the status of all the requisitions should be displayed as Approved
+#     Then I should be able to see the status of all Requisitions as Approved
 
 
 # @L1
 #     Scenario: To verify that user is able to reject single/multiple Requisition
 
 #     Given I am logged in eProc 
-#     And I have submit 3 requisitions 
-#     And I have requisitions In Approval status
+#     And I Create 3 requisitions with 1 "Catalog" item
+#     And I have 3 Requisitions In Approval status
 #     And I am on requisition approval listing page
 
-#     When I Reject 1 requisition
-#     And I fill in comments within popup
-#     And I click on Reject
-#     And I Reject another 2 requisitions 
-#     And I fill in comments within popup
-#     And I click on Reject
-#     And I search for all the requisitions in the search filter
-
-#     Then the status of all the requisitions should be displayed as Rejected
+#     When I Reject 1 Requisition
+#     And I Reject 2 Requisitions 
+    
+#     Then I should be able to see the status of all Requisitions as Rejected
 
 
 # @L1

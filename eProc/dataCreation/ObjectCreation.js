@@ -83,7 +83,7 @@ class ObjectCreation
         requisition.reasonForOrdering = I.getData("REASON_FOR_ORDERING");
         requisition.commentsForSupplier = I.getData("COMMENTS_FOR_SUPPLIERS");
         requisition.purchaseType = I.getData("PURCHASE_TYPE");
-        requisition.attachmentPath = "undefined";
+        requisition.attachmentPath = "\\\\192.168.3.40\\AutomationSharing\\Katalon_File_Attachment\\QCVM";
         requisition.settlementVia = "Invoice";
         requisition.retrospectivePurchase = "No";
         requisition.shipToDefaultAddress = "Yes";
