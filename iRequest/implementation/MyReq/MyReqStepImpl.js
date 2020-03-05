@@ -54,10 +54,7 @@ Then("I can able to create a request with urgent requirement getting added", fun
     MyReqImpl.ReqSaveAsDraft();
 
 });
-Given I create a RD with sourcing requesttype
-    Then I create a request with the sourcing particular requestdefinition
-    And  I submit the request with sourcing requesttype
-    Then I should be able to see the particular request got created on listing Page
+
 //Sourcing Request
 Given("I create a RD with sourcing requesttype", function () {
     MyReqImpl.CreateReqNaviSource();
