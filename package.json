@@ -1,6 +1,7 @@
 {
   "name": "ui_automation_dd_cc",
   "version": "1.0.2",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -33,11 +34,5 @@
     "request": "^2.88.2",
     "webdriverio": "^5.18.7",
     "xlsx": "^0.15.5"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://Priyanka_Ingale@bitbucket.org/procurement_zycus/dd-ui-automation.git"
-  },
-  "homepage": "https://bitbucket.org/procurement_zycus/dd-ui-automation#readme",
-  "description": ""
+  }
 }
