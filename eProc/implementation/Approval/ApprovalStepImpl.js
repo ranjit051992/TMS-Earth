@@ -6,18 +6,28 @@ const lmtVar = require("../../../Framework/FrameworkUtilities/i18nUtil/readI18NP
 const commonKeywordImpl = require("../../commonKeywords/CommonComponent");
 const poListingObject = require("../PO/PoListing/PoListingObject");
 const reqListingImpl = require("../Requisition/RequisitionListing/RequisitionListingImpl");
+const logger = require("../../../Framework/FrameworkUtilities/Logger/logger");
 
 
 
 Given ("I am on requisition approval listing page", async function() {
-    await I.amOnPage(prop.All_Approval_Listing);
+    await I.amOnPage(prop.DDS_Approval_Listing);
     await I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD), prop.DEFAULT_MEDIUM_WAIT);
 });
 
 Given ("I have requisition In Approval status", async function() {
-    await commonKeywordImpl.searchDocOnListing(this.reqBO.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    await I.amOnPage(prop.DDS_Requisition_Listing);
+    await I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
+    this.reqBO.reqNumber =  await reqListingImpl.getRequisitionNumber(this.reqBO.reqName);
     let reqStatus = await reqListingImpl.getRequisitionStatus();
-    I.assertEqual(reqStatus, lmtVar.getLabel("IN_APPROVAL_STATUS"));
+    let flag = reqStatus.includes(lmtVar.getLabel("IN_APPROVAL_STATUS")) === true
+        if(!flag) {
+            logger.info(`Failed to get In Approval status`);
+            throw new Error(`Failed to get In Approval status`);
+        }
+        else {
+            logger.info("Requisition is in In Approval status");
+        }
     logger.info("Status is In Approval");
 });
 
@@ -27,15 +37,16 @@ When ("I search for that requisition name on approval listing", async function()
 });
 
 Then ("I see the same requester", async function() {
-    let requester = ApprovalImpl.fetchRequesterNameOnReqApprovalListing();
-    let user = prop.username;
+    let requester = await ApprovalImpl.fetchRequesterNameOnReqApprovalListing();
+    let user = global.users.get("USERNAME");
+    //let user = "auto.zcs2@zycus.com";
     user = user.substring(0,user.indexOf("@"));
     I.assertEqual(user, requester);
 });
 
 Then ("I see the same Received on date", async function() {
     let receivedOn = await ApprovalImpl.fetchReceivedOnDateOnReqApprovalListing();
-    let reqDate = await new Date(receivedOn).toLocaleDateString(); 
+    let reqDate = await new Date(receivedOn.toString()).toLocaleDateString(); 
     let sysDate = await new Date().toLocaleDateString();
     logger.info(`*****${reqDate === sysDate}*****`);
     I.assertEqual(reqDate, sysDate);
@@ -43,13 +54,14 @@ Then ("I see the same Received on date", async function() {
 
 Then ("I see the same Amount to be approved", async function() {
     let amount = await ApprovalImpl.fetchAmountToBeApprovedOnReqApprovalListing();
-    I.assertEqual(amount, this.reqBO.reqAmount);
+    I.assertEqual(amount, this.reqBO.reqAmount.toString());
+    // I.assertEqual(amount, "USD 375.00");
 });
 
 Then ("I see the same status of Requisition", async function() {
     let reqStatus = ApprovalImpl.fetchReqStatusOnReqApprovalListing();
     logger.info(`Status of requisition captured is ${reqStatus}`);
-    I.assertEqual(lmtVar.getLabel("PENDING_STATUS"), reqStatus);
+    I.assertEqual(lmtVar.getLabel("PENDING_STATUS"), (await reqStatus).toString());
 });
 
 Given ("I am on PO approval listing page", async function() {

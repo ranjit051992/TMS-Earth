@@ -801,11 +801,11 @@ module.exports={
         //     commonComponent.waitForLoadingSymbolNotDisplayed();
         //     I.wait(prop.DEFAULT_HIGH_WAIT);
         // }
-
-        I.waitForVisible(I.getElement(iCheckout.REQUISITION_AMOUNT));
-        let reqAmount = I.grabTextFrom(I.getElement(iCheckout.REQUISITION_AMOUNT));
-        requisitionBO.setreqAmount(reqAmount);
-        logger.info(`Req Amount is ${reqAmount}`);
+        await I.scrollIntoView(I.getElement(iCheckout.REQUISITION_AMOUNT));
+        await I.waitForVisible(I.getElement(iCheckout.REQUISITION_AMOUNT));
+        let reqAmount = await I.grabTextFrom(I.getElement(iCheckout.REQUISITION_AMOUNT));
+        requisitionBO.setreqAmount(reqAmount.toString());
+        logger.info(`Req Amount is ${reqAmount.toString()}`);
        
         
         return requisitionBO;
