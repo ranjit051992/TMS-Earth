@@ -55,9 +55,9 @@ module.exports = {
     },
     async updateReceivedQty()
     {
-        await I.waitForVisible(I.getElement(iReceiptObject.RECEIVED_QTY_RECEIPT));
-        await I.click(I.getElement(iReceiptObject.RECEIVED_QTY_RECEIPT));
-        await I.fillField(I.getElement(iReceiptObject.RECEIVED_QTY_RECEIPT), 1);
+        await I.waitForVisible(I.getElement(iReceiptObject.RECEIVED_QTY));
+        await I.click(I.getElement(iReceiptObject.RECEIVED_QTY));
+        await I.fillField(I.getElement(iReceiptObject.RECEIVED_QTY), 1);
     },
     async clickSaveAsDraft()
     {
@@ -95,6 +95,17 @@ module.exports = {
         let noDataText = await I.grabTextFrom(I.getElement(iReceiptObject.NO_DATA_AVAILABLE_TEXT));
         return noDataText;
     },
+    // async receiptCreation()
+    // {
+    //     await I.amOnPage(prop.poListingUrl)
+    //     await I.waitForInvisible(global.uiElements.get(iSpoObject.spinner), prop.DEFAULT_MEDIUM_WAIT);
+    //     await receiptImpl.viewPO();
+    //     await receiptImpl.viewReceiptTab();
+    //     await receiptImpl.createReceipt();
+    //     await receiptImpl.clickSelectionCheckbox();
+    //     await receiptImpl.clickSubmitReceipt()
+    //     await receiptImpl.clickConfirmation();
+    // },
  
 
 }

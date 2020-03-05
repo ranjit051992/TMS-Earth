@@ -1,6 +1,10 @@
 Feature: Approval
 
+<<<<<<< HEAD
 @Non-COA 
+=======
+@L1 @Non-COA
+>>>>>>> PoojaMar55
     Scenario: To verify Requisition details are  properly displayed in approval listing
 
     Given I am logged in eProc

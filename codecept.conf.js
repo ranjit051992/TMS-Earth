@@ -45,10 +45,10 @@ exports.config = {
       
       },
     gherkin: {
-     //features: './iRequest/features/**/**.feature',
-     features: './iRequest/features/GuideMe/GuideMe.feature',
-      steps: './iRequest/implementation/**/**.js'
-  },
+      //features: './iRequest/features/**/**.feature',
+       features: "./eProc/features/**/**/*.feature",
+       steps: "./eProc/implementation/**/**/*.js"
+   },
  
   name: prop.projectName,
   plugins: {

@@ -10,10 +10,8 @@ Then("I should be able to see submitted requisition with updated details", async
     let isReqUpdated = false;
     let verifyQuantity = false;
     let verifyTaxes = false;
-
     await reqListingImpl.searchAndViewReqByName(this.reqName);
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
-
     this.fetchQuantity = await viewReqImpl.fetchQuantity(this.reqBO.itemName);
     
     if(this.fetchQuantity.toString().trim().includes(this.updateQuantity.toString().trim()))
@@ -21,11 +19,9 @@ Then("I should be able to see submitted requisition with updated details", async
         verifyQuantity = true;
         logger.info("Verified updated Quantity-->"+verifyQuantity);
     }
-
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
    
     let taxValueArray = new Array();
-
     taxValueArray = await viewReqImpl.fetchTaxesDetails(this.reqBO.itemName);
     logger.info("Tax Deatils Array--->>"+taxValueArray);
     
@@ -34,21 +30,15 @@ Then("I should be able to see submitted requisition with updated details", async
         verifyTaxes = true;
         logger.info("Verified updated Taxes-->"+verifyTaxes);
     }
-
     isReqUpdated = (verifyQuantity && verifyTaxes);
-
     I.assertEqual(isReqUpdated, true);
-
 });
-
 Then("I should be able see the taxes added on view requisition", async function(){
     let verifyTaxes = false;
-
     await reqListingImpl.searchAndViewReqByName(this.reqBO.reqName);
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
    
     let taxValueArray = new Array();
-
     taxValueArray = await viewReqImpl.fetchTaxesDetails(this.reqBO.itemName);
     logger.info("Tax Deatils Array--->>"+taxValueArray);
     
@@ -57,6 +47,5 @@ Then("I should be able see the taxes added on view requisition", async function(
         verifyTaxes = true;
         logger.info("Verified updated Taxes-->"+verifyTaxes);
     }
-
     I.assertEqual(verifyTaxes, true);
 });

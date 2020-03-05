@@ -203,6 +203,8 @@ Then("I should be see that the field name is updated to Select Purchase Order", 
 
 Given("I select {string} at line level in Buyer section", async function(buyerGroup) {
 
+    await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    await checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);
     await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
     await checkoutImp.selectBuyerGroupOption();
     let group = I.getData(buyerGroup);
@@ -213,6 +215,8 @@ Given("I select {string} at line level in Buyer section", async function(buyerGr
 
 Given("I select buyer {string} at line level in Buyer section", async function(buyer){
 
+    await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    await checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);
     await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
     let value = I.getData(buyer);
     await checkoutImp.fillBuyerInTextBox(value);
