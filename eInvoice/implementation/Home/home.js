@@ -7,3 +7,18 @@ Given('I navigate to Invoice module', function () {
 Given('I navigate to CreditMemo module', function () {
     homePage.selectModule('eInvoice','Credit Memos');
 });
+Given('I navigate to setup module', function () {
+    homePage.selectModule('eInvoice','Setup');
+});
+Given('I navigate to TMS', function () {
+    homePage.selectModule('TMS','');
+});
+Given('I navigate to workflow module', function () {
+    homePage.selectModule('eInvoice','Workflow');
+});
+Given('I navigate to workflow module', function () {
+    homePage.selectModule('eInvoice','eForm');
+});
+Given('I navigates to Recurring Contracts module', function () {
+    homePage.selectModule('eInvoice','Recurring Contracts');
+});
