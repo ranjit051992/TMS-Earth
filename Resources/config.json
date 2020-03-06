@@ -30,7 +30,10 @@
         "uiElementTable":"eProc_UI_Elements",
         "UserTable":"eProc_credentials",
         "LOGIN_WITH_PASSWORD_MANAGER": false,
-        "isCoa": false
+        "isCoa": false,
+        "runOnGrid": true,
+        "USERNAME": "auto.cdk4@zycus.com",
+        "PASSWORD": "DaUaBeWaDiIaZuFuWo$87"
     },
     "iContract": {
         "url": "https://dewdrops-partner.zycus.com/",
