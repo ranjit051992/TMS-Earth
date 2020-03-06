@@ -1,6 +1,7 @@
 const mysql = require("mysql");
 const logger = require("../Logger/logger");
 const parser = require("mssql-connection-string");
+const faker = require("faker");
 
 module.exports = {
     async getTestData() {
@@ -246,41 +247,48 @@ module.exports = {
         const connectionString = "Data Source=tcp:" + prop.DBhost + ",3306;Initial Catalog=" + prop.DBdatabase + ";User Id=" + prop.DBuser + ";Password=" + prop.DBpassword + ";";
         //logger.info("connectionString  : " + connectionString);
         const connectionObj = parser(connectionString);
-
+        
         //logger.info(columnName);
         const query = `SELECT USERNAME,PASSWORD  FROM ${prop.UserTable} WHERE flag='true'`;
         //logger.info(query);
+
+        const timeout = faker.random.number({min:60000, max:300000});
+        logger.info(`waiting for timeout --> ${timeout}`);
+        
         return new Promise((resolve, reject) => {
-            let testDataMap = new Map();
-            //logger.info("Creating sql connection");
-            connection = mysql.createConnection(connectionObj);
-            //logger.info("Checking sql connection");
-            connection.connect(function (error) {
-                if (!!error) {
-                    //logger.info("Error1");
-                }
-                else {
-                    //logger.info("Connected");
-                    //logger.info("Triggering sql query");
-                    connection.query(query, function (error, rows, fields) {
-                        if (!!error) {
-                            //logger.info("Error in the query");
-                        }
-                        else {
-                            //logger.info("SUCCESS!");
-                            for (let i = 0; i < rows.length; i++) {
-                                let mapKey;
-                                let mapValue;
-                                testDataMap.set("USERNAME", rows[i].USERNAME);
-                                testDataMap.set("PASSWORD", rows[i].PASSWORD);
+            setTimeout(() => {
+                logger.info(`waited for timeout --> ${timeout}`);
+                let testDataMap = new Map();
+                //logger.info("Creating sql connection");
+                connection = mysql.createConnection(connectionObj);
+                //logger.info("Checking sql connection");
+                connection.connect(function (error) {
+                    if (!!error) {
+                        //logger.info("Error1");
+                    }
+                    else {
+                        //logger.info("Connected");
+                        //logger.info("Triggering sql query");
+                        connection.query(query, function (error, rows, fields) {
+                            if (!!error) {
+                                //logger.info("Error in the query");
                             }
-                            connection.destroy();
-                            //logger.info(`user map size --> ${testDataMap.size}`);
-                            resolve(testDataMap);
-                        }
-                    });
-                }
-            });
+                            else {
+                                //logger.info("SUCCESS!");
+                                for (let i = 0; i < rows.length; i++) {
+                                    let mapKey;
+                                    let mapValue;
+                                    testDataMap.set("USERNAME", rows[i].USERNAME);
+                                    testDataMap.set("PASSWORD", rows[i].PASSWORD);
+                                }
+                                connection.destroy();
+                                //logger.info(`user map size --> ${testDataMap.size}`);
+                                resolve(testDataMap);
+                            }
+                        });
+                    }
+                });
+            }, timeout);
         });
     },
 
@@ -318,5 +326,11 @@ module.exports = {
                 }
             });
         });
+    },
+
+    async getAndUpdateUser() {
+        let testDataMap = await this.getUser();
+        await this.updateUSER(testDataMap.get("USERNAME"), "false");
+        return testDataMap;
     }
 };
