@@ -27,6 +27,16 @@ class GuidedItem
         this.specificationDetails;
         this.attachmentPath;
         this.attachmentUrl;
+        this.description;
+        //this.supplier;
+        this.supplierContact;
+        this.supplierEmail;
+        this.supplierPhone;
+        this.supplierOtherDetails;
+        this.nextAction;
+        this.suppliers = [];
+        this.supplierAddress;
+
     }
     setItemName(itemName)
     {
@@ -133,6 +143,49 @@ class GuidedItem
     {
         this.attachmentUrl = attachmentUrl;
     }
+    setDescription(description)
+    {
+        this.description = description;
+    }
+
+    // setSupplier(supplier)
+    // {
+    //     this.supplier = supplier;
+    // }
     
+    setSupplierContact(supplierContact)
+    {
+        this.supplierContact = supplierContact;
+    }
+
+    setSupplierAddress(supplierAddress)
+    {
+        this.supplierAddress = supplierAddress;
+    }
+
+    setSupplierEmail(supplierEmail)
+    {
+        this.supplierEmail = supplierEmail;
+    }
+
+    setSupplierPhone(supplierPhone)
+    {
+        this.supplierPhone = supplierPhone;
+    }
+
+    setSupplierOtherDetails(supplierOtherDetails)
+    {
+        this.supplierOtherDetails = supplierOtherDetails;
+    }
+
+    setNextAction(nextAction)
+    {
+        this.nextAction = nextAction;
+    }
+
+    setSuppliers(suppliers)
+    {
+        this.suppliers = suppliers;
+    }
 }
 module.exports=GuidedItem;

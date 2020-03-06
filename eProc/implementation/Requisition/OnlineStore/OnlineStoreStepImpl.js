@@ -10,8 +10,8 @@ const faker = require("faker");
 const reqObj = require("../../../dataCreation/bo/Requisition");
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const objCreation= require("../../../dataCreation/ObjectCreation");
-
-
+const iGuided = require("../GuidedProcurement/GuidedProcurementObject");
+const commonComponent = require("../../../commonKeywords/CommonComponent");
 let map = new Map();
 
 
@@ -204,4 +204,11 @@ Given("I navigate to OnlineStore",async function()
    await I.amOnPage(prop.DDS_OnlineStore_Url);
    await onlineStoreImpl.waitForOnlineStoreToLoad();
   
+});
+
+When("I Navigate to Guided Page",async function()
+{
+    await onlineStoreImpl.clickOnCreateRequestButton();
+    await commonComponent.waitForElementVisible(I.getElement(iGuided.ITEM_NAME_TEXTBOX));
+    
 });
