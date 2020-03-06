@@ -241,7 +241,7 @@ Feature: Checkout
     Given I am logged in eProc
 
     When I create requisition with 1 "ITEM_NAME_FOR_SEARCHING" item
-    And I copy that requisition
+    And I save requisition number
     And I fetch Requisition Name
     And I modify the field quantity
     And I add Tax Details at line level

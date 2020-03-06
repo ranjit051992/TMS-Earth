@@ -18,6 +18,6 @@ module.exports={
     APPROVED_QTY: 'ReceiptPage/APPROVED_QTY',
     PO_VIEW: 'ReceiptPage/PO_VIEW',
     NO_DATA_AVAILABLE_TEXT: 'ReceiptPage/NO_DATA_AVAILABLE_TEXT',
-
+    SELECT_PO_DESCRIPTION: 'ReceiptListing/SELECT_PO_DESCRIPTION',
 
 }
