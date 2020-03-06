@@ -2,13 +2,17 @@ const { I } = inject();
 const iSpoObject = require("../PO/Spo/SpoObject");
 const iReceiptObject = require("./ReceiptObject");
 const objectCreation = require("../../dataCreation/ObjectCreation")
+const logger = require("../../../Framework/FrameworkUtilities/Logger/logger")
 const spoImpl = require("../PO/Spo/SpoImpl");
 const receiptImpl = require("./ReceiptImpl");
 const iLogin = require("../../implementation/Login/LoginImpl")
 const prop = global.confi_prop;
 const lmtVar = require("../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp")
 const spo = require("../../dataCreation/bo/Spo")
-
+const reqListingImpl = require("../Requisition/RequisitionListing/RequisitionListingImpl")
+const req = require("../../dataCreation/bo/Requisition")
+const approve = require("../Approval/ApprovalImpl")
+const commonKeywordImpl = require("../../commonKeywords/CommonComponent")
 
 //********************************Save a receipt as draft for SPO********************************
 // Given("I navigate to PO listing", async function(){
@@ -55,6 +59,31 @@ When("I select the items at item level on receipt creation page", async function
 
 When("I save the receipt as draft", async function(){
     await receiptImpl.clickSaveAsDraft();
+});
+
+When("I save the requisition", async function(){
+    await reqListingImpl.navigateToRequisitionListing();
+    let reqName = this.reqBO.reqName;
+    logger.info("Requisition name " + reqName);
+    this.reqNo= await reqListingImpl.getRequisitionNumber(reqName);
+    logger.info("Requisition number: "+this.reqNo);
+});
+
+When("I have approved the requisition", async function(){
+    await approve.navigateToApprovalListing();
+    await approve.approveDoc(this.reqNo, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    // await approve.checkPOApprovalStatus(this.reqNo, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+});
+
+When("I search for the created Requisition", async function(){
+    //await commonKeywordImpl.searchDocOnListing(this.reqNo, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+    await receiptImpl.searchRequisition(this.reqNo);
+    let poNumber =await receiptImpl.getPoNumber();
+    logger.info("PO number" +poNumber);
+});
+
+When("I approve the PO", async function(){
+    await receiptImpl.releasePoFlow();
 });
 
 Then("I should be able to see the status of reciept created as Draft", async function(){

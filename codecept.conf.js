@@ -40,7 +40,7 @@ exports.config = {
    multiple: {
         sanityCases: {
           // Splits tests into 2 chunks
-          chunks: 2
+          chunks: 5
         }
       
       },
