@@ -15,7 +15,7 @@ Then("I should be able to view the actions for the draft requisition on Listing 
     
     reqListingImpl.navigateToRequisitionListing();
 
-    this.reqNumber = await reqListingImpl.getRequisitionNumber(this.reqName);
+    this.reqNumber = await reqListingImpl.getRequisitionNumber(this.reqBO.reqName);
 
     await reqListingImpl.searchRequisitionByReqNumber(this.reqNumber);
 
@@ -24,7 +24,7 @@ Then("I should be able to view the actions for the draft requisition on Listing 
     if(reqStatus.toString().trim() === lmtVar.getLabel("DRAFT_STATUS"))
     {
         let primaryAction = await I.grabTextFrom(I.getElement(reqListingObject.EDIT_ACTION));
-
+        //let primaryAction = await commonComponent.getValueForColumnName(lmtVar.getLabel("ACTIONS_COLUMN"));
         if(primaryAction.toString() === lmtVar.getLabel("EDIT_ACTION"))
         {
             primaryActionStatus = true;
@@ -79,7 +79,7 @@ Then("I should be able see the status of requisition on the Listing page", async
     let verifyReqStatus = false;
 
     await reqListingImpl.navigateToRequisitionListing();
-    this.reqNo = await reqListingImpl.getRequisitionNumber(this.reqName);
+    this.reqNo = await reqListingImpl.getRequisitionNumber(this.reqBO.reqName);
 
     await reqListingImpl.searchRequisitionByReqNumber(this.reqNo);
 

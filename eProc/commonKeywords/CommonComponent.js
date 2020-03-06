@@ -143,7 +143,7 @@ module.exports={
 
     async waitForLoadingSymbolNotDisplayed()
     {
-        await I.waitForInvisible(I.getElement(commonKeywordObject.LOADING_SPINNER), prop.DEFAULT_HIGH_WAIT);
+        await I.waitForInvisible(I.getElement(commonKeywordObject.LOADING_SPINNER), prop.CONDITIONAL_WAIT);
         logger.info("Waited for Loading Symbol to go off");
     },
 
@@ -185,6 +185,7 @@ module.exports={
         await this.enterDocNumberOrDescription(docDetail);
         await this.selectDocOption(searchBy);
         logger.info(`Searched for doc --> ${docDetail}`);
+        await this.waitForLoadingSymbolNotDisplayed();
     },
     async clickOnActionMenuIcon() {
         await I.waitForVisible(I.getElement(poListingObject.ACTION_MENU_ICON));
@@ -313,12 +314,19 @@ module.exports={
         return options;
     },
 
-    async getValueForColumn(columnName)
+    /**
+     * Fetches column Value on any listing page by specified columnName
+     * @param {String} columnName 
+     * @returns {String} columnValue
+     * @author priyanka.ingale
+     */
+    async getValueForColumnName(columnName)
     {
-        let columnIndex = this.getColumnIndexOnListingPage(columnName);
+        let columnIndex = await (await this.getColumnIndexOnListingPage(columnName)).toString();
         let columnHeaderXpath = I.getElement(commonKeywordObject.ALL_COLUMN_HEADER_TEXT);
-        columnHeaderXpath = "(" + columnHeaderXpath + "/..)[" + Number(columnIndex) + "]//dew-row[contains(@class,'list-body')]//span";
-		logger.info("Xpath for retrieving column value --> " + columnHeaderXpath);
+        columnHeaderXpath = "((" + columnHeaderXpath + "/..)[" + columnIndex + "]//dew-row[contains(@class,'list-body')]//div)[1]";
+        logger.info("Xpath for retrieving column value --> " + columnHeaderXpath);
+        await I.scrollIntoView(columnHeaderXpath);
 		let columnValue = await I.grabTextFrom(columnHeaderXpath);
 		logger.info("Retrieved value for column " + columnName + " is --> " + columnValue);
 		return columnValue;
@@ -331,15 +339,15 @@ module.exports={
         let noOfHeaders = await I.grabNumberOfVisibleElements(I.getElement(commonKeywordObject.ALL_COLUMN_HEADER_TEXT));
         if(noOfHeaders>0)
         {
-            for(let i=0; i< noOfHeaders; i++)
+            for(let i=1; i<= noOfHeaders; i++)
             {
-                let columnXpath = "(" + columnHeaderXpath + ")["+ Number(i)+1 +"])" ;
+                let columnXpath = "(" + columnHeaderXpath + ")["+ i +"]" ;
                 let columnNameRetrive = await I.grabTextFrom(columnXpath);
                 logger.info("Column Name retrive is ---> "+columnNameRetrive);
 
                 if(columnNameRetrive.toUpperCase() === columnName.toUpperCase())
                 {
-                    columnIndex = i+1;
+                    columnIndex = i;
                     logger.info("Column Index is---> "+columnIndex);
                     break;
                 }

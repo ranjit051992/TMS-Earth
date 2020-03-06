@@ -11,7 +11,7 @@ Then("I should be able to see submitted requisition with updated details", async
     let verifyQuantity = false;
     let verifyTaxes = false;
 
-    await reqListingImpl.searchAndViewReqByName(this.reqName);
+    await reqListingImpl.searchAndViewReqByName(this.reqBO.reqName);
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
 
     this.fetchQuantity = await viewReqImpl.fetchQuantity(this.reqBO.itemName);

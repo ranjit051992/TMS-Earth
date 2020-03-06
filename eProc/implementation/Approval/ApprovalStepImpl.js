@@ -166,3 +166,15 @@ When ("I Reject 2 Requisitions", async function() {
 Then ("I should be able to see the status of all Requisitions as Rejected", async function() {
     await ApprovalImpl.checkMultipleReqStatus(reqArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
 });
+
+
+When("I approve the requisition", async function(){
+    await reqListingImpl.navigateToRequisitionListing();
+    this.reqBO.reqNumber = await reqListingImpl.getRequisitionNumber(this.reqBO.reqName);
+    logger.info(`Requisition Number is ---> ${this.reqBO.reqNumber}`);
+    await ApprovalImpl.navigateToApprovalListing();
+    await ApprovalImpl.approveDoc(this.reqBO.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    await I.wait(prop.DEFAULT_MEDIUM_WAIT);
+    this.reqStatus = await ApprovalImpl.getReqStatus();
+    
+});

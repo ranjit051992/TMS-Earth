@@ -28,7 +28,7 @@ module.exports = {
         // I.waitForVisible(I.getElement(iLogin.DDS_LOGIN_PAGE));
 
         // await I.amOnPage(global.confi_prop.DDS_OnlineStore_Url);
-        await I.waitForVisible(I.getElement(iLogin.REQ_TABLE_OPTION_ICON));
+        //await I.waitForVisible(I.getElement(iLogin.REQ_TABLE_OPTION_ICON));
         logger.info("Navigated to DDS Online Store page");
         //onlinestore.waitForOnlineStoreToLoad();
     },
@@ -53,7 +53,7 @@ module.exports = {
         await I.amOnPage(global.confi_prop.DDS_OnlineStore_Url);
         logger.info("Navigated to DDS Online Store page");
         await onlinestore.waitForOnlineStoreToLoad();
-        await I.waitForVisible(I.getElement(iLogin.REQ_TABLE_OPTION_ICON));
+       // await I.waitForVisible(I.getElement(iLogin.REQ_TABLE_OPTION_ICON));
     },
     async enterPmUsername(username) {
         await I.waitForVisible(I.getElement(iLogin.USERNAME_TEXTBOX_PM));

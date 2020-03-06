@@ -13,6 +13,7 @@ module.exports = {
         await I.amOnPage(prop.DDS_Approval_Listing);
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info("Navigated to approval listing page");
+        await commonKeywordImpl.selectValueFromDropDown(I.getElement(approvalObject.LISTING_SELECTION_DROP_DOWN), lmtVar.getLabel("LISTING_ALL_ITEMS_OPTION"));
     },
     async clickOnApproveAction(){
         await I.waitForVisible(I.getElement(approvalObject.APPROVE_ACTION));
@@ -43,7 +44,8 @@ module.exports = {
         logger.info("Clicked on Reject button");
     },
     async getSpoStatus() {
-        let status = await I.grabTextFrom(I.getElement(approvalObject.APPROVAL_LISTING_SPO_STATUS));
+        let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN")).toString();
+        // let status = await I.grabTextFrom(I.getElement(approvalObject.APPROVAL_LISTING_SPO_STATUS));
         logger.info(`Retrieved status --> ${status}`);
         return status;
     },
