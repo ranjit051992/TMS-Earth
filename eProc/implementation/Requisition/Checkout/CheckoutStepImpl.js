@@ -173,6 +173,8 @@ Given("I add an attachment {string}", async function(filePath){
 
 Then("I should be able to see the attachment which is added", async function(){
 
+    await reqListing.searchAndViewReqByName(this.reqName);
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ADDITIONAL_DETAILS_SECTION"));
     let isPresent  = await checkoutImp.checkAddedAttachment(this.attachment);
     I.saveScreenshot("Upload Attachment.png");
      I.assertEqual(isPresent,true);
