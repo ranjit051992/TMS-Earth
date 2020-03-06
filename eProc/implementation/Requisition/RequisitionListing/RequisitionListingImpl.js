@@ -67,14 +67,14 @@ module.exports = {
      */
     async getRequisitionStatus()
     {
-        await I.scrollIntoView(I.getElement(reqListingObj.REQUISITION_STATUS));
-        await I.wait(prop.DEFAULT_MEDIUM_WAIT);
-        await I.waitForVisible(I.getElement(reqListingObj.REQUISITION_STATUS));
-        let reqStatus = await I.grabTextFrom(I.getElement(reqListingObj.REQUISITION_STATUS));
-        logger.info(`Requisition status is ---->${reqStatus}`);
+        // await I.scrollIntoView(I.getElement(reqListingObj.REQUISITION_STATUS));
+        // await I.wait(prop.DEFAULT_MEDIUM_WAIT);
+        // await I.waitForVisible(I.getElement(reqListingObj.REQUISITION_STATUS));
+        // let reqStatus = await I.grabTextFrom(I.getElement(reqListingObj.REQUISITION_STATUS));
+        // logger.info(`Requisition status is ---->${reqStatus}`);
 
-       // await commomComponent.getValueForColumn(lmtVar.getLabel("STATUS_COLUMN"));
-       // logger.info(`Requisition status is ---->${reqStatus}`);
+        let reqStatus = await commomComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+        logger.info(`Requisition status is ---->${reqStatus}`);
         return reqStatus;
     },
 
