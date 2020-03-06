@@ -9,6 +9,7 @@ const commonUtils = require("../../../../Framework/FrameworkUtilities/CommonUtil
 const faker = require("faker");
 const reqObj = require("../../../dataCreation/bo/Requisition");
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
+const objCreation= require("../../../dataCreation/ObjectCreation");
 
 
 let map = new Map();
@@ -42,6 +43,7 @@ When("I search for {string} {string} items", async function (noOfItem, itemType)
 When("I add {string} {string} items to cart", async function (noOfItem, itemType) {
 
     //onlineStoreImpl.addItemsToCart(noOfItem,itemType);
+    this.reqBO = await objCreation.getObjectOfRequisition(noOfItem, itemType);
     await cartImpl.clearCart();
     await I.wait(prop.DEFAULT_WAIT);
     let itemArray = new Array();

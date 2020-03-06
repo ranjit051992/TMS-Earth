@@ -1,6 +1,6 @@
 /// <reference types='codeceptjs' />
 type steps_file = typeof import('./steps_file.js');
-type Login = typeof import('./automation/eProc/Login.js');
+//type Login = typeof import('./automation/eProc/Login.js');
 
 declare namespace CodeceptJS {
   interface SupportObject { I: CodeceptJS.I,Login: Login }

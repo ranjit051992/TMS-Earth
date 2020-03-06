@@ -11,21 +11,24 @@ module.exports = {
     async login()
     {
         logger.info(global.confi_prop.url);
-        I.amOnPage(global.confi_prop.url);
-        I.seeElement(I.getElement(iLogin.EMAIL_ADDRESS_GHOST_TEXTBOX));
+        await I.amOnPage(global.confi_prop.url);
+        // I.seeElement(I.getElement(iLogin.EMAIL_ADDRESS_GHOST_TEXTBOX));
+        await I.waitForVisible(I.getElement(iLogin.EMAIL_ADDRESS_TEXTBOX));
         logger.info("Navigated to login page");
-        I.click(I.getElement(iLogin.EMAIL_ADDRESS_GHOST_TEXTBOX));
-        I.fillField(I.getElement(iLogin.EMAIL_ADDRESS_TEXTBOX), global.users.get("USERNAME"));
+        // I.click(I.getElement(iLogin.EMAIL_ADDRESS_GHOST_TEXTBOX));
+        await I.fillField(I.getElement(iLogin.EMAIL_ADDRESS_TEXTBOX), global.users.get("USERNAME"));
         logger.info(`Entered email address --> ${global.users.get("USERNAME")}`);
-        I.click(I.getElement(iLogin.PASSWORD_GHOST_TEXTBOX));
-        I.fillField(I.getElement(iLogin.PASSWORD_TEXTBOX), global.users.get("PASSWORD"));
+        // I.click(I.getElement(iLogin.PASSWORD_GHOST_TEXTBOX));
+        await I.fillField(I.getElement(iLogin.PASSWORD_TEXTBOX), global.users.get("PASSWORD"));
         logger.info(`Entered password --> ${global.users.get("PASSWORD")}`);
-        I.click(I.getElement(iLogin.LOGIN_BUTTON));
+        await I.wait(prop.DEFAULT_WAIT);
+        await I.click(I.getElement(iLogin.LOGIN_BUTTON));
+        await I.waitForInvisible(I.getElement(iLogin.LOGIN_BUTTON));
         logger.info("Clicked on Login button");
-       // I.waitForVisible(I.getElement(iLogin.DDS_LOGIN_PAGE));
+        // I.waitForVisible(I.getElement(iLogin.DDS_LOGIN_PAGE));
 
-        I.amOnPage(global.confi_prop.DDS_OnlineStore_Url);
-        I.waitForVisible(I.getElement(iLogin.REQ_TABLE_OPTION_ICON));
+        // await I.amOnPage(global.confi_prop.DDS_OnlineStore_Url);
+        await I.waitForVisible(I.getElement(iLogin.REQ_TABLE_OPTION_ICON));
         logger.info("Navigated to DDS Online Store page");
         //onlinestore.waitForOnlineStoreToLoad();
     },

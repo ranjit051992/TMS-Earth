@@ -1,4 +1,5 @@
-require("./Framework/PropertiesConfigurator");
+const parsing= require("./Framework/PropertiesConfigurator");
+parsing("eProc");
 const prop = global.confi_prop;
 global.lang = 'en';
 exports.config = {
@@ -13,6 +14,11 @@ exports.config = {
       restart: prop.restart,
       windowSize: prop.windowSize,
       waitForTimeout: 30000,
+      smartWait: 5000,
+      timeouts: {
+        "script": 10000,
+        "page load": 10000
+      },
       default_low_wait: prop.DEFAULT_LOW_WAIT,
       default_medium_wait: prop.DEFAULT_MEDIUM_WAIT,
       default_high_wait: prop.DEFAULT_HIGH_WAIT,
@@ -31,20 +37,18 @@ exports.config = {
   include: {
     I: prop.stepFilePath,
   },
-  multiple: {
-    parallel: {
-      // Splits tests into 2 chunks
-      chunks: 5
-    },
-     sanityCases: {
-      // Splits tests into 2 chunks
-      chunks: 2
-    }
-  },
-  gherkin: {
-    features: "./eProc/features/**/**/*.feature",
-    steps: "./eProc/implementation/**/**/*.js"
-  },
+   multiple: {
+        sanityCases: {
+          // Splits tests into 2 chunks
+          chunks: 2
+        }
+      
+      },
+    gherkin: {
+      //features: './iRequest/features/**/**.feature',
+       features: "./eProc/features/**/**/*.feature",
+       steps: "./eProc/implementation/**/**/*.js"
+   },
  
   name: prop.projectName,
   plugins: {

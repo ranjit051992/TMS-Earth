@@ -2,8 +2,6 @@ const { I } = inject();
 const logger = require("../../../Framework/FrameworkUtilities/Logger/logger");
 const iReceiptObject = require("../Receipt/ReceiptObject");
 const iReturnNoteObject = require("./ReturnNoteObject");
-const iSpoObject = require("../PO/Spo/SpoObject")
-
 const prop = global.confi_prop;
 
 module.exports = {
@@ -37,6 +35,29 @@ module.exports = {
             await I.waitForVisible(I.getElement(iReturnNoteObject.RETURN_METHOD_SELECTION));
             await I.click(I.getElement(iReturnNoteObject.RETURN_METHOD_SELECTION));
             logger.info("Added Return Method for Return Note");
+        },
+        async createReturnNote()
+        {
+            await I.waitForVisible(I.getElement(iReturnNoteObject.CREATE_BUTTON));
+            await I.click(I.getElement(iReturnNoteObject.CREATE_BUTTON));
+            await I.waitForVisible(I.getElement(iReturnNoteObject.CREATE_RETURN_NOTE_BUTTON));
+            await I.click(I.getElement(iReturnNoteObject.CREATE_RETURN_NOTE_BUTTON));
+            logger.info("ReturnNote created");
+        },
+        async clickReturnNoteSaveAsDraft()
+        {
+            await I.waitForVisible(I.getElement(iReceiptObject.SAVE_AS_DRAFT_BUTTON));
+            await I.click(I.getElement(iReceiptObject.SAVE_AS_DRAFT_BUTTON));
+            await I.waitForVisible(I.getElement(iReceiptObject.CONFIRMATION_POPUP_YES));
+            await I.click(I.getElement(iReceiptObject.CONFIRMATION_POPUP_YES));
+            logger.info("Receipt/ ReturnNote saved as draft");
+            I.saveScreenshot("ReturnNoteDraft.png");
+        },
+        async getReturnNoteNumber()
+        {
+            await I.waitForVisible(I.getElement(iReturnNoteObject.RETURN_NOTE_NUMBER));
+            let returnNoteNumber = await I.grabTextFrom(I.getElement(iReturnNoteObject.RETURN_NOTE_NUMBER));           
+            return returnNoteNumber;
         },
         
 

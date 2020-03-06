@@ -1,4 +1,5 @@
 module.exports={
+
     ITEM_NAME_TEXTBOX :"OnlineStore/GuidedProcurement/ITEM_NAME_TEXTBOX",
     ADD_ITEM_SERVICE_BUTTON :"OnlineStore/GuidedProcurement/ADD_ITEM_SERVICE_BUTTON",
     SUPPLIER_TEXTBOX :"OnlineStore/GuidedProcurement/SUPPLIER_TEXTBOX",
@@ -18,8 +19,8 @@ module.exports={
     PRICE_TEXTBOX :"OnlineStore/GuidedProcurement/CreateNewItemModal/PRICE_TEXTBOX",
     CURRENCY_TEXTBOX :"OnlineStore/GuidedProcurement/CreateNewItemModal/CURRENCY_TEXTBOX",
     ZERO_PRICE_ITEM_CHECKBOX :"OnlineStore/GuidedProcurement/CreateNewItemModal/ZERO_PRICE_ITEM_CHECKBOX",
-    BUYER_REVIEW_REQUIRED_YES_CHECKBOX :"OnlineStore/GuidedProcurement/CreateNewItemModal/BUYER_REVIEW_REQUIRED_YES_CHECKBOX",
-    BUYER_REVIEW_REQUIRED_NO_CHECKBOX :"OnlineStore/GuidedProcurement/CreateNewItemModal/BUYER_REVIEW_REQUIRED_NO_CHECKBOX",
+    BUYER_REVIEW_REQUIRED_YES_RADIO_BUTTON :"OnlineStore/GuidedProcurement/CreateNewItemModal/BUYER_REVIEW_REQUIRED_YES_CHECKBOX",
+    BUYER_REVIEW_REQUIRED_NO_RADIO_BUTTON :"OnlineStore/GuidedProcurement/CreateNewItemModal/BUYER_REVIEW_REQUIRED_NO_CHECKBOX",
     DONE_BUTTON :"OnlineStore/GuidedProcurement/CreateNewItemModal/DONE_BUTTON",
     DESCRIPTION_LINK :"OnlineStore/GuidedProcurement/CreateNewItemModal/DESCRIPTION_LINK",
     DESCRIPTION_TEXTBOX :"OnlineStore/GuidedProcurement/CreateNewItemModal/DESCRIPTION_TEXTBOX",
@@ -31,4 +32,6 @@ module.exports={
     PO_GUIDED_ITEM_AMOUNT_RADIO_BUTTON: "Spo/ItemSummary/PO_GUIDED_ITEM_AMOUNT_RADIO_BUTTON",
     PO_GUIDED_ITEM_MARKET_PRICE_TEXTBOX: "Spo/ItemSummary/PO_GUIDED_ITEM_MARKET_PRICE_TEXTBOX",
     PO_GUIDED_ITEM_QUANTITY_TEXTBOX: "Spo/ItemSummary/PO_GUIDED_ITEM_QUANTITY_TEXTBOX",
+    PO_GUIDED_ITEM_UOM_TEXTBOX: "Spo/ItemSummary/PO_GUIDED_ITEM_UOM_TEXTBOX",
+
 };

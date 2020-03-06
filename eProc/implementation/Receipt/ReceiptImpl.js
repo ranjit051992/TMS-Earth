@@ -53,10 +53,11 @@ module.exports = {
         await I.waitForVisible(I.getElement(iReceiptObject.ALL_ITEM_SELECTION_CHECKBOX));
         await I.click(I.getElement(iReceiptObject.ALL_ITEM_SELECTION_CHECKBOX));
     },
-    async clickFirstItemSelectionCheckbox()
+    async updateReceivedQty()
     {
-        await I.waitForVisible(I.getElement(iReceiptObject.FIRST_ITEM_SELECTION_CHECKBOX));
-        await I.click(I.getElement(iReceiptObject.FIRST_ITEM_SELECTION_CHECKBOX));
+        await I.waitForVisible(I.getElement(iReceiptObject.RECEIVED_QTY));
+        await I.click(I.getElement(iReceiptObject.RECEIVED_QTY));
+        await I.fillField(I.getElement(iReceiptObject.RECEIVED_QTY), 1);
     },
     async clickSaveAsDraft()
     {
@@ -89,5 +90,22 @@ module.exports = {
         await I.click(I.getElement(iReceiptObject.RECEIVED_QTY));
         await I.fillField(I.getElement(iReceiptObject.RECEIVED_QTY), 1);
     },
+    async verifyNoDataAvailable()
+    {
+        let noDataText = await I.grabTextFrom(I.getElement(iReceiptObject.NO_DATA_AVAILABLE_TEXT));
+        return noDataText;
+    },
+    // async receiptCreation()
+    // {
+    //     await I.amOnPage(prop.poListingUrl)
+    //     await I.waitForInvisible(global.uiElements.get(iSpoObject.spinner), prop.DEFAULT_MEDIUM_WAIT);
+    //     await receiptImpl.viewPO();
+    //     await receiptImpl.viewReceiptTab();
+    //     await receiptImpl.createReceipt();
+    //     await receiptImpl.clickSelectionCheckbox();
+    //     await receiptImpl.clickSubmitReceipt()
+    //     await receiptImpl.clickConfirmation();
+    // },
+ 
 
 }

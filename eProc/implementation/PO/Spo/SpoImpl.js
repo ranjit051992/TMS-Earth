@@ -44,6 +44,7 @@ module.exports = {
     },
     async selectPurchaseType(purchaseType) {
         await this.clickOnPurchaseTypeDropdown();
+        await I.scrollIntoView("//a[contains(text(),'" + purchaseType + "')]");
         await I.waitForVisible("//a[contains(text(),'" + purchaseType + "')]");
         await I.click("//a[contains(text(),'" + purchaseType + "')]");
         logger.info("Selected purchase type :" + purchaseType);
@@ -134,6 +135,7 @@ module.exports = {
     },
     async selectDeliveryTerm(deliveryTerm) {
         let deliveryTermXpath = "//div[contains(@title,'" + deliveryTerm + "')]";
+        await I.scrollIntoView(deliveryTermXpath);
         await I.waitForVisible(deliveryTermXpath);
         await I.click(deliveryTermXpath);
         logger.info("Selected delivery term :" + deliveryTerm);
@@ -348,6 +350,8 @@ module.exports = {
 
         spo = await this.fillLineItems(spo);
 
+        spo = await this.storePoAmount(spo);
+
         spo = await this.fillTaxes(spo);
 
         spo = await this.fillAdditionalDetails(spo);
@@ -371,6 +375,9 @@ module.exports = {
         else {
             logger.info("Spo is submitted successfully");
         }
+
+        spo.status = await poListingImpl.getPoStatus();
+        logger.info(`PO status is --> ${spo.status.toString()}`);
 
         return spo;
     },
@@ -493,21 +500,38 @@ module.exports = {
     },
     async createAndReleaseSpoFlow(spo) {
         spo = await this.createSpoFlow(spo);
-        await approvalImpl.navigateToApprovalListing();
-        await approvalImpl.navigateToPOApprovalListingTab();
-        await approvalImpl.approveDoc(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-        await I.wait(prop.DEFAULT_MEDIUM_WAIT);
-        await poListingImpl.navigateToPoListing();
-        await commonKeywordImpl.searchDocOnListing(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-        let status = await poListingImpl.getPoStatus();
-        logger.info(`Status in db --> ${lmtVar.getLabel("RELEASED_STATUS")}`);
-        let flag = status.toString().includes(lmtVar.getLabel("RELEASED_STATUS"));
-        if(!flag) {
-            logger.info(`Failed to release spo because status is ${status} on po listing after approving`);
-            throw new Error(`Failed to release spo because status is ${status} on po listing after approving`);
+        if(spo.status.toString() === lmtVar.getLabel("IN_APPROVAL_STATUS")) {
+            await approvalImpl.navigateToApprovalListing();
+            await approvalImpl.navigateToPOApprovalListingTab();
+            await approvalImpl.approveDoc(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            await approvalImpl.checkPOApprovalStatus(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            let status = await approvalImpl.getSpoStatus();
+
+            let flag = status.toString() === lmtVar.getLabel("APPROVED_STATUS")
+            if(!flag) {
+                logger.info(`Failed to approve spo because status is ${status} on Approval listing after approving`);
+                throw new Error(`Failed to approve spo because status is ${status} on Approval listing after approving`);
+            }
+            else {
+                logger.info("Spo is approved successfully");
+            }
+            
+            await I.wait(prop.DEFAULT_MEDIUM_WAIT);
+            await poListingImpl.navigateToPoListing();
+            await commonKeywordImpl.searchDocOnListing(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            status = await poListingImpl.getPoStatus();
+            logger.info(`Status in db --> ${lmtVar.getLabel("RELEASED_STATUS")}`);
+            flag = status.toString().includes(lmtVar.getLabel("RELEASED_STATUS"));
+            if(!flag) {
+                logger.info(`Failed to release spo because status is ${status} on po listing after approving`);
+                throw new Error(`Failed to release spo because status is ${status} on po listing after approving`);
+            }
+            else {
+                logger.info("Spo is released successfully");
+            }
         }
         else {
-            logger.info("Spo is released successfully");
+            logger.info(`PO status after submission was ${spo.status} and not ${lmtVar.getLabel("IN_APPROVAL_STATUS")}. Hence, not executing the Approve PO action.`);
         }
         return spo;
     },
@@ -608,5 +632,13 @@ module.exports = {
             let status = await poListingImpl.getPoStatus();
             I.assertEqual(status,lmtVar.getLabel("IN_APPROVAL_STATUS"));
         }
+    },
+
+    async storePoAmount(spo) {
+        I.scrollIntoView(I.getElement(iSpoObject.TOTAL_ORDER_AMOUNT));
+        I.waitForVisible(I.getElement(iSpoObject.TOTAL_ORDER_AMOUNT));
+        let PoAmount = await I.grabTextFrom(I.getElement(iSpoObject.TOTAL_ORDER_AMOUNT));
+        spo.setPoAmount(PoAmount);
+        return spo;
     }
 }
