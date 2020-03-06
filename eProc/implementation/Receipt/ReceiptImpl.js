@@ -50,6 +50,8 @@ module.exports = {
     },
     async fetchStatus()
     {
+        let returnNote = lmtVar.getLabel("RETURN_NOTE");
+        await I.waitForVisible("//dew-col[contains(text(),'"+ returnNote +"')]");
         await I.waitForVisible(I.getElement(iReceiptObject.STATUS));
         let status = await I.grabTextFrom(I.getElement(iReceiptObject.STATUS));
         logger.info("Status of the Receipt/ ReturnNote is "+status);
@@ -102,19 +104,18 @@ module.exports = {
         let noDataText = await I.grabTextFrom(I.getElement(iReceiptObject.NO_DATA_AVAILABLE_TEXT));
         return noDataText;
     },
-    // async receiptCreation()
-    // {
-    //     await I.amOnPage(prop.poListingUrl)
-    //     await I.waitForInvisible(global.uiElements.get(iSpoObject.spinner), prop.DEFAULT_MEDIUM_WAIT);
-    //     await receiptImpl.viewPO();
-    //     await receiptImpl.viewReceiptTab();
-    //     await receiptImpl.createReceipt();
-    //     await receiptImpl.clickSelectionCheckbox();
-    //     await receiptImpl.clickSubmitReceipt()
-    //     await receiptImpl.clickConfirmation();
-    // },
+    async receiptCreation()
+    {
+        await receiptImpl.viewPO();
+        await receiptImpl.viewReceiptTab();
+        await receiptImpl.createReceipt();
+        await receiptImpl.clickSelectionCheckbox();
+        await receiptImpl.clickSubmitReceipt()
+        await receiptImpl.clickConfirmation();
+    },
 
     async searchRequisition(reqNo){
+        await I.wait(prop.DEFAULT_HIGH_WAIT);
         await I.waitForVisible(I.getElement(iReceiptObject.SEARCH_BUTTON));
         await I.click(I.getElement(iReceiptObject.SEARCH_BUTTON));
         await I.fillField(I.getElement(iReceiptObject.SEARCH_BUTTON), reqNo);
