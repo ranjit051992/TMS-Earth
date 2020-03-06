@@ -13,7 +13,7 @@ Feature: Spo
   # And i search po by descr/iption 
 
 
-@Non-COA @L1 @87 @autox
+@Non-COA @L1 @87 @autoxnoncoa
   Scenario: To verify that user is able to amend an existing PO to add more item
 
   Given I am logged in eProc
@@ -30,7 +30,7 @@ Feature: Spo
   Then Item should be added "ITEM_NAME_FOR_SEARCHING[1]" at index 2
 
 
-@Non-COA @L1 @89 @autox
+@Non-COA @L1 @89 @autoxnoncoa
   Scenario: To verify that user is able to change the delivery address on PO amend
 
   Given I am logged in eProc
@@ -52,7 +52,7 @@ Feature: Spo
   Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 
 
-@Non-COA @L1 @90 @autox
+@Non-COA @L1 @90 @autoxnoncoa
   Scenario: To verify that user is able to recall a PO after it is submitted
 
   Given I am logged in eProc
@@ -82,7 +82,7 @@ Feature: Spo
   Then PO status should be draft
 
 
-@Non-COA @L1 @91 @autox
+@Non-COA @L1 @91 @autoxnoncoa
   Scenario: To verify that user is able to change the payment terms on PO amend
 
   Given I am logged in eProc
@@ -101,7 +101,7 @@ Feature: Spo
   Then "PAYMENT_TERMS[1]" payment term should be displayed
 
 
-@Non-COA @L1 @92 @autox
+@Non-COA @L1 @92 @autoxnoncoa
   Scenario: To verify that user is able to close a SPO
 
   Given I am logged in eProc
@@ -118,7 +118,7 @@ Feature: Spo
   Then I should be able to see the PO in closed status
 
 
-@Non-COA @L1 @94 @autox
+@Non-COA @L1 @94 @autoxnoncoa
   Scenario: To verify that user is able to cancel a SPO 
 
   Given I am logged in eProc
@@ -132,7 +132,7 @@ Feature: Spo
   Then I should be able to see the PO in Cancelled status
 
 
-@Non-COA @L1 @106 @autox
+@Non-COA @L1 @106 @autoxnoncoa
   Scenario: To verify that user is able to add item for the PO in draft state
 
   Given I am logged in eProc
@@ -160,7 +160,7 @@ Feature: Spo
   Then Item should be added "ITEM_NAME_FOR_SEARCHING[1]" at index 2
 
 
-@Non-COA @L1 @108 @autox
+@Non-COA @L1 @108 @autoxnoncoa
   Scenario: To verify remind approver action for SPO
 
   Given I am logged in eProc 
@@ -606,7 +606,7 @@ Feature: Spo
 #   Then I should be able to see all the added items and attachments
 
 
-@COA @L1
+@COA @L1 @autoxcoa1
   Scenario: COA _ To verify that user is able to amend an existing PO to add more item
 
   Given I am logged in eProc
@@ -637,7 +637,7 @@ Feature: Spo
 #   Then I should be able to see the new item added in the amended version.
 
 
-@COA @L1
+@COA @L1 @autoxcoa
   Scenario: COA _ To verify that user is able to change the delivery address on PO amend
 
   Given I am logged in eProc
@@ -659,7 +659,7 @@ Feature: Spo
   Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 
 
-@COA @L1
+@COA @L1 @autoxcoa
   Scenario: COA _ To verify that user is able to recall a PO after it is submitted
 
   Given I am logged in eProc
@@ -689,7 +689,7 @@ Feature: Spo
   Then PO status should be draft
 
 
-@COA @L1
+@COA @L1 @autoxcoa
   Scenario: COA _ To verify that user is able to change the payment terms on PO amend
 
   Given I am logged in eProc
@@ -708,7 +708,7 @@ Feature: Spo
   Then "PAYMENT_TERMS[1]" payment term should be displayed
 
 
-@COA @L1
+@COA @L1 @autoxcoa
   Scenario: COA _ To verify that user is able to close a SPO
 
   Given I am logged in eProc
@@ -738,7 +738,7 @@ Feature: Spo
 #   Then I should be able to see the PO in closed status
 
 
-@COA @L1
+@COA @L1 @autoxcoa
   Scenario: COA _ To verify that user is able to cancel a SPO 
 
   Given I am logged in eProc
@@ -945,7 +945,7 @@ Feature: Spo
 #   Then I should not get apportioned amount assigned for total cost booking amount
 
 
-@COA @L1
+@COA @L1 @autoxcoa
   Scenario: COA _ To verify that user is able to add item for the PO in draft state
 
   Given I am logged in eProc
@@ -987,7 +987,7 @@ Feature: Spo
 #   Then I should be able to see all the added items and attachments
 
 
-@COA @L1
+@COA @L1 @autoxcoa
   Scenario: COA _ To verify remind approver action for SPO
 
   Given I am logged in eProc 

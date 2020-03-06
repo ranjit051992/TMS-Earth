@@ -47,6 +47,9 @@ module.exports = {
         let quantityValueXpath = `//p[contains(text(),'${lmtVar.getLabel("COA_QUANTITY_AMOUNT_LABEL")}')]//following-sibling::p`;
         await I.waitForVisible(quantityValueXpath);
         let quantity = await I.grabTextFrom(quantityValueXpath);
+        if(quantity.includes(".")) {
+            quantity = quantity.substring(0, quantity.indexOf("."));
+        }
         logger.info(`Retrieved quantity --> ${quantity}`);
         return quantity;
     },

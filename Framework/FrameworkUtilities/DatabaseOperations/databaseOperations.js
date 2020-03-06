@@ -249,7 +249,7 @@ module.exports = {
         const connectionObj = parser(connectionString);
         
         //logger.info(columnName);
-        const query = `SELECT USERNAME,PASSWORD  FROM ${prop.UserTable} WHERE flag='true'`;
+        const query = `SELECT USERNAME,PASSWORD FROM ${prop.UserTable} WHERE SETUP_NAME='${prop.SETUP}' AND TENANT_NAME='${prop.TENANT}' AND flag='true'`;
         //logger.info(query);
 
         const timeout = faker.random.number({min:60000, max:300000});
