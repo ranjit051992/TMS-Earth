@@ -1,17 +1,20 @@
 {
     "eProc": {
-        "url": "https://dewdrops-partner.zycus.com/eproc/#/online-store",
-        "poListingUrl": "https://dewdrops-partner.zycus.com/eproc/#/purchaseorder/default/listing",
-        "DDS_OnlineStore_Url": "https://dewdrops-partner.zycus.com/eproc/#/online-store",
-        "DDS_Requisition_Listing": "https://dewdrops-partner.zycus.com/eproc/#/requisition/requisition",
-        "DDS_Approval_Listing": "https://dewdrops-partner.zycus.com/eproc/#/approval/allRequest/requisition",
-        "DDS_BuyersDesk_Url": "https://dewdrops-partner.zycus.com/eproc/#/buyersdesk/default/listing",
-        "DDS_AllRequests_Url": "https://dewdrops-partner.zycus.com/eproc/#/approval/allRequest/requisition",
+       
+
+        "url": "https://login-rp.zycus.com/sso/login",
+        "poListingUrl": "https://dewdrops-rp.zycus.com/eproc/#/purchaseorder/default/listing",
+        "DDS_OnlineStore_Url": "https://dewdrops-rp.zycus.com/eproc/#/online-store",
+        "DDS_Requisition_Listing": "https://dewdrops-rp.zycus.com/eproc/#/requisition/requisition",
+        "DDS_Approval_Listing": "https://dewdrops-rp.zycus.com/eproc/#/approval/allRequest/requisition",
+        "DDS_BuyersDesk_Url": "https://dewdrops-rp.zycus.com/eproc/#/buyersdesk/default/listing",
+        "DDS_AllRequests_Url": "https://dewdrops-rp.zycus.com/eproc/#/approval/allRequest/requisition",
+
         "PASSWORD_MANAGER_URL": "https://passmanager.zycus.com/PassTrixMain.cc",
-        "SETUP": "RM",
-        "TENANT": "ZCS",
+        "SETUP": "PARTNER",
+        "TENANT": "CDK",
         "browser": "chrome",
-        "host": "192.168.7.57",
+        "host": "127.0.0.1",
         "restart": "false",
         "port": 4444,
         "windowSize": "maximize",
@@ -29,8 +32,8 @@
         "testdataTable":"TestData_eproc",
         "uiElementTable":"eProc_UI_Elements",
         "UserTable":"eProc_credentials",
-        "LOGIN_WITH_PASSWORD_MANAGER": false,
-        "isCoa": false
+        "LOGIN_WITH_PASSWORD_MANAGER": true,
+        "isCoa": true
     },
     "iContract": {
         "url": "https://dewdrops-partner.zycus.com/",

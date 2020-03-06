@@ -67,15 +67,21 @@ Feature: Checkout
   And I should be able to Edit and submit the Draft requisition
   And I should be able to delete the requisition
 
-@Non-COA @L1
+@Non-COA @L1 @attach
 
     Scenario: To verify that user is able to add attachments to the requisition.
     Given I am logged in eProc
 
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
+    And I enter Requisition Name
+    And I add Purchase Type
+    And I add Settlement Via
     And I add an attachment "ATTACHMENT_PATH"
-    
+    And I add Required By Date
+    And I add data in Cost Booking Details section at line level
+    And I submit requisition
+
     Then I should be able to see the attachment which is added
 
 @Non-COA @L1   
@@ -585,15 +591,21 @@ Feature: Checkout
 
 
 
-# @COA @L1
-#     Scenario: COA>>To verify that user is able to add attachments to the requisition.
-#     Given I am logged in eProc
+@COA @L1 @snehal
+ Scenario: COA>>To verify that user is able to add attachments to the requisition.
+    Given I am logged in eProc
 
-#     When I add an item to cart 
-#     And I checkout
-#     And I add an attachment
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I enter Requisition Name
+    And I add Purchase Type
+    And I add Settlement Via
+    And I add an attachment "ATTACHMENT_PATH"
+    And I add Required By Date
+    And I add data in Cost Booking Details section at line level
+    And I submit requisition
 
-#     Then I should be able to see the attachment which is added
+    Then I should be able to see the attachment which is added
 
 @COA @L1
     Scenario: COA>>To verify that user is able to copy any requisition and modify it to create a new requisition.
@@ -704,19 +716,23 @@ Feature: Checkout
      And I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated
 
 
-# @COA @L1
-#     Scenario: COA>>To verify that user is able to change the default Delivery & Bill to address in the requisition.
-#     Given I am logged in eProc
+@COA @L1 @snehal
+    Scenario: COA>>To verify that user is able to change the default Delivery & Bill to address in the requisition.
+    Given I am logged in eProc
 
-#     When I add a catalog item to cart
-#     And I checkout
-#     And I add Purchase Type
-#     And I add Required By Date
-#     And I select Ship to Another Address in  Shipping Details section at header level
-#     And I add data in Cost Booking Details section at line level 
-#     And I submit requisition
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I enter Requisition Name
+    And I add Purchase Type
+    And I add Settlement Via
+    And I add Required By Date
+    And I select Ship to Another Address in  Shipping Details section at header level
+    And I select any existing address as shipping address
+    And I add data in Cost Booking Details section at line level 
+    #And I save it
+    And I submit requisition
 
-#     Then I should be able to see Deliver address as the Ship to Another Address on view requisition 
+    Then I should be able to see Deliver address as the Ship to Another Address on view requisition 
 
 @COA @L1
     Scenario: COA>> To verify that user is able to view approval Status
@@ -733,7 +749,7 @@ Feature: Checkout
 
     Then I should be able see the status of requisition on the Listing page
 
-@COA @L1
+@COA @L1 @snehal
     Scenario: COA>>To verify that user is able to create any custom / One time delivery address while Check out and save it for future use
     Given I am logged in eProc
 
@@ -870,7 +886,7 @@ Feature: Checkout
 
 #   Then I should be see that the field name is updated to Select Purchase Order.
 
-@COA @L1
+@COA @L1 @snehal
   Scenario: COA>>To verify that user is able to raise a request with stock items
   Given I am logged in eProc
 
@@ -911,7 +927,7 @@ Feature: Checkout
   And I should be able to Edit and submit the Draft requisition
   And I should be able to delete the requisition
 
-@COA @L1  @buyer
+@COA @L1  @sneha
 
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer group
   Given I am logged in eProc
@@ -929,7 +945,7 @@ Feature: Checkout
 
   Then I should be able to view requisition with buyer as the buyer group which was assigned
 
-@COA @L1  
+@COA @L1  @snehal
 
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer
   Given I am logged in eProc
@@ -963,7 +979,7 @@ Feature: Checkout
 #   Then I should be able to view the requisition with the delivery split
 #   And I should see that the address is updated
 
-@COA @L1
+@COA @L1 @snehal
   Scenario: COA>>To verify that user is able to add approver in requisition workflow if activity if assigned to him/her
   Given I am logged in eProc
 
