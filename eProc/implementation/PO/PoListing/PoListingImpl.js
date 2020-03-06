@@ -10,7 +10,7 @@ const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI1
 module.exports = {
     async navigateToPoListing() {
         await I.amOnPage(prop.poListingUrl);
-        await I.waitForInvisible(I.getElement(iSpoObject.spinner));
+        await I.waitForInvisible(I.getElement(iSpoObject.spinner), prop.DEFAULT_HIGH_WAIT);
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info("Navigated to Po Listing page");
@@ -34,11 +34,12 @@ module.exports = {
         logger.info("Clicked on Recalled Success Done button");
     },
     async getPoStatus(){
-        await I.scrollIntoView(I.getElement(poListingObject.PO_STATUS));
-        await I.wait(prop.DEFAULT_WAIT);
-        logger.info("Scrolled to Status column");
-        await I.waitForVisible(I.getElement(poListingObject.PO_STATUS));
-        let status = await I.grabTextFrom(I.getElement(poListingObject.PO_STATUS));
+        let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN")).toString();
+        // await I.scrollIntoView(I.getElement(poListingObject.PO_STATUS));
+        // await I.wait(prop.DEFAULT_WAIT);
+        // logger.info("Scrolled to Status column");
+        // await I.waitForVisible(I.getElement(poListingObject.PO_STATUS));
+        // let status = await I.grabTextFrom(I.getElement(poListingObject.PO_STATUS));
         logger.info(`Retrieved status --> ${status}`);
         return status;
     },

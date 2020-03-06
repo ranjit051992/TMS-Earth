@@ -764,9 +764,11 @@ module.exports = {
 
     async isRequisitionSubmitted() {
         let flag = false;
-        await I.waitForVisible(I.getElement(poListingObject.SEARCH_TEXTBOX), prop.DEFAULT_MEDIUM_WAIT);
-        let number = await I.grabNumberOfVisibleElements(I.getElement(poListingObject.SEARCH_TEXTBOX));
-        if (number > 0) {
+
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK), prop.DEFAULT_MEDIUM_WAIT);
+        let number = await I.grabNumberOfVisibleElements(I.getElement(poListingObject.PO_NUMBER_LINK));
+        if(number>0)
+        {
             flag = true;
             logger.info("Requisition Created Successfully");
         }

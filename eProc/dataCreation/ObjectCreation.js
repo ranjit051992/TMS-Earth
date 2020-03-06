@@ -83,8 +83,8 @@ class ObjectCreation
     getObjectOfRequisition(noOfItems,itemType)
      {
          requisition.reqName = "Automation_Req"+faker.random.number(200000);
-        //requisition.onBehalfOf = I.getData("ON_BEHALF_OF_WITH_RIGHT_USER");
-        requisition.onBehalfOf = (global.users.get("USERNAME"));
+        requisition.onBehalfOf = I.getData("ON_BEHALF_OF_WITH_RIGHT_USER");
+        //requisition.onBehalfOf = (global.users.get("USERNAME"));
         requisition.company = I.getData("ORGANIZATION_UNIT/COMPANY_NAME");
         requisition.businessUnit = I.getData("BUSINESS_UNIT_NAME");
         requisition.location = I.getData("LOCATION_NAME");
@@ -97,8 +97,8 @@ class ObjectCreation
         requisition.retrospectivePurchase = "No";
         requisition.shipToDefaultAddress = "Yes";
         requisition.shipToAnotherAddress = "No";
-        //requisition.deliverTo = I.getData("DELIVERES_TO/OWNER");
-        requisition.deliverTo = (global.users.get("USERNAME"));
+        requisition.deliverTo = I.getData("DELIVERES_TO/OWNER");
+       // requisition.deliverTo = (global.users.get("USERNAME"));
         //requisition.requiredBy = faker.date.
         requisition.assignCostProject = "No";
         requisition.bookCostToSingleMultipleCC= "Yes";

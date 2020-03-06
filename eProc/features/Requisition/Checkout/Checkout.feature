@@ -11,7 +11,7 @@ Feature: Checkout
   And I navigate to Line level Cost Booking Details
   Then I should be see the updated cost center on line level Cost Booking section
 
-@Non-COA @L1  
+@Non-COA @L1  @project
     Scenario: To verify that user is able to add Project information to the requisition.
     Given I am logged in eProc
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -39,7 +39,7 @@ Feature: Checkout
     And I navigate to Line level Shipping Details and Asset Tagging section
     And I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated
 
-@Non-COA @L1  
+@Non-COA @L1  @approval
     Scenario:  To verify that user is able to view approval Status
     Given I am logged in eProc
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -52,9 +52,10 @@ Feature: Checkout
     And I submit requisition
     Then I should be able see the status of requisition on the Listing page
 
-@Non-COA @L1 
+@Non-COA @L1 @draft
   Scenario: To verify requisition in draft and actions on it
   Given I am logged in eProc
+
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
   And I enter Requisition Name
@@ -235,7 +236,7 @@ Feature: Checkout
 
 
 
-@Non-COA @L1 
+@Non-COA @L1 @copy
     Scenario: To verify that user is able to copy any requisition and modify it to create a new requisition.
     Given I am logged in eProc
 
@@ -311,20 +312,23 @@ Feature: Checkout
 
 
 
-# @Non-COA @L1
-#     Scenario: To verify that PR is directly flipped into PO after regular approval is complete.
-#     Given I am logged in eProc
+@Non-COA @L1 @autoPO @Setting
+    Scenario: To verify that PR is directly flipped into PO after regular approval is complete.
+    Given I am logged in eProc
 
-#     When I enable the 'Automatically generate orders' for PO setting
-#     And I add a catalog item to cart
-#     And I checkout
-#     And I add Purchase Type
-#     And I add Required By Date
-#     And I add data in Cost Booking Details section at line level 
-#     And I submit requisition
-#     And I approve the requisition
+    # When I enable the 'Automatically generate orders' for PO setting
 
-#     Then I should see that PR is directly flipped to PO.
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I enter Requisition Name
+    And I add Purchase Type
+    And I add Settlement Via
+    And I add Required By Date
+    And I add data in Cost Booking Details section at line level 
+    And I submit requisition
+    And I approve the requisition
+
+    Then I should see that PR is directly flipped to PO
 
 # @Non-COA @L1
 #     Scenario: To verify a setting called ‘Required by date should be auto calculated as per lead time defined in the catalog’ is present under Customize setting for Requisition
@@ -354,7 +358,7 @@ Feature: Checkout
     Then I should be able to see Deliver address as the Ship to Another Address on view requisition 
 
 
-@Non-COA @L1 
+@Non-COA @L1 @taxes
     Scenario: To verify that user is able to add taxes at line item level in a requisition for catalog item
     Given I am logged in eProc
 
@@ -595,7 +599,7 @@ Feature: Checkout
 
 #     Then I should be able to see the attachment which is added
 
-@COA @L1
+@COA @L1 @coaCopy
     Scenario: COA>>To verify that user is able to copy any requisition and modify it to create a new requisition.
     Given I am logged in eProc
 
@@ -668,20 +672,22 @@ Feature: Checkout
 
 
 
-# @COA @L1
-#     Scenario: COA>>To verify that PR is directly flipped into PO after regular approval is complete.
-#     Given I am logged in eProc
+@COA @L1 @coaAutoPo
+    Scenario: COA>>To verify that PR is directly flipped into PO after regular approval is complete.
+    Given I am logged in eProc
 
-#     When I enable the 'Automatically generate orders' for PO setting
-#     And I add a catalog item to cart
-#     And I checkout
-#     And I add Purchase Type
-#     And I add Required By Date
-#     And I add data in Cost Booking Details section at line level 
-#     And I submit requisition
-#     And I approve the requisition
+    # When I enable the 'Automatically generate orders' for PO setting
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I enter Requisition Name
+    And I add Purchase Type
+    And I add Settlement Via
+    And I add Required By Date
+    And I add data in Cost Booking Details section at line level 
+    And I submit requisition
+    And I approve the requisition
 
-#     Then I should see that PR is directly flipped to PO.
+    Then I should see that PR is directly flipped to PO
 
 # @COA @L1
 #     Scenario: COA>>To verify a setting called ‘Required by date should be auto calculated as per lead time defined in the catalog’ is present under Customize setting for Requisition
@@ -692,7 +698,7 @@ Feature: Checkout
 #     Then I should be able to see Required by date should be auto calculated as per lead time defined in the catalog setting in this page
 
 
-@COA @L1
+@COA @L1 @coaAddr
     Scenario: COA>>To verify that system auto populates user's default Delivery & Bill to address 
     Given I am logged in eProc
 
@@ -718,7 +724,7 @@ Feature: Checkout
 
 #     Then I should be able to see Deliver address as the Ship to Another Address on view requisition 
 
-@COA @L1
+@COA @L1 @coaApproval
     Scenario: COA>> To verify that user is able to view approval Status
     Given I am logged in eProc
 
@@ -758,7 +764,7 @@ Feature: Checkout
     And I select Ship to Another Address in  Shipping Details section at header level
     And I should be able to see the saved address on creating a new requisition
 
-@COA @L1
+@COA @L1 @coaTaxes
     Scenario: COA>>To verify that user is able to add taxes at line item level in a requisition for catalog item
     Given I am logged in eProc
 
@@ -896,7 +902,7 @@ Feature: Checkout
 
 #   Then I should be able to view requisition with non stock item
 
-@COA @L1
+@COA @L1 @coaDraft
   Scenario: COA>>To verify requisition in draft and actions on it
     Given I am logged in eProc
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
