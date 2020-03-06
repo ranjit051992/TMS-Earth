@@ -252,7 +252,10 @@ module.exports = {
         const query = `SELECT USERNAME,PASSWORD FROM ${prop.UserTable} WHERE SETUP_NAME='${prop.SETUP}' AND TENANT_NAME='${prop.TENANT}' AND flag='true'`;
         //logger.info(query);
 
-        const timeout = faker.random.number({min:60000, max:300000});
+        let timeout = 0;
+        if(process.env.GRID) {
+            timeout = faker.random.number({min:60000, max:300000});
+        }
         logger.info(`waiting for timeout --> ${timeout}`);
         
         return new Promise((resolve, reject) => {
