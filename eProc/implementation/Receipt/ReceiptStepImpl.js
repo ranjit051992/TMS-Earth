@@ -78,7 +78,7 @@ When("I have approved the requisition", async function(){
 When("I search for the created Requisition", async function(){
     //await commonKeywordImpl.searchDocOnListing(this.reqNo, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
     await receiptImpl.searchRequisition(this.reqNo);
-    let poNumber =await receiptImpl.getPoNumber();
+    let poNumber = await receiptImpl.getPoNumber();
     logger.info("PO number" +poNumber);
 });
 
