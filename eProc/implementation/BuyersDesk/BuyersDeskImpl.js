@@ -9,13 +9,17 @@ const requisitionBo = require("../../dataCreation/bo/Requisition")
 
 module.exports = {
 
-    clickonStatusFilterButton(){
+    async clickonStatusFilterButton(){
         I.click(I.getElement(iBuyersDeskObject.STATUS_FILTER))
     },
     
     clickOnStatusApplyButton(){
         I.click(I.getElement(iBuyersDeskObject.BUYER_DESK_STATUS_APPLY));  
         },
+
+     clickonRequestorFilter(){
+         I.click(I.getElement(iBuyersDeskObject.REQUESTOR_FILTER))
+     } , 
     // clickonStatusFilterButton(){
     //     I.click(I.getElement(iBuyersDeskObject.FILTER_BUTTON))
     // },
@@ -54,12 +58,13 @@ module.exports = {
 
   async fillPurchaseAmount(maxValue,minValue)
   {
-    I.waitForVisible(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT),prop.DEFAULT_MEDIUM_WAIT);
-    // await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT,minValue));
-    // logger.info("Entered the min value " +minValue);
-    // await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MAX_INPUT,maxValue));
-    // logger.info("Entered the min value " +maxValue);
-    // this.clickOnStatusApplyButton();
+     I.waitForClickable(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT),prop.DEFAULT_MEDIUM_WAIT);
+     await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT,minValue));
+     logger.info("Entered the min value " +minValue);
+     await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MAX_INPUT,maxValue));
+     logger.info("Entered the min value " +maxValue);
+     await this.clickonApplyButton();
+
   },
 
   async filterStatus(status)
@@ -171,8 +176,8 @@ module.exports = {
     async fillBuyer(buyer)
     {
         logger.info('Fill Buyer name : ' + buyer);
-       I.waitForVisible(I.getElement(iBuyersDeskObject.ASSIGNED_BUYER), prop.DEFAULT_MEDIUM_WAIT);
-       I.waitForClickable(I.getElement(iBuyersDeskObject.ASSIGNED_BUYER), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForVisible(I.getElement(iBuyersDeskObject.ASSIGNED_BUYER), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iBuyersDeskObject.ASSIGNED_BUYER), prop.DEFAULT_MEDIUM_WAIT);
         let suggXpath = `//p[contains(text(),'${buyer}')]`;
         buyer = await commonComponent.searchAndSelectFromDropdown(I.getElement(iBuyersDeskObject.ASSIGNED_BUYER), buyer, suggXpath);
         logger.info(`Entered buyer : ${buyer}`);
@@ -191,7 +196,8 @@ module.exports = {
 
     async fetchPurchaseAmount(){
         I.waitForVisible(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
-        let purchaseamount = await I.grabTextFrom(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_LISTING));
+        let purchaseamountwithcurrency = await I.grabTextFrom(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_LISTING));
+        let purchaseamount = purchaseamountwithcurrency.slice(3);
         return purchaseamount;
 
     },
@@ -201,10 +207,31 @@ module.exports = {
         let status = await I.grabTextFrom(I.getElement(iBuyersDeskObject.STATUS_LISTING));
         return status;
 
-    }
+    },
+
+    async SearchRequestor(requestor){
+      
+        logger.info('Searched Requestor :' +requestor);
+        I.waitForClickable(I.getElement(iBuyersDeskObject.REQUESTOR_TEXT_BOX),prop.DEFAULT_MEDIUM_WAIT);
+        let searchXpath = `//label[contains(text(),'${requestor}')]`;
+        requestor = commonComponent.searchAndSelectFromDropdown(I.getElement(iBuyersDeskObject.REQUESTOR_TEXT_BOX),requestor,searchXpath);
+        //logger.info(`Entered requestor: ${requestor}`)
+        await this.clickonApplyButton();
+    },
  
+    
+    async EditRequisition(requistion){
 
-
+        logger.info('Requistion to be edited: '+requistion);
+        I.waitForVisible(I.getElement(iBuyersDeskObject.REQUISITION_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
+        I.click(I.getElement(`//div[contains(text(),'${lmtVar.getLabel("EDIT_ACTION")}')]`));
+        await commonComponent.waitForLoadingSymbolNotDisplayed();
+    },
+  
+    async validateReqinEditMode(){
+        
+    await commonComponent.isElementPresent(I.getElement(`//span[contains(text(),)]`));
+    }
 }
 
  

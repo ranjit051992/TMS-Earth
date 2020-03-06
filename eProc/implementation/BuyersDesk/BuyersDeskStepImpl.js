@@ -113,14 +113,22 @@ When ("I filter with {string} status", async function(status){
 });
 
 
-
 Then ("I should be see the data on the page with the filtered amount", async function(){
    let fetchPurchaseAmount = await buyersDeskImpl.fetchPurchaseAmount();
    logger.info('Searched Puchase amount '+fetchPurchaseAmount);
+   let flag = true;
    if (fetchPurchaseAmount>minValue && fetchPurchaseAmount<maxValue)
    {
-    logger.info("Purchase Amount is given in the given range");
+    logger.info("Purchase Amount is "+fetchPurchaseAmount+" and is in the given range");
+    flag = true;
    }
+    else
+    {
+      logger.info("Purchase Amount out of range");
+      flag = false;
+    }
+
+    I.assertEqual(flag,true);
 
 }); 
   Then("I should be see the data on the page with the filtered status", async function(){
@@ -136,4 +144,29 @@ Then("I should be see the data on the page with the filtered buyer", async funct
   logger.info('Requisition Buyer is '+requisition.buyer);
   I.assertEqual(searchedBuyer.toString(), requisition.buyer.toString());
    
+});
+
+When("I filter with Requestor field {string}",async function(requestor){
+  buyersDeskImpl.clickonRequestorFilter();
+  await buyersDeskImpl.SearchRequestor(requestor);
+});
+
+When("I approve requisition", async function(){
+  I.amOnPage(prop.DDS_AllRequests_Url);
+  logger.info("I am on Approval Listing Page");
+  await approvalImpl.approveDoc(requisition.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+  I.amOnPage(prop.DDS_BuyersDesk_Url);
+
+});
+
+When("I edit the requisition", async function(){
+  logger.info("Requistion to be edited is "+ requisition.reqNumber);
+  await buyersDeskImpl.SearchRequisitionNumber(requisition.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+  await buyersDeskImpl.EditRequisition(requisition.reqNumber);
+
+
+});
+
+Then ("I should be able to view the requisition in edit mode" , async function(){
+
 });

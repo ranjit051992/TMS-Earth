@@ -1,19 +1,19 @@
 Feature: BuyersDesk
 
 
-# @Non-COA @L1
-#     Scenario: To verify if Buyer is able to edit the requisition.
-#     Given I am logged in eProc
+@Non-COA @L1
+    Scenario: To verify if Buyer is able to edit the requisition.
+    Given I am logged in eProc
 
-#     When I add "1" "ITEM_NAME_FOR_SEARCHING" to cart
-#     And I checkout
-#     And I add Purchase Type
-#     And I add Required By Date
-#     And I add data in Cost Booking Details section at line level 
-#     And I submit requisition
-#     And I approve requisition
-#     And I navigate to Buyer Desk
-#     And I edit the requisition
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I add Purchase Type
+    And I add Required By Date
+    And I add data in Cost Booking Details section at line level 
+    And I submit requisition
+    And I approve requisition
+    And I navigate to Buyer Desk
+    And I edit the requisition
 
 #     Then I should be able to view the requisition in edit mode
 
@@ -54,14 +54,14 @@ Feature: BuyersDesk
 
      Then I should be see the data on the page on the basis on requisition name field
 
-# @Non-COA @L1
-#     Scenario: To verify requestor filter on buyer's desk 
-#     Given I am logged in eProc
+@konica
+    Scenario: To verify requestor filter on buyer's desk 
+    Given I am logged in eProc
 
-#     When I navigate to Buyer Desk
-#     And I filter with Requestor field
+    When I navigate to Buyer Desk
+    And I filter with Requestor field "GDQA-P"
 
-#     Then I should be see the data on the page on the basis on Requestor field
+  #  Then I should be see the data on the page on the basis on Requestor field
 
 # @Non-COA @L1
 #     Scenario: To verify Received On filter on buyer's desk 
@@ -81,7 +81,7 @@ Feature: BuyersDesk
 
      Then I should be see the data on the page with the filtered buyer
 
-@konica
+@konica1
     Scenario: To verify Purchase Amount filter on buyer's desk 
     Given I am logged in eProc
 
