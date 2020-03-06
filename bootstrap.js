@@ -5,10 +5,11 @@ module.exports = {
         bootstrap: async function () {
                 global.testData = await databaseOperations.getTestData();
                 global.uiElements = await databaseOperations.getUiElementXpath();
-                global.users = await databaseOperations.getUser();
+                // global.users = await databaseOperations.getUser();
+                global.users = await databaseOperations.getAndUpdateUser();
                 global.lmt = await databaseOperations.getLMTDetails();
                 global.allkeys = await databaseOperations.getLMTKeys();
-                await databaseOperations.updateUSER(global.users.get("USERNAME"),"false");
+                // await databaseOperations.updateUSER(global.users.get("USERNAME"),"false");
                 logger.info(" for this Chunk USERNAME  : " + global.users.get("USERNAME"));
         },
         teardown: async function ()
