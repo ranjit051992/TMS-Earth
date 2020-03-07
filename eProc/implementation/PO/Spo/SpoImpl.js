@@ -628,7 +628,7 @@ module.exports = {
 
     async checkMultiplePOStatus(POArray) {
         for (let i=0; i<POArray.length; i++) {
-            POArray[i] = await commonComponent.searchDocOnListing(POArray[i].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            await commonKeywordImpl.searchDocOnListing(POArray[i].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
             let status = await poListingImpl.getPoStatus();
             I.assertEqual(status,lmtVar.getLabel("IN_APPROVAL_STATUS"));
         }
