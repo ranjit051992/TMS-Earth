@@ -1,10 +1,10 @@
 Feature: Approval
 
-@Non-COA 
+@Non-COA  
     Scenario: To verify Requisition details are  properly displayed in approval listing
 
     Given I am logged in eProc
-    And I create requisition with 1 "catalog" item
+    And I create requisition with 1 "ITEM_NAME_FOR_SEARCHING" item
     And I have requisition In Approval status
     And I am on requisition approval listing page
 
@@ -19,7 +19,7 @@ Feature: Approval
     Scenario: To verify Purchase Order details are properly displayed in approval listing
 
     Given I am logged in eProc
-    And I Create Standard po with 1 "Catalog" item
+    And I Create Standard po with 1 "ITEM_NAME_FOR_SEARCHING" item
     And I have PO with In Approval status
     And I am on PO approval listing page
 
@@ -46,7 +46,7 @@ Feature: Approval
 #     Then I should get all details, same as what entered while creating that BPO
 
 
-@Non-COA
+@Non-COA @Run
     Scenario: To verify that user is able to approve single/multiple Requisition
 
     Given I am logged in eProc
