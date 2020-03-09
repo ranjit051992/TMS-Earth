@@ -69,7 +69,7 @@ Feature: Checkout
   And I should be able to Edit and submit the Draft requisition
   And I should be able to delete the requisition
 
-@Non-COA @L1 @attach
+@Non-COA @L1 @attach @Snehal
 
     Scenario: To verify that user is able to add attachments to the requisition.
     Given I am logged in eProc
@@ -86,7 +86,7 @@ Feature: Checkout
 
     Then I should be able to see the attachment which is added
 
-@Non-COA @L1   
+@Non-COA @L1 @Snehal
 
     Scenario: To verify that user is able to create any custom / One time delivery address while Check out and save it for future use
     Given I am logged in eProc
@@ -112,7 +112,7 @@ Feature: Checkout
     And I select Ship to Another Address in  Shipping Details section at header level
     And I should be able to see the saved address on creating a new requisition
 
-@Non-COA @L1  @po
+@Non-COA @L1  @po @Snehal
 
   Scenario: To verify that the 'Select Purchase Order' field
   Given I am logged in eProc
@@ -124,7 +124,7 @@ Feature: Checkout
 
   Then I should be see that the field name is updated to Select Purchase Order
 
-@Non-COA @L1  @buyer
+@Non-COA @L1  @buyer @Snehal
 
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer group
   Given I am logged in eProc
@@ -142,7 +142,7 @@ Feature: Checkout
 
   Then I should be able to view requisition with buyer as the buyer group which was assigned
 
-@Non-COA @L1  
+@Non-COA @L1 @Snehal
 
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer
   Given I am logged in eProc
@@ -161,7 +161,7 @@ Feature: Checkout
   Then I should be able to view requisition with buyer which was assigned
   
 
-@Non-COA @L1 @adhoc
+@Non-COA @L1 @adhoc @Snehal
   Scenario: To verify that user is able to add approver in requisition workflow if activity is assigned to him/her
   Given I am logged in eProc
 
@@ -180,7 +180,7 @@ Feature: Checkout
 
   Then I should be able to view the requisition with adhoc approver added in the workflow
 
-@Non-COA @L1 @SEARCH_ITEM_STOCK
+@Non-COA @L1 @SEARCH_ITEM_STOCK @Snehal
   Scenario: To verify that user is able to raise a request with stock items
   Given I am logged in eProc
 
@@ -208,21 +208,26 @@ Feature: Checkout
 
 
 
-# @Non-COA @L1
-#   Scenario: To verify user is able to create a requisition for a free-text item or service
-#   Given I am logged in eProc
+@Non-COA @L1 @free
+  Scenario: To verify user is able to create a requisition for a free-text item or service
+  Given I am logged in eProc
 
-#   When I Create Request
-#   And I Add guided item/service
-#   And I Sourcing status
-#   And I add qty and price
-#   And I add items to cart
-#   And I checkout
-#   And I add data in Purchase Type and Required By field
-#   And I add GL account at line level
-#   And I submit requisition
+  When I Navigate to Guided Page
+  And I Add guided item service
+  And I add Sourcing status
+  And I add qty and price
+  And I save guided item details
+  And I select supplier from the Suggested Supplier dropdown
+  And I add items to cart
+  And I checkout
+  And I enter Requisition Name
+  And I add Purchase Type
+  And I add Settlement Via
+  And I add Required By Date
+  And I add data in Cost Booking Details section at line level
+  And I submit requisition
 
-#   Then I should be able to view requisition created with free text item
+  Then I should be able to view requisition created with free text item
 
 
 # @Non-COA @L1
@@ -349,7 +354,8 @@ Feature: Checkout
 #     Then I should be able to see Required by date should be auto calculated as per lead time defined in the catalog setting in this page
 
 
-@Non-COA @L1 @addr 
+
+@Non-COA @L1 @addr @Snehal
     Scenario: To verify that user is able to change the default Delivery & Bill to address in the requisition.
     Given I am logged in eProc
 
@@ -565,21 +571,25 @@ Feature: Checkout
 
 
 
-# @COA @L1
-#   Scenario: COA>>To verify user is able to create a requisition for a free-text item or service
-#   Given I am logged in eProc
+@COA @L1 
+  Scenario: COA>>To verify user is able to create a requisition for a free-text item or service
+  Given I am logged in eProc
 
-#   When I Create Request
-#   And I Add guided item/service
-#   And I Sourcing status
-#   And I add qty and price
-#   And I add items to cart
-#   And I checkout
-#   And I add data in Purchase Type and Required By field
-#   And I add GL account at line level
-#   And I submit requisition
+  When I Navigate to Guided Page
+  And I Add guided item service
+  And I add Sourcing status
+  And I add qty and price
+  And I save guided item details
+  And I add items to cart
+  And I checkout
+  And I enter Requisition Name
+  And I add Purchase Type
+  And I add Settlement Via
+  And I add Required By Date
+  And I add data in Cost Booking Details section at line level
+  And I submit requisition
 
-#   Then I should be able to view requisition created with free text item
+  Then I should be able to view requisition created with free text item
 
 
 # @COA @L1
@@ -760,7 +770,7 @@ Feature: Checkout
 
     Then I should be able see the status of requisition on the Listing page
 
-@COA @L1 @snehal
+@COA @L1 @snehal @custom
     Scenario: COA>>To verify that user is able to create any custom / One time delivery address while Check out and save it for future use
     Given I am logged in eProc
 
@@ -938,7 +948,7 @@ Feature: Checkout
   And I should be able to Edit and submit the Draft requisition
   And I should be able to delete the requisition
 
-@COA @L1  @sneha
+@COA @L1  @snehal
 
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer group
   Given I am logged in eProc

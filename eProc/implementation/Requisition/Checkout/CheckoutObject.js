@@ -101,8 +101,9 @@ module.exports= {
     WORKFLOW_NODE: "RFA/Workflow/WORKFLOW_NODE",
 
 
-
-
     // Header Level details
     REQUISITION_AMOUNT: "Checkout/REQUISITION_AMOUNT",
+
+    SUPPLIER_EDIT_ICON: "Checkout/ItemDetails/SUPPLIER_EDIT_ICON",
+
 };

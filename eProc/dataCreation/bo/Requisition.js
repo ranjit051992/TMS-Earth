@@ -54,7 +54,7 @@ class Requisition
         this.reqAmount;
         this.status;
         this.requestor;
-        this.noOfItems;
+        
         //let items = [];
     }
 
@@ -258,10 +258,7 @@ class Requisition
         this.status = status;
     }
 
-    setNoOfItems(noOfItems)
-    {
-        this.noOfItems = noOfItems;
-    }
+   
 }
 
 module.exports = new Requisition();

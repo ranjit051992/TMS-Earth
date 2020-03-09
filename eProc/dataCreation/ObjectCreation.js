@@ -68,6 +68,14 @@ class ObjectCreation
                 items[i] = stock;
             }
         }
+        if(itemType==="SEARCH_GUIDED_ITEM")
+        {
+            for(let i =0;i<noOfItems;i++)
+            {
+                let guided = await this.getObjectOfGuidedItem(i);
+                items[i] = guided;
+            }
+        }
         
         if(itemType === "SEARCH_GUIDED_ITEM")
         {
@@ -121,15 +129,14 @@ class ObjectCreation
         requisition.assignedBuyerGroup = "undefined";
         requisition.nextAction = lmtVar.getLabel("SUBMIT")
         requisition.fillCBL = false;
-        requisition.items  = await this.getArrayOfItems(noOfItems, itemType);
-        logger.info("Items "+requisition.items[0]);
+        requisition.items  = await this.getArrayOfItems(noOfItems,itemType);
         requisition.taxType = I.getData("TAX_TYPE");
         requisition.taxName = I.getData("TAX_NAME");
         requisition.setApplyTaxItemLevel = false;
         return requisition;
     }
 
-    getObjectOfGuidedItem(index)
+    async getObjectOfGuidedItem(index)
     {
         let guidedItem = new guidedItemBo();
         guidedItem.itemName = "GuidedItem_"+faker.random.number(500000);
@@ -139,9 +146,9 @@ class ObjectCreation
         guidedItem.type = I.getData("ITEM_TYPE");
         guidedItem.receiveBillBy = I.getData("RECEIVE_BY");
         guidedItem.sourcingStatus = I.getData("SOURCING_STATUS_OPTION");
-        guidedItem.quantity = faker.random.number(20);
+        guidedItem.quantity = faker.random.number({min:1, max:100})
         guidedItem.uom = I.getData("ITEM_UOM");
-        guidedItem.price = faker.random.number(200);
+        guidedItem.price = faker.random.number({min:1, max:2000});
         guidedItem.currency = I.getData("ITEM_CURRENCY");
         guidedItem.zeroPriceItem = false;
         guidedItem.buyerReviewRequired = true;
@@ -149,10 +156,10 @@ class ObjectCreation
         supplier.push(I.getData("SUPPLIER_NAME"));
         guidedItem.suppliers = supplier;
         guidedItem.nextAction = lmtVar.getLabel("ADD_TO_CART");
-        guidedItem.supplierAddress = (I.getData("OTHER_DELIVERY_ADD"));
-        guidedItem.supplierContact = (I.getData("SUPPLIER_CONTACT_NAME"));
-        guidedItem.supplierEmail = (I.getData("SUPPLIER_EMAIL"));
-        guidedItem.supplierPhone = (faker.phone.phoneNumber());
+        guidedItem.supplierAddress= (I.getData("OTHER_DELIVERY_ADD"));
+        guidedItem.supplierContact=(I.getData("SUPPLIER_CONTACT_NAME"));
+        guidedItem.supplierEmail=(I.getData("SUPPLIER_EMAIL"));
+        guidedItem.supplierPhone= (faker.phone.phoneNumber());
         return guidedItem;
     }
 

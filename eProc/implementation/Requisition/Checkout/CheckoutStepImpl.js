@@ -127,15 +127,15 @@ Then("I should see on line level, in Shipping Details and Asset Tagging section 
 });
 
 When("I add data in Cost Booking Details section at line level", async function(){
-    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));  
     let reqItems = this.reqBO.items;
     //await checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);
-    for(let i=0; i< this.reqBO.noOfItems; i++)
+
+    for(let i=0; i< this.reqBO.items.length; i++)
     {
         await checkoutImp.clickOnCostBookingLink(this.reqBO.items[i].itemName);
     }
     
-    //await checkoutImp.fillGLAccount(this.reqBO.glAccount);
     await coaImp.fillCoaDetails();
 });
 
@@ -177,14 +177,6 @@ Given("I add an attachment {string}", async function(filePath){
     this.attachment = filePath;
 });
 
-Then("I should be able to see the attachment which is added", async function(){
-
-    await reqListing.searchAndViewReqByName(this.reqName);
-    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ADDITIONAL_DETAILS_SECTION"));
-    let isPresent  = await checkoutImp.checkAddedAttachment(this.attachment);
-    I.saveScreenshot("Upload Attachment.png");
-     I.assertEqual(isPresent,true);
- });
 
 Given("I link Purchase Order {string} in the Select Purchase Order field", async function(po){
     //let poNumber = this.spo.poNumber;
@@ -231,39 +223,6 @@ Given("I select buyer {string} at line level in Buyer section", async function(b
     this.buyerName = value.substring(0,value.indexOf('@'));
 });
 
-Then("I should be able to view requisition with buyer as the buyer group which was assigned", async function(){
-
-    await reqListing.searchAndViewReqByName(this.reqBO.reqName);
-    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
-    await checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);     
-    await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
-    let group = await checkoutImp.getBuyer();
-
-    let isEqual = false;
-    if(group===this.buyerGroup)
-    {
-        isEqual = true;
-    }
-     I.assertEqual(isEqual,true);
- });
-
-
- Then("I should be able to view requisition with buyer which was assigned", async function(){
-
-    await reqListing.searchAndViewReqByName(this.reqBO.reqName);
-    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
-    await checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);     
-    await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
-    let buyer = await checkoutImp.getBuyer();
-
-    let isEqual = false;
-    if(buyer===this.buyerName)
-    {
-        isEqual = true;
-    }
-     I.assertEqual(isEqual,true);
- });
-
 
 When("I select Ship to Another Address in  Shipping Details section at header level", async function(){
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
@@ -288,22 +247,7 @@ When("I create the address", async function(){
 });
 
 
-Then("I should be able to see new Deliver address as the Ship to Another Address on view requisition", async function(){
 
-    await reqListing.searchAndViewReqByName(this.reqBO.reqName);
-    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
-    let actualAddress = this.customAddress.toString();
-    let address = await viewReqImpl.getShipToAnotherAddress();
-    let isEqual = false;
-    if(address.toString()===actualAddress.toString()) 
-    {
-        isEqual = true;
-    }
-    
-    this.isAddressSaved = isEqual;
-    
-    //I.assertEqual(isEqual,true);
- });
 
  Then("I should be able to see the saved address on creating a new requisition", async function(){
     let addressName = this.customAddress.toString();
@@ -373,37 +317,6 @@ When("I should be add adhoc approver {string} after {string} on Ready for Approv
     this.adhocApprover = approver;
 });
 
-Then("I should be able to view the requisition with adhoc approver added in the workflow", async function(){
-
-    await reqListing.searchAndViewReqByName(this.reqName);
-    //await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
-   // await I.scrollPageToBottom();
-    let workflowNodes = await checkoutImp.fetchWorkflowNodes();
-    let isPresent = false;
-    for(let node of workflowNodes)
-    {
-        if(node.includes(lmtVar.getLabel("ADHOC_APPROVER")))
-        {
-            // if(node.includes(this.adhocApprover.toString()))
-            // {
-                isPresent = true;
-            //}
-        }
-    }
-
-    logger.info("Adhoc approver present : "+isPresent);
-
-    I.assertEqual(isPresent,true);
-});
-
-Then("I should be able to view requisition with stock item", async function(){
-
-    await reqListing.searchAndViewReqByName(this.reqName);
-    await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
-    let isPresent = await viewReqImpl.checkLineItems(this.addedCartItems);
-    I.assertEqual(isPresent,true);
-
-});
 
 When("I select any existing address as shipping address", async function()
 {
@@ -413,24 +326,6 @@ When("I select any existing address as shipping address", async function()
 
 });
 
-Then("I should be able to see Deliver address as the Ship to Another Address on view requisition", async function(){
-
-    await reqListing.searchAndViewReqByName(this.reqName);
-    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
-    let actualAddress = this.anotherAddress.toString();
-    let address = await viewReqImpl.getShipToAnotherAddress();
-    let isEqual = await commonComponent.isElementPresent(I.getElement(iViewReq.REQ_SHIP_TO_ANOTHER_ADDRESS_LABEL));
-    if(address.toString()===actualAddress.toString() && isEqual) 
-    {
-        isEqual = true;
-    }
-    else
-    {
-        isEqual = false;
-    }
-    
-    I.assertEqual(isEqual,true);
- });
 
 When("I add Costing split at header level by Percentage into {int} splits", async function(noOfSplit){
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_COST_ALLOCATION_SECTION"));

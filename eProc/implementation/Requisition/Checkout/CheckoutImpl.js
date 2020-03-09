@@ -1128,6 +1128,7 @@ module.exports = {
         await this.fetchWorkflowNodes();
     },
 
+
     async clickOnCoaAddMoreButton()
     {
         await I.waitForVisible(I.getElement(iCheckout.COA_ADD_MORE_BUTTON));
@@ -1158,4 +1159,14 @@ module.exports = {
         logger.info(`Entered Cost Center is : ${enterCostCenter}`);
         return enterCostCenter;
     },
+
+    async clickOnSupplierEditIcon()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.SUPPLIER_EDIT_ICON));
+        await I.waitForClickable(I.getElement(iCheckout.SUPPLIER_EDIT_ICON));
+        await I.click(I.getElement(iCheckout.SUPPLIER_EDIT_ICON));
+
+    },
+
+
 };

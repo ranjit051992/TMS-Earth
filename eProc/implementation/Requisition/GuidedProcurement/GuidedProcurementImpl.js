@@ -165,7 +165,7 @@ module.exports = {
         await I.waitForVisible(I.getElement(iGuided.QUANTITY_TEXTBOX));
         await I.waitForClickable(I.getElement(iGuided.QUANTITY_TEXTBOX));
         await I.clearField(I.getElement(iGuided.QUANTITY_TEXTBOX));
-        await I.fillField(I.getElement(iGuided.QUANTITY_TEXTBOX), quantity);
+        await I.fillField(I.getElement(iGuided.QUANTITY_TEXTBOX), quantity.toString());
     },
 
     async fillUom(uom) {
@@ -176,7 +176,7 @@ module.exports = {
         await I.waitForVisible(I.getElement(iGuided.PRICE_TEXTBOX));
         await I.waitForClickable(I.getElement(iGuided.PRICE_TEXTBOX));
         await I.clearField(I.getElement(iGuided.PRICE_TEXTBOX));
-        await I.fillField(I.getElement(iGuided.PRICE_TEXTBOX), price);
+        await I.fillField(I.getElement(iGuided.PRICE_TEXTBOX), price.toString());
     },
 
     async fillCurrency(currency) {
@@ -262,6 +262,7 @@ module.exports = {
         await I.waitForVisible(I.getElement(iGuided.SUPPLIER_ADDRESS_TEXTBOX));
         await I.waitForClickable(I.getElement(iGuided.SUPPLIER_ADDRESS_TEXTBOX));
         await I.click(I.getElement(iGuided.SUPPLIER_ADDRESS_TEXTBOX));
+        
     },
 
     async clickOnSupplierAddressSuggestion() {
@@ -273,12 +274,14 @@ module.exports = {
     async getSupplierContactName() {
         await I.waitForVisible(I.getElement(iGuided.SUPPLIER_CONTACT_TEXTBOX));
         let contactName = await I.grabAttributeFrom(I.getElement(iGuided.SUPPLIER_CONTACT_TEXTBOX), 'value');
+        logger.info("Supplier Contact : "+contactName.toString());
         return contactName.toString().trim();
     },
 
     async getSupplierEmail() {
         await I.waitForVisible(I.getElement(iGuided.SUPPLIER_EMAIL_TEXTBOX));
         let email = await I.grabAttributeFrom(I.getElement(iGuided.SUPPLIER_EMAIL_TEXTBOX), 'value');
+        logger.info("Supplier Email : "+email.toString());
         return email.toString().trim();
     },
 
@@ -397,20 +400,10 @@ module.exports = {
             await this.clickOnQuantityRadioButton();
         }
 
-        if (guidedItem.sourcingStatus === lmtVar.getLabel("SOURCING_STATUS_NEED_QUOTE")) {
-            await this.clickOnNeedAQuoteRadioButton();
-        }
-
-        if (guidedItem.sourcingStatus === lmtVar.getLabel("SOURCING_STATUS_ESTIMATED_PRICE")) {
-            await this.clickOnEstimatedPriceRadioButton();
-        }
-
-        if (guidedItem.sourcingStatus === lmtVar.getLabel("SOURCING_STATUS_QUOTED_BY_SUPPLIER")) {
-            await this.clickOnQuotedBySupplierRadioButton();
-        }
+        this.selectSourcingStatus(guidedItem.sourcingStatus);
 
         if (guidedItem.quantity > 0) {
-            await this.fillQuantity(guidedItem.quantity);
+            await this.fillQuantity(guidedItem.quantity.toString());
         }
 
         if (guidedItem.uom !== "undefined") {
@@ -418,7 +411,7 @@ module.exports = {
         }
 
         if (guidedItem.price > 0) {
-            await this.fillPrice(guidedItem.price);
+            await this.fillPrice(guidedItem.price.toString());
         }
 
         if (guidedItem.currency !== "undefined") {
@@ -455,6 +448,12 @@ module.exports = {
                     await this.clickOnAdditionalDetailsButton();
                     await this.clickOnAddressTextbox();
                     await this.clickOnSupplierAddressSuggestion();
+                    let address = await this.getSupplierAddress();
+                    guidedItem.supplierAddress = address;
+                    let contact = await this.getSupplierContactName();
+                    guidedItem.supplierContact = contact;
+                    let email = await this.getSupplierEmail();
+                    guidedItem.supplierEmail= email;
                     await this.clickOnSupplierModalDoneButton();
                 }
                 else {
@@ -486,6 +485,37 @@ module.exports = {
                 }
             }
         }
-    }
 
+        return guidedItem;
+    },
+
+    async selectSourcingStatus(sourcingStatus)
+    {
+        if (sourcingStatus === lmtVar.getLabel("SOURCING_STATUS_NEED_QUOTE")) {
+            await this.clickOnNeedAQuoteRadioButton();
+        }
+
+        if (sourcingStatus === lmtVar.getLabel("SOURCING_STATUS_ESTIMATED_PRICE")) {
+            await this.clickOnEstimatedPriceRadioButton();
+        }
+
+        if (sourcingStatus === lmtVar.getLabel("SOURCING_STATUS_QUOTED_BY_SUPPLIER")) {
+            await this.clickOnQuotedBySupplierRadioButton();
+        }
+    },
+
+    async getSelectedSupplier()
+    {
+        let selectedSupplier = await I.grabTextFrom(I.getElement(iGuided.SELECTED_SUPPLIER_FIELD));
+        logger.info("Selected supplier is : "+selectedSupplier);
+        return selectedSupplier;
+    },
+
+    async getSupplierAddress() {
+        await I.waitForVisible(I.getElement(iGuided.SUPPLIER_ADDRESS_TEXTBOX));
+        let address = await I.grabAttributeFrom(I.getElement(iGuided.SUPPLIER_ADDRESS_TEXTBOX), 'value');
+        address = address.toString().replace('\n',' ').trim();
+        logger.info("Supplier Address : "+address);
+        return address;
+    },
 };

@@ -3,6 +3,7 @@ const lmtVar = require("./Framework/FrameworkUtilities/i18nUtil/readI18NProp")
 const logger = require("./Framework/FrameworkUtilities/Logger/logger");
 const prop = global.confi_prop;
 module.exports = {
+        
         bootstrap: async function () {
                 global.testData = await databaseOperations.getTestData();
                 global.uiElements = await databaseOperations.getUiElementXpath();
