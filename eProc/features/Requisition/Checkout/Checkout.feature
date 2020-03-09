@@ -1,7 +1,7 @@
 Feature: Checkout
 
 
-@Non-COA @L1 
+@Non-COA @L1 @priyanka
   Scenario: To verify that user is able to add Cost center information to the requisition.
   Given I am logged in eProc
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -11,7 +11,7 @@ Feature: Checkout
   And I navigate to Line level Cost Booking Details
   Then I should be see the updated cost center on line level Cost Booking section
 
-@Non-COA @L1  @project
+@Non-COA @L1  @project @priyanka
     Scenario: To verify that user is able to add Project information to the requisition.
     Given I am logged in eProc
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -21,7 +21,7 @@ Feature: Checkout
     And I navigate to Line level Cost Booking Details
     Then I should be see the updated project on line level Cost Booking section
 
-@Non-COA @L1  
+@Non-COA @L1  @priyanka
     Scenario: To verify that System auto populates user's Cost center when a user is creating a requisition.
     Given I am logged in eProc
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -30,7 +30,7 @@ Feature: Checkout
     And I navigate to Line level Cost Booking Details
     And I should see on line level Cost Booking Details section cost center should be populated
 
-@Non-COA @L1  
+@Non-COA @L1  @priyanka
     Scenario: To verify that system auto populates user's default Delivery & Bill to address 
     Given I am logged in eProc
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -39,7 +39,7 @@ Feature: Checkout
     And I navigate to Line level Shipping Details and Asset Tagging section
     And I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated
 
-@Non-COA @L1  @approval
+@Non-COA @L1  @approval @priyanka
     Scenario:  To verify that user is able to view approval Status
     Given I am logged in eProc
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -52,7 +52,7 @@ Feature: Checkout
     And I submit requisition
     Then I should be able see the status of requisition on the Listing page
 
-@Non-COA @L1 @draft
+@Non-COA @L1 @draft @priyanka
   Scenario: To verify requisition in draft and actions on it
   Given I am logged in eProc
 
@@ -242,7 +242,7 @@ Feature: Checkout
 
 
 
-@Non-COA @L1 @copy
+@Non-COA @L1 @copy @priyanka
     Scenario: To verify that user is able to copy any requisition and modify it to create a new requisition.
     Given I am logged in eProc
 
@@ -318,7 +318,7 @@ Feature: Checkout
 
 
 
-@Non-COA @L1 @autoPO @Setting
+@Non-COA @L1 @autoPO @Setting @priyanka
     Scenario: To verify that PR is directly flipped into PO after regular approval is complete.
     Given I am logged in eProc
 
@@ -345,7 +345,7 @@ Feature: Checkout
 #     Then I should be able to see Required by date should be auto calculated as per lead time defined in the catalog setting in this page
 
 
-@Non-COA @L1 @addr
+@Non-COA @L1 @addr 
     Scenario: To verify that user is able to change the default Delivery & Bill to address in the requisition.
     Given I am logged in eProc
 
@@ -358,13 +358,12 @@ Feature: Checkout
     And I select Ship to Another Address in  Shipping Details section at header level
     And I select any existing address as shipping address
     And I add data in Cost Booking Details section at line level 
-    #And I save it
     And I submit requisition
 
     Then I should be able to see Deliver address as the Ship to Another Address on view requisition 
 
 
-@Non-COA @L1 @taxes
+@Non-COA @L1 @taxes @priyanka
     Scenario: To verify that user is able to add taxes at line item level in a requisition for catalog item
     Given I am logged in eProc
 
