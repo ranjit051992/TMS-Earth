@@ -5,17 +5,30 @@ const commonComponent = require("../../commonKeywords/CommonComponent");
 const lmtVar = require("../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const prop=global.confi_prop;
 const commonKeywordImpl = require("../../commonKeywords/CommonComponent");
+const approvalObject = require("../Approval/ApprovalObject");
+const poListingObject = require("../PO/PoListing/PoListingObject");
 const requisitionBo = require("../../dataCreation/bo/Requisition")
 
 module.exports = {
 
-    clickonStatusFilterButton(){
+    async navigateToBuyerListing() {
+        await I.amOnPage(prop.DDS_BuyersDesk_Url);
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        logger.info("Navigated to Buyers Desk listing page");
+        await commonKeywordImpl.selectValueFromDropDown(I.getElement(approvalObject.LISTING_SELECTION_DROP_DOWN), lmtVar.getLabel("LISTING_ALL_REQ_OPTION"));
+    },
+
+    async clickonStatusFilterButton(){
         I.click(I.getElement(iBuyersDeskObject.STATUS_FILTER))
     },
     
-    clickOnStatusApplyButton(){
+    async clickOnStatusApplyButton(){
         I.click(I.getElement(iBuyersDeskObject.BUYER_DESK_STATUS_APPLY));  
         },
+
+     async clickonRequestorFilter(){
+         I.click(I.getElement(iBuyersDeskObject.REQUESTOR_FILTER))
+     } , 
     // clickonStatusFilterButton(){
     //     I.click(I.getElement(iBuyersDeskObject.FILTER_BUTTON))
     // },
@@ -29,6 +42,7 @@ module.exports = {
 
     async SearchRequisitionNumber(reqNumber, searchBy){
         await commonKeywordImpl.searchDocOnListing(reqNumber, searchBy);
+        await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
     },
 
     async fetchSearchedRequisitionNumber()
@@ -54,12 +68,13 @@ module.exports = {
 
   async fillPurchaseAmount(maxValue,minValue)
   {
-    I.waitForVisible(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT),prop.DEFAULT_MEDIUM_WAIT);
-    // await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT,minValue));
-    // logger.info("Entered the min value " +minValue);
-    // await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MAX_INPUT,maxValue));
-    // logger.info("Entered the min value " +maxValue);
-    // this.clickOnStatusApplyButton();
+     I.waitForClickable(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT),prop.DEFAULT_MEDIUM_WAIT);
+     await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT,minValue));
+     logger.info("Entered the min value " +minValue);
+     await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MAX_INPUT,(maxValue)));
+     logger.info("Entered the min value " +maxValue);
+     await this.clickonApplyButton();
+
   },
 
   async filterStatus(status)
@@ -136,7 +151,7 @@ module.exports = {
         throw new Error("Invalid search option!");
     }
 
-    let buyersOption = `//*[@id='cdk-overlay-0']/div/div/dew-popover-body/eproc-assigned-buyer-filter/ul/li[${index}]/div/label`;
+    let buyersOption = `//*[@id='cdk-overlay-0']//ul/li[${index}]/div/label`;
     logger.info(`buyersOption --> ${buyersOption}`);
 
     I.waitForVisible(buyersOption);
@@ -171,8 +186,8 @@ module.exports = {
     async fillBuyer(buyer)
     {
         logger.info('Fill Buyer name : ' + buyer);
-       I.waitForVisible(I.getElement(iBuyersDeskObject.ASSIGNED_BUYER), prop.DEFAULT_MEDIUM_WAIT);
-       I.waitForClickable(I.getElement(iBuyersDeskObject.ASSIGNED_BUYER), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForVisible(I.getElement(iBuyersDeskObject.ASSIGNED_BUYER), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iBuyersDeskObject.ASSIGNED_BUYER), prop.DEFAULT_MEDIUM_WAIT);
         let suggXpath = `//p[contains(text(),'${buyer}')]`;
         buyer = await commonComponent.searchAndSelectFromDropdown(I.getElement(iBuyersDeskObject.ASSIGNED_BUYER), buyer, suggXpath);
         logger.info(`Entered buyer : ${buyer}`);
@@ -181,17 +196,22 @@ module.exports = {
 
     async selectRequisitionCheckbox(){
         I.waitForVisible(I.getElement(iBuyersDeskObject.REQUISITION_CHECKBOX), prop.DEFAULT_MEDIUM_WAIT);
-        I.click(I.getElement(iCheckout.REQUISITION_CHECKBOX));
+        I.click(I.getElement(iBuyersDeskObject.REQUISITION_CHECKBOX));
     },
 
     async convertToPO(){
         I.waitForVisible(I.getElement(iBuyersDeskObject.CONVERT_PO_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
         I.click(I.getElement(iBuyersDeskObject.CONVERT_PO_BUTTON));
+        await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
+        await this.clickOnPODetailsCheckbox();
+        await this.clickOnSubmitPOBtn();
+        await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
     },
 
     async fetchPurchaseAmount(){
         I.waitForVisible(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
-        let purchaseamount = await I.grabTextFrom(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_LISTING));
+        let purchaseamountwithcurrency = await I.grabTextFrom(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_LISTING));
+        let purchaseamount = purchaseamountwithcurrency.slice(3);
         return purchaseamount;
 
     },
@@ -213,10 +233,93 @@ module.exports = {
         await I.waitForVisible(I.getElement(iBuyersDeskObject.SUBMIT_PO_BUTTON));
         await I.click(I.getElement(iBuyersDeskObject.SUBMIT_PO_BUTTON));
         logger.info("Clicked on Submit PO button");
-    }
+    },
+    async SearchRequestor(requestor){
+      
+        logger.info('Searched Requestor :' +requestor);
+        I.waitForClickable(I.getElement(iBuyersDeskObject.REQUESTOR_TEXT_BOX),prop.DEFAULT_MEDIUM_WAIT);
+        let searchXpath = `//label[contains(text(),'${requestor}')]`;
+        requestor = commonComponent.searchAndSelectFromDropdown(I.getElement(iBuyersDeskObject.REQUESTOR_TEXT_BOX),requestor,searchXpath);
+        //logger.info(`Entered requestor: ${requestor}`)
+        await this.clickonApplyButton();
+    },
  
+    
+    async EditRequisition(requistion){
 
+        logger.info('Requistion to be edited: '+requistion);
+        I.waitForVisible(I.getElement(iBuyersDeskObject.REQUISITION_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
+        I.click(I.getElement(`//div[contains(text(),'${lmtVar.getLabel("EDIT_ACTION")}')]`));
+        await commonComponent.waitForLoadingSymbolNotDisplayed();
+    },
+  
+    async validateReqinEditMode(){
+     let flag = true; 
+    flag =  await commonComponent.isElementPresent(I.getElement(`//footer//span[contains(text(),'${lmtVar.getLabel("SAVE")}')]`));
+    if (flag)
+    {
+        logger.info("Requistion is openend in Edit mode");
+    }
+    else 
+    {
+        logger.info("Requisition is opened in View Mode")
+    }
+    
+    return flag;
+    },
 
+    async clickOnReturnButton(){
+        I.click(I.getElement(iBuyersDeskObject.REQ_RETURN_BUTTON));
+        
+    },
+
+    async fillReturnReqComments(comments) {
+        await I.scrollIntoView(I.getElement(iBuyersDeskObject.RETURN_REQ_COMMENTS_TEXTAREA));
+        await I.wait(prop.DEFAULT_WAIT);
+        await I.waitForVisible(I.getElement(iBuyersDeskObject.RETURN_REQ_COMMENTS_TEXTAREA));
+        await I.click(I.getElement(iBuyersDeskObject.RETURN_REQ_COMMENTS_TEXTAREA));
+        await I.clearField(I.getElement(iBuyersDeskObject.RETURN_REQ_COMMENTS_TEXTAREA));
+        await I.fillField(I.getElement(iBuyersDeskObject.RETURN_REQ_COMMENTS_TEXTAREA), comments);
+        logger.info(`Entered po amend comments --> ${comments}`);
+    }, 
+
+    async clickonReturnrequestorYes() {
+
+        await I.click(I.getElement(iBuyersDeskObject.RESUBMIT_REQ_BUTTON_YES));
+        await commonComponent.waitForLoadingSymbolNotDisplayed();
+    },
+     
+    async SearchRequester(requester){
+        I.waitForVisible(I.getElement(iBuyersDeskObject.REQUISITION_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
+        await this.clickOnRequesterFilter();
+        let requesterName = await this.selectRequester(requester);
+        requisitionBo.requester = requesterName;
+        logger.info('Requester after selector is '+requisitionBo.requester);
+        await this.clickonApplyButton();
+        I.waitForVisible(I.getElement(iBuyersDeskObject.REQUESTER_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
+    },
+
+    async clickOnRequesterFilter(){
+        I.click(I.getElement(iBuyersDeskObject.REQUESTER_FILTER));
+    },
+
+    async selectRequester(requester){
+        I.waitForVisible(I.getElement(iBuyersDeskObject.SEARCH_REQUESTOR_TEXTBOX),global.confi_prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iBuyersDeskObject.SEARCH_REQUESTOR_TEXTBOX),confi_prop.DEFAULT_HIGH_WAIT);
+        I.fillField(I.getElement(iBuyersDeskObject.SEARCH_REQUESTOR_TEXTBOX),requester);
+        let suggXpath = `//label[contains(text(),'${requester}')]`;
+        I.click(suggXpath);
+        requester = await I.grabTextFrom(suggXpath);
+       logger.info(`Entered Requester is : ${requester}`);
+       return requester;
+    },
+
+    async fetchSearchedRequestor()
+   {
+        I.waitForVisible(I.getElement(iBuyersDeskObject.REQUESTER_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
+        let requestorName = await I.grabTextFrom(I.getElement(iBuyersDeskObject.REQUESTER_NAME_LISTING));
+        return requestorName;
+   }
 }
 
  
