@@ -42,6 +42,7 @@ module.exports = {
 
     async SearchRequisitionNumber(reqNumber, searchBy){
         await commonKeywordImpl.searchDocOnListing(reqNumber, searchBy);
+        await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
     },
 
     async fetchSearchedRequisitionNumber()
@@ -150,7 +151,7 @@ module.exports = {
         throw new Error("Invalid search option!");
     }
 
-    let buyersOption = `//*[@id='cdk-overlay-0']/div/div/dew-popover-body/eproc-assigned-buyer-filter/ul/li[${index}]/div/label`;
+    let buyersOption = `//*[@id='cdk-overlay-0']//ul/li[${index}]/div/label`;
     logger.info(`buyersOption --> ${buyersOption}`);
 
     I.waitForVisible(buyersOption);
@@ -195,12 +196,16 @@ module.exports = {
 
     async selectRequisitionCheckbox(){
         I.waitForVisible(I.getElement(iBuyersDeskObject.REQUISITION_CHECKBOX), prop.DEFAULT_MEDIUM_WAIT);
-        I.click(I.getElement(iCheckout.REQUISITION_CHECKBOX));
+        I.click(I.getElement(iBuyersDeskObject.REQUISITION_CHECKBOX));
     },
 
     async convertToPO(){
         I.waitForVisible(I.getElement(iBuyersDeskObject.CONVERT_PO_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
         I.click(I.getElement(iBuyersDeskObject.CONVERT_PO_BUTTON));
+        await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
+        await this.clickOnPODetailsCheckbox();
+        await this.clickOnSubmitPOBtn();
+        await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
     },
 
     async fetchPurchaseAmount(){
@@ -272,8 +277,38 @@ module.exports = {
         await I.click(I.getElement(iBuyersDeskObject.RESUBMIT_REQ_BUTTON_YES));
         await commonComponent.waitForLoadingSymbolNotDisplayed();
     },
+     
+    async SearchRequester(requester){
+        I.waitForVisible(I.getElement(iBuyersDeskObject.REQUISITION_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
+        await this.clickOnRequesterFilter();
+        let requesterName = await this.selectRequester(requester);
+        requisitionBo.requester = requesterName;
+        logger.info('Requester after selector is '+requisitionBo.requester);
+        await this.clickonApplyButton();
+        I.waitForVisible(I.getElement(iBuyersDeskObject.REQUESTER_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
+    },
 
-    
+    async clickOnRequesterFilter(){
+        I.click(I.getElement(iBuyersDeskObject.REQUESTER_FILTER));
+    },
+
+    async selectRequester(requester){
+        I.waitForVisible(I.getElement(iBuyersDeskObject.SEARCH_REQUESTOR_TEXTBOX),global.confi_prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForClickable(I.getElement(iBuyersDeskObject.SEARCH_REQUESTOR_TEXTBOX),confi_prop.DEFAULT_HIGH_WAIT);
+        I.fillField(I.getElement(iBuyersDeskObject.SEARCH_REQUESTOR_TEXTBOX),requester);
+        let suggXpath = `//label[contains(text(),'${requester}')]`;
+        I.click(suggXpath);
+        requester = await I.grabTextFrom(suggXpath);
+       logger.info(`Entered Requester is : ${requester}`);
+       return requester;
+    },
+
+    async fetchSearchedRequestor()
+   {
+        I.waitForVisible(I.getElement(iBuyersDeskObject.REQUESTER_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
+        let requestorName = await I.grabTextFrom(I.getElement(iBuyersDeskObject.REQUESTER_NAME_LISTING));
+        return requestorName;
+   }
 }
 
  

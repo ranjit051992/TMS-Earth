@@ -53,6 +53,7 @@ class Requisition
         this.taxAmount;
         this.reqAmount;
         this.status;
+        this.requestor;
         //let items = [];
     }
 
