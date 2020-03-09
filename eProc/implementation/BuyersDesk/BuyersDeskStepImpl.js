@@ -12,8 +12,7 @@ const cartImpl = require("./../Requisition/Cart/CartImpl");
 const onlineStore = require("../Requisition/OnlineStore/OnlineStoreObject");
 
 When("I navigate to Buyer Desk", async function() {
-  I.amOnPage(global.confi_prop.DDS_BuyersDesk_Url);
-  logger.info("Navigated to Buyers Desk Page")
+  await buyersDeskImpl.navigateToBuyerListing();
 });
 
 When("I navigate to Buyers Desk {string} {string} {string}", async function(noOfItems, itemType, noOfReq) {
@@ -148,10 +147,9 @@ Then("I should be see the data on the page with the filtered buyer", async funct
 
 
 When("I approve requisition", async function(){
-  I.amOnPage(prop.DDS_AllRequests_Url);
-  logger.info("I am on Approval Listing Page");
+  await approvalImpl.navigateToApprovalListing();
   await approvalImpl.approveDoc(requisition.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-  I.amOnPage(prop.DDS_BuyersDesk_Url);
+  await buyersDeskImpl.navigateToBuyerListing();
 
 });
 
@@ -164,9 +162,8 @@ When("I edit the requisition", async function(){
 });
 
 Then ("I should be able to view the requisition in edit mode" , async function(){
-
-   await buyersDeskImpl.validateReqinEditMode();
-   I.assertEqual(flag,true);
+   let flagedit = await buyersDeskImpl.validateReqinEditMode();
+   I.assertEqual(flagedit,true);
 });
 
 When("I return the requisition on Buyers Desk", async function(){
@@ -176,6 +173,7 @@ When("I return the requisition on Buyers Desk", async function(){
   await buyersDeskImpl.EditRequisition(requisition.reqNumber);
   await buyersDeskImpl.clickOnReturnButton();
   await buyersDeskImpl.fillReturnReqComments("Return Requistion Comments Added");
+  await buyersDeskImpl.fillRequiredBy(requisition.requiredBy);
   await buyersDeskImpl.clickOnReturnButton();
 });
 

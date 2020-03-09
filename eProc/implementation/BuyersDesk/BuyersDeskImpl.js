@@ -5,19 +5,28 @@ const commonComponent = require("../../commonKeywords/CommonComponent");
 const lmtVar = require("../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const prop=global.confi_prop;
 const commonKeywordImpl = require("../../commonKeywords/CommonComponent");
+const approvalObject = require("../Approval/ApprovalObject");
+const poListingObject = require("../PO/PoListing/PoListingObject");
 const requisitionBo = require("../../dataCreation/bo/Requisition")
 
 module.exports = {
+
+    async navigateToBuyerListing() {
+        await I.amOnPage(prop.DDS_BuyersDesk_Url);
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        logger.info("Navigated to Buyers Desk listing page");
+        await commonKeywordImpl.selectValueFromDropDown(I.getElement(approvalObject.LISTING_SELECTION_DROP_DOWN), lmtVar.getLabel("LISTING_ALL_REQ_OPTION"));
+    },
 
     async clickonStatusFilterButton(){
         I.click(I.getElement(iBuyersDeskObject.STATUS_FILTER))
     },
     
-    clickOnStatusApplyButton(){
+    async clickOnStatusApplyButton(){
         I.click(I.getElement(iBuyersDeskObject.BUYER_DESK_STATUS_APPLY));  
         },
 
-     clickonRequestorFilter(){
+     async clickonRequestorFilter(){
          I.click(I.getElement(iBuyersDeskObject.REQUESTOR_FILTER))
      } , 
     // clickonStatusFilterButton(){
@@ -231,7 +240,7 @@ module.exports = {
     async validateReqinEditMode(){
      let flag = true; 
     flag =  await commonComponent.isElementPresent(I.getElement(`//footer//span[contains(text(),'${lmtVar.getLabel("SAVE")}')]`));
-    if (flag == true)
+    if (flag)
     {
         logger.info("Requistion is openend in Edit mode");
     }
@@ -262,7 +271,9 @@ module.exports = {
 
         await I.click(I.getElement(iBuyersDeskObject.RESUBMIT_REQ_BUTTON_YES));
         await commonComponent.waitForLoadingSymbolNotDisplayed();
-    }
+    },
+
+    
 }
 
  
