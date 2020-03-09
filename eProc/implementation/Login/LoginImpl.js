@@ -41,7 +41,9 @@ module.exports = {
         await this.clickOnPmLoginButton();
         await this.clickOnPmSearchIcon();
         await this.filterByPmResourceName(`CDK Global -(${global.confi_prop.SETUP})`);
-        await this.filterByPmUserAccount(global.users.get("USERNAME"));
+        // await this.filterByPmUserAccount(global.users.get("USERNAME"));
+        await this.filterByPmUserAccount("cdk.support@zycus.com");
+
         await I.wait(prop.DEFAULT_WAIT);
         let searchWindow = await I.grabCurrentWindowHandle();
         await this.clickOnPmOpenConnectionButton();

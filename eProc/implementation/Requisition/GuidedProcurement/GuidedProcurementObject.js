@@ -26,6 +26,7 @@ module.exports={
     DESCRIPTION_TEXTBOX :"OnlineStore/GuidedProcurement/CreateNewItemModal/DESCRIPTION_TEXTBOX",
     SUPPLIER_NAME_SUGGESTION : "OnlineStore/GuidedProcurement/SUPPLIER_NAME_SUGGESTION",
     SUPPLIER_ADDITIONAL_DETAILS_BUTTON : "OnlineStore/GuidedProcurement/SUPPLIER_ADDITIONAL_DETAILS_BUTTON",
+    SELECTED_SUPPLIER_FIELD : "OnlineStore/GuidedProcurement/SELECTED_SUPPLIER_FIELD",
 
     SUPPLIER_ADDRESS_TEXTBOX :"OnlineStore/GuidedProcurement/SupplierDetailsModal/SUPPLIER_ADDRESS_TEXTBOX",
     SUPPLIER_ADDRESS_SUGGESTION :"OnlineStore/GuidedProcurement/SupplierDetailsModal/SUPPLIER_ADDRESS_SUGGESTION",

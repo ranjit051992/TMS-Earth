@@ -530,8 +530,8 @@ module.exports = {
     * clickOnContinueButton: clicks on Contine Button
     */
     async clickOnContinueButton() {
-        await I.waitForVisible(I.getElement(iCheckout.CONTINUE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
-        await I.waitForClickable(I.getElement(iCheckout.CONTINUE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForVisible(I.getElement(iCheckout.CONTINUE_BUTTON), prop.DEFAULT_HIGH_WAIT);
+        await I.waitForClickable(I.getElement(iCheckout.CONTINUE_BUTTON), prop.DEFAULT_HIGH_WAIT);
         await I.click(I.getElement(iCheckout.CONTINUE_BUTTON));
         logger.info("Clicked on Continue Button");
     },
@@ -686,6 +686,8 @@ module.exports = {
         logger.info("*********Filling Requisition Item Details Details");
         await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
 
+        //for(let i = 0; i <requisitionBO.items.length; i++)
+       // {
         await this.clickOnCostBookingLink(requisitionBO.itemName);
 
         if (requisitionBO.buyer !== "undefined") {
@@ -729,6 +731,7 @@ module.exports = {
         //     commonComponent.waitForLoadingSymbolNotDisplayed();
         //     I.wait(prop.DEFAULT_HIGH_WAIT);
         // }
+   // }
         await I.scrollIntoView(I.getElement(iCheckout.REQUISITION_AMOUNT));
         await I.waitForVisible(I.getElement(iCheckout.REQUISITION_AMOUNT));
         let reqAmount = await I.grabTextFrom(I.getElement(iCheckout.REQUISITION_AMOUNT));
@@ -1057,7 +1060,7 @@ module.exports = {
 
     async fillTaxDetailsAtLineLevel(requisitionBO) {
         await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
-        await this.clickOnCostBookingLink(requisitionBO.itemName);
+        await this.clickOnCostBookingLink(requisitionBO.items[0].itemName);
         requisitionBO = this.fillTaxDetails(requisitionBO);
         
         return requisitionBO;
@@ -1124,5 +1127,46 @@ module.exports = {
         await I.waitForVisible(I.getElement(iCheckout.WORKFLOW_NODE));
         await this.fetchWorkflowNodes();
     },
+
+
+    async clickOnCoaAddMoreButton()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.COA_ADD_MORE_BUTTON));
+        await I.waitForClickable(I.getElement(iCheckout.COA_ADD_MORE_BUTTON));
+        await I.click(I.getElement(iCheckout.COA_ADD_MORE_BUTTON));
+        logger.info("Clicked on Add More Button")
+    },
+
+    async enterPercentage(percentage)
+    {
+        await I.waitForVisible(I.getElement(iCheckout.PERCENTAGE_TEXTBOX));
+        await I.waitForClickable(I.getElement(iCheckout.PERCENTAGE_TEXTBOX));
+        await I.click(I.getElement(iCheckout.PERCENTAGE_TEXTBOX));
+        await I.clearField(I.getElement(iCheckout.PERCENTAGE_TEXTBOX));
+        await I.fillField(I.getElement(iCheckout.PERCENTAGE_TEXTBOX), percentage);
+        percentage = await I.grabAttributeFrom(I.getElement(iCheckout.PERCENTAGE_TEXTBOX), "value");
+        logger.info("Entered percentage is ---> "+percentage);
+
+        return percentage;
+
+    },
+
+    async fillMultipleCostCenter(costCenter,noOfSplits) {
+        await I.waitForVisible(I.getElement(iCheckout.COST_CENTER), prop.DEFAULT_MEDIUM_WAIT);
+        let fieldXpath = "("+I.getElement(iCheckout.COST_CENTER)+")["+noOfSplits+"]";
+        let suggXpath = `//div[contains(text(),'${costCenter}')]`;
+        let enterCostCenter = await commonComponent.searchAndSelectFromDropdown(fieldXpath, costCenter, suggXpath);
+        logger.info(`Entered Cost Center is : ${enterCostCenter}`);
+        return enterCostCenter;
+    },
+
+    async clickOnSupplierEditIcon()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.SUPPLIER_EDIT_ICON));
+        await I.waitForClickable(I.getElement(iCheckout.SUPPLIER_EDIT_ICON));
+        await I.click(I.getElement(iCheckout.SUPPLIER_EDIT_ICON));
+
+    },
+
 
 };
