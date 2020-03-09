@@ -16,6 +16,33 @@ When("I navigate to Buyer Desk", async function() {
   logger.info("Navigated to Buyers Desk Page")
 });
 
+When ("I create {string} requisition with {string} {string}", async function(noOfReq,noOfItems,itemType){
+  let reqNumberArray = new Array();
+  for(let i =0;i<noOfReq;i++)
+            {
+              let reqBo= objectCreation.getObjectOfRequisition(noOfItems, itemType);
+              this.reqBO = await checkoutImpl.createRequisitionFlow(reqBo);
+              let reqNumber = await checkoutImpl.fetchCreatedRequisitionNumber();
+              requisition.reqNumber = await checkoutImpl.fetchCreatedRequisitionNumber();
+              requisition.reqName = await checkoutImpl.fetchCreatedRequisitionName();
+              reqNumberArray[i] = reqNumber;
+              I.amOnPage(prop.DDS_OnlineStore_Url);
+              I.waitForVisible(I.getElement(onlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+            }
+     logger.info('Requisitions number created are : '+reqNumberArray);
+     requisition.reqNumbers = reqNumberArray;
+});
+
+When("I Approve {string} Requisitions",async function(noOfReq){
+  I.amOnPage(prop.DDS_AllRequests_Url);
+     for(let i =0;i<noOfReq;i++)
+     {
+      await approvalImpl.approveDoc(requisition.reqNumbers[i], lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+      let status = await approvalImpl.checkPOApprovalStatus(requisition.reqNumbers[i], lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+      logger.info(`Status of requisition captured is ${status}`);
+     }
+});
+
 When("I navigate to Buyers Desk {string} {string} {string}", async function(noOfItems, itemType, noOfReq) {
   let reqNumberArray = new Array();
   for(let i =0;i<noOfReq;i++)
@@ -39,18 +66,18 @@ When("I navigate to Buyers Desk {string} {string} {string}", async function(noOf
 
  });
 
- When("I navigate to Buyer Desk {string} {string}", async function(noOfItems, itemType) {
-    let reqBo= objectCreation.getObjectOfRequisition(noOfItems, itemType);
-    this.reqBO = await checkoutImpl.createRequisitionFlow(reqBo);
-    requisition.reqNumber = await checkoutImpl.fetchCreatedRequisitionNumber();
-    logger.info('Requisition number created is : '+requisition.reqNumber);
-    requisition.reqName = await checkoutImpl.fetchCreatedRequisitionName();
-    logger.info('Requisiton Name is : '+reqBo.reqName);
-    I.amOnPage(prop.DDS_AllRequests_Url);
-    await approvalImpl.approveDoc(requisition.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-    I.amOnPage(prop.DDS_BuyersDesk_Url); 
+//  When("I navigate to Buyer Desk {string} {string}", async function(noOfItems, itemType) {
+//     let reqBo= objectCreation.getObjectOfRequisition(noOfItems, itemType);
+//     this.reqBO = await checkoutImpl.createRequisitionFlow(reqBo);
+//     requisition.reqNumber = await checkoutImpl.fetchCreatedRequisitionNumber();
+//     logger.info('Requisition number created is : '+requisition.reqNumber);
+//     requisition.reqName = await checkoutImpl.fetchCreatedRequisitionName();
+//     logger.info('Requisiton Name is : '+reqBo.reqName);
+//     I.amOnPage(prop.DDS_AllRequests_Url);
+//     await approvalImpl.approveDoc(requisition.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+//     I.amOnPage(prop.DDS_BuyersDesk_Url); 
 
- });
+//  });
 
  When("I filter with Requisition number field", async function() {
    logger.info("Requsition number to be searched is "+requisition.reqNumber);
@@ -64,10 +91,10 @@ When("I navigate to Buyers Desk {string} {string} {string}", async function(noOf
   await buyersDeskImpl.SearchRequisitionNumber(requisition.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
 });
 
- When("I select multiple {string} requisition with same currency, supplier, delivery address from listing page", async function(noOfreq) {
+ When("I select {string} requisition with same currency, supplier, delivery address from listing page", async function(noOfreq) {
  
   for(let i=0;i<noOfreq;i++){
-    await buyersDeskImpl.SearchRequisitionNumber(requisition.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    await buyersDeskImpl.SearchRequisitionNumber(requisition.reqNumbers[i], lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
     await buyersDeskImpl.selectRequisitionCheckbox();
   }
    
@@ -82,6 +109,28 @@ When("I navigate to Buyers Desk {string} {string} {string}", async function(noOf
   When("I convert it to PO from listing", async function(){
     await buyersDeskImpl.convertToPO();
   });
+
+  
+When("I navigate to Upcoming Requisition {string} {string}", async function(noOfItems,itemType){
+  let reqBo= objectCreation.getObjectOfRequisition(noOfItems, itemType);
+  this.reqBO = await checkoutImpl.createRequisitionFlow(reqBo);
+  requisition.reqNumber = await checkoutImpl.fetchCreatedRequisitionNumber();
+  requisition.reqName = await checkoutImpl.fetchCreatedRequisitionName();
+  I.amOnPage(global.confi_prop.DDS_UpcomingRequisitions_Url);
+  logger.info("Navigated to Upcoming Requisitions Page");
+});
+
+When("I navigate to Upcoming Requisition", async function(){
+  I.amOnPage(global.confi_prop.DDS_UpcomingRequisitions_Url);
+  logger.info("Navigated to Upcoming Requisitions Page");
+});
+
+When("I filter with Requestor field", async function(){
+  requisition.requestor = (global.users.get("USERNAME"));
+  logger.info("Requester to be searched is "+ requisition.requestor);
+  await buyersDeskImpl.SearchRequester(requisition.requestor);
+});
+
 
  Then("I should be see the data on the page on the basis on Requisition number field", async function() {
   
@@ -137,3 +186,18 @@ Then("I should be see the data on the page with the filtered buyer", async funct
   I.assertEqual(searchedBuyer.toString(), requisition.buyer.toString());
    
 });
+
+Then("I should be able to create a PO with multiple requisition merged into one",async function(){
+  let spo = buyersDeskImpl.verifyPage();
+  logger.info('PO created is '+spo);
+  
+});
+
+Then("I should be see the data on the page on the basis on Requestor field",async function(){
+  let searchedRequestor = await buyersDeskImpl.fetchSearchedRequestor();
+  let actualRequestor = (global.users.get("USERNAME"));
+  actualRequestor = actualRequestor.substring(0,actualRequestor.indexOf("@"));
+  logger.info('Searched Requestor is '+searchedRequestor);
+  logger.info('Actual Requestor is '+actualRequestor);
+  I.assertEqual(searchedRequestor.toString(), actualRequestor.toString());
+})
