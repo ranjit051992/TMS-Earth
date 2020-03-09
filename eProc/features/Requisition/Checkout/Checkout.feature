@@ -35,6 +35,7 @@ Feature: Checkout
     Given I am logged in eProc
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
+
     Then I should see on header level, Shipping Details section Default Shipping Address field should be auto populated
     And I navigate to Line level Shipping Details and Asset Tagging section
     And I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated
@@ -299,21 +300,24 @@ Feature: Checkout
 
 #     Then I should be able to view the workflow with On Behalf user as the requestor and On behalf user workflow should be applied
 
-# @Non-COA @L1
+# @Non-COA @L1 @multipleCostCenter
 #     Scenario: To verify that user is able to create requisition for multiple items with multiple cost center for each item
 #     Given I am logged in eProc
 
-#     When I add 2 catalog items to cart
+#     When I add "2" "ITEM_NAME_FOR_SEARCHING" items to cart
 #     And I checkout
+#     And I enter Requisition Name
 #     And I add Purchase Type
+#     And I add Settlement Via
 #     And I add Required By Date
-#     And I add Costing split at header level by Percentage into 2 splits (50, 50)
+#     And I add Costing split at header level by Percentage into 2 splits
 #     And I add data in Cost Booking Details section at line level 
 #     And I submit requisition
 
 #     Then I should be able to view the requisition with multiple items
 #     And I should see split cost center added to each item at header level 
 #     And I should be able to see split cost center added to each item at line level
+
 
 
 
@@ -396,20 +400,22 @@ Feature: Checkout
 
 #   Then I should be able see the taxes added on view requisition
 
-# @Non-COA @L1
-#   Scenario: To verify that user is able to add taxes at line item level in a requisition for free-text item 
-#   Given I am logged in eProc
+@Non-COA @L1 @freeTextItem
+  Scenario: To verify that user is able to add taxes at line item level in a requisition for free-text item 
+  Given I am logged in eProc
 
-#   When I add a free text item to cart
-#   And I checkout
-#   And I add Purchase Type
-#   And I add Required By Date
-#   And I add data in Cost Booking Details section at line level 
-#   And I add Tax Details at line level
-#   And I save it
-#   And I submit requisition
+  When I add 1 free text item "SEARCH_GUIDED_ITEM" to cart
+  And I checkout
+  And I enter Requisition Name
+  And I add Purchase Type
+  And I add Settlement Via
+  And I add Required By Date
+  And I add data in Cost Booking Details section at line level 
+  And I add Tax Details at line level
+  And I save it
+  And I submit requisition
 
-#   Then I should be able see the taxes added on view requisition
+  Then I should be able see the taxes added on view requisition
 
 # @Non-COA @L1
 #   Scenario: To verify that user is able to add taxes at line item level in a requisition for catalog,punchout & free-text item
@@ -716,9 +722,9 @@ Feature: Checkout
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
 
-     Then I should see on header level, Shipping Details section Default Shipping Address field should be auto populated
-     And I navigate to Line level Shipping Details and Asset Tagging section
-     And I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated
+    Then I should see on header level, Shipping Details section Default Shipping Address field should be auto populated
+    And I navigate to Line level Shipping Details and Asset Tagging section
+    And I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated
 
 
 @COA @L1 @snehal

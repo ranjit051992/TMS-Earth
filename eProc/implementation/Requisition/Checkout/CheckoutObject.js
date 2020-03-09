@@ -52,9 +52,10 @@ module.exports= {
     BOOK_COST_AT_LINE_ITEM_LEVEL: "Checkout/CostAllocation/BOOK_COST_AT_LINE_ITEM_LEVEL",
     COST_CENTER: "Checkout/CostAllocation/COST_CENTER",
     PROJECT: "Checkout/CostAllocation/PROJECT",
-    PERCENTAGE: "Checkout/CostAllocation/PERCENTAGE",
+    PERCENTAGE_TEXTBOX: "Checkout/CostAllocation/PERCENTAGE",
     FETCHED_COST_CENTER: "Checkout/CostAllocation/FETCHED_COST_CENTER",
     FETCHED_PROJECT : "Checkout/CostAllocation/FETCHED_PROJECT",
+    COA_ADD_MORE_BUTTON: "Checkout/CostAllocation/COA_ADD_MORE_BUTTON",
 
     //Item Details
     ADD_LINE_ITEM_BUTTON: "Checkout/ItemDetails/ADD_LINE_ITEM_BUTTON",

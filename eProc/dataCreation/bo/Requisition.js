@@ -54,6 +54,7 @@ class Requisition
         this.reqAmount;
         this.status;
         this.requestor;
+        this.noOfItems;
         //let items = [];
     }
 
@@ -255,6 +256,11 @@ class Requisition
     setStatus(status)
     {
         this.status = status;
+    }
+
+    setNoOfItems(noOfItems)
+    {
+        this.noOfItems = noOfItems;
     }
 }
 

@@ -4,6 +4,7 @@ const iGuided = require("./GuidedProcurementObject");
 const prop = global.confi_prop;
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const commonKeywordImpl = require("../../../commonKeywords/CommonComponent");
+const onlineStoreImpl = require("./../OnlineStore/OnlineStoreImpl");
 
 module.exports = {
     async addGuidedItemForPo(guidedItem) {
@@ -355,7 +356,7 @@ module.exports = {
     },
 
     async CreateGuidedItem(guidedItem) {
-        await onlineStore.clickOnCreateRequestButton();
+        await onlineStoreImpl.clickOnCreateRequestButton();
         await commonKeywordImpl.waitForElementVisible(I.getElement(iGuided.ITEM_NAME_TEXTBOX));
         await this.fillItemServiceName(guidedItem.itemName);
         await this.clickOnAddItemServiceButton();
@@ -371,11 +372,13 @@ module.exports = {
 
         await I.wait(15);
 
+        return guidedItem;
+
     },
 
     async fillGuidedItemDetails(guidedItem) {
         if (guidedItem.category !== "undefined") {
-            await this.fillCategory(guidedItem.category);
+          //  await this.fillCategory(guidedItem.category);
         }
 
         if (guidedItem.type === lmtVar.getLabel("ITEM_TYPE_GOODS")) {
