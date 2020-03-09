@@ -19,11 +19,27 @@ module.exports={
     PRICE_TEXTBOX :"OnlineStore/GuidedProcurement/CreateNewItemModal/PRICE_TEXTBOX",
     CURRENCY_TEXTBOX :"OnlineStore/GuidedProcurement/CreateNewItemModal/CURRENCY_TEXTBOX",
     ZERO_PRICE_ITEM_CHECKBOX :"OnlineStore/GuidedProcurement/CreateNewItemModal/ZERO_PRICE_ITEM_CHECKBOX",
-    BUYER_REVIEW_REQUIRED_YES_RADIO_BUTTON :"OnlineStore/GuidedProcurement/CreateNewItemModal/BUYER_REVIEW_REQUIRED_YES_CHECKBOX",
-    BUYER_REVIEW_REQUIRED_NO_RADIO_BUTTON :"OnlineStore/GuidedProcurement/CreateNewItemModal/BUYER_REVIEW_REQUIRED_NO_CHECKBOX",
+    BUYER_REVIEW_REQUIRED_YES_RADIO_BUTTON :"OnlineStore/GuidedProcurement/CreateNewItemModal/BUYER_REVIEW_REQUIRED_YES_RADIO_BUTTON",
+    BUYER_REVIEW_REQUIRED_NO_RADIO_BUTTON :"OnlineStore/GuidedProcurement/CreateNewItemModal/BUYER_REVIEW_REQUIRED_NO_RADIO_BUTTON",
     DONE_BUTTON :"OnlineStore/GuidedProcurement/CreateNewItemModal/DONE_BUTTON",
     DESCRIPTION_LINK :"OnlineStore/GuidedProcurement/CreateNewItemModal/DESCRIPTION_LINK",
     DESCRIPTION_TEXTBOX :"OnlineStore/GuidedProcurement/CreateNewItemModal/DESCRIPTION_TEXTBOX",
+    SUPPLIER_NAME_SUGGESTION : "OnlineStore/GuidedProcurement/SUPPLIER_NAME_SUGGESTION",
+    SUPPLIER_ADDITIONAL_DETAILS_BUTTON : "OnlineStore/GuidedProcurement/SUPPLIER_ADDITIONAL_DETAILS_BUTTON",
+
+    SUPPLIER_ADDRESS_TEXTBOX :"OnlineStore/GuidedProcurement/SupplierDetailsModal/SUPPLIER_ADDRESS_TEXTBOX",
+    SUPPLIER_ADDRESS_SUGGESTION :"OnlineStore/GuidedProcurement/SupplierDetailsModal/SUPPLIER_ADDRESS_SUGGESTION",
+    SUPPLIER_CONTACT_TEXTBOX :"OnlineStore/GuidedProcurement/SupplierDetailsModal/SUPPLIER_CONTACT_TEXTBOX",
+    SUPPLIER_EMAIL_TEXTBOX :"OnlineStore/GuidedProcurement/SupplierDetailsModal/SUPPLIER_EMAIL_TEXTBOX",
+    SUPPLIER_DONE_BUTTON :"OnlineStore/GuidedProcurement/SupplierDetailsModal/DONE_BUTTON",
+
+    NEW_SUPPLIER_NAME_TEXTBOX :"OnlineStore/GuidedProcurement/NewSupplierDetailsModal/SUPPLIER_NAME_TEXTBOX",
+    NEW_SUPPLIER_ADDRESS_TEXTBOX :"OnlineStore/GuidedProcurement/NewSupplierDetailsModal/SUPPLIER_ADDRESS_TEXTBOX",
+    NEW_SUPPLIER_CONTACT_TEXTBOX :"OnlineStore/GuidedProcurement/NewSupplierDetailsModal/SUPPLIER_CONTACT_TEXTBOX",
+    NEW_SUPPLIER_CONTACT_PHONE_TEXTBOX :"OnlineStore/GuidedProcurement/NewSupplierDetailsModal/SUPPLIER_CONTACT_PHONE_TEXTBOX",
+    NEW_OTHER_DETAILS_TEXTBOX :"OnlineStore/GuidedProcurement/NewSupplierDetailsModal/OTHER_DETAILS_TEXTBOX",
+    NEW_SUPPLIER_EMAIL_TEXTBOX :"OnlineStore/GuidedProcurement/NewSupplierDetailsModal/SUPPLIER_EMAIL_TEXTBOX",
+
 
     PO_GUIDED_ITEM_SHORT_DESCRIPTION_TEXTBOX: "Spo/ItemSummary/PO_GUIDED_ITEM_SHORT_DESCRIPTION_TEXTBOX",
     PO_GUIDED_ITEM_PRODUCT_CATEGORY_TEXTBOX: "Spo/ItemSummary/PO_GUIDED_ITEM_PRODUCT_CATEGORY_TEXTBOX",
@@ -33,5 +49,5 @@ module.exports={
     PO_GUIDED_ITEM_MARKET_PRICE_TEXTBOX: "Spo/ItemSummary/PO_GUIDED_ITEM_MARKET_PRICE_TEXTBOX",
     PO_GUIDED_ITEM_QUANTITY_TEXTBOX: "Spo/ItemSummary/PO_GUIDED_ITEM_QUANTITY_TEXTBOX",
     PO_GUIDED_ITEM_UOM_TEXTBOX: "Spo/ItemSummary/PO_GUIDED_ITEM_UOM_TEXTBOX",
-
+    PO_GUIDED_ITEM_OK_BUTTON: "Spo/ItemSummary/PO_GUIDED_ITEM_OK_BUTTON",
 };

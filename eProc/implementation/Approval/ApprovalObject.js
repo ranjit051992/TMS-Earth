@@ -30,5 +30,5 @@ module.exports={
     RECEIVED_ON_SPO: "AllApproval/StandardPO/RECEIVED_ON_SPO",
     AMOUNT_TO_BE_APPROVED_SPO: "AllApproval/StandardPO/AMOUNT_TO_BE_APPROVED_SPO",
     STATUS_SPO: "AllApproval/StandardPO/STATUS_SPO",
-
+    LISTING_SELECTION_DROP_DOWN: "AllApproval/LISTING_SELECTION_DROP_DOWN",
 }

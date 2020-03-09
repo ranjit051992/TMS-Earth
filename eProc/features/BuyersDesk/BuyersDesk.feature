@@ -15,7 +15,7 @@ Feature: BuyersDesk
     And I navigate to Buyer Desk
     And I edit the requisition
 
-#     Then I should be able to view the requisition in edit mode
+   Then I should be able to view the requisition in edit mode
 
 @Non-COA @L1
     Scenario: To verify if buyer is able to convert Requisition to PO based on different criteria 
@@ -54,12 +54,12 @@ Feature: BuyersDesk
 
      Then I should be see the data on the page on the basis on requisition name field
 
-@konica
-    Scenario: To verify requestor filter on buyer's desk 
-    Given I am logged in eProc
+# @Non-COA @L1
+#     Scenario: To verify requestor filter on buyer's desk 
+#     Given I am logged in eProc
 
-    When I navigate to Buyer Desk
-    And I filter with Requestor field "GDQA-P"
+#     When I navigate to Buyer Desk
+#     And I filter with Requestor field 
 
   #  Then I should be see the data on the page on the basis on Requestor field
 
@@ -81,7 +81,7 @@ Feature: BuyersDesk
 
      Then I should be see the data on the page with the filtered buyer
 
-@konica1
+@Non-COA @L1
     Scenario: To verify Purchase Amount filter on buyer's desk 
     Given I am logged in eProc
 
@@ -173,22 +173,22 @@ Feature: BuyersDesk
 #     Then I should not be see the update Buyer for the requisition on Buyer Desk Listing
 #     And I should be able to see updated Buyer on Requisition page also.
 
-# @Non-COA @L1
-#     Scenario: To verify that user(buyer) is not allowed to modify the requisition.
-#     Given I am logged in eProc
+@Non-COA @L1
+    Scenario: To verify that user(buyer) is not allowed to modify the requisition.
+    Given I am logged in eProc
 
-#     When I add a catalog item to cart
-#     And I checkout
-#     And I add Purchase Type
-#     And I add Required By Date
-#     And I add data in Cost Booking Details section at line level
-#     And I submit requisition
-#     And I approve the requisition
-#     And I navigate to Buyers Desk
-#     And I return the requisition on Buyers Desk
-#     And I allow requestor to resubmit the requisition
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I add Purchase Type
+    And I add Required By Date
+    And I add data in Cost Booking Details section at line level
+    And I submit requisition
+    And I approve requisition
+    And I navigate to Buyer Desk
+    And I return the requisition on Buyers Desk
+    #And I allow requestor to resubmit the requisition
 
-#     Then I should not be see the requisition In Returned for Amendment State on Requisition Listing
+    #Then I should not see the requisition In Returned for Amendment State on Requisition Listing
 
 # @Non-COA @L1
 #     Scenario: To verify that user(buyer) is not allowed to modify the requisition.

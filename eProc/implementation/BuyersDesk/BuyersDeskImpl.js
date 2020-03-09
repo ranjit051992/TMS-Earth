@@ -61,7 +61,7 @@ module.exports = {
      I.waitForClickable(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT),prop.DEFAULT_MEDIUM_WAIT);
      await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT,minValue));
      logger.info("Entered the min value " +minValue);
-     await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MAX_INPUT,maxValue));
+     await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MAX_INPUT,(maxValue)));
      logger.info("Entered the min value " +maxValue);
      await this.clickonApplyButton();
 
@@ -229,8 +229,39 @@ module.exports = {
     },
   
     async validateReqinEditMode(){
+     let flag = true; 
+    flag =  await commonComponent.isElementPresent(I.getElement(`//footer//span[contains(text(),'${lmtVar.getLabel("SAVE")}')]`));
+    if (flag == true)
+    {
+        logger.info("Requistion is openend in Edit mode");
+    }
+    else 
+    {
+        logger.info("Requisition is opened in View Mode")
+    }
+    
+    return flag;
+    },
+
+    async clickOnReturnButton(){
+        I.click(I.getElement(iBuyersDeskObject.REQ_RETURN_BUTTON));
         
-    await commonComponent.isElementPresent(I.getElement(`//span[contains(text(),)]`));
+    },
+
+    async fillReturnReqComments(comments) {
+        await I.scrollIntoView(I.getElement(iBuyersDeskObject.RETURN_REQ_COMMENTS_TEXTAREA));
+        await I.wait(prop.DEFAULT_WAIT);
+        await I.waitForVisible(I.getElement(iBuyersDeskObject.RETURN_REQ_COMMENTS_TEXTAREA));
+        await I.click(I.getElement(iBuyersDeskObject.RETURN_REQ_COMMENTS_TEXTAREA));
+        await I.clearField(I.getElement(iBuyersDeskObject.RETURN_REQ_COMMENTS_TEXTAREA));
+        await I.fillField(I.getElement(iBuyersDeskObject.RETURN_REQ_COMMENTS_TEXTAREA), comments);
+        logger.info(`Entered po amend comments --> ${comments}`);
+    }, 
+
+    async clickonReturnrequestorYes() {
+
+        await I.click(I.getElement(iBuyersDeskObject.RESUBMIT_REQ_BUTTON_YES));
+        await commonComponent.waitForLoadingSymbolNotDisplayed();
     }
 }
 

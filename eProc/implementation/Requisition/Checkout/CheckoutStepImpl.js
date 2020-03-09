@@ -16,7 +16,6 @@ const iViewReq = require("../../Requisition/ViewRequisition/ViewRequisitionObjec
 When("I create requisition with {int} {string} item", async function(noOfItems, itemType) {
     this.reqBO= await objectCreation.getObjectOfRequisition(noOfItems, itemType);
     this.reqBO = await checkoutImp.createRequisitionFlow(this.reqBO);
-    //this.reqBO.reqNumber = "37480000";
 });
 
 When("I edit Cost Allocation section at header level", async function(){
@@ -154,7 +153,7 @@ When("I add Settlement Via", async function(){
 });
 
 When("I enter Requisition Name", async function(){
-    this.reqName = await checkoutImp.enterRequisitionName(this.reqBO.reqName);
+    this.reqBO.reqName = await checkoutImp.enterRequisitionName(this.reqBO.reqName);
 
 });
 
@@ -174,6 +173,8 @@ Given("I add an attachment {string}", async function(filePath){
 
 Then("I should be able to see the attachment which is added", async function(){
 
+    await reqListing.searchAndViewReqByName(this.reqName);
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ADDITIONAL_DETAILS_SECTION"));
     let isPresent  = await checkoutImp.checkAddedAttachment(this.attachment);
     I.saveScreenshot("Upload Attachment.png");
      I.assertEqual(isPresent,true);
@@ -226,7 +227,7 @@ Given("I select buyer {string} at line level in Buyer section", async function(b
 
 Then("I should be able to view requisition with buyer as the buyer group which was assigned", async function(){
 
-    await reqListing.searchAndViewReqByName(this.reqName);
+    await reqListing.searchAndViewReqByName(this.reqBO.reqName);
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
     await checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);     
     await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
@@ -243,7 +244,7 @@ Then("I should be able to view requisition with buyer as the buyer group which w
 
  Then("I should be able to view requisition with buyer which was assigned", async function(){
 
-    await reqListing.searchAndViewReqByName(this.reqName);
+    await reqListing.searchAndViewReqByName(this.reqBO.reqName);
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
     await checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);     
     await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
@@ -283,7 +284,7 @@ When("I create the address", async function(){
 
 Then("I should be able to see new Deliver address as the Ship to Another Address on view requisition", async function(){
 
-    await reqListing.searchAndViewReqByName(this.reqName);
+    await reqListing.searchAndViewReqByName(this.reqBO.reqName);
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
     let actualAddress = this.customAddress.toString();
     let address = await viewReqImpl.getShipToAnotherAddress();
@@ -345,8 +346,8 @@ Given( "I Create {int} requisitions with {int} {string} item", async function (n
 
 When("I fetch Requisition Name", async function()
 {
-    this.reqName = await I.grabAttributeFrom(I.getElement(iCheckoutObject.REQUISITION_NAME), "value");
-    logger.info("Fetched Requisition Name is "+this.reqName);
+    this.reqBO.reqName = await I.grabAttributeFrom(I.getElement(iCheckoutObject.REQUISITION_NAME), "value");
+    logger.info("Fetched Requisition Name is "+this.reqBO.reqName);
 });
 
  When("I check Mark for adding approvers checkbox in workflow section", async function(){

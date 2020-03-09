@@ -40,15 +40,15 @@ exports.config = {
    multiple: {
         sanityCases: {
           // Splits tests into 2 chunks
-          chunks: 2
+          chunks: 5
         }
       
       },
     gherkin: {
-      //features: './iRequest/features/**/**.feature',
-       features: "./eProc/features/**/**/*.feature",
-       steps: "./eProc/implementation/**/**/*.js"
-   },
+     //features: './iRequest/features/**/**.feature',
+      features: "./eProc/features/**/**/*.feature",
+      steps: "./eProc/implementation/**/**/*.js"
+  },
  
   name: prop.projectName,
   plugins: {

@@ -146,10 +146,6 @@ Then("I should be see the data on the page with the filtered buyer", async funct
    
 });
 
-When("I filter with Requestor field {string}",async function(requestor){
-  buyersDeskImpl.clickonRequestorFilter();
-  await buyersDeskImpl.SearchRequestor(requestor);
-});
 
 When("I approve requisition", async function(){
   I.amOnPage(prop.DDS_AllRequests_Url);
@@ -169,4 +165,21 @@ When("I edit the requisition", async function(){
 
 Then ("I should be able to view the requisition in edit mode" , async function(){
 
+   await buyersDeskImpl.validateReqinEditMode();
+   I.assertEqual(flag,true);
 });
+
+When("I return the requisition on Buyers Desk", async function(){
+
+  logger.info("Requistion to be edited is "+ requisition.reqNumber);
+  await buyersDeskImpl.SearchRequisitionNumber(requisition.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+  await buyersDeskImpl.EditRequisition(requisition.reqNumber);
+  await buyersDeskImpl.clickOnReturnButton();
+  await buyersDeskImpl.fillReturnReqComments("Return Requistion Comments Added");
+  await buyersDeskImpl.clickOnReturnButton();
+});
+
+When ("I allow requestor to resubmit the requisition", async function(){
+   logger.info("Allowing the requestor to resubmit the requition"); 
+
+})
