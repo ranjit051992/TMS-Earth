@@ -34,7 +34,7 @@ When ("I create {string} requisition with {string} {string}", async function(noO
 });
 
 When("I Approve {string} Requisitions",async function(noOfReq){
-  I.amOnPage(prop.DDS_AllRequests_Url);
+  await buyersDeskImpl.navigateToAllRequests();
      for(let i =0;i<noOfReq;i++)
      {
       await approvalImpl.approveDoc(requisition.reqNumbers[i], lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
@@ -43,28 +43,28 @@ When("I Approve {string} Requisitions",async function(noOfReq){
      }
 });
 
-When("I navigate to Buyers Desk {string} {string} {string}", async function(noOfItems, itemType, noOfReq) {
-  let reqNumberArray = new Array();
-  for(let i =0;i<noOfReq;i++)
-            {
-              let reqBo= objectCreation.getObjectOfRequisition(noOfItems, itemType);
-              this.reqBO = await checkoutImpl.createRequisitionFlow(reqBo);
-              let reqNumber = await checkoutImpl.fetchCreatedRequisitionNumber();
-              reqNumberArray[i] = reqNumber;
-              I.amOnPage(prop.DDS_OnlineStore_Url);
-              I.waitForVisible(I.getElement(onlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
-            }
-     logger.info('Requisitions number created are : '+reqNumberArray);
-     requisition.reqNumbers = reqNumberArray;
+// When("I navigate to Buyers Desk {string} {string} {string}", async function(noOfItems, itemType, noOfReq) {
+//   let reqNumberArray = new Array();
+//   for(let i =0;i<noOfReq;i++)
+//             {
+//               let reqBo= objectCreation.getObjectOfRequisition(noOfItems, itemType);
+//               this.reqBO = await checkoutImpl.createRequisitionFlow(reqBo);
+//               let reqNumber = await checkoutImpl.fetchCreatedRequisitionNumber();
+//               reqNumberArray[i] = reqNumber;
+//               I.amOnPage(prop.DDS_OnlineStore_Url);
+//               I.waitForVisible(I.getElement(onlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+//             }
+//      logger.info('Requisitions number created are : '+reqNumberArray);
+//      requisition.reqNumbers = reqNumberArray;
      
-     I.amOnPage(prop.DDS_AllRequests_Url);
-     for(let i =0;i<noOfReq;i++)
-     {
-      await approvalImpl.approveDoc(requisition.reqNumbers[i], lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-     }
-     I.amOnPage(prop.DDS_BuyersDesk_Url);
+//      I.amOnPage(prop.DDS_AllRequests_Url);
+//      for(let i =0;i<noOfReq;i++)
+//      {
+//       await approvalImpl.approveDoc(requisition.reqNumbers[i], lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+//      }
+//      I.amOnPage(prop.DDS_BuyersDesk_Url);
 
- });
+//  });
 
 //  When("I navigate to Buyer Desk {string} {string}", async function(noOfItems, itemType) {
 //     let reqBo= objectCreation.getObjectOfRequisition(noOfItems, itemType);
@@ -110,15 +110,6 @@ When("I navigate to Buyers Desk {string} {string} {string}", async function(noOf
     await buyersDeskImpl.convertToPO();
   });
 
-  
-When("I navigate to Upcoming Requisition {string} {string}", async function(noOfItems,itemType){
-  let reqBo= objectCreation.getObjectOfRequisition(noOfItems, itemType);
-  this.reqBO = await checkoutImpl.createRequisitionFlow(reqBo);
-  requisition.reqNumber = await checkoutImpl.fetchCreatedRequisitionNumber();
-  requisition.reqName = await checkoutImpl.fetchCreatedRequisitionName();
-  I.amOnPage(global.confi_prop.DDS_UpcomingRequisitions_Url);
-  logger.info("Navigated to Upcoming Requisitions Page");
-});
 
 When("I navigate to Upcoming Requisition", async function(){
   I.amOnPage(global.confi_prop.DDS_UpcomingRequisitions_Url);

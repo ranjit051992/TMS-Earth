@@ -262,6 +262,13 @@ module.exports = {
         I.waitForVisible(I.getElement(iBuyersDeskObject.REQUESTER_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
         let requestorName = await I.grabTextFrom(I.getElement(iBuyersDeskObject.REQUESTER_NAME_LISTING));
         return requestorName;
+   },
+
+   async navigateToAllRequests()
+   {
+    await I.amOnPage(prop.DDS_AllRequests_Url);
+    await I.waitForVisible(I.getElement(iBuyersDeskObject.REQUISITION_NUMBER_LISTING),prop.DEFAULT_MEDIUM_WAIT);
+    logger.info("Navigated to All Request approval listing page");
    }
 }
 
