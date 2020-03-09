@@ -1125,4 +1125,12 @@ module.exports = {
         await this.fetchWorkflowNodes();
     },
 
+    async clickOnSupplierEditIcon()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.SUPPLIER_EDIT_ICON));
+        await I.waitForClickable(I.getElement(iCheckout.SUPPLIER_EDIT_ICON));
+        await I.click(I.getElement(iCheckout.SUPPLIER_EDIT_ICON));
+
+    },
+
 };
