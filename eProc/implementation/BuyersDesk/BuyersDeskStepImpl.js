@@ -12,45 +12,71 @@ const cartImpl = require("./../Requisition/Cart/CartImpl");
 const onlineStore = require("../Requisition/OnlineStore/OnlineStoreObject");
 
 When("I navigate to Buyer Desk", async function() {
-  I.amOnPage(global.confi_prop.DDS_BuyersDesk_Url);
-  logger.info("Navigated to Buyers Desk Page")
+  await buyersDeskImpl.navigateToBuyerListing();
 });
 
-When("I navigate to Buyers Desk {string} {string} {string}", async function(noOfItems, itemType, noOfReq) {
+When ("I create {string} requisition with {string} {string}", async function(noOfReq,noOfItems,itemType){
   let reqNumberArray = new Array();
   for(let i =0;i<noOfReq;i++)
             {
               let reqBo= objectCreation.getObjectOfRequisition(noOfItems, itemType);
               this.reqBO = await checkoutImpl.createRequisitionFlow(reqBo);
               let reqNumber = await checkoutImpl.fetchCreatedRequisitionNumber();
+              requisition.reqNumber = await checkoutImpl.fetchCreatedRequisitionNumber();
+              requisition.reqName = await checkoutImpl.fetchCreatedRequisitionName();
               reqNumberArray[i] = reqNumber;
               I.amOnPage(prop.DDS_OnlineStore_Url);
               I.waitForVisible(I.getElement(onlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
             }
      logger.info('Requisitions number created are : '+reqNumberArray);
      requisition.reqNumbers = reqNumberArray;
-     
-     I.amOnPage(prop.DDS_AllRequests_Url);
+});
+
+When("I Approve {string} Requisitions",async function(noOfReq){
+  await buyersDeskImpl.navigateToAllRequests();
      for(let i =0;i<noOfReq;i++)
      {
       await approvalImpl.approveDoc(requisition.reqNumbers[i], lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+      let status = await approvalImpl.checkPOApprovalStatus(requisition.reqNumbers[i], lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+      logger.info(`Status of requisition captured is ${status}`);
      }
-     I.amOnPage(prop.DDS_BuyersDesk_Url);
+});
 
- });
+// When("I navigate to Buyers Desk {string} {string} {string}", async function(noOfItems, itemType, noOfReq) {
+//   let reqNumberArray = new Array();
+//   for(let i =0;i<noOfReq;i++)
+//             {
+//               let reqBo= objectCreation.getObjectOfRequisition(noOfItems, itemType);
+//               this.reqBO = await checkoutImpl.createRequisitionFlow(reqBo);
+//               let reqNumber = await checkoutImpl.fetchCreatedRequisitionNumber();
+//               reqNumberArray[i] = reqNumber;
+//               I.amOnPage(prop.DDS_OnlineStore_Url);
+//               I.waitForVisible(I.getElement(onlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+//             }
+//      logger.info('Requisitions number created are : '+reqNumberArray);
+//      requisition.reqNumbers = reqNumberArray;
+     
+//      I.amOnPage(prop.DDS_AllRequests_Url);
+//      for(let i =0;i<noOfReq;i++)
+//      {
+//       await approvalImpl.approveDoc(requisition.reqNumbers[i], lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+//      }
+//      I.amOnPage(prop.DDS_BuyersDesk_Url);
 
- When("I navigate to Buyer Desk {string} {string}", async function(noOfItems, itemType) {
-    let reqBo= objectCreation.getObjectOfRequisition(noOfItems, itemType);
-    this.reqBO = await checkoutImpl.createRequisitionFlow(reqBo);
-    requisition.reqNumber = await checkoutImpl.fetchCreatedRequisitionNumber();
-    logger.info('Requisition number created is : '+requisition.reqNumber);
-    requisition.reqName = await checkoutImpl.fetchCreatedRequisitionName();
-    logger.info('Requisiton Name is : '+reqBo.reqName);
-    I.amOnPage(prop.DDS_AllRequests_Url);
-    await approvalImpl.approveDoc(requisition.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-    I.amOnPage(prop.DDS_BuyersDesk_Url); 
+//  });
 
- });
+//  When("I navigate to Buyer Desk {string} {string}", async function(noOfItems, itemType) {
+//     let reqBo= objectCreation.getObjectOfRequisition(noOfItems, itemType);
+//     this.reqBO = await checkoutImpl.createRequisitionFlow(reqBo);
+//     requisition.reqNumber = await checkoutImpl.fetchCreatedRequisitionNumber();
+//     logger.info('Requisition number created is : '+requisition.reqNumber);
+//     requisition.reqName = await checkoutImpl.fetchCreatedRequisitionName();
+//     logger.info('Requisiton Name is : '+reqBo.reqName);
+//     I.amOnPage(prop.DDS_AllRequests_Url);
+//     await approvalImpl.approveDoc(requisition.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+//     I.amOnPage(prop.DDS_BuyersDesk_Url); 
+
+//  });
 
  When("I filter with Requisition number field", async function() {
    logger.info("Requsition number to be searched is "+requisition.reqNumber);
@@ -64,10 +90,10 @@ When("I navigate to Buyers Desk {string} {string} {string}", async function(noOf
   await buyersDeskImpl.SearchRequisitionNumber(requisition.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
 });
 
- When("I select multiple {string} requisition with same currency, supplier, delivery address from listing page", async function(noOfreq) {
+ When("I select {string} requisition with same currency, supplier, delivery address from listing page", async function(noOfreq) {
  
   for(let i=0;i<noOfreq;i++){
-    await buyersDeskImpl.SearchRequisitionNumber(requisition.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    await buyersDeskImpl.SearchRequisitionNumber(requisition.reqNumbers[i], lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
     await buyersDeskImpl.selectRequisitionCheckbox();
   }
    
@@ -82,6 +108,19 @@ When("I navigate to Buyers Desk {string} {string} {string}", async function(noOf
   When("I convert it to PO from listing", async function(){
     await buyersDeskImpl.convertToPO();
   });
+
+
+When("I navigate to Upcoming Requisition", async function(){
+  I.amOnPage(global.confi_prop.DDS_UpcomingRequisitions_Url);
+  logger.info("Navigated to Upcoming Requisitions Page");
+});
+
+When("I filter with Requestor field", async function(){
+  requisition.requestor = (global.users.get("USERNAME"));
+  logger.info("Requester to be searched is "+ requisition.requestor);
+  await buyersDeskImpl.SearchRequester(requisition.requestor);
+});
+
 
  Then("I should be see the data on the page on the basis on Requisition number field", async function() {
   
@@ -113,14 +152,22 @@ When ("I filter with {string} status", async function(status){
 });
 
 
-
 Then ("I should be see the data on the page with the filtered amount", async function(){
    let fetchPurchaseAmount = await buyersDeskImpl.fetchPurchaseAmount();
    logger.info('Searched Puchase amount '+fetchPurchaseAmount);
+   let flag = true;
    if (fetchPurchaseAmount>minValue && fetchPurchaseAmount<maxValue)
    {
-    logger.info("Purchase Amount is given in the given range");
+    logger.info("Purchase Amount is "+fetchPurchaseAmount+" and is in the given range");
+    flag = true;
    }
+    else
+    {
+      logger.info("Purchase Amount out of range");
+      flag = false;
+    }
+
+    I.assertEqual(flag,true);
 
 }); 
   Then("I should be see the data on the page with the filtered status", async function(){
@@ -137,3 +184,54 @@ Then("I should be see the data on the page with the filtered buyer", async funct
   I.assertEqual(searchedBuyer.toString(), requisition.buyer.toString());
    
 });
+
+Then("I should be able to create a PO with multiple requisition merged into one",async function(){
+  let spo = buyersDeskImpl.verifyPage();
+  logger.info('PO created is '+spo);
+  
+});
+
+Then("I should be see the data on the page on the basis on Requestor field",async function(){
+  let searchedRequestor = await buyersDeskImpl.fetchSearchedRequestor();
+  let actualRequestor = (global.users.get("USERNAME"));
+  actualRequestor = actualRequestor.substring(0,actualRequestor.indexOf("@"));
+  logger.info('Searched Requestor is '+searchedRequestor);
+  logger.info('Actual Requestor is '+actualRequestor);
+  I.assertEqual(searchedRequestor.toString(), actualRequestor.toString());
+})
+
+When("I approve requisition", async function(){
+  await approvalImpl.navigateToApprovalListing();
+  await approvalImpl.approveDoc(requisition.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+  await buyersDeskImpl.navigateToBuyerListing();
+
+});
+
+When("I edit the requisition", async function(){
+  logger.info("Requistion to be edited is "+ requisition.reqNumber);
+  await buyersDeskImpl.SearchRequisitionNumber(requisition.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+  await buyersDeskImpl.EditRequisition(requisition.reqNumber);
+
+
+});
+
+Then ("I should be able to view the requisition in edit mode" , async function(){
+   let flagedit = await buyersDeskImpl.validateReqinEditMode();
+   I.assertEqual(flagedit,true);
+});
+
+When("I return the requisition on Buyers Desk", async function(){
+
+  logger.info("Requistion to be edited is "+ requisition.reqNumber);
+  await buyersDeskImpl.SearchRequisitionNumber(requisition.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+  await buyersDeskImpl.EditRequisition(requisition.reqNumber);
+  await buyersDeskImpl.clickOnReturnButton();
+  await buyersDeskImpl.fillReturnReqComments("Return Requistion Comments Added");
+  await buyersDeskImpl.fillRequiredBy(requisition.requiredBy);
+  await buyersDeskImpl.clickOnReturnButton();
+});
+
+When ("I allow requestor to resubmit the requisition", async function(){
+   logger.info("Allowing the requestor to resubmit the requition"); 
+
+})
