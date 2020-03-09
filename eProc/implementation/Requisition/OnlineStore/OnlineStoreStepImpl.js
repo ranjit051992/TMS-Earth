@@ -208,7 +208,9 @@ Given("I navigate to OnlineStore",async function()
 
 When("I Navigate to Guided Page",async function()
 {
+    await cartImpl.clearCart();
     await onlineStoreImpl.clickOnCreateRequestButton();
     await commonComponent.waitForElementVisible(I.getElement(iGuided.ITEM_NAME_TEXTBOX));
     
 });
+
