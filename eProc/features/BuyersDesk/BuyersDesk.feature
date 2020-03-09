@@ -45,7 +45,7 @@ Feature: BuyersDesk
 
      Then I should be see the data on the page on the basis on Requisition number field
 
- @Non-COA @L1
+ @Non-COA @L1konica
      Scenario: To verify requisition name filter on buyer's desk 
      Given I am logged in eProc
 
@@ -88,7 +88,7 @@ Feature: BuyersDesk
     When I navigate to Buyer Desk
     And I filter with Purchase Amount "10" and "100"
 
-   # Then I should be see the data on the page with the filtered amount
+    Then I should be see the data on the page with the filtered amount
 
 # @Non-COA @L1
 #     Scenario: To verify filters on Upcoming Requisition status filter
