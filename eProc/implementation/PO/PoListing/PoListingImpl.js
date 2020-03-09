@@ -34,13 +34,13 @@ module.exports = {
         logger.info("Clicked on Recalled Success Done button");
     },
     async getPoStatus(){
-        let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN")).toString();
+        let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
         // await I.scrollIntoView(I.getElement(poListingObject.PO_STATUS));
         // await I.wait(prop.DEFAULT_WAIT);
         // logger.info("Scrolled to Status column");
         // await I.waitForVisible(I.getElement(poListingObject.PO_STATUS));
         // let status = await I.grabTextFrom(I.getElement(poListingObject.PO_STATUS));
-        logger.info(`Retrieved status --> ${status}`);
+        logger.info(`Retrieved status --> ${status.toString()}`);
         return status;
     },
     async fillClosePoComments(comments) {
