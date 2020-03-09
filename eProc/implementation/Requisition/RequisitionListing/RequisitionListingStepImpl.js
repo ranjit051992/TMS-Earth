@@ -15,7 +15,6 @@ Then("I should be able to view the actions for the draft requisition on Listing 
     
     reqListingImpl.navigateToRequisitionListing();
 
-    pause();
     this.reqNumber = await reqListingImpl.getRequisitionNumber(this.reqBO.reqName);
 
     await reqListingImpl.searchRequisitionByReqNumber(this.reqNumber);
