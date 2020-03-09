@@ -54,6 +54,8 @@ class Requisition
         this.reqAmount;
         this.status;
         //let items = [];
+        this.poNumber;
+        this.releasePo;
     }
 
     setReqName(reqName)
@@ -254,6 +256,14 @@ class Requisition
     setStatus(status)
     {
         this.status = status;
+    }
+
+    setPoNumber(poNumber) {
+        this.poNumber = poNumber
+    }
+
+    setReleasePo(releasePo) {
+        this.releasePo = releasePo;
     }
 }
 

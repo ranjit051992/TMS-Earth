@@ -44,7 +44,7 @@ module.exports = {
         logger.info("Clicked on Reject button");
     },
     async getSpoStatus() {
-        let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN")).toString();
+        let status = await (await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"))).toString();
         // let status = await I.grabTextFrom(I.getElement(approvalObject.APPROVAL_LISTING_SPO_STATUS));
         logger.info(`Retrieved status --> ${status}`);
         return status;

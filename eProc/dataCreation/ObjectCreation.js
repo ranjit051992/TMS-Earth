@@ -82,7 +82,7 @@ class ObjectCreation
 
     getObjectOfRequisition(noOfItems,itemType)
      {
-         requisition.reqName = "Automation_Req"+faker.random.number(200000);
+        requisition.reqName = "Automation_Req"+faker.random.number(200000);
         requisition.onBehalfOf = I.getData("ON_BEHALF_OF_WITH_RIGHT_USER");
         //requisition.onBehalfOf = (global.users.get("USERNAME"));
         requisition.company = I.getData("ORGANIZATION_UNIT/COMPANY_NAME");
@@ -115,6 +115,7 @@ class ObjectCreation
         requisition.taxType = I.getData("TAX_TYPE");
         requisition.taxName = I.getData("TAX_NAME");
         requisition.setApplyTaxItemLevel = false;
+        requisition.setReleasePo(true);
         return requisition;
     }
 

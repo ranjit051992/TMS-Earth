@@ -62,18 +62,18 @@ Feature: OnlineStore
 #   Then I should see 'No Results Found' in the  Review Items page.
 
 
-@Non-COA @L1 @guide
-  Scenario: To verify that user is able to suggest a supplier for free text item
-  Given I am logged in eProc
+# @Non-COA @L1 @guide
+#   Scenario: To verify that user is able to suggest a supplier for free text item
+#   Given I am logged in eProc
 
-  # When I Navigate to Guided Page
-  And I add short description
-  # And I add qty and price
-  # And I add Sourcing status
-  # And I save it
-  # And I select supplier from the Suggested Supplier dropdown.
+#   # When I Navigate to Guided Page
+#   And I add short description
+#   # And I add qty and price
+#   # And I add Sourcing status
+#   # And I save it
+#   # And I select supplier from the Suggested Supplier dropdown.
 
-  # Then I should see supplier gets added into Requester suggested supplier
+#   # Then I should see supplier gets added into Requester suggested supplier
 
 
 

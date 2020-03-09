@@ -334,3 +334,7 @@ Given( "I have PO with In Approval status", async function() {
    I.assertEqual(status.toString(), lmtVar.getLabel("IN_APPROVAL_STATUS"));
    this.spo.buyer = global.users.get("USERNAME");
 });
+
+When("I search for the converted PO", async function() {
+   await commonKeywordImpl.searchDocOnListing(this.reqBO.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+});

@@ -173,7 +173,7 @@ Given("I add an attachment {string}", async function(filePath){
 
 Then("I should be able to see the attachment which is added", async function(){
 
-    await reqListing.searchAndViewReqByName(this.reqName);
+    await reqListing.searchAndViewReqByName(this.reqBO.reqName);
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ADDITIONAL_DETAILS_SECTION"));
     let isPresent  = await checkoutImp.checkAddedAttachment(this.attachment);
     I.saveScreenshot("Upload Attachment.png");
@@ -426,3 +426,7 @@ Then("I should be able to see Deliver address as the Ship to Another Address on 
     I.assertEqual(isEqual,true);
  });
 
+Given("I have created a requisition and converted it to PO with {int} {string}", async function(noOfItems, itemType) {
+    this.reqBO = await objectCreation.getObjectOfRequisition(noOfItems, itemType);
+    this.reqBO = await checkoutImp.createReqToPoFlow(this.reqBO);
+});

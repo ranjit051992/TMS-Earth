@@ -14,6 +14,9 @@ const poListingObject = require("../../PO/PoListing/PoListingObject");
 const reqListingImpl = require("../../Requisition/RequisitionListing/RequisitionListingImpl");
 const iApprovalObject = require("../../Approval/ApprovalObject");
 const coaImpl = require("../../Coa/CoaImpl");
+const approvalImpl = require("../../Approval/ApprovalImpl");
+const buyerDeskImpl = require("../../BuyersDesk/BuyersDeskImpl");
+const poListingImpl = require("../../PO/PoListing/PoListingImpl");
 
 module.exports = {
 
@@ -1123,6 +1126,83 @@ module.exports = {
         await commonComponent.waitForLoadingSymbolNotDisplayed();
         await I.waitForVisible(I.getElement(iCheckout.WORKFLOW_NODE));
         await this.fetchWorkflowNodes();
+    },
+
+    async createReqToPoFlow(reqBO) {
+        // this.reqBO = await ObjectCreation.getObjectOfRequisition(1, "ITEM_NAME_FOR_SEARCHING");
+        reqBO = await this.createRequisitionFlow(reqBO);
+        // reqBO.reqName = "Automation_Req57072";
+        let reqName = reqBO.reqName.toString();
+        await reqListingImpl.navigateToRequisitionListing();
+        // await I.amOnPage(prop.DDS_Requisition_Listing);
+        // await commonComponent.waitForLoadingSymbolNotDisplayed();
+        // await I.waitForVisible(I.getElement(reqListingObj.REQUISITION_LISTING_PAGE));
+        logger.info("Navigated to Requisition Listing page");
+        let reqNumber = await reqListingImpl.getRequisitionNumber(reqName);
+        reqBO.setReqNumber(reqNumber);
+        await approvalImpl.navigateToApprovalListing();
+        await approvalImpl.approveDoc(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        let status = await (await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"))).toString();
+        if(status !== lmtVar.getLabel("APPROVED_STATUS")) {
+            throw new Error(`Req status after approval is not Approved. Current status is --> ${status}`);
+        }
+        // let status = await I.grabTextFrom(I.getElement(approvalObject.APPROVAL_LISTING_SPO_STATUS));
+        // logger.info(`Retrieved status --> ${status}`);
+        // return status;
+        await I.amOnPage(prop.DDS_BuyersDesk_Url);
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        await commonComponent.clickOnActionMenuIcon();
+        await commonComponent.clickOnActionMenuOption(lmtVar.getLabel("CONVERT_TO_PO"));
+        await buyerDeskImpl.clickOnPoDetailsCheckbox();
+        await buyerDeskImpl.clickOnSubmitPoButton();
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+        let poNumber = await commonComponent.getDocNumber();
+        reqBO.setPoNumber(poNumber);
+        await approvalImpl.navigateToApprovalListing();
+        await approvalImpl.navigateToPOApprovalListingTab();
+        await approvalImpl.approveDoc(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        await approvalImpl.checkPOApprovalStatus(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        status = await approvalImpl.getSpoStatus();
+
+        let flag = status.toString() === lmtVar.getLabel("APPROVED_STATUS")
+        if(!flag) {
+            logger.info(`Failed to approve po because status is ${status} on Approval listing after approving`);
+            throw new Error(`Failed to approve po because status is ${status} on Approval listing after approving`);
+        }
+        else {
+            logger.info("PO is approved successfully");
+        }
+        
+        // if(reqBO.releasePo) {
+            await I.wait(prop.DEFAULT_MEDIUM_WAIT);
+            await poListingImpl.navigateToPoListing();
+            await commonComponent.searchDocOnListing(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            status = await poListingImpl.getPoStatus();
+            logger.info(`Status in db --> ${lmtVar.getLabel("RELEASED_STATUS")}`);
+            flag = status.toString().includes(lmtVar.getLabel("RELEASED_STATUS"));
+            if(!flag) {
+                logger.info(`Failed to release spo because status is ${status} on po listing after approving`);
+                throw new Error(`Failed to release spo because status is ${status} on po listing after approving`);
+            }
+            else {
+                logger.info("PO is released successfully");
+            }
+        // }
+        return reqBO;
+    },
+    async editAndUpdateDraftRequisition(reqNumber, requisitionBO)
+    {
+        await reqListingImpl.navigateToRequisitionListing();
+        await reqListingImpl.searchRequisitionByReqNumber(reqNumber);
+        await reqListingImpl.clickOnEditAction();
+        await commonComponent.waitForLoadingSymbolNotDisplayed();
+        await I.waitForVisible(I.getElement(checkoutObject.REQUISITION_NAME));
+        await this.fillOnBehalfOf(requisitionBO.onBehalfOf);
+        await this.clickOnUpdateDraftButton();
+        await commonComponent.waitForLoadingSymbolNotDisplayed();
     },
 
 };
