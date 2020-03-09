@@ -12,8 +12,7 @@ const cartImpl = require("./../Requisition/Cart/CartImpl");
 const onlineStore = require("../Requisition/OnlineStore/OnlineStoreObject");
 
 When("I navigate to Buyer Desk", async function() {
-  I.amOnPage(global.confi_prop.DDS_BuyersDesk_Url);
-  logger.info("Navigated to Buyers Desk Page")
+  await buyersDeskImpl.navigateToBuyerListing();
 });
 
 When ("I create {string} requisition with {string} {string}", async function(noOfReq,noOfItems,itemType){
@@ -153,14 +152,22 @@ When ("I filter with {string} status", async function(status){
 });
 
 
-
 Then ("I should be see the data on the page with the filtered amount", async function(){
    let fetchPurchaseAmount = await buyersDeskImpl.fetchPurchaseAmount();
    logger.info('Searched Puchase amount '+fetchPurchaseAmount);
+   let flag = true;
    if (fetchPurchaseAmount>minValue && fetchPurchaseAmount<maxValue)
    {
-    logger.info("Purchase Amount is given in the given range");
+    logger.info("Purchase Amount is "+fetchPurchaseAmount+" and is in the given range");
+    flag = true;
    }
+    else
+    {
+      logger.info("Purchase Amount out of range");
+      flag = false;
+    }
+
+    I.assertEqual(flag,true);
 
 }); 
   Then("I should be see the data on the page with the filtered status", async function(){
@@ -191,4 +198,40 @@ Then("I should be see the data on the page on the basis on Requestor field",asyn
   logger.info('Searched Requestor is '+searchedRequestor);
   logger.info('Actual Requestor is '+actualRequestor);
   I.assertEqual(searchedRequestor.toString(), actualRequestor.toString());
+})
+
+When("I approve requisition", async function(){
+  await approvalImpl.navigateToApprovalListing();
+  await approvalImpl.approveDoc(requisition.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+  await buyersDeskImpl.navigateToBuyerListing();
+
+});
+
+When("I edit the requisition", async function(){
+  logger.info("Requistion to be edited is "+ requisition.reqNumber);
+  await buyersDeskImpl.SearchRequisitionNumber(requisition.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+  await buyersDeskImpl.EditRequisition(requisition.reqNumber);
+
+
+});
+
+Then ("I should be able to view the requisition in edit mode" , async function(){
+   let flagedit = await buyersDeskImpl.validateReqinEditMode();
+   I.assertEqual(flagedit,true);
+});
+
+When("I return the requisition on Buyers Desk", async function(){
+
+  logger.info("Requistion to be edited is "+ requisition.reqNumber);
+  await buyersDeskImpl.SearchRequisitionNumber(requisition.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+  await buyersDeskImpl.EditRequisition(requisition.reqNumber);
+  await buyersDeskImpl.clickOnReturnButton();
+  await buyersDeskImpl.fillReturnReqComments("Return Requistion Comments Added");
+  await buyersDeskImpl.fillRequiredBy(requisition.requiredBy);
+  await buyersDeskImpl.clickOnReturnButton();
+});
+
+When ("I allow requestor to resubmit the requisition", async function(){
+   logger.info("Allowing the requestor to resubmit the requition"); 
+
 })
