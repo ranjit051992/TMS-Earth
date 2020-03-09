@@ -130,10 +130,12 @@ When("I add data in Cost Booking Details section at line level", async function(
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));  
     let reqItems = this.reqBO.items;
     //await checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);
+
     for(let i=0; i< this.reqBO.items.length; i++)
     {
         await checkoutImp.clickOnCostBookingLink(this.reqBO.items[i].itemName);
     }
+    
     await coaImp.fillCoaDetails();
 });
 
@@ -161,6 +163,7 @@ When("I enter Requisition Name", async function(){
 });
 
 When("I submit requisition", async function(){
+    await I.wait(prop.DEFAULT_MEDIUM_WAIT);
     await checkoutImp.submitRequisition();
     await commonComponent.waitForLoadingSymbolNotDisplayed();
 });
@@ -324,3 +327,18 @@ When("I select any existing address as shipping address", async function()
 });
 
 
+When("I add Costing split at header level by Percentage into {int} splits", async function(noOfSplit){
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_COST_ALLOCATION_SECTION"));
+    let costCenterArray = new Array();
+    for(let i=0; i< noOfSplit; i++)
+    {
+        let index = 1;
+        let costcenter = await checkoutImp.fillMultipleCostCenter(I.getData("COST_CENTER["+i+"]"), index);
+        costCenterArray.push(costcenter);
+        let percentage = 100/noOfSplit;
+        await checkoutImp.enterPercentage(percentage);
+        await checkoutImp.clickOnCoaAddMoreButton();
+        index++;
+    }
+    this.costCenter = costCenterArray;
+});

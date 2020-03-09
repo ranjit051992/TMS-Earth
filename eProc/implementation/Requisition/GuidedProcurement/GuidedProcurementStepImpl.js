@@ -1,3 +1,4 @@
+
 const { I } = inject();
 const iGuided = require("../GuidedProcurement/GuidedProcurementObject");
 const guidedImpl = require("../GuidedProcurement/GuidedProcurementImpl");
@@ -10,6 +11,7 @@ const checkoutObj = require("../Checkout/CheckoutObject");
 const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger");
 const checkoutImp = require("../Checkout/CheckoutImpl");
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
+const prop = global.confi_prop;
 
 
 Given("I Add guided item service",async function(){
@@ -78,4 +80,15 @@ Given("I should see supplier gets added into Requester suggested supplier",async
     I.assertEqual(isSelected,true);
 });
 
+
+When("I add {int} free text item {string} to cart", async function(noOfItem, itemType){
+    this.reqBO = await objectCreation.getObjectOfRequisition(noOfItem, itemType);
+    this.guidedItemBO = this.reqBO.items[0];
+    logger.info("Guided item "+this.guidedItemBO);
+    await cartImpl.clearCart();
+    await I.wait(prop.DEFAULT_WAIT);
+   // let itemArray = new Array();
+    this.guidedItemBO =  await guidedImpl.CreateGuidedItem(this.guidedItemBO);
+
+});
 

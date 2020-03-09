@@ -2,7 +2,7 @@ const { I } = inject();
 const faker = require("faker");
 const spoBO = require("../dataCreation/bo/Spo");
 const catalogItem = require("../dataCreation/bo/CatalogItem")
-const requisition = require("../dataCreation/bo/Requisition")
+const requisition = require("../dataCreation/bo/Requisition");
 const logger = require("../../Framework/FrameworkUtilities/Logger/logger");
 const commonUtilities = require("../../Framework/FrameworkUtilities/CommonUtilities");
 const prop = global.confi_prop;
@@ -77,6 +77,15 @@ class ObjectCreation
             }
         }
         
+        if(itemType === "SEARCH_GUIDED_ITEM")
+        {
+            for(let i=0; i<noOfItems; i++)
+            {
+                let guided = await this.getObjectOfGuidedItem(i);
+                items[i] = guided;
+            }
+        }
+        
         return items;
     }
 
@@ -90,7 +99,8 @@ class ObjectCreation
 
     async getObjectOfRequisition(noOfItems,itemType)
      {
-         requisition.reqName = "Automation_Req"+faker.random.number(200000);
+        requisition.reqName = "Automation_Req"+faker.random.number(200000);
+        requisition.noOfItems = noOfItems;
         requisition.onBehalfOf = I.getData("ON_BEHALF_OF_WITH_RIGHT_USER");
         //requisition.onBehalfOf = (global.users.get("USERNAME"));
         requisition.company = I.getData("ORGANIZATION_UNIT/COMPANY_NAME");
@@ -144,8 +154,6 @@ class ObjectCreation
         guidedItem.buyerReviewRequired = true;
         let supplier = new Array();
         supplier.push(I.getData("SUPPLIER_NAME"));
-        // supplier.push("fdfdfdff");
-
         guidedItem.suppliers = supplier;
         guidedItem.nextAction = lmtVar.getLabel("ADD_TO_CART");
         guidedItem.supplierAddress= (I.getData("OTHER_DELIVERY_ADD"));

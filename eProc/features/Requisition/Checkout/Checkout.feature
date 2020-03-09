@@ -1,7 +1,7 @@
 Feature: Checkout
 
 
-@Non-COA @L1 
+@Non-COA @L1 @priyanka
   Scenario: To verify that user is able to add Cost center information to the requisition.
   Given I am logged in eProc
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -11,7 +11,7 @@ Feature: Checkout
   And I navigate to Line level Cost Booking Details
   Then I should be see the updated cost center on line level Cost Booking section
 
-@Non-COA @L1  @project
+@Non-COA @L1  @project @priyanka
     Scenario: To verify that user is able to add Project information to the requisition.
     Given I am logged in eProc
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -21,7 +21,7 @@ Feature: Checkout
     And I navigate to Line level Cost Booking Details
     Then I should be see the updated project on line level Cost Booking section
 
-@Non-COA @L1  
+@Non-COA @L1  @priyanka
     Scenario: To verify that System auto populates user's Cost center when a user is creating a requisition.
     Given I am logged in eProc
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -30,16 +30,17 @@ Feature: Checkout
     And I navigate to Line level Cost Booking Details
     And I should see on line level Cost Booking Details section cost center should be populated
 
-@Non-COA @L1  
+@Non-COA @L1  @priyanka
     Scenario: To verify that system auto populates user's default Delivery & Bill to address 
     Given I am logged in eProc
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
+
     Then I should see on header level, Shipping Details section Default Shipping Address field should be auto populated
     And I navigate to Line level Shipping Details and Asset Tagging section
     And I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated
 
-@Non-COA @L1  @approval
+@Non-COA @L1  @approval @priyanka
     Scenario:  To verify that user is able to view approval Status
     Given I am logged in eProc
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -52,7 +53,7 @@ Feature: Checkout
     And I submit requisition
     Then I should be able see the status of requisition on the Listing page
 
-@Non-COA @L1 @draft
+@Non-COA @L1 @draft @priyanka
   Scenario: To verify requisition in draft and actions on it
   Given I am logged in eProc
 
@@ -68,7 +69,7 @@ Feature: Checkout
   And I should be able to Edit and submit the Draft requisition
   And I should be able to delete the requisition
 
-@Non-COA @L1 @attach @Snehal_Non
+@Non-COA @L1 @attach @Snehal
 
     Scenario: To verify that user is able to add attachments to the requisition.
     Given I am logged in eProc
@@ -85,7 +86,7 @@ Feature: Checkout
 
     Then I should be able to see the attachment which is added
 
-@Non-COA @L1 @Snehal_Non
+@Non-COA @L1 @Snehal
 
     Scenario: To verify that user is able to create any custom / One time delivery address while Check out and save it for future use
     Given I am logged in eProc
@@ -111,7 +112,7 @@ Feature: Checkout
     And I select Ship to Another Address in  Shipping Details section at header level
     And I should be able to see the saved address on creating a new requisition
 
-@Non-COA @L1  @po @Snehal_Non
+@Non-COA @L1  @po @Snehal
 
   Scenario: To verify that the 'Select Purchase Order' field
   Given I am logged in eProc
@@ -123,7 +124,7 @@ Feature: Checkout
 
   Then I should be see that the field name is updated to Select Purchase Order
 
-@Non-COA @L1  @buyer @Snehal_Non
+@Non-COA @L1  @buyer @Snehal
 
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer group
   Given I am logged in eProc
@@ -141,7 +142,7 @@ Feature: Checkout
 
   Then I should be able to view requisition with buyer as the buyer group which was assigned
 
-@Non-COA @L1 @Snehal_Non
+@Non-COA @L1 @Snehal
 
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer
   Given I am logged in eProc
@@ -160,7 +161,7 @@ Feature: Checkout
   Then I should be able to view requisition with buyer which was assigned
   
 
-@Non-COA @L1 @adhoc @Snehal_Non
+@Non-COA @L1 @adhoc @Snehal
   Scenario: To verify that user is able to add approver in requisition workflow if activity is assigned to him/her
   Given I am logged in eProc
 
@@ -179,7 +180,7 @@ Feature: Checkout
 
   Then I should be able to view the requisition with adhoc approver added in the workflow
 
-@Non-COA @L1 @SEARCH_ITEM_STOCK @Snehal_Non
+@Non-COA @L1 @SEARCH_ITEM_STOCK @Snehal
   Scenario: To verify that user is able to raise a request with stock items
   Given I am logged in eProc
 
@@ -247,7 +248,7 @@ Feature: Checkout
 
 
 
-@Non-COA @L1 @copy
+@Non-COA @L1 @copy @priyanka
     Scenario: To verify that user is able to copy any requisition and modify it to create a new requisition.
     Given I am logged in eProc
 
@@ -304,15 +305,17 @@ Feature: Checkout
 
 #     Then I should be able to view the workflow with On Behalf user as the requestor and On behalf user workflow should be applied
 
-# @Non-COA @L1
+# @Non-COA @L1 @multipleCostCenter
 #     Scenario: To verify that user is able to create requisition for multiple items with multiple cost center for each item
 #     Given I am logged in eProc
 
-#     When I add 2 catalog items to cart
+#     When I add "2" "ITEM_NAME_FOR_SEARCHING" items to cart
 #     And I checkout
+#     And I enter Requisition Name
 #     And I add Purchase Type
+#     And I add Settlement Via
 #     And I add Required By Date
-#     And I add Costing split at header level by Percentage into 2 splits (50, 50)
+#     And I add Costing split at header level by Percentage into 2 splits
 #     And I add data in Cost Booking Details section at line level 
 #     And I submit requisition
 
@@ -323,7 +326,8 @@ Feature: Checkout
 
 
 
-@Non-COA @L1 @autoPO @Setting
+
+@Non-COA @L1 @autoPO @Setting @priyanka
     Scenario: To verify that PR is directly flipped into PO after regular approval is complete.
     Given I am logged in eProc
 
@@ -350,7 +354,8 @@ Feature: Checkout
 #     Then I should be able to see Required by date should be auto calculated as per lead time defined in the catalog setting in this page
 
 
-@Non-COA @L1 @addr @Snehal_Non
+
+@Non-COA @L1 @addr @Snehal
     Scenario: To verify that user is able to change the default Delivery & Bill to address in the requisition.
     Given I am logged in eProc
 
@@ -363,13 +368,12 @@ Feature: Checkout
     And I select Ship to Another Address in  Shipping Details section at header level
     And I select any existing address as shipping address
     And I add data in Cost Booking Details section at line level 
-    #And I save it
     And I submit requisition
 
     Then I should be able to see Deliver address as the Ship to Another Address on view requisition 
 
 
-@Non-COA @L1 @taxes
+@Non-COA @L1 @taxes @priyanka
     Scenario: To verify that user is able to add taxes at line item level in a requisition for catalog item
     Given I am logged in eProc
 
@@ -402,20 +406,22 @@ Feature: Checkout
 
 #   Then I should be able see the taxes added on view requisition
 
-# @Non-COA @L1
-#   Scenario: To verify that user is able to add taxes at line item level in a requisition for free-text item 
-#   Given I am logged in eProc
+@Non-COA @L1 @freeTextItem
+  Scenario: To verify that user is able to add taxes at line item level in a requisition for free-text item 
+  Given I am logged in eProc
 
-#   When I add a free text item to cart
-#   And I checkout
-#   And I add Purchase Type
-#   And I add Required By Date
-#   And I add data in Cost Booking Details section at line level 
-#   And I add Tax Details at line level
-#   And I save it
-#   And I submit requisition
+  When I add 1 free text item "SEARCH_GUIDED_ITEM" to cart
+  And I checkout
+  And I enter Requisition Name
+  And I add Purchase Type
+  And I add Settlement Via
+  And I add Required By Date
+  And I add data in Cost Booking Details section at line level 
+  And I add Tax Details at line level
+  And I save it
+  And I submit requisition
 
-#   Then I should be able see the taxes added on view requisition
+  Then I should be able see the taxes added on view requisition
 
 # @Non-COA @L1
 #   Scenario: To verify that user is able to add taxes at line item level in a requisition for catalog,punchout & free-text item
@@ -726,9 +732,9 @@ Feature: Checkout
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
 
-     Then I should see on header level, Shipping Details section Default Shipping Address field should be auto populated
-     And I navigate to Line level Shipping Details and Asset Tagging section
-     And I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated
+    Then I should see on header level, Shipping Details section Default Shipping Address field should be auto populated
+    And I navigate to Line level Shipping Details and Asset Tagging section
+    And I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated
 
 
 @COA @L1 @snehal
