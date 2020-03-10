@@ -30,6 +30,7 @@ class ObjectCreation
         spo.setBuyer(I.getData("BUYER_NAME"));
         // spo.setDeliverTo(I.getData("DELIVERES_TO/OWNER"));
         spo.setDeliverTo(global.users.get("USERNAME"));
+        spo.setNewApprover(I.getData("NEW_APPROVER"));
         spo.setBookCostAtLineItemLevel("No");
         spo.setBookCostToSingleMultipleCC("Yes");
         spo.setAssignCostProject("No");
