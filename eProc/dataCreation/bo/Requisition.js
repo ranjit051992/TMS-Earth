@@ -57,7 +57,8 @@ class Requisition
         
         //let items = [];
         this.poNumber;
-        this.releasePo;
+        this.convertToPoFlag;
+        this.approvePoFlag;
     }
 
     setReqName(reqName)
@@ -264,8 +265,12 @@ class Requisition
         this.poNumber = poNumber
     }
 
-    setReleasePo(releasePo) {
-        this.releasePo = releasePo;
+    setApprovePoFlag(approvePoFlag) {
+        this.approvePoFlag = approvePoFlag;
+    }
+
+    setConvertToPoFlag(convertToPoFlag) {
+        this.convertToPoFlag = convertToPoFlag;
     }
 }
 

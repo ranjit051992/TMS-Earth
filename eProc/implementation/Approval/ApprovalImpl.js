@@ -6,7 +6,7 @@ const lmtVar = require("../../../Framework/FrameworkUtilities/i18nUtil/readI18NP
 const poListingObject = require("../PO/PoListing/PoListingObject");
 const approvalObject = require("./ApprovalObject");
 const commonKeywordImpl = require("../../commonKeywords/CommonComponent");
-// const spoImpl = require("../../implementation/PO/Spo/SpoImpl");
+const poListingImpl = require("../PO/PoListing/PoListingImpl");
 
 module.exports = {
     async navigateToApprovalListing() {
@@ -44,8 +44,7 @@ module.exports = {
         logger.info("Clicked on Reject button");
     },
     async getSpoStatus() {
-        let status = await (await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"))).toString();
-        // let status = await I.grabTextFrom(I.getElement(approvalObject.APPROVAL_LISTING_SPO_STATUS));
+        let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
         logger.info(`Retrieved status --> ${status}`);
         return status;
     },
@@ -348,4 +347,35 @@ module.exports = {
         } 
         return reqArray;
     },
+
+    async approvePoFlow(poNumber) {
+        await this.navigateToApprovalListing();
+        await this.navigateToPOApprovalListingTab();
+        await this.approveDoc(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        await this.checkPOApprovalStatus(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        let status = await this.getSpoStatus();
+
+        let flag = status.toString() === lmtVar.getLabel("APPROVED_STATUS")
+        if(!flag) {
+            logger.info(`Failed to approve spo because status is ${status} on Approval listing after approving`);
+            throw new Error(`Failed to approve spo because status is ${status} on Approval listing after approving`);
+        }
+        else {
+            logger.info("Spo is approved successfully");
+        }
+        
+        await I.wait(prop.DEFAULT_MEDIUM_WAIT);
+        await poListingImpl.navigateToPoListing();
+        await commonKeywordImpl.searchDocOnListing(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        status = await poListingImpl.getPoStatus();
+        logger.info(`Status in db --> ${lmtVar.getLabel("RELEASED_STATUS")}`);
+        flag = status.toString().includes(lmtVar.getLabel("RELEASED_STATUS"));
+        if(!flag) {
+            logger.info(`Failed to release spo because status is ${status} on po listing after approving`);
+            throw new Error(`Failed to release spo because status is ${status} on po listing after approving`);
+        }
+        else {
+            logger.info("Spo is released successfully");
+        }
+    }
 }

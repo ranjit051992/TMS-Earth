@@ -346,4 +346,5 @@ When("I add Costing split at header level by Percentage into {int} splits", asyn
 Given("I have created a requisition and converted it to PO with {int} {string}", async function(noOfItems, itemType) {
     this.reqBO = await objectCreation.getObjectOfRequisition(noOfItems, itemType);
     this.reqBO = await checkoutImp.createReqToPoFlow(this.reqBO);
+    // this.reqBO.poNumber = "blue sanity -/2475";
 });

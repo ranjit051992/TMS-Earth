@@ -1132,68 +1132,65 @@ module.exports = {
     },
 
     async createReqToPoFlow(reqBO) {
-        // this.reqBO = await ObjectCreation.getObjectOfRequisition(1, "ITEM_NAME_FOR_SEARCHING");
         reqBO = await this.createRequisitionFlow(reqBO);
-        // reqBO.reqName = "Automation_Req57072";
+
         let reqName = reqBO.reqName.toString();
         await reqListingImpl.navigateToRequisitionListing();
-        // await I.amOnPage(prop.DDS_Requisition_Listing);
-        // await commonComponent.waitForLoadingSymbolNotDisplayed();
-        // await I.waitForVisible(I.getElement(reqListingObj.REQUISITION_LISTING_PAGE));
-        logger.info("Navigated to Requisition Listing page");
         let reqNumber = await reqListingImpl.getRequisitionNumber(reqName);
         reqBO.setReqNumber(reqNumber);
-        await approvalImpl.navigateToApprovalListing();
-        await approvalImpl.approveDoc(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-        await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-        let status = await (await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"))).toString();
-        if(status !== lmtVar.getLabel("APPROVED_STATUS")) {
-            throw new Error(`Req status after approval is not Approved. Current status is --> ${status}`);
-        }
-        // let status = await I.grabTextFrom(I.getElement(approvalObject.APPROVAL_LISTING_SPO_STATUS));
-        // logger.info(`Retrieved status --> ${status}`);
-        // return status;
-        await I.amOnPage(prop.DDS_BuyersDesk_Url);
-        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
-        await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-        await commonComponent.clickOnActionMenuIcon();
-        await commonComponent.clickOnActionMenuOption(lmtVar.getLabel("CONVERT_TO_PO"));
-        await buyerDeskImpl.clickOnPoDetailsCheckbox();
-        await buyerDeskImpl.clickOnSubmitPoButton();
-        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
-        await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
-        let poNumber = await commonComponent.getDocNumber();
-        reqBO.setPoNumber(poNumber);
-        await approvalImpl.navigateToApprovalListing();
-        await approvalImpl.navigateToPOApprovalListingTab();
-        await approvalImpl.approveDoc(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-        await approvalImpl.checkPOApprovalStatus(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-        status = await approvalImpl.getSpoStatus();
 
-        let flag = status.toString() === lmtVar.getLabel("APPROVED_STATUS")
-        if(!flag) {
-            logger.info(`Failed to approve po because status is ${status} on Approval listing after approving`);
-            throw new Error(`Failed to approve po because status is ${status} on Approval listing after approving`);
+        let status = await reqListingImpl.getRequisitionStatus();
+        if(status.toString().includes(lmtVar.getLabel("IN_APPROVAL_STATUS"))) {
+            await approvalImpl.navigateToApprovalListing();
+            await approvalImpl.approveDoc(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            status = await (await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"))).toString();
+            if(status !== lmtVar.getLabel("APPROVED_STATUS")) {
+                throw new Error(`Req status after approval is not Approved. Current status is --> ${status}`);
+            }
         }
         else {
-            logger.info("PO is approved successfully");
+            logger.info(`Req status is not ${lmtVar.getLabel("IN_APPROVAL_STATUS")} after submitting. Current status is ${status}. Hence, not executing the approve req action.`);
         }
         
-        // if(reqBO.releasePo) {
+        if(reqBO.convertToPoFlag) {
             await I.wait(prop.DEFAULT_MEDIUM_WAIT);
-            await poListingImpl.navigateToPoListing();
-            await commonComponent.searchDocOnListing(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-            status = await poListingImpl.getPoStatus();
-            logger.info(`Status in db --> ${lmtVar.getLabel("RELEASED_STATUS")}`);
-            flag = status.toString().includes(lmtVar.getLabel("RELEASED_STATUS"));
-            if(!flag) {
-                logger.info(`Failed to release spo because status is ${status} on po listing after approving`);
-                throw new Error(`Failed to release spo because status is ${status} on po listing after approving`);
+            await I.amOnPage(prop.DDS_BuyersDesk_Url);
+            await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+            await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+            if(!status.toString().includes(lmtVar.getLabel("ORDERING_STATUS"))) {
+                await commonComponent.clickOnActionMenuIcon();
+                await commonComponent.clickOnActionMenuOption(lmtVar.getLabel("CONVERT_TO_PO"));
+                await buyerDeskImpl.clickOnPoDetailsCheckbox();
+                await buyerDeskImpl.clickOnSubmitPoButton();
+                await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
             }
             else {
-                logger.info("PO is released successfully");
+                logger.info(`Req status on Buyer Listing is ${status}. Hence, not executing the Convert to PO action`);
             }
-        // }
+    
+            await poListingImpl.navigateToPoListing();
+            await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+            let poNumber = await commonComponent.getDocNumber();
+            reqBO.setPoNumber(poNumber);
+            status = await poListingImpl.getPoStatus();
+    
+            if(reqBO.approvePoFlag) {
+                if(status.toString() === lmtVar.getLabel("IN_APPROVAL_STATUS")) {
+                    await approvalImpl.approvePoFlow(poNumber);
+                }
+                else {
+                    logger.info(`PO status after submission was ${spo.status} and not ${lmtVar.getLabel("IN_APPROVAL_STATUS")}. Hence, not executing the Approve PO action.`);
+                }
+            }
+            else {
+                logger.info(`Approve PO flag is set to ${reqBO.approvePoFlag}. Hence, not executing the Approve PO action.`);
+            }
+        }
+        else {
+            logger.info(`Convert to PO flag is set to ${reqBO.convertToPoFlag}. Hence, not executing the Convert to PO action`);
+        }
         return reqBO;
     },
     async editAndUpdateDraftRequisition(reqNumber, requisitionBO)

@@ -133,7 +133,8 @@ class ObjectCreation
         requisition.taxType = I.getData("TAX_TYPE");
         requisition.taxName = I.getData("TAX_NAME");
         requisition.setApplyTaxItemLevel = false;
-        requisition.setReleasePo(true);
+        requisition.convertToPoFlag = true;
+        requisition.approvePoFlag = true;
         return requisition;
     }
 
