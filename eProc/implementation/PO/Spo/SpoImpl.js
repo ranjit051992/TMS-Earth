@@ -380,6 +380,7 @@ module.exports = {
         logger.info(`PO status is --> ${spo.status.toString()}`);
 
         return spo;
+
     },
     async fillBasicDetails(spo) {
         logger.info(`**************Filling Basic Details**************`);
@@ -429,7 +430,7 @@ module.exports = {
             await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_SHIPPING_DETAILS_SECTION"));
             let deliverTo = await this.selectDeliverTo(spo.deliverTo);
             spo.setDeliverTo(deliverTo);
-            // await this.selectRequiredByDate();
+            // /await this.selectRequiredByDate();
             let requiredBy = await this.fetchRequiredBy();
             spo.setRequiredBy(requiredBy);
         }
@@ -590,18 +591,27 @@ module.exports = {
     },
 
     async createMultiplePOs(noOfPOs, noOfItems, itemType) {
-        let POArray = new Array();
-        for (let i=0; i<noOfPOs; i++)
+        // let spo = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
+        // spo.poNumber = "Automation_Spo_1583744481394";
+        // let spo1 = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
+        // spo1.poNumber = "Automation_Spo_1583744464347";
+        // let spo2 = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
+        // spo2.poNumber = "Automation_Spo_1583744322931";
+        // let POArray = new Array(spo, spo1, spo2);
+
+        for(let i=0; i<noOfPOs; i++) 
         {
-        POArray[i] = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
-        POArray[i] = await this.createSpoFlow(POArray[i]);
-        }
+        let spo = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
+        spo = await this.createSpoFlow(spo);
+        await POArray.push(spo);
+        }   
+
         return POArray;
     },
 
     async checkMultiplePOStatus(POArray) {
         for (let i=0; i<POArray.length; i++) {
-            POArray[i] = await commonComponent.searchDocOnListing(POArray[i].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            await commonKeywordImpl.searchDocOnListing(POArray[i].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
             let status = await poListingImpl.getPoStatus();
             I.assertEqual(status,lmtVar.getLabel("IN_APPROVAL_STATUS"));
         }

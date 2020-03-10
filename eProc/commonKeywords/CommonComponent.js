@@ -193,7 +193,7 @@ module.exports={
         logger.info("Clicked on action menu icon");
     },
     async clickOnActionMenuOption(option) {
-        let optionXpath = `//*[contains(@title,'${option}')]`;
+        let optionXpath = `//*[@title='${option}']`;
         await I.waitForVisible(optionXpath);
         await I.click(optionXpath);
         logger.info(`Clicked on action menu option --> ${option}`);
@@ -327,7 +327,8 @@ module.exports={
         columnHeaderXpath = "((" + columnHeaderXpath + "/..)[" + columnIndex + "]//dew-row[contains(@class,'list-body')]//div)[1]";
         logger.info("Xpath for retrieving column value --> " + columnHeaderXpath);
         await I.scrollIntoView(columnHeaderXpath);
-		let columnValue = await I.grabTextFrom(columnHeaderXpath);
+        //await I.waitForVisible(columnHeaderXpath, prop.DEFAULT_HIGH_WAIT);
+        let columnValue = await I.grabTextFrom(columnHeaderXpath);
 		logger.info("Retrieved value for column " + columnName + " is --> " + columnValue);
 		return columnValue;
     },

@@ -89,7 +89,7 @@ module.exports = {
         await I.click(I.getElement(iCheckout.REQUISITION_NAME));
         await I.clearField(I.getElement(iCheckout.REQUISITION_NAME));
         await I.fillField(I.getElement(iCheckout.REQUISITION_NAME), reqName);
-        //reqName = await I.grabTextFrom(I.getElement(iCheckout.REQUISITION_NAME));
+        // reqName = await I.grabTextFrom(I.getElement(iCheckout.REQUISITION_NAME));
         reqName = await I.grabAttributeFrom(I.getElement(iCheckout.REQUISITION_NAME), "value");
         logger.info(`Entered Requisition Name: ${reqName[0]}`);
 
@@ -1076,8 +1076,8 @@ module.exports = {
         {
         let reqBO = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
         reqBO = await this.createRequisitionFlow(reqBO);
+        //reqBO.reqNumber = "41920000";
         reqArray.push(reqBO);
-        //I.waitForVisible();
         I.amOnPage(prop.DDS_OnlineStore_Url);
         }
         return reqArray;
@@ -1085,11 +1085,14 @@ module.exports = {
 
     async checkMultipleReqStatus(reqArray) {
         I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
-        for (let i = 0; i < reqArray.length; i++) {
-            reqArray[i] = await commonComponent.searchDocOnListing(reqArray[i].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-            let status = await reqListingImpl.getRequisitionStatus();
-            I.assertEqual(status, lmtVar.getLabel("IN_APPROVAL_STATUS"));
-            logger.info(`${status} matches with ${lmtVar.getLabel("IN_APPROVAL_STATUS")}`);
+        for (let i = 0; i < reqArray.length; i++) 
+        {
+        await commonComponent.searchDocOnListing(reqArray[i].reqNumber.toString(), lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        // let status = await reqListingImpl.getRequisitionStatus();
+        let status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+        status = status.substring(status.indexOf("(")+1, status.indexOf(")"));
+        I.assertEqual(status, lmtVar.getLabel("IN_APPROVAL_STATUS"));
+        logger.info(`${status} matches with ${lmtVar.getLabel("IN_APPROVAL_STATUS")}`);
         }
     },
 

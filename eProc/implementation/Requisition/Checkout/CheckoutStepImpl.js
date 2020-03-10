@@ -290,7 +290,7 @@ Given( "I Create {int} requisitions with {int} {string} item", async function (n
  Given( "I have {int} Requisitions In Approval status", async function() {
     I.amOnPage(prop.DDS_Requisition_Listing);
     I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
-    await checkoutImp.checkMultipleReqStatus();
+    await checkoutImp.checkMultipleReqStatus(this.reqArray);
  });
 
 

@@ -1,6 +1,6 @@
 Feature: Approval
 
-@L1 @Non-COA
+@Non-COA  @Run
     Scenario: To verify Requisition details are  properly displayed in approval listing
 
     Given I am logged in eProc
@@ -15,7 +15,7 @@ Feature: Approval
     And I see the same Amount to be approved
     And I see the same status of Requisition
 
-@Non-COA 
+@Non-COA  @Run
     Scenario: To verify Purchase Order details are properly displayed in approval listing
 
     Given I am logged in eProc
@@ -26,9 +26,9 @@ Feature: Approval
     When I search for that PO name on PO approval listing
 
     Then I see the same Buyer name displayed for the corresponding PO number
-    And I see the same Received on date on PO Approval listing
     And I see the same Amount to be approved on PO Approval listing
     And I see the same status of SPO on PO Approval listing
+    And I see the same Received on date on PO Approval listing
 
 # @Non-COA
 #     Scenario: To verify BPO details are properly displayed in approval listing
@@ -50,7 +50,7 @@ Feature: Approval
     Scenario: To verify that user is able to approve single/multiple Requisition
 
     Given I am logged in eProc
-    And I Create 3 requisitions with 1 "Catalog" item
+    And I Create 3 requisitions with 1 "ITEM_NAME_FOR_SEARCHING" item
     And I have 3 Requisitions In Approval status
     And I am on requisition approval listing page
 
@@ -64,7 +64,7 @@ Feature: Approval
     Scenario: To verify that user is able to reject single/multiple Requisition
 
     Given I am logged in eProc 
-    And I Create 3 requisitions with 1 "Catalog" item
+    And I Create 3 requisitions with 1 "ITEM_NAME_FOR_SEARCHING" item
     And I have 3 Requisitions In Approval status
     And I am on requisition approval listing page
 
@@ -93,12 +93,11 @@ Feature: Approval
 #     Then the status of all the requisitions should be displayed as Delegated
 
 
-@Non-COA
+@Non-COA @Run
     Scenario: To verify that user is able to approve single/multiple PO
 
     Given I am logged in eProc
-    And I Create 3 Standard po with "1" "ITEM_NAME_FOR_SEARCHING" item
-    And I have 3 POs In Approval status
+    And I Create 3 Standard po with 1 "ITEM_NAME_FOR_SEARCHING" item
     And I am on PO approval listing page
 
     When I Approve 1 PO
@@ -107,12 +106,11 @@ Feature: Approval
     Then I should be able to see the status of all POs as Approved
 
 
-@Non-COA
+@Non-COA @Run
     Scenario: To verify that user is able to reject single/multiple PO
 
     Given I am logged in eProc 
-    And I Create 3 Standard po with "1" "ITEM_NAME_FOR_SEARCHING" item
-    And I have 3 POs In Approval status
+    And I Create 3 Standard po with 1 "ITEM_NAME_FOR_SEARCHING" item
     And I am on PO approval listing page
 
     When I Reject 1 PO
@@ -125,8 +123,7 @@ Feature: Approval
     Scenario: To verify that user is able to delegate single/multiple PO
 
     Given I am logged in eProc 
-    And I Create 3 Standard po with "1" "ITEM_NAME_FOR_SEARCHING" item
-    And I have 3 POs In Approval status
+    And I Create 3 Standard po with 1 "ITEM_NAME_FOR_SEARCHING" item
     And I am on PO approval listing page
 
     When I Delegate 1 PO

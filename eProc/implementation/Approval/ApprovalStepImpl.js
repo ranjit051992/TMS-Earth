@@ -19,7 +19,7 @@ Given ("I have requisition In Approval status", async function() {
     await I.amOnPage(prop.DDS_Requisition_Listing);
     await I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
     this.reqBO.reqNumber =  await reqListingImpl.getRequisitionNumber(this.reqBO.reqName);
-    let reqStatus = await reqListingImpl.getRequisitionStatus();
+    let reqStatus = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"))
     let flag = reqStatus.includes(lmtVar.getLabel("IN_APPROVAL_STATUS")) === true
         if(!flag) {
             logger.info(`Failed to get In Approval status`);
@@ -38,10 +38,13 @@ When ("I search for that requisition name on approval listing", async function()
 
 Then ("I see the same requester", async function() {
     let requester = await ApprovalImpl.fetchRequesterNameOnReqApprovalListing();
-    let user = global.users.get("USERNAME");
+    let user = this.reqBO.onBehalfOf.toString();
     //let user = "auto.zcs2@zycus.com";
-    user = user.substring(0,user.indexOf("@"));
-    I.assertEqual(user, requester);
+    logger.info(`****${user}****`);
+    let flag = user.includes(requester);
+    logger.info(`substring****${user}****`);
+    I.assertEqual(flag, true);
+
 });
 
 Then ("I see the same Received on date", async function() {
@@ -76,33 +79,34 @@ When ("I Approve 1 PO", async function() {
 });
 
 When ("I Approve 2 POs", async function() {
-    this.POArray = await ApprovalImpl.approveMultiplePOs(POArray[i].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    this.POArray = await ApprovalImpl.approveMultiplePOs(this.POArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
 });
 
 Then ("I should be able to see the status of all POs as Approved", async function() {
-    await ApprovalImpl.checkMultiplePOStatus(reqArray, searchBy);
+    await ApprovalImpl.checkMultiplePOStatus(this.POArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
 });
 
 When ("I Reject 1 PO", async function() {
-    let status = await ApprovalImpl.rejectDoc(POArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    await ApprovalImpl.rejectDoc(this.POArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    let status = await ApprovalImpl.checkPOApprovalStatus(this.POArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
     this.POArray[0].setStatus(status);
 });
 
 When ("I Reject 2 POs", async function() {
-    this.POArray = await ApprovalImpl.rejectMultipleDocs(POArray[i].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    this.POArray = await ApprovalImpl.rejectMultipleDocs(this.POArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
 });
 
 Then ("I should be able to see the status of all POs as Rejected", async function() {
-    await ApprovalImpl.checkMultiplePOStatus();
+    await ApprovalImpl.checkMultiplePOStatus(POArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
 });
 
 When ("I Delegate 1 PO", async function() {
-    let status = await ApprovalImpl.delegateDoc(POArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    let status = await ApprovalImpl.delegateDoc(this.POArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"), this.POArray[0].newApprover);
     await this.POArray[0].setStatus(status);
 });
 
 When ("I Delegate 2 POs", async function() {
-    this.POArray = await ApprovalImpl.delegateMultipleDocs(POArray[i].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    this.POArray = await ApprovalImpl.delegateMultipleDocs(this.POArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
 });
 
 Then ("I should be able to see the status of all POs as Delegated", async function() {
@@ -115,9 +119,10 @@ When ("I search for that PO name on PO approval listing", async function() {
 });
 
 Then ("I see the same Buyer name displayed for the corresponding PO number", async function() {
-    logger.info(`*******${this.spo.buyer.toString()}************`);
-    let buyerName = await ApprovalImpl.fetchBuyerOnPoApprovalListing(this.spo.buyer.toString());
-    I.assertEqual(buyerName, this.spo.buyer.toString().substring(0,9));
+    let buyer = this.spo.buyer.toString();
+    logger.info(`Buyer name stored in BO is ---> ${buyer}`);
+    let updatedBuyer = await ApprovalImpl.fetchBuyerOnPoApprovalListing(buyer);
+    I.assertEqual(updatedBuyer, buyer.substring(0, buyer.indexOf("@")));
 });
 
 Then ("I see the same Received on date on PO Approval listing", async function() {
@@ -141,7 +146,7 @@ Then ("I see the same status of SPO on PO Approval listing", async function() {
 
 When ("I Approve 1 Requisition", async function() {
     await ApprovalImpl.approveDoc(reqArray[0].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-    let status = await ApprovalImpl.checkReqStatus();
+    let status = await (lmtVar.getLabel("STATUS_COLUMN")).toString();
     I.assertEqual(status, lmtVar(getLabel("APPROVED_STATUS")));
 });
 

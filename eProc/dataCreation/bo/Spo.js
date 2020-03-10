@@ -37,6 +37,7 @@ class Spo
         this.fillShippingDetails;
         this.fillControlSettings;
         this.fillAdditionalDetails;
+        this.newApprover;
     }
     setPoNumber(poNumber)
     {
@@ -203,6 +204,10 @@ class Spo
 
     setFillAdditionalDetails(fillAdditionalDetails) {
         this.fillAdditionalDetails = fillAdditionalDetails;
+    }
+
+    setNewApprover(newApprover) {
+        this.newApprover = newApprover;
     }
 
 }

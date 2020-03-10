@@ -22,7 +22,7 @@ Given("I Create Standard po with {int} {string} item", async function (noOfItems
    this.spo = await spoImpl.createSpoFlow(this.spo);
 });
 
-Given( "I Create {int} Standard po with {string} {string} item", async function (noOfPOs, noOfItems, itemType) {
+Given( "I Create {int} Standard po with {int} {string} item", async function (noOfPOs, noOfItems, itemType) {
    this.POArray = await spoImpl.createMultiplePOs(noOfPOs, noOfItems, itemType);
    logger.info("Required number of POs created")
 });
@@ -317,6 +317,7 @@ Given( "I have PO with In Approval status", async function() {
    await I.waitForVisible(I.getElement(poListingObject.SEARCH_TEXTBOX));
    await commonKeywordImpl.searchDocOnListing(this.spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
    let status = await poListingImpl.getPoStatus();
+   logger.info(`Retrived status is --> ${status}`);
    I.assertEqual(status.toString(), lmtVar.getLabel("IN_APPROVAL_STATUS"));
    this.spo.buyer = global.users.get("USERNAME");
 });
