@@ -44,7 +44,7 @@ exports.config = {
   multiple: {
     parallel: {
       // Splits tests into 2 chunks
-      chunks: 5
+      chunks: 1
     }
   },
   gherkin: {
