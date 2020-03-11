@@ -1,8 +1,7 @@
 const { I } = inject();
 const DD_SearchImpl = require("./DD_SearchImpl");
-const DewHomeLinks = require("../../../components/dewHomeLinks");
 const FooterLinkImpl = require("./../footerLinks/DD_FooterLinksImpl");
-const DewHomeSearchField = require("../../../components/dewHomeSearchField");
+const DewHomeSearchField = require("../../../node_modules/dd-cc-zycus-automation/components/dewHomeSearchField");
 
 
 Given("I navigate to the login page", async function () {

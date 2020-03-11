@@ -1,7 +1,7 @@
 const { I } = inject()
-const ProductNavigator = require("../../../components/dewSideMenu");
+const ProductNavigator = require("../../../node_modules/dd-cc-zycus-automation/components/dewSideMenu");
 const FooterLinkImpl = require("./DD_FooterLinksImpl");
-const CommonKeyword = require("../../../components/commonKeyword")
+const CommonKeyword = require("../../../node_modules/dd-cc-zycus-automation/components/commonKeyword")
 
 
 Given("I am on Landing Page", async function () {

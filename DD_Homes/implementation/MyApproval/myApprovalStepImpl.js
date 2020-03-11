@@ -1,6 +1,6 @@
-const ProductNavigator = require("../../../components/dewSideMenu");
+const ProductNavigator = require("../../../node_modules/dd-cc-zycus-automation/components/dewSideMenu");
 const { I } = inject();
-const DewNavBar = require("../../../components/dewNavBar");
+const DewNavBar = require("../../../node_modules/dd-cc-zycus-automation/components/dewNavBar");
 const ApprovalPage = require("./MyApprovalImpl");
 
 Given("I am logged in as: {string}, {string}", async function (userName, password) {

@@ -1,6 +1,5 @@
 const { I } = inject();
 const ManageProfile = require("./ManageProfileImpl");
-//const ManageProfile = require("../../../components/manageProfile");
 
 Given("I login to the application with user {string} and password {string}", async function (username,password) {
 	await I.amOnPage("https://login-partner.zycus.com/sso");	
