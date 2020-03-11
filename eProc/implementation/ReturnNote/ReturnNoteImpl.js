@@ -59,6 +59,11 @@ module.exports = {
             let returnNoteNumber = await I.grabTextFrom(I.getElement(iReturnNoteObject.RETURN_NOTE_NUMBER));           
             return returnNoteNumber;
         },
+        async waitForReturnNoteCreation()
+        {
+            let returnNote = lmtVar.getLabel("RETURN_NOTE");
+            await I.waitForVisible("//dew-col[contains(text(),'"+ returnNote +"')]");
+        }
         
 
 }

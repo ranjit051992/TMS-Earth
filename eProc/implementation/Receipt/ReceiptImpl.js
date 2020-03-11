@@ -50,13 +50,12 @@ module.exports = {
     },
     async fetchStatus()
     {
-        let returnNote = lmtVar.getLabel("RETURN_NOTE");
-        await I.waitForVisible("//dew-col[contains(text(),'"+ returnNote +"')]");
         await I.waitForVisible(I.getElement(iReceiptObject.STATUS));
         let status = await I.grabTextFrom(I.getElement(iReceiptObject.STATUS));
         logger.info("Status of the Receipt/ ReturnNote is "+status);
         return status;
     },
+
     async clickSelectionCheckbox()
     {
         await I.waitForVisible(I.getElement(iReceiptObject.ALL_ITEM_SELECTION_CHECKBOX));

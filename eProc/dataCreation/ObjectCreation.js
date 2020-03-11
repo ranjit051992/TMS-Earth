@@ -1,6 +1,7 @@
 const { I } = inject();
 const faker = require("faker");
 const spoBO = require("../dataCreation/bo/Spo");
+const bpoBO = require("../dataCreation/bo/Bpo");
 const catalogItem = require("../dataCreation/bo/CatalogItem")
 const requisition = require("../dataCreation/bo/Requisition")
 const logger = require("../../Framework/FrameworkUtilities/Logger/logger");
@@ -153,6 +154,41 @@ class ObjectCreation
         stockItem.itemName = I.getData("SEARCH_ITEM_STOCK");
         stockItem.quantity = faker.random.number(50);
         return stockItem;
+    }
+
+    async getObjectOfBlanketPO(noOfItems,itemType)
+    {
+        let bpo = new bpoBO();
+        bpo.setPoNumber(`Automation_Bpo_${new Date().getTime()}`);
+        bpo.setPoDescription(`Automation_Description_${new Date().getTime()}`);
+        bpo.setPurchaseType(I.getData("PURCHASE_TYPE"));
+        bpo.setCompany(I.getData("ORGANIZATION_UNIT/COMPANY_NAME"));
+        bpo.setBusinessUnit(I.getData("BUSINESS_UNIT_NAME"));
+        bpo.setLocation(I.getData("LOCATION_NAME"));
+        bpo.setSupplierName(I.getData("SUPPLIER_NAME"));
+        bpo.setSupplierAddress(I.getData("SUPPLIER_ADDRESS"));
+        bpo.setPaymentTerm(I.getData("PAYMENT_TERMS"));
+        bpo.setDeliveryTerm(I.getData("DELIVERY_TERMS"));
+        bpo.setCurrency(I.getData("CURRENCY_TYPE"));
+        bpo.setBuyer(I.getData("BUYER_NAME"));
+        // bpo.setDeliverTo(I.getData("DELIVERES_TO/OWNER"));
+        bpo.setDeliverTo(global.users.get("USERNAME"));
+        bpo.setBookCostAtLineItemLevel("No");
+        bpo.setBookCostToSingleMultipleCC("Yes");
+        bpo.setAssignCostProject("No");
+        bpo.items = await this.getArrayOfItems(noOfItems,itemType);
+        bpo.setGlAccount(I.getData("GL_ACCOUNT"));
+        bpo.setCostCenter(I.getData("COST_CENTER"));
+        bpo.setTermsAndConditions("This is an auto generated term and condition");
+        bpo.setNotes("This is an auto generated note");
+        bpo.setReceiptRuleAtHeaderLevel(true);
+        bpo.setReceiptCreationDefault(true);
+        bpo.setTaxInclusive(true);
+        bpo.setFillCbl(false);
+        bpo.setFillShippingDetails(false);
+        bpo.setFillControlSettings(false);
+        bpo.setFillAdditionalDetails(false);
+        return bpo;
     }
     
 }
