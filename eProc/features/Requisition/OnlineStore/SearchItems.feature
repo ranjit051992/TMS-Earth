@@ -62,9 +62,9 @@ Feature: OnlineStore
 #   Then I should see 'No Results Found' in the  Review Items page.
 
 
-@Non-COA @L1 @guide
-  Scenario: To verify that user is able to suggest a supplier for free text item
-  Given I am logged in eProc
+# @Non-COA @L1 @guide
+#   Scenario: To verify that user is able to suggest a supplier for free text item
+#   Given I am logged in eProc
 
   When I Navigate to Guided Page
   And I Add guided item service

@@ -56,6 +56,9 @@ class Requisition
         this.requestor;
         
         //let items = [];
+        this.poNumber;
+        this.convertToPoFlag;
+        this.approvePoFlag;
     }
 
     setReqName(reqName)
@@ -258,7 +261,17 @@ class Requisition
         this.status = status;
     }
 
-   
+    setPoNumber(poNumber) {
+        this.poNumber = poNumber
+    }
+
+    setApprovePoFlag(approvePoFlag) {
+        this.approvePoFlag = approvePoFlag;
+    }
+
+    setConvertToPoFlag(convertToPoFlag) {
+        this.convertToPoFlag = convertToPoFlag;
+    }
 }
 
 module.exports = new Requisition();
