@@ -115,6 +115,32 @@
         "testdataTable": "TestData_iRequest",
         "uiElementTable": "iRequest_UI_Elements",
         "UserTable":"iRequest_credentials"
+    },
+    "Home": {
+        "url": "https://dewdrops-qcvw.zycus.net/home/#/auth",
+        "SETUP": "QCVM",
+        "TENANT": "Eircom_QA",
+        "browser": "chrome",
+        "host": "127.0.0.1",
+        "restart": "false",
+        "port": 4444,
+        "windowSize": "maximize",
+        "stepFilePath": "./steps_file",
+        "projectName": "BDD_UI_Automation",
+        "DEFAULT_WAIT": "2",
+        "DEFAULT_LOW_WAIT": "5",
+        "DEFAULT_MEDIUM_WAIT": "10",
+        "DEFAULT_HIGH_WAIT": "15",
+        "CONDITIONAL_WAIT": "120",
+        "DBhost": "192.168.5.221",
+        "DBdatabase": "DD_Home_schema",
+        "DBuser": "DDHome",
+        "DBpassword": "ddhome@123",
+        "username": "eircom_supp@zycus.com",
+        "password": "Eproc@1234",
+        "testdataTable": "TestData_iRequest",
+        "uiElementTable": "iRequest_UI_Elements",
+        "UserTable":"iRequest_credentials"
     }
 
 }
