@@ -11,7 +11,7 @@ Feature: BuyersDesk
     And I add Required By Date
     And I add data in Cost Booking Details section at line level 
     And I submit requisition
-    And I approve requisition
+    And I Approve 1 Requisition
     And I navigate to Buyer Desk
     And I edit the requisition
 
@@ -100,7 +100,7 @@ Feature: BuyersDesk
     When I navigate to Buyer Desk
     And I filter with Purchase Amount "10" and "100"
 
-    Then I should be see the data on the page with the filtered amount
+    Then I should be see the data on the page with the filtered amount "10" and "100"
 
 @Non-COA @L1
     Scenario: To verify filters on Upcoming Requisition status filter
@@ -198,29 +198,29 @@ Feature: BuyersDesk
     And I add Required By Date
     And I add data in Cost Booking Details section at line level
     And I submit requisition
-    And I approve requisition
+    And I Approve 1 Requisition
     And I navigate to Buyer Desk
     And I return the requisition on Buyers Desk
-    #And I allow requestor to resubmit the requisition
+    And I allow requestor to resubmit the requisition
 
-    #Then I should not see the requisition In Returned for Amendment State on Requisition Listing
+    Then I should see the requisition In Returned for Amendment State on Requisition Listing
 
-# @Non-COA @L1
-#     Scenario: To verify that user(buyer) is not allowed to modify the requisition.
-#     Given I am logged in eProc
+@Non-COA @L1
+    Scenario: To verify that user(buyer) is not allowed to modify the requisition.
+    Given I am logged in eProc
 
-#     When I add a catalog item to cart
-#     And I checkout
-#     And I add Purchase Type
-#     And I add Required By Date
-#     And I add data in Cost Booking Details section at line level
-#     And I submit requisition
-#     And I approve the requisition
-#     And I navigate to Buyers Desk
-#     And I return the requisition on Buyers Desk
-#     And I do not allow requestor to resubmit the requisition
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I add Purchase Type
+    And I add Required By Date
+    And I add data in Cost Booking Details section at line level
+    And I submit requisition
+    And I Approve 1 Requisition
+    And I navigate to Buyer Desk
+    And I return the requisition on Buyers Desk
+    And I do not allow requestor to resubmit the requisition
 
-#     Then I should not be see the requisition In Rejected State on Requisition Listing
+    #Then I should  see the requisition In Rejected State on Requisition Listing
 
 # @Non-COA @L1
 #     Scenario: To verify that user(buyer) is not allowed to modify the requisition.

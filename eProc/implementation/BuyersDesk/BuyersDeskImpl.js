@@ -67,11 +67,13 @@ module.exports = {
   },
 
   async fillPurchaseAmount(maxValue,minValue)
-  {
+  { 
+     
      I.waitForClickable(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT),prop.DEFAULT_MEDIUM_WAIT);
-     await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT,minValue));
      logger.info("Entered the min value " +minValue);
-     await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MAX_INPUT,(maxValue)));
+     await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT),minValue);
+    
+     await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MAX_INPUT),maxValue);
      logger.info("Entered the min value " +maxValue);
      await this.clickonApplyButton();
 
@@ -269,6 +271,22 @@ module.exports = {
         
     },
 
+    async clickonResubmitReq(){
+     await I.waitForVisible(iBuyersDeskObject.BUTTON_REQ_RESUBMIT_YES)
+     I.click(I.getElement(iBuyersDeskObject.BUTTON_REQ_RESUBMIT_YES));
+     await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
+     await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK),prop.DEFAULT_MEDIUM_WAIT);
+
+    },
+
+    async clickonDoNotResubmitReq(){
+        await I.waitForVisible(iBuyersDeskObject.BUTTON_REQ_RESUBMIT_YES)
+        I.click(I.getElement(iBuyersDeskObject.BUTTON_REQ_RESUBMIT_NO));
+        await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK),prop.DEFAULT_MEDIUM_WAIT);
+   
+       },
+
     async fillReturnReqComments(comments) {
         await I.scrollIntoView(I.getElement(iBuyersDeskObject.RETURN_REQ_COMMENTS_TEXTAREA));
         await I.wait(prop.DEFAULT_WAIT);
@@ -317,6 +335,22 @@ module.exports = {
         return requestorName;
    },
 
+   async verifyReqStatusAfterReSubmitReq(){
+       let reqstatus = await I.grabTextFrom(I.getElement(`//p[contains(text(),'${lmtVar.getLabel("RETURNED_AMENDMENT")}')]`));
+       let flag = true;
+       if(reqstatus === lmtVar.getLabel("RETURNED_AMENDMENT"))
+        {
+            logger.info(`Requisition is in -> ${reqstatus}`);
+            flag = true;
+        }
+        else{
+            logger.info(`Requisition is in -> ${reqstatus}`);
+            flag = false;
+        }
+
+        return flag;
+    },
+    
    async navigateToAllRequests() {
     I.amOnPage(prop.DDS_AllRequests_Url);
     I.waitForVisible(I.getElement(iBuyersDeskObject.REQUISITION_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);

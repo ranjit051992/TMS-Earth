@@ -140,8 +140,8 @@ Then("I should be see the data on the page on the basis on requisition name fiel
 });
 
 When ("I filter with Purchase Amount {string} and {string}" , async function(maxValue,minValue){
-   buyersDeskImpl.clickPurchaseAmountFilter();
-   buyersDeskImpl.fillPurchaseAmount(maxValue,minValue);
+   await buyersDeskImpl.clickPurchaseAmountFilter();
+   await buyersDeskImpl.fillPurchaseAmount(maxValue,minValue);
 
 });
 
@@ -155,11 +155,11 @@ When ("I filter with {string} status", async function(status){
 });
 
 
-Then ("I should be see the data on the page with the filtered amount", async function(){
+Then ("I should be see the data on the page with the filtered amount {string} and {string}", async function(minValue,maxValue){
    let fetchPurchaseAmount = await buyersDeskImpl.fetchPurchaseAmount();
    logger.info('Searched Puchase amount '+fetchPurchaseAmount);
    let flag = true;
-   if (fetchPurchaseAmount>minValue && fetchPurchaseAmount<maxValue)
+   if (fetchPurchaseAmount > minValue && fetchPurchaseAmount < maxValue)
    {
     logger.info("Purchase Amount is "+fetchPurchaseAmount+" and is in the given range");
     flag = true;
@@ -201,13 +201,6 @@ Then("I should be see the data on the page on the basis on Requestor field",asyn
   logger.info('Searched Requestor is '+searchedRequestor);
   logger.info('Actual Requestor is '+actualRequestor);
   I.assertEqual(searchedRequestor.toString(), actualRequestor.toString());
-})
-
-When("I approve requisition", async function(){
-  await approvalImpl.navigateToApprovalListing();
-  await approvalImpl.approveDoc(requisition.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-  await buyersDeskImpl.navigateToBuyerListing();
-
 });
 
 When("I edit the requisition", async function(){
@@ -228,13 +221,25 @@ When("I return the requisition on Buyers Desk", async function(){
   logger.info("Requistion to be edited is "+ requisition.reqNumber);
   await buyersDeskImpl.SearchRequisitionNumber(requisition.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
   await buyersDeskImpl.EditRequisition(requisition.reqNumber);
-  await buyersDeskImpl.clickOnReturnButton();
   await buyersDeskImpl.fillReturnReqComments("Return Requistion Comments Added");
-  await buyersDeskImpl.fillRequiredBy(requisition.requiredBy);
   await buyersDeskImpl.clickOnReturnButton();
 });
 
 When ("I allow requestor to resubmit the requisition", async function(){
    logger.info("Allowing the requestor to resubmit the requition"); 
+   await buyersDeskImpl.clickonResubmitReq();
+});
 
-})
+Then ("I should see the requisition In Returned for Amendment State on Requisition Listing", async function(){
+  logger.info("Requsition number to be searched is "+requisition.reqNumber);
+  await buyersDeskImpl.SearchRequisitionNumber(requisition.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+  let reqstatus = await buyersDeskImpl.verifyReqStatusAfterReSubmitReq();
+  I.assertEqual(reqstatus, true);
+
+});
+
+
+When("I do not allow requestor to resubmit the requisition", async function(){
+  logger.info("Allowing the requestor to resubmit the requition"); 
+  await buyersDeskImpl.clickonResubmitReq();
+});
