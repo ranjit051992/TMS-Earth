@@ -335,7 +335,6 @@ module.exports = {
         return requestorName;
    },
 
-<<<<<<< HEAD
    async verifyReqStatusAfterReSubmitReq(){
        let reqstatus = await I.grabTextFrom(I.getElement(`//p[contains(text(),'${lmtVar.getLabel("RETURNED_AMENDMENT")}')]`));
        let flag = true;
@@ -350,7 +349,8 @@ module.exports = {
         }
 
         return flag;
-=======
+    },
+    
    async navigateToAllRequests() {
     I.amOnPage(prop.DDS_AllRequests_Url);
     I.waitForVisible(I.getElement(iBuyersDeskObject.REQUISITION_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
@@ -392,7 +392,6 @@ module.exports = {
         throw new Error("Invalid search option!");
     }
     optionXpath = `(//label[@for='MST_Receivedonlk${xpathIndex}'])[2]`
->>>>>>> c9a57267d841dca594f99c3a72c6e63bacd15279
 
    }
 }
