@@ -1064,13 +1064,13 @@ Feature: Checkout
 
 #     Then I should be able to Save the header level COA form 
 
-@COA @L1
-    Scenario: To verify that if cost booking details are loading in COA form at Line item level in requisition.
-    Given I am logged in eProc
-    And I am on checkout page with a catalog item 
+# @COA @L1
+#     Scenario: To verify that if cost booking details are loading in COA form at Line item level in requisition.
+#     Given I am logged in eProc
+#     And I am on checkout page with a catalog item 
 
-    When I add items at line level
-    And I add Cost booking details at line level 
-    And I Save the COA form
+#     When I add items at line level
+#     And I add Cost booking details at line level 
+#     And I Save the COA form
 
-    Then I should be able to Save the line level COA form 
+#     Then I should be able to Save the line level COA form 
