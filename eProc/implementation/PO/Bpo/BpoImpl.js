@@ -1,0 +1,255 @@
+const { I } = inject();
+const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger");
+const iSpoObject = require("../Spo/SpoObject");
+const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
+const prop = global.confi_prop;
+const commonKeywordImpl = require("../../../commonKeywords/CommonComponent");
+const approvalImpl = require("../../Approval/ApprovalImpl");
+const poListingImpl = require("../PoListing/PoListingImpl");
+const poListingObject = require("../PoListing/PoListingObject");
+const objectCreation = require("../../../dataCreation/ObjectCreation")
+const coaImpl = require("../../Coa/CoaImpl");
+const iBpoObject =require("./BpoObject");
+const spoImpl = require("../Spo/SpoImpl")
+
+module.exports = {
+    async clickOnBlanketPOButton() {
+        await I.waitForVisible(I.getElement(iBpoObject.BLANKET_PO_BUTTON));
+        await I.click(I.getElement(iBpoObject.BLANKET_PO_BUTTON));
+        await I.waitForVisible(I.getElement(iSpoObject.poNumberTextbox));
+        I.saveScreenshot("CreateBpo.png");
+        logger.info("Clicked on create blanket po button.");
+    },
+
+    async createBpoFlow(bpo){
+        await poListingImpl.navigateToPoListing();
+        await spoImpl.clickOnCreatePOButton();
+        await this.clickOnBlanketPOButton();
+        bpo = await this.fillBasicDetails(bpo);
+
+        bpo = await this.fillBillingInformation(bpo);
+
+        bpo = await this.fillSupplierDetails(bpo);
+
+        bpo = await this.fillBuyerAndOtherInformation(bpo);
+
+        bpo = await this.fillShippingDetails(bpo);
+
+        bpo = await this.fillCostAllocation(bpo);
+
+        bpo = await this.fillControlSettings(bpo);
+
+        bpo = await this.fillLineItems(bpo);
+
+        bpo = await this.storePoAmount(bpo);
+
+        bpo = await this.fillTaxes(bpo);
+
+        bpo = await this.fillAdditionalDetails(bpo);
+
+        bpo = await this.fillAgreementDetails(bpo);
+
+        await this.submitPo();
+
+        await commonKeywordImpl.waitForElementVisible(iSpoObject.spinner);
+
+        await I.waitForInvisible(I.getElement(iSpoObject.spinner));
+
+        await poListingImpl.navigateToPoListing();
+
+        await commonKeywordImpl.searchDocOnListing(bpo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+
+        let poNumber = await commonKeywordImpl.getDocNumber();
+
+        if(!poNumber.toString() === bpo.poNumber) {
+            logger.info(`PO is not submitted. PO number fetched after submission --> ${poNumber}`);
+            throw new Error(`PO is not submitted. PO number fetched after submission --> ${poNumber}`);
+        }
+        else {
+            logger.info("Bpo is submitted successfully");
+        }
+
+        bpo.status = await poListingImpl.getPoStatus();
+        logger.info(`PO status is --> ${bpo.status.toString()}`);
+
+        return bpo;
+    },
+
+
+
+
+
+
+    async fillBasicDetails(bpo) {
+        logger.info(`**************Filling Basic Details**************`);
+        await spoImpl.fillPONumber(bpo.poNumber);
+        await spoImpl.fillPODescription(bpo.poDescription);
+        await spoImpl.selectPurchaseType(bpo.purchaseType);
+        return bpo;
+    },
+    async fillBillingInformation(bpo) {
+        logger.info(`**************Filling Billing Information**************`);
+        await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_BILLING_INFORMATION_SECTION"));
+        if(bpo.fillCbl) {
+            await spoImpl.clickOnBuyingUnitLink();
+            await spoImpl.fillCompany(bpo.company);
+            await spoImpl.fillBusinessUnit(bpo.businessUnit);
+            await spoImpl.fillLocation(bpo.location);
+            await spoImpl.clickOnOuModalDoneButton();
+        }
+        bpo.setBillToAddress(spoImpl.fetchBillToAddress());
+        return bpo;
+    },
+    async fillSupplierDetails(bpo) {
+        logger.info(`**************Filling Supplier Details**************`);
+        await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_SUPPLIER_DETAILS_SECTION"));
+        await spoImpl.fillSupplierName(bpo.supplierName);
+        await spoImpl.selectSupplierName(bpo.supplierName);
+        await spoImpl.fillSupplierAddress(bpo.supplierAddress);
+        await spoImpl.selectSupplierAddress(bpo.supplierAddress)
+        await spoImpl.clickOnPaymentTermDropdown();
+        await spoImpl.selectPaymentTerm(bpo.paymentTerm);
+        await spoImpl.clickOnDeliveryTermDropdown();
+        await spoImpl.selectDeliveryTerm(bpo.deliveryTerm);
+        await spoImpl.fillCurrency(bpo.currency);
+        await spoImpl.selectCurrency(bpo.currency);
+        return bpo
+    },
+    async fillBuyerAndOtherInformation(bpo) {
+        logger.info(`**************Filling Buyer and Other Information**************`);
+        await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_BUYER_AND_OTHER_INFORMATION_SECTION"));
+        let buyer = await spoImpl.fillBuyer(bpo.buyer);
+        bpo.setBuyer(buyer);
+        return bpo
+    },
+    async fillShippingDetails(bpo) {
+        if(bpo.fillShippingDetails) {
+            logger.info(`**************Filling Shipping Details**************`);
+            await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_SHIPPING_DETAILS_SECTION"));
+            let deliverTo = await spoImpl.selectDeliverTo(bpo.deliverTo);
+            bpo.setDeliverTo(deliverTo);
+            // await spoImpl.selectRequiredByDate();
+            let requiredBy = await spoImpl.fetchRequiredBy();
+            bpo.setRequiredBy(requiredBy);
+        }
+        return bpo;
+    },
+    async fillCostAllocation(bpo) {
+        if(!prop.isCoa) {
+            logger.info(`**************Filling Cost Allocation**************`);
+            await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_COST_ALLOCATION_SECTION"));
+            await spoImpl.clickOnAssignCostNOButton();
+            await spoImpl.clickOnBookCostToSingle_MultipleCostCenter();
+            let costCenter = await spoImpl.enterCostCenter(bpo.costCenter);
+            bpo.setCostCenter(costCenter);
+        }
+        return bpo;
+    },
+    async fillControlSettings(bpo) {
+        if(bpo.fillControlSettings) {
+            logger.info(`**************Filling Control Settings**************`);
+            await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_CONTROL_SETTINGS_SECTION"));
+            if (bpo.receiptRuleAtHeaderLevel) {
+                await spoImpl.selectReceiptCreationAtHeaderLevel();
+                if (bpo.receiptCreationDefault) {
+                    await spoImpl.selectDefaultReceiptCreation();
+                }
+            }
+        }
+        return bpo;
+    },
+    async fillLineItems(bpo) {
+        logger.info(`**************Filling Line Items**************`);
+        if(bpo.taxInclusive) {
+            await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_TAXES_SECTION_SECTION"));
+            await spoImpl.selectTaxInclusive();
+            await spoImpl.clickRemoveTaxesConfirmButton();
+        }
+
+        for(let i = 0; i < bpo.items.length; i++) {
+            await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
+            await spoImpl.clickOnAddLineItemButton();
+            await spoImpl.enterItemName(bpo.items[i].itemName);
+            await spoImpl.selectItemOption(bpo.items[i].itemName);
+            await this.clickOnCostBookingLink(bpo.items[i].itemName);
+            await coaImpl.fillCoaDetails();
+        }
+
+        return bpo;
+    },
+    async fillTaxes(bpo) {
+        logger.info(`**************Filling Taxes**************`);
+        await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_TAXES_SECTION_SECTION"));
+        await spoImpl.clickOnRemoveAllTaxesButton();
+        return bpo;
+    },
+    async fillAdditionalDetails(bpo) {
+        if(bpo.fillAdditionalDetails) {
+            logger.info(`**************Filling Additional Details**************`);
+            await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_ADDITIONAL_DETAILS_SECTION"));
+            await spoImpl.fillTermsAndConditions(bpo.termsAndConditions);
+            await spoImpl.fillNotes(bpo.notes);
+        }
+        return bpo;
+    },
+    async fillAgreementDetails(bpo){
+        logger.info(`**************Filling Agreement Details**************`);
+        await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_AGREEMENT_DETAILS_SECTION"));
+        await this.clickDefineBuyingScope();
+        await this.fillBusinessUnit(bpo.businessUnit);
+        await this.fillLocation(bpo.location);
+        await this.fillCostCenter(bpo.costCenter);
+
+    },
+    async storePoAmount(bpo) {
+        I.scrollIntoView(I.getElement(iSpoObject.TOTAL_ORDER_AMOUNT));
+        I.waitForVisible(I.getElement(iSpoObject.TOTAL_ORDER_AMOUNT));
+        let PoAmount = await I.grabTextFrom(I.getElement(iSpoObject.TOTAL_ORDER_AMOUNT));
+        bpo.setPoAmount(PoAmount);
+        return bpo;
+    },
+
+    async submitPo() {
+        logger.info(`**************Submitting BPO**************`);
+        await spoImpl.clickOnSubmitPOButton();
+        await spoImpl.clickOnConfirmButton();
+    },
+
+    async clickOnCostBookingLink(itemName) {
+        let costBookingLink = `(//span[contains(text(),'${itemName}')]//ancestor::dew-row//following-sibling::dew-row//dew-flex-item[1])`;
+        await I.waitForVisible(costBookingLink);
+        await I.click(costBookingLink);
+        logger.info("Clicked on Cost booking Link");
+    },
+    async clickDefineBuyingScope(){
+        pause();
+        await I.waitForVisible(I.getElement(iBpoObject.DEFINE_BUYING_SCOPE));
+        await I.click(I.getElement(iBpoObject.DEFINE_BUYING_SCOPE));
+    },
+    async fillBusinessUnit(businessUnit){
+        await I.waitForVisible(I.getElement(iBpoObject.BUSINESS_UNIT_DROPDOWN));
+        await I.click(I.getElement(iBpoObject.BUSINESS_UNIT_DROPDOWN));
+        await I.fillField(I.getElement(iBpoObject.BUSINESS_UNIT_DROPDOWN), businessUnit);
+        await I.waitForVisible(I.getElement(iBpoObject.BUSINESS_UNIT_LOCATION_SELECTION));
+        await I.click(I.getElement(iBpoObject.BUSINESS_UNIT_LOCATION_SELECTION));
+    },
+    async fillLocation(location){
+        await I.waitForVisible(I.getElement(iBpoObject.LOCATION_DROPDOWN));
+        await I.click(I.getElement(iBpoObject.LOCATION_DROPDOWN));
+        await I.fillField(I.getElement(iBpoObject.LOCATION_DROPDOWN), location);
+        await I.waitForVisible(I.getElement(iBpoObject.BUSINESS_UNIT_LOCATION_SELECTION));
+        await I.click(I.getElement(iBpoObject.BUSINESS_UNIT_LOCATION_SELECTION));
+    },
+    async fillCostCenter(costCenter){
+        let costCenterNameXpath = "//span[contains(text(),'"+costCenter+"')]";
+        await I.waitForVisible(I.getElement(iBpoObject.COST_CENTER_DROPDOWN));
+        await I.click(I.getElement(iBpoObject.COST_CENTER_DROPDOWN));
+        await I.fillField(I.getElement(iBpoObject.COST_CENTER_DROPDOWN), costCenter);
+        await I.waitForVisible(I.getElement(costCenterNameXpath));
+        await I.click(I.getElement(costCenterNameXpath));
+    },
+
+
+
+
+}
