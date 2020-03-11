@@ -1,82 +1,100 @@
+/* eslint-disable linebreak-style */
+"use strict";
+const { I } = inject();
+const DewNavBar = require("../../../Home/Pages/QuickLink/quicklink");
+/**
+ * Home Links class
+ */
+class DewQuickLinks {
+  /**
+   * Constructor
+   */
+  constructor() {
+    this.dewQuickLinkSpecs = require("./dewLinkSpecsFile");
+  }
+  /**
+   * Navigate to Quick link
+   */
+   async navigateQuickLink() {
+    I.click(`//dew-dropdown-trigger//div[contains(text(),'Quick Links')]`);
+    I.waitForVisible(`//div[contains(@class,'dropdown-menu show')]`);
+    console.log("Navigated to quick links");
+  }
 
-Given("I am on Landing Page", () => {
-	return true;
-});
 
-When("I click on QuickLink Dropdown", async function ()  {
-	return true;
-});
+  async verifyQuickLinkPage(link){
 
-When("I click on {string}", async function (Customize) {
-	console.log(Customize);
-	return true;
-});
+    if (I.seeInCurrentUrl(this.dewQuickLinkSpecs.dd_quick_link[link])) {
+      console.log("Navigated to " + link + " successfully");
+    } else {
+      console.log("Not Navigated to " + link + " successfully");
+    }
+  }
 
-When("I select {string} {string}, {string}, {string}", async function (QuickLinkMenus, Menu1, Menu2, Menu3) {
-	console.log(Menu1, Menu2, Menu3);
-	return true;
-});
 
-When("I click on {string}", async function (Apply) {
-	return true;
-});
 
-Then("I should see selected {string} in the Quick Link Dropdown", async function(QuickLinkMenus) {
-	return true;
-});
 
-Given("I am on Landing Page", () => {
-	return true;
-});
+  /**
+   * Click Quick Link
+   * @param {*} link
+   */
+  async clickQuickLink(link) {
 
-Then("I have configured {string} Menus", async function(QuickLinkMenus) {
-	return true;
-});
+    I.click(`//div[contains(@class,'dropdown-menu show')]//a[contains(@class,'dropdown-item')][contains(text(),'${link}')]`);
+    console.log(this.dewQuickLinkSpecs.dd_quick_link[link]);
+  }
+  /**
+   * Customize Quick Links
+   * @param  {...any} linkList
+   */
+  async customizeQuickLinks(...linkList) {
+    
+    I.click(`//span[text()='Customize']//ancestor::div[@class='modal-content']//span[text()='Reset All']`); // Reset All
+     linkList.forEach((link) => {
+      I.click(`//dew-checkbox//label[normalize-space(text())='${link}']`);
+    });
+    I.click(`//span[text()='Customize']//ancestor::div[@class='modal-content']//span[text()='Apply']`);
+    I.waitForInvisible(`//div[@class='modal-content']//span[text()='Customize']`, 10);
+  }
 
-When("I click on {string} Dropdown", async function(QuickLink) {
-	return true;
-});
+  /**
+   * Click on Customize 
+   */
+  async navigateToQuickLinks(options) {
+    
+    I.click(`//div[contains(@class,'dropdown-menu show')]//span[text()='${options}']`);
+    I.seeElement(`//div[@class='modal-content']//span[text()='${options}']`);
+    
+  }
+  /**
+   * Verify Quick Links in Dropdown
+   * @param  {...any} linkList
+   */
+  async verifyQuickLinksInDropdown(...linkList) {
+    this.navigateQuickLink();
+    linkList.forEach((link) => {
+      if (I.seeElement(`//div[contains(@class,'dropdown-menu show')]//a[contains(@class,'dropdown-item')][contains(text(),'${link}')]`)) {
+        console.log(link + " present in Quick links dropdown");
+      }
+    });
+  }
+  /**
+   * Verify Admin links in different Tabs
+   * @param {*} link
+   */
+  verifyAdminLinksInDifferentTabs(link) {
+    this.navigate_quick_link();
+    I.click(`//div[contains(@class,'dropdown-menu show')]//a[contains(@class,'dropdown-item')][contains(text(),'${link}')]`);
+    I.switchToNextTab();
+    console.log(this.dewQuickLinkSpecs.dd_quick_link[link]);
+    if (I.seeInCurrentUrl(this.dewQuickLinkSpecs.dd_quick_link[link])) {
+      console.log("Navigated to " + link + " successfully");
+    } else {
+      console.log("Not Navigated to " + link + " successfully");
+    }
+  }
+}
 
-When("I click on any 1 {string} from {string}", async function(Menu, QuickLinkMenus)  {
-	console.log(Menu);
-	return true;
-});
-
-Then("I should be redirected to the {string}", async function(Menu) {
-	console.log(Menu);
-	return true;
-});
-
-Given("I have configured {string} Menus", async function() {
-	return true;
-});
-
-When("I Navigate to {string}", async function(Product)  {
-	console.log(Product);
-	return true;
-});
-
-When("I click on {string} Dropdown", async function(QuickLink)  {
-	return true;
-});
-
-Then("I should be see the same {string} as on Landing Page", async function(QuickLinkMenus) {
-	return true;
-});
-
-Given("I have configured {string} in Quick Link", async function(AdminMenus) {
-	return true;
-});
-
-When("I click on Quick link Dropdown", async function() {
-	return true;
-});
-
-When("I click on {string} in Quick Link", async function(AdminMenu)  {
-	return true;
-});
-
-Then("I should be redirected to selected {string} in different tab", async function(AdminMenu)  {
-	return true;
-});
+module.exports = new DewQuickLinks();
+module.exports.DewQuickLinks = DewQuickLinks;
 
