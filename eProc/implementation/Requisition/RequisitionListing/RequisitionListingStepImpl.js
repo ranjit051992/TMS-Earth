@@ -48,7 +48,7 @@ Then("I should be able to view the actions for the draft requisition on Listing 
 Then("I should be able to Edit and submit the Draft requisition", async function(){
     let editDraftReq = false;
 
-    await reqListingImpl.editAndUpdateDraftRequisition(this.reqNumber, this.reqBO);
+    await checkoutImpl.editAndUpdateDraftRequisition(this.reqNumber, this.reqBO);
     await reqListingImpl.navigateToRequisitionListing();
     await reqListingImpl.searchRequisitionByReqNumber(this.reqNumber);
 

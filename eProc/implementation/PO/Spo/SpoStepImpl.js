@@ -10,6 +10,7 @@ const commonKeywordImpl = require("../../../commonKeywords/CommonComponent");
 const poListingImpl = require("../PoListing/PoListingImpl");
 const poListingObject = require("../PoListing/PoListingObject");
 const coaImpl = require("../../Coa/CoaImpl");
+const checkoutImpl = require("../../Requisition/Checkout/CheckoutImpl");
 
 Given("I am on PO listing page", async function () {
    await poListingImpl.navigateToPoListing();
@@ -74,9 +75,7 @@ When("I search catalog item with {string}", async function(itemName) {
 When("I add costing and accounting details for that item", async function() {
    await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
    await spoImpl.clickOnCostBookingLink(this.spo.items[0].itemName);
-   let glAccount = await coaImpl.fillGlAccount(this.spo.glAccount);
-   this.spo.setGlAccount(glAccount);
-   await spoImpl.clickOnCostBookingSaveButton();
+   await coaImpl.fillCoaDetails();
    await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_TAXES_SECTION_SECTION"));
    await spoImpl.selectTaxInclusive();
    await spoImpl.clickRemoveTaxesConfirmButton();
@@ -144,7 +143,7 @@ Then("PO status should be draft", async function() {
 
 Given("I have created and released a PO", async function() {
    this.spo = await objectCreation.getObjectOfStandardPO(1, "ITEM_NAME_FOR_SEARCHING");
-   // this.spo.poNumber = "Automation_Spo_1583217623620";
+   // this.spo.poNumber = "Automation_Spo_1583838973747";
    this.spo = await spoImpl.createAndReleaseSpoFlow(this.spo);
 });
 
@@ -179,7 +178,7 @@ When("I edit the drafted PO", async function() {
 });
 
 When("I add 1 catalog item {string}", async function(itemName1) {
-   this.spo.items[1] = objectCreation.getArrayOfItems(1, "Catalog");
+   this.spo.items[1] = objectCreation.getArrayOfItems(1, itemName1);
    this.spo.items[1].itemName = await I.getData(itemName1);
    logger.info(`Retrieved item from db --> ${this.spo.items[1].itemName}`);
    await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
@@ -187,11 +186,7 @@ When("I add 1 catalog item {string}", async function(itemName1) {
    await spoImpl.enterItemName(this.spo.items[1].itemName);
    await spoImpl.selectItemOption(this.spo.items[1].itemName);
    await spoImpl.clickOnCostBookingLink(this.spo.items[1].itemName);
-
-   let glAccount = await I.getData("GL_ACCOUNT");
-   await coaImpl.fillGlAccount(glAccount);
-   await coaImpl.clickOnCostBookingSaveButton();
-   await I.waitForInvisible(I.getElement(iSpoObject.GLACCOUNT));
+   await coaImpl.fillCoaDetails();
 });
 
 Then("Item should be added {string} at index {int}", async function(itemName1, index) {
@@ -243,6 +238,7 @@ When("I fill Cancel comments", async function() {
 
 When("I click on Cancel PO button on the confirmation Popup", async function() {
    await spoImpl.clickOnViewSpoPopupCancelButton();
+   await poListingImpl.clickOnSuccessPopupDoneButton();
 });
 
 Given( "I have {int} POs In Approval status", async function() {
@@ -250,18 +246,8 @@ Given( "I have {int} POs In Approval status", async function() {
 });
 
 Then("I should be able to see the PO in Cancelled status", async function() {
-   await poListingImpl.clickOnSuccessPopupDoneButton();
-   await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
-   await commonKeywordImpl.searchDocOnListing(this.spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-   let status = await poListingImpl.getPoStatus();
-   let flag = status.toString() === lmtVar.getLabel("CANCELLED_STATUS");
-   if(!flag) {
-      logger.info(`PO status is not ${lmtVar.getLabel("CANCELLED_STATUS")}. Current status is --> ${status}`);
-      throw new Error(`PO status is not ${lmtVar.getLabel("CANCELLED_STATUS")}. Current status is --> ${status}`);
-   }
-   else {
-      logger.info("PO is Cancelled successfully");
-   }
+   let flag = await poListingImpl.verifyPoCancelledStatus(this.spo.poNumber);
+   I.assertEqual(true, flag);
 });
 
 When("I click on Amend PO", async function() {
@@ -334,4 +320,19 @@ Given( "I have PO with In Approval status", async function() {
    logger.info(`Retrived status is --> ${status}`);
    I.assertEqual(status.toString(), lmtVar.getLabel("IN_APPROVAL_STATUS"));
    this.spo.buyer = global.users.get("USERNAME");
+});
+
+When("I search for the converted PO", async function() {
+   await commonKeywordImpl.searchDocOnListing(this.reqBO.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+});
+
+Then("I should be able to see the converted PO in Cancelled status", async function() {
+   let flag = await poListingImpl.verifyPoCancelledStatus(this.reqBO.poNumber);
+   I.assertEqual(true, flag);
+});
+
+Given("I have created a req to PO with PO in In Approval status", async function() {
+   this.reqBO = await objectCreation.getObjectOfRequisition(1, "ITEM_NAME_FOR_SEARCHING");
+   this.reqBO.approvePoFlag = false;
+   this.reqBO = await checkoutImpl.createReqToPoFlow(this.reqBO);
 });

@@ -13,7 +13,7 @@ Feature: Spo
   # And i search po by descr/iption 
 
 
-@Non-COA @L1 @87 @autoxnoncoa
+@Non-COA @L1 @87noncoa
   Scenario: To verify that user is able to amend an existing PO to add more item
 
   Given I am logged in eProc
@@ -30,7 +30,7 @@ Feature: Spo
   Then Item should be added "ITEM_NAME_FOR_SEARCHING[1]" at index 2
 
 
-@Non-COA @L1 @89 @autoxnoncoa
+@Non-COA @L1 @89noncoa
   Scenario: To verify that user is able to change the delivery address on PO amend
 
   Given I am logged in eProc
@@ -52,7 +52,7 @@ Feature: Spo
   Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
 
 
-@Non-COA @L1 @90 @autoxnoncoa
+@Non-COA @L1 @90noncoa
   Scenario: To verify that user is able to recall a PO after it is submitted
 
   Given I am logged in eProc
@@ -82,7 +82,7 @@ Feature: Spo
   Then PO status should be draft
 
 
-@Non-COA @L1 @91 @autoxnoncoa
+@Non-COA @L1 @91noncoa
   Scenario: To verify that user is able to change the payment terms on PO amend
 
   Given I am logged in eProc
@@ -101,7 +101,7 @@ Feature: Spo
   Then "PAYMENT_TERMS[1]" payment term should be displayed
 
 
-@Non-COA @L1 @92 @autoxnoncoa
+@Non-COA @L1 @92noncoa
   Scenario: To verify that user is able to close a SPO
 
   Given I am logged in eProc
@@ -118,7 +118,7 @@ Feature: Spo
   Then I should be able to see the PO in closed status
 
 
-@Non-COA @L1 @94 @autoxnoncoa
+@Non-COA @L1 @94noncoa
   Scenario: To verify that user is able to cancel a SPO 
 
   Given I am logged in eProc
@@ -132,7 +132,7 @@ Feature: Spo
   Then I should be able to see the PO in Cancelled status
 
 
-@Non-COA @L1 @106 @autoxnoncoa
+@Non-COA @L1 @106noncoa
   Scenario: To verify that user is able to add item for the PO in draft state
 
   Given I am logged in eProc
@@ -160,12 +160,58 @@ Feature: Spo
   Then Item should be added "ITEM_NAME_FOR_SEARCHING[1]" at index 2
 
 
-@Non-COA @L1 @108 @autoxnoncoa
+@Non-COA @L1 @108noncoa
   Scenario: To verify remind approver action for SPO
 
   Given I am logged in eProc 
   And I have submitted a SPO with a catalog item
   And the PO is in In Approval status
+
+  When I click on Remind approver action against the PO
+
+  Then I should be able to send reminder to the approver
+
+
+@Non-COA @L1 @93noncoa
+  Scenario: To verify that user is able to close a Req_PO
+
+  Given I am logged in eProc
+  And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
+
+  When I am on PO listing page
+  And I search for the converted PO
+  And I click on option icon
+  And I click on Close PO action against the PO
+  And I enter close PO comments
+  And I click on Close PO button on the confirmation Popup
+  And I click on closed po success message Done button
+  And I am on PO listing page
+  And I search for the converted PO
+
+  Then I should be able to see the PO in closed status
+
+
+@Non-COA @L1 @95noncoa
+  Scenario: To verify that user is able to cancel a Req_PO
+
+  Given I am logged in eProc
+  And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
+
+  When I am on PO listing page
+  And I search for the converted PO
+  And I view the PO
+  And I click on Cancel PO action within Actions tab
+  And I fill Cancel comments
+  And I click on Cancel PO button on the confirmation Popup
+
+  Then I should be able to see the converted PO in Cancelled status
+
+
+@Non-COA @L1 @109noncoa
+  Scenario: To verify remind approver for req to PO
+
+  Given I am logged in eProc 
+  And I have created a req to PO with PO in In Approval status
 
   When I click on Remind approver action against the PO
 
@@ -205,7 +251,7 @@ Feature: Spo
 #   Then I should be able to see all the added items and attachments
 
 
-# @Non-COA @L1
+# @Non-COA @L1 @88noncoa
 #   Scenario: To verify that user is able to amend an existing PO to add more item via requisition
 
 #   Given I am logged in eProc
@@ -217,33 +263,6 @@ Feature: Spo
 #   And I view the amended PO
 
 #   Then I should be able to see the new item added in the amended version.
-
-
-# @Non-COA @L1
-#   Scenario: To verify that user is able to close a Req_PO
-
-#   Given I am logged in eProc
-#   And I have created a requisition 
-#   And I have converted it to PO
-
-#   When I click on Close PO action against the PO
-#   And I click on Close PO button on the confirmation Popup
-
-#   Then I should be able to see the PO in closed status
-
-
-# @Non-COA @L1
-#   Scenario: To verify that user is able to cancel a Req_PO
-
-#   Given I am logged in eProc
-#   And I have created a requisition 
-#   And I have converted it to PO
-
-#   When I view the PO
-#   And I click on Cancel PO action within Actions tab
-#   And I click on Cancel PO button on the confirmation Popup
-
-#   Then I should be able to see the PO in Cancelled status
 
 
 # @Non-COA @L1
@@ -440,20 +459,6 @@ Feature: Spo
 
 
 # @Non-COA @L1
-#   Scenario: To verify remind approver for req to PO
-
-#   Given I am logged in eProc 
-#   And I have submitted a requisition with a catalog item 
-
-#   When I navigate to Buyers desk listing
-#   And I Convert a requisition to PO.
-#   And I navigate to PO listing
-#   And I click on Remind approver action against the PO
-
-#   Then I should be able to send reminder to the approver
-
-
-# @Non-COA @L1
 #   Scenario: To verify the create invoice action within SPO
 
 #   Given I am logged in eProc 
@@ -573,6 +578,211 @@ Feature: Spo
 #   Then I should be able to see the status of invoice as Closed
 
 
+@COA @L1 @118coa
+  Scenario: COA _ To verify that user is able to amend an existing PO to add more item
+
+  Given I am logged in eProc
+  And I have created and released a PO
+
+  When I click on option icon
+  And I click on Amend PO
+  And I add 1 catalog item "ITEM_NAME_FOR_SEARCHING[1]"
+  And I add amend PO comments
+  And I submit the amendment
+  And I search for the created po
+  And I view the amended PO
+
+  Then Item should be added "ITEM_NAME_FOR_SEARCHING[1]" at index 2
+
+
+@COA @L1 @120coa
+  Scenario: COA _ To verify that user is able to change the delivery address on PO amend
+
+  Given I am logged in eProc
+  And I have created and released a PO
+
+  When I click on option icon
+  And I click on Amend PO
+  And I scroll to Line Item section
+  And I click on Shipping Details link for item "ITEM_NAME_FOR_SEARCHING"
+  And I change the delivery address at line level to "SPO_SHIP_TO_ADDRESS[1]"
+  And I save the delivery address
+  And I add amend PO comments
+  And I submit the amendment
+  And I search for the created po
+  And I view the amended PO
+  And I scroll to Line Item section
+  And I click on Shipping Details link for item "ITEM_NAME_FOR_SEARCHING"
+
+  Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
+
+
+@COA @L1 @121coa
+  Scenario: COA _ To verify that user is able to recall a PO after it is submitted
+
+  Given I am logged in eProc
+  And I am on PO listing page
+
+  When I click on Create PO button
+  And I click on Create SPO button
+  And I fetch PO number
+  And I fill Order Description
+  And I add Purchase type
+  And I select supplier details
+  And I select Buyer
+  And I add Required by date
+  And I search catalog item with "search_term"
+  And I add costing and accounting details for that item
+  And I submit the PO
+  And I am on PO listing page
+  And I search for the created po
+  And I click on option icon
+  And I click on Recall option
+  And I enter recall comments
+  And I click on Recall button
+  And I click on recalled success message Done button
+  And I am on PO listing page
+  And I search for the created po
+
+  Then PO status should be draft
+
+
+@COA @L1 @122coa
+  Scenario: COA _ To verify that user is able to change the payment terms on PO amend
+
+  Given I am logged in eProc
+  And I have created and released a PO
+
+  When I click on option icon
+  And I click on Amend PO
+  And I scroll to Supplier Details section
+  And I change the payment term at line level to "PAYMENT_TERMS[1]"
+  And I add amend PO comments
+  And I submit the amendment
+  And I search for the created po
+  And I view the amended PO
+  And I scroll to Supplier Details section
+
+  Then "PAYMENT_TERMS[1]" payment term should be displayed
+
+
+@COA @L1 @123coa
+  Scenario: COA _ To verify that user is able to close a SPO
+
+  Given I am logged in eProc
+  And I have created and released a PO
+
+  When I click on option icon
+  And I click on Close PO action against the PO
+  And I enter close PO comments
+  And I click on Close PO button on the confirmation Popup
+  And I click on closed po success message Done button
+  And I am on PO listing page
+  And I search for the created po
+
+  Then I should be able to see the PO in closed status
+
+
+@COA @L1 @124coa
+  Scenario: COA _ To verify that user is able to close a Req_PO
+
+  Given I am logged in eProc
+  And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
+
+  When I am on PO listing page
+  And I search for the converted PO
+  And I click on option icon
+  And I click on Close PO action against the PO
+  And I enter close PO comments
+  And I click on Close PO button on the confirmation Popup
+  And I click on closed po success message Done button
+  And I am on PO listing page
+  And I search for the converted PO
+
+  Then I should be able to see the PO in closed status
+
+
+@COA @L1 @125coa
+  Scenario: COA _ To verify that user is able to cancel a SPO 
+
+  Given I am logged in eProc
+  And I have created and released a PO
+
+  When I view the PO
+  And I click on Cancel PO action within Actions tab
+  And I fill Cancel comments
+  And I click on Cancel PO button on the confirmation Popup
+
+  Then I should be able to see the PO in Cancelled status
+
+
+@COA @L1 @126coa
+  Scenario: COA _ To verify that user is able to cancel a Req_PO
+
+  Given I am logged in eProc
+  And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
+
+  When I am on PO listing page
+  And I search for the converted PO
+  And I view the PO
+  And I click on Cancel PO action within Actions tab
+  And I fill Cancel comments
+  And I click on Cancel PO button on the confirmation Popup
+
+  Then I should be able to see the converted PO in Cancelled status
+
+
+@COA @L1 @137coa
+  Scenario: COA _ To verify that user is able to add item for the PO in draft state
+
+  Given I am logged in eProc
+  And I am on PO listing page 
+
+  When I click on Create PO button
+  And I click on Create SPO button
+  And I fetch PO number
+  And I fill Order Description
+  And I add Purchase type
+  And I select supplier details
+  And I select Buyer
+  And I add Required by date
+  And I search catalog item with "search_term"
+  And I add costing and accounting details for that item
+  And I Save PO as draft
+  And I am on PO listing page
+  And I search for the created po
+  And I edit the drafted PO
+  And I add 1 catalog item "ITEM_NAME_FOR_SEARCHING[1]"
+  And I submit the PO 
+  And I search for the created po
+  And I view the PO
+
+  Then Item should be added "ITEM_NAME_FOR_SEARCHING[1]" at index 2
+
+
+@COA @L1 @139coa
+  Scenario: COA _ To verify remind approver action for SPO
+
+  Given I am logged in eProc 
+  And I have submitted a SPO with a catalog item
+  And the PO is in In Approval status
+
+  When I click on Remind approver action against the PO
+
+  Then I should be able to send reminder to the approver
+
+
+@COA @L1 @140coa
+  Scenario: COA _ To verify remind approver for req to PO
+
+  Given I am logged in eProc 
+  And I have created a req to PO with PO in In Approval status
+
+  When I click on Remind approver action against the PO
+
+  Then I should be able to send reminder to the approver
+
+
 # @COA @L1      
 # Scenario: COA _ To verify that user is able to create a SPO with single & multiple line items and with attachments in Zycus eproc
 
@@ -606,23 +816,6 @@ Feature: Spo
 #   Then I should be able to see all the added items and attachments
 
 
-@COA @L1 @autoxcoa1
-  Scenario: COA _ To verify that user is able to amend an existing PO to add more item
-
-  Given I am logged in eProc
-  And I have created and released a PO
-
-  When I click on option icon
-  And I click on Amend PO
-  And I add 1 catalog item "ITEM_NAME_FOR_SEARCHING[1]"
-  And I add amend PO comments
-  And I submit the amendment
-  And I search for the created po
-  And I view the amended PO
-
-  Then Item should be added "ITEM_NAME_FOR_SEARCHING[1]" at index 2
-
-
 # @COA @L1
 #   Scenario: COA _ To verify that user is able to amend an existing PO to add more item via requisition
 
@@ -635,135 +828,6 @@ Feature: Spo
 #   And I view the amended PO
 
 #   Then I should be able to see the new item added in the amended version.
-
-
-@COA @L1 @autoxcoa
-  Scenario: COA _ To verify that user is able to change the delivery address on PO amend
-
-  Given I am logged in eProc
-  And I have created and released a PO
-
-  When I click on option icon
-  And I click on Amend PO
-  And I scroll to Line Item section
-  And I click on Shipping Details link for item "ITEM_NAME_FOR_SEARCHING"
-  And I change the delivery address at line level to "SPO_SHIP_TO_ADDRESS[1]"
-  And I save the delivery address
-  And I add amend PO comments
-  And I submit the amendment
-  And I search for the created po
-  And I view the amended PO
-  And I scroll to Line Item section
-  And I click on Shipping Details link for item "ITEM_NAME_FOR_SEARCHING"
-
-  Then "SPO_SHIP_TO_ADDRESS[1]" delivery address should be displayed
-
-
-@COA @L1 @autoxcoa
-  Scenario: COA _ To verify that user is able to recall a PO after it is submitted
-
-  Given I am logged in eProc
-  And I am on PO listing page
-
-  When I click on Create PO button
-  And I click on Create SPO button
-  And I fetch PO number
-  And I fill Order Description
-  And I add Purchase type
-  And I select supplier details
-  And I select Buyer
-  And I add Required by date
-  And I search catalog item with "search_term"
-  And I add costing and accounting details for that item
-  And I submit the PO
-  And I am on PO listing page
-  And I search for the created po
-  And I click on option icon
-  And I click on Recall option
-  And I enter recall comments
-  And I click on Recall button
-  And I click on recalled success message Done button
-  And I am on PO listing page
-  And I search for the created po
-
-  Then PO status should be draft
-
-
-@COA @L1 @autoxcoa
-  Scenario: COA _ To verify that user is able to change the payment terms on PO amend
-
-  Given I am logged in eProc
-  And I have created and released a PO
-
-  When I click on option icon
-  And I click on Amend PO
-  And I scroll to Supplier Details section
-  And I change the payment term at line level to "PAYMENT_TERMS[1]"
-  And I add amend PO comments
-  And I submit the amendment
-  And I search for the created po
-  And I view the amended PO
-  And I scroll to Supplier Details section
-
-  Then "PAYMENT_TERMS[1]" payment term should be displayed
-
-
-@COA @L1 @autoxcoa
-  Scenario: COA _ To verify that user is able to close a SPO
-
-  Given I am logged in eProc
-  And I have created and released a PO
-
-  When I click on option icon
-  And I click on Close PO action against the PO
-  And I enter close PO comments
-  And I click on Close PO button on the confirmation Popup
-  And I click on closed po success message Done button
-  And I am on PO listing page
-  And I search for the created po
-
-  Then I should be able to see the PO in closed status
-
-
-# @COA @L1
-#   Scenario: COA _ To verify that user is able to close a Req_PO
-
-#   Given I am logged in eProc
-#   And I have created a requisition 
-#   And I have converted it to PO
-
-#   When I click on Close PO action against the PO
-#   And I click on Close PO button on the confirmation Popup
-
-#   Then I should be able to see the PO in closed status
-
-
-@COA @L1 @autoxcoa
-  Scenario: COA _ To verify that user is able to cancel a SPO 
-
-  Given I am logged in eProc
-  And I have created and released a PO
-
-  When I view the PO
-  And I click on Cancel PO action within Actions tab
-  And I fill Cancel comments
-  And I click on Cancel PO button on the confirmation Popup
-
-  Then I should be able to see the PO in Cancelled status
-
-
-# @COA @L1
-#   Scenario: COA _ To verify that user is able to cancel a Req_PO
-
-#   Given I am logged in eProc
-#   And I have created a requisition 
-#   And I have converted it to PO
-
-#   When I view the PO
-#   And I click on Cancel PO action within Actions tab
-#   And I click on Cancel PO button on the confirmation Popup
-
-#   Then I should be able to see the PO in Cancelled status
 
 
 # @COA @L1
@@ -945,34 +1009,6 @@ Feature: Spo
 #   Then I should not get apportioned amount assigned for total cost booking amount
 
 
-@COA @L1 @autoxcoa
-  Scenario: COA _ To verify that user is able to add item for the PO in draft state
-
-  Given I am logged in eProc
-  And I am on PO listing page 
-
-  When I click on Create PO button
-  And I click on Create SPO button
-  And I fetch PO number
-  And I fill Order Description
-  And I add Purchase type
-  And I select supplier details
-  And I select Buyer
-  And I add Required by date
-  And I search catalog item with "search_term"
-  And I add costing and accounting details for that item
-  And I Save PO as draft
-  And I am on PO listing page
-  And I search for the created po
-  And I edit the drafted PO
-  And I add 1 catalog item "ITEM_NAME_FOR_SEARCHING[1]"
-  And I submit the PO 
-  And I search for the created po
-  And I view the PO
-
-  Then Item should be added "ITEM_NAME_FOR_SEARCHING[1]" at index 2
-
-
 # @COA @L1
 #   Scenario: COA _ To verify that user is able to add item for the PO in draft state
 
@@ -985,32 +1021,6 @@ Feature: Spo
 #   And I view the PO
 
 #   Then I should be able to see all the added items and attachments
-
-
-@COA @L1 @autoxcoa
-  Scenario: COA _ To verify remind approver action for SPO
-
-  Given I am logged in eProc 
-  And I have submitted a SPO with a catalog item
-  And the PO is in In Approval status
-
-  When I click on Remind approver action against the PO
-
-  Then I should be able to send reminder to the approver
-
-
-# @COA @L1
-#   Scenario: COA _ To verify remind approver for req to PO
-
-#   Given I am logged in eProc 
-#   And I have submitted a requisition with a catalog item 
-
-#   When I navigate to Buyers desk listing
-#   And I Convert a requisition to PO.
-#   And I navigate to PO listing
-#   And I click on Remind approver action against the PO
-
-#   Then I should be able to send reminder to the approver
 
 
 # @COA @L1

@@ -5,8 +5,8 @@ const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI1
 const commomComponent = require("../../../commonKeywords/CommonComponent");
 const prop = global.confi_prop;
 const checkoutObject = require("../Checkout/CheckoutObject")
-const checkoutImpl = require("../Checkout/CheckoutImpl");
-const requisitionBO = require("../../../dataCreation/bo/Requisition");
+// const checkoutImpl = require("../Checkout/CheckoutImpl");
+// const requisitionBO = require("../../../dataCreation/bo/Requisition");
 
 module.exports = {
 
@@ -84,18 +84,6 @@ module.exports = {
         await I.waitForClickable(I.getElement(reqListingObj.EDIT_ACTION));
         await I.click(I.getElement(reqListingObj.EDIT_ACTION));
         logger.info("Clicked on Requisition Edit Link");
-    },
-
-    async editAndUpdateDraftRequisition(reqNumber, requisitionBO)
-    {
-        await this.navigateToRequisitionListing();
-        await this.searchRequisitionByReqNumber(reqNumber);
-        await this.clickOnEditAction();
-        await commomComponent.waitForLoadingSymbolNotDisplayed();
-        await I.waitForVisible(I.getElement(checkoutObject.REQUISITION_NAME));
-        await checkoutImpl.fillOnBehalfOf(requisitionBO.onBehalfOf);
-        await checkoutImpl.clickOnUpdateDraftButton();
-        await commomComponent.waitForLoadingSymbolNotDisplayed();
     },
 
     async deleteRequisition(reqNumber)
