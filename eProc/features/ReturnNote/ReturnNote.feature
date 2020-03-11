@@ -1,6 +1,6 @@
 Feature: ReturnNote
 
-@L1 @Non-COA
+@L1 @Non-COA @Pooja
     Scenario: To verify that buyer is able to save as draft a return note for a PO
 
     Given I am logged in eproc 
@@ -23,7 +23,7 @@ Feature: ReturnNote
 
     Then I should be able to see the return note in draft status
 
-@L1 @Non-COA
+@L1 @Non-COA @Pooja
     Scenario: To verify that buyer is able to create a return note for a PO
 
     Given I am logged in eproc 
@@ -47,7 +47,7 @@ Feature: ReturnNote
     Then I should be able to see the return note created
 
 
-@L1 @Non-COA
+@L1 @Non-COA @Pooja
     Scenario: To verify that buyer is able to delete the return note which is in draft state
 
     Given I am logged in eproc 
@@ -72,7 +72,7 @@ Feature: ReturnNote
     Then I should be able to delete the return note in draft state
 
 
-@L1 @Non-COA
+@L1 @Non-COA @Pooja
     Scenario: To verify that requester is able to save as draft a return note for a PO
 
     Given I am logged in eProc
@@ -98,7 +98,7 @@ Feature: ReturnNote
     Then I should be able to see the return note in draft status
 
 
-@L1 @Non-COA
+@L1 @Non-COA @Pooja
     Scenario: To verify that requester is able to create a return note for a PO
 
     Given I am logged in eProc
@@ -124,7 +124,7 @@ Feature: ReturnNote
     Then I should be able to see the return note created
 
 
-@L1 @Non-COA
+@L1 @Non-COA @Pooja
     Scenario: To verify that requester is able to delete the return note which is in draft state
 
     Given I am logged in eProc

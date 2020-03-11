@@ -17,7 +17,7 @@ Feature: Receipt
     Then I should be able to see the status of reciept created as Draft
 
 
-@L1 @Non-COA
+@L1 @Non-COA @Pooja
     Scenario: To verify that buyer is able to create a receipt for the partial items received
 
     Given I am logged in eProc
@@ -35,7 +35,7 @@ Feature: Receipt
     Then I should be able to see the status of receipt as confirmed on Receipt Listing
 
 
-@L1 @Non-COA
+@L1 @Non-COA @Pooja
     Scenario: To verify that buyer is able to delete the receipt which is in draft state
 
     Given I am logged in eProc
@@ -53,7 +53,7 @@ Feature: Receipt
     Then I should be able to delete the receipt in draft status
 
     
-@L1 @Non-COA
+@L1 @Non-COA @Pooja
     Scenario: To verify that requester is able to save a receipt as draft for the items received
 
     Given I am logged in eProc
@@ -72,7 +72,7 @@ Feature: Receipt
 
     Then I should be able to see the status of reciept created as Draft
 
-@L1 @Non-COA
+@L1 @Non-COA @Pooja
     Scenario: To verify that requester is able to create a receipt for the partial items received
 
     Given I am logged in eProc
@@ -93,7 +93,7 @@ Feature: Receipt
     Then I should be able to see the status of receipt as confirmed on Receipt Listing
 
 
-@L1 @Non-COA
+@L1 @Non-COA @Pooja
     Scenario: To verify that requester is able to delete the receipt which is in draft state
 
     Given I am logged in eProc

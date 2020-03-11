@@ -11,6 +11,7 @@ const prop = global.confi_prop;
 const lmtVar = require("../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp")
 const spo = require("../../dataCreation/bo/Spo")
 const commonComponent =require("../../commonKeywords/CommonComponent")
+const logger = require("../../../Framework/FrameworkUtilities/Logger/logger");
 
 Given("I am logged in eproc", async function(){
     await iLogin.login();
@@ -106,7 +107,7 @@ When("I delete the return note in draft status", async function(){
 Then("I should be able to delete the return note in draft state", async function(){
     await I.wait(prop.DEFAULT_MEDIUM_WAIT);
     let status = await commonComponent.waitForElementVisible(`//a[contains(text(),'${this.returnNoteNumber}')]`);
-    await I.assertEqual(status, "false");
+    await I.assertEqual(status, false);
 });
     
 
