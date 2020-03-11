@@ -76,4 +76,37 @@ module.exports = {
         return isPresent;
     },
 
+    async fetchCostCenter()
+    {
+       let fetchCostCenter =  await I.grabTextFrom(I.getElement(iViewReqObject.COST_CENTER));
+
+       return fetchCostCenter;
+    },  
+
+    async clickOnBackArrow()
+    {
+        await commonComponent.waitForElementVisible(I.getElement(iViewReqObject.BACK_ARROW));
+        await I.waitForClickable(I.getElement(iViewReqObject.BACK_ARROW));
+        await I.click(I.getElement(iViewReqObject.BACK_ARROW));
+
+    },
+    // async verifySplitCostCenterAddedForItems(items)
+    // {
+    //     let isSplitCostCenter = false;
+    //     for(let item of items)
+    //     {
+    //         await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    //         await I.click("//span[contains(text(),'"+item+"')]//following::a[2]");
+    //         let costCenter = await this.fetchCostCenter();
+    //         pause();
+    //         logger.info("fetchCostCenter "+costCenter)
+            
+    //         if(costCenter.toString() === this.costCenter.toString())
+    //         {
+    //             isSplitCostCenter = true;
+    //             logger.info("Verified Cost Center for item at line Level");
+    //         }
+    //     }
+    //     return isSplitCostCenter;
+    // },
 }

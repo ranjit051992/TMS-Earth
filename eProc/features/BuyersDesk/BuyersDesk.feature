@@ -120,7 +120,7 @@ Feature: BuyersDesk
 
     Then I should be see the data on the page on the basis on requisition name field
 
-@Non-COA @L1
+@Non-COA @L1 @Shaniya
     Scenario: To verify requestor filter on Upcoming Requisition
     Given I am logged in eProc
 
