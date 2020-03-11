@@ -19,14 +19,14 @@ When ("I create {string} requisition with {string} {string}", async function(noO
   let reqNumberArray = new Array();
   for(let i =0;i<noOfReq;i++)
             {
-              let reqBo= objectCreation.getObjectOfRequisition(noOfItems, itemType);
+              let reqBo= await objectCreation.getObjectOfRequisition(noOfItems, itemType);
+              logger.info('requisition: '+reqBo);
               this.reqBO = await checkoutImpl.createRequisitionFlow(reqBo);
               let reqNumber = await checkoutImpl.fetchCreatedRequisitionNumber();
               requisition.reqNumber = await checkoutImpl.fetchCreatedRequisitionNumber();
               requisition.reqName = await checkoutImpl.fetchCreatedRequisitionName();
               reqNumberArray[i] = reqNumber;
-              I.amOnPage(prop.DDS_OnlineStore_Url);
-              I.waitForVisible(I.getElement(onlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+              await buyersDeskImpl.navigateToOnlineStore();
             }
      logger.info('Requisitions number created are : '+reqNumberArray);
      requisition.reqNumbers = reqNumberArray;
@@ -100,7 +100,7 @@ When("I Approve {string} Requisitions",async function(noOfReq){
  });
 
  When("I filter any buyer {string}", async function(buyerName) {
-    logger.info("Buyer to be searched is "+requisition.buyer);
+    logger.info("Buyer to be searched is "+I.getData(buyerName));
     await buyersDeskImpl.SearchBuyer(buyerName, lmtVar.getLabel("SEARCH_BY_BUYER"));
      
   });
@@ -111,8 +111,7 @@ When("I Approve {string} Requisitions",async function(noOfReq){
 
 
 When("I navigate to Upcoming Requisition", async function(){
-  I.amOnPage(global.confi_prop.DDS_UpcomingRequisitions_Url);
-  logger.info("Navigated to Upcoming Requisitions Page");
+  await buyersDeskImpl.navigateToUpcomingRequisition();
 });
 
 When("I filter with Requestor field", async function(){
