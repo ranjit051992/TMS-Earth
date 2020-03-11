@@ -332,6 +332,33 @@ module.exports = {
    async navigateToUpcomingRequisition() {
     I.amOnPage(global.confi_prop.DDS_UpcomingRequisitions_Url);
     logger.info("Navigated to Upcoming Requisitions Page");
+   },
+
+   async selectReceivedOnOption(option){
+       let optionXpath =`(//label[@for='MST_Receivedonlk'])[2]`;
+       let xpathIndex;
+    if(option == "Create Date")
+    {
+        logger.info('Selected Received on option is : Create Date');
+    }
+
+    else if(option == "Date Within")
+    {
+        xpathIndex = 1;
+        logger.info('Selected Received on option is : Date Within');    
+    }
+
+    else if(option == "Date Period")
+    {
+        xpathIndex = 2;
+        logger.info('Selected Received on option is : Date Period');
+    }
+
+    else{
+        throw new Error("Invalid search option!");
+    }
+    optionXpath = `(//label[@for='MST_Receivedonlk${xpathIndex}'])[2]`
+
    }
 }
 

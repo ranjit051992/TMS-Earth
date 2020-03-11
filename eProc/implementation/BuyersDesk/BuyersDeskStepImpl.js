@@ -120,6 +120,10 @@ When("I filter with Requestor field", async function(){
   await buyersDeskImpl.SearchRequester(requisition.requestor);
 });
 
+When("I filter with Received on field by {string}", async function(searchBy){
+  await buyersDeskImpl.selectReceivedOnOption(searchBy);
+});
+
 
  Then("I should be see the data on the page on the basis on Requisition number field", async function() {
   

@@ -75,8 +75,10 @@ Feature: BuyersDesk
     Scenario: To verify Received On filter on buyer's desk 
     Given I am logged in eProc
 
-    When I navigate to Buyer Desk
-    # And I filter with Received on field
+    When I create "1" requisition with "1" "ITEM_NAME_FOR_SEARCHING"
+    And I Approve "1" Requisitions
+    And I navigate to Buyer Desk
+    #And I filter with Received on field by "Create Date"
 
     # Then I should be see the data on the page on the basis on Received on field
 
