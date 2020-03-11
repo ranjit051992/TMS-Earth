@@ -129,6 +129,15 @@ module.exports = {
         return this.poNumber;
     },
 
+    async createReceiptFlow()
+    {
+        await this.viewReceiptTab();
+        await this.createReceipt();
+        await this.clickSelectionCheckbox();
+        await this.clickSubmitReceipt()
+        await this.clickConfirmation();
+    },
+
     async releasePoFlow() {
             await approvalImpl.navigateToApprovalListing();
             await approvalImpl.navigateToPOApprovalListingTab();

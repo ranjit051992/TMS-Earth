@@ -222,7 +222,6 @@ module.exports = {
         logger.info("Clicked on Cost booking Link");
     },
     async clickDefineBuyingScope(){
-        pause();
         await I.waitForVisible(I.getElement(iBpoObject.DEFINE_BUYING_SCOPE));
         await I.click(I.getElement(iBpoObject.DEFINE_BUYING_SCOPE));
     },
