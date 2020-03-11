@@ -39,8 +39,10 @@ module.exports = {
 
         requisitionBO = await this.fillShippingDetails(requisitionBO);
 
-        requisitionBO = await this.fillCostAllocation(requisitionBO);
-
+        if(!prop.isCoa)
+        {
+            requisitionBO = await this.fillCostAllocation(requisitionBO);
+        }
         requisitionBO = await this.fillItemDetails(requisitionBO);
 
 
@@ -666,6 +668,7 @@ module.exports = {
 
             if (requisitionBO.bookCostToSingleMultipleCC) {
                 if (requisitionBO.costCenter !== "undefined") {
+                    await this.clickOnSingleMultipleCostCenterRadioButton();
                     let costCenter = await this.fillCostCenter(requisitionBO.costCenter);
                     requisitionBO.setCostCenter(costCenter);
                 }
@@ -686,7 +689,7 @@ module.exports = {
     },
 
     async fillItemDetails(requisitionBO) {
-        logger.info("*********Filling Requisition Item Details Details");
+        logger.info("*********Filling Requisition Item Details");
         await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
 
         //for(let i = 0; i <requisitionBO.items.length; i++)
@@ -1248,5 +1251,23 @@ module.exports = {
 
     },
 
+    async fillMultiplePercentage(percentage,noOfSplits) {
+        await I.waitForVisible(I.getElement(iCheckout.PERCENTAGE_TEXTBOX), prop.DEFAULT_MEDIUM_WAIT);
+        let fieldXpath = "("+I.getElement(iCheckout.PERCENTAGE_TEXTBOX)+")["+noOfSplits+"]";
+        await I.click(fieldXpath);
+        await I.clearField(fieldXpath);
+        await I.fillField(fieldXpath, percentage);
+        percentage = await I.grabAttributeFrom(fieldXpath, "value");
+        logger.info("Entered percentage is ---> "+percentage);
+
+        return percentage;
+    },
+
+    async clickOnSingleMultipleCostCenterRadioButton()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.BOOK_COST_TO_SINGLE_MULTIPLE_COSTCENTER));
+        await I.waitForClickable(I.getElement(iCheckout.BOOK_COST_TO_SINGLE_MULTIPLE_COSTCENTER));
+        await I.click(I.getElement(iCheckout.BOOK_COST_TO_SINGLE_MULTIPLE_COSTCENTER));
+    }
 
 };

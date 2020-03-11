@@ -79,7 +79,8 @@ module.exports = {
                     await I.fillField(autoCompleteTextboxXpath, coaObject.COA_DATA[index]);
                     await I.waitForVisible(I.getElement(coaObject.AUTO_COMPLETE_OPTION));
                     await I.click(I.getElement(coaObject.AUTO_COMPLETE_OPTION));
-                    await I.waitForVisible(I.getElement(coaObject.SPINNER_COA));
+                    // await I.waitForVisible(I.getElement(coaObject.SPINNER_COA));
+                    await commonKeywordsImpl.waitForElementVisible(I.getElement(coaObject.SPINNER_COA), prop.DEFAULT_MEDIUM_WAIT);
                     await I.waitForInvisible(I.getElement(coaObject.SPINNER_COA));
                     await I.waitForVisible(I.getElement(coaObject.AUTO_COMPLETE_TEXTBOX));
                     logger.info(`Filled value for field at index ${index}`);

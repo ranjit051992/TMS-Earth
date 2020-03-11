@@ -104,6 +104,7 @@ When("I delete the return note in draft status", async function(){
 });
 
 Then("I should be able to delete the return note in draft state", async function(){
+    await I.wait(prop.DEFAULT_MEDIUM_WAIT);
     let status = await commonComponent.waitForElementVisible(`//a[contains(text(),'${this.returnNoteNumber}')]`);
     await I.assertEqual(status, "false");
 });
