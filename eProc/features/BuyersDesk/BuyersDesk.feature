@@ -17,17 +17,17 @@ Feature: BuyersDesk
 
    Then I should be able to view the requisition in edit mode
 
-@Non-COA @L1
-    Scenario: To verify if buyer is able to convert Requisition to PO based on different criteria 
-    Given I am logged in eProc
+# @Non-COA @L1
+#     Scenario: To verify if buyer is able to convert Requisition to PO based on different criteria 
+#     Given I am logged in eProc
 
-    When I create "2" requisition with "1" "ITEM_NAME_FOR_SEARCHING"
-    And I Approve "2" Requisitions
-    And I navigate to Buyer Desk
-    And I select "2" requisition with same currency, supplier, delivery address from listing page
-    And I convert it to PO from listing
+#     When I create "2" requisition with "1" "ITEM_NAME_FOR_SEARCHING"
+#     And I Approve "2" Requisitions
+#     And I navigate to Buyer Desk
+#     And I select "2" requisition with same currency, supplier, delivery address from listing page
+#     And I convert it to PO from listing
 
-    Then I should be able to create a PO with multiple requisition merged into one
+#     Then I should be able to create a PO with multiple requisition merged into one
 
 # @konica
 #     Scenario: To verify filters on buyer's desk status filter
@@ -49,7 +49,7 @@ Feature: BuyersDesk
 
      Then I should be see the data on the page on the basis on Requisition number field
 
- @Non-COA @L1konica
+ @Non-COA @L1
      Scenario: To verify requisition name filter on buyer's desk 
      Given I am logged in eProc
 
@@ -71,14 +71,16 @@ Feature: BuyersDesk
 
     Then I should be see the data on the page on the basis on Requestor field
 
-# @Non-COA @L1
-#     Scenario: To verify Received On filter on buyer's desk 
-#     Given I am logged in eProc
+@Non-COA @L1
+    Scenario: To verify Received On filter on buyer's desk 
+    Given I am logged in eProc
 
-#     When I navigate to Buyer Desk
-#     And I filter with Received on field
+    When I create "1" requisition with "1" "ITEM_NAME_FOR_SEARCHING"
+    And I Approve "1" Requisitions
+    And I navigate to Buyer Desk
+    #And I filter with Received on field by "Create Date"
 
-#     Then I should be see the data on the page on the basis on Received on field
+    # Then I should be see the data on the page on the basis on Received on field
 
  @Non-COA @L1
      Scenario: To verify Assigned Buyer filter on buyer's desk 

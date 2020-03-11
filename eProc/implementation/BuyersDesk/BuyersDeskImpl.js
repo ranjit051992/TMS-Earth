@@ -7,7 +7,8 @@ const prop=global.confi_prop;
 const commonKeywordImpl = require("../../commonKeywords/CommonComponent");
 const approvalObject = require("../Approval/ApprovalObject");
 const poListingObject = require("../PO/PoListing/PoListingObject");
-const requisitionBo = require("../../dataCreation/bo/Requisition")
+const requisitionBo = require("../../dataCreation/bo/Requisition");
+const onlineStore = require("../Requisition/OnlineStore/OnlineStoreObject");
 
 module.exports = {
 
@@ -15,7 +16,6 @@ module.exports = {
         await I.amOnPage(prop.DDS_BuyersDesk_Url);
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info("Navigated to Buyers Desk listing page");
-        await commonKeywordImpl.selectValueFromDropDown(I.getElement(approvalObject.LISTING_SELECTION_DROP_DOWN), lmtVar.getLabel("LISTING_ALL_REQ_OPTION"));
     },
 
     async clickonStatusFilterButton(){
@@ -133,25 +133,31 @@ module.exports = {
 
     async selectBuyerOption(buyerName ,option) {
     let index;
+    let xpathIndex;
     if(option === lmtVar.getLabel("SEARCH_BY_ME")) {
         index = 1;
+        xpathIndex="";
     }
     else if(option === lmtVar.getLabel("SEARCH_BY_BUYER")) {
         index = 2;
+        xpathIndex=1;
         await this.fillBuyerName(buyerName,index);
     }
     else if(option === lmtVar.getLabel("SEARCH_BY_BUYER_GROUP")) {
         index = 3;
+        xpathIndex=2;
         await this.fillBuyerName(buyerName,index);
     }
     else if(option === lmtVar.getLabel("SEARCH_BY_UNASSIGNED")) {
         index = 4;
+        xpathIndex=3;
     }
     else {
         throw new Error("Invalid search option!");
     }
 
-    let buyersOption = `//*[@id='cdk-overlay-0']//ul/li[${index}]/div/label`;
+    //let buyersOption = `//*[@id='cdk-overlay-0']//ul/li[${index}]/div/label`;
+    let buyersOption = `(//label[@for='MST_AssignedBuyerlk${xpathIndex}'])[2]`
     logger.info(`buyersOption --> ${buyersOption}`);
 
     I.waitForVisible(buyersOption);
@@ -177,10 +183,11 @@ module.exports = {
        await commonComponent.waitForLoadingSymbolNotDisplayed();
        let spinner = `//div[@class='spinnerTop']`;
        I.waitForInvisible(spinner,prop.DEFAULT_HIGH_WAIT);
+       logger.info('Clicked on Apply Button');
     },
 
     async fillBuyerName(buyerName,index){
-        requisitionBo.buyer = await this.fillBuyer(requisitionBo.buyer);
+        requisitionBo.buyer = await this.fillBuyer(I.getData(buyerName));
     },
 
     async fillBuyer(buyer)
@@ -223,17 +230,6 @@ module.exports = {
 
     },
 
-    async clickOnPoDetailsCheckbox() {
-        await I.waitForVisible(I.getElement(iBuyersDeskObject.PO_DETAILS_CHECKBOX));
-        await I.click(I.getElement(iBuyersDeskObject.PO_DETAILS_CHECKBOX));
-        logger.info("Clicked on PO Details checkbox");
-    },
-
-    async clickOnSubmitPoButton() {
-        await I.waitForVisible(I.getElement(iBuyersDeskObject.SUBMIT_PO_BUTTON));
-        await I.click(I.getElement(iBuyersDeskObject.SUBMIT_PO_BUTTON));
-        logger.info("Clicked on Submit PO button");
-    },
     async SearchRequestor(requestor){
       
         logger.info('Searched Requestor :' +requestor);
@@ -319,6 +315,50 @@ module.exports = {
         I.waitForVisible(I.getElement(iBuyersDeskObject.REQUESTER_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
         let requestorName = await I.grabTextFrom(I.getElement(iBuyersDeskObject.REQUESTER_NAME_LISTING));
         return requestorName;
+   },
+
+   async navigateToAllRequests() {
+    I.amOnPage(prop.DDS_AllRequests_Url);
+    I.waitForVisible(I.getElement(iBuyersDeskObject.REQUISITION_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
+    logger.info("Navigated to All Request Approval page");
+   },
+
+   async navigateToOnlineStore() {
+    I.amOnPage(prop.DDS_OnlineStore_Url);
+    I.waitForVisible(I.getElement(onlineStore.SEARCH_TEXTBOX),prop.DEFAULT_MEDIUM_WAIT);
+    logger.info("Navigated to Online Store page");
+   },
+
+   async navigateToUpcomingRequisition() {
+    I.amOnPage(global.confi_prop.DDS_UpcomingRequisitions_Url);
+    logger.info("Navigated to Upcoming Requisitions Page");
+   },
+
+   async selectReceivedOnOption(option){
+       let optionXpath =`(//label[@for='MST_Receivedonlk'])[2]`;
+       let xpathIndex;
+    if(option == "Create Date")
+    {
+        logger.info('Selected Received on option is : Create Date');
+    }
+
+    else if(option == "Date Within")
+    {
+        xpathIndex = 1;
+        logger.info('Selected Received on option is : Date Within');    
+    }
+
+    else if(option == "Date Period")
+    {
+        xpathIndex = 2;
+        logger.info('Selected Received on option is : Date Period');
+    }
+
+    else{
+        throw new Error("Invalid search option!");
+    }
+    optionXpath = `(//label[@for='MST_Receivedonlk${xpathIndex}'])[2]`
+
    }
 }
 
