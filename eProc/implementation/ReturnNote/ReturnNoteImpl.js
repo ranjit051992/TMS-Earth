@@ -3,6 +3,7 @@ const logger = require("../../../Framework/FrameworkUtilities/Logger/logger");
 const iReceiptObject = require("../Receipt/ReceiptObject");
 const iReturnNoteObject = require("./ReturnNoteObject");
 const prop = global.confi_prop;
+const lmtVar = require("../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 
 module.exports = {
         async selectItemReturnNote()
