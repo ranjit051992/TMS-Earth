@@ -591,6 +591,7 @@ module.exports = {
     },
 
     async createMultiplePOs(noOfPOs, noOfItems, itemType) {
+        let POArray = new Array();
         // let spo = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
         // spo.poNumber = "Automation_Spo_1583744481394";
         // let spo1 = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
