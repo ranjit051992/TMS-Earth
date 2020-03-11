@@ -118,7 +118,7 @@ module.exports = {
 
     async approveMultipleReqs(reqArray, searchBy){
         for (let i=1; i<reqArray.length; i++) {
-            await commonKeywordImpl.searchDocOnListing(this.reqArray[i].reqNumber, searchBy);
+            await commonKeywordImpl.searchDocOnListing(reqArray[i].reqNumber, searchBy);
             await I.executeScript(function() {
             document.getElementById("ApprovalReqListing0").click();
             })
@@ -129,9 +129,9 @@ module.exports = {
         await this.clickOnApproveSpoPopupApproveButton();
         for (let i=1; i<reqArray.length; i++) {
             let status = await this.getReqStatus();
-            this.reqArray[i].setStatus(status);
-            I.assertEqual(this.reqArray[i].status, lmtVar.getLabel("APPROVED_STATUS"));
-        } 
+            reqArray[i].setStatus(status);
+            I.assertEqual(reqArray[i].status.toString(), lmtVar.getLabel("APPROVED_STATUS"));
+        }
         return reqArray;
     },
 
@@ -158,12 +158,12 @@ module.exports = {
     async checkMultipleReqStatus(reqArray, searchBy) {
         for (let i=1; i<reqArray.length; i++) {
             await commonKeywordImpl.searchDocOnListing(reqArray[i].reqNumber, searchBy);
-            let status = await I.grabTextFrom(I.getElement(approvalObject.APPROVAL_LISTING_REQ_STATUS));
-            await I.assertEqual(status, POArray[i].status);
-            let flag = status === POArray[i].status;
+            let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+            await I.assertEqual(status.toString(), reqArray[i].status.toString());
+            let flag = status.toString() === reqArray[i].status.toString();
         if(!flag) {
-            logger.info(`Failed to match the status of doc as ${status} is different from ${POArray[i].status}`);
-            throw new Error(`Failed to match the status of doc as ${status} is different from ${POArray[i].status}`);
+            logger.info(`Failed to match the status of doc as ${status.toString()} is different from ${POArray[i].status.toString()}`);
+            throw new Error(`Failed to match the status of doc as ${status.toString()} is different from ${POArray[i].status.toString()}`);
         }
         else {
             logger.info("Status of doc matched successfully");
@@ -327,8 +327,9 @@ module.exports = {
 
     async getReqStatus() {
         I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
-        let status = await I.grabTextFrom(I.getElement(approvalObject.APPROVAL_LISTING_REQ_STATUS));
-        logger.info(`Retrieved status --> ${status}`);
+        let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+        //let status = await I.grabTextFrom(I.getElement(approvalObject.APPROVAL_LISTING_REQ_STATUS));
+        logger.info(`Retrieved status --> ${status.toString()}`);
         return status;
     },
 
