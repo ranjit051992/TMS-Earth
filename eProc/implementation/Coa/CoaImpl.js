@@ -18,7 +18,8 @@ module.exports = {
         }
     },
     async fillCoaForm() {
-        await I.waitForVisible(I.getElement(coaObject.AUTO_COMPLETE_TEXTBOX));
+        // await I.waitForVisible(I.getElement(coaObject.AUTO_COMPLETE_TEXTBOX));
+        await commonKeywordsImpl.waitForElementVisible(I.getElement(coaObject.AUTO_COMPLETE_TEXTBOX));
 
         let quantity = await this.getQuantityValue();
         

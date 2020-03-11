@@ -3,6 +3,7 @@ const logger = require("../../../Framework/FrameworkUtilities/Logger/logger");
 const iReceiptObject = require("../Receipt/ReceiptObject");
 const iReturnNoteObject = require("./ReturnNoteObject");
 const prop = global.confi_prop;
+const lmtVar = require("../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 
 module.exports = {
         async selectItemReturnNote()
@@ -59,6 +60,11 @@ module.exports = {
             let returnNoteNumber = await I.grabTextFrom(I.getElement(iReturnNoteObject.RETURN_NOTE_NUMBER));           
             return returnNoteNumber;
         },
+        async waitForReturnNoteCreation()
+        {
+            let returnNote = lmtVar.getLabel("RETURN_NOTE");
+            await I.waitForVisible("//dew-col[contains(text(),'"+ returnNote +"')]");
+        }
         
 
 }
