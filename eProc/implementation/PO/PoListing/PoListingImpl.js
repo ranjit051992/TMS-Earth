@@ -35,12 +35,7 @@ module.exports = {
     },
     async getPoStatus(){
         let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
-        // await I.scrollIntoView(I.getElement(poListingObject.PO_STATUS));
-        // await I.wait(prop.DEFAULT_WAIT);
-        // logger.info("Scrolled to Status column");
-        // await I.waitForVisible(I.getElement(poListingObject.PO_STATUS));
-        // let status = await I.grabTextFrom(I.getElement(poListingObject.PO_STATUS));
-        logger.info(`Retrieved status --> ${status.toString()}`);
+        logger.info(`Retrieved status --> ${status}`);
         return status;
     },
     async fillClosePoComments(comments) {
@@ -89,5 +84,18 @@ module.exports = {
         await commonKeywordImpl.clickOnDocNumberLink();
         await I.waitForVisible(I.getElement(iSpoObject.PO_VIEW_BASIC_DETAILS_SECTION));
     },
+    async verifyPoCancelledStatus(poNumber) {
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await commonKeywordImpl.searchDocOnListing(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        let status = await this.getPoStatus();
+        let flag = status.toString() === lmtVar.getLabel("CANCELLED_STATUS");
+        if(!flag) {
+           logger.info(`PO status is not ${lmtVar.getLabel("CANCELLED_STATUS")}. Current status is --> ${status}`);
+        }
+        else {
+           logger.info("PO is Cancelled successfully");
+        }
+        return flag;
+    }
     
 }

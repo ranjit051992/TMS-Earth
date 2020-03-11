@@ -502,34 +502,7 @@ module.exports = {
     async createAndReleaseSpoFlow(spo) {
         spo = await this.createSpoFlow(spo);
         if(spo.status.toString() === lmtVar.getLabel("IN_APPROVAL_STATUS")) {
-            await approvalImpl.navigateToApprovalListing();
-            await approvalImpl.navigateToPOApprovalListingTab();
-            await approvalImpl.approveDoc(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-            await approvalImpl.checkPOApprovalStatus(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-            let status = await approvalImpl.getSpoStatus();
-
-            let flag = status.toString() === lmtVar.getLabel("APPROVED_STATUS")
-            if(!flag) {
-                logger.info(`Failed to approve spo because status is ${status} on Approval listing after approving`);
-                throw new Error(`Failed to approve spo because status is ${status} on Approval listing after approving`);
-            }
-            else {
-                logger.info("Spo is approved successfully");
-            }
-            
-            await I.wait(prop.DEFAULT_MEDIUM_WAIT);
-            await poListingImpl.navigateToPoListing();
-            await commonKeywordImpl.searchDocOnListing(spo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-            status = await poListingImpl.getPoStatus();
-            logger.info(`Status in db --> ${lmtVar.getLabel("RELEASED_STATUS")}`);
-            flag = status.toString().includes(lmtVar.getLabel("RELEASED_STATUS"));
-            if(!flag) {
-                logger.info(`Failed to release spo because status is ${status} on po listing after approving`);
-                throw new Error(`Failed to release spo because status is ${status} on po listing after approving`);
-            }
-            else {
-                logger.info("Spo is released successfully");
-            }
+            await approvalImpl.approvePoFlow(spo.poNumber);
         }
         else {
             logger.info(`PO status after submission was ${spo.status} and not ${lmtVar.getLabel("IN_APPROVAL_STATUS")}. Hence, not executing the Approve PO action.`);
@@ -618,6 +591,7 @@ module.exports = {
     },
 
     async createMultiplePOs(noOfPOs, noOfItems, itemType) {
+        let POArray = new Array();
         // let spo = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
         // spo.poNumber = "Automation_Spo_1583744481394";
         // let spo1 = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
@@ -651,4 +625,5 @@ module.exports = {
         spo.setPoAmount(PoAmount);
         return spo;
     }
+
 }

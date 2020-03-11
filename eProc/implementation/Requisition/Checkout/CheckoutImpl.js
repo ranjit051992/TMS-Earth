@@ -14,6 +14,9 @@ const poListingObject = require("../../PO/PoListing/PoListingObject");
 const reqListingImpl = require("../../Requisition/RequisitionListing/RequisitionListingImpl");
 const iApprovalObject = require("../../Approval/ApprovalObject");
 const coaImpl = require("../../Coa/CoaImpl");
+const approvalImpl = require("../../Approval/ApprovalImpl");
+const buyerDeskImpl = require("../../BuyersDesk/BuyersDeskImpl");
+const poListingImpl = require("../../PO/PoListing/PoListingImpl");
 
 module.exports = {
 
@@ -1129,6 +1132,80 @@ module.exports = {
         await commonComponent.waitForLoadingSymbolNotDisplayed();
         await I.waitForVisible(I.getElement(iCheckout.WORKFLOW_NODE));
         await this.fetchWorkflowNodes();
+    },
+
+    async createReqToPoFlow(reqBO) {
+        reqBO = await this.createRequisitionFlow(reqBO);
+
+        let reqName = reqBO.reqName.toString();
+        await reqListingImpl.navigateToRequisitionListing();
+        let reqNumber = await reqListingImpl.getRequisitionNumber(reqName);
+        reqBO.setReqNumber(reqNumber);
+
+        let status = await reqListingImpl.getRequisitionStatus();
+        if(status.toString().includes(lmtVar.getLabel("IN_APPROVAL_STATUS"))) {
+            await approvalImpl.navigateToApprovalListing();
+            await approvalImpl.approveDoc(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            status = await (await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"))).toString();
+            if(status !== lmtVar.getLabel("APPROVED_STATUS")) {
+                throw new Error(`Req status after approval is not Approved. Current status is --> ${status}`);
+            }
+        }
+        else {
+            logger.info(`Req status is not ${lmtVar.getLabel("IN_APPROVAL_STATUS")} after submitting. Current status is ${status}. Hence, not executing the approve req action.`);
+        }
+        
+        if(reqBO.convertToPoFlag) {
+            await I.wait(prop.DEFAULT_MEDIUM_WAIT);
+            await I.amOnPage(prop.DDS_BuyersDesk_Url);
+            await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+            await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+            if(!status.toString().includes(lmtVar.getLabel("ORDERING_STATUS"))) {
+                await commonComponent.clickOnActionMenuIcon();
+                await commonComponent.clickOnActionMenuOption(lmtVar.getLabel("CONVERT_TO_PO"));
+                await buyerDeskImpl.clickOnPoDetailsCheckbox();
+                await buyerDeskImpl.clickOnSubmitPoButton();
+                await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+            }
+            else {
+                logger.info(`Req status on Buyer Listing is ${status}. Hence, not executing the Convert to PO action`);
+            }
+    
+            await poListingImpl.navigateToPoListing();
+            await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+            let poNumber = await commonComponent.getDocNumber();
+            reqBO.setPoNumber(poNumber);
+            status = await poListingImpl.getPoStatus();
+    
+            if(reqBO.approvePoFlag) {
+                if(status.toString() === lmtVar.getLabel("IN_APPROVAL_STATUS")) {
+                    await approvalImpl.approvePoFlow(poNumber);
+                }
+                else {
+                    logger.info(`PO status after submission was ${spo.status} and not ${lmtVar.getLabel("IN_APPROVAL_STATUS")}. Hence, not executing the Approve PO action.`);
+                }
+            }
+            else {
+                logger.info(`Approve PO flag is set to ${reqBO.approvePoFlag}. Hence, not executing the Approve PO action.`);
+            }
+        }
+        else {
+            logger.info(`Convert to PO flag is set to ${reqBO.convertToPoFlag}. Hence, not executing the Convert to PO action`);
+        }
+        return reqBO;
+    },
+    async editAndUpdateDraftRequisition(reqNumber, requisitionBO)
+    {
+        await reqListingImpl.navigateToRequisitionListing();
+        await reqListingImpl.searchRequisitionByReqNumber(reqNumber);
+        await reqListingImpl.clickOnEditAction();
+        await commonComponent.waitForLoadingSymbolNotDisplayed();
+        await I.waitForVisible(I.getElement(checkoutObject.REQUISITION_NAME));
+        await this.fillOnBehalfOf(requisitionBO.onBehalfOf);
+        await this.clickOnUpdateDraftButton();
+        await commonComponent.waitForLoadingSymbolNotDisplayed();
     },
 
 
