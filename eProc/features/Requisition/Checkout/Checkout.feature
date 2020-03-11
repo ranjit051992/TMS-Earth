@@ -492,23 +492,23 @@ Feature: Checkout
 #   Then I should be able to view requisition with non stock item
 
 
-@Non-COA @L1 @priyanka
-  Scenario: To verify that user is able to create requisition with conditions of delivery address
-  Given I am logged in eProc
+# @Non-COA @L1 @priyanka
+#   Scenario: To verify that user is able to create requisition with conditions of delivery address
+#   Given I am logged in eProc
 
-  When I add a catalog item with qty 2 to cart
-  And I checkout
-  And I enter Requisition Name
-  And I add Purchase Type
-  And I add Settlement Via
-  And I add Required By Date
-  And I add Delivery split at line level into 2 splits
-  And I change the address for one split
-  And I add data in Cost Booking Details section at line level 
-  And I submit requisition
+#   When I add a catalog item with qty 2 to cart
+#   And I checkout
+#   And I enter Requisition Name
+#   And I add Purchase Type
+#   And I add Settlement Via
+#   And I add Required By Date
+#   And I add Delivery split at line level into 2 splits
+#   And I change the address for one split
+#   And I add data in Cost Booking Details section at line level 
+#   And I submit requisition
 
-  Then I should be able to view the requisition with the delivery split
-  And I should see that the address is updated
+#   Then I should be able to view the requisition with the delivery split
+#   And I should see that the address is updated
 
 
 
