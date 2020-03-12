@@ -66,7 +66,7 @@ module.exports = {
     
   },
 
-  async fillPurchaseAmount(maxValue,minValue)
+  async fillPurchaseAmount(minValue,maxValue)
   { 
      
      I.waitForClickable(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT),prop.DEFAULT_MEDIUM_WAIT);
@@ -74,7 +74,7 @@ module.exports = {
      await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT),minValue);
     
      await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MAX_INPUT),maxValue);
-     logger.info("Entered the min value " +maxValue);
+     logger.info("Entered the max value " +maxValue);
      await this.clickonApplyButton();
 
   },
