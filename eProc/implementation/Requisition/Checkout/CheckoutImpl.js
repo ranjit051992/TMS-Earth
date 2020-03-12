@@ -634,6 +634,12 @@ module.exports = {
             await this.addAttachments(requisitionBO.attachmentPath.toString());
         }
 
+        if(typeof requisitionBO.linkedPoNumber !== "undefined") {
+            await this.selectPurchaseOrder(requisitionBO.linkedPoNumber);
+            await this.clickOnSelectedPOContinueButton();
+            await this.getSelectedPurchaseOrder();
+        }
+
         return requisitionBO;
     },
 

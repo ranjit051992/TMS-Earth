@@ -413,6 +413,12 @@ module.exports = {
         await I.click(I.getElement(iBuyersDeskObject.SUBMIT_PO_BUTTON));
         logger.info("Clicked on Submit PO button");
     },
+
+    async clickOnConvertToPoConfirmYesButton() {
+        await I.waitForVisible(I.getElement(iBuyersDeskObject.CONVERT_TO_PO_CONFIRM_YES_BUTTON));
+        await I.click(I.getElement(iBuyersDeskObject.CONVERT_TO_PO_CONFIRM_YES_BUTTON));
+        logger.info("Clicked on Convert to PO confirm Yes button");
+    }
 }
 
  

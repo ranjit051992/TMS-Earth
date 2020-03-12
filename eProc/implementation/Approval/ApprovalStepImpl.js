@@ -176,12 +176,18 @@ Then ("I should be able to see the status of all Requisitions as Rejected", asyn
 
 
 When("I approve the requisition", async function(){
-    await reqListingImpl.navigateToRequisitionListing();
-    this.reqBO.reqNumber = await reqListingImpl.getRequisitionNumber(this.reqBO.reqName);
-    logger.info(`Requisition Number is ---> ${this.reqBO.reqNumber}`);
     await ApprovalImpl.navigateToApprovalListing();
-    await ApprovalImpl.approveDoc(this.reqBO.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-    await I.wait(prop.DEFAULT_MEDIUM_WAIT);
-    this.reqStatus = await ApprovalImpl.getReqStatus();
+    if(this.reqBO.status.includes(lmtVar.getLabel("IN_APPROVAL_STATUS"))) {
+        await ApprovalImpl.approveDoc(this.reqBO.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        await I.wait(prop.DEFAULT_MEDIUM_WAIT);
+        let status = await ApprovalImpl.getReqStatus();
+        if(status !== lmtVar.getLabel("APPROVED_STATUS")) {
+            logger.info(`Req status is not ${lmtVar.getLabel("APPROVED_STATUS")} after approval. Current status is ${status}`);
+            throw new Error(`Req status is not ${lmtVar.getLabel("APPROVED_STATUS")} after approval. Current status is ${status}`);
+        }
+    }
+    else {
+        logger.info(`Req status is not ${lmtVar.getLabel("IN_APPROVAL_STATUS")}. Current status is ${this.reqBO.status}. Hence, not executing the approve req option`);
+    }
     
 });

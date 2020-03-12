@@ -31,7 +31,7 @@ module.exports = {
 
         await this.clickOnCostBookingSaveButton();
 
-        await I.waitForInvisible(I.getElement(coaObject.AUTO_COMPLETE_TEXTBOX));
+        // await I.waitForInvisible(I.getElement(coaObject.AUTO_COMPLETE_TEXTBOX));
 
         logger.info("Coa form filled successfully");
     },

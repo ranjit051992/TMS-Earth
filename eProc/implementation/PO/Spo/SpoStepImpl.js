@@ -341,3 +341,9 @@ When("Item should be added {string} at index {int} in edit mode", async function
    let itemName = await spoImpl.getItemNameEditMode(index);
    I.assertEqual(itemName.toString(), itemNameFromDb.toString());
 });
+
+When("I select tax inclusive on create spo page", async function() {
+   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_TAXES_SECTION_SECTION"));
+   await spoImpl.selectTaxInclusive();
+   await spoImpl.clickRemoveTaxesConfirmButton();
+});
