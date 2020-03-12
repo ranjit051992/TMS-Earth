@@ -788,6 +788,25 @@ Feature: Spo
   Then I should be able to send reminder to the approver
 
 
+@COA @L1 @138coa
+  Scenario: COA _ To verify that user is able to add item for the PO in draft state
+
+  Given I am logged in eProc 
+  And I have created a requisition with 1 "ITEM_NAME_FOR_SEARCHING" and not converted it to PO
+
+  When I navigate to Buyer Desk
+  And I search for the created req on buyer listing
+  And I check if req status is in Pending Order status on buyer listing
+  And I click on option icon
+  And I click on Convert to PO option
+  And I click on Purchase Order details checkbox
+  And I click on Save PO as draft button
+  And I search for the converted PO by req number
+  And I edit the drafted PO
+
+  Then Item should be added "ITEM_NAME_FOR_SEARCHING" at index 1 in edit mode
+
+
 # @COA @L1      
 # Scenario: COA _ To verify that user is able to create a SPO with single & multiple line items and with attachments in Zycus eproc
 
@@ -1012,20 +1031,6 @@ Feature: Spo
 #   And I check the total costing amount assigned
 
 #   Then I should not get apportioned amount assigned for total cost booking amount
-
-
-# @COA @L1
-#   Scenario: COA _ To verify that user is able to add item for the PO in draft state
-
-#   Given I am logged in eProc 
-#   And I have submitted a requisition with a catalog item 
-
-#   When I navigate to Buyers desk listing
-#   And I click on Convert to PO button for the requisition created
-#   And I Save PO as draft
-#   And I view the PO
-
-#   Then I should be able to see all the added items and attachments
 
 
 # @COA @L1

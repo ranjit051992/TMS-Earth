@@ -1218,7 +1218,7 @@ module.exports = {
         await reqListingImpl.searchRequisitionByReqNumber(reqNumber);
         await reqListingImpl.clickOnEditAction();
         await commonComponent.waitForLoadingSymbolNotDisplayed();
-        await I.waitForVisible(I.getElement(checkoutObject.REQUISITION_NAME));
+        await I.waitForVisible(I.getElement(iCheckout.REQUISITION_NAME));
         await this.fillOnBehalfOf(requisitionBO.onBehalfOf);
         await this.clickOnUpdateDraftButton();
         await commonComponent.waitForLoadingSymbolNotDisplayed();
