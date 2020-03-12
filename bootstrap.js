@@ -7,7 +7,7 @@ module.exports = {
         bootstrap: async function () {
                 global.testData = await databaseOperations.getTestData();
                 global.uiElements = await databaseOperations.getUiElementXpath();
-                if(prop.runOnGrid) {
+                if(process.env.GRID) {
                         global.users = await databaseOperations.getAndUpdateUser();
                 }
                 else {
