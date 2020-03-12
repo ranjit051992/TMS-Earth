@@ -198,7 +198,7 @@ Feature: Checkout
 
 
 
-@Non-COA @L1 @free
+@Non-COA @L1 @free @Snehal
   Scenario: To verify user is able to create a requisition for a free-text item or service
   Given I am logged in eProc
 
@@ -281,20 +281,22 @@ Feature: Checkout
 
     Then I should be able to view the workflow Approval hierarchy
 
-# @Non-COA @L1
-#     Scenario: To verify that user should be able to buy items on behalf of other individuals. 
-#     Given I am logged in eProc
+@Non-COA @L1 @behalf
+    Scenario: To verify that user should be able to buy items on behalf of other individuals. 
+    Given I am logged in eProc
 
-#     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
-#     And I checkout
-#     And I add a On Behalf of user
-#     And I add Purchase Type    
-#     And I add Settlement Via
-#     And I add Required By Date
-#     And I add data in Cost Booking Details section at line level 
-#     And I submit requisition
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I enter Requisition Name
+    And I add a On Behalf of user
+    And I add Purchase Type    
+    And I add Settlement Via
+    And I add deliver to user
+    And I add Required By Date
+    And I add data in Cost Booking Details section at line level 
+    And I submit requisition
 
-#     Then I should be able to view the workflow with On Behalf user as the requestor and On behalf user workflow should be applied
+    Then I should be able to view the workflow with On Behalf user as the requestor and On behalf user workflow should be applied
 
 @Non-COA @L1 @multipleCostCenter @priyanka
     Scenario: To verify that user is able to create requisition for multiple items with multiple cost center for each item
@@ -561,15 +563,17 @@ Feature: Checkout
 
 
 
-@COA @L1 
+@COA @L1 @coaFree
   Scenario: COA>>To verify user is able to create a requisition for a free-text item or service
   Given I am logged in eProc
 
   When I Navigate to Guided Page
   And I Add guided item service
+  And I select category
   And I add Sourcing status
   And I add qty and price
   And I save guided item details
+  And I select supplier from the Suggested Supplier dropdown
   And I add items to cart
   And I checkout
   And I enter Requisition Name
@@ -600,7 +604,7 @@ Feature: Checkout
 
 
 
-@COA @L1 @snehal
+@COA @L1 @Snehal
  Scenario: COA>>To verify that user is able to add attachments to the requisition.
     Given I am logged in eProc
 
@@ -658,19 +662,22 @@ Feature: Checkout
 
 #     Then I should be able to view the workflow Approval hierarchy
 
-# @COA @L1
-#     Scenario: COA>>To verify that user should be able to buy items on behalf of other individuals. 
-#     Given I am logged in eProc
+@COA @L1 @Snehal @behalfCoa
+    Scenario: COA>>To verify that user should be able to buy items on behalf of other individuals. 
+    Given I am logged in eProc
 
-#     When I add a catalog item to cart
-#     And I checkout
-#     And I add a On Behalf user
-#     And I add Purchase Type
-#     And I add Required By Date
-#     And I add data in Cost Booking Details section at line level 
-#     And I submit requisition
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I enter Requisition Name
+    And I add a On Behalf of user
+    And I add Purchase Type    
+    And I add Settlement Via
+    And I add deliver to user
+    And I add Required By Date
+    And I add data in Cost Booking Details section at line level 
+    And I submit requisition
 
-#     Then I should be able to view the workflow with On Behalf user as the requestor and On behalf user workflow should be applied
+    Then I should be able to view the workflow with On Behalf user as the requestor and On behalf user workflow should be applied
 
 
 @COA @L1 @coaAutoPo
@@ -711,7 +718,7 @@ Feature: Checkout
     And I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated
 
 
-@COA @L1 @snehal
+@COA @L1 @Snehal
     Scenario: COA>>To verify that user is able to change the default Delivery & Bill to address in the requisition.
     Given I am logged in eProc
 
@@ -744,7 +751,7 @@ Feature: Checkout
 
     Then I should be able see the status of requisition on the Listing page
 
-@COA @L1 @snehal @custom
+@COA @L1 @Snehal @custom
     Scenario: COA>>To verify that user is able to create any custom / One time delivery address while Check out and save it for future use
     Given I am logged in eProc
 
@@ -873,7 +880,7 @@ Feature: Checkout
 
 
 
-@COA @L1 @snehal @stockItem
+@COA @L1 @Snehal @stockItem
   Scenario: COA>>To verify that user is able to raise a request with stock items
   Given I am logged in eProc
 
@@ -914,7 +921,7 @@ Feature: Checkout
   And I should be able to Edit and submit the Draft requisition
   And I should be able to delete the requisition
 
-@COA @L1  @snehal
+@COA @L1  @Snehal
 
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer group
   Given I am logged in eProc
@@ -932,7 +939,7 @@ Feature: Checkout
 
   Then I should be able to view requisition with buyer as the buyer group which was assigned
 
-@COA @L1  @snehal
+@COA @L1  @Snehal
 
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer
   Given I am logged in eProc
@@ -966,7 +973,7 @@ Feature: Checkout
 #   Then I should be able to view the requisition with the delivery split
 #   And I should see that the address is updated
 
-@COA @L1 @snehal
+@COA @L1 @Snehal
   Scenario: COA>>To verify that user is able to add approver in requisition workflow if activity if assigned to him/her
   Given I am logged in eProc
 
