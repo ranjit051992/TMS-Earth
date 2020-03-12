@@ -108,8 +108,10 @@ module.exports = {
         let workflowNodes = await checkoutImp.fetchWorkflowNodes();
         let isPresent = false;
         let flag = new Array();
+        
         for (let i = 0; i < workflowNodes.length; i++) {
-            if (workflowNodes[i].includes(lmtVar.getLabel("REQUIRE_APPROVAL_AFTER_REQUESTER"))) {
+            if (workflowNodes[i].includes(lmtVar.getLabel("REQUIRE_APPROVAL_AFTER_REQUESTER"))) 
+            {
                 flag.push(true);
                 break;
             }
@@ -154,6 +156,23 @@ module.exports = {
         logger.info("flag "+flag);
         return isPresent;
 
+
+    },
+
+    async verifyWorkflowRequester(requester) 
+    {
+
+        let workflowNodes = await checkoutImp.fetchWorkflowNodes();
+        let isPresent = false;
+        if (workflowNodes[0].includes(lmtVar.getLabel("REQUIRE_APPROVAL_AFTER_REQUESTER"))) 
+        {
+            if(workflowNodes[0].includes(requester))
+            {
+                isPresent = true;
+            }
+        }
+        
+        return isPresent;
 
     }
 

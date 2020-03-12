@@ -68,6 +68,7 @@ Feature: OnlineStore
 
   When I Navigate to Guided Page
   And I Add guided item service
+  And I select category
   And I add Sourcing status
   And I add qty and price
   And I save guided item details

@@ -145,7 +145,7 @@ When("I save it", async function(){
     await commonComponent.waitForLoadingSymbolNotDisplayed();
     await I.wait(prop.DEFAULT_MEDIUM_WAIT);
 });
-
+4
 When("I save requisition in Draft state", async function(){
    await checkoutImp.saveRequisitionAsDraft();
    await reqListing.isRequisitionListingPageDisplayed() ;
@@ -355,4 +355,11 @@ Given("I have created a requisition and converted it to PO with {int} {string}",
     this.reqBO = await objectCreation.getObjectOfRequisition(noOfItems, itemType);
     this.reqBO = await checkoutImp.createReqToPoFlow(this.reqBO);
     // this.reqBO.poNumber = "blue sanity -/2475";
+});
+
+
+
+When("I add deliver to user", async function(){
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
+    await checkoutImp.fillDeliverTo(this.reqBO.deliverTo);
 });
