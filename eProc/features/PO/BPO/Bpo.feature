@@ -1,18 +1,18 @@
 Feature: Bpo
 
 # @Non-COA @L1 @BPO
-  # Scenario: To verify that user is able to cancel a BPO
+#   Scenario: To verify that user is able to cancel a BPO
 
-  # Given I am logged in eproc
-  # And I am on PO listing page
-  # And I Create Blanket po with 1 "ITEM_NAME_FOR_SEARCHING" item
+#   Given I am logged in eproc
+#   And I am on PO listing page
+#   And I Create Blanket po with 1 "ITEM_NAME_FOR_SEARCHING" item
 
-  # # When I view the BPO created 
+#   # When I view the BPO created 
   
-  # When I click on Cancel PO action within Actions tab
-  # And I click on Cancel PO button on the confirmation Popup
+#   When I click on Cancel PO action within Actions tab
+#   And I click on Cancel PO button on the confirmation Popup
 
-  # Then I should be able to see the BPO in Cancelled status
+#   Then I should be able to see the BPO in Cancelled status
 
 
 # @Non-COA @L1

@@ -1,6 +1,6 @@
 Feature: ReturnNote
 
-@L1 @Non-COA
+@L1 @Non-COA @Pooja @new
     Scenario: To verify that buyer is able to save as draft a return note for a PO
 
     Given I am logged in eproc 
@@ -9,11 +9,12 @@ Feature: ReturnNote
     When I navigate to PO listing
     And I search for the po
     And I view the created PO
-    And I navigate to Receipt tab
-    And I click on Create receipt action
-    And I select the items at item level on receipt creation page
-    And I update the quantity
-    And I click on Create Receipt button
+    # And I navigate to Receipt tab
+    # And I click on Create receipt action
+    # And I select the items at item level on receipt creation page
+    # And I update the quantity
+    # And I click on Create Receipt button
+    And I create a receipt
     And I click on the Create return note option
     And I select the items
     And I enter quantity same as ordered quantity
@@ -23,7 +24,7 @@ Feature: ReturnNote
 
     Then I should be able to see the return note in draft status
 
-@L1 @Non-COA
+@L1 @Non-COA @Pooja
     Scenario: To verify that buyer is able to create a return note for a PO
 
     Given I am logged in eproc 
@@ -32,11 +33,7 @@ Feature: ReturnNote
     When I navigate to PO listing
     And I search for the po
     And I view the created PO
-    And I navigate to Receipt tab
-    And I click on Create receipt action
-    And I select the items at item level on receipt creation page
-    And I update the quantity
-    And I click on Create Receipt button
+    And I create a receipt
     And I click on the Create return note option
     And I select the items
     And I enter quantity same as ordered quantity
@@ -47,7 +44,7 @@ Feature: ReturnNote
     Then I should be able to see the return note created
 
 
-@L1 @Non-COA
+@L1 @Non-COA @Pooja
     Scenario: To verify that buyer is able to delete the return note which is in draft state
 
     Given I am logged in eproc 
@@ -56,11 +53,7 @@ Feature: ReturnNote
     When I navigate to PO listing
     And I search for the po
     And I view the created PO
-    And I navigate to Receipt tab
-    And I click on Create receipt action
-    And I select the items at item level on receipt creation page
-    And I update the quantity
-    And I click on Create Receipt button
+    And I create a receipt
     And I click on the Create return note option
     And I select the items
     And I enter quantity same as ordered quantity
@@ -72,22 +65,16 @@ Feature: ReturnNote
     Then I should be able to delete the return note in draft state
 
 
-@L1 @Non-COA
+@L1 @Non-COA @Pooja
     Scenario: To verify that requester is able to save as draft a return note for a PO
 
     Given I am logged in eProc
-    And I create requisition with 1 "ITEM_NAME_FOR_SEARCHING" item
-    And I save the requisition
-    And I have approved the requisition
-
+    And I create a requisition to PO with 1 "ITEM_NAME_FOR_SEARCHING" item
+  
     When I navigate to PO listing
-    And I search for the created Requisition
-    And I approve the PO
+    And I search for the reqToPO
     And I view the created PO
-    And I navigate to Receipt tab
-    And I click on Create receipt action
-    And I select the items at item level on receipt creation page
-    And I click on Create Receipt button
+    And I create a receipt
     And I click on the Create return note option
     And I select the items
     And I enter quantity same as ordered quantity
@@ -98,22 +85,16 @@ Feature: ReturnNote
     Then I should be able to see the return note in draft status
 
 
-@L1 @Non-COA
+@L1 @Non-COA @Pooja
     Scenario: To verify that requester is able to create a return note for a PO
 
     Given I am logged in eProc
-    And I create requisition with 1 "ITEM_NAME_FOR_SEARCHING" item
-    And I save the requisition
-    And I have approved the requisition
-
+    And I create a requisition to PO with 1 "ITEM_NAME_FOR_SEARCHING" item
+  
     When I navigate to PO listing
-    And I search for the created Requisition
-    And I approve the PO
+    And I search for the reqToPO
     And I view the created PO
-    And I navigate to Receipt tab
-    And I click on Create receipt action
-    And I select the items at item level on receipt creation page
-    And I click on Create Receipt button
+    And I create a receipt
     And I click on the Create return note option
     And I select the items
     And I enter quantity same as ordered quantity
@@ -124,22 +105,16 @@ Feature: ReturnNote
     Then I should be able to see the return note created
 
 
-@L1 @Non-COA
+@L1 @Non-COA @Pooja
     Scenario: To verify that requester is able to delete the return note which is in draft state
 
     Given I am logged in eProc
-    And I create requisition with 1 "ITEM_NAME_FOR_SEARCHING" item
-    And I save the requisition
-    And I have approved the requisition
-
+     And I create a requisition to PO with 1 "ITEM_NAME_FOR_SEARCHING" item
+  
     When I navigate to PO listing
-    And I search for the created Requisition
-    And I approve the PO
+    And I search for the reqToPO
     And I view the created PO
-    And I navigate to Receipt tab
-    And I click on Create receipt action
-    And I select the items at item level on receipt creation page
-    And I click on Create Receipt button
+    And I create a receipt
     And I click on the Create return note option
     And I select the items
     And I enter quantity same as ordered quantity
