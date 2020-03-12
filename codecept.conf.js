@@ -42,7 +42,6 @@ exports.config = {
           // Splits tests into 2 chunks
           chunks: 4
         }
-      
       },
     gherkin: {
            //features: './iRequest/features/**/**.feature',

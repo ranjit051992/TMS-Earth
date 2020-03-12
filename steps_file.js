@@ -47,8 +47,14 @@ module.exports = function () {
         }
       }
       return value;
+    },
+    waitToProcess() {
+      const I = this;
+      // I.waitForText('Request in Progress', 10);
+      I.wait(1);
+      I.waitToHide(".loader", 30);
+      I.waitToHide(".cdk-overlay-container", 30);
     }
-
 
   });
 }
