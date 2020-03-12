@@ -98,6 +98,9 @@ module.exports = {
         await I.waitForVisible(I.getElement(coaObject.QUANTITY_TEXTBOX));
         await I.click(I.getElement(coaObject.QUANTITY_TEXTBOX));
         await I.clearField(I.getElement(coaObject.QUANTITY_TEXTBOX));
+        await I.wait(prop.DEFAULT_WAIT);
+        await I.clearField(I.getElement(coaObject.QUANTITY_TEXTBOX));
+        logger.info(`Cleared quantity field twice`);
         await I.fillField(I.getElement(coaObject.QUANTITY_TEXTBOX), quantity);
         logger.info(`Entered quantity --> ${quantity}`);
     },
