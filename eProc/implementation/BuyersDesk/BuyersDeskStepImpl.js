@@ -270,3 +270,9 @@ When("I check if req status is in Pending Order status on buyer listing", async 
     throw new Error(`Req status is not ${lmtVar.getLabel("PENDING_ORDER_STATUS")}. Current status is ${status}. As this case requires req to be in Pending Order state on buyer listing, hence terminating`);
   }
 });
+
+Then("I should be see the data on the page on the basis on Received on field", async function(){
+  logger.info("Received on Date to be searched is "+requisition.receivedOn);
+  let flag = await buyersDeskImpl.verifyReceivedOn();
+  I.assertEqual(flag, true);
+});
