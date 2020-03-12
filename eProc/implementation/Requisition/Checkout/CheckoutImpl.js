@@ -1147,8 +1147,8 @@ module.exports = {
             await approvalImpl.navigateToApprovalListing();
             await approvalImpl.approveDoc(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
             await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-            status = await (await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"))).toString();
-            if(status !== lmtVar.getLabel("APPROVED_STATUS")) {
+            status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+            if(status.toString() !== lmtVar.getLabel("APPROVED_STATUS")) {
                 throw new Error(`Req status after approval is not Approved. Current status is --> ${status}`);
             }
         }

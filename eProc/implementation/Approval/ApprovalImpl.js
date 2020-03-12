@@ -49,7 +49,8 @@ module.exports = {
         return status;
     },
     async approveDoc(docNumber, searchBy){
-        I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.wait(prop.DEFAULT_HIGH_WAIT);
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         await commonKeywordImpl.searchDocOnListing(docNumber, searchBy);
         await this.clickOnApproveAction();
         await this.fillApprovalComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
@@ -367,7 +368,7 @@ module.exports = {
             logger.info("Spo is approved successfully");
         }
         
-        await I.wait(prop.DEFAULT_MEDIUM_WAIT);
+        await I.wait(prop.DEFAULT_HIGH_WAIT);
         await poListingImpl.navigateToPoListing();
         await commonKeywordImpl.searchDocOnListing(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
         status = await poListingImpl.getPoStatus();

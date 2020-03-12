@@ -623,6 +623,13 @@ module.exports = {
         let PoAmount = await I.grabTextFrom(I.getElement(iSpoObject.TOTAL_ORDER_AMOUNT));
         spo.setPoAmount(PoAmount);
         return spo;
+    },
+
+    async getItemNameEditMode(index) {
+        let itemNameXpath = `(//eproc-line-item-details//span[contains(@class,'text-body-link')])[${index}]`;
+        await I.waitForVisible(itemNameXpath);
+        let itemName = await I.grabTextFrom(itemNameXpath);
+        return itemName;
     }
 
 }

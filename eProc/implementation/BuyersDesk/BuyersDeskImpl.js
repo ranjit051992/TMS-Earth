@@ -319,6 +319,13 @@ module.exports = {
         I.waitForVisible(I.getElement(iBuyersDeskObject.REQUESTER_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
         let requestorName = await I.grabTextFrom(I.getElement(iBuyersDeskObject.REQUESTER_NAME_LISTING));
         return requestorName;
+   },
+
+   async clickOnSavePoAsDraftButton() {
+        let buttonXpath = `//button[contains(@aria-label,'${lmtVar.getLabel("SAVE_PO_AS_DRAFT_BUTTON_TEXT")}')]`;
+        await I.waitForVisible(buttonXpath);
+        await I.click(buttonXpath);
+        logger.info("Clicked on Save PO as Draft button");
    }
 }
 
