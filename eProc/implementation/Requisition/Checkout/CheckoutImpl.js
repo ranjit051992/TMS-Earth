@@ -774,7 +774,7 @@ module.exports = {
     async isRequisitionSubmitted() {
         let flag = false;
 
-        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK), prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         let number = await I.grabNumberOfVisibleElements(I.getElement(poListingObject.PO_NUMBER_LINK));
         if(number>0)
         {
@@ -1218,7 +1218,7 @@ module.exports = {
         await reqListingImpl.searchRequisitionByReqNumber(reqNumber);
         await reqListingImpl.clickOnEditAction();
         await commonComponent.waitForLoadingSymbolNotDisplayed();
-        await I.waitForVisible(I.getElement(checkoutObject.REQUISITION_NAME));
+        await I.waitForVisible(I.getElement(iCheckout.REQUISITION_NAME));
         await this.fillOnBehalfOf(requisitionBO.onBehalfOf);
         await this.clickOnUpdateDraftButton();
         await commonComponent.waitForLoadingSymbolNotDisplayed();

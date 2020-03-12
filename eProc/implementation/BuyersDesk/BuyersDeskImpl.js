@@ -528,7 +528,19 @@ module.exports = {
         I.waitForVisible(I.getElement(iBuyersDeskObject.RECEIVED_ON_LISTING),prop.DEFAULT_MEDIUM_WAIT);
         let receivedOn = await I.grabTextFrom(I.getElement(iBuyersDeskObject.RECEIVED_ON_LISTING));
         return receivedOn;
-   }
+    },
+
+    async clickOnPoDetailsCheckbox() {
+     await I.waitForVisible(I.getElement(iBuyersDeskObject.PO_DETAILS_CHECKBOX));
+     await I.click(I.getElement(iBuyersDeskObject.PO_DETAILS_CHECKBOX));
+     logger.info("Clicked on PO Details checkbox");
+     },
+ 
+     async clickOnSubmitPoButton() {
+     await I.waitForVisible(I.getElement(iBuyersDeskObject.SUBMIT_PO_BUTTON));
+     await I.click(I.getElement(iBuyersDeskObject.SUBMIT_PO_BUTTON));
+     logger.info("Clicked on Submit PO button");
+    }
 }
 
  
