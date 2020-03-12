@@ -80,6 +80,7 @@ When("I save the return note as draft", async function(){
 });
 
 Then("I should be able to see the return note in draft status", async function(){
+    await returnNoteImpl.waitForReturnNoteCreation();
     let status = await receiptImpl.fetchStatus();
     await I.assertEqual(status, lmtVar.getLabel("DRAFT_STATUS"));
 });
@@ -90,6 +91,7 @@ When("I submit the return note", async function(){
 });
 
 Then("I should be able to see the return note created", async function(){
+    await returnNoteImpl.waitForReturnNoteCreation();
     let returnStatus = await receiptImpl.fetchStatus();
     await I.assertEqual(returnStatus, lmtVar.getLabel("RETURNED_STATUS"));
 });   
@@ -102,8 +104,9 @@ When("I delete the return note in draft status", async function(){
 });
 
 Then("I should be able to delete the return note in draft state", async function(){
+    await I.wait(prop.DEFAULT_MEDIUM_WAIT);
     let status = await commonComponent.waitForElementVisible(`//a[contains(text(),'${this.returnNoteNumber}')]`);
-    await I.assertEqual(status, "false");
+    await I.assertEqual(status, false);
 });
     
 

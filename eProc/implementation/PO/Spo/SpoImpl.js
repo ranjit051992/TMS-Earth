@@ -591,21 +591,13 @@ module.exports = {
     },
 
     async createMultiplePOs(noOfPOs, noOfItems, itemType) {
-        // let spo = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
-        // spo.poNumber = "Automation_Spo_1583744481394";
-        // let spo1 = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
-        // spo1.poNumber = "Automation_Spo_1583744464347";
-        // let spo2 = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
-        // spo2.poNumber = "Automation_Spo_1583744322931";
-        // let POArray = new Array(spo, spo1, spo2);
-
-        for(let i=0; i<noOfPOs; i++) 
+        let POArray = new Array();
+        for(let i=0; i<noOfPOs; i++)
         {
         let spo = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
         spo = await this.createSpoFlow(spo);
         await POArray.push(spo);
-        }   
-
+        }
         return POArray;
     },
 

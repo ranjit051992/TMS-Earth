@@ -87,7 +87,6 @@ When("I add {int} free text item {string} to cart", async function(noOfItem, ite
     logger.info("Guided item "+this.guidedItemBO);
     await cartImpl.clearCart();
     await I.wait(prop.DEFAULT_WAIT);
-   // let itemArray = new Array();
     this.guidedItemBO =  await guidedImpl.CreateGuidedItem(this.guidedItemBO);
 
 });

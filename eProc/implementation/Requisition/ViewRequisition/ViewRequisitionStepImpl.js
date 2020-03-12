@@ -26,7 +26,7 @@ Then("I should be able to see submitted requisition with updated details", async
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
    
     let taxValueArray = new Array();
-    taxValueArray = await viewReqImpl.fetchTaxesDetails(this.reqBO.itemName);
+    taxValueArray = await viewReqImpl.fetchTaxesDetails(this.reqBO.items[0].itemName);
     logger.info("Tax Deatils Array--->>"+taxValueArray);
     
     if(taxValueArray.toString().includes(this.reqBO.taxType.toString()) && taxValueArray.includes(this.reqBO.taxName.toString()))
@@ -37,13 +37,14 @@ Then("I should be able to see submitted requisition with updated details", async
     isReqUpdated = (verifyQuantity && verifyTaxes);
     I.assertEqual(isReqUpdated, true);
 });
+
 Then("I should be able see the taxes added on view requisition", async function(){
     let verifyTaxes = false;
     await reqListingImpl.searchAndViewReqByName(this.reqBO.reqName);
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
    
     let taxValueArray = new Array();
-    taxValueArray = await viewReqImpl.fetchTaxesDetails(this.reqBO.itemName);
+    taxValueArray = await viewReqImpl.fetchTaxesDetails(this.reqBO.items[0].itemName);
     logger.info("Tax Deatils Array--->>"+taxValueArray);
     
     if(taxValueArray.toString().includes(this.reqBO.taxType.toString()) && taxValueArray.includes(this.reqBO.taxName.toString()))
@@ -177,4 +178,48 @@ Then("I should be able to see new Deliver address as the Ship to Another Address
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
     let isPresent = await viewReqImpl.checkLineItems(this.guidedItem.itemName);
     I.assertEqual(isPresent,true);
+ });
+
+ Then("I should be able to view the requisition with multiple items", async function(){
+     await reqListingImpl.searchAndViewReqByName(this.reqBO.reqName);
+     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+     let isPresent = await viewReqImpl.checkLineItems(this.addedCartItems);
+     I.assertEqual(isPresent,true);
+
+ });
+
+ Then("I should see split cost center added to each item at header level", async function(){
+     let isHeaderLevelCostCenter = false;
+     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_COST_ALLOCATION_SECTION"));
+     let fetchCostCenter = await viewReqImpl.fetchCostCenter();
+     if(fetchCostCenter.toString() === this.costCenter.toString())
+     {
+        isHeaderLevelCostCenter = true;
+        logger.info("Verified Cost Center at Header Level");
+     }
+     I.assertEqual(isHeaderLevelCostCenter,true);
+ });
+
+ Then("I should be able to see split cost center added to each item at line level", async function(){
+     let isSplitLineLevelCostCenter = false;
+    // isSplitLineLevelCostCenter = await viewReqImpl.verifySplitCostCenterAddedForItems(this.addedCartItems);
+
+    for(let item of this.addedCartItems)
+    {
+        await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+        await I.click("//span[contains(text(),'"+item+"')]//following::a[2]");
+        let costCenter = await viewReqImpl.fetchCostCenter();
+        logger.info("fetchCostCenter "+costCenter)
+        logger.info("this.costCenter "+this.costCenter)
+
+        if(costCenter.toString() === this.costCenter.toString())
+        {
+            isSplitLineLevelCostCenter = true;
+            logger.info("Verified Cost Center for item at line Level");
+        }
+        await viewReqImpl.clickOnBackArrow();
+
+    }
+
+     I.assertEqual(isSplitLineLevelCostCenter, true);
  });
