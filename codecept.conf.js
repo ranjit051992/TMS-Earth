@@ -46,8 +46,8 @@ exports.config = {
   },
   gherkin: {
     //features: './iRequest/features/**/**.feature',
-    features: "./eProc/features/**/**/*.feature",
-    steps: "./eProc/implementation/**/**/*.js"
+    features: "./DD_Homes/features/**/**/*.feature",
+    steps: "./DD_Homes/implementation/**/**/*.js"
   },
 
   name: prop.projectName,
