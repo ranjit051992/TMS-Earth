@@ -2,6 +2,12 @@ const { I } = inject();
 
 module.exports = {
 
+    async enterTextInSearch(link){
+        I.clearField(`//input[@id='input-text-area'][@type='MST_Search']`)
+        I.fillField(`//input[@id='input-text-area'][@type='MST_Search']`, link);
+        I.wait(5)
+    },
+
     async verifyFrequentlyAccessedHomeSearchResults(link) {
         I.click(`//div[contains(@class,'dew-container')]//a[text()='Home']`); // Switch to Home
         I.waitToProcess();
@@ -21,8 +27,8 @@ module.exports = {
     },
 
       async verifySearchResultsInBucket(link,type) {
-        I.fillField(`//input[@id='input-text-area'][@type='MST_Search']`, link);
-        I.seeElement(`//div[div/span[text()[normalize-space()='${link}']]]//span[text()[normalize-space()='${type}']]`);
+      //  I.fillField(`//input[@id='input-text-area'][@type='MST_Search']`, link);
+        I.seeElement(`//div[div/span[text()[normalize-space()='${link}']]]//span[text()[normalize-space()='${type}']]`,10);
       }
 
 }

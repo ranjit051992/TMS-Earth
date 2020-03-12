@@ -34,11 +34,11 @@ Then("I see results satisfying the filter conditions {string} are displayed", as
 });
 
 
-When("I search the supplier group with name {...string}", async function (...suppliers){
+When("I search the supplier group with name {string},{string},{string}", async function (supplier,supplier,supplier){
 	await OneView.searchAndSelectSuppliers(...suppliers)
 });
 
-Then("I see oneview card for {...string} is displayed", async function (...suppliers)  {
+Then("I see oneview card for {string},{string},{string} is displayed", async function (supplier,supplier,supplier)  {
 	await OneView.verifySupplierCards(...suppliers)
 });
 

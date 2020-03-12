@@ -27,6 +27,7 @@ module.exports = {
     "Requisitions": "eproc/#/requisition/requisition",
     "Credit Memos": "einvoice/#/home/credit-memo/list",
     "Customize": "eproc/config/customize/summary",
+    "Master Data": "eproc/master/default/summary"
   },
 
 };
