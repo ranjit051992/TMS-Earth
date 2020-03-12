@@ -7,7 +7,7 @@ class ApprovalPage {
      * @param {*} tabName 
      */
     selectHeaderTab(tabName) {
-        I.waitForVisible('//a[dew-default-tab-head[text()[normalize-space()="' + tabName + '"]] and contains(@class,"paginated-nav-link")]', 120);
+        I.waitForVisible('//a[dew-default-tab-head[text()[normalize-space()="' + tabName + '"]] and contains(@class,"paginated-nav-link")]',20);
         I.click('//a[dew-default-tab-head[text()[normalize-space()="' + tabName + '"]] and contains(@class,"paginated-nav-link")]');
         // I.click("//a[dew-default-tab-head[contains(text(),'" + tabName + "')] and contains(@class,'paginated-nav-link')]")
 
@@ -21,10 +21,10 @@ class ApprovalPage {
     async verifyListingPage(tabName) {
         // I.seeElement("//dew-default-tab-head");
         //I.seeElement('//a[dew-default-tab-head[text()[normalize-space()="'+tabName +'"]] and contains(@class,"active")]');
-        I.waitForElement('//a[dew-default-tab-head[text()[normalize-space()="' + tabName + '"]] and contains(@class,"active")]', 120);
+        I.waitForElement('//a[dew-default-tab-head[text()[normalize-space()="' + tabName + '"]] and contains(@class,"active")]', 20);
         I.seeElement('//a[dew-default-tab-head[text()[normalize-space()="' + tabName + '"]] and contains(@class,"active")]');
         console.log("Navigated to: " + tabName);
-        I.waitForElement('dew-listing', 120);
+        I.waitForElement('dew-listing', 20);
         let num = await I.grabNumberOfVisibleElements('dew-listing');
         console.log(num);
 
@@ -68,7 +68,7 @@ class ApprovalPage {
             //I.seeElement('//a[dew-default-tab-head[contains(text(),"'+tabName+'")] and contains(@class,"active")]');
             I.seeElement('//a[dew-default-tab-head[text()[normalize-space()="' + listingName + '"]] and contains(@class,"active")]');
             console.log("Data is Present");
-            I.waitForElement('dew-listing', 120);
+            I.waitForElement('dew-listing',20);
         }
         else {
             console.log("data is not present")

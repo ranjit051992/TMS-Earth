@@ -42,6 +42,7 @@ class FooterLinkImpl {
    clickHomeCircleLink(link) {
     I.seeElement(`//div[contains(@class,'circle')]/div[contains(text(),'${link}')]`)
     I.click(`//div[contains(@class,'circle')]/div[contains(text(),'${link}')]`);
+    I.waitToProcess();
   }
 
   /**
