@@ -48,8 +48,8 @@ class NotificationCheck {
 
   async downLoadDocumentFromNotification(data) {
 
-    selectNotificationHeader("APPROVAL")
-    selectDataFromNotification(data);
+    this.selectNotificationHeader("APPROVAL")
+    this.selectDataFromNotification(data);
 
     I.seeElement("//dew-view-attachments")
     I.scrollTo("//dew-view-attachments")

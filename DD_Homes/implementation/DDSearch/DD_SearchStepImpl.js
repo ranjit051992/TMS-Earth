@@ -4,25 +4,6 @@ const FooterLinkImpl = require("./../footerLinks/DD_FooterLinksImpl");
 const DewHomeSearchField = require("../../../node_modules/dd-cc-zycus-automation/components/dewHomeSearchField");
 
 
-Given("I navigate to the login page", async function () {
-    await I.amOnPage("https://login-partner.zycus.com/sso");
-});
-
-When("I submit {string} and {string}", async function (username, password) {
-    I.click("#emailAddressGhost");
-    I.fillField("input#emailAddress", username);
-    I.click("[name='pass_temp']");
-    I.fillField("input#password", password);
-    I.click("Login");
-    I.wait(5)
-    I.refreshPage()
-    I.waitForElement("dew-navbar", 30);
-});
-
-Then("I should be logged in", async function (link) {
-   await I.seeElement("dew-navbar");
-});
-
 /**
  * To verify whether on Home Page load, frequently accessed list is displayed and user is able to navigate to the product
  */

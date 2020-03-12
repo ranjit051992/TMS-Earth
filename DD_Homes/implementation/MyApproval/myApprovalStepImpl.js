@@ -10,7 +10,9 @@ Given("I am on home page", async function () {
 
 When("I click on hamburger icon", async function () {
   DewNavBar.clickHamburger();
+  console.log("done")
 });
+
 
 When("I click on {string} module", async function (moduleName) {
   ProductNavigator.navigate(moduleName);

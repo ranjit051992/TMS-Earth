@@ -1,4 +1,4 @@
-@DD-Home
+@DD_Homes
 Feature: DD_OneView
 
 Background: Given I am logged on to the application

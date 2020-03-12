@@ -9,7 +9,7 @@ exports.config = {
     WebDriver: {
       url: prop.url,
       browser: prop.browser,
-      host: '10.70.1.128',
+      host: '192.168.15.227',
       // port: prop.port,
       restart: prop.restart,
       windowSize: prop.windowSize,
@@ -44,7 +44,7 @@ exports.config = {
   multiple: {
     parallel: {
       // Splits tests into 2 chunks
-      chunks: 5
+      chunks: 10
     }
   },
   gherkin: {

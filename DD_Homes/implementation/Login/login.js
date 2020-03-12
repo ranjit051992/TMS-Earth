@@ -35,5 +35,5 @@ Then ("login must be successful", async function() {
 
 
 Then ("login must give validation error", async function() {
-    await I.see("Invalid username or password")
+    await I.see("Invalid email address or password")
 });

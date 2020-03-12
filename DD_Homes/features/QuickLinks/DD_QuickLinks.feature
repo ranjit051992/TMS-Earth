@@ -1,9 +1,9 @@
 @DD_Homes
 Feature: DD_QuickLink
  Background: Given I am logged on to the application
-        Given I navigate to the login page
+        Given I navigate to the login page
         When I submit "GDQA-P2P@zycus.com" and "YoDeHaCoPoBiBaIoAiWiYeQe8&7"
-        Then I should be logged in
+        Then I should be logged in
 
 
     Scenario: To Verify whether user is able to configure Quick Links
