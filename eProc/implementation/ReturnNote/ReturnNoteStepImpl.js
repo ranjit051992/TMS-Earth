@@ -46,6 +46,11 @@ When("I view the created PO", async function(){
     await receiptImpl.viewPO();
 });
 
+When("I create a receipt", async function(){
+    await receiptImpl.receiptCreation();
+});
+
+
 When("I navigate to Receipt tab", async function(){
     await receiptImpl.viewReceiptTab();
 });
@@ -109,5 +114,3 @@ Then("I should be able to delete the return note in draft state", async function
     let status = await commonComponent.waitForElementVisible(`//a[contains(text(),'${this.returnNoteNumber}')]`);
     await I.assertEqual(status, false);
 });
-    
-
