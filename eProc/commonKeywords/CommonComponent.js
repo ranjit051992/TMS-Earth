@@ -370,4 +370,14 @@ module.exports={
         }
         return columnIndex;
     },
+    async selectToday(locator) {
+        I.click(locator);
+        I.click(".currentDate", ".d-picker");
+    },
+    async selectInNextMonth(locator, date) {
+        I.click(locator);
+        I.click("show next month", ".d-picker");
+        I.click(date, ".d-picker");
+    },
+
 };
