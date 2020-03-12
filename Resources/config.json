@@ -119,9 +119,9 @@
     "Home": {
         "url": "https://dewdrops-qcvw.zycus.net/home/#/auth",
         "SETUP": "QCVM",
-        "TENANT": "Eircom_QA",
+        "TENANT": "KATALON_AUTOX",
         "browser": "chrome",
-        "host": "192.168.15.227",
+        "host": "127.0.0.1",
         "restart": "false",
         "port": 4444,
         "windowSize": "maximize",
@@ -138,9 +138,9 @@
         "DBpassword": "ddhome@123",
         "username": "eircom_supp@zycus.com",
         "password": "Eproc@1234",
-        "testdataTable": "TestData_iRequest",
-        "uiElementTable": "iRequest_UI_Elements",
-        "UserTable":"iRequest_credentials"
+        "testdataTable": "TestData_DD_Home",
+        "uiElementTable": "DD_Home_UI_Elements",
+        "UserTable":"DD_Home_UI_Elements"
     }
 
 }
