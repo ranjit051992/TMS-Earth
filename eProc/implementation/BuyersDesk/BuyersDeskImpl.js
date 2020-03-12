@@ -400,7 +400,19 @@ module.exports = {
     await I.waitForVisible(buttonXpath);
     await I.click(buttonXpath);
     logger.info("Clicked on Save PO as Draft button");
-   }
+   },
+
+   async clickOnPoDetailsCheckbox() {
+        await I.waitForVisible(I.getElement(iBuyersDeskObject.PO_DETAILS_CHECKBOX));
+        await I.click(I.getElement(iBuyersDeskObject.PO_DETAILS_CHECKBOX));
+        logger.info("Clicked on PO Details checkbox");
+    },
+
+    async clickOnSubmitPoButton() {
+        await I.waitForVisible(I.getElement(iBuyersDeskObject.SUBMIT_PO_BUTTON));
+        await I.click(I.getElement(iBuyersDeskObject.SUBMIT_PO_BUTTON));
+        logger.info("Clicked on Submit PO button");
+    },
 }
 
  

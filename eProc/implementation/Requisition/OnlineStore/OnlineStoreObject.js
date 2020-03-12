@@ -42,6 +42,7 @@ module.exports = {
     BASKET_NAME  : "OnlineStore/BasketPage/BASKET_NAME",
     BASKET_SORT_ICON  : "OnlineStore/BasketPage/BASKET_SORT_ICON",
     BASKET_SORT_ORDER_LABEL  : "OnlineStore/BasketPage/BASKET_SORT_ORDER_LABEL",
+    BASKET_LOAD_MORE_BUTTON : "OnlineStore/BasketPage/LOAD_MORE_BUTTON",
 
     CREATE_REQUEST_BUTTON : "OnlineStore/CREATE_REQUEST_BUTTON",
 

@@ -62,7 +62,7 @@ Then("I should be able to see Deliver address as the Ship to Another Address on 
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
     let actualAddress = this.anotherAddress.toString();
     let address = await viewReqImpl.getShipToAnotherAddress();
-    let isEqual = await commonComponent.isElementPresent(I.getElement(iViewReq.REQ_SHIP_TO_ANOTHER_ADDRESS_LABEL));
+    let isEqual = await commonComponent.isElementVisible(I.getElement(iViewReq.REQ_SHIP_TO_ANOTHER_ADDRESS_LABEL));
     if(address.toString()===actualAddress.toString() && isEqual) 
     {
         isEqual = true;
@@ -89,8 +89,7 @@ Then("I should be able to see Deliver address as the Ship to Another Address on 
 Then("I should be able to view the requisition with adhoc approver added in the workflow", async function(){
 
     await reqListingImpl.searchAndViewReqByName(this.reqBO.reqName);
-    //await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
-   // await I.scrollPageToBottom();
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
     let workflowNodes = await checkoutImp.fetchWorkflowNodes();
     let isPresent = false;
     for(let node of workflowNodes)
@@ -223,3 +222,25 @@ Then("I should be able to see new Deliver address as the Ship to Another Address
 
      I.assertEqual(isSplitLineLevelCostCenter, true);
  });
+
+ Then("I should be able to view the workflow Approval hierarchy", async function(){
+
+    await reqListingImpl.searchAndViewReqByName(this.reqBO.reqName);
+    
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+
+    let isPresent = await viewReqImpl.verifyWorkflowApprovalHierarchy();
+   
+    I.assertEqual(isPresent,true);
+});
+
+Then("I should be able to view the workflow with On Behalf user as the requestor and On behalf user workflow should be applied", async function(){
+
+    await reqListingImpl.searchAndViewReqByName(this.reqBO.reqName);
+    
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+
+    let isPresent = await viewReqImpl.verifyWorkflowApprovalHierarchy();
+   
+    I.assertEqual(isPresent,true);
+});
