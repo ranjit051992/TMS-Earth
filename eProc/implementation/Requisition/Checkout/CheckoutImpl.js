@@ -1075,14 +1075,27 @@ module.exports = {
    
     async createMultipleReqs(noOfReqs, noOfItems, itemType) {
         let reqArray = new Array();
+        
+        // let reqBO1 = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
+        // reqBO1.reqNumber = "46480000";
+        // reqArray.push(reqBO1);
+
+        // let reqBO2 = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
+        // reqBO2.reqNumber = "46490000";
+        // reqArray.push(reqBO2);
+
+        // let reqBO3 = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
+        // reqBO3.reqNumber = "46530000";
+        // reqArray.push(reqBO3);
+
         for (let i=0; i<noOfReqs; i++)
         {
         let reqBO = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
         reqBO = await this.createRequisitionFlow(reqBO);
-        //reqBO.reqNumber = "41920000";
         reqArray.push(reqBO);
         I.amOnPage(prop.DDS_OnlineStore_Url);
         }
+
         return reqArray;
     },
 
@@ -1090,12 +1103,12 @@ module.exports = {
         I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
         for (let i = 0; i < reqArray.length; i++) 
         {
-        await commonComponent.searchDocOnListing(reqArray[i].reqNumber.toString(), lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        await commonComponent.searchDocOnListing(reqArray[i].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
         // let status = await reqListingImpl.getRequisitionStatus();
         let status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
         status = status.substring(status.indexOf("(")+1, status.indexOf(")"));
         I.assertEqual(status, lmtVar.getLabel("IN_APPROVAL_STATUS"));
-        logger.info(`${status} matches with ${lmtVar.getLabel("IN_APPROVAL_STATUS")}`);
+        logger.info(`Status of Reqs ${status.toString()} matches with expected ${lmtVar.getLabel("IN_APPROVAL_STATUS")} `);
         }
     },
 
@@ -1150,8 +1163,8 @@ module.exports = {
             await approvalImpl.navigateToApprovalListing();
             await approvalImpl.approveDoc(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
             await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-            status = await (await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"))).toString();
-            if(status !== lmtVar.getLabel("APPROVED_STATUS")) {
+            status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+            if(status.toString() !== lmtVar.getLabel("APPROVED_STATUS")) {
                 throw new Error(`Req status after approval is not Approved. Current status is --> ${status}`);
             }
         }

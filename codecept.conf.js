@@ -1,4 +1,4 @@
-const parsing= require("./Framework/PropertiesConfigurator");
+const parsing = require("./Framework/PropertiesConfigurator");
 parsing("eProc");
 const prop = global.confi_prop;
 global.lang = 'en';
@@ -13,7 +13,7 @@ exports.config = {
       port: prop.port,
       restart: prop.restart,
       windowSize: prop.windowSize,
-      waitForTimeout: 30000,
+      waitForTimeout: 60000,
       smartWait: 5000,
       timeouts: {
         "script": 10000,
@@ -23,7 +23,7 @@ exports.config = {
       default_medium_wait: prop.DEFAULT_MEDIUM_WAIT,
       default_high_wait: prop.DEFAULT_HIGH_WAIT,
     },
-   ChaiWrapper:
+    ChaiWrapper:
     {
       require: "codeceptjs-chai"
     },
@@ -37,19 +37,19 @@ exports.config = {
   include: {
     I: prop.stepFilePath,
   },
-   multiple: {
-        sanityCases: {
-          // Splits tests into 2 chunks
-          chunks: 5
-        }
-      
-      },
-    gherkin: {
-           //features: './iRequest/features/**/**.feature',
-            features: "./eProc/features/**/**/*.feature",
-            steps: "./eProc/implementation/**/**/*.js"
-        }, 
- 
+  multiple: {
+    sanityCases: {
+      // Splits tests into 2 chunks
+      chunks: 5
+    }
+
+  },
+  gherkin: {
+    //features: './iRequest/features/**/**.feature',
+    features: "./eProc/features/**/**/*.feature",
+    steps: "./eProc/implementation/**/**/*.js"
+  },
+
   name: prop.projectName,
   plugins: {
     retryFailedStep: {
@@ -64,6 +64,12 @@ exports.config = {
     },
     allure: {
       enabled: true
+    },
+    autoDelay: {
+      enabled: true,
+      delayBefore: 500,
+      delayAfter: 500,
+      methods: ["click", "fillField", "checkOption"]
     }
   }
 };

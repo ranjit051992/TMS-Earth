@@ -393,6 +393,13 @@ module.exports = {
     }
     optionXpath = `(//label[@for='MST_Receivedonlk${xpathIndex}'])[2]`
 
+   },
+
+   async clickOnSavePoAsDraftButton() {
+    let buttonXpath = `//button[contains(@aria-label,'${lmtVar.getLabel("SAVE_PO_AS_DRAFT_BUTTON_TEXT")}')]`;
+    await I.waitForVisible(buttonXpath);
+    await I.click(buttonXpath);
+    logger.info("Clicked on Save PO as Draft button");
    }
 }
 

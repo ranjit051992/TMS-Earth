@@ -10,6 +10,8 @@ const approvalImpl = require("./../Approval/ApprovalImpl")
 const checkoutImpl = require("./../Requisition/Checkout/CheckoutImpl");
 const cartImpl = require("./../Requisition/Cart/CartImpl");
 const onlineStore = require("../Requisition/OnlineStore/OnlineStoreObject");
+const commonKeywordImpl = require("../../commonKeywords/CommonComponent");
+const poListingObject = require("../PO/PoListing/PoListingObject");
 
 When("I navigate to Buyer Desk", async function() {
   await buyersDeskImpl.navigateToBuyerListing();
@@ -242,4 +244,29 @@ Then ("I should see the requisition In Returned for Amendment State on Requisiti
 When("I do not allow requestor to resubmit the requisition", async function(){
   logger.info("Allowing the requestor to resubmit the requition"); 
   await buyersDeskImpl.clickonResubmitReq();
+});
+
+When("I search for the created req on buyer listing", async function(){
+  await commonKeywordImpl.searchDocOnListing(this.reqBO.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+});
+
+When("I click on Convert to PO option", async function(){
+  await commonKeywordImpl.clickOnActionMenuOption(lmtVar.getLabel("CONVERT_TO_PO"));
+  await I.waitForVisible(I.getElement(iBuyersDeskObject.PO_DETAILS_CHECKBOX));
+});
+
+When("I click on Purchase Order details checkbox", async function(){
+  await buyersDeskImpl.clickOnPoDetailsCheckbox();
+});
+
+When("I click on Save PO as draft button", async function(){
+  buyersDeskImpl.clickOnSavePoAsDraftButton();
+  await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+});
+
+When("I check if req status is in Pending Order status on buyer listing", async function(){
+  let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+  if(!status.toString().includes(lmtVar.getLabel("PENDING_ORDER_STATUS"))) {
+    throw new Error(`Req status is not ${lmtVar.getLabel("PENDING_ORDER_STATUS")}. Current status is ${status}. As this case requires req to be in Pending Order state on buyer listing, hence terminating`);
+  }
 });
