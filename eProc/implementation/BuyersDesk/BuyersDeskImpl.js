@@ -393,7 +393,8 @@ module.exports = {
     }
     optionXpath = `(//label[@for='MST_Receivedonlk${xpathIndex}'])[2]`
 
-   }
+   },
+
 }
 
  

@@ -105,12 +105,11 @@ module.exports = {
     },
     async receiptCreation()
     {
-        await receiptImpl.viewPO();
-        await receiptImpl.viewReceiptTab();
-        await receiptImpl.createReceipt();
-        await receiptImpl.clickSelectionCheckbox();
-        await receiptImpl.clickSubmitReceipt()
-        await receiptImpl.clickConfirmation();
+        await this.viewReceiptTab();
+        await this.createReceipt();
+        await this.clickSelectionCheckbox();
+        await this.clickSubmitReceipt()
+        await this.clickConfirmation();
     },
 
     async searchRequisition(reqNo){

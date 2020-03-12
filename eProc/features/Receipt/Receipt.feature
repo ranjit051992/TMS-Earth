@@ -1,6 +1,6 @@
 Feature: Receipt
 
-@L1 @Non-COA
+@L1 @Non-COA @Pooja
     Scenario: To verify that buyer is able to save as draft or create a receipt for the items received
 
     Given I am logged in eProc
@@ -57,13 +57,10 @@ Feature: Receipt
     Scenario: To verify that requester is able to save a receipt as draft for the items received
 
     Given I am logged in eProc
-    And I create requisition with 1 "ITEM_NAME_FOR_SEARCHING" item
-    And I save the requisition
-    And I have approved the requisition
-
+    And I create a requisition to PO with 1 "ITEM_NAME_FOR_SEARCHING" item
+  
     When I navigate to PO listing
-    And I search for the created Requisition
-    And I approve the PO
+    And I search for the reqToPO
     And I view the created PO
     And I navigate to Receipt tab
     And I click on Create receipt action
@@ -76,13 +73,10 @@ Feature: Receipt
     Scenario: To verify that requester is able to create a receipt for the partial items received
 
     Given I am logged in eProc
-    And I create requisition with 1 "ITEM_NAME_FOR_SEARCHING" item
-    And I save the requisition
-    And I have approved the requisition
-
+    And I create a requisition to PO with 1 "ITEM_NAME_FOR_SEARCHING" item
+  
     When I navigate to PO listing
-    And I search for the created Requisition
-    And I approve the PO
+    And I search for the reqToPO
     And I view the created PO
     And I navigate to Receipt tab
     And I click on Create receipt action
@@ -97,13 +91,10 @@ Feature: Receipt
     Scenario: To verify that requester is able to delete the receipt which is in draft state
 
     Given I am logged in eProc
-    And I create requisition with 1 "ITEM_NAME_FOR_SEARCHING" item
-    And I save the requisition
-    And I have approved the requisition
-
+    And I create a requisition to PO with 1 "ITEM_NAME_FOR_SEARCHING" item
+  
     When I navigate to PO listing
-    And I search for the created Requisition
-    And I approve the PO
+    And I search for the reqToPO
     And I view the created PO
     And I navigate to Receipt tab
     And I click on Create receipt action
