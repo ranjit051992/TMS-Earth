@@ -765,7 +765,7 @@ module.exports = {
     async isRequisitionSubmitted() {
         let flag = false;
 
-        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK), prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         let number = await I.grabNumberOfVisibleElements(I.getElement(poListingObject.PO_NUMBER_LINK));
         if(number>0)
         {

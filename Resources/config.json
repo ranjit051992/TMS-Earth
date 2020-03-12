@@ -11,7 +11,7 @@
         "SETUP": "PARTNER",
         "TENANT": "ZCS",
         "browser": "chrome",
-        "host": "192.168.7.57",
+        "host": "192.168.2.45",
         "restart": "false",
         "port": 4444,
         "windowSize": "maximize",
@@ -31,9 +31,9 @@
         "UserTable":"eProc_credentials",
         "LOGIN_WITH_PASSWORD_MANAGER": false,
         "isCoa": false,
-        "runOnGrid": true,
-        "USERNAME": "auto.zcs14@zycus.com",
-        "PASSWORD": "mOaAaAwEsIlOoEwOlI#7"
+        "runOnGrid": false,
+        "USERNAME": "auto.zcs3@zycus.com",
+        "PASSWORD": "eProc@123"
         },
         "iContract": {
             "url": "https://dewdrops-partner.zycus.com/",

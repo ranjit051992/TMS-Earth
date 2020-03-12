@@ -85,7 +85,7 @@ Feature: Checkout
 
     Then I should be able to see the attachment which is added
 
-@Non-COA @L1 @Snehal_Non
+@Non-COA @L1 @Snehal_Non @custom
 
     Scenario: To verify that user is able to create any custom / One time delivery address while Check out and save it for future use
     Given I am logged in eProc
@@ -110,18 +110,6 @@ Feature: Checkout
     And I checkout
     And I select Ship to Another Address in  Shipping Details section at header level
     And I should be able to see the saved address on creating a new requisition
-
-@Non-COA @L1  @po @Snehal_Non
-
-  Scenario: To verify that the 'Select Purchase Order' field
-  Given I am logged in eProc
-  #And I Create Standard po with 1 "ITEM_NAME_FOR_SEARCHING" item
-  #And I navigate to OnlineStore
-  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
-  And I checkout
-  And I link Purchase Order "blue sanity" in the Select Purchase Order field
-
-  Then I should be see that the field name is updated to Select Purchase Order
 
 @Non-COA @L1  @buyer @Snehal_Non
 
@@ -275,29 +263,30 @@ Feature: Checkout
 
 #     Then I should be able to view the requisition with free text item and the catalog items.
 
-# @tag23
-#     Scenario: To verify that user is able to see the approval hierarchy after raising a requisition
-#     Given I am logged in eProc
+@Non-COA @L1 @hierarchy
+    Scenario: To verify that user is able to see the approval hierarchy after raising a requisition
+    Given I am logged in eProc
 
-#     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
-#     And I checkout
-#     And I enter Requisition Name
-#     And I add Purchase Type
-#     And I add Settlement Via
-#     And I add Required By Date
-#     And I add data in Cost Booking Details section at line level 
-#     And I submit requisition
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I enter Requisition Name
+    And I add Purchase Type
+    And I add Settlement Via
+    And I add Required By Date
+    And I add data in Cost Booking Details section at line level 
+    And I submit requisition
 
-#     Then I should be able to view the workflow Approval hierarchy
+    Then I should be able to view the workflow Approval hierarchy
 
 # @Non-COA @L1
 #     Scenario: To verify that user should be able to buy items on behalf of other individuals. 
 #     Given I am logged in eProc
 
-#     When I add a catalog item to cart
+#     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
 #     And I checkout
 #     And I add a On Behalf of user
-#     And I add Purchase Type
+#     And I add Purchase Type    
+#     And I add Settlement Via
 #     And I add Required By Date
 #     And I add data in Cost Booking Details section at line level 
 #     And I submit requisition
@@ -647,13 +636,15 @@ Feature: Checkout
 
 #     Then I should be able to view the requisition with free text item and the catalog items.
 
-# @COA @L1
+# @COA @L1 @hierarchyCoa
 #     Scenario: COA>>To verify that user is able to see the approval hierarchy after raising a requisition
 #     Given I am logged in eProc
 
-#     When I add a catalog item to cart
+#     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
 #     And I checkout
+#     And I enter Requisition Name
 #     And I add Purchase Type
+#     And I add Settlement Via
 #     And I add Required By Date
 #     And I add data in Cost Booking Details section at line level 
 #     And I submit requisition
@@ -710,7 +701,7 @@ Feature: Checkout
 
     Then I should see that PR is directly flipped to PO
 
-# @COA @L1
+# @COA @L1 @setting
 #     Scenario: COA>>To verify a setting called ‘Required by date should be auto calculated as per lead time defined in the catalog’ is present under Customize setting for Requisition
 #     Given I am logged in eProc
 
@@ -855,7 +846,7 @@ Feature: Checkout
 
 #   Then I should be able see the taxes added on view requisition
 
-# @COA @L1
+# @COA @L1 @setting
 #   Scenario: COA>>To verify that buyer is allowed to modify the requisition before sending it for approval in case of Buyer Review
 #   Given I am logged in eProc
 
@@ -891,17 +882,9 @@ Feature: Checkout
 
 #   Then I should not be allowed to edit the requisition
 
-# @COA @L1
-#   Scenario: COA>>To verify that the 'Select Purchase Order' field
-#   Given I am logged in eProc
 
-#   When I add a catalog item to cart
-#   And I checkout
-#   And I link Purchase Order in the Select Purchase Order field
 
-#   Then I should be see that the field name is updated to Select Purchase Order.
-
-@COA @L1 @snehal
+@COA @L1 @snehal @stockItem
   Scenario: COA>>To verify that user is able to raise a request with stock items
   Given I am logged in eProc
 
@@ -1062,7 +1045,7 @@ Feature: Checkout
 
 
 
-# @COA @L1
+# @COA @L1 @setting
 #     Scenario: To verify that if cost booking details are loading in COA form at header level for requisition.
 #     Given I am logged into eproc
 #     And setting for "Enable Flexible Chart Of Accounts (COA) split at header Level" is set to Yes

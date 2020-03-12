@@ -181,6 +181,9 @@ Given("I navigate to Shopping Basket Page",async function()
 {
     await onlineStoreImpl.clickOnBasketsTab();
     await onlineStoreImpl.clickOnBasketViewAllButton();
+    await I.wait(prop.DEFAULT_MEDIUM_WAIT);
+    await onlineStoreImpl.loadAllBasketRecords();
+    await I.wait(prop.DEFAULT_MEDIUM_WAIT);
     this.originalBaskets = await onlineStoreImpl.fetchBasketNames();
 });
 
@@ -188,9 +191,12 @@ Given("I navigate to Shopping Basket Page",async function()
 When("I click on basket name sorting option",async function()
 {
     await onlineStoreImpl.clickOnSortIcon();
+    await onlineStoreImpl.loadAllBasketRecords();
     this.sortOrder = await onlineStoreImpl.getCurrentSortOrder();
     this.sortedBaskets = await onlineStoreImpl.fetchBasketNames();
 });
+
+
 
 Then("I should see all baskets sorted from basket name",async function()
 {
