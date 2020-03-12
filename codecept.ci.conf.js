@@ -48,8 +48,8 @@ exports.config = {
     }
   },
   gherkin: {
-    features: "./DD_Homes/features/**/**/*.feature",
-    steps: "./DD_Homes/implementation/**/**/*.js"
+    features: "./DD_Homes/features/**/*.feature",
+    steps: "./DD_Homes/implementation/**/*.js"
   },
   name: prop.projectName,
   plugins: {
