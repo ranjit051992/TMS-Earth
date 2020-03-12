@@ -23,6 +23,10 @@ Given("I am on PO listing page", async function () {
     this.bpo = await bpoImpl.createBpoFlow(this.bpo);
  });
 
+ When("I add attachment at header level", async function(){
+      await bpoImpl.addAttachment(this.bpo.attachmentPath);
+ });
+
  Then("I should be able to see the BPO in Cancelled status", async function(){
 
  });

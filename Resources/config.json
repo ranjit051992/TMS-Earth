@@ -121,7 +121,7 @@
         "SETUP": "QCVM",
         "TENANT": "Eircom_QA",
         "browser": "chrome",
-        "host": "127.0.0.1",
+        "host": "192.168.15.227",
         "restart": "false",
         "port": 4444,
         "windowSize": "maximize",

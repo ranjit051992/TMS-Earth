@@ -280,3 +280,9 @@ When("I click on Convert to PO option for req created with linked PO", async fun
   }
   await I.waitForVisible(I.getElement(spoObject.poDescriptionTextbox));
 });
+
+Then("I should be see the data on the page on the basis on Received on field", async function(){
+  logger.info("Received on Date to be searched is "+requisition.receivedOn);
+  let flag = await buyersDeskImpl.verifyReceivedOn();
+  I.assertEqual(flag, true);
+});

@@ -78,9 +78,9 @@ Feature: BuyersDesk
     When I create "1" requisition with "1" "ITEM_NAME_FOR_SEARCHING"
     And I Approve "1" Requisitions
     And I navigate to Buyer Desk
-    #And I filter with Received on field by "Create Date"
+    And I filter with Received on field by "Create Date"
 
-    # Then I should be see the data on the page on the basis on Received on field
+    Then I should be see the data on the page on the basis on Received on field
 
  @Non-COA @L1
      Scenario: To verify Assigned Buyer filter on buyer's desk 
@@ -122,7 +122,7 @@ Feature: BuyersDesk
 
     Then I should be see the data on the page on the basis on requisition name field
 
-@Non-COA @L1 @Shaniya
+@Non-COA @L1
     Scenario: To verify requestor filter on Upcoming Requisition
     Given I am logged in eProc
 
@@ -141,14 +141,15 @@ Feature: BuyersDesk
 
 #     Then I should be see the data on the page on the basis on Submitted on field
 
-# @Non-COA @L1
-#     Scenario: To verify Assigned Buyer filter on Upcoming Requisition
-#     Given I am logged in eProc
+@Non-COA @L1
+    Scenario: To verify Assigned Buyer filter on Upcoming Requisition
+    Given I am logged in eProc
 
-#     When I navigate to Upcoming Requisition
-#     And I filter any buyer
+    When I create "1" requisition with "1" "ITEM_NAME_FOR_SEARCHING"
+    And I navigate to Upcoming Requisition
+    And I filter any buyer "BUYER_NAME"
 
-#     Then I should be see the data on the page with the filtered buyer
+    Then I should be see the data on the page with the filtered buyer
 
 # @Non-COA @L1
 #     Scenario: To verify Purchase Amount filter on Upcoming Requisition

@@ -54,6 +54,7 @@ class Requisition
         this.reqAmount;
         this.status;
         this.requestor;
+        this.receivedOn;
         
         //let items = [];
         this.poNumber;
