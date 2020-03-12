@@ -47,7 +47,6 @@ Then("I should be able to view the actions for the draft requisition on Listing 
 
 Then("I should be able to Edit and submit the Draft requisition", async function(){
     let editDraftReq = false;
-
     await checkoutImpl.editAndUpdateDraftRequisition(this.reqNumber, this.reqBO);
     await reqListingImpl.navigateToRequisitionListing();
     await reqListingImpl.searchRequisitionByReqNumber(this.reqNumber);
@@ -101,4 +100,12 @@ When("I copy that requisition", async function(){
 
     await reqListingImpl.copyRequisition(this.reqNumber);
     logger.info(`Requisition ${this.reqNumber} is Copied Successfully`);
+});
+
+When("I navigate to Requisition Listing page", async function(){
+    await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("REQUISITION_LISTING_PAGE"));
+});
+
+When("I close the requisition from actions",async function(){
+    
 });

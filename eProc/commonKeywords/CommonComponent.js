@@ -361,4 +361,26 @@ module.exports={
         }
         return columnIndex;
     },
+
+    /**
+     * This Function navigates to Page from Hamburger menu to specified productNameand pageName
+     * @param {String} productName 
+     * @param {String} pageName 
+     */
+    async navigateToPage(productName , pageName){
+        await I.scrollIntoView(I.getElement(commonKeywordObject.HAMBURGER_MENU));
+        await I.click(I.getElement(commonKeywordObject.HAMBURGER_MENU));
+        await I.seeElement(I.getElement(commonKeywordObject.MENU_PANEL));
+
+        let applicationXpath = "//dew-side-menu//ul/li[@title='"+productName+"']";
+        await this.waitForElementVisible(applicationXpath, prop.DEFAULT_MEDIUM_WAIT);
+        await I.click(applicationXpath);
+        logger.info("Clicked on Application-----> "+productName);
+
+        let pageXpath = "//ul[contains(@class,'sidemenu-column')][2]/li[@title='"+pageName+"']";
+        await this.waitForElementVisible(pageXpath, prop.DEFAULT_MEDIUM_WAIT);
+        await I.click(pageXpath);
+        await this.waitForLoadingSymbolNotDisplayed();
+        logger.info("Navigated to Page-----> "+pageName);
+    }
 };

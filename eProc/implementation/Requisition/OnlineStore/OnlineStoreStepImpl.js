@@ -214,3 +214,12 @@ When("I Navigate to Guided Page",async function()
     
 });
 
+When("I add a catalog item {string} with quantity {int} to cart", async function(itemName, quantity){
+    this.reqBO = await objCreation.getObjectOfRequisition(1, itemName);
+    await cartImpl.clearCart();
+    await I.wait(prop.DEFAULT_WAIT);
+    itemName = I.getData(itemName);
+    await onlineStoreImpl.addItemToCart(itemName, quantity);   
+    this.addedItem = itemName;
+    this.addedQuantity = quantity;
+});
