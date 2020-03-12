@@ -145,7 +145,7 @@ When("I save it", async function(){
     await commonComponent.waitForLoadingSymbolNotDisplayed();
     await I.wait(prop.DEFAULT_MEDIUM_WAIT);
 });
-4
+
 When("I save requisition in Draft state", async function(){
    await checkoutImp.saveRequisitionAsDraft();
    await reqListing.isRequisitionListingPageDisplayed() ;
