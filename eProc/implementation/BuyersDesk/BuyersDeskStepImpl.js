@@ -12,6 +12,7 @@ const cartImpl = require("./../Requisition/Cart/CartImpl");
 const onlineStore = require("../Requisition/OnlineStore/OnlineStoreObject");
 const commonKeywordImpl = require("../../commonKeywords/CommonComponent");
 const poListingObject = require("../PO/PoListing/PoListingObject");
+const spoObject = require("../PO/Spo/SpoObject");
 
 When("I navigate to Buyer Desk", async function() {
   await buyersDeskImpl.navigateToBuyerListing();
@@ -269,6 +270,15 @@ When("I check if req status is in Pending Order status on buyer listing", async 
   if(!status.toString().includes(lmtVar.getLabel("PENDING_ORDER_STATUS"))) {
     throw new Error(`Req status is not ${lmtVar.getLabel("PENDING_ORDER_STATUS")}. Current status is ${status}. As this case requires req to be in Pending Order state on buyer listing, hence terminating`);
   }
+});
+
+When("I click on Convert to PO option for req created with linked PO", async function(){
+  await commonKeywordImpl.clickOnActionMenuOption(lmtVar.getLabel("CONVERT_TO_PO"));
+  let flag = await commonKeywordImpl.waitForElementVisible(I.getElement(iBuyersDeskObject.CONVERT_TO_PO_CONFIRM_YES_BUTTON), prop.DEFAULT_WAIT);
+  if(flag) {
+    await buyersDeskImpl.clickOnConvertToPoConfirmYesButton();
+  }
+  await I.waitForVisible(I.getElement(spoObject.poDescriptionTextbox));
 });
 
 Then("I should be see the data on the page on the basis on Received on field", async function(){

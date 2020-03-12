@@ -60,6 +60,7 @@ class Requisition
         this.poNumber;
         this.convertToPoFlag;
         this.approvePoFlag;
+        this.linkedPoNumber;
     }
 
     setReqName(reqName)
@@ -272,6 +273,10 @@ class Requisition
 
     setConvertToPoFlag(convertToPoFlag) {
         this.convertToPoFlag = convertToPoFlag;
+    }
+
+    setLinkedPoNumber(linkedPoNumber) {
+        this.linkedPoNumber = linkedPoNumber;
     }
 }
 

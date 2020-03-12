@@ -425,6 +425,11 @@ module.exports = {
         logger.info("Clicked on Submit PO button");
     },
 
+    async clickOnConvertToPoConfirmYesButton() {
+        await I.waitForVisible(I.getElement(iBuyersDeskObject.CONVERT_TO_PO_CONFIRM_YES_BUTTON));
+        await I.click(I.getElement(iBuyersDeskObject.CONVERT_TO_PO_CONFIRM_YES_BUTTON));
+        logger.info("Clicked on Convert to PO confirm Yes button");
+    },
     async selectDateWithin(option){
         let xpath =`//dew-popover-body//button[contains(text(),'${option}')]`
         await I.waitForVisible(xpath,prop.DEFAULT_MEDIUM_WAIT);
