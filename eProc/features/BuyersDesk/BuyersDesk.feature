@@ -100,7 +100,7 @@ Feature: BuyersDesk
     When I navigate to Buyer Desk
     And I filter with Purchase Amount "10" and "100"
 
-    Then I should be see the data on the page with the filtered amount "10" and "100"
+    Then I should be see the data on the page with the filtered amount 10 and 100
 
 @Non-COA @L1
     Scenario: To verify filters on Upcoming Requisition status filter
