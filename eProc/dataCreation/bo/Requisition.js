@@ -275,4 +275,4 @@ class Requisition
     }
 }
 
-module.exports = new Requisition();
+module.exports = Requisition;
