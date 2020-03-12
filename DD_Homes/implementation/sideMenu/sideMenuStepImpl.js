@@ -2,10 +2,6 @@ const ProductNavigator = require("../../../node_modules/dd-cc-zycus-automation/c
 const { I } = inject();
 const DewNavBar = require("../../../node_modules/dd-cc-zycus-automation/components/dewNavBar");
 
-Given("I am logged in as: {string} {string}", async function (userName, password) {
-    I.login(userName, password)
-});
-
 When("I click on Hamburgermenu", async function () {
     DewNavBar.clickHamburger();
 });

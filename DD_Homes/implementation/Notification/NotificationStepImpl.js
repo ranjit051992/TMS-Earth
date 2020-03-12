@@ -1,9 +1,6 @@
 const NotificationCheckcation  = require("./NotificationImpl");
 const { I } = inject();
 
-Given("I am logged in as: {string} {string}", async function (userName, password) {
-    I.login(userName, password)
-});
 
 Given("I am on home page", async function () {
     await I.seeElement(`//span[contains(@class,'welcome-message')]`)

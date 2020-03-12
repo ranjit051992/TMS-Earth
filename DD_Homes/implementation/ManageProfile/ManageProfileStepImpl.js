@@ -1,34 +1,6 @@
 const { I } = inject();
 const ManageProfile = require("./ManageProfileImpl");
 
-Given("I login to the application with user {string} and password {string}", async function (username,password) {
-	await I.amOnPage("https://login-partner.zycus.com/sso");	
-	I.click("#emailAddressGhost");
-    I.fillField("input#emailAddress", username);
-    I.click("[name='pass_temp']");
-    I.fillField("input#password", password);
-    I.click("Login");
-    I.wait(5)
-    I.refreshPage()
-	I.waitForElement("dew-navbar", 30);
-	await I.seeElement("dew-navbar");
-});
-
-// When("I submit username and password", async function () {
-//     I.click("#emailAddressGhost");
-//     I.fillField("input#emailAddress", username);
-//     I.click("[name='pass_temp']");
-//     I.fillField("input#password", password);
-//     I.click("Login");
-//     I.wait(5)
-//     I.refreshPage()
-//     I.waitForElement("dew-navbar", 30);
-// });
-
-// Then("I should be logged in", async function (link) {
-//    await I.seeElement("dew-navbar");
-// });
-
 Given("I am on home page", async function(){
 	await I.seeElement(`//span[contains(@class,'welcome-message')]`)
 });

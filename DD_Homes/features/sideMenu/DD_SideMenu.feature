@@ -3,10 +3,10 @@ Feature: DD_SideMenu
 
 
 
-Background: To Login into Application
-Given I navigate to the login page
-When I submit username and password
-Then I should be logged in
+Background: Given I am logged on to the application
+        Given I navigate to the login page
+        When I submit "GDQA-P2P@zycus.com" and "YoDeHaCoPoBiBaIoAiWiYeQe8&7"
+        Then I should be logged in
 
 Scenario: To Verify whether Home, My Desk and My Approval menu are displayed for the user
    

@@ -1,10 +1,10 @@
 @DD_Homes
 Feature: DD_FooterLinks
 
-Background: To Login into Application
-Given I navigate to the login page
-When I submit username and password
-Then I should be logged in
+Background: Given I am logged on to the application
+        Given I navigate to the login page
+        When I submit "GDQA-P2P@zycus.com" and "YoDeHaCoPoBiBaIoAiWiYeQe8&7"
+        Then I should be logged in
 
 @tag5
 Scenario Outline: To Verify whether user is able to navigate to products from Footer menu links

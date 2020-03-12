@@ -2,26 +2,27 @@ const { I } = inject();
 
 
 Given ("user navigates to the login page", async function() {
-    await I.amOnPage("https://login-partner.zycus.com/sso");
+     await I.amOnPage("https://dewdrops-partner.zycus.com/home/#/auth");
 });
 
 Given ("user enter valid {string},{string} credentials", async function(username,password) {
-    I.click("#emailAddressGhost");
-    I.fillField("input#emailAddress", username);
-    I.click("[name=\"pass_temp\"]");
-    I.fillField("input#password", password);
-    I.click("Login");
-    I.wait(5);
-    I.refreshPage();
+    I.click("//input[@formcontrolname='emailAddress']");
+    I.fillField("//input[@formcontrolname='emailAddress']", username);
+    I.click("//input[@formcontrolname='password']");
+    I.fillField("//input[@formcontrolname='password']", password);
+    I.click("Login");
+    I.wait(5)
+    I.refreshPage()
 
 });
 
 Given ("user enter invalid {string},{string} credentials", async function(username,password) {
-          I.click("#emailAddressGhost");
-        I.fillField("input#emailAddress", username);
-       I.click("[name=\"pass_temp\"]");
-        I.fillField("input#password", password);
-        I.click("Login");
+        I.click("//input[@formcontrolname='emailAddress']");
+    I.fillField("//input[@formcontrolname='emailAddress']", username);
+    I.click("//input[@formcontrolname='password']");
+    I.fillField("//input[@formcontrolname='password']", password);
+    I.click("Login");
+    I.wait(5)
 
 });
 
