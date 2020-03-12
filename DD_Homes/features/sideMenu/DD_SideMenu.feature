@@ -24,16 +24,18 @@ Scenario: To Verify whether user is able to navigate to product from side Menu
     And I Navigate to "eProc" "Online Store"
     Then I should be redirected to selected "eproc"
 
+@NewTab
 Scenario: To Verify whether admin products are opened in different tab
 
   Given I am on home page
     When I click on Hamburgermenu
-    And I Navigate to "iPerform" "Settings" "Product Configurations"
-    Then I should be redirected to selected "Product Configurations" in new tab
+    And I Navigate to "TMS"
+    Then I should be redirected to selected "userListings.tms" in new tab
 
-
+@NewTab
 Scenario: To Verify whether admin menus are opened in different tab
    Given I am on home page
     And Roles to access "Admin Menu" assigned to Me
-    When I click on "Admin Menu" of "Product"
-    Then I should be redirected to selected "Admin Menu" in new tab
+     When I click on Hamburgermenu
+    And I Navigate to "iPerform" "Settings" "Product Configurations"
+    Then I should be redirected to selected "displayListClientSettings" in new tab

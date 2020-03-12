@@ -30,6 +30,10 @@ Then("I should be redirected to selected {string} in new tab", async function (a
 });
 
 
+When("I Navigate to {string}",async function(product){
+    await ProductNavigator.navigate(product);
+});
+
 When("I Navigate to {string} {string}",async function(product,module){
     await ProductNavigator.navigate(product,module);
 });
