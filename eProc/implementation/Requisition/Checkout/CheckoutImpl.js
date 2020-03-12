@@ -5,7 +5,7 @@ const commonComponent = require("../../../commonKeywords/CommonComponent");
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const prop = global.confi_prop;
 const ObjectCreation = require("../../../dataCreation/ObjectCreation");
-const requisitionBO = require("../../../dataCreation/bo/Requisition");
+// const requisitionBO = require("../../../dataCreation/bo/Requisition");
 const cartImpl = require("../Cart/CartImpl");
 const iCart = require("../Cart/CartObject");
 const onlineStoreImpl = require("../OnlineStore/OnlineStoreImpl");
@@ -1075,19 +1075,6 @@ module.exports = {
    
     async createMultipleReqs(noOfReqs, noOfItems, itemType) {
         let reqArray = new Array();
-        
-        // let reqBO1 = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
-        // reqBO1.reqNumber = "46480000";
-        // reqArray.push(reqBO1);
-
-        // let reqBO2 = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
-        // reqBO2.reqNumber = "46490000";
-        // reqArray.push(reqBO2);
-
-        // let reqBO3 = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
-        // reqBO3.reqNumber = "46530000";
-        // reqArray.push(reqBO3);
-
         for (let i=0; i<noOfReqs; i++)
         {
         let reqBO = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
@@ -1095,7 +1082,11 @@ module.exports = {
         reqArray.push(reqBO);
         I.amOnPage(prop.DDS_OnlineStore_Url);
         }
-
+        I.amOnPage(prop.DDS_Requisition_Listing);
+        for (let i=0; i<reqArray.length; i++)
+        {
+        reqArray[i].reqNumber = await reqListingImpl.getRequisitionNumber(reqArray[i].reqName);
+        }
         return reqArray;
     },
 
@@ -1103,12 +1094,12 @@ module.exports = {
         I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
         for (let i = 0; i < reqArray.length; i++) 
         {
+        logger.info(`##########${reqArray[i].reqNumber}`);
         await commonComponent.searchDocOnListing(reqArray[i].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-        // let status = await reqListingImpl.getRequisitionStatus();
         let status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
         status = status.substring(status.indexOf("(")+1, status.indexOf(")"));
-        I.assertEqual(status, lmtVar.getLabel("IN_APPROVAL_STATUS"));
-        logger.info(`Status of Reqs ${status.toString()} matches with expected ${lmtVar.getLabel("IN_APPROVAL_STATUS")} `);
+        logger.info(`Status of Reqs ${status} should match with ${lmtVar.getLabel("IN_APPROVAL_STATUS")} `);
+        I.assertEqual(status.toString(), lmtVar.getLabel("IN_APPROVAL_STATUS"));
         }
     },
 
