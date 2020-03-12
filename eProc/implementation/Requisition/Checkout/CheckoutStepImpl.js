@@ -282,18 +282,15 @@ When("I add Tax Details at line level", async function(){
 
 Given( "I Create {int} requisitions with {int} {string} item", async function (noOfReqs, noOfItems, itemType) {
     this.reqArray = await checkoutImp.createMultipleReqs(noOfReqs, noOfItems, itemType);
-    logger.info("Required number of POs created")
+    logger.info("Required number of POs created"+ this.reqArray.length);
  });
 
- Given( "I have {int} Requisitions In Approval status", async function() {
+Given( "I have {int} Requisitions In Approval status", async function() {
     I.amOnPage(prop.DDS_Requisition_Listing);
-    I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
     await checkoutImp.checkMultipleReqStatus(this.reqArray);
  });
 
-
-When("I fetch Requisition Name", async function()
-{
+When( "I fetch Requisition Name", async function() {
     this.reqBO.reqName = await I.grabAttributeFrom(I.getElement(iCheckoutObject.REQUISITION_NAME), "value");
     logger.info("Fetched Requisition Name is "+this.reqBO.reqName);
 });
