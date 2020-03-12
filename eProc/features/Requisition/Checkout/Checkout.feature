@@ -1,13 +1,13 @@
 Feature: Checkout
 
 
-@Non-COA @L1 @priyanka
+@Non-COA @L1 @priyanka @costCenter
   Scenario: To verify that user is able to add Cost center information to the requisition.
   Given I am logged in eProc
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
   And I edit Cost Allocation section at header level
-  And I update cost center "COST_CENTER"
+  And I update cost center "COST_CENTER[1]"
   And I navigate to Line level Cost Booking Details
   Then I should be see the updated cost center on line level Cost Booking section
 
@@ -305,23 +305,23 @@ Feature: Checkout
 
 #     Then I should be able to view the workflow with On Behalf user as the requestor and On behalf user workflow should be applied
 
-# @Non-COA @L1 @multipleCostCenter
-#     Scenario: To verify that user is able to create requisition for multiple items with multiple cost center for each item
-#     Given I am logged in eProc
+@Non-COA @L1 @multipleCostCenter @priyanka
+    Scenario: To verify that user is able to create requisition for multiple items with multiple cost center for each item
+    Given I am logged in eProc
 
-#     When I add "2" "ITEM_NAME_FOR_SEARCHING" items to cart
-#     And I checkout
-#     And I enter Requisition Name
-#     And I add Purchase Type
-#     And I add Settlement Via
-#     And I add Required By Date
-#     And I add Costing split at header level by Percentage into 2 splits
-#     And I add data in Cost Booking Details section at line level 
-#     And I submit requisition
+    When I add "2" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I enter Requisition Name
+    And I add Purchase Type
+    And I add Settlement Via
+    And I add Required By Date
+    And I add Costing split at header level by Percentage into 2 splits
+    And I add data in Cost Booking Details section at line level 
+    And I submit requisition
 
-#     Then I should be able to view the requisition with multiple items
-#     And I should see split cost center added to each item at header level 
-#     And I should be able to see split cost center added to each item at line level
+    Then I should be able to view the requisition with multiple items
+    And I should see split cost center added to each item at header level 
+    And I should be able to see split cost center added to each item at line level
 
 
 
@@ -406,7 +406,7 @@ Feature: Checkout
 
 #   Then I should be able see the taxes added on view requisition
 
-@Non-COA @L1 @freeTextItem
+@Non-COA @L1 @freeTextItem @priyanka
   Scenario: To verify that user is able to add taxes at line item level in a requisition for free-text item 
   Given I am logged in eProc
 
@@ -492,13 +492,15 @@ Feature: Checkout
 #   Then I should be able to view requisition with non stock item
 
 
-# @Non-COA @L1
+# @Non-COA @L1 @priyanka
 #   Scenario: To verify that user is able to create requisition with conditions of delivery address
 #   Given I am logged in eProc
 
 #   When I add a catalog item with qty 2 to cart
 #   And I checkout
+#   And I enter Requisition Name
 #   And I add Purchase Type
+#   And I add Settlement Via
 #   And I add Required By Date
 #   And I add Delivery split at line level into 2 splits
 #   And I change the address for one split
@@ -680,24 +682,6 @@ Feature: Checkout
 
 #     Then I should be able to view the workflow with On Behalf user as the requestor and On behalf user workflow should be applied
 
-# @COA @L1
-#     Scenario: COA>>To verify that user is able to create requisition for multiple items with multiple cost center for each item
-#     Given I am logged in eProc
-
-#     When I add 2 catalog items to cart
-#     And I checkout
-#     And I add Purchase Type
-#     And I add Required By Date
-#     And I add Costing split at header level by Percentage into 2 splits (50, 50)
-#     And I add data in Cost Booking Details section at line level 
-#     And I submit requisition
-
-#     Then I should be able to view the requisition with multiple items
-#     And I should see split cost center added to each item at header level 
-#     And I should be able to see split cost center added to each item at line level
-
-
-
 
 @COA @L1 @coaAutoPo
     Scenario: COA>>To verify that PR is directly flipped into PO after regular approval is complete.
@@ -828,20 +812,20 @@ Feature: Checkout
 
 #   Then I should be able see the taxes added on view requisition
 
-# @COA @L1
-#   Scenario: COA>>To verify that user is able to add taxes at line item level in a requisition for free-text item 
-#   Given I am logged in eProc
+@COA @L1 @coafreeTextItem @priyanka
+  Scenario: COA>>To verify that user is able to add taxes at line item level in a requisition for free-text item 
+  Given I am logged in eProc
 
-#   When I add a free text item to cart
-#   And I checkout
-#   And I add Purchase Type
-#   And I add Required By Date
-#   And I add data in Cost Booking Details section at line level 
-#   And I add Tax Details at line level
-#   And I save it
-#   And I submit requisition
+  When I add 1 free text item "SEARCH_GUIDED_ITEM" to cart
+  And I checkout
+  And I add Purchase Type
+  And I add Required By Date
+  And I add data in Cost Booking Details section at line level 
+  And I add Tax Details at line level
+  And I save it
+  And I submit requisition
 
-#   Then I should be able see the taxes added on view requisition
+  Then I should be able see the taxes added on view requisition
 
 # @COA @L1
 #   Scenario: COA>>To verify that user is able to add taxes at line item level in a requisition for catalog,punchout & free-text item
@@ -1082,7 +1066,7 @@ Feature: Checkout
 
 # @COA @L1
 #     Scenario: To verify that if cost booking details are loading in COA form at Line item level in requisition.
-#     Given I am logged into eproc
+#     Given I am logged in eProc
 #     And I am on checkout page with a catalog item 
 
 #     When I add items at line level

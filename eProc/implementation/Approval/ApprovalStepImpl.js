@@ -75,7 +75,7 @@ Given ("I am on PO approval listing page", async function() {
 When ("I Approve 1 PO", async function() {
     await ApprovalImpl.approveDoc(this.POArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
     let status = await ApprovalImpl.checkPOApprovalStatus(this.POArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-    this.POArray[0].setStatus(status); 
+    this.POArray[0].setStatus(status);
 });
 
 When ("I Approve 2 POs", async function() {
@@ -145,18 +145,18 @@ Then ("I see the same status of SPO on PO Approval listing", async function() {
 });
 
 When ("I Approve 1 Requisition", async function() {
-    await ApprovalImpl.approveDoc(reqArray[0].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-    let status = await (lmtVar.getLabel("STATUS_COLUMN")).toString();
-    I.assertEqual(status, lmtVar(getLabel("APPROVED_STATUS")));
+    await ApprovalImpl.approveDoc(this.reqArray[0].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+    I.assertEqual(status.toString(), lmtVar.getLabel("APPROVED_STATUS"));
 });
 
 When ("I Approve 2 Requisitions", async function() {
-    this.reqArray = await ApprovalImpl.approveMultipleReqs(reqArray[i].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    this.reqArray.status = await ApprovalImpl.approveMultipleReqs(this.reqArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
     logger.info("All Requisitions are in Approved status")
 });
 
 Then ("I should be able to see the status of all Requisitions as Approved", async function() {
-    await ApprovalImpl.checkMultipleReqStatus(reqArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    await ApprovalImpl.checkMultipleReqStatus(this.reqArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
 });
 
 When ("I Reject 1 Requisition", async function() {
