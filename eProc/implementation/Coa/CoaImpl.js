@@ -74,14 +74,15 @@ module.exports = {
                 let isEnabled = await commonKeywordsImpl.isEnabledByXpath(autoCompleteTextboxXpath);
                 if(isEnabled) {
                     await I.waitForVisible(autoCompleteTextboxXpath);
+                    await I.waitForClickable(autoCompleteTextboxXpath);
                     await I.click(autoCompleteTextboxXpath);
                     await I.clearField(autoCompleteTextboxXpath);
                     await I.fillField(autoCompleteTextboxXpath, coaObject.COA_DATA[index]);
                     await I.waitForVisible(I.getElement(coaObject.AUTO_COMPLETE_OPTION));
                     await I.click(I.getElement(coaObject.AUTO_COMPLETE_OPTION));
-                    await I.waitForVisible(I.getElement(coaObject.SPINNER_COA));
                     await I.waitForInvisible(I.getElement(coaObject.SPINNER_COA));
-                    await I.waitForVisible(I.getElement(coaObject.AUTO_COMPLETE_TEXTBOX));
+                    await I.waitForVisible(autoCompleteTextboxXpath);
+                    await I.waitForClickable(autoCompleteTextboxXpath);
                     logger.info(`Filled value for field at index ${index}`);
                 }
                 index++;
