@@ -331,8 +331,13 @@ Then("I should be able to see the converted PO in Cancelled status", async funct
    I.assertEqual(true, flag);
 });
 
-Given("I have created a req to PO with PO in In Approval status", async function() {
-   this.reqBO = await objectCreation.getObjectOfRequisition(1, "ITEM_NAME_FOR_SEARCHING");
-   this.reqBO.approvePoFlag = false;
-   this.reqBO = await checkoutImpl.createReqToPoFlow(this.reqBO);
+When("I search for the converted PO by req number", async function() {
+   await commonKeywordImpl.searchDocOnListing(this.reqBO.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+});
+
+When("Item should be added {string} at index {int} in edit mode", async function(itemName1, index) {
+   let itemNameFromDb = I.getData(itemName1);
+   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_VIEW_LINE_ITEMS_SECTION"));
+   let itemName = await spoImpl.getItemNameEditMode(index);
+   I.assertEqual(itemName.toString(), itemNameFromDb.toString());
 });

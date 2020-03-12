@@ -7,6 +7,7 @@ const commonComponent = require("../../../commonKeywords/CommonComponent");
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const checkoutObject = require("../Checkout/CheckoutObject");
 const checkoutImpl =  require("../Checkout/CheckoutImpl");
+const objectCreation = require("../../../dataCreation/ObjectCreation");
 
 Then("I should be able to view the actions for the draft requisition on Listing page", async function(){
     let verifyDraftReqActions = false;
@@ -102,3 +103,17 @@ When("I copy that requisition", async function(){
     await reqListingImpl.copyRequisition(this.reqNumber);
     logger.info(`Requisition ${this.reqNumber} is Copied Successfully`);
 });
+
+Given("I have created a req to PO with PO in In Approval status", async function() {
+    this.reqBO = await objectCreation.getObjectOfRequisition(1, "ITEM_NAME_FOR_SEARCHING");
+    this.reqBO.approvePoFlag = false;
+    this.reqBO = await checkoutImpl.createReqToPoFlow(this.reqBO);
+ });
+
+Given("I have created a requisition with {int} {string} and not converted it to PO", async function(noOfItems,itemType) {
+    this.reqBO = await objectCreation.getObjectOfRequisition(noOfItems, itemType);
+    this.reqBO.convertToPoFlag = false;
+    // this.reqBO.reqName = "Automation_Req63021";
+    // this.reqBO.reqNumber = "48160000";
+    this.reqBO = await checkoutImpl.createReqToPoFlow(this.reqBO);
+ });
