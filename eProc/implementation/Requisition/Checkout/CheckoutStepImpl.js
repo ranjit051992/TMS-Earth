@@ -356,3 +356,10 @@ Given("I have created a requisition and converted it to PO with {int} {string}",
     this.reqBO = await checkoutImp.createReqToPoFlow(this.reqBO);
     // this.reqBO.poNumber = "blue sanity -/2475";
 });
+
+
+
+When("I add deliver to user", async function(){
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
+    await checkoutImp.fillDeliverTo(this.reqBO.deliverTo);
+});

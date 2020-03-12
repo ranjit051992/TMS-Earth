@@ -240,7 +240,7 @@ Then("I should be able to view the workflow with On Behalf user as the requestor
     
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
 
-    let isPresent = await viewReqImpl.verifyWorkflowApprovalHierarchy();
+    let isPresent = await viewReqImpl.verifyWorkflowRequester(this.reqBO.onBehalfOf);
    
     I.assertEqual(isPresent,true);
 });
