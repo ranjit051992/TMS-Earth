@@ -13,8 +13,8 @@ exports.config = {
       port: prop.port,
       restart: prop.restart,
       windowSize: prop.windowSize,
-      waitForTimeout: 60000,
-      smartWait: 5000,
+      waitForTimeout: 30000,
+      smartWait: 2000,
       timeouts: {
         "script": 10000,
         "page load": 10000
@@ -44,9 +44,8 @@ exports.config = {
         }
       },
     gherkin: {
-           //features: './iRequest/features/**/**.feature',
-            features: "./eProc/features/**/**/*.feature",
-            steps: "./eProc/implementation/**/**/*.js"
+      features: "./eProc/features/**/**/*.feature",
+      steps: "./eProc/implementation/**/**/*.js"
         }, 
  
   name: prop.projectName,

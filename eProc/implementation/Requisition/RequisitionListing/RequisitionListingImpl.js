@@ -11,8 +11,9 @@ const checkoutObject = require("../Checkout/CheckoutObject")
 module.exports = {
 
     async navigateToRequisitionListing() {
-        await I.amOnPage(prop.DDS_Requisition_Listing);
-        await commomComponent.waitForLoadingSymbolNotDisplayed();
+        //await I.amOnPage(prop.DDS_Requisition_Listing);
+        //await commomComponent.waitForLoadingSymbolNotDisplayed();
+        await commomComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("REQUISITION_LISTING_PAGE"));
         await I.waitForVisible(I.getElement(reqListingObj.REQUISITION_LISTING_PAGE));
         logger.info("Navigated to Requisition Listing page");
     },
@@ -154,4 +155,20 @@ module.exports = {
             throw new Error("Requisition Listing Page is not loaded.....")
         }
     },
+
+    async closeRequisition(reqNumber)
+    {
+        await this.navigateToRequisitionListing();
+
+        if(this.isRequisitionListingPageDisplayed())
+        {
+            if(reqNumber.toString() !== null)
+            {
+                await this.searchRequisitionByReqNumber(reqNumber);
+                await commomComponent.clickOnActionMenuIcon();
+                await commomComponent.clickOnActionMenuOption(lmtVar.getLabel("CLOSE_ACTION_MENU_OPTION"));
+                
+            }
+        }
+    }
 };
