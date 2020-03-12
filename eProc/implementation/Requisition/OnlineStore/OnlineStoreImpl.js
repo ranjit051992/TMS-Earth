@@ -3,6 +3,7 @@ const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger")
 const iOnlineStore = require("./OnlineStoreObject");
 const prop = global.confi_prop;
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
+const commonComponent = require("../../../commonKeywords/CommonComponent");
 
 module.exports = {
 
@@ -458,7 +459,7 @@ module.exports = {
       * 
      */
     async fetchBasketNames() {
-        await I.waitForVisible(I.getElement(iOnlineStore.BASKET_NAME), prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForVisible(I.getElement(iOnlineStore.BASKET_NAME));
         let basketNames = await I.grabAttributeFrom(I.getElement(iOnlineStore.BASKET_NAME),'title');
         let baskets = new Array();
         for(let name of basketNames)
@@ -470,13 +471,15 @@ module.exports = {
     },
 
     async getCurrentSortOrder() {
-        await I.waitForVisible(I.getElement(iOnlineStore.BASKET_SORT_ORDER_LABEL), prop.DEFAULT_MEDIUM_WAIT);
+        await I.scrollIntoView(I.getElement(iOnlineStore.BASKET_SORT_ORDER_LABEL));
+        await I.waitForVisible(I.getElement(iOnlineStore.BASKET_SORT_ORDER_LABEL));
         let currentOrder = await I.grabTextFrom(I.getElement(iOnlineStore.BASKET_SORT_ORDER_LABEL));
         logger.info("Current basket sort order is : " + currentOrder);
         return currentOrder;
     },
 
     async clickOnSortIcon() {
+        await I.scrollIntoView(I.getElement(iOnlineStore.BASKET_SORT_ICON), prop.DEFAULT_MEDIUM_WAIT);
         await I.waitForVisible(I.getElement(iOnlineStore.BASKET_SORT_ICON), prop.DEFAULT_MEDIUM_WAIT);
         await I.waitForClickable(I.getElement(iOnlineStore.BASKET_SORT_ICON), prop.DEFAULT_MEDIUM_WAIT);
         await I.click(I.getElement(iOnlineStore.BASKET_SORT_ICON));
@@ -531,5 +534,35 @@ module.exports = {
         await I.waitForVisible(I.getElement(iOnlineStore.CREATE_REQUEST_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
         await I.waitForClickable(I.getElement(iOnlineStore.CREATE_REQUEST_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
         await I.click(I.getElement(iOnlineStore.CREATE_REQUEST_BUTTON));
+    },
+
+    async clickOnBasketLoadMoreButton()
+    {
+        await I.waitForVisible(I.getElement(iOnlineStore.BASKET_LOAD_MORE_BUTTON));
+        await I.waitForClickable(I.getElement(iOnlineStore.BASKET_LOAD_MORE_BUTTON));
+        await I.click(I.getElement(iOnlineStore.BASKET_LOAD_MORE_BUTTON));
+    },
+
+    async loadAllBasketRecords()
+    {
+        let isPresent = await commonComponent.waitForElementPresent(I.getElement(iOnlineStore.BASKET_LOAD_MORE_BUTTON),prop.DEFAULT_LOW_WAIT);
+        logger.info(`isPresent --> ${isPresent}`);
+        await I.scrollIntoView(I.getElement(iOnlineStore.BASKET_LOAD_MORE_BUTTON));
+        isPresent = await commonComponent.isElementVisible(I.getElement(iOnlineStore.BASKET_LOAD_MORE_BUTTON));
+        while(isPresent)
+        {
+            logger.info(`inside while`);
+            await I.scrollIntoView(I.getElement(iOnlineStore.BASKET_LOAD_MORE_BUTTON));
+            await this.clickOnBasketLoadMoreButton();
+            isPresent = await commonComponent.waitForElementPresent(I.getElement(iOnlineStore.BASKET_LOAD_MORE_BUTTON),prop.DEFAULT_LOW_WAIT);
+            logger.info(`2nd isPresent --> ${isPresent}`);
+            await I.scrollIntoView(I.getElement(iOnlineStore.BASKET_LOAD_MORE_BUTTON));
+            isPresent = await commonComponent.isElementVisible(I.getElement(iOnlineStore.BASKET_LOAD_MORE_BUTTON));
+            logger.info(`2nd isPresent --> ${isPresent}`);
+            logger.info("Clicked on load");
+            
+        }
+
+        logger.info("All the baskets are loaded.");
     },
 }
