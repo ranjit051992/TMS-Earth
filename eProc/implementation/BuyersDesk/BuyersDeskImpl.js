@@ -413,51 +413,36 @@ module.exports = {
     logger.info("Clicked on Save PO as Draft button");
    },
 
-   async selectDateWithin(option){
-    let xpath =`//dew-popover-body//button[contains(text(),'${option}')]`
-    await I.waitForVisible(xpath,prop.DEFAULT_MEDIUM_WAIT);
-    await I.click(xpath);    
-   },
-
-   async selectDatePeriod()
-   {
-       let startDate = await this.selectStartDate();
-       let endDate = await this.selectEndDate();
-   },
-
-   async selectStartDate() {
-    logger.info("Selecting Start date");
-        let day = new Date().getDate();
-        day = day - 2;
-        let dayXpath = `//div[text()='${day}']/..`;
-        await I.click(I.getElement(iBuyersDeskObject.START_DATE_TEXTBOX));
-        let numberOfElements = await I.grabNumberOfVisibleElements(dayXpath);
-        for (let i = 0; i < numberOfElements; i++) {
-            dayXpath = `(//div[text()='${day}']/..)[${i + 1}]`;
-            try {
-                await I.waitForEnabled(dayXpath, 2);
-                logger.info(`Date enabled for xpath --> ${dayXpath}`);
-                I.click(dayXpath);
-                logger.info(`Clicked on date ${day}`);
-                break;
-            } catch (e) {
-                logger.info(`Date disabled for xpath --> ${dayXpath}`);
-            }
-
-            if (i == numberOfElements) {
-                throw new Error(`Day --> ${day} not present in the datepicker`);
-            }
-        }
-        let startDate = await I.grabAttributeFrom(I.getElement(iBuyersDeskObject.START_DATE_TEXTBOX),"value");
-        logger.info("Start Date selected is : "+startDate);
-        return startDate;
+   async clickOnPoDetailsCheckbox() {
+        await I.waitForVisible(I.getElement(iBuyersDeskObject.PO_DETAILS_CHECKBOX));
+        await I.click(I.getElement(iBuyersDeskObject.PO_DETAILS_CHECKBOX));
+        logger.info("Clicked on PO Details checkbox");
     },
 
-    async selectEndDate() {
-        logger.info("Selecting End date");
+    async clickOnSubmitPoButton() {
+        await I.waitForVisible(I.getElement(iBuyersDeskObject.SUBMIT_PO_BUTTON));
+        await I.click(I.getElement(iBuyersDeskObject.SUBMIT_PO_BUTTON));
+        logger.info("Clicked on Submit PO button");
+    },
+
+    async selectDateWithin(option){
+        let xpath =`//dew-popover-body//button[contains(text(),'${option}')]`
+        await I.waitForVisible(xpath,prop.DEFAULT_MEDIUM_WAIT);
+        await I.click(xpath);    
+       },
+    
+       async selectDatePeriod()
+       {
+           let startDate = await this.selectStartDate();
+           let endDate = await this.selectEndDate();
+       },
+    
+       async selectStartDate() {
+        logger.info("Selecting Start date");
             let day = new Date().getDate();
+            day = day - 2;
             let dayXpath = `//div[text()='${day}']/..`;
-            await I.click(I.getElement(iBuyersDeskObject.END_DATE_TEXTBOX));
+            await I.click(I.getElement(iBuyersDeskObject.START_DATE_TEXTBOX));
             let numberOfElements = await I.grabNumberOfVisibleElements(dayXpath);
             for (let i = 0; i < numberOfElements; i++) {
                 dayXpath = `(//div[text()='${day}']/..)[${i + 1}]`;
@@ -475,72 +460,99 @@ module.exports = {
                     throw new Error(`Day --> ${day} not present in the datepicker`);
                 }
             }
-            let endDate = await I.grabAttributeFrom(I.getElement(iBuyersDeskObject.END_DATE_TEXTBOX),"value");
-            logger.info("End Date selected is : "+endDate);
-            return endDate;
-    },
-
-    async selectCreateDate() {
-        logger.info("Selecting Create date");
-            let day = new Date().getDate();
-            let dayXpath = `//div[text()='${day}']/..`;
-            await I.click(I.getElement(iBuyersDeskObject.CREATE_DATE_TEXTBOX));
-            let numberOfElements = await I.grabNumberOfVisibleElements(dayXpath);
-            for (let i = 0; i < numberOfElements; i++) {
-                dayXpath = `(//div[text()='${day}']/..)[${i + 1}]`;
-                 try {
-                    await I.waitForEnabled(dayXpath, 2);
-                    logger.info(`Date enabled for xpath --> ${dayXpath}`);
-                    I.click(dayXpath);
-                    logger.info(`Clicked on date ${day}`);
-                    break;
-                } catch (e) {
-                    logger.info(`Date disabled for xpath --> ${dayXpath}`);
-                }
+            let startDate = await I.grabAttributeFrom(I.getElement(iBuyersDeskObject.START_DATE_TEXTBOX),"value");
+            logger.info("Start Date selected is : "+startDate);
+            return startDate;
+        },
+    
+        async selectEndDate() {
+            logger.info("Selecting End date");
+                let day = new Date().getDate();
+                let dayXpath = `//div[text()='${day}']/..`;
+                await I.click(I.getElement(iBuyersDeskObject.END_DATE_TEXTBOX));
+                let numberOfElements = await I.grabNumberOfVisibleElements(dayXpath);
+                for (let i = 0; i < numberOfElements; i++) {
+                    dayXpath = `(//div[text()='${day}']/..)[${i + 1}]`;
+                    try {
+                        await I.waitForEnabled(dayXpath, 2);
+                        logger.info(`Date enabled for xpath --> ${dayXpath}`);
+                        I.click(dayXpath);
+                        logger.info(`Clicked on date ${day}`);
+                        break;
+                    } catch (e) {
+                        logger.info(`Date disabled for xpath --> ${dayXpath}`);
+                    }
         
-                if (i == numberOfElements) {
+                    if (i == numberOfElements) {
                         throw new Error(`Day --> ${day} not present in the datepicker`);
+                    }
                 }
-            }
-            let createDate = await I.grabAttributeFrom(I.getElement(iBuyersDeskObject.CREATE_DATE_TEXTBOX),"value");
-            logger.info("Create Date selected is : "+createDate);
-            return createDate;
-    },
-
-    async verifyReceivedOn(){
-        let fetchedReceivedOn = await this.FetchReceivedOn();
-        let flag = true;
-        if(fetchedReceivedOn == requisitionBo.receivedOn)
-         {
-             logger.info(`Fetched Received On Date is -> ${fetchedReceivedOn}`);
-             flag = true;
-         }
-         else{
-             logger.info(`Fetched Received On Date is -> ${fetchedReceivedOn}`);
-             flag = false;
-         }
- 
-         return flag;
-     },
-
-     async FetchReceivedOn()
-   {
-        I.waitForVisible(I.getElement(iBuyersDeskObject.RECEIVED_ON_LISTING),prop.DEFAULT_MEDIUM_WAIT);
-        let receivedOn = await I.grabTextFrom(I.getElement(iBuyersDeskObject.RECEIVED_ON_LISTING));
-        return receivedOn;
-    },
-
-    async clickOnPoDetailsCheckbox() {
-     await I.waitForVisible(I.getElement(iBuyersDeskObject.PO_DETAILS_CHECKBOX));
-     await I.click(I.getElement(iBuyersDeskObject.PO_DETAILS_CHECKBOX));
-     logger.info("Clicked on PO Details checkbox");
-     },
- 
-     async clickOnSubmitPoButton() {
-     await I.waitForVisible(I.getElement(iBuyersDeskObject.SUBMIT_PO_BUTTON));
-     await I.click(I.getElement(iBuyersDeskObject.SUBMIT_PO_BUTTON));
-     logger.info("Clicked on Submit PO button");
-    }
+                let endDate = await I.grabAttributeFrom(I.getElement(iBuyersDeskObject.END_DATE_TEXTBOX),"value");
+                logger.info("End Date selected is : "+endDate);
+                return endDate;
+        },
+    
+        async selectCreateDate() {
+            logger.info("Selecting Create date");
+                let day = new Date().getDate();
+                let dayXpath = `//div[text()='${day}']/..`;
+                await I.click(I.getElement(iBuyersDeskObject.CREATE_DATE_TEXTBOX));
+                let numberOfElements = await I.grabNumberOfVisibleElements(dayXpath);
+                for (let i = 0; i < numberOfElements; i++) {
+                    dayXpath = `(//div[text()='${day}']/..)[${i + 1}]`;
+                     try {
+                        await I.waitForEnabled(dayXpath, 2);
+                        logger.info(`Date enabled for xpath --> ${dayXpath}`);
+                        I.click(dayXpath);
+                        logger.info(`Clicked on date ${day}`);
+                        break;
+                    } catch (e) {
+                        logger.info(`Date disabled for xpath --> ${dayXpath}`);
+                    }
+            
+                    if (i == numberOfElements) {
+                            throw new Error(`Day --> ${day} not present in the datepicker`);
+                    }
+                }
+                let createDate = await I.grabAttributeFrom(I.getElement(iBuyersDeskObject.CREATE_DATE_TEXTBOX),"value");
+                logger.info("Create Date selected is : "+createDate);
+                return createDate;
+        },
+    
+        async verifyReceivedOn(){
+            let fetchedReceivedOn = await this.FetchReceivedOn();
+            let flag = true;
+            if(fetchedReceivedOn == requisitionBo.receivedOn)
+             {
+                 logger.info(`Fetched Received On Date is -> ${fetchedReceivedOn}`);
+                 flag = true;
+             }
+             else{
+                 logger.info(`Fetched Received On Date is -> ${fetchedReceivedOn}`);
+                 flag = false;
+             }
+     
+             return flag;
+         },
+    
+         async FetchReceivedOn()
+       {
+            I.waitForVisible(I.getElement(iBuyersDeskObject.RECEIVED_ON_LISTING),prop.DEFAULT_MEDIUM_WAIT);
+            let receivedOn = await I.grabTextFrom(I.getElement(iBuyersDeskObject.RECEIVED_ON_LISTING));
+            return receivedOn;
+        },
+    
+        async clickOnPoDetailsCheckbox() {
+         await I.waitForVisible(I.getElement(iBuyersDeskObject.PO_DETAILS_CHECKBOX));
+         await I.click(I.getElement(iBuyersDeskObject.PO_DETAILS_CHECKBOX));
+         logger.info("Clicked on PO Details checkbox");
+         },
+     
+         async clickOnSubmitPoButton() {
+         await I.waitForVisible(I.getElement(iBuyersDeskObject.SUBMIT_PO_BUTTON));
+         await I.click(I.getElement(iBuyersDeskObject.SUBMIT_PO_BUTTON));
+         logger.info("Clicked on Submit PO button");
+        }
 }
 
  
