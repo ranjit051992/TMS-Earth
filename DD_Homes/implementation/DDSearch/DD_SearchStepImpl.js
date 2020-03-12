@@ -4,6 +4,25 @@ const FooterLinkImpl = require("./../footerLinks/DD_FooterLinksImpl");
 const DewHomeSearchField = require("../../../node_modules/dd-cc-zycus-automation/components/dewHomeSearchField");
 
 
+Given("I navigate to the login page", async function () {
+    await I.amOnPage("https://login-partner.zycus.com/sso");
+});
+
+When("I submit {string} and {string}", async function (username, password) {
+    I.click("#emailAddressGhost");
+    I.fillField("input#emailAddress", username);
+    I.click("[name='pass_temp']");
+    I.fillField("input#password", password);
+    I.click("Login");
+    I.wait(5)
+    I.refreshPage()
+    I.waitForElement("dew-navbar", 30);
+});
+
+Then("I should be logged in", async function (link) {
+   await I.seeElement("dew-navbar");
+});
+
 /**
  * To verify whether on Home Page load, frequently accessed list is displayed and user is able to navigate to the product
  */
@@ -62,7 +81,7 @@ Then("I should be able to see {string} in Frequently accessed list", async funct
 
 //To verify whether On search respective results to be displayed in different buckets. a. View All b. Create c. Configured d. Supplier in One View
 When("I search {string} of type VIEW ALL in home search box", async function (link) {
-    I.fillField(`//input[@id='input-text-area'][@type='MST_Search']`, link);
+    DD_SearchImpl.enterTextInSearch(link)
 });
 
 
@@ -71,7 +90,7 @@ Then("I should be able to see {string} search results in View All bucket", async
 });
 
 When("I search {string} of type CONFIGURE in home search box", async function (link) {
-    I.fillField(`//input[@id='input-text-area'][@type='MST_Search']`, link);
+    DD_SearchImpl.enterTextInSearch(link)
 });
 
 
@@ -81,7 +100,7 @@ Then("I should be able to see {string} search results in CONFIGURE bucket", asyn
 
 
 When("I search {string} of type SUPPLIERS IN ONE VIEW in home search box", async function (link) {
-    I.fillField(`//input[@id='input-text-area'][@type='MST_Search']`, link);
+    DD_SearchImpl.enterTextInSearch(link)
 });
 
 
@@ -91,7 +110,7 @@ Then("I should be able to see {string} search results in SUPPLIERS IN ONE VIEW b
 
 
 When("I search {string} of type CREATE in home search box", async function (link) {
-    I.fillField(`//input[@id='input-text-area'][@type='MST_Search']`, link);
+    DD_SearchImpl.enterTextInSearch(link)
 });
 
 
