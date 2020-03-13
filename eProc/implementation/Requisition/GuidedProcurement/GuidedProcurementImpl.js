@@ -381,8 +381,12 @@ module.exports = {
 
     async fillGuidedItemDetails(guidedItem) {
         if (guidedItem.category !== "undefined") {
-           await this.fillCategory(guidedItem.category);
-        }
+            await this.fillCategory(guidedItem.category);
+            if(guidedItem.eform!== "undefined")
+            {
+                await this.selectCategoryEform(guidedItem.eform);
+            }
+         }
 
         if (guidedItem.type === lmtVar.getLabel("ITEM_TYPE_GOODS")) {
             await this.clickOnGoodsRadioButton();
@@ -436,6 +440,7 @@ module.exports = {
         }
 
         await this.clickOnDoneButton();
+        await this.clickOnEformDoneButton();
     },
 
     async selectSupplier(guidedItem) {
@@ -518,5 +523,23 @@ module.exports = {
         address = address.toString().replace('\n',' ').trim();
         logger.info("Supplier Address : "+address);
         return address;
+    },
+
+    async selectCategoryEform(eformName)
+    {
+        await I.waitForVisible(I.getElement(iGuided.EFORM_DROPDOWN));
+        // await I.waitForClickable(I.getElement(iGuided.EFORM_DROPDOWN));
+        // await I.click(I.getElement(iGuided.EFORM_DROPDOWN));
+        await commonKeywordImpl.selectValueFromDropDown(I.getElement(iGuided.EFORM_DROPDOWN),eformName);
+    },
+    async clickOnEformDoneButton() 
+    {
+        let isPresent = await commonKeywordImpl.isElementVisible(I.getElement(iGuided.EFORM_DONE));
+        if(isPresent)
+        {
+            await I.waitForVisible(I.getElement(iGuided.EFORM_DONE));
+            await I.waitForClickable(I.getElement(iGuided.EFORM_DONE));
+            await I.click(I.getElement(iGuided.EFORM_DONE));
+        }
     },
 };

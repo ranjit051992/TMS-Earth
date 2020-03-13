@@ -51,4 +51,7 @@ module.exports={
     PO_GUIDED_ITEM_QUANTITY_TEXTBOX: "Spo/ItemSummary/PO_GUIDED_ITEM_QUANTITY_TEXTBOX",
     PO_GUIDED_ITEM_UOM_TEXTBOX: "Spo/ItemSummary/PO_GUIDED_ITEM_UOM_TEXTBOX",
     PO_GUIDED_ITEM_OK_BUTTON: "Spo/ItemSummary/PO_GUIDED_ITEM_OK_BUTTON",
+
+    EFORM_DROPDOWN :"OnlineStore/GuidedProcurement/CreateNewItemModal/EFORM_DROPDOWN",
+    EFORM_DONE :"OnlineStore/GuidedProcurement/CreateNewItemModal/EFORM_DONE_BUTTON",
 };
