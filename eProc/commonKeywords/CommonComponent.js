@@ -151,7 +151,7 @@ module.exports={
         await I.waitForVisible(I.getElement(poListingObject.SEARCH_TEXTBOX));
         await I.click(I.getElement(poListingObject.SEARCH_TEXTBOX));
         await I.clearField(I.getElement(poListingObject.SEARCH_TEXTBOX));
-        await I.fillField(I.getElement(poListingObject.SEARCH_TEXTBOX), docDetail);
+        await I.fillField(I.getElement(poListingObject.SEARCH_TEXTBOX),docDetail);
         logger.info(`Entered search text --> ${docDetail}`);
     },
     async selectDocOption(option) {
@@ -182,6 +182,7 @@ module.exports={
      * @author om.pawar
      */
     async searchDocOnListing(docDetail, searchBy) {
+        logger.info(`Searched for doc --> ${docDetail}`);
         await this.enterDocNumberOrDescription(docDetail);
         await this.selectDocOption(searchBy);
         logger.info(`Searched for doc --> ${docDetail}`);
