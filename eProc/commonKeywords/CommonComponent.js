@@ -181,6 +181,7 @@ module.exports={
         await I.click(optionXpath);
         await I.wait(prop.DEFAULT_WAIT);
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.click(I.getElement(poListingObject.LISTING_HEADER));
         logger.info(`Selected doc option --> ${option}`);
     },
     /**
