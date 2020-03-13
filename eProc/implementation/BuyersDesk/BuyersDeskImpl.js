@@ -72,13 +72,8 @@ module.exports = {
      logger.info("Entered the min value " +I.getData(minValue));
      await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT),I.getData(minValue));
     
-<<<<<<< HEAD
      await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MAX_INPUT),I.getData(maxValue));
      logger.info("Entered the max value " +I.getData(maxValue));
-=======
-     await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MAX_INPUT),maxValue);
-     logger.info("Entered the max value " +maxValue);
->>>>>>> d622deb6b812e2594b724b4297a83695f6648187
      await this.clickonApplyButton();
     
   },

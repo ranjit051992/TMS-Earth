@@ -158,7 +158,6 @@ When ("I filter with {string} status", async function(status){
 });
 
 
-<<<<<<< HEAD
 Then ("I should be see the data on the page with the filtered amount {string} and {string}", async function(minValue,maxValue){
    let fetchPurchaseAmount = await buyersDeskImpl.fetchPurchaseAmount();
    logger.info('Searched Puchase amount: '+fetchPurchaseAmount);
@@ -171,35 +170,12 @@ Then ("I should be see the data on the page with the filtered amount {string} an
    {
     logger.info("Purchase Amount is"+fetchPurchaseAmount+" and is in the given range");
     flag = true;
-=======
-Then ("I should be see the data on the page with the filtered amount {int} and {int}", async function(minValue,maxValue){
-  let asd = await buyersDeskImpl.fetchPurchaseAmount();
-  let fetchPurchaseAmount=parseInt(asd);
-  logger.info('Searched Puchase amount '+fetchPurchaseAmount);
-  let flag = true;
-  if (fetchPurchaseAmount > minValue && fetchPurchaseAmount < maxValue)
-  {
-   logger.info("Purchase Amount is "+fetchPurchaseAmount+" and is in the given range");
-   flag = true;
-  }
-   else
-   {
-     logger.info("Purchase Amount out of range");
-     flag = false;
->>>>>>> d622deb6b812e2594b724b4297a83695f6648187
    }
 
-<<<<<<< HEAD
     I.assertEqual(flag,true);
     
   });
 
-=======
-   I.assertEqual(flag,true);
-
-}); 
-
->>>>>>> d622deb6b812e2594b724b4297a83695f6648187
   Then("I should be see the data on the page with the filtered status", async function(){
     let fetchedStatus = await buyersDeskImpl.fetchStatus();
     logger.info('Searched Status '+fStatus);

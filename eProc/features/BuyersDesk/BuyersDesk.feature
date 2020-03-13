@@ -87,18 +87,14 @@ Feature: BuyersDesk
 
      Then I should be see the data on the page with the filtered buyer
 
-@Non-COA @L1
+@Me
     Scenario: To verify Purchase Amount filter on buyer's desk 
     Given I am logged in eProc
 
     When I navigate to Buyer Desk
     And I filter with Purchase Amount "PURCHASE_AMOUNT_MIN_VALUE" and "PURCHASE_AMOUNT_MAX_VALUE"
 
-<<<<<<< HEAD
     Then I should be see the data on the page with the filtered amount "PURCHASE_AMOUNT_MIN_VALUE" and "PURCHASE_AMOUNT_MAX_VALUE"
-=======
-    Then I should be see the data on the page with the filtered amount 10 and 100
->>>>>>> d622deb6b812e2594b724b4297a83695f6648187
 
 @Non-COA @L1
     Scenario: To verify filters on Upcoming Requisition status filter
