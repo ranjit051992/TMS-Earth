@@ -24,7 +24,7 @@ class ManageProfile {
     I.click("//button[@aria-label='Upload']");
     I.see("Upload Image");
     within(".modal-content", () => {
-      I.fillField("//div[@class='upload-btn-wrapper']/input",process.cwd() +"/Resources/branch300.jpg");
+      I.attachFile("//div[@class='upload-btn-wrapper']/input","./Resources/branch300.jpg");
       I.click("//button[@aria-label='Set Profile Photo']");
     });
   }
