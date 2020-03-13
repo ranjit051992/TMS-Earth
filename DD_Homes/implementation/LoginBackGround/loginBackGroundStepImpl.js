@@ -3,15 +3,14 @@ const { I } = inject()
 
 
 Given("I navigate to the login page", async function () {
-            await I.amOnPage("https://dewdrops-partner.zycus.com/home/#/auth");
-    I.resizeWindow("maximize");
+    await I.amOnPage("https://dewdrops-staging.zycus.com/home/#/auth");
     });
     
 When("I submit {string} and {string}", async function (username,password) {
-          I.click("//input[@formcontrolname='emailAddress']");
-    I.fillField("//input[@formcontrolname='emailAddress']", username);
+    I.click("//input[@formcontrolname='emailAddress']");
+    I.fillField("//input[@formcontrolname='emailAddress']", "support.sanity@zycus.com");
     I.click("//input[@formcontrolname='password']");
-    I.fillField("//input[@formcontrolname='password']", password);
+    I.fillField("//input[@formcontrolname='password']", "NuIuRuDaLaAaPoLiPeViQeWoXa2$3");
     I.click("Login");
     I.wait(5)
     I.refreshPage()
