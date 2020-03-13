@@ -13,7 +13,7 @@
         "TENANT": "ZCS",
         "browser": "chrome",
         "host": "192.168.6.227",
-        "restart": "true",
+        "restart": "false",
         "port": 4444,
         "windowSize": "maximize",
         "stepFilePath": "./steps_file",
@@ -35,7 +35,6 @@
         "runOnGrid": false,
         "USERNAME": "auto.staging1@zycus.com",
         "PASSWORD": "NuEuOiBuCeFe&40"
-
     },
     "iContract": {
         "url": "https://dewdrops-partner.zycus.com/",

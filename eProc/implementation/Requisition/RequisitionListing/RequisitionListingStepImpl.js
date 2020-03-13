@@ -144,10 +144,22 @@ Given("I have created a requisition with {int} {string} and not converted it to 
  });
 
 When("I navigate to Requisition Listing page", async function(){
-    await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("REQUISITION_LISTING_PAGE"));
+    await reqListingImpl.navigateToRequisitionListing();
 });
 
 When("I close the requisition from actions",async function(){
-    
+    await reqListingImpl.closeRequisition(this.reqBO.reqNumber);
 });
 
+Then("I should be able to see the status of the requisition changed to Closed", async function(){
+    let isReqStatusClosed = false;
+    let reqStatus = await reqListingImpl.getRequisitionStatus();
+
+    if(reqStatus.toString() === lmtVar.getLabel("CLOSED_STATUS"))
+    {
+        isReqStatusClosed = true;
+        logger.info("Requisition Status is closed...");
+    }
+
+    I.assertEqual(isReqStatusClosed, true);
+});
