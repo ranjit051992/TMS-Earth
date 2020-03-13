@@ -36,6 +36,7 @@ module.exports = {
         await I.waitForVisible(I.getElement(approvalObject.APPROVE_SPO_POPUP_APPROVE_BUTTON));
         await I.click(I.getElement(approvalObject.APPROVE_SPO_POPUP_APPROVE_BUTTON));
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.wait(prop.DEFAULT_HIGH_WAIT);
         logger.info("Clicked on Approve button");
     },
     async clickOnRejectSpoPopupRejectButton() {
@@ -49,6 +50,7 @@ module.exports = {
         return status;
     },
     async approveDoc(docNumber, searchBy){
+        await I.wait(prop.DEFAULT_HIGH_WAIT);
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         await commonKeywordImpl.searchDocOnListing(docNumber, searchBy);
         await this.clickOnApproveAction();

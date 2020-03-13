@@ -182,6 +182,7 @@ Then ("I should be able to see the status of all Requisitions as Rejected", asyn
 
 
 When("I approve the requisition", async function(){
+    await I.wait(prop.DEFAULT_HIGH_WAIT);
     await ApprovalImpl.navigateToApprovalListing();
     await ApprovalImpl.approveDoc(this.reqBO.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
     await I.wait(prop.DEFAULT_MEDIUM_WAIT);
