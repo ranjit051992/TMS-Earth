@@ -142,9 +142,9 @@ Then("I should be see the data on the page on the basis on requisition name fiel
 
 });
 
-When ("I filter with Purchase Amount {string} and {string}" , async function(maxValue,minValue){
+When ("I filter with Purchase Amount {string} and {string}" , async function(minValue,maxValue){
    await buyersDeskImpl.clickPurchaseAmountFilter();
-   await buyersDeskImpl.fillPurchaseAmount(maxValue,minValue);
+   await buyersDeskImpl.fillPurchaseAmount(minValue,maxValue);
 
 });
 
@@ -158,25 +158,23 @@ When ("I filter with {string} status", async function(status){
 });
 
 
-Then ("I should be see the data on the page with the filtered amount {int} and {int}", async function(minValue,maxValue){
-  let asd = await buyersDeskImpl.fetchPurchaseAmount();
-  let fetchPurchaseAmount=parseInt(asd);
-  logger.info('Searched Puchase amount '+fetchPurchaseAmount);
-  let flag = true;
-  if (fetchPurchaseAmount > minValue && fetchPurchaseAmount < maxValue)
-  {
-   logger.info("Purchase Amount is "+fetchPurchaseAmount+" and is in the given range");
-   flag = true;
-  }
-   else
+Then ("I should be see the data on the page with the filtered amount {string} and {string}", async function(minValue,maxValue){
+   let fetchPurchaseAmount = await buyersDeskImpl.fetchPurchaseAmount();
+   logger.info('Searched Puchase amount: '+fetchPurchaseAmount);
+   let searchedminValue = I.getData(minValue);
+   let searchedmaxValue = I.getData(maxValue);
+   logger.info('Min Value searched:' + searchedminValue);
+   logger.info('Max Value searched:' + searchedmaxValue);
+   let flag = true;
+   if (fetchPurchaseAmount >= parseInt(searchedminValue) && fetchPurchaseAmount <= parseInt(searchedmaxValue))
    {
-     logger.info("Purchase Amount out of range");
-     flag = false;
+    logger.info("Purchase Amount is"+fetchPurchaseAmount+" and is in the given range");
+    flag = true;
    }
 
-   I.assertEqual(flag,true);
-
-}); 
+    I.assertEqual(flag,true);
+    
+  });
 
   Then("I should be see the data on the page with the filtered status", async function(){
     let fetchedStatus = await buyersDeskImpl.fetchStatus();
@@ -212,9 +210,8 @@ When("I edit the requisition", async function(){
   logger.info("Requistion to be edited is "+ requisition.reqNumber);
   await buyersDeskImpl.SearchRequisitionNumber(requisition.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
   await buyersDeskImpl.EditRequisition(requisition.reqNumber);
-
-
 });
+
 
 Then ("I should be able to view the requisition in edit mode" , async function(){
    let flagedit = await buyersDeskImpl.validateReqinEditMode();
@@ -226,7 +223,7 @@ When("I return the requisition on Buyers Desk", async function(){
   logger.info("Requistion to be edited is "+ requisition.reqNumber);
   await buyersDeskImpl.SearchRequisitionNumber(requisition.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
   await buyersDeskImpl.EditRequisition(requisition.reqNumber);
-  await buyersDeskImpl.fillReturnReqComments("Return Requistion Comments Added");
+  await buyersDeskImpl.fillReturnReqComments("AUTO_GENERATED_COMMENT");
   await buyersDeskImpl.clickOnReturnButton();
 });
 
@@ -246,7 +243,16 @@ Then ("I should see the requisition In Returned for Amendment State on Requisiti
 
 When("I do not allow requestor to resubmit the requisition", async function(){
   logger.info("Allowing the requestor to resubmit the requition"); 
-  await buyersDeskImpl.clickonResubmitReq();
+  await buyersDeskImpl.clickonDoNotResubmitReq();
+});
+
+
+Then ("I should  see the requisition In Rejected State on Requisition Listing", async function(){
+  logger.info("Requsition number to be searched is "+requisition.reqNumber);
+  await buyersDeskImpl.SearchRequisitionNumber(requisition.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+  let reqstatus = await buyersDeskImpl.verifyReqStatusAfterReSubmitReq();
+  I.assertEqual(reqstatus, true);
+
 });
 
 When("I search for the created req on buyer listing", async function(){
