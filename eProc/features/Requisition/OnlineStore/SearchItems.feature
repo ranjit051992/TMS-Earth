@@ -10,7 +10,7 @@ Feature: OnlineStore
   Then I should see all the matching items for "ITEM_NAME_FOR_SEARCHING" on Listing
 
 
-@Non-COA @L1  @online @autox
+@Non-COA @L1  @online @autox @fav
 
   Scenario: To verify that user is able to select an item from Catalog and add it as my Favourite.
   Given I am logged in eProc
