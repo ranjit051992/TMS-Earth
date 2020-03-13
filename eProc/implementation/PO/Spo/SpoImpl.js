@@ -501,6 +501,7 @@ module.exports = {
     },
     async createAndReleaseSpoFlow(spo) {
         spo = await this.createSpoFlow(spo);
+        await I.wait(prop.DEFAULT_HIGH_WAIT);
         if(spo.status.toString() === lmtVar.getLabel("IN_APPROVAL_STATUS")) {
             await approvalImpl.approvePoFlow(spo.poNumber);
         }

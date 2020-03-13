@@ -317,23 +317,23 @@ Feature: Checkout
     And I should be able to see split cost center added to each item at line level
 
 
-@Non-COA @L1 @autoPO @Setting @priyanka
-    Scenario: To verify that PR is directly flipped into PO after regular approval is complete.
-    Given I am logged in eProc
+# @Non-COA @L1 @autoPO @Setting @priyanka
+#     Scenario: To verify that PR is directly flipped into PO after regular approval is complete.
+#     Given I am logged in eProc
 
-    # When I enable the 'Automatically generate orders' for PO setting
+#     # When I enable the 'Automatically generate orders' for PO setting
 
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
-    And I checkout
-    And I enter Requisition Name
-    And I add Purchase Type
-    And I add Settlement Via
-    And I add Required By Date
-    And I add data in Cost Booking Details section at line level 
-    And I submit requisition
-    And I approve the requisition
+#     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+#     And I checkout
+#     And I enter Requisition Name
+#     And I add Purchase Type
+#     And I add Settlement Via
+#     And I add Required By Date
+#     And I add data in Cost Booking Details section at line level 
+#     And I submit requisition
+#     And I approve the requisition
 
-    Then I should see that PR is directly flipped to PO
+#     Then I should see that PR is directly flipped to PO
 
 # @Non-COA @L1
 #     Scenario: To verify a setting called ‘Required by date should be auto calculated as per lead time defined in the catalog’ is present under Customize setting for Requisition
@@ -680,22 +680,22 @@ Feature: Checkout
     Then I should be able to view the workflow with On Behalf user as the requestor and On behalf user workflow should be applied
 
 
-@COA @L1 @coaAutoPo
-    Scenario: COA>>To verify that PR is directly flipped into PO after regular approval is complete.
-    Given I am logged in eProc
+# @COA @L1 @coaAutoPo
+#     Scenario: COA>>To verify that PR is directly flipped into PO after regular approval is complete.
+#     Given I am logged in eProc
 
-    # When I enable the 'Automatically generate orders' for PO setting
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
-    And I checkout
-    And I enter Requisition Name
-    And I add Purchase Type
-    And I add Settlement Via
-    And I add Required By Date
-    And I add data in Cost Booking Details section at line level 
-    And I submit requisition
-    And I approve the requisition
+#     # When I enable the 'Automatically generate orders' for PO setting
+#     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+#     And I checkout
+#     And I enter Requisition Name
+#     And I add Purchase Type
+#     And I add Settlement Via
+#     And I add Required By Date
+#     And I add data in Cost Booking Details section at line level 
+#     And I submit requisition
+#     And I approve the requisition
 
-    Then I should see that PR is directly flipped to PO
+#     Then I should see that PR is directly flipped to PO
 
 # @COA @L1 @setting
 #     Scenario: COA>>To verify a setting called ‘Required by date should be auto calculated as per lead time defined in the catalog’ is present under Customize setting for Requisition
