@@ -166,7 +166,7 @@ Then ("I should be see the data on the page with the filtered amount {string} an
    logger.info('Min Value searched:' + searchedminValue);
    logger.info('Max Value searched:' + searchedmaxValue);
    let flag = true;
-   if (fetchPurchaseAmount > parseInt(searchedminValue) && fetchPurchaseAmount < parseInt(searchedmaxValue))
+   if (fetchPurchaseAmount >= parseInt(searchedminValue) && fetchPurchaseAmount <= parseInt(searchedmaxValue))
    {
     logger.info("Purchase Amount is"+fetchPurchaseAmount+" and is in the given range");
     flag = true;
