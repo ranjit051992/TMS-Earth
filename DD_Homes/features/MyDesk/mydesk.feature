@@ -1,4 +1,3 @@
-@DD_Homes
 Feature: My Desk
 Background: Given I am logged on to the application
         Given I navigate to the login page
