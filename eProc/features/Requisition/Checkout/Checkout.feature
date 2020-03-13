@@ -266,7 +266,7 @@ Feature: Checkout
 
 #     Then I should be able to view the requisition with free text item and the catalog items.
 
-@Non-COA @L1 @hierarchy
+@Non-COA @L1 @hierarchy @Snehal
     Scenario: To verify that user is able to see the approval hierarchy after raising a requisition
     Given I am logged in eProc
 
@@ -281,7 +281,7 @@ Feature: Checkout
 
     Then I should be able to view the workflow Approval hierarchy
 
-@Non-COA @L1 @behalf
+@Non-COA @L1 @behalf @Snehal
     Scenario: To verify that user should be able to buy items on behalf of other individuals. 
     Given I am logged in eProc
 
@@ -317,22 +317,23 @@ Feature: Checkout
     And I should be able to see split cost center added to each item at line level
 
 
-@Non-COA @L1 @autoPO @Setting @priyanka
-    Scenario: To verify that PR is directly flipped into PO after regular approval is complete.
-    Given I am logged in eProc
-    # When I enable the 'Automatically generate orders' for PO setting
 
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
-    And I checkout
-    And I enter Requisition Name
-    And I add Purchase Type
-    And I add Settlement Via
-    And I add Required By Date
-    And I add data in Cost Booking Details section at line level 
-    And I submit requisition
-    And I approve the requisition
+# @Non-COA @L1 @autoPO @Setting @priyanka
+#     Scenario: To verify that PR is directly flipped into PO after regular approval is complete.
+#     Given I am logged in eProc
 
-    Then I should see that PR is directly flipped to PO
+#     # When I enable the 'Automatically generate orders' for PO setting
+#     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+#     And I checkout
+#     And I enter Requisition Name
+#     And I add Purchase Type
+#     And I add Settlement Via
+#     And I add Required By Date
+#     And I add data in Cost Booking Details section at line level 
+#     And I submit requisition
+#     And I approve the requisition
+
+#     Then I should see that PR is directly flipped to PO
 
 # @Non-COA @L1
 #     Scenario: To verify a setting called ‘Required by date should be auto calculated as per lead time defined in the catalog’ is present under Customize setting for Requisition
@@ -565,7 +566,7 @@ Feature: Checkout
 
 
 
-@COA @L1 @coaFree
+@COA @L1 @coaFree @Snehal
   Scenario: COA>>To verify user is able to create a requisition for a free-text item or service
   Given I am logged in eProc
 
@@ -682,22 +683,23 @@ Feature: Checkout
     Then I should be able to view the workflow with On Behalf user as the requestor and On behalf user workflow should be applied
 
 
-@COA @L1 @coaAutoPo @priyankaCOA
-    Scenario: COA>>To verify that PR is directly flipped into PO after regular approval is complete.
-    Given I am logged in eProc
 
-    # When I enable the 'Automatically generate orders' for PO setting
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
-    And I checkout
-    And I enter Requisition Name
-    And I add Purchase Type
-    And I add Settlement Via
-    And I add Required By Date
-    And I add data in Cost Booking Details section at line level 
-    And I submit requisition
-    And I approve the requisition
+# @COA @L1 @coaAutoPo
+#     Scenario: COA>>To verify that PR is directly flipped into PO after regular approval is complete.
+#     Given I am logged in eProc
 
-    Then I should see that PR is directly flipped to PO
+#     # When I enable the 'Automatically generate orders' for PO setting
+#     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+#     And I checkout
+#     And I enter Requisition Name
+#     And I add Purchase Type
+#     And I add Settlement Via
+#     And I add Required By Date
+#     And I add data in Cost Booking Details section at line level 
+#     And I submit requisition
+#     And I approve the requisition
+
+#     Then I should see that PR is directly flipped to PO
 
 # @COA @L1 @setting
 #     Scenario: COA>>To verify a setting called ‘Required by date should be auto calculated as per lead time defined in the catalog’ is present under Customize setting for Requisition
@@ -923,7 +925,7 @@ Feature: Checkout
   And I should be able to Edit and submit the Draft requisition
   And I should be able to delete the requisition
 
-@COA @L1  @Snehal
+@COA @L1  @Snehal 
 
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer group
   Given I am logged in eProc
@@ -941,7 +943,7 @@ Feature: Checkout
 
   Then I should be able to view requisition with buyer as the buyer group which was assigned
 
-@COA @L1  @Snehal
+@COA @L1  @Snehal @buyerCoa
 
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer
   Given I am logged in eProc

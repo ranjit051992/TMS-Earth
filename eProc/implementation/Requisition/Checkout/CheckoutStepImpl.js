@@ -217,8 +217,7 @@ Given("I select buyer {string} at line level in Buyer section", async function(b
     await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
     let value = I.getData(buyer);
     await checkoutImp.fillBuyerInTextBox(value);
-    await checkoutImp.getBuyer();
-    this.buyerName = value.substring(0,value.indexOf('@'));
+    this.buyerName = await checkoutImp.getBuyer();
 });
 
 

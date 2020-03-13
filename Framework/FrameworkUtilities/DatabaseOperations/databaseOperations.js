@@ -249,7 +249,7 @@ module.exports = {
         const connectionObj = parser(connectionString);
         
         //logger.info(columnName);
-        const query = `SELECT USERNAME,PASSWORD FROM ${prop.UserTable} WHERE SETUP_NAME='${process.env.SETUP}' AND TENANT_NAME='${process.env.TENANT}' AND flag='true'`;
+        const query = `SELECT USERNAME,PASSWORD,DISPLAY_NAME FROM ${prop.UserTable} WHERE SETUP_NAME='${process.env.SETUP}' AND TENANT_NAME='${process.env.TENANT}' AND flag='true'`;
         console.log("getUser query : "+query);
         logger.info("getUser query : "+query);
 
@@ -284,9 +284,11 @@ module.exports = {
                                     let mapValue;
                                     testDataMap.set("USERNAME", rows[i].USERNAME);
                                     testDataMap.set("PASSWORD", rows[i].PASSWORD);
+                                    var displayName = rows[i].DISPLAY_NAME; 
                                 }
                                 connection.destroy();
                                 //logger.info(`user map size --> ${testDataMap.size}`);
+                                global.displayName = displayName;
                                 resolve(testDataMap);
                             }
                         });
