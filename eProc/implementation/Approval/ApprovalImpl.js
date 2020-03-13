@@ -295,7 +295,7 @@ module.exports = {
     },
 
     async fetchBuyerOnPoApprovalListing(buyer) {
-        let buyerXpath = `//span[contains(text(),'${buyer.substring(0,buyer.indexOf("@"))}')]`;
+        let buyerXpath = `//span[contains(text(),'${buyer}')]`;
         await I.waitForVisible(buyerXpath);
         let buyerName = await I.grabTextFrom(buyerXpath);
         logger.info(`Buyer name fetched from listing is ---> ${buyerName}`);
