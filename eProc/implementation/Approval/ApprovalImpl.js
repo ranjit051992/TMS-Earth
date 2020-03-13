@@ -49,7 +49,6 @@ module.exports = {
         return status;
     },
     async approveDoc(docNumber, searchBy){
-        await I.wait(prop.DEFAULT_HIGH_WAIT);
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         await commonKeywordImpl.searchDocOnListing(docNumber, searchBy);
         await this.clickOnApproveAction();

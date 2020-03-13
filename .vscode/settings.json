@@ -9,7 +9,7 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
-    "workbench.colorTheme": "Atom One Dark",
+    "workbench.colorTheme": "Darcula",
     "javascript.updateImportsOnFileMove.enabled": "always",
     "cucumberautocomplete.onTypeFormat": true,
     "cucumberautocomplete.steps": [

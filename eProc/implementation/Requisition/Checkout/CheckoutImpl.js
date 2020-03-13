@@ -26,7 +26,7 @@ module.exports = {
   * @ return requisitionBO
   */
     async createRequisitionFlow(requisitionBO) {
-
+        await onlineStoreImpl.navigateToOnlineStore();
         await cartImpl.clearCart();
         await onlineStoreImpl.addItemToCart(requisitionBO.itemName, faker.random.number(20));
         await onlineStoreImpl.clickOnCartIcon();
