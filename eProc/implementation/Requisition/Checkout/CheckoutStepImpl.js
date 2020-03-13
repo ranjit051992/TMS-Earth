@@ -114,7 +114,7 @@ Then("I should see on header level, Shipping Details section Default Shipping Ad
 
 Then("I navigate to Line level Shipping Details and Asset Tagging section", async function(){
     commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
-    checkoutImp.clickOnShippingDetailsAndAssetTagging();
+    checkoutImp.clickOnShippingDetailsAndAssetTagging(this.addedCartItems);
 });
 
 Then("I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated", async function(){
