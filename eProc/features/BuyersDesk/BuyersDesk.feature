@@ -87,7 +87,7 @@ Feature: BuyersDesk
 
      Then I should be see the data on the page with the filtered buyer
 
-@Me
+@Non-COA @L1
     Scenario: To verify Purchase Amount filter on buyer's desk 
     Given I am logged in eProc
 
