@@ -10,7 +10,7 @@ Feature: OnlineStore
   Then I should see all the matching items for "ITEM_NAME_FOR_SEARCHING" on Listing
 
 
-@Non-COA @L1  @online @autox
+@Non-COA @L1  @online @autox @fav
 
   Scenario: To verify that user is able to select an item from Catalog and add it as my Favourite.
   Given I am logged in eProc
@@ -68,6 +68,7 @@ Feature: OnlineStore
 
   When I Navigate to Guided Page
   And I Add guided item service
+  And I select category
   And I add Sourcing status
   And I add qty and price
   And I save guided item details

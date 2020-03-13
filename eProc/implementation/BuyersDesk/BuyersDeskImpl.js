@@ -19,15 +19,15 @@ module.exports = {
     },
 
     async clickonStatusFilterButton(){
-        I.click(I.getElement(iBuyersDeskObject.STATUS_FILTER))
+        await I.click(I.getElement(iBuyersDeskObject.STATUS_FILTER));
     },
     
     async clickOnStatusApplyButton(){
-        I.click(I.getElement(iBuyersDeskObject.BUYER_DESK_STATUS_APPLY));  
+        await I.click(I.getElement(iBuyersDeskObject.BUYER_DESK_STATUS_APPLY));  
         },
 
      async clickonRequestorFilter(){
-         I.click(I.getElement(iBuyersDeskObject.REQUESTOR_FILTER))
+         await I.click(I.getElement(iBuyersDeskObject.REQUESTOR_FILTER))
      } , 
     // clickonStatusFilterButton(){
     //     I.click(I.getElement(iBuyersDeskObject.FILTER_BUTTON))
@@ -66,64 +66,16 @@ module.exports = {
     
   },
 
-  async fillPurchaseAmount(maxValue,minValue)
+  async fillPurchaseAmount(minValue,maxValue)
   { 
-     
      I.waitForClickable(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT),prop.DEFAULT_MEDIUM_WAIT);
-     logger.info("Entered the min value " +minValue);
-     await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT),minValue);
+     logger.info("Entered the min value " +I.getData(minValue));
+     await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT),I.getData(minValue));
     
-     await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MAX_INPUT),maxValue);
-     logger.info("Entered the min value " +maxValue);
+     await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MAX_INPUT),I.getData(maxValue));
+     logger.info("Entered the max value " +I.getData(maxValue));
      await this.clickonApplyButton();
-
-  },
-
-  async filterStatus(status)
-  {
-      I.waitForVisible(I.getElement(iBuyersDeskObject.STATUS_FILTER),prop.DEFAULT_MEDIUM_WAIT);
-      let incomingstatus = I.grabAttributeFrom(I,getElement(iBuyersDeskObject.STATUS_FILTER));
-      if( incomingstatus == "In Process")
-      {
-          I.checkOption(I.getElement(iBuyersDeskObject.STATUS_FILTER));
-          logger.info("Status selected is In Process");
-          this.clickOnStatusApplyButton();
-      }
-
-      else if(incomingstatus == "Sourcing Status")
-      {
-        I.checkOption(I.getElement(iBuyersDeskObject.STATUS_FILTER));
-        logger.info("Status selected is Sourcing Status");
-        this.clickOnStatusApplyButton();
-      }
-
-    else if(incomingstatus == "Released")
-    {
-      I.checkOption(I.getElement(iBuyersDeskObject.STATUS_FILTER));
-      logger.info("Status selected is Released");
-      this.clickOnStatusApplyButton();
-    }
-
-     else if(incomingstatus == "Rejected")
-   {
-    I.checkOption(I.getElement(iBuyersDeskObject.STATUS_FILTER));
-    logger.info("Status selected is Rejected");
-    this.clickOnStatusApplyButton();
-   }
-
-   else if(incomingstatus == "Cancelled")
-   {
-    I.checkOption(I.getElement(iBuyersDeskObject.STATUS_FILTER));
-    logger.info("Status selected is Cancelled");
-    this.clickOnStatusApplyButton();
-   }
-     else if(incomingstatus == "Closed")
-   {
-    I.checkOption(I.getElement(iBuyersDeskObject.STATUS_FILTER));
-    logger.info("Status selected is Closed");
-    this.clickOnStatusApplyButton();
-   }
- 
+    
   },
 
    async fetchSearchedBuyer()
@@ -181,7 +133,7 @@ module.exports = {
     },
 
     async clickonApplyButton(){
-       await  I.click(I.getElement(iBuyersDeskObject.APPLY_STATUS_BUTTON));
+       I.click(I.getElement(iBuyersDeskObject.APPLY_STATUS_BUTTON));
        await commonComponent.waitForLoadingSymbolNotDisplayed();
        let spinner = `//div[@class='spinnerTop']`;
        I.waitForInvisible(spinner,prop.DEFAULT_HIGH_WAIT);
@@ -247,32 +199,33 @@ module.exports = {
 
         logger.info('Requistion to be edited: '+requistion);
         I.waitForVisible(I.getElement(iBuyersDeskObject.REQUISITION_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
-        I.click(I.getElement(`//div[contains(text(),'${lmtVar.getLabel("EDIT_ACTION")}')]`));
-        await commonComponent.waitForLoadingSymbolNotDisplayed();
+        await I.click("//div[contains(text(),'" + lmtVar.getLabel("EDIT_ACTION") + "')]");
+        logger.info("Clicking on Selected Requistion");
+        await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
     },
   
     async validateReqinEditMode(){
-     let flag = true; 
-    flag =  await commonComponent.isElementPresent(I.getElement(`//footer//span[contains(text(),'${lmtVar.getLabel("SAVE")}')]`));
-    if (flag)
-    {
-        logger.info("Requistion is openend in Edit mode");
-    }
-    else 
-    {
-        logger.info("Requisition is opened in View Mode")
-    }
-    
+
+    I.waitForVisible("//footer//span[contains(text(),'" + lmtVar.getLabel("SAVE") + "')]", prop.DEFAULT_MEDIUM_WAIT);
+    let flag = await commonKeywordImpl.isElementPresent("//footer//span[contains(text(),'"+lmtVar.getLabel("SAVE") + "')]");
+    I.click("//footer//span[contains(text(),'" + lmtVar.getLabel("SAVE") + "')]");
+        if (flag)
+         {
+         logger.info("Requistion is openend in Edit mode");
+         }
+        else 
+        {
+         logger.info("Requisition is opened in View Mode")
+        }
     return flag;
     },
 
     async clickOnReturnButton(){
-        I.click(I.getElement(iBuyersDeskObject.REQ_RETURN_BUTTON));
-        
+        I.click(I.getElement(iBuyersDeskObject.REQ_RETURN_BUTTON));   
     },
 
     async clickonResubmitReq(){
-     await I.waitForVisible(iBuyersDeskObject.BUTTON_REQ_RESUBMIT_YES)
+     await I.waitForVisible(I.getElement(iBuyersDeskObject.BUTTON_REQ_RESUBMIT_YES),prop.DEFAULT_MEDIUM_WAIT);
      I.click(I.getElement(iBuyersDeskObject.BUTTON_REQ_RESUBMIT_YES));
      await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
      await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK),prop.DEFAULT_MEDIUM_WAIT);
@@ -280,7 +233,7 @@ module.exports = {
     },
 
     async clickonDoNotResubmitReq(){
-        await I.waitForVisible(iBuyersDeskObject.BUTTON_REQ_RESUBMIT_YES)
+        await I.waitForVisible(I.getElement(iBuyersDeskObject.BUTTON_REQ_RESUBMIT_YES),prop.DEFAULT_MEDIUM_WAIT);
         I.click(I.getElement(iBuyersDeskObject.BUTTON_REQ_RESUBMIT_NO));
         await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK),prop.DEFAULT_MEDIUM_WAIT);
@@ -288,6 +241,8 @@ module.exports = {
        },
 
     async fillReturnReqComments(comments) {
+        await I.scrollIntoView(I.getElement(iBuyersDeskObject.RETURN_REQ_COMMENTS_TEXTAREA));
+        await I.wait(prop.DEFAULT_WAIT);
         await I.scrollIntoView(I.getElement(iBuyersDeskObject.RETURN_REQ_COMMENTS_TEXTAREA));
         await I.wait(prop.DEFAULT_WAIT);
         await I.waitForVisible(I.getElement(iBuyersDeskObject.RETURN_REQ_COMMENTS_TEXTAREA));
@@ -338,21 +293,26 @@ module.exports = {
    },
 
    async verifyReqStatusAfterReSubmitReq(){
-       let reqstatus = await I.grabTextFrom(I.getElement(`//p[contains(text(),'${lmtVar.getLabel("RETURNED_AMENDMENT")}')]`));
+       let reqstatus = await I.grabTextFrom(I.getElement(iBuyersDeskObject.REQUISITION_STATUS_LISTING));
        let flag = true;
-       if(reqstatus === lmtVar.getLabel("RETURNED_AMENDMENT"))
+       if(reqstatus === lmtVar.getLabel("STATUS_IN_PROCESS"))
         {
             logger.info(`Requisition is in -> ${reqstatus}`);
             flag = true;
         }
-        else{
+        else if(reqstatus === lmtVar.getLabel("REJECTED_STATUS"))
+        {
             logger.info(`Requisition is in -> ${reqstatus}`);
+            flag = true;
+        }
+        else {
+            throw new Error("Requistion is in any other status except ");
             flag = false;
         }
 
         return flag;
     },
-    
+
    async navigateToAllRequests() {
     I.amOnPage(prop.DDS_AllRequests_Url);
     I.waitForVisible(I.getElement(iBuyersDeskObject.REQUISITION_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
@@ -427,6 +387,11 @@ module.exports = {
         logger.info("Clicked on Submit PO button");
     },
 
+    async clickOnConvertToPoConfirmYesButton() {
+        await I.waitForVisible(I.getElement(iBuyersDeskObject.CONVERT_TO_PO_CONFIRM_YES_BUTTON));
+        await I.click(I.getElement(iBuyersDeskObject.CONVERT_TO_PO_CONFIRM_YES_BUTTON));
+        logger.info("Clicked on Convert to PO confirm Yes button");
+    },
     async selectDateWithin(option){
         let xpath =`//dew-popover-body//button[contains(text(),'${option}')]`
         await I.waitForVisible(xpath,prop.DEFAULT_MEDIUM_WAIT);

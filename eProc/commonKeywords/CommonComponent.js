@@ -160,7 +160,7 @@ module.exports={
         await I.waitForVisible(I.getElement(poListingObject.SEARCH_TEXTBOX));
         await I.click(I.getElement(poListingObject.SEARCH_TEXTBOX));
         await I.clearField(I.getElement(poListingObject.SEARCH_TEXTBOX));
-        await I.fillField(I.getElement(poListingObject.SEARCH_TEXTBOX), docDetail);
+        await I.fillField(I.getElement(poListingObject.SEARCH_TEXTBOX),docDetail);
         logger.info(`Entered search text --> ${docDetail}`);
     },
     async selectDocOption(option) {
@@ -180,7 +180,8 @@ module.exports={
         await I.waitForVisible(optionXpath);
         await I.click(optionXpath);
         await I.wait(prop.DEFAULT_WAIT);
-        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        // await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.click(I.getElement(poListingObject.LISTING_HEADER));
         logger.info(`Selected doc option --> ${option}`);
     },
     /**
@@ -195,6 +196,17 @@ module.exports={
         await this.selectDocOption(searchBy);
         logger.info(`Searched for doc --> ${docDetail}`);
         await this.waitForLoadingSymbolNotDisplayed();
+
+        flag = await this.waitForElementVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        if(!flag) {
+            logger.info(`Reattempting to search the doc`);
+            await I.refreshPage();
+            await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+            await this.enterDocNumberOrDescription(docDetail);
+            await this.selectDocOption(searchBy);
+            await this.waitForElementVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+            logger.info(`Searched for doc --> ${docDetail}`);
+        }
     },
     async clickOnActionMenuIcon() {
         await I.waitForVisible(I.getElement(poListingObject.ACTION_MENU_ICON));
@@ -370,4 +382,14 @@ module.exports={
         }
         return columnIndex;
     },
+    async selectToday(locator) {
+        I.click(locator);
+        I.click(".currentDate", ".d-picker");
+    },
+    async selectInNextMonth(locator, date) {
+        I.click(locator);
+        I.click("show next month", ".d-picker");
+        I.click(date, ".d-picker");
+    },
+
 };

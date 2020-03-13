@@ -5,7 +5,7 @@ const commonComponent = require("../../../commonKeywords/CommonComponent");
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const prop = global.confi_prop;
 const ObjectCreation = require("../../../dataCreation/ObjectCreation");
-const requisitionBO = require("../../../dataCreation/bo/Requisition");
+// const requisitionBO = require("../../../dataCreation/bo/Requisition");
 const cartImpl = require("../Cart/CartImpl");
 const iCart = require("../Cart/CartObject");
 const onlineStoreImpl = require("../OnlineStore/OnlineStoreImpl");
@@ -26,7 +26,7 @@ module.exports = {
   * @ return requisitionBO
   */
     async createRequisitionFlow(requisitionBO) {
-
+        await onlineStoreImpl.navigateToOnlineStore();
         await cartImpl.clearCart();
         await onlineStoreImpl.addItemToCart(requisitionBO.itemName, faker.random.number(20));
         await onlineStoreImpl.clickOnCartIcon();
@@ -634,6 +634,12 @@ module.exports = {
             await this.addAttachments(requisitionBO.attachmentPath.toString());
         }
 
+        if(typeof requisitionBO.linkedPoNumber !== "undefined") {
+            await this.selectPurchaseOrder(requisitionBO.linkedPoNumber);
+            await this.clickOnSelectedPOContinueButton();
+            await this.getSelectedPurchaseOrder();
+        }
+
         return requisitionBO;
     },
 
@@ -774,6 +780,7 @@ module.exports = {
     async isRequisitionSubmitted() {
         let flag = false;
 
+        await I.wait(prop.DEFAULT_HIGH_WAIT);
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         let number = await I.grabNumberOfVisibleElements(I.getElement(poListingObject.PO_NUMBER_LINK));
         if(number>0)
@@ -1075,19 +1082,6 @@ module.exports = {
    
     async createMultipleReqs(noOfReqs, noOfItems, itemType) {
         let reqArray = new Array();
-        
-        // let reqBO1 = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
-        // reqBO1.reqNumber = "46480000";
-        // reqArray.push(reqBO1);
-
-        // let reqBO2 = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
-        // reqBO2.reqNumber = "46490000";
-        // reqArray.push(reqBO2);
-
-        // let reqBO3 = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
-        // reqBO3.reqNumber = "46530000";
-        // reqArray.push(reqBO3);
-
         for (let i=0; i<noOfReqs; i++)
         {
         let reqBO = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
@@ -1095,7 +1089,11 @@ module.exports = {
         reqArray.push(reqBO);
         I.amOnPage(prop.DDS_OnlineStore_Url);
         }
-
+        I.amOnPage(prop.DDS_Requisition_Listing);
+        for (let i=0; i<reqArray.length; i++)
+        {
+        reqArray[i].reqNumber = await reqListingImpl.getRequisitionNumber(reqArray[i].reqName);
+        }
         return reqArray;
     },
 
@@ -1103,12 +1101,12 @@ module.exports = {
         I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
         for (let i = 0; i < reqArray.length; i++) 
         {
+        logger.info(`##########${reqArray[i].reqNumber}`);
         await commonComponent.searchDocOnListing(reqArray[i].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-        // let status = await reqListingImpl.getRequisitionStatus();
         let status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
         status = status.substring(status.indexOf("(")+1, status.indexOf(")"));
-        I.assertEqual(status, lmtVar.getLabel("IN_APPROVAL_STATUS"));
-        logger.info(`Status of Reqs ${status.toString()} matches with expected ${lmtVar.getLabel("IN_APPROVAL_STATUS")} `);
+        logger.info(`Status of Reqs ${status} should match with ${lmtVar.getLabel("IN_APPROVAL_STATUS")} `);
+        I.assertEqual(status.toString(), lmtVar.getLabel("IN_APPROVAL_STATUS"));
         }
     },
 
@@ -1184,6 +1182,7 @@ module.exports = {
                 await buyerDeskImpl.clickOnPoDetailsCheckbox();
                 await buyerDeskImpl.clickOnSubmitPoButton();
                 await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+                await I.wait(prop.DEFAULT_HIGH_WAIT);
             }
             else {
                 logger.info(`Req status on Buyer Listing is ${status}. Hence, not executing the Convert to PO action`);

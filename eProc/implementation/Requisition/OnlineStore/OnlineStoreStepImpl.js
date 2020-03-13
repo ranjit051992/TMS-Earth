@@ -117,7 +117,8 @@ When("I search and add {string} {string} items as Favourite", async function (no
 When("I remove items from favorites", async function () {
 
 
-    
+    await onlineStoreImpl.waitForOnlineStoreToLoad();
+    await onlineStoreImpl.clickOnFavoritesTab();
     let isPresent = await onlineStoreImpl.checkItemsInFavorites();
     if(isPresent)
     {
@@ -181,15 +182,15 @@ Given("I navigate to Shopping Basket Page",async function()
 {
     await onlineStoreImpl.clickOnBasketsTab();
     await onlineStoreImpl.clickOnBasketViewAllButton();
-    await onlineStoreImpl.loadAllBasketRecords();
-    this.originalBaskets = await onlineStoreImpl.fetchBasketNames();
+//await onlineStoreImpl.loadAllBasketRecords();
+   // this.originalBaskets = await onlineStoreImpl.fetchBasketNames();
 });
 
 
 When("I click on basket name sorting option",async function()
 {
     await onlineStoreImpl.clickOnSortIcon();
-    await onlineStoreImpl.loadAllBasketRecords();
+    //await onlineStoreImpl.loadAllBasketRecords();
     this.sortOrder = await onlineStoreImpl.getCurrentSortOrder();
     this.sortedBaskets = await onlineStoreImpl.fetchBasketNames();
 });
@@ -198,7 +199,16 @@ When("I click on basket name sorting option",async function()
 
 Then("I should see all baskets sorted from basket name",async function()
 {
-    let isSorted = await onlineStoreImpl.verifySortedBaskets(this.sortOrder,this.originalBaskets,this.sortedBaskets);
+    let isSortedDescending = await onlineStoreImpl.verifySortedBaskets(this.sortOrder,this.sortedBaskets);
+    await onlineStoreImpl.clickOnSortIcon();
+    sortOrderAscending = await onlineStoreImpl.getCurrentSortOrder();
+    let ascendingSortedBaskets = await onlineStoreImpl.fetchBasketNames();
+    let isSortedAscending = await onlineStoreImpl.verifySortedBaskets(sortOrderAscending,ascendingSortedBaskets);
+    let isSorted = false;
+    if(isSortedAscending && isSortedDescending)
+    {
+        isSorted = true;
+    }
     I.assertEqual(isSorted,true);
 });
 

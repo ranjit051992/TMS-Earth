@@ -16,8 +16,8 @@ module.exports = {
     async fillSearchItem(itemName) {
 
         await I.scrollIntoView(I.getElement(iOnlineStore.SEARCH_TEXTBOX));
-        await I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX), prop.DEFAULT_MEDIUM_WAIT);
-        await I.waitForClickable(I.getElement(iOnlineStore.SEARCH_TEXTBOX), prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX));
+        await I.waitForClickable(I.getElement(iOnlineStore.SEARCH_TEXTBOX));
         await I.clearField(I.getElement(iOnlineStore.SEARCH_TEXTBOX));
         await I.fillField(I.getElement(iOnlineStore.SEARCH_TEXTBOX), itemName);
         logger.info(`Entered item name : ${itemName}`);
@@ -32,8 +32,8 @@ module.exports = {
      * 
     */
     async clickOnSearchIcon() {
-        await I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX), prop.DEFAULT_MEDIUM_WAIT);
-        await I.waitForClickable(I.getElement(iOnlineStore.SEARCH_TEXTBOX), prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX));
+        await I.waitForClickable(I.getElement(iOnlineStore.SEARCH_TEXTBOX));
         await I.pressKey('Enter');
         logger.info(`clicked on Search icon`);
 
@@ -157,13 +157,14 @@ module.exports = {
     },
 
     async checkItemsInFavorites() {
-        let isPresent = true;
+        let isPresent = false;
         let noOfElements = await I.grabNumberOfVisibleElements(I.getElement(iOnlineStore.NO_FAV_PRODUCT_DATA_MSG));
         if (noOfElements > 0) {
             isPresent = false
             await logger.info("No data present for favorite items.");
         }
         else {
+            isPresent = true;
             await logger.info("Data is present for favorite items.");
         }
 
@@ -494,24 +495,25 @@ module.exports = {
       * @returns   
       * 
      */
-    async verifySortedBaskets(sortOder, originalBaskets, sortedBaskets) {
+    async verifySortedBaskets(sortOder, sortedBaskets) {
         let isSorted = false;
         if (sortOder === lmtVar.getLabel("ASCENDING_SORT_ORDER")) {
-            await originalBaskets.sort();
-            logger.info("A-Z : expected sort : " + originalBaskets + " Actual sort : " + sortedBaskets);
-            if (JSON.stringify(originalBaskets) === JSON.stringify(sortedBaskets)) {
+            let expectedSort = sortedBaskets;
+            expectedSort = await expectedSort.sort();
+            logger.info("A-Z : expected sort : " + expectedSort + " Actual sort : " + sortedBaskets);
+            if (JSON.stringify(expectedSort) === JSON.stringify(sortedBaskets)) {
                 isSorted = true;
             }
         }
         else {
-            await originalBaskets.sort();
-            await originalBaskets.reverse()
-            logger.info("Z-A : expected sort : " + originalBaskets + " Actual sort : " + sortedBaskets);
+            let expectedSort = sortedBaskets;
+            expectedSort = await expectedSort.sort();
+            expectedSort = await expectedSort.reverse();
+            logger.info("Z-A : expected sort : " + expectedSort + " Actual sort : " + sortedBaskets);
 
-            if (JSON.stringify(originalBaskets) === JSON.stringify(sortedBaskets)) {
+            if (JSON.stringify(expectedSort) === JSON.stringify(sortedBaskets)) {
 
                 isSorted = true;
-                logger.info("Valid sort Z-A");
             }
         }
         logger.info("Baskets sorted in '" + sortOder + "' : " + isSorted);
@@ -565,4 +567,10 @@ module.exports = {
 
         logger.info("All the baskets are loaded.");
     },
+
+    async navigateToOnlineStore() {
+        // await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("ONLINE_STORE_PAGE"));
+        await I.amOnPage(prop.DDS_OnlineStore_Url);
+        await I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX));
+    }
 }

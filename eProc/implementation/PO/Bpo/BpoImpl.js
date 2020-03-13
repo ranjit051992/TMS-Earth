@@ -11,7 +11,7 @@ const objectCreation = require("../../../dataCreation/ObjectCreation")
 const coaImpl = require("../../Coa/CoaImpl");
 const iBpoObject =require("./BpoObject");
 const spoImpl = require("../Spo/SpoImpl")
-const datePicker = require("../../../../components/datePicker")
+const datePicker = require("../../../commonKeywords/CommonComponent")
 
 module.exports = {
     async clickOnBlanketPOButton() {
@@ -83,6 +83,7 @@ module.exports = {
 
 
 
+
     async fillBasicDetails(bpo) {
         logger.info(`**************Filling Basic Details**************`);
         await spoImpl.fillPONumber(bpo.poNumber);
@@ -144,7 +145,7 @@ module.exports = {
             await spoImpl.clickOnAssignCostNOButton();
             await spoImpl.clickOnBookCostToSingle_MultipleCostCenter();
             let costCenter = await spoImpl.enterCostCenter(bpo.costCenter);
-            bpo.setCostCenter(costCenter);
+            // bpo.setCostCenter(costCenter);
         }
         return bpo;
     },
@@ -251,17 +252,11 @@ module.exports = {
         await I.click(I.getElement(iBpoObject.BUSINESS_UNIT_LOCATION_SELECTION));
     },
     async fillCostCenter(costCenter){
-        // let costCenterName = "CC_ERT : CC_ERT";
-        // let costCenterNameXpath = "//span[contains(text(),'"+costCenterName+"')]";
-        // // let costCenterNameXpath = "//span[contains(text(),'"+costCenter+"')]";
         await I.waitForVisible(I.getElement(iBpoObject.COST_CENTER_DROPDOWN));
         await I.click(I.getElement(iBpoObject.COST_CENTER_DROPDOWN));
-        // await I.fillField(I.getElement(iBpoObject.COST_CENTER_DROPDOWN), costCenter);
-        await I.fillField(I.getElement(iBpoObject.COST_CENTER_DROPDOWN), "CC_ERT");
+        await I.fillField(I.getElement(iBpoObject.COST_CENTER_DROPDOWN), costCenter);
         await I.waitForVisible(I.getElement(iBpoObject.BUSINESS_UNIT_LOCATION_SELECTION));
         await I.click(I.getElement(iBpoObject.BUSINESS_UNIT_LOCATION_SELECTION));
-        // await I.waitForVisible(I.getElement(costCenterNameXpath));
-        // await I.click(I.getElement(costCenterNameXpath));
         await I.waitForVisible(I.getElement(iBpoObject.OK_BUTTON));
         await I.click(I.getElement(iBpoObject.OK_BUTTON));
     },
@@ -276,6 +271,11 @@ module.exports = {
     async selectAcceptInvoicesUntil(){
         await I.waitForVisible(I.getElement(iBpoObject.ACCEPT_INVOICES_UNTIL));
         await datePicker.selectInNextMonth(I.getElement(iBpoObject.ACCEPT_INVOICES_UNTIL),"15");
+    },
+    async addAttachment(attachment){
+        await I.waitForVisible(I.getElement(iBpoObject.ADD_ATTACHMENT));
+        await I.click(I.getElement(iBpoObject.ADD_ATTACHMENT));
+        await I.fillField(I.getElement(iBpoObject.ADD_ATTACHMENT), attachment.toString());
     },
 
 
