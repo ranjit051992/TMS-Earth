@@ -117,7 +117,8 @@ When("I search and add {string} {string} items as Favourite", async function (no
 When("I remove items from favorites", async function () {
 
 
-    
+    await onlineStoreImpl.waitForOnlineStoreToLoad();
+    await onlineStoreImpl.clickOnFavoritesTab();
     let isPresent = await onlineStoreImpl.checkItemsInFavorites();
     if(isPresent)
     {

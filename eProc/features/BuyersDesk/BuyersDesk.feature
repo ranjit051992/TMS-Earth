@@ -4,14 +4,8 @@ Feature: BuyersDesk
 @Non-COA @L1
     Scenario: To verify if Buyer is able to edit the requisition.
     Given I am logged in eProc
-
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
-    And I checkout
-    And I add Purchase Type
-    And I add Required By Date
-    And I add data in Cost Booking Details section at line level 
-    And I submit requisition
-    And I Approve 1 Requisition
+    When I create "1" requisition with "1" "ITEM_NAME_FOR_SEARCHING"
+    And I Approve "1" Requisitions
     And I navigate to Buyer Desk
     And I edit the requisition
 
@@ -39,7 +33,7 @@ Feature: BuyersDesk
     #Then I should be see the data on the page with the filtered status
 
  @Non-COA @L1
-     Scenario: To verify filters on buyer's desk status filter
+     Scenario: To verify requisition number filter on buyer's desk 
      Given I am logged in eProc
 
      When I create "1" requisition with "1" "ITEM_NAME_FOR_SEARCHING"
@@ -98,9 +92,9 @@ Feature: BuyersDesk
     Given I am logged in eProc
 
     When I navigate to Buyer Desk
-    And I filter with Purchase Amount "10" and "100"
+    And I filter with Purchase Amount "PURCHASE_AMOUNT_MIN_VALUE" and "PURCHASE_AMOUNT_MAX_VALUE"
 
-    Then I should be see the data on the page with the filtered amount "10" and "100"
+    Then I should be see the data on the page with the filtered amount "PURCHASE_AMOUNT_MIN_VALUE" and "PURCHASE_AMOUNT_MAX_VALUE"
 
 @Non-COA @L1
     Scenario: To verify filters on Upcoming Requisition status filter
@@ -151,16 +145,16 @@ Feature: BuyersDesk
 
     Then I should be see the data on the page with the filtered buyer
 
-# @Non-COA @L1
-#     Scenario: To verify Purchase Amount filter on Upcoming Requisition
-#     Given I am logged in eProc
+@Non-COA @L1
+    Scenario: To verify Purchase Amount filter on Upcoming Requisition
+    Given I am logged in eProc
 
-#     When I navigate to Upcoming Requisition
-#     And I filter with Purchase Amount
+    When I navigate to Upcoming Requisition
+    And I filter with Purchase Amount "PURCHASE_AMOUNT_MIN_VALUE" and "PURCHASE_AMOUNT_MAX_VALUE"
 
-#     Then I should be see the data on the page with the filtered amount
+    Then I should be see the data on the page with the filtered amount "PURCHASE_AMOUNT_MIN_VALUE" and "PURCHASE_AMOUNT_MAX_VALUE"
 
-# @Non-COA @L1
+# @Non-COA @L1konica
 #     Scenario: To verify that Buyer is able to view ordered requisitions
 #     Given I am logged in eProc
 
@@ -193,13 +187,9 @@ Feature: BuyersDesk
     Scenario: To verify that user(buyer) is not allowed to modify the requisition.
     Given I am logged in eProc
 
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
-    And I checkout
-    And I add Purchase Type
-    And I add Required By Date
-    And I add data in Cost Booking Details section at line level
-    And I submit requisition
-    And I Approve 1 Requisition
+ 
+    When I create "1" requisition with "1" "ITEM_NAME_FOR_SEARCHING"
+    And I Approve "1" Requisitions
     And I navigate to Buyer Desk
     And I return the requisition on Buyers Desk
     And I allow requestor to resubmit the requisition
@@ -210,31 +200,29 @@ Feature: BuyersDesk
     Scenario: To verify that user(buyer) is not allowed to modify the requisition.
     Given I am logged in eProc
 
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
-    And I checkout
-    And I add Purchase Type
-    And I add Required By Date
-    And I add data in Cost Booking Details section at line level
-    And I submit requisition
-    And I Approve 1 Requisition
+    When I create "1" requisition with "1" "ITEM_NAME_FOR_SEARCHING"
+    And I Approve "1" Requisitions
     And I navigate to Buyer Desk
     And I return the requisition on Buyers Desk
     And I do not allow requestor to resubmit the requisition
 
-    #Then I should  see the requisition In Rejected State on Requisition Listing
+    Then I should  see the requisition In Rejected State on Requisition Listing
 
 # @Non-COA @L1
 #     Scenario: To verify that user(buyer) is not allowed to modify the requisition.
 #     Given I am logged in eProc
 
-#     When I add a catalog item to cart
+#     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
 #     And I checkout
 #     And I add Purchase Type
 #     And I add Required By Date
 #     And I add data in Cost Booking Details section at line level
+#     And I add GL account Details
 #     And I submit requisition
 #     And I approve the requisition
-#     And I navigate to Buyers Desk
+#     And I navigate to Buyer Desk
+#     And I filter with requisition name field
+#     And I edit the requisition
 #     And I convert the requisition PO on Buyers Desk
 #     And I navigate to Purchase Order
 #     And I cancel the Purchase Order when it is in Parked status
@@ -242,21 +230,17 @@ Feature: BuyersDesk
 #     Then I should not be see the requisition in Pending Order state on Buyers desk
 
 
-# @COA @L1
-#     Scenario: COA>>To verify if Buyer is able to edit the requisition.
-#     Given I am logged in eProc
+#  @COA @L1
+#    Scenario: COA>>To verify if Buyer is able to edit the requisition.
 
-#     When I add a catalog item to cart
-#     And I checkout
-#     And I add Purchase Type
-#     And I add Required By Date
-#     And I add data in Cost Booking Details section at line level 
-#     And I submit requisition
-#     And I approve requisition
+
+#     Given I am logged in eProc
+#     When I create "1" requisition with "1" "ITEM_NAME_FOR_SEARCHING"
+#     And I Approve "1" Requisitions
 #     And I navigate to Buyer Desk
 #     And I edit the requisition
 
-#     Then I should be able to view the requisition in edit mode
+#    Then I should be able to view the requisition in edit mode 
 
 # @COA @L1
 #     Scenario: COA>>To verify if buyer is able to convert Requisition to PO based on different criteria 
@@ -278,7 +262,7 @@ Feature: BuyersDesk
 #     Then I should be see the data on the page with the filtered status
 
 # @COA @L1
-#     Scenario: COA>>To verify filters on buyer's desk status filter
+#     Scenario: COA>>To verify requisition number filter on  buyer's desk 
 #     Given I am logged in eProc
 
 #     When I navigate to Buyer Desk
@@ -286,7 +270,7 @@ Feature: BuyersDesk
 
 #     Then I should be see the data on the page on the basis on Requisition number field
 
-# @COA @L1
+# @COA @L1konica
 #     Scenario: COA>>To verify requisition name filter on buyer's desk 
 #     Given I am logged in eProc
 
@@ -318,7 +302,7 @@ Feature: BuyersDesk
 #     Given I am logged in eProc
 
 #     When I navigate to Buyer Desk
-#     And I filter any buyer
+#     And I filter any buyer "BUYER_NAME"
 
 #     Then I should be see the data on the page with the filtered buyer
 
@@ -327,12 +311,12 @@ Feature: BuyersDesk
 #     Given I am logged in eProc
 
 #     When I navigate to Buyer Desk
-#     And I filter with Purchase Amount
+#     And I filter with Purchase Amount "PURCHASE_AMOUNT_MIN_VALUE" and "PURCHASE_AMOUNT_MAX_VALUE"
 
-#     Then I should be see the data on the page with the filtered amount
+#     Then I should be see the data on the page with the filtered amount "PURCHASE_AMOUNT_MIN_VALUE" and "PURCHASE_AMOUNT_MAX_VALUE"
 
 # @COA @L1
-#     Scenario: COA>>To verify filters on Upcoming Requisition status filter
+#     Scenario: COA>>To verify Requisition number on Upcoming Requisition status filter
 #     Given I am logged in eProc
 
 #     When I navigate to Upcoming Requisition
@@ -372,18 +356,18 @@ Feature: BuyersDesk
 #     Given I am logged in eProc
 
 #     When I navigate to Upcoming Requisition
-#     And I filter any buyer
+#     And I filter any buyer "BUYER_NAME"
 
 #     Then I should be see the data on the page with the filtered buyer
 
-# @COA @L1
-#     Scenario: COA>>To verify Purchase Amount filter on Upcoming Requisition
+#  @COA @L1
+#      Scenario: COA>>To verify Purchase Amount filter on Upcoming Requisition
 #     Given I am logged in eProc
 
 #     When I navigate to Upcoming Requisition
-#     And I filter with Purchase Amount
+#     And I filter with Purchase Amount "PURCHASE_AMOUNT_MIN_VALUE" and "PURCHASE_AMOUNT_MAX_VALUE"
 
-#     Then I should be see the data on the page with the filtered amount
+#     Then I should be see the data on the page with the filtered amount "PURCHASE_AMOUNT_MIN_VALUE" and "PURCHASE_AMOUNT_MAX_VALUE"
 
 # @COA @L1
 #     Scenario: COA>>To verify that Buyer is able to view ordered requisitions
