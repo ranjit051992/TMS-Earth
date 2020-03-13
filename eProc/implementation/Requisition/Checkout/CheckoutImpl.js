@@ -780,6 +780,7 @@ module.exports = {
     async isRequisitionSubmitted() {
         let flag = false;
 
+        await I.wait(prop.DEFAULT_HIGH_WAIT);
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         let number = await I.grabNumberOfVisibleElements(I.getElement(poListingObject.PO_NUMBER_LINK));
         if(number>0)
@@ -1181,6 +1182,7 @@ module.exports = {
                 await buyerDeskImpl.clickOnPoDetailsCheckbox();
                 await buyerDeskImpl.clickOnSubmitPoButton();
                 await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+                await I.wait(prop.DEFAULT_HIGH_WAIT);
             }
             else {
                 logger.info(`Req status on Buyer Listing is ${status}. Hence, not executing the Convert to PO action`);
