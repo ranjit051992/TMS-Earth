@@ -122,7 +122,7 @@ Then ("I see the same Buyer name displayed for the corresponding PO number", asy
     let buyer = this.spo.buyer.toString();
     logger.info(`Buyer name stored in BO is ---> ${buyer}`);
     let updatedBuyer = await ApprovalImpl.fetchBuyerOnPoApprovalListing(buyer);
-    I.assertEqual(updatedBuyer, buyer.substring(0, buyer.indexOf("@")));
+    I.assertEqual(updatedBuyer, buyer);
 });
 
 Then ("I see the same Received on date on PO Approval listing", async function() {

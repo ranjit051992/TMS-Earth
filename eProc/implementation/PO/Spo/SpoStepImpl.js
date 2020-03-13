@@ -319,7 +319,8 @@ Given( "I have PO with In Approval status", async function() {
    let status = await poListingImpl.getPoStatus();
    logger.info(`Retrived status is --> ${status}`);
    I.assertEqual(status.toString(), lmtVar.getLabel("IN_APPROVAL_STATUS"));
-   this.spo.buyer = global.users.get("USERNAME");
+   // this.spo.buyer = global.users.get("USERNAME");
+   logger.info(`********${this.spo.buyer}**********`);
 });
 
 When("I search for the converted PO", async function() {
