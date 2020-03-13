@@ -11,6 +11,7 @@ const poListingImpl = require("../PO/PoListing/PoListingImpl");
 module.exports = {
     async navigateToApprovalListing() {
         await I.amOnPage(prop.DDS_Approval_Listing);
+       // await commonKeywordImpl.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("APPROVAL_LISTING_PAGE"));
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info("Navigated to approval listing page");
         await commonKeywordImpl.selectValueFromDropDown(I.getElement(approvalObject.LISTING_SELECTION_DROP_DOWN), lmtVar.getLabel("LISTING_ALL_ITEMS_OPTION"));
