@@ -114,7 +114,7 @@ Then("I should see on header level, Shipping Details section Default Shipping Ad
 
 Then("I navigate to Line level Shipping Details and Asset Tagging section", async function(){
     commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
-    checkoutImp.clickOnShippingDetailsAndAssetTagging();
+    checkoutImp.clickOnShippingDetailsAndAssetTagging(this.addedCartItems);
 });
 
 Then("I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated", async function(){
@@ -353,12 +353,34 @@ When("I add Costing split at header level by Percentage into {int} splits", asyn
 Given("I have created a requisition and converted it to PO with {int} {string}", async function(noOfItems, itemType) {
     this.reqBO = await objectCreation.getObjectOfRequisition(noOfItems, itemType);
     this.reqBO = await checkoutImp.createReqToPoFlow(this.reqBO);
-    // this.reqBO.poNumber = "blue sanity -/2475";
 });
-
 
 
 When("I add deliver to user", async function(){
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
     await checkoutImp.fillDeliverTo(this.reqBO.deliverTo);
 });
+
+When("I add Delivery split at line level into {int} splits", async function(noOfSplit){
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    await checkoutImp.clickOnShippingDetailsAndAssetTagging(this.addedItem);
+    await checkoutImp.clickOnShipItemsToMultiplePersonLocationRadioButton();
+    let index = 1;
+    for(let i=1; i<= noOfSplit; i++)
+    {
+        let quantity = this.addedQuantity/noOfSplit;
+        await checkoutImp.enterSplitQuantityAmount(quantity, index);
+
+        if(index<noOfSplit)
+        {
+            await checkoutImp.clickOnAddAnotherAddressButton();
+        }
+        index++;
+    }
+    this.noOfSplit = noOfSplit;
+});
+
+When("I change the address for split {int}", async function(forSplit){
+    //SHIP_TO_ADDRESS_NAME
+});
+

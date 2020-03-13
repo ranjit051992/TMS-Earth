@@ -165,6 +165,7 @@ class ObjectCreation
         guidedItem.supplierContact=(I.getData("SUPPLIER_CONTACT_NAME"));
         guidedItem.supplierEmail=(I.getData("SUPPLIER_EMAIL"));
         guidedItem.supplierPhone= (faker.phone.phoneNumber());
+        guidedItem.eform = I.getData("CATEGORY_EFORM");
         return guidedItem;
     }
 
