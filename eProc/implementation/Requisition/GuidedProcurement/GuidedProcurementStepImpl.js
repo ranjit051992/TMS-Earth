@@ -32,7 +32,7 @@ Given("I add qty and price",async function(){
 
 Given("I add Sourcing status",async function(){
 
-    let sourcingStatus = this.guidedItem.sourcingStatus;
+    let sourcingStatus = await this.guidedItem.sourcingStatus;
     await guidedImpl.selectSourcingStatus(sourcingStatus.toString());
 
 });
@@ -87,8 +87,13 @@ When("I add {int} free text item {string} to cart", async function(noOfItem, ite
     logger.info("Guided item "+this.guidedItemBO);
     await cartImpl.clearCart();
     await I.wait(prop.DEFAULT_WAIT);
-   // let itemArray = new Array();
     this.guidedItemBO =  await guidedImpl.CreateGuidedItem(this.guidedItemBO);
 
 });
 
+
+Given("I select category",async function(){
+
+    await guidedImpl.fillCategory(this.guidedItem.category);
+
+});

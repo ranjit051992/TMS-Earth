@@ -1,4 +1,5 @@
-function parseJson(PRODUCT) {
+function parseJson() {
+  var PRODUCT =process.env.PRODUCT;
   var fs = require('fs');
   var data = fs.readFileSync("./Resources/config.json", "utf8");
   var obj = JSON.parse(data);

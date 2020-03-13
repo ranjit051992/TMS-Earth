@@ -12,13 +12,13 @@ module.exports = {
 
         const connectionObj = parser(connectionString);
 
-        const columnName = prop.SETUP + "_" + prop.TENANT;
+        const columnName = process.env.SETUP + "_" + process.env.TENANT;
         logger.info(columnName);
         
         const query = `SELECT FIELD_NAME, ${columnName} FROM ${prop.testdataTable}`;
         
         //const query = `SELECT FIELD_NAME, QCVM_SupplierPortalBuyer1 FROM ${prop.testdataTable}`;
-        logger.info(query);
+        logger.info("getTestData query : "+query);
 
         return new Promise((resolve, reject) => {
             let testDataMap = new Map();
@@ -249,8 +249,9 @@ module.exports = {
         const connectionObj = parser(connectionString);
         
         //logger.info(columnName);
-        const query = `SELECT USERNAME,PASSWORD FROM ${prop.UserTable} WHERE SETUP_NAME='${prop.SETUP}' AND TENANT_NAME='${prop.TENANT}' AND flag='true'`;
-        //logger.info(query);
+        const query = `SELECT USERNAME,PASSWORD FROM ${prop.UserTable} WHERE SETUP_NAME='${process.env.SETUP}' AND TENANT_NAME='${process.env.TENANT}' AND flag='true'`;
+        console.log("getUser query : "+query);
+        logger.info("getUser query : "+query);
 
         let timeout = 0;
         if(process.env.GRID) {

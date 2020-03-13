@@ -23,7 +23,8 @@ When("I edit Cost Allocation section at header level", async function(){
 });
 
 When("I update cost center {string}", async function(costCenter){
-    this.costCenter = await checkoutImp.fillCostCenter(global.testData.get(costCenter));
+    await checkoutImp.clickOnSingleMultipleCostCenterRadioButton();
+    this.costCenter = await checkoutImp.fillCostCenter(I.getData(costCenter));
 
 });
 
@@ -127,16 +128,13 @@ Then("I should see on line level, in Shipping Details and Asset Tagging section 
 });
 
 When("I add data in Cost Booking Details section at line level", async function(){
-    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));  
-    let reqItems = this.reqBO.items;
-    //await checkoutImp.clickOnCostBookingLink(this.reqBO.itemName);
-
     for(let i=0; i< this.reqBO.items.length; i++)
     {
+        await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));  
         await checkoutImp.clickOnCostBookingLink(this.reqBO.items[i].itemName);
+        await coaImp.fillCoaDetails();
     }
     
-    await coaImp.fillCoaDetails();
 });
 
 /**
@@ -284,18 +282,24 @@ When("I add Tax Details at line level", async function(){
 
 Given( "I Create {int} requisitions with {int} {string} item", async function (noOfReqs, noOfItems, itemType) {
     this.reqArray = await checkoutImp.createMultipleReqs(noOfReqs, noOfItems, itemType);
-    logger.info("Required number of POs created")
+    logger.info("Required number of POs created"+ this.reqArray.length);
+    logger.info("req number 0"+ this.reqArray[0].reqNumber);
+    logger.info("req number 1"+ this.reqArray[1].reqNumber);
+    logger.info("req number 2"+ this.reqArray[2].reqNumber);
  });
 
- Given( "I have {int} Requisitions In Approval status", async function() {
+Given( "I have {int} Requisitions In Approval status", async function() {
     I.amOnPage(prop.DDS_Requisition_Listing);
     I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
+    I.waitForClickable(I.getElement(iApprovalObject.SEARCH_FIELD));
+    logger.info("req length ***"+ this.reqArray.length);
+    logger.info("req number 0 ***"+ this.reqArray[0].reqNumber);
+    logger.info("req number 1 ***"+ this.reqArray[1].reqNumber);
+    logger.info("req number 2 *** "+ this.reqArray[2].reqNumber);
     await checkoutImp.checkMultipleReqStatus(this.reqArray);
  });
 
-
-When("I fetch Requisition Name", async function()
-{
+When( "I fetch Requisition Name", async function() {
     this.reqBO.reqName = await I.grabAttributeFrom(I.getElement(iCheckoutObject.REQUISITION_NAME), "value");
     logger.info("Fetched Requisition Name is "+this.reqBO.reqName);
 });
@@ -330,14 +334,18 @@ When("I select any existing address as shipping address", async function()
 When("I add Costing split at header level by Percentage into {int} splits", async function(noOfSplit){
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_COST_ALLOCATION_SECTION"));
     let costCenterArray = new Array();
-    for(let i=0; i< noOfSplit; i++)
+    let index = 1;
+    for(let i=1; i<=noOfSplit; i++)
     {
-        let index = 1;
         let costcenter = await checkoutImp.fillMultipleCostCenter(I.getData("COST_CENTER["+i+"]"), index);
         costCenterArray.push(costcenter);
         let percentage = 100/noOfSplit;
-        await checkoutImp.enterPercentage(percentage);
-        await checkoutImp.clickOnCoaAddMoreButton();
+       // await checkoutImp.enterPercentage(percentage);
+        await checkoutImp.fillMultiplePercentage(percentage, index);
+        if(index<noOfSplit)
+        {
+            await checkoutImp.clickOnCoaAddMoreButton();
+        }
         index++;
     }
     this.costCenter = costCenterArray;
@@ -347,4 +355,11 @@ Given("I have created a requisition and converted it to PO with {int} {string}",
     this.reqBO = await objectCreation.getObjectOfRequisition(noOfItems, itemType);
     this.reqBO = await checkoutImp.createReqToPoFlow(this.reqBO);
     // this.reqBO.poNumber = "blue sanity -/2475";
+});
+
+
+
+When("I add deliver to user", async function(){
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
+    await checkoutImp.fillDeliverTo(this.reqBO.deliverTo);
 });

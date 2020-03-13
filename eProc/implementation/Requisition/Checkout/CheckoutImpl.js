@@ -5,7 +5,7 @@ const commonComponent = require("../../../commonKeywords/CommonComponent");
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const prop = global.confi_prop;
 const ObjectCreation = require("../../../dataCreation/ObjectCreation");
-const requisitionBO = require("../../../dataCreation/bo/Requisition");
+// const requisitionBO = require("../../../dataCreation/bo/Requisition");
 const cartImpl = require("../Cart/CartImpl");
 const iCart = require("../Cart/CartObject");
 const onlineStoreImpl = require("../OnlineStore/OnlineStoreImpl");
@@ -39,8 +39,10 @@ module.exports = {
 
         requisitionBO = await this.fillShippingDetails(requisitionBO);
 
-        requisitionBO = await this.fillCostAllocation(requisitionBO);
-
+        if(!prop.isCoa)
+        {
+            requisitionBO = await this.fillCostAllocation(requisitionBO);
+        }
         requisitionBO = await this.fillItemDetails(requisitionBO);
 
 
@@ -632,6 +634,12 @@ module.exports = {
             await this.addAttachments(requisitionBO.attachmentPath.toString());
         }
 
+        if(typeof requisitionBO.linkedPoNumber !== "undefined") {
+            await this.selectPurchaseOrder(requisitionBO.linkedPoNumber);
+            await this.clickOnSelectedPOContinueButton();
+            await this.getSelectedPurchaseOrder();
+        }
+
         return requisitionBO;
     },
 
@@ -666,6 +674,7 @@ module.exports = {
 
             if (requisitionBO.bookCostToSingleMultipleCC) {
                 if (requisitionBO.costCenter !== "undefined") {
+                    await this.clickOnSingleMultipleCostCenterRadioButton();
                     let costCenter = await this.fillCostCenter(requisitionBO.costCenter);
                     requisitionBO.setCostCenter(costCenter);
                 }
@@ -686,7 +695,7 @@ module.exports = {
     },
 
     async fillItemDetails(requisitionBO) {
-        logger.info("*********Filling Requisition Item Details Details");
+        logger.info("*********Filling Requisition Item Details");
         await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
 
         //for(let i = 0; i <requisitionBO.items.length; i++)
@@ -771,7 +780,7 @@ module.exports = {
     async isRequisitionSubmitted() {
         let flag = false;
 
-        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK), prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         let number = await I.grabNumberOfVisibleElements(I.getElement(poListingObject.PO_NUMBER_LINK));
         if(number>0)
         {
@@ -1076,9 +1085,13 @@ module.exports = {
         {
         let reqBO = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
         reqBO = await this.createRequisitionFlow(reqBO);
-        //reqBO.reqNumber = "41920000";
         reqArray.push(reqBO);
         I.amOnPage(prop.DDS_OnlineStore_Url);
+        }
+        I.amOnPage(prop.DDS_Requisition_Listing);
+        for (let i=0; i<reqArray.length; i++)
+        {
+        reqArray[i].reqNumber = await reqListingImpl.getRequisitionNumber(reqArray[i].reqName);
         }
         return reqArray;
     },
@@ -1087,12 +1100,12 @@ module.exports = {
         I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
         for (let i = 0; i < reqArray.length; i++) 
         {
-        await commonComponent.searchDocOnListing(reqArray[i].reqNumber.toString(), lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-        // let status = await reqListingImpl.getRequisitionStatus();
+        logger.info(`##########${reqArray[i].reqNumber}`);
+        await commonComponent.searchDocOnListing(reqArray[i].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
         let status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
         status = status.substring(status.indexOf("(")+1, status.indexOf(")"));
-        I.assertEqual(status, lmtVar.getLabel("IN_APPROVAL_STATUS"));
-        logger.info(`${status} matches with ${lmtVar.getLabel("IN_APPROVAL_STATUS")}`);
+        logger.info(`Status of Reqs ${status} should match with ${lmtVar.getLabel("IN_APPROVAL_STATUS")} `);
+        I.assertEqual(status.toString(), lmtVar.getLabel("IN_APPROVAL_STATUS"));
         }
     },
 
@@ -1147,8 +1160,8 @@ module.exports = {
             await approvalImpl.navigateToApprovalListing();
             await approvalImpl.approveDoc(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
             await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-            status = await (await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"))).toString();
-            if(status !== lmtVar.getLabel("APPROVED_STATUS")) {
+            status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+            if(status.toString() !== lmtVar.getLabel("APPROVED_STATUS")) {
                 throw new Error(`Req status after approval is not Approved. Current status is --> ${status}`);
             }
         }
@@ -1202,7 +1215,7 @@ module.exports = {
         await reqListingImpl.searchRequisitionByReqNumber(reqNumber);
         await reqListingImpl.clickOnEditAction();
         await commonComponent.waitForLoadingSymbolNotDisplayed();
-        await I.waitForVisible(I.getElement(checkoutObject.REQUISITION_NAME));
+        await I.waitForVisible(I.getElement(iCheckout.REQUISITION_NAME));
         await this.fillOnBehalfOf(requisitionBO.onBehalfOf);
         await this.clickOnUpdateDraftButton();
         await commonComponent.waitForLoadingSymbolNotDisplayed();
@@ -1248,5 +1261,23 @@ module.exports = {
 
     },
 
+    async fillMultiplePercentage(percentage,noOfSplits) {
+        await I.waitForVisible(I.getElement(iCheckout.PERCENTAGE_TEXTBOX), prop.DEFAULT_MEDIUM_WAIT);
+        let fieldXpath = "("+I.getElement(iCheckout.PERCENTAGE_TEXTBOX)+")["+noOfSplits+"]";
+        await I.click(fieldXpath);
+        await I.clearField(fieldXpath);
+        await I.fillField(fieldXpath, percentage);
+        percentage = await I.grabAttributeFrom(fieldXpath, "value");
+        logger.info("Entered percentage is ---> "+percentage);
+
+        return percentage;
+    },
+
+    async clickOnSingleMultipleCostCenterRadioButton()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.BOOK_COST_TO_SINGLE_MULTIPLE_COSTCENTER));
+        await I.waitForClickable(I.getElement(iCheckout.BOOK_COST_TO_SINGLE_MULTIPLE_COSTCENTER));
+        await I.click(I.getElement(iCheckout.BOOK_COST_TO_SINGLE_MULTIPLE_COSTCENTER));
+    }
 
 };

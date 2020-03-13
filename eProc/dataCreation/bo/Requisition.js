@@ -54,11 +54,13 @@ class Requisition
         this.reqAmount;
         this.status;
         this.requestor;
+        this.receivedOn;
         
         //let items = [];
         this.poNumber;
         this.convertToPoFlag;
         this.approvePoFlag;
+        this.linkedPoNumber;
     }
 
     setReqName(reqName)
@@ -272,6 +274,10 @@ class Requisition
     setConvertToPoFlag(convertToPoFlag) {
         this.convertToPoFlag = convertToPoFlag;
     }
+
+    setLinkedPoNumber(linkedPoNumber) {
+        this.linkedPoNumber = linkedPoNumber;
+    }
 }
 
-module.exports = new Requisition();
+module.exports = Requisition;

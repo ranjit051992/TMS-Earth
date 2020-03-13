@@ -75,7 +75,7 @@ Given ("I am on PO approval listing page", async function() {
 When ("I Approve 1 PO", async function() {
     await ApprovalImpl.approveDoc(this.POArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
     let status = await ApprovalImpl.checkPOApprovalStatus(this.POArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-    this.POArray[0].setStatus(status); 
+    this.POArray[0].setStatus(status);
 });
 
 When ("I Approve 2 POs", async function() {
@@ -145,29 +145,35 @@ Then ("I see the same status of SPO on PO Approval listing", async function() {
 });
 
 When ("I Approve 1 Requisition", async function() {
-    await ApprovalImpl.approveDoc(reqArray[0].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-    let status = await (lmtVar.getLabel("STATUS_COLUMN")).toString();
-    I.assertEqual(status, lmtVar(getLabel("APPROVED_STATUS")));
+    await ApprovalImpl.approveDoc(this.reqArray[0].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+    await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
+    let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+    await this.reqArray[0].setStatus(status);
+    I.assertEqual(status, lmtVar.getLabel("APPROVED_STATUS"));
 });
 
 When ("I Approve 2 Requisitions", async function() {
-    this.reqArray = await ApprovalImpl.approveMultipleReqs(reqArray[i].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    this.reqArray = await ApprovalImpl.approveMultipleReqs(this.reqArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
     logger.info("All Requisitions are in Approved status")
 });
 
 Then ("I should be able to see the status of all Requisitions as Approved", async function() {
-    await ApprovalImpl.checkMultipleReqStatus(reqArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    await ApprovalImpl.checkMultipleReqStatus(this.reqArray);
 });
 
 When ("I Reject 1 Requisition", async function() {
-    await ApprovalImpl.rejectDoc(reqArray[0].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-    let status = await ApprovalImpl.checkReqStatus();
+    await ApprovalImpl.rejectDoc(this.reqArray[0].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+    await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
+    let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+    await this.reqArray[0].setStatus(status);
     I.assertEqual(status, lmtVar.getLabel("REJECTED_STATUS"));
 });
 
 When ("I Reject 2 Requisitions", async function() {
-    this.reqArray = await ApprovalImpl.rejectMultipleReqs(reqArray[i].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-    logger.info("All Requisitions are in Approved status")
+    this.reqArray = await ApprovalImpl.rejectMultipleReqs(this.reqArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    logger.info("All Requisitions are in rejected status")
 });
 
 Then ("I should be able to see the status of all Requisitions as Rejected", async function() {
@@ -176,12 +182,18 @@ Then ("I should be able to see the status of all Requisitions as Rejected", asyn
 
 
 When("I approve the requisition", async function(){
-    await reqListingImpl.navigateToRequisitionListing();
-    this.reqBO.reqNumber = await reqListingImpl.getRequisitionNumber(this.reqBO.reqName);
-    logger.info(`Requisition Number is ---> ${this.reqBO.reqNumber}`);
     await ApprovalImpl.navigateToApprovalListing();
-    await ApprovalImpl.approveDoc(this.reqBO.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-    await I.wait(prop.DEFAULT_MEDIUM_WAIT);
-    this.reqStatus = await ApprovalImpl.getReqStatus();
+    if(this.reqBO.status.includes(lmtVar.getLabel("IN_APPROVAL_STATUS"))) {
+        await ApprovalImpl.approveDoc(this.reqBO.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        await I.wait(prop.DEFAULT_MEDIUM_WAIT);
+        let status = await ApprovalImpl.getReqStatus();
+        if(status !== lmtVar.getLabel("APPROVED_STATUS")) {
+            logger.info(`Req status is not ${lmtVar.getLabel("APPROVED_STATUS")} after approval. Current status is ${status}`);
+            throw new Error(`Req status is not ${lmtVar.getLabel("APPROVED_STATUS")} after approval. Current status is ${status}`);
+        }
+    }
+    else {
+        logger.info(`Req status is not ${lmtVar.getLabel("IN_APPROVAL_STATUS")}. Current status is ${this.reqBO.status}. Hence, not executing the approve req option`);
+    }
     
 });

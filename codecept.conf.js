@@ -1,5 +1,5 @@
 const parsing= require("./Framework/PropertiesConfigurator");
-parsing("eProc");
+parsing();
 const prop = global.confi_prop;
 global.lang = 'en';
 exports.config = {
@@ -13,8 +13,8 @@ exports.config = {
       port: prop.port,
       restart: prop.restart,
       windowSize: prop.windowSize,
-      waitForTimeout: 30000,
-      smartWait: 5000,
+      waitForTimeout: 60000,
+      smartWait: 2000,
       timeouts: {
         "script": 10000,
         "page load": 10000
@@ -23,7 +23,7 @@ exports.config = {
       default_medium_wait: prop.DEFAULT_MEDIUM_WAIT,
       default_high_wait: prop.DEFAULT_HIGH_WAIT,
     },
-   ChaiWrapper:
+    ChaiWrapper:
     {
       require: "codeceptjs-chai"
     },
@@ -34,15 +34,15 @@ exports.config = {
   },
   bootstrap: "./bootstrap.js",
   teardown: "./bootstrap.js",
+  teardownAll: "./get_all_reports.js",
   include: {
     I: prop.stepFilePath,
   },
    multiple: {
         sanityCases: {
           // Splits tests into 2 chunks
-          chunks: 5
+          chunks: 4
         }
-      
       },
     gherkin: {
            //features: './iRequest/features/**/**.feature',
@@ -64,6 +64,12 @@ exports.config = {
     },
     allure: {
       enabled: true
+    },
+    autoDelay: {
+      enabled: true,
+      delayBefore: 500,
+      delayAfter: 500,
+      methods: ["click", "fillField", "checkOption"]
     }
   }
 };

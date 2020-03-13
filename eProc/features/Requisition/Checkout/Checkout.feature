@@ -1,13 +1,13 @@
 Feature: Checkout
 
 
-@Non-COA @L1 @priyanka
+@Non-COA @L1 @priyanka @costCenter
   Scenario: To verify that user is able to add Cost center information to the requisition.
   Given I am logged in eProc
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
   And I edit Cost Allocation section at header level
-  And I update cost center "COST_CENTER"
+  And I update cost center "COST_CENTER[1]"
   And I navigate to Line level Cost Booking Details
   Then I should be see the updated cost center on line level Cost Booking section
 
@@ -112,17 +112,7 @@ Feature: Checkout
     And I select Ship to Another Address in  Shipping Details section at header level
     And I should be able to see the saved address on creating a new requisition
 
-@Non-COA @L1  @po @Snehal
 
-  Scenario: To verify that the 'Select Purchase Order' field
-  Given I am logged in eProc
-  #And I Create Standard po with 1 "ITEM_NAME_FOR_SEARCHING" item
-  #And I navigate to OnlineStore
-  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
-  And I checkout
-  And I link Purchase Order "blue sanity" in the Select Purchase Order field
-
-  Then I should be see that the field name is updated to Select Purchase Order
 
 @Non-COA @L1  @buyer @Snehal
 
@@ -208,7 +198,7 @@ Feature: Checkout
 
 
 
-@Non-COA @L1 @free
+@Non-COA @L1 @free @Snehal
   Scenario: To verify user is able to create a requisition for a free-text item or service
   Given I am logged in eProc
 
@@ -276,55 +266,55 @@ Feature: Checkout
 
 #     Then I should be able to view the requisition with free text item and the catalog items.
 
-# @tag23
-#     Scenario: To verify that user is able to see the approval hierarchy after raising a requisition
-#     Given I am logged in eProc
+@Non-COA @L1 @hierarchy
+    Scenario: To verify that user is able to see the approval hierarchy after raising a requisition
+    Given I am logged in eProc
 
-#     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
-#     And I checkout
-#     And I enter Requisition Name
-#     And I add Purchase Type
-#     And I add Settlement Via
-#     And I add Required By Date
-#     And I add data in Cost Booking Details section at line level 
-#     And I submit requisition
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I enter Requisition Name
+    And I add Purchase Type
+    And I add Settlement Via
+    And I add Required By Date
+    And I add data in Cost Booking Details section at line level 
+    And I submit requisition
 
-#     Then I should be able to view the workflow Approval hierarchy
+    Then I should be able to view the workflow Approval hierarchy
 
-# @Non-COA @L1
-#     Scenario: To verify that user should be able to buy items on behalf of other individuals. 
-#     Given I am logged in eProc
+@Non-COA @L1 @behalf
+    Scenario: To verify that user should be able to buy items on behalf of other individuals. 
+    Given I am logged in eProc
 
-#     When I add a catalog item to cart
-#     And I checkout
-#     And I add a On Behalf of user
-#     And I add Purchase Type
-#     And I add Required By Date
-#     And I add data in Cost Booking Details section at line level 
-#     And I submit requisition
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I enter Requisition Name
+    And I add a On Behalf of user
+    And I add Purchase Type    
+    And I add Settlement Via
+    And I add deliver to user
+    And I add Required By Date
+    And I add data in Cost Booking Details section at line level 
+    And I submit requisition
 
-#     Then I should be able to view the workflow with On Behalf user as the requestor and On behalf user workflow should be applied
+    Then I should be able to view the workflow with On Behalf user as the requestor and On behalf user workflow should be applied
 
-# @Non-COA @L1 @multipleCostCenter
-#     Scenario: To verify that user is able to create requisition for multiple items with multiple cost center for each item
-#     Given I am logged in eProc
+@Non-COA @L1 @multipleCostCenter @priyanka
+    Scenario: To verify that user is able to create requisition for multiple items with multiple cost center for each item
+    Given I am logged in eProc
 
-#     When I add "2" "ITEM_NAME_FOR_SEARCHING" items to cart
-#     And I checkout
-#     And I enter Requisition Name
-#     And I add Purchase Type
-#     And I add Settlement Via
-#     And I add Required By Date
-#     And I add Costing split at header level by Percentage into 2 splits
-#     And I add data in Cost Booking Details section at line level 
-#     And I submit requisition
+    When I add "2" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I enter Requisition Name
+    And I add Purchase Type
+    And I add Settlement Via
+    And I add Required By Date
+    And I add Costing split at header level by Percentage into 2 splits
+    And I add data in Cost Booking Details section at line level 
+    And I submit requisition
 
-#     Then I should be able to view the requisition with multiple items
-#     And I should see split cost center added to each item at header level 
-#     And I should be able to see split cost center added to each item at line level
-
-
-
+    Then I should be able to view the requisition with multiple items
+    And I should see split cost center added to each item at header level 
+    And I should be able to see split cost center added to each item at line level
 
 
 @Non-COA @L1 @autoPO @Setting @priyanka
@@ -406,7 +396,7 @@ Feature: Checkout
 
 #   Then I should be able see the taxes added on view requisition
 
-@Non-COA @L1 @freeTextItem
+@Non-COA @L1 @freeTextItem @priyanka
   Scenario: To verify that user is able to add taxes at line item level in a requisition for free-text item 
   Given I am logged in eProc
 
@@ -492,13 +482,15 @@ Feature: Checkout
 #   Then I should be able to view requisition with non stock item
 
 
-# @Non-COA @L1
+# @Non-COA @L1 @priyanka
 #   Scenario: To verify that user is able to create requisition with conditions of delivery address
 #   Given I am logged in eProc
 
 #   When I add a catalog item with qty 2 to cart
 #   And I checkout
+#   And I enter Requisition Name
 #   And I add Purchase Type
+#   And I add Settlement Via
 #   And I add Required By Date
 #   And I add Delivery split at line level into 2 splits
 #   And I change the address for one split
@@ -571,15 +563,17 @@ Feature: Checkout
 
 
 
-@COA @L1 
+@COA @L1 @coaFree
   Scenario: COA>>To verify user is able to create a requisition for a free-text item or service
   Given I am logged in eProc
 
   When I Navigate to Guided Page
   And I Add guided item service
+  And I select category
   And I add Sourcing status
   And I add qty and price
   And I save guided item details
+  And I select supplier from the Suggested Supplier dropdown
   And I add items to cart
   And I checkout
   And I enter Requisition Name
@@ -610,7 +604,7 @@ Feature: Checkout
 
 
 
-@COA @L1 @snehal
+@COA @L1 @Snehal
  Scenario: COA>>To verify that user is able to add attachments to the requisition.
     Given I am logged in eProc
 
@@ -653,50 +647,37 @@ Feature: Checkout
 
 #     Then I should be able to view the requisition with free text item and the catalog items.
 
-# @COA @L1
+# @COA @L1 @hierarchyCoa
 #     Scenario: COA>>To verify that user is able to see the approval hierarchy after raising a requisition
 #     Given I am logged in eProc
 
-#     When I add a catalog item to cart
+#     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
 #     And I checkout
+#     And I enter Requisition Name
 #     And I add Purchase Type
+#     And I add Settlement Via
 #     And I add Required By Date
 #     And I add data in Cost Booking Details section at line level 
 #     And I submit requisition
 
 #     Then I should be able to view the workflow Approval hierarchy
 
-# @COA @L1
-#     Scenario: COA>>To verify that user should be able to buy items on behalf of other individuals. 
-#     Given I am logged in eProc
+@COA @L1 @Snehal @behalfCoa
+    Scenario: COA>>To verify that user should be able to buy items on behalf of other individuals. 
+    Given I am logged in eProc
 
-#     When I add a catalog item to cart
-#     And I checkout
-#     And I add a On Behalf user
-#     And I add Purchase Type
-#     And I add Required By Date
-#     And I add data in Cost Booking Details section at line level 
-#     And I submit requisition
+    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I enter Requisition Name
+    And I add a On Behalf of user
+    And I add Purchase Type    
+    And I add Settlement Via
+    And I add deliver to user
+    And I add Required By Date
+    And I add data in Cost Booking Details section at line level 
+    And I submit requisition
 
-#     Then I should be able to view the workflow with On Behalf user as the requestor and On behalf user workflow should be applied
-
-# @COA @L1
-#     Scenario: COA>>To verify that user is able to create requisition for multiple items with multiple cost center for each item
-#     Given I am logged in eProc
-
-#     When I add 2 catalog items to cart
-#     And I checkout
-#     And I add Purchase Type
-#     And I add Required By Date
-#     And I add Costing split at header level by Percentage into 2 splits (50, 50)
-#     And I add data in Cost Booking Details section at line level 
-#     And I submit requisition
-
-#     Then I should be able to view the requisition with multiple items
-#     And I should see split cost center added to each item at header level 
-#     And I should be able to see split cost center added to each item at line level
-
-
+    Then I should be able to view the workflow with On Behalf user as the requestor and On behalf user workflow should be applied
 
 
 @COA @L1 @coaAutoPo
@@ -716,7 +697,7 @@ Feature: Checkout
 
     Then I should see that PR is directly flipped to PO
 
-# @COA @L1
+# @COA @L1 @setting
 #     Scenario: COA>>To verify a setting called ‘Required by date should be auto calculated as per lead time defined in the catalog’ is present under Customize setting for Requisition
 #     Given I am logged in eProc
 
@@ -737,7 +718,7 @@ Feature: Checkout
     And I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated
 
 
-@COA @L1 @snehal
+@COA @L1 @Snehal
     Scenario: COA>>To verify that user is able to change the default Delivery & Bill to address in the requisition.
     Given I am logged in eProc
 
@@ -770,7 +751,7 @@ Feature: Checkout
 
     Then I should be able see the status of requisition on the Listing page
 
-@COA @L1 @snehal @custom
+@COA @L1 @Snehal @custom
     Scenario: COA>>To verify that user is able to create any custom / One time delivery address while Check out and save it for future use
     Given I am logged in eProc
 
@@ -828,20 +809,20 @@ Feature: Checkout
 
 #   Then I should be able see the taxes added on view requisition
 
-# @COA @L1
-#   Scenario: COA>>To verify that user is able to add taxes at line item level in a requisition for free-text item 
-#   Given I am logged in eProc
+@COA @L1 @coafreeTextItem @priyanka
+  Scenario: COA>>To verify that user is able to add taxes at line item level in a requisition for free-text item 
+  Given I am logged in eProc
 
-#   When I add a free text item to cart
-#   And I checkout
-#   And I add Purchase Type
-#   And I add Required By Date
-#   And I add data in Cost Booking Details section at line level 
-#   And I add Tax Details at line level
-#   And I save it
-#   And I submit requisition
+  When I add 1 free text item "SEARCH_GUIDED_ITEM" to cart
+  And I checkout
+  And I add Purchase Type
+  And I add Required By Date
+  And I add data in Cost Booking Details section at line level 
+  And I add Tax Details at line level
+  And I save it
+  And I submit requisition
 
-#   Then I should be able see the taxes added on view requisition
+  Then I should be able see the taxes added on view requisition
 
 # @COA @L1
 #   Scenario: COA>>To verify that user is able to add taxes at line item level in a requisition for catalog,punchout & free-text item
@@ -861,7 +842,7 @@ Feature: Checkout
 
 #   Then I should be able see the taxes added on view requisition
 
-# @COA @L1
+# @COA @L1 @setting
 #   Scenario: COA>>To verify that buyer is allowed to modify the requisition before sending it for approval in case of Buyer Review
 #   Given I am logged in eProc
 
@@ -897,17 +878,9 @@ Feature: Checkout
 
 #   Then I should not be allowed to edit the requisition
 
-# @COA @L1
-#   Scenario: COA>>To verify that the 'Select Purchase Order' field
-#   Given I am logged in eProc
 
-#   When I add a catalog item to cart
-#   And I checkout
-#   And I link Purchase Order in the Select Purchase Order field
 
-#   Then I should be see that the field name is updated to Select Purchase Order.
-
-@COA @L1 @snehal
+@COA @L1 @Snehal @stockItem
   Scenario: COA>>To verify that user is able to raise a request with stock items
   Given I am logged in eProc
 
@@ -948,7 +921,7 @@ Feature: Checkout
   And I should be able to Edit and submit the Draft requisition
   And I should be able to delete the requisition
 
-@COA @L1  @snehal
+@COA @L1  @Snehal
 
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer group
   Given I am logged in eProc
@@ -966,7 +939,7 @@ Feature: Checkout
 
   Then I should be able to view requisition with buyer as the buyer group which was assigned
 
-@COA @L1  @snehal
+@COA @L1  @Snehal
 
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer
   Given I am logged in eProc
@@ -1000,7 +973,7 @@ Feature: Checkout
 #   Then I should be able to view the requisition with the delivery split
 #   And I should see that the address is updated
 
-@COA @L1 @snehal
+@COA @L1 @Snehal
   Scenario: COA>>To verify that user is able to add approver in requisition workflow if activity if assigned to him/her
   Given I am logged in eProc
 
@@ -1068,7 +1041,7 @@ Feature: Checkout
 
 
 
-# @COA @L1
+# @COA @L1 @setting
 #     Scenario: To verify that if cost booking details are loading in COA form at header level for requisition.
 #     Given I am logged into eproc
 #     And setting for "Enable Flexible Chart Of Accounts (COA) split at header Level" is set to Yes
@@ -1082,7 +1055,7 @@ Feature: Checkout
 
 # @COA @L1
 #     Scenario: To verify that if cost booking details are loading in COA form at Line item level in requisition.
-#     Given I am logged into eproc
+#     Given I am logged in eProc
 #     And I am on checkout page with a catalog item 
 
 #     When I add items at line level

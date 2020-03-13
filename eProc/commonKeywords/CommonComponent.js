@@ -33,6 +33,9 @@ async function getElementDomStatus(xpath, timeout) {
                 resolve(true);
             }
         }, 1000);
+    }).catch(() => {
+        logger.info(`Error occurred in promise function "getElementDomStatus"`);
+        resolve("false");
     });
 }
 
@@ -50,7 +53,10 @@ async function getElementViewportStatus(xpath, timeout) {
             let interval = setInterval(async () => {
                 let bounding = await I.executeScript((xpath) => {
                     return document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.getBoundingClientRect();
-                }, xpath);
+                }, xpath).catch(() => {
+                    logger.info(`Error occurred in promise function "getElementViewportStatus"`)
+                    resolve("false");
+                });
 
                 let boundingRight = await I.executeScript(() => {
                     return window.innerWidth || document.documentElement.clientWidth;
@@ -78,6 +84,9 @@ async function getElementViewportStatus(xpath, timeout) {
                     }
                 }
             }, 1000);
+        }).catch(() => {
+            logger.info(`Error occurred in promise function "getElementViewportStatus"`)
+            resolve("false");
         });
     }
     else {
@@ -362,4 +371,14 @@ module.exports={
         }
         return columnIndex;
     },
+    async selectToday(locator) {
+        I.click(locator);
+        I.click(".currentDate", ".d-picker");
+    },
+    async selectInNextMonth(locator, date) {
+        I.click(locator);
+        I.click("show next month", ".d-picker");
+        I.click(date, ".d-picker");
+    },
+
 };

@@ -49,7 +49,8 @@ module.exports = {
         return status;
     },
     async approveDoc(docNumber, searchBy){
-        I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.wait(prop.DEFAULT_HIGH_WAIT);
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         await commonKeywordImpl.searchDocOnListing(docNumber, searchBy);
         await this.clickOnApproveAction();
         await this.fillApprovalComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
@@ -118,20 +119,21 @@ module.exports = {
 
     async approveMultipleReqs(reqArray, searchBy){
         for (let i=1; i<reqArray.length; i++) {
-            await commonKeywordImpl.searchDocOnListing(this.reqArray[i].reqNumber, searchBy);
+            await commonKeywordImpl.searchDocOnListing(reqArray[i].reqNumber, searchBy);
             await I.executeScript(function() {
             document.getElementById("ApprovalReqListing0").click();
             })
-            await this.clearSearchField();
         } 
+        await I.waitForVisible(I.getElement(approvalObject.FOOTER_APPROVE_ACTION));
         await I.click(I.getElement(approvalObject.FOOTER_APPROVE_ACTION));
         await this.fillApprovalComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
         await this.clickOnApproveSpoPopupApproveButton();
-        for (let i=1; i<reqArray.length; i++) {
-            let status = await this.getReqStatus();
-            this.reqArray[i].setStatus(status);
-            I.assertEqual(this.reqArray[i].status, lmtVar.getLabel("APPROVED_STATUS"));
-        } 
+        for (i=1; i<reqArray.length; i++)
+        {   
+            await commonKeywordImpl.searchDocOnListing(reqArray[i].reqNumber, searchBy);
+            let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+            await reqArray[i].setStatus(status);
+        }
         return reqArray;
     },
 
@@ -155,18 +157,18 @@ module.exports = {
         }     
     },
 
-    async checkMultipleReqStatus(reqArray, searchBy) {
-        for (let i=1; i<reqArray.length; i++) {
-            await commonKeywordImpl.searchDocOnListing(reqArray[i].reqNumber, searchBy);
-            let status = await I.grabTextFrom(I.getElement(approvalObject.APPROVAL_LISTING_REQ_STATUS));
-            await I.assertEqual(status, POArray[i].status);
-            let flag = status === POArray[i].status;
+    async checkMultipleReqStatus(reqArray) {
+        for (let i=0; i<reqArray.length; i++) {
+            await commonKeywordImpl.searchDocOnListing(reqArray[i].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+            await I.assertEqual(status.toString(), reqArray[i].status);
+            let flag = status.toString() === reqArray[i].status;
         if(!flag) {
-            logger.info(`Failed to match the status of doc as ${status} is different from ${POArray[i].status}`);
-            throw new Error(`Failed to match the status of doc as ${status} is different from ${POArray[i].status}`);
+            logger.info(`Expected status is different from Actual i.e ${status.toString()}`);
+            throw new Error(`Expected status is different from Actual i.e ${status.toString()}`);
         }
         else {
-            logger.info("Status of doc matched successfully");
+            logger.info(`Status of requisition is ${status.toString()}`);
         }
         }     
     },
@@ -327,27 +329,29 @@ module.exports = {
 
     async getReqStatus() {
         I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
-        let status = await I.grabTextFrom(I.getElement(approvalObject.APPROVAL_LISTING_REQ_STATUS));
-        logger.info(`Retrieved status --> ${status}`);
+        let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+        //let status = await I.grabTextFrom(I.getElement(approvalObject.APPROVAL_LISTING_REQ_STATUS));
+        logger.info(`Retrieved status --> ${status.toString()}`);
         return status;
     },
 
     async rejectMultipleReqs(reqArray, searchBy){
         for (let i=1; i<reqArray.length; i++) {
-            await commonKeywordImpl.searchDocOnListing(this.reqArray[i].reqNumber, searchBy);
+            await commonKeywordImpl.searchDocOnListing(reqArray[i].reqNumber, searchBy);
             await I.executeScript(function() {
             document.getElementById("ApprovalReqListing0").click();
             })
-            await this.clearSearchField();
         } 
+        await I.waitForVisible(I.getElement(approvalObject.FOOTER_REJECT_ACTION));
         await I.click(I.getElement(approvalObject.FOOTER_REJECT_ACTION));
-        for (let i=1; i<reqArray.length; i++) {
-            await I.waitForVisible(approvalObject.SEARCH_FIELD);
-            await this.clearSearchField();
-            await commonKeywordImpl.searchDocOnListing(this.reqArray[i].reqNumber, searchBy);
-            let status = await this.getReqStatus();
-            I.assertEqual(status, lmtVar.getLabel("REJECTED_STATUS"));
-        } 
+        await this.fillApprovalComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
+        await this.clickOnApproveSpoPopupApproveButton();
+        for (i=1; i<reqArray.length; i++)
+        {   
+            await commonKeywordImpl.searchDocOnListing(reqArray[i].reqNumber, searchBy);
+            let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+            await reqArray[i].setStatus(status);
+        }
         return reqArray;
     },
 
@@ -367,7 +371,7 @@ module.exports = {
             logger.info("Spo is approved successfully");
         }
         
-        await I.wait(prop.DEFAULT_MEDIUM_WAIT);
+        await I.wait(prop.DEFAULT_HIGH_WAIT);
         await poListingImpl.navigateToPoListing();
         await commonKeywordImpl.searchDocOnListing(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
         status = await poListingImpl.getPoStatus();

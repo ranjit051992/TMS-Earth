@@ -592,21 +592,12 @@ module.exports = {
 
     async createMultiplePOs(noOfPOs, noOfItems, itemType) {
         let POArray = new Array();
-        // let spo = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
-        // spo.poNumber = "Automation_Spo_1583744481394";
-        // let spo1 = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
-        // spo1.poNumber = "Automation_Spo_1583744464347";
-        // let spo2 = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
-        // spo2.poNumber = "Automation_Spo_1583744322931";
-        // let POArray = new Array(spo, spo1, spo2);
-
-        for(let i=0; i<noOfPOs; i++) 
+        for(let i=0; i<noOfPOs; i++)
         {
         let spo = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
         spo = await this.createSpoFlow(spo);
         await POArray.push(spo);
-        }   
-
+        }
         return POArray;
     },
 
@@ -624,6 +615,13 @@ module.exports = {
         let PoAmount = await I.grabTextFrom(I.getElement(iSpoObject.TOTAL_ORDER_AMOUNT));
         spo.setPoAmount(PoAmount);
         return spo;
+    },
+
+    async getItemNameEditMode(index) {
+        let itemNameXpath = `(//eproc-line-item-details//span[contains(@class,'text-body-link')])[${index}]`;
+        await I.waitForVisible(itemNameXpath);
+        let itemName = await I.grabTextFrom(itemNameXpath);
+        return itemName;
     }
 
 }
