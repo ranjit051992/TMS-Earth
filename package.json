@@ -30,6 +30,7 @@
     "log4js": "^6.1.2",
     "mssql-connection-string": "^0.3.2",
     "mysql": "^2.18.1",
+    "ncp": "^2.0.0",
     "properties-reader": "^1.0.0",
     "randomstring": "^1.1.5",
     "request": "^2.88.2",

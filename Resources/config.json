@@ -32,7 +32,7 @@
         "UserTable":"eProc_credentials",
         "LOGIN_WITH_PASSWORD_MANAGER": false,
         "isCoa": false,
-        "runOnGrid": true,
+        "runOnGrid": false,
         "USERNAME": "auto.zcs24@zycus.com",
         "PASSWORD": "mOaAaAwEsIlOoEwOlI#7"
     },

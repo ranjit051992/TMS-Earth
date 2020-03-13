@@ -3,7 +3,7 @@ const faker = require("faker");
 const spoBO = require("../dataCreation/bo/Spo");
 const bpoBO = require("../dataCreation/bo/Bpo");
 const catalogItem = require("../dataCreation/bo/CatalogItem")
-const requisition = require("../dataCreation/bo/Requisition");
+const requisition1 = require("../dataCreation/bo/Requisition");
 const logger = require("../../Framework/FrameworkUtilities/Logger/logger");
 const commonUtilities = require("../../Framework/FrameworkUtilities/CommonUtilities");
 const prop = global.confi_prop;
@@ -101,6 +101,7 @@ class ObjectCreation
 
     async getObjectOfRequisition(noOfItems,itemType)
      {
+        let requisition = new requisition1();
         requisition.reqName = "Automation_Req"+faker.random.number(200000);
         requisition.noOfItems = noOfItems;
         requisition.onBehalfOf = I.getData("ON_BEHALF_OF_WITH_RIGHT_USER");

@@ -1,5 +1,5 @@
-const parsing = require("./Framework/PropertiesConfigurator");
-parsing("eProc");
+const parsing= require("./Framework/PropertiesConfigurator");
+parsing();
 const prop = global.confi_prop;
 global.lang = 'en';
 exports.config = {
@@ -14,7 +14,7 @@ exports.config = {
       restart: prop.restart,
       windowSize: prop.windowSize,
       waitForTimeout: 60000,
-      smartWait: 5000,
+      smartWait: 2000,
       timeouts: {
         "script": 10000,
         "page load": 10000
@@ -34,6 +34,7 @@ exports.config = {
   },
   bootstrap: "./bootstrap.js",
   teardown: "./bootstrap.js",
+  teardownAll: "./get_all_reports.js",
   include: {
     I: prop.stepFilePath,
   },

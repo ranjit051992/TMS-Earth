@@ -66,7 +66,7 @@ module.exports = {
     
   },
 
-  async fillPurchaseAmount(maxValue,minValue)
+  async fillPurchaseAmount(minValue,maxValue)
   { 
      
      I.waitForClickable(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT),prop.DEFAULT_MEDIUM_WAIT);
@@ -74,7 +74,7 @@ module.exports = {
      await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MIN_INPUT),minValue);
     
      await I.fillField(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_MAX_INPUT),maxValue);
-     logger.info("Entered the min value " +maxValue);
+     logger.info("Entered the max value " +maxValue);
      await this.clickonApplyButton();
 
   },
@@ -425,6 +425,11 @@ module.exports = {
         logger.info("Clicked on Submit PO button");
     },
 
+    async clickOnConvertToPoConfirmYesButton() {
+        await I.waitForVisible(I.getElement(iBuyersDeskObject.CONVERT_TO_PO_CONFIRM_YES_BUTTON));
+        await I.click(I.getElement(iBuyersDeskObject.CONVERT_TO_PO_CONFIRM_YES_BUTTON));
+        logger.info("Clicked on Convert to PO confirm Yes button");
+    },
     async selectDateWithin(option){
         let xpath =`//dew-popover-body//button[contains(text(),'${option}')]`
         await I.waitForVisible(xpath,prop.DEFAULT_MEDIUM_WAIT);

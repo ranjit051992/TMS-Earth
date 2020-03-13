@@ -381,7 +381,7 @@ module.exports = {
 
     async fillGuidedItemDetails(guidedItem) {
         if (guidedItem.category !== "undefined") {
-          //  await this.fillCategory(guidedItem.category);
+           await this.fillCategory(guidedItem.category);
         }
 
         if (guidedItem.type === lmtVar.getLabel("ITEM_TYPE_GOODS")) {
@@ -491,6 +491,7 @@ module.exports = {
 
     async selectSourcingStatus(sourcingStatus)
     {
+        logger.info(`Selecting sourcing status : ${sourcingStatus}`);
         if (sourcingStatus === lmtVar.getLabel("SOURCING_STATUS_NEED_QUOTE")) {
             await this.clickOnNeedAQuoteRadioButton();
         }
