@@ -262,8 +262,10 @@ module.exports = {
         I.waitForVisible(I.getElement(iBuyersDeskObject.REQUISITION_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
         await this.clickOnRequesterFilter();
         let requesterName = await this.selectRequester(requester);
-        requisitionBo.requester = requesterName;
-        logger.info('Requester after selector is '+requisitionBo.requester);
+        let requestor = requesterName.toString().substring(0,requesterName.toString().indexOf('|'));
+        logger.info('Requester Name is >> '+requestor);
+        requisitionBo.requestor = requestor.toString().trim();
+        logger.info('Requester after selector is '+requisitionBo.requestor);
         await this.clickonApplyButton();
         I.waitForVisible(I.getElement(iBuyersDeskObject.REQUESTER_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
     },
@@ -517,7 +519,44 @@ module.exports = {
          await I.waitForVisible(I.getElement(iBuyersDeskObject.SUBMIT_PO_BUTTON));
          await I.click(I.getElement(iBuyersDeskObject.SUBMIT_PO_BUTTON));
          logger.info("Clicked on Submit PO button");
-        }
+        },
+
+
+        async verifyBuyer(){
+            let flag = true;
+            let searchedBuyer = await this.fetchSearchedBuyer();
+            logger.info('Searched Buyer is '+searchedBuyer);
+                      
+            if(searchedBuyer.includes(requisitionBo.buyer))
+             {
+                 logger.info(`Fetched Buyer is -> ${searchedBuyer}`);
+                 flag = true;
+             }
+             else if(searchedBuyer.toString().includes('More')){
+                logger.info('Buyer is Hidden');
+                let noOfbuyers = await I.grabTextFrom(I.getElement(iBuyersDeskObject.BUYER_NAME_PLUSMORE));
+                noOfbuyers = noOfbuyers.toString().charAt(1);
+                logger.info('Number of buyers hidden are '+noOfbuyers)
+                await I.moveCursorTo(I.getElement(iBuyersDeskObject.BUYER_NAME_PLUSMORE));
+                logger.info('Mouse over on +More')
+                for(let x=0;x<noOfbuyers;x++){
+                    let xpath = `/html/body/ngb-tooltip-window/div[2]/div/div[${x+1}]`
+                    let hiddenBuyer =  await I.grabAttributeFrom(xpath,"textContent");
+                    if(hiddenBuyer.toString().trim==requisitionBo.buyer.toString().trim){
+                        logger.info('Fetched Hidden buyer is >> '+hiddenBuyer);
+                        flag = true;
+                        break;
+                    }
+                }
+
+            }
+             else{
+                 logger.info(`Fetched Buyer is -> ${searchedBuyer}`);
+                 flag = false;
+             }
+     
+             return flag;
+         }
 }
 
  
