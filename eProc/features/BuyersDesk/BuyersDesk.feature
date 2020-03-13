@@ -8,6 +8,7 @@ Feature: BuyersDesk
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I add Purchase Type
+    And I add Settlement Via
     And I add Required By Date
     And I add data in Cost Booking Details section at line level 
     And I submit requisition
@@ -196,6 +197,7 @@ Feature: BuyersDesk
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I add Purchase Type
+    And I add Settlement Via
     And I add Required By Date
     And I add data in Cost Booking Details section at line level
     And I submit requisition

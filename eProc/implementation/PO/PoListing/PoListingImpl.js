@@ -97,6 +97,18 @@ module.exports = {
            logger.info("PO is Cancelled successfully");
         }
         return flag;
-    }
+    },
+
+    async closePO(poNumber)
+    {
+        await this.navigateToPoListing();
+        await commonKeywordImpl.searchDocOnListing(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        await commonKeywordImpl.clickOnActionMenuIcon();
+        await commonKeywordImpl.clickOnActionMenuOption(lmtVar.getLabel("CLOSE_ACTION_MENU_OPTION"));
+        await this.fillClosePoComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
+        await this.clickOnClosePoButton();
+        await this.clickOnClosedPoSuccessDoneButton();
+        await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
+    },
     
 }

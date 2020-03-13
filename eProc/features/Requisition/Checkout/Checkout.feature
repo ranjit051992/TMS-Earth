@@ -503,15 +503,16 @@ Feature: Checkout
 
 
 
-# @Non-COA @L1 @closeReq
+# @Non-COA @L1 @closeReq @priyanka
 #   Scenario: To verify that user is  able to close requisition
 #   Given I am logged in eProc
 #   And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
+#   And I close PO
 
 #   When I navigate to Requisition Listing page
 #   And I close the requisition from actions
 
-#   Then I should be able to see the status of the requisition changed to Closed.
+#   Then I should be able to see the status of the requisition changed to Closed
 
 # @Non-COA @L1
 #   Scenario: To verify the behavior of requisition who has PO attached to them
@@ -993,15 +994,16 @@ Feature: Checkout
 
   Then I should be able to view the requisition with adhoc approver added in the workflow
 
-# @COA @L1
+# @COA @L1 @closeReqCOA @priyankaCOA
 #   Scenario: COA>>To verify that user is  able to close requisition
 #   Given I am logged in eProc
+#   And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
+#   And I close PO
 
 #   When I navigate to Requisition Listing page
-#   And I filter for any Released requisition
 #   And I close the requisition from actions
 
-#   Then I should be able to see the status of the requisition changed to Closed.
+#   Then I should be able to see the status of the requisition changed to Closed
 
 # @COA @L1
 #   Scenario: COA>>To verify the behavior of requisition who has PO attached to them
