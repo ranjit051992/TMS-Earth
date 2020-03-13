@@ -19,15 +19,15 @@ module.exports = {
     },
 
     async clickonStatusFilterButton(){
-        I.click(I.getElement(iBuyersDeskObject.STATUS_FILTER));
+        await I.click(I.getElement(iBuyersDeskObject.STATUS_FILTER));
     },
     
     async clickOnStatusApplyButton(){
-        I.click(I.getElement(iBuyersDeskObject.BUYER_DESK_STATUS_APPLY));  
+        await I.click(I.getElement(iBuyersDeskObject.BUYER_DESK_STATUS_APPLY));  
         },
 
      async clickonRequestorFilter(){
-         I.click(I.getElement(iBuyersDeskObject.REQUESTOR_FILTER))
+         await I.click(I.getElement(iBuyersDeskObject.REQUESTOR_FILTER))
      } , 
     // clickonStatusFilterButton(){
     //     I.click(I.getElement(iBuyersDeskObject.FILTER_BUTTON))
