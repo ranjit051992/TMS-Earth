@@ -22,7 +22,6 @@ When ("I create {string} requisition with {string} {string}", async function(noO
   for(let i =0;i<noOfReq;i++)
             {
               let reqBo= await objectCreation.getObjectOfRequisition(noOfItems, itemType);
-              logger.info('requisition: '+reqBo);
               this.reqBO = await checkoutImpl.createRequisitionFlow(reqBo);
               let reqNumber = await checkoutImpl.fetchCreatedRequisitionNumber();
               requisition.reqNumber = await checkoutImpl.fetchCreatedRequisitionNumber();
@@ -183,11 +182,9 @@ Then ("I should be see the data on the page with the filtered amount {string} an
 });
 
 Then("I should be see the data on the page with the filtered buyer", async function() {
-  let searchedBuyer = await buyersDeskImpl.fetchSearchedBuyer();
-  logger.info('Searched Buyer is '+searchedBuyer);
-  logger.info('Requisition Buyer is '+requisition.buyer);
-  I.assertEqual(searchedBuyer.toString(), requisition.buyer.toString());
-   
+  logger.info("Buyer to be searched is "+requisition.buyer);
+  let flag = await buyersDeskImpl.verifyBuyer();
+  I.assertEqual(flag, true);   
 });
 
 Then("I should be able to create a PO with multiple requisition merged into one",async function(){
@@ -198,11 +195,9 @@ Then("I should be able to create a PO with multiple requisition merged into one"
 
 Then("I should be see the data on the page on the basis on Requestor field",async function(){
   let searchedRequestor = await buyersDeskImpl.fetchSearchedRequestor();
-  let actualRequestor = (global.users.get("USERNAME"));
-  actualRequestor = actualRequestor.substring(0,actualRequestor.indexOf("@"));
-  logger.info('Searched Requestor is '+searchedRequestor);
-  logger.info('Actual Requestor is '+actualRequestor);
-  I.assertEqual(searchedRequestor.toString(), actualRequestor.toString());
+  logger.info('Fetched Requestor is '+searchedRequestor);
+  logger.info('Requestor to be searched is '+requisition.requestor);
+  I.assertEqual(searchedRequestor.toString().trim(), requisition.requestor.toString().trim());
 });
 
 When("I edit the requisition", async function(){
