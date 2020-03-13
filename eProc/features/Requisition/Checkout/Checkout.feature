@@ -266,7 +266,7 @@ Feature: Checkout
 
 #     Then I should be able to view the requisition with free text item and the catalog items.
 
-@Non-COA @L1 @hierarchy
+@Non-COA @L1 @hierarchy @Snehal
     Scenario: To verify that user is able to see the approval hierarchy after raising a requisition
     Given I am logged in eProc
 
@@ -281,7 +281,7 @@ Feature: Checkout
 
     Then I should be able to view the workflow Approval hierarchy
 
-@Non-COA @L1 @behalf
+@Non-COA @L1 @behalf @Snehal
     Scenario: To verify that user should be able to buy items on behalf of other individuals. 
     Given I am logged in eProc
 
@@ -563,7 +563,7 @@ Feature: Checkout
 
 
 
-@COA @L1 @coaFree
+@COA @L1 @coaFree @Snehal
   Scenario: COA>>To verify user is able to create a requisition for a free-text item or service
   Given I am logged in eProc
 
@@ -921,7 +921,7 @@ Feature: Checkout
   And I should be able to Edit and submit the Draft requisition
   And I should be able to delete the requisition
 
-@COA @L1  @Snehal
+@COA @L1  @Snehal 
 
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer group
   Given I am logged in eProc
@@ -939,7 +939,7 @@ Feature: Checkout
 
   Then I should be able to view requisition with buyer as the buyer group which was assigned
 
-@COA @L1  @Snehal
+@COA @L1  @Snehal @buyerCoa
 
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer
   Given I am logged in eProc

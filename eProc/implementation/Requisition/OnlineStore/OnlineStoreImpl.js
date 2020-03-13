@@ -157,13 +157,14 @@ module.exports = {
     },
 
     async checkItemsInFavorites() {
-        let isPresent = true;
+        let isPresent = false;
         let noOfElements = await I.grabNumberOfVisibleElements(I.getElement(iOnlineStore.NO_FAV_PRODUCT_DATA_MSG));
         if (noOfElements > 0) {
             isPresent = false
             await logger.info("No data present for favorite items.");
         }
         else {
+            isPresent = true;
             await logger.info("Data is present for favorite items.");
         }
 

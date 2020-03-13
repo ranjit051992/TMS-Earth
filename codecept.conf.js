@@ -41,7 +41,7 @@ exports.config = {
    multiple: {
         sanityCases: {
           // Splits tests into 2 chunks
-          chunks: 4
+          chunks: 2
         }
       },
     gherkin: {
