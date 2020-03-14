@@ -102,7 +102,8 @@ class ObjectCreation
     async getObjectOfRequisition(noOfItems,itemType)
      {
         let requisition = new requisition1();
-        requisition.reqName = "Automation_Req"+faker.random.number(200000);
+        //requisition.reqName = "Automation_Req"+faker.random.number(200000);
+        requisition.reqName = `Automation_req_${new Date().getTime()}`
         requisition.noOfItems = noOfItems;
         requisition.onBehalfOf = I.getData("ON_BEHALF_OF_WITH_RIGHT_USER");
         //requisition.onBehalfOf = (global.users.get("USERNAME"));
