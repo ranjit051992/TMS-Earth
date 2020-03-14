@@ -258,8 +258,7 @@ module.exports = {
     },
     async clickOnCostBookingSaveButton() {
         await I.waitForVisible(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
-        await I.click(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
-        await I.click(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
+        await commonKeywordImpl.clickUsingJsByXpath(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
         await I.waitForVisible(I.getElement(iSpoObject.poDescriptionTextbox));
         logger.info("Clicked on Save Button");
     },

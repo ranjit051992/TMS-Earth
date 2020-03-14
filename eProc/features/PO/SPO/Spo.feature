@@ -140,7 +140,7 @@ Feature: Spo
 
   When I click on Create PO button
   And I click on Create SPO button
-  And I fetch PO number
+  And I fill PO number
   And I fill Order Description
   And I add Purchase type
   And I select supplier details
