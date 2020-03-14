@@ -197,7 +197,10 @@ module.exports={
         logger.info(`Searched for doc --> ${docDetail}`);
         await this.waitForLoadingSymbolNotDisplayed();
 
-        flag = await this.waitForElementVisible(I.getElement(poListingObject.PO_NUMBER_LINK), 90);
+        //flag = await this.waitForElementVisible(I.getElement(poListingObject.PO_NUMBER_LINK), 90);
+        flag = await this.waitForElementVisible(I.getElement(poListingObject.PO_NUMBER_LINK), 180); 
+
+
         if(!flag) {
             logger.info(`Reattempting to search the doc`);
             await I.refreshPage();

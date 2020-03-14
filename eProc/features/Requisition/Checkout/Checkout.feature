@@ -151,7 +151,7 @@ Feature: Checkout
   Then I should be able to view requisition with buyer which was assigned
   
 
-@Non-COA @L1 @adhoc @Snehal
+@Non-COA @L1 @adhocn @Snehal
   Scenario: To verify that user is able to add approver in requisition workflow if activity is assigned to him/her
   Given I am logged in eProc
 
@@ -204,6 +204,7 @@ Feature: Checkout
 
   When I Navigate to Guided Page
   And I Add guided item service
+  And I select category
   And I add Sourcing status
   And I add qty and price
   And I save guided item details
@@ -515,19 +516,20 @@ Feature: Checkout
 
 #   Then I should be able to see the status of the requisition changed to Closed
 
-# @Non-COA @L1
+# @Non-COA @L1 @Snehal
 #   Scenario: To verify the behavior of requisition who has PO attached to them
 #   Given I am logged in eProc
-
-#   When I add a catalog item to cart
+#   And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
+#   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
 #   And I checkout
+#   And I enter Requisition Name
 #   And I add Purchase Type
 #   And I add Required By Date
 #   And I Select Purchase Order
 #   And I add data in Cost Booking Details section at line level 
 #   And I submit requisition
 #   And I approve requisition
-#   And I navigate to Buyers Desk
+#   And I navigate to Buyer Desk
 #   And I edit the requisition on Buyers Desk
 #   And I select the item and Convert req to PO
 
