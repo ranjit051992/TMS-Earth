@@ -48,7 +48,6 @@ Then("I should be able to view the actions for the draft requisition on Listing 
 
 Then("I should be able to Edit and submit the Draft requisition", async function(){
     let editDraftReq = false;
-
     await checkoutImpl.editAndUpdateDraftRequisition(this.reqNumber, this.reqBO);
     await reqListingImpl.navigateToRequisitionListing();
     await reqListingImpl.searchRequisitionByReqNumber(this.reqNumber);
@@ -104,6 +103,7 @@ When("I copy that requisition", async function(){
     logger.info(`Requisition ${this.reqNumber} is Copied Successfully`);
 });
 
+
 Given("I have created a req to PO with PO in In Approval status", async function() {
     this.reqBO = await objectCreation.getObjectOfRequisition(1, "ITEM_NAME_FOR_SEARCHING");
     this.reqBO.approvePoFlag = false;
@@ -142,3 +142,24 @@ Given("I have created a requisition with {int} {string} and not converted it to 
  Given("I fetch the req number on req listing", async function() {
     this.reqBO.reqNumber = await commonComponent.getDocNumber();
  });
+
+When("I navigate to Requisition Listing page", async function(){
+    await reqListingImpl.navigateToRequisitionListing();
+});
+
+When("I close the requisition from actions",async function(){
+    await reqListingImpl.closeRequisition(this.reqBO.reqNumber);
+});
+
+Then("I should be able to see the status of the requisition changed to Closed", async function(){
+    let isReqStatusClosed = false;
+    let reqStatus = await reqListingImpl.getRequisitionStatus();
+
+    if(reqStatus.toString() === lmtVar.getLabel("CLOSED_STATUS"))
+    {
+        isReqStatusClosed = true;
+        logger.info("Requisition Status is closed...");
+    }
+
+    I.assertEqual(isReqStatusClosed, true);
+});

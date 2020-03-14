@@ -36,7 +36,7 @@ class GuidedItem
         this.nextAction;
         this.suppliers = [];
         this.supplierAddress;
-
+        this.eform;
     }
     setItemName(itemName)
     {
@@ -186,6 +186,11 @@ class GuidedItem
     setSuppliers(suppliers)
     {
         this.suppliers = suppliers;
+    }
+
+    setEform(eform)
+    {
+        this.eform = eform;
     }
 }
 module.exports=GuidedItem;

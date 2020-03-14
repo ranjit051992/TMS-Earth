@@ -122,7 +122,7 @@ Then ("I see the same Buyer name displayed for the corresponding PO number", asy
     let buyer = this.spo.buyer.toString();
     logger.info(`Buyer name stored in BO is ---> ${buyer}`);
     let updatedBuyer = await ApprovalImpl.fetchBuyerOnPoApprovalListing(buyer);
-    I.assertEqual(updatedBuyer, buyer.substring(0, buyer.indexOf("@")));
+    I.assertEqual(updatedBuyer, buyer);
 });
 
 Then ("I see the same Received on date on PO Approval listing", async function() {
@@ -182,18 +182,13 @@ Then ("I should be able to see the status of all Requisitions as Rejected", asyn
 
 
 When("I approve the requisition", async function(){
+    await I.wait(prop.DEFAULT_HIGH_WAIT);
     await ApprovalImpl.navigateToApprovalListing();
-    if(this.reqBO.status.includes(lmtVar.getLabel("IN_APPROVAL_STATUS"))) {
-        await ApprovalImpl.approveDoc(this.reqBO.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-        await I.wait(prop.DEFAULT_MEDIUM_WAIT);
-        let status = await ApprovalImpl.getReqStatus();
-        if(status !== lmtVar.getLabel("APPROVED_STATUS")) {
-            logger.info(`Req status is not ${lmtVar.getLabel("APPROVED_STATUS")} after approval. Current status is ${status}`);
-            throw new Error(`Req status is not ${lmtVar.getLabel("APPROVED_STATUS")} after approval. Current status is ${status}`);
-        }
-    }
-    else {
-        logger.info(`Req status is not ${lmtVar.getLabel("IN_APPROVAL_STATUS")}. Current status is ${this.reqBO.status}. Hence, not executing the approve req option`);
-    }
-    
+    await ApprovalImpl.approveDoc(this.reqBO.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+    await I.wait(prop.DEFAULT_MEDIUM_WAIT);
+    let status = await ApprovalImpl.getReqStatus();
+    if(status !== lmtVar.getLabel("APPROVED_STATUS")) {
+        logger.info(`Req status is not ${lmtVar.getLabel("APPROVED_STATUS")} after approval. Current status is ${status}`);
+        throw new Error(`Req status is not ${lmtVar.getLabel("APPROVED_STATUS")} after approval. Current status is ${status}`);
+    }    
 });

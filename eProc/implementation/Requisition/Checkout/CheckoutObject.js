@@ -84,6 +84,9 @@ module.exports= {
 
     //Shipping Details And Asset Tagging
     LINE_LEVEL_ADDRESS: "Checkout/ItemDetails/Shipping Details And Asset Tagging/LINE_LEVEL_ADDRESS",
+    SHIP_ITEMS_TO_MULTIPLE_PERSON_LOCATION_RADIO_BUTTON: "Checkout/ItemDetails/Shipping Details And Asset Tagging/SHIP_ITEMS_TO_MULTIPLE_PERSON_LOCATION",
+    QUANTITY_AMOUNT_TEXTBOX: "Checkout/ItemDetails/Shipping Details And Asset Tagging/QUANTITY_AMOUNT",
+    ADD_ANOTHER_ADDRESS_BUTTON: "Checkout/ItemDetails/Shipping Details And Asset Tagging/ADD_ANOTHER_ADDRESS_BUTTON",
     
     //Taxes tab
     TAX_TYPE_DROPDOWN: "Checkout/ItemDetails/Taxes/TAX_TYPE_DROPDOWN",

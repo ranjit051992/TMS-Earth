@@ -14,7 +14,7 @@ exports.config = {
       restart: prop.restart,
       windowSize: prop.windowSize,
       waitForTimeout: 60000,
-      smartWait: 2000,
+      smartWait: 5000,
       timeouts: {
         "script": 10000,
         "page load": 10000
@@ -41,7 +41,7 @@ exports.config = {
    multiple: {
         sanityCases: {
           // Splits tests into 2 chunks
-          chunks: 4
+          chunks: 5
         }
       },
     gherkin: {

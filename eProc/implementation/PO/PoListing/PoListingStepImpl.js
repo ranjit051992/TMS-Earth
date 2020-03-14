@@ -19,3 +19,7 @@ Then("I should see that PR is directly flipped to PO", async function(){
     }
     I.assertEqual(isPOcreated, true);
 });
+
+Given("I close PO", async function(){
+    await poListingImpl.closePO(this.reqBO.poNumber);
+});

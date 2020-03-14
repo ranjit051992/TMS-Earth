@@ -11,6 +11,7 @@ const poListingImpl = require("../PO/PoListing/PoListingImpl");
 module.exports = {
     async navigateToApprovalListing() {
         await I.amOnPage(prop.DDS_Approval_Listing);
+       // await commonKeywordImpl.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("APPROVAL_LISTING_PAGE"));
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info("Navigated to approval listing page");
         await commonKeywordImpl.selectValueFromDropDown(I.getElement(approvalObject.LISTING_SELECTION_DROP_DOWN), lmtVar.getLabel("LISTING_ALL_ITEMS_OPTION"));
@@ -36,6 +37,7 @@ module.exports = {
         await I.waitForVisible(I.getElement(approvalObject.APPROVE_SPO_POPUP_APPROVE_BUTTON));
         await I.click(I.getElement(approvalObject.APPROVE_SPO_POPUP_APPROVE_BUTTON));
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.wait(prop.DEFAULT_HIGH_WAIT);
         logger.info("Clicked on Approve button");
     },
     async clickOnRejectSpoPopupRejectButton() {
@@ -294,7 +296,7 @@ module.exports = {
     },
 
     async fetchBuyerOnPoApprovalListing(buyer) {
-        let buyerXpath = `//span[contains(text(),'${buyer.substring(0,buyer.indexOf("@"))}')]`;
+        let buyerXpath = `//span[contains(text(),'${buyer}')]`;
         await I.waitForVisible(buyerXpath);
         let buyerName = await I.grabTextFrom(buyerXpath);
         logger.info(`Buyer name fetched from listing is ---> ${buyerName}`);
