@@ -384,3 +384,9 @@ When("I change the address for split {int}", async function(forSplit){
     //SHIP_TO_ADDRESS_NAME
 });
 
+Given("I Select Purchase Order", async function(){
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ADDITIONAL_DETAILS_SECTION"));
+    await checkoutImp.selectPurchaseOrder(this.reqBO.poNumber);
+    await checkoutImp.clickOnSelectedPOContinueButton();
+    this.purchaseOrder = await checkoutImp.getSelectedPurchaseOrder();;
+});
