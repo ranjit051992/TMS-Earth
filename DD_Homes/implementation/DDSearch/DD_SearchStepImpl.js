@@ -1,7 +1,7 @@
 const { I } = inject();
 const DD_SearchImpl = require("./DD_SearchImpl");
 const FooterLinkImpl = require("./../footerLinks/DD_FooterLinksImpl");
-const DewHomeSearchField = require("../../../node_modules/dd-cc-zycus-automation/components/dewHomeSearchField");
+const DewHomeSearchField = require("dd-cc-zycus-automation/components/dewHomeSearchField");
 
 
 /**

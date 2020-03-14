@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 "use strict";
 const { I } = inject();
-
+const CommonKeyword = require("dd-cc-zycus-automation/components/commonKeyword")
 /**
  * Notifications related class
  */
@@ -24,7 +24,7 @@ class NotificationCheck {
 
 
   async selectNotificationHeader(headerName){
-    I.click("//dew-default-tab-head[contains(text(),'"+headerName+"')]")
+    CommonKeyword.clickElement("//dew-default-tab-head[contains(text(),'"+headerName+"')]")
   }
 
 
@@ -42,7 +42,7 @@ class NotificationCheck {
     let checkIfNotificationIsClicked = await I.grabNumberOfVisibleElements("//dew-notification")
     console.log("notification:",checkIfNotificationIsClicked)
     if (checkIfNotificationIsClicked == 0)
-      I.click("//span[contains(@class,'icon-notification')]");
+      CommonKeyword.clickElement("//span[contains(@class,'icon-notification')]");
   }
 
 
@@ -52,21 +52,28 @@ class NotificationCheck {
     this.selectDataFromNotification(data);
 
     I.seeElement("//dew-view-attachments")
-    I.scrollTo("//dew-view-attachments")
+    I.scrollIntoView("//dew-view-attachments")
 
-    I.click("//div[contains(@class,'text-body-link')]/span[text()[normalize-space()='Download']]")
+    CommonKeyword.clickElement("//div[contains(@class,'text-body-link')]/span[text()[normalize-space()='Download']]")
   }
 
   async selectDataFromNotification(data){
 
-    I.scrollTo("//span[text()[normalize-space()='" + data + "']]");
+    I.scrollIntoView("//span[text()[normalize-space()='" + data + "']]");
     I.see(data);
 
-    I.click("//span[text()[normalize-space()='" + data + "']]");
+    CommonKeyword.clickElement("//span[text()[normalize-space()='" + data + "']]");
     I.see(data);
   }
 
+  async actionFromNotification(action){
 
+    I.scrollIntoView("//button[@aria-label='"+action+"']");
+    I.see(action);
+
+    CommonKeyword.clickElement("//button[@aria-label='"+action+"']");
+    I.see(action);
+  }
 
   /**
    * To act on notifications
@@ -77,33 +84,36 @@ class NotificationCheck {
 
     switch (action) {
       case "Approve":
-        within('.modal-content', () => {
-          I.click(".//dew-modal-footer//button[@aria-label='Approve']");
-        })
-        within('//dew-approve-reject-pop-up', () => {
+        // within('.modal-content', () => {
+        //   CommonKeyword.clickElement(".//dew-modal-footer//button[@aria-label='Approve']");
+        // })
+        within('//dew-approve-reject-pop-up//div[@class="modal-content"]', () => {
           I.seeElement(".//textarea[@aria-label='This is comment box']");
+          
           I.fillField(".//textarea[@aria-label='This is comment box']", "Approving");
-          I.click(".//dew-modal-footer//button[@aria-label='Approve']");
+          CommonKeyword.clickElement(".//dew-modal-footer//button[@aria-label='Approve']");
         })
         break;
       case "Reject":
-        within('.modal-content', () => {
-          I.click(".//dew-modal-footer//button[@aria-label='Reject']");
-        })
-        within('//dew-approve-reject-pop-up', () => {
+        // within('.modal-content', () => {
+        //   CommonKeyword.clickElement(".//dew-modal-footer//button[@aria-label='Reject']");
+        // })
+        within('//dew-approve-reject-pop-up//div[@class="modal-content"]', () => {
           I.seeElement(".//textarea[@aria-label='This is comment box']");
           I.fillField(".//textarea[@aria-label='This is comment box']", "Rejecting");
-          I.click(".//dew-modal-footer//button[@aria-label='Reject']");
+          CommonKeyword.clickElement(".//dew-modal-footer//button[@aria-label='Reject']");
         })
         break;
       case "Delegate":
-        within('.modal-content', () => {
-          I.click(".//dew-modal-footer//button[@aria-label='Delegate']");
-        })
-        within('.modal-content', () => {
+        // within('.modal-content', () => {
+        //   CommonKeyword.clickElement(".//dew-modal-footer//button[@aria-label='Delegate']");
+        // })
+        within('//dew-delegate-popup//div[@class="modal-content"]', () => {
           I.see("Delegate Approval To");
+          CommonKeyword.clickElement("//input[@title='autocomplete-user']")
+          CommonKeyword.clickElement("(//div[@dew-autocomplete-body]//div[@activeclass='ac-item-focused'])[1]");
           I.fillField(".//textarea[@aria-label='This is input for reason for delegation']", "Delegating");
-          I.click(".//dew-modal-footer//button[@aria-label='Delegate']");
+          CommonKeyword.clickElement(".//dew-modal-footer//button[@aria-label='Delegate']");
         })
         break;
     }

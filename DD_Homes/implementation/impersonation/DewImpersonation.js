@@ -1,8 +1,9 @@
 /* eslint-disable linebreak-style */
 "use strict";
-const DewRadioButton = require("../../../node_modules/dd-cc-zycus-automation/components/dewRadioButton")
-const DatePicker = require("../../../node_modules/dd-cc-zycus-automation/components/datePicker")
+const DewRadioButton = require("dd-cc-zycus-automation/components/dewRadioButton")
+const DatePicker = require("dd-cc-zycus-automation/components/datePicker")
 const { I } = inject();
+const CommonKeyword = require("dd-cc-zycus-automation/components/commonKeyword")
 let varDesc="AutoDescription"+generateRandomNumber();
 
 /**
@@ -15,12 +16,12 @@ class DewImpersonation {
  */
   navigateToAllowImpersonation() {
     I.wait(10);
-    I.waitForVisible(`//dew-dropdown[contains(@class,'profile')]`,120);
+    I.waitForVisible(`//dew-dropdown[contains(@class,'profile')]`,20);
     I.seeElement(`//dew-dropdown[contains(@class,'profile')]`);   
-    I.click(`//dew-dropdown[contains(@class,'profile')]`);
-    I.waitForVisible(`//div[contains(@class,'dropdown-item') and text()[normalize-space()='Allow Impersonation']]`,120);
-    I.click(`//div[contains(@class,'dropdown-item') and text()[normalize-space()='Allow Impersonation']]`);
-    I.waitForVisible(`//h1[@title='Manage your Impersonation Authorizations']`,120);
+    CommonKeyword.clickElement(`//dew-dropdown[contains(@class,'profile')]`);
+    I.waitForVisible(`//div[contains(@class,'dropdown-item') and text()[normalize-space()='Allow Impersonation']]`,20);
+    CommonKeyword.clickElement(`//div[contains(@class,'dropdown-item') and text()[normalize-space()='Allow Impersonation']]`);
+    I.waitForVisible(`//h1[@title='Manage your Impersonation Authorizations']`,20);
     I.seeElement(`//h1[@title='Manage your Impersonation Authorizations']`);
   }
   /**
@@ -31,7 +32,7 @@ class DewImpersonation {
 
   async authorizeImpersonation(radioBtnLabel) {
     this.navigateToAllowImpersonation();
-    I.click(`//a[contains(@class,'nav-link')]/*[text()[normalize-space()='Authorize Impersonation']]`);
+    CommonKeyword.clickElement(`//a[contains(@class,'nav-link')]/*[text()[normalize-space()='Authorize Impersonation']]`);
     I.seeElement(`//a[contains(@class,'nav-link active')]/*[text()[normalize-space()='Authorize Impersonation']]`);
     DewRadioButton.selectRadioButton(radioBtnLabel);
     I.wait(2);
@@ -39,7 +40,7 @@ class DewImpersonation {
     I.fillField("//textarea[@formcontrolname='description']",varDesc);
     //TextAreaWithPlaceholder.enterText("Enter description","AutoDescription"+generateRandomNumber());
     //textarea[@formcontrolname='description']
-    I.click(`//button[@aria-label='Save']`);
+    CommonKeyword.clickElement(`//button[@aria-label='Save']`);
    
   }
 }

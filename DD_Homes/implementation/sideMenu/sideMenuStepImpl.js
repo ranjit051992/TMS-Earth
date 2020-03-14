@@ -1,6 +1,6 @@
-const ProductNavigator = require("../../../node_modules/dd-cc-zycus-automation/components/dewSideMenu");
+const ProductNavigator = require("dd-cc-zycus-automation/components/dewSideMenu");
 const { I } = inject();
-const DewNavBar = require("../../../node_modules/dd-cc-zycus-automation/components/dewNavBar");
+const DewNavBar = require("dd-cc-zycus-automation/components/dewNavBar");
 
 When("I click on Hamburgermenu", async function () {
     DewNavBar.clickHamburger();

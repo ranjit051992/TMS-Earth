@@ -20,8 +20,9 @@ Scenario: Verify whether user is able to Approve from the Approval Notification
 Given I am on home page
 When I click on notification icon
 And click on "APPROVALS" notification
-And I click on "OU_1-226/24292";
-And i see details page for "OU_1-226/24292"
+# And I click on "OU_1-226/24292";
+# And i see details page for "OU_1-226/24292"
+And I click on "Approve" button in notification
 And I click on "Approve" button;
 # And I "Approve" data;
 Then "Data" status should be shown as approved in Notification
@@ -30,8 +31,9 @@ Then "Data" status should be shown as approved in Notification
 Scenario: Verify whether user is able to Reject from the Approval Notification
 Given I am on home page
 When I click on notification icon
-And I click on "OU_1-226/24292";
-And i see details page for "OU_1-226/24292"
+# And I click on "OU_1-226/24292";
+# And i see details page for "OU_1-226/24292"
+And I click on "Reject" button in notification
 And I click on "Reject" button;
 # And I "Reject" data;
 Then "Data" status should be shown as Rejected in Notification
@@ -40,19 +42,20 @@ Then "Data" status should be shown as Rejected in Notification
 Scenario: Verify whether user is able to Delegate from the Approval Notification
 Given I am on home page
 When I click on notification icon
-And I click on "OU_1-226/24292"
-And i see details page for "OU_1-226/24292"
-And I click on "Delegate" button
+# And I click on "OU_1-226/24292"
+# And i see details page for "OU_1-226/24292"
+And I click on "Delegate" button in notification
+And I click on "Delegate" button;
 # And I "Delegate" data;
 Then "Data" status should be shown as Delegated in notification
 
 
-Scenario: Verify whether user is able to download the documents
-Given I am on home page
-When I click on notification icon
-And I click on "OU_1-226/24292"
-And i click on download button
-Then document should be download on user system
+# Scenario: Verify whether user is able to download the documents
+# Given I am on home page
+# When I click on notification icon
+# And I click on "OU_1-226/24292"
+# And i click on download button
+# Then document should be download on user system
 
 
 Scenario: Verify whether data is displayed for Alerts and Reminders Notification

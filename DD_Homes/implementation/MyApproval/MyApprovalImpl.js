@@ -1,4 +1,5 @@
 const { I } = inject()
+const CommonKeyword = require("dd-cc-zycus-automation/components/commonKeyword")
 
 class ApprovalPage {
 
@@ -8,9 +9,9 @@ class ApprovalPage {
      */
     selectHeaderTab(tabName) {
         // I.waitForVisible("//a[dew-default-tab-head[normalize-space(text())='"+tabName +"'] and contains(@class,'paginated-nav-link')]",20);
-        // I.click("//a[dew-default-tab-head[normalize-space(text())='"+tabName +"'] and contains(@class,'paginated-nav-link')]",20);
+        // CommonKeyword.clickElement("//a[dew-default-tab-head[normalize-space(text())='"+tabName +"'] and contains(@class,'paginated-nav-link')]",20);
         I.waitForVisible("//a[dew-default-tab-head[contains(text(),'" + tabName + "')] and contains(@class,'paginated-nav-link')]")
-        I.click("//a[dew-default-tab-head[contains(text(),'" + tabName + "')] and contains(@class,'paginated-nav-link')]")
+        CommonKeyword.clickElement("//a[dew-default-tab-head[contains(text(),'" + tabName + "')] and contains(@class,'paginated-nav-link')]")
     }
 
 
@@ -44,8 +45,8 @@ class ApprovalPage {
         console.log(pin.length);
         pin.forEach(async tabName => {
 
-            I.click('//a[dew-default-tab-head[contains(text(),"'+tabName+'")] and contains(@class,"paginated-nav-link")]');
-            // I.click('//a[dew-default-tab-head[text()[normalize-space()="' + tabName + '"]] and contains(@class,"paginated-nav-link")]');
+            CommonKeyword.clickElement('//a[dew-default-tab-head[contains(text(),"'+tabName+'")] and contains(@class,"paginated-nav-link")]');
+            // CommonKeyword.clickElement('//a[dew-default-tab-head[text()[normalize-space()="' + tabName + '"]] and contains(@class,"paginated-nav-link")]');
             I.wait(10);
             await verifyListingPage(tabName);
         })
@@ -58,8 +59,8 @@ class ApprovalPage {
      */
     async verifyPageSubListing(listingName) {
         //pause()
-        //I.click('//a[dew-default-tab-head[contains(text(),"'+tabName+'")] and contains(@class,"paginated-nav-link")]');
-        //I.click('//a[dew-default-tab-head[text()[normalize-space()="' + listingName + '"]] and contains(@class,"paginated-nav-link")]');
+        //CommonKeyword.clickElement('//a[dew-default-tab-head[contains(text(),"'+tabName+'")] and contains(@class,"paginated-nav-link")]');
+        //CommonKeyword.clickElement('//a[dew-default-tab-head[text()[normalize-space()="' + listingName + '"]] and contains(@class,"paginated-nav-link")]');
         I.wait(10);
         let num = await I.grabNumberOfVisibleElements('dew-listing');
         console.log(num);

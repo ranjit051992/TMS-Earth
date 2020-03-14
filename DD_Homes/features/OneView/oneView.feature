@@ -9,22 +9,22 @@ Background: Given I am logged on to the application
 
     Scenario: Verify whether on OneView listing individual suppliers are displayed
         Given I navigate to Oneview page
-        When I search the supplier with name "PEGDUMMY13"
-        Then I see oneview card for "PEGDUMMY13" is displayed
+        When I search the supplier with name "PEGDUMMY23"
+        Then I see oneview card for "PEGDUMMY23" is displayed
       
 
     Scenario: Verify whether user is able to export the data in excel file
         Given I navigate to Oneview page
-        When I search the supplier with name "PEGDUMMY13"
-        When I click on export option
+        When I search the supplier with name "PEGDUMMY23"
+        And I click on export option
         Then Supplier data is exported in excel format
 
 
     Scenario: Verify whether supplier data is loaded as per the filters applied
         Given I navigate to Oneview page
-        When I search the supplier with name "PEGDUMMY13"
-        When I filter the data with "PEGDUMMY13"
-        Then I see results satisfying the filter conditions "PEGDUMMY13" are displayed
+        When I search the supplier with name "PEGDUMMY23"
+        And I filter the data with "PEGDUMMY23"
+        Then I see results satisfying the filter conditions "PEGDUMMY23" are displayed
 
     #Scenario:Verify whether on OneView listing group of suppliers are displayed
        # Given I navigate to Oneview page

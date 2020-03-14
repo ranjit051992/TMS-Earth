@@ -2,6 +2,7 @@ const databaseOperations = require("./Framework/FrameworkUtilities/DatabaseOpera
 const lmtVar = require("./Framework/FrameworkUtilities/i18nUtil/readI18NProp")
 const logger = require("./Framework/FrameworkUtilities/Logger/logger");
 const prop = global.confi_prop;
+const {I} = inject();
 module.exports = {
         
         bootstrap: async function () {
@@ -23,8 +24,12 @@ module.exports = {
         },
         teardown: async function ()
         {
+
+                // I.click("//dew-dropdown[contains(@class,'profile')]")
+                // I.click("Logout")
+                // I.wait(2)
                 // if(prop.runOnGrid) {
-                        await databaseOperations.updateUSER(global.users.get("USERNAME"),"true");
+                        // await databaseOperations.updateUSER(global.users.get("USERNAME"),"true");
                 // }
         },
         bootstrapAll: async function()

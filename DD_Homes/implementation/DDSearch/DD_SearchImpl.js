@@ -1,4 +1,5 @@
 const { I } = inject();
+const CommonKeyword = require("dd-cc-zycus-automation/components/commonKeyword")
 
 module.exports = {
 
@@ -9,7 +10,7 @@ module.exports = {
     },
 
     async verifyFrequentlyAccessedHomeSearchResults(link) {
-        I.click(`//div[contains(@class,'dew-container')]//a[text()='Home']`); // Switch to Home
+        CommonKeyword.clickElement(`//div[contains(@class,'dew-container')]//a[text()='Home']`); // Switch to Home
         I.waitToProcess();
         if (I.seeElement(`//div[text()='FREQUENTLY ACCESSED']/ancestor::div//span[contains(text(),'${link}')]`)) {
             console.log(link + " is present in FREQUENTLY ACCESSED list");
@@ -27,7 +28,7 @@ module.exports = {
     },
 
       async verifySearchResultsInBucket(link,type) {
-      //  I.fillField(`//input[@id='input-text-area'][@type='MST_Search']`, link);
+      //  CommonKeyword.enterText(`//input[@id='input-text-area'][@type='MST_Search']`, link);
         I.seeElement(`//div[div/span[text()[normalize-space()='${link}']]]//span[text()[normalize-space()='${type}']]`,10);
       }
 

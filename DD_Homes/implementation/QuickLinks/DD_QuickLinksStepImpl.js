@@ -1,6 +1,6 @@
 
 const DewQuickLinks = require("./DD_QuickLinkImpl")
-const DewNavBar = require("../../../node_modules/dd-cc-zycus-automation/components/dewNavBar");
+const DewNavBar = require("dd-cc-zycus-automation/components/dewNavBar");
 const { I } = inject();
 
 

@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 "use strict";
 const { I } = inject();
+const CommonKeyword = require("dd-cc-zycus-automation/components/commonKeyword")
 /**
  * Home Links class
  */
@@ -16,7 +17,7 @@ class DewQuickLinks {
    */
    async navigateQuickLink() {
 
-    I.click(`//dew-dropdown-trigger//div[contains(text(),'Quick Links')]`);
+    CommonKeyword.clickElement(`//dew-dropdown-trigger//div[contains(text(),'Quick Links')]`);
     I.waitForVisible(`//div[contains(@class,'dropdown-menu show')]`);
     console.log("Navigated to quick links");
   }
@@ -36,7 +37,7 @@ class DewQuickLinks {
    * @param {*} link
    */
   async clickQuickLink(link) {
-    I.click(`//div[contains(@class,'dropdown-menu show')]//a[contains(@class,'dropdown-item')][contains(text(),'${link}')]`);
+    CommonKeyword.clickElement(`//div[contains(@class,'dropdown-menu show')]//a[contains(@class,'dropdown-item')][contains(text(),'${link}')]`);
     console.log(this.dewQuickLinkSpecs.dd_quick_link[link]);
   }
 
@@ -47,7 +48,7 @@ class DewQuickLinks {
   async clickQuickLinkDropdownOption(options) {  
     I.wait(2)
     I.seeElement(`//div[contains(@class,'dropdown-menu show')]//span[text()='${options}']`);
-    I.click(`//div[contains(@class,'dropdown-menu show')]//span[text()='${options}']`);
+    CommonKeyword.clickElement(`//div[contains(@class,'dropdown-menu show')]//span[text()='${options}']`);
     I.seeElement(`//div[@class='modal-content']//span[text()='${options}']`);  
   }
   /**
@@ -56,16 +57,16 @@ class DewQuickLinks {
    */
   async customizeQuickLinks(product,...linkList) {
     console.log(linkList)
-    I.click(`//span[text()='Customize']//ancestor::div[@class='modal-content']//span[text()='Reset All']`); // Reset All
+    CommonKeyword.clickElement(`//span[text()='Customize']//ancestor::div[@class='modal-content']//span[text()='Reset All']`); // Reset All
      linkList.forEach((link) => {
        let linkWithoutWhiteSpace= link.split(/\s/).join('');
        console.log(linkWithoutWhiteSpace)
        I.clearField(`//input[@placeholder='Search']`)
-       I.fillField(`//input[@placeholder='Search']`,linkWithoutWhiteSpace)
+       CommonKeyword.enterTextUsingPlaceHolder("Search",linkWithoutWhiteSpace)
        I.waitForVisible(`//div[span[text()='${product}']]/following-sibling::dew-row//label[text()[normalize-space()='${link}']]`,10)
-      I.click(`//div[span[text()='${product}']]/following-sibling::dew-row//label[text()[normalize-space()='${link}']]`);
+      CommonKeyword.clickElement(`//div[span[text()='${product}']]/following-sibling::dew-row//label[text()[normalize-space()='${link}']]`);
     });
-    I.click(`//span[text()='Customize']//ancestor::div[@class='modal-content']//span[text()='Apply']`);
+    CommonKeyword.clickElement(`//span[text()='Customize']//ancestor::div[@class='modal-content']//span[text()='Apply']`);
     I.waitForInvisible(`//div[@class='modal-content']//span[text()='Customize']`, 10);
   }
 
