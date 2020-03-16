@@ -323,10 +323,12 @@ module.exports={
      * @author om.pawar
      */
     async waitForElementVisible(xpath, ...timeout) {
-        if(timeout.length === 0) {
+        if(timeout.length == 0) {
+        logger.info("&&& default high wait applied &&&")
             return await getElementViewportStatus(xpath, prop.DEFAULT_HIGH_WAIT);
         }
         else {
+        logger.info("$$$$ dyanamic wait applied --> "+timeout)
             return await getElementViewportStatus(xpath, timeout[0]);
         }
     },
