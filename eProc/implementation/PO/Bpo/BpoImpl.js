@@ -22,6 +22,38 @@ module.exports = {
         logger.info("Clicked on create blanket po button.");
     },
 
+    async addAllRequiredDetails(bpo)
+    {
+        bpo = await this.fillBasicDetails(bpo);
+
+        bpo = await this.fillBillingInformation(bpo);
+
+        bpo = await this.fillSupplierDetails(bpo);
+
+        bpo = await this.fillBuyerAndOtherInformation(bpo);
+
+        bpo = await this.fillShippingDetails(bpo);
+
+        bpo = await this.fillCostAllocation(bpo);
+
+        bpo = await this.fillControlSettings(bpo);
+
+        bpo = await this.fillLineItems(bpo);
+
+        bpo = await this.storePoAmount(bpo);
+
+        bpo = await this.fillTaxes(bpo);
+
+        bpo = await this.fillAdditionalDetails(bpo);
+
+        await this.fillAgreementDetails(bpo);
+
+        bpo = await this.fillValidity(bpo);
+
+        return bpo;
+
+    },
+
     async createBpoFlow(bpo){
         await poListingImpl.navigateToPoListing();
         await spoImpl.clickOnCreatePOButton();
@@ -48,9 +80,9 @@ module.exports = {
 
         bpo = await this.fillAdditionalDetails(bpo);
 
-        bpo = await this.fillAgreementDetails(bpo);
+        await this.fillAgreementDetails(bpo);
 
-        bpo = await this.fillValidity();
+        bpo = await this.fillValidity(bpo);
 
         await this.submitPo();
 
@@ -59,7 +91,6 @@ module.exports = {
         await I.waitForInvisible(I.getElement(iSpoObject.spinner));
 
         await poListingImpl.navigateToPoListing();
-
         await commonKeywordImpl.searchDocOnListing(bpo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
 
         let poNumber = await commonKeywordImpl.getDocNumber();
@@ -206,11 +237,14 @@ module.exports = {
         
 
     },
-    async fillValidity(){
+    async fillValidity(bpo){
         logger.info(`*****************Filling Validity*****************`);
-        await this.selectFromDate();
-        await this.selectToDate();
+        let fromDate = await this.selectFromDate();
+        let toDate = await this.selectToDate();
         // await this.selectAcceptInvoicesUntil();
+        bpo.setFromDate(fromDate);
+        bpo.setToDate(toDate);
+        return bpo;
     },
 
     async storePoAmount(bpo) {
@@ -263,19 +297,35 @@ module.exports = {
     async selectFromDate(){
         await I.waitForVisible(I.getElement(iBpoObject.FROM_DATE));
         await datePicker.selectToday(I.getElement(iBpoObject.FROM_DATE));
+        let fromDate = await I.grabAttributeFrom(I.getElement(iBpoObject.FROM_DATE),"value");
+        fromDate = fromDate.toString();
+        return fromDate;
     },
     async selectToDate(){
         await I.waitForVisible(I.getElement(iBpoObject.TO_DATE));
         await datePicker.selectInNextMonth(I.getElement(iBpoObject.TO_DATE),"15");
+        let toDate = await I.grabAttributeFrom(I.getElement(iBpoObject.TO_DATE),"value");
+        toDate = toDate.toString();
+        return toDate;
     },
     async selectAcceptInvoicesUntil(){
         await I.waitForVisible(I.getElement(iBpoObject.ACCEPT_INVOICES_UNTIL));
         await datePicker.selectInNextMonth(I.getElement(iBpoObject.ACCEPT_INVOICES_UNTIL),"15");
     },
     async addAttachment(attachment){
-        await I.waitForVisible(I.getElement(iBpoObject.ADD_ATTACHMENT));
-        await I.click(I.getElement(iBpoObject.ADD_ATTACHMENT));
         await I.fillField(I.getElement(iBpoObject.ADD_ATTACHMENT), attachment.toString());
+        await I.wait(prop.DEFAULT_LOW_WAIT);
+    },
+
+    async updateOrderValue(bpo){
+        await I.waitForVisible(I.getElement(iBpoObject.AUTO_UPDATE_CHECKBOX));
+        await I.click(I.getElement(iBpoObject.AUTO_UPDATE_CHECKBOX));
+        await I.waitForVisible(I.getElement(iBpoObject.ORDER_VALUE));
+        await I.clearField(I.getElement(iBpoObject.ORDER_VALUE));
+        await I.click(I.getElement(iBpoObject.ORDER_VALUE));
+        // let poAmount = parseInt(this.bpo.PoAmount);
+        // poAmount = poAmount * 10;
+        // await I.fillField(I.getElement(iBpoObject.ORDER_VALUE), poAmount);
     },
 
 
