@@ -15,18 +15,18 @@ When("I click on hamburger icon", async function () {
 
 
 When("I click on {string} module", async function (moduleName) {
-  ProductNavigator.navigate(moduleName);
+  await ProductNavigator.navigate(moduleName);
 });
 
 When("I click on {string} page", async function (listingName) {
-  ApprovalPage.selectHeaderTab(listingName);
+  await ApprovalPage.selectHeaderTab(listingName);
 });
 
 
 Then("I should see details of the {string} page", async function (listingName) {
-  ApprovalPage.verifyListingPage(listingName);
+  await ApprovalPage.verifyListingPage(listingName);
 });
 
 When("I navigate to all page", async function(){
-  ApprovalPage.navigateToAllSubListing();
+  await ApprovalPage.navigateToAllSubListing();
 });
