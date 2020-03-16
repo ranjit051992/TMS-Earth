@@ -114,7 +114,7 @@ module.exports={
             await I.fillField(dropdownElement, searchValue);
             await I.waitForVisible(selectOptionXpath);
             await I.click(selectOptionXpath);
-            let value = await I.From(dropdownElement, "value");
+            let value = await I.grabAttributeFrom(dropdownElement, "value");
             return value;
          }
         else
