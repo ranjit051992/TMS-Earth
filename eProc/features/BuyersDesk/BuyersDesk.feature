@@ -126,14 +126,15 @@ Feature: BuyersDesk
 
     Then I should be see the data on the page on the basis on Requestor field
 
-# @Non-COA @L1
-#     Scenario: To verify Submitted On filter on Upcoming Requisition
-#     Given I am logged in eProc
+@Non-COA @L1
+    Scenario: To verify Submitted On filter on Upcoming Requisition
+    Given I am logged in eProc
 
-#     When I navigate to Upcoming Requisition
-#     And I filter with Submitted on field
+    When I create "1" requisition with "1" "ITEM_NAME_FOR_SEARCHING"
+    And I navigate to Upcoming Requisition
+    And I filter with Submitted on field by "Create Date"
 
-#     Then I should be see the data on the page on the basis on Submitted on field
+    Then I should be see the data on the page on the basis on Submitted on field
 
 @Non-COA @L1
     Scenario: To verify Assigned Buyer filter on Upcoming Requisition
@@ -196,7 +197,7 @@ Feature: BuyersDesk
 
     Then I should see the requisition In Returned for Amendment State on Requisition Listing
 
-@Non-COA @L1
+@Non-COA @L1konica
     Scenario: To verify that user(buyer) is not allowed to modify the requisition.
     Given I am logged in eProc
 

@@ -374,28 +374,31 @@ module.exports = {
     },
 
     async selectRequiredByDate() {
-        logger.info("Selecting date");
-        let day = new Date().getDate();
-        let dayXpath = `//div[text()='${day}']/..`;
-        await I.click(I.getElement(iCheckout.REQUIRED_BY));
-        let numberOfElements = await I.grabNumberOfVisibleElements(dayXpath);
-        for (let i = 0; i < numberOfElements; i++) {
-            dayXpath = `(//div[text()='${day}']/..)[${i + 1}]`;
-            try {
-                await I.waitForEnabled(dayXpath, 2);
-                logger.info(`Date enabled for xpath --> ${dayXpath}`);
-                I.click(dayXpath);
-                logger.info(`Clicked on date ${day}`);
-                break;
-            } catch (e) {
-                logger.info(`Date disabled for xpath --> ${dayXpath}`);
-            }
+        // logger.info("Selecting date");
+        // let day = new Date().getDate();
+        // let dayXpath = `//div[text()='${day}']/..`;
+        // await I.click(I.getElement(iCheckout.REQUIRED_BY));
+        // let numberOfElements = await I.grabNumberOfVisibleElements(dayXpath);
+        // for (let i = 0; i < numberOfElements; i++) {
+        //     dayXpath = `(//div[text()='${day}']/..)[${i + 1}]`;
+        //     try {
+        //         await I.waitForEnabled(dayXpath, 2);
+        //         logger.info(`Date enabled for xpath --> ${dayXpath}`);
+        //         I.click(dayXpath);
+        //         logger.info(`Clicked on date ${day}`);
+        //         break;
+        //     } catch (e) {
+        //         logger.info(`Date disabled for xpath --> ${dayXpath}`);
+        //     }
 
-            if (i == numberOfElements) {
-                throw new Error(`Day --> ${day} not present in the datepicker`);
-            }
-        }
+        //     if (i == numberOfElements) {
+        //         throw new Error(`Day --> ${day} not present in the datepicker`);
+        //     }
+        // }
 
+        await commonComponent.selectToday(I.getElement(iCheckout.REQUIRED_BY));
+        let date = await I.grabAttributeFrom(I.getElement(iCheckout.REQUIRED_BY), 'value');
+        logger.info("Clicked on date---> "+date);
     },
 
     /**
@@ -869,9 +872,9 @@ module.exports = {
     },
 
     async clickOnCreateNewAddressOption() {
-        await I.waitForVisible("//div[contains(text(),'" + lmtVar.getLabel("CREATE_NEW_ADDRESS") + "')]", prop.DEFAULT_MEDIUM_WAIT);
-        await I.waitForClickable("//div[contains(text(),'" + lmtVar.getLabel("CREATE_NEW_ADDRESS") + "')]", prop.DEFAULT_MEDIUM_WAIT);
-        await I.click("//div[contains(text(),'" + lmtVar.getLabel("CREATE_NEW_ADDRESS") + "')]");
+        await I.waitForVisible("//button[contains(@aria-label,'" + lmtVar.getLabel("CREATE_NEW_ADDRESS") + "')]", prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable("//button[contains(@aria-label,'" + lmtVar.getLabel("CREATE_NEW_ADDRESS") + "')]", prop.DEFAULT_MEDIUM_WAIT);
+        await I.click("//button[contains(@aria-label,'" + lmtVar.getLabel("CREATE_NEW_ADDRESS") + "')]");
     },
 
     async fillAddressName(addressName) {
@@ -1177,7 +1180,7 @@ module.exports = {
         if(reqBO.convertToPoFlag) {
             await I.wait(prop.DEFAULT_MEDIUM_WAIT);
             await I.amOnPage(prop.DDS_BuyersDesk_Url);
-           // await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("BUYERS_DESK_LISTING_PAGE"));
+            //await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("BUYERS_DESK_LISTING_PAGE"));
             await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
             await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
             status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
@@ -1350,7 +1353,7 @@ module.exports = {
         await commonComponent.clickOnActionMenuOption(lmtVar.getLabel("CONVERT_TO_PO"));
         let flag = await commonComponent.waitForElementVisible(I.getElement(buyerDeskObject.CONVERT_TO_PO_CONFIRM_YES_BUTTON), prop.DEFAULT_WAIT);
         if(flag) {
-        await buyerDeskImpl.clickOnConvertToPoConfirmYesButton();
+            await buyerDeskImpl.clickOnConvertToPoConfirmYesButton();
         }
         await I.waitForVisible(I.getElement(spoObject.poDescriptionTextbox));
         await spoImpl.fillAmendPoComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
@@ -1361,6 +1364,13 @@ module.exports = {
         await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
 
         return reqBO;
-    }
+    },
+    async enterLineLevelAddress(address, index)
+    {
+        let xpath = "(//dew-row[@formarrayname='deliveries']["+index+"]//input)[2]";
+        let suggestionXpath = "//div[contains(text(),'"+address+"')]";
+        address = await commonComponent.searchAndSelectFromDropdown(xpath, address, suggestionXpath);
+        logger.info("Entered Line level addres ---->"+address);
+    },
 
 };

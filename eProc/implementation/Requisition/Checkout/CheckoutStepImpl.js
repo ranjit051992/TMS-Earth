@@ -116,9 +116,8 @@ Then("I should see on header level, Shipping Details section Default Shipping Ad
 });
 
 Then("I navigate to Line level Shipping Details and Asset Tagging section", async function(){
-    commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
     await checkoutImp.clickOnShippingDetailsAndAssetTagging(this.addedCartItems);
-
 });
 
 Then("I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated", async function(){
@@ -385,7 +384,8 @@ When("I add Delivery split at line level into {int} splits", async function(noOf
 });
 
 When("I change the address for split {int}", async function(forSplit){
-    //SHIP_TO_ADDRESS_NAME
+    this.changedAddress = await checkoutImp.enterLineLevelAddress(I.getData("SHIP_TO_ADDRESS_NAME[1]"), forSplit);
+    logger.info("Changed address for split "+forSplit+" is --->>"+changedAddress);
 });
 
 Given("I Select Purchase Order", async function(){
