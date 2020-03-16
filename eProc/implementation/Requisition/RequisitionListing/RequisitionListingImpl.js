@@ -11,9 +11,9 @@ const checkoutObject = require("../Checkout/CheckoutObject")
 module.exports = {
 
     async navigateToRequisitionListing() {
-        await I.amOnPage(prop.DDS_Requisition_Listing);
-        await commomComponent.waitForLoadingSymbolNotDisplayed();
-        //await commomComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("REQUISITION_LISTING_PAGE"));
+       // await I.amOnPage(prop.DDS_Requisition_Listing);
+       // await commomComponent.waitForLoadingSymbolNotDisplayed();
+        await commomComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("REQUISITION_LISTING_PAGE"));
         await I.waitForVisible(I.getElement(reqListingObj.REQUISITION_LISTING_PAGE));
         logger.info("Navigated to Requisition Listing page");
     },

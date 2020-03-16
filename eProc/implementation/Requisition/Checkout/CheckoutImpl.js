@@ -371,28 +371,31 @@ module.exports = {
     },
 
     async selectRequiredByDate() {
-        logger.info("Selecting date");
-        let day = new Date().getDate();
-        let dayXpath = `//div[text()='${day}']/..`;
-        await I.click(I.getElement(iCheckout.REQUIRED_BY));
-        let numberOfElements = await I.grabNumberOfVisibleElements(dayXpath);
-        for (let i = 0; i < numberOfElements; i++) {
-            dayXpath = `(//div[text()='${day}']/..)[${i + 1}]`;
-            try {
-                await I.waitForEnabled(dayXpath, 2);
-                logger.info(`Date enabled for xpath --> ${dayXpath}`);
-                I.click(dayXpath);
-                logger.info(`Clicked on date ${day}`);
-                break;
-            } catch (e) {
-                logger.info(`Date disabled for xpath --> ${dayXpath}`);
-            }
+        // logger.info("Selecting date");
+        // let day = new Date().getDate();
+        // let dayXpath = `//div[text()='${day}']/..`;
+        // await I.click(I.getElement(iCheckout.REQUIRED_BY));
+        // let numberOfElements = await I.grabNumberOfVisibleElements(dayXpath);
+        // for (let i = 0; i < numberOfElements; i++) {
+        //     dayXpath = `(//div[text()='${day}']/..)[${i + 1}]`;
+        //     try {
+        //         await I.waitForEnabled(dayXpath, 2);
+        //         logger.info(`Date enabled for xpath --> ${dayXpath}`);
+        //         I.click(dayXpath);
+        //         logger.info(`Clicked on date ${day}`);
+        //         break;
+        //     } catch (e) {
+        //         logger.info(`Date disabled for xpath --> ${dayXpath}`);
+        //     }
 
-            if (i == numberOfElements) {
-                throw new Error(`Day --> ${day} not present in the datepicker`);
-            }
-        }
+        //     if (i == numberOfElements) {
+        //         throw new Error(`Day --> ${day} not present in the datepicker`);
+        //     }
+        // }
 
+        await commonComponent.selectToday(I.getElement(iCheckout.REQUIRED_BY));
+        let date = await I.grabAttributeFrom(I.getElement(iCheckout.REQUIRED_BY), 'value');
+        logger.info("Clicked on date---> "+date);
     },
 
     /**
@@ -1173,8 +1176,8 @@ module.exports = {
         
         if(reqBO.convertToPoFlag) {
             await I.wait(prop.DEFAULT_MEDIUM_WAIT);
-            await I.amOnPage(prop.DDS_BuyersDesk_Url);
-           // await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("BUYERS_DESK_LISTING_PAGE"));
+            //await I.amOnPage(prop.DDS_BuyersDesk_Url);
+            await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("BUYERS_DESK_LISTING_PAGE"));
             await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
             await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
             status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));

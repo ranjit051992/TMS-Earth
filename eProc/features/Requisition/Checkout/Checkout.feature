@@ -30,7 +30,7 @@ Feature: Checkout
     And I navigate to Line level Cost Booking Details
     And I should see on line level Cost Booking Details section cost center should be populated
 
-@Non-COA @L1  @priyanka
+@Non-COA @L1  @priyanka @default
     Scenario: To verify that system auto populates user's default Delivery & Bill to address 
     Given I am logged in eProc
     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -56,7 +56,7 @@ Feature: Checkout
 @Non-COA @L1 @draft @priyanka
   Scenario: To verify requisition in draft and actions on it
   Given I am logged in eProc
-
+ 
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
   And I enter Requisition Name
@@ -623,7 +623,7 @@ Feature: Checkout
 
     Then I should be able to see the attachment which is added
 
-@COA @L1 @coaCopy @priyankaCOA
+@COA @L1 @coaCopy 
     Scenario: COA>>To verify that user is able to copy any requisition and modify it to create a new requisition.
     Given I am logged in eProc
 
@@ -710,7 +710,7 @@ Feature: Checkout
 #     Then I should be able to see Required by date should be auto calculated as per lead time defined in the catalog setting in this page
 
 
-@COA @L1 @coaAddr @priyankaCOA
+@COA @L1 @coaAddr 
     Scenario: COA>>To verify that system auto populates user's default Delivery & Bill to address 
     Given I am logged in eProc
 
@@ -740,7 +740,7 @@ Feature: Checkout
 
     Then I should be able to see Deliver address as the Ship to Another Address on view requisition 
 
-@COA @L1 @coaApproval @priyankaCOA
+@COA @L1 @coaApproval 
     Scenario: COA>> To verify that user is able to view approval Status
     Given I am logged in eProc
 
@@ -780,7 +780,7 @@ Feature: Checkout
     And I select Ship to Another Address in  Shipping Details section at header level
     And I should be able to see the saved address on creating a new requisition
 
-@COA @L1 @coaTaxes @priyankaCOA
+@COA @L1 @coaTaxes 
     Scenario: COA>>To verify that user is able to add taxes at line item level in a requisition for catalog item
     Given I am logged in eProc
 
@@ -813,7 +813,7 @@ Feature: Checkout
 
 #   Then I should be able see the taxes added on view requisition
 
-@COA @L1 @coafreeTextItem @priyankaCOA
+@COA @L1 @coafreeTextItem 
   Scenario: COA>>To verify that user is able to add taxes at line item level in a requisition for free-text item 
   Given I am logged in eProc
 
@@ -910,7 +910,7 @@ Feature: Checkout
 
 #   Then I should be able to view requisition with non stock item
 
-@COA @L1 @coaDraft @priyankaCOA
+@COA @L1 @coaDraft 
   Scenario: COA>>To verify requisition in draft and actions on it
     Given I am logged in eProc
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -996,16 +996,16 @@ Feature: Checkout
 
   Then I should be able to view the requisition with adhoc approver added in the workflow
 
-# @COA @L1 @closeReqCOA @priyankaCOA
-#   Scenario: COA>>To verify that user is  able to close requisition
-#   Given I am logged in eProc
-#   And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
-#   And I close PO
+@COA @L1 @closeReqCOA @priyankaCOA
+  Scenario: COA>>To verify that user is  able to close requisition
+  Given I am logged in eProc
+  And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
+  And I close PO
 
-#   When I navigate to Requisition Listing page
-#   And I close the requisition from actions
+  When I navigate to Requisition Listing page
+  And I close the requisition from actions
 
-#   Then I should be able to see the status of the requisition changed to Closed
+  Then I should be able to see the status of the requisition changed to Closed
 
 # @COA @L1
 #   Scenario: COA>>To verify the behavior of requisition who has PO attached to them

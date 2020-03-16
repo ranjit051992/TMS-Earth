@@ -14,7 +14,7 @@ Then("I should be able to view the actions for the draft requisition on Listing 
     let primaryActionStatus = false;
     let secondaryActionStatus = false;
     
-    reqListingImpl.navigateToRequisitionListing();
+    await reqListingImpl.navigateToRequisitionListing();
 
     this.reqNumber = await reqListingImpl.getRequisitionNumber(this.reqBO.reqName);
 
@@ -158,7 +158,7 @@ Then("I should be able to see the status of the requisition changed to Closed", 
     if(reqStatus.toString() === lmtVar.getLabel("CLOSED_STATUS"))
     {
         isReqStatusClosed = true;
-        logger.info("Requisition Status is closed...");
+        logger.info("Requisition Status is ---->"+reqStatus);
     }
 
     I.assertEqual(isReqStatusClosed, true);

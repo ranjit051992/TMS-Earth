@@ -75,6 +75,7 @@ module.exports = {
       * 
      */
     async clickOnCartIcon() {
+        await I.scrollIntoView(I.getElement(iOnlineStore.CART_ICON));
         await I.waitForVisible(I.getElement(iOnlineStore.CART_ICON), prop.DEFAULT_MEDIUM_WAIT);
         await I.waitForClickable(I.getElement(iOnlineStore.CART_ICON), prop.DEFAULT_MEDIUM_WAIT);
         await I.click(I.getElement(iOnlineStore.CART_ICON));
@@ -569,8 +570,8 @@ module.exports = {
     },
 
     async navigateToOnlineStore() {
-        // await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("ONLINE_STORE_PAGE"));
-        await I.amOnPage(prop.DDS_OnlineStore_Url);
-        await I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX));
+         await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("ONLINE_STORE_PAGE"));
+       // await I.amOnPage(prop.DDS_OnlineStore_Url);
+        //await I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX));
     }
 }
