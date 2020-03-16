@@ -216,8 +216,7 @@ Given("I navigate to OnlineStore",async function()
 {
    // await onlineStoreImpl.clickOnOnlineStoreLink();
    await I.amOnPage(prop.DDS_OnlineStore_Url);
-   await onlineStoreImpl.waitForOnlineStoreToLoad();
-  
+   await onlineStoreImpl.waitForOnlineStoreToLoad();  
 });
 
 When("I Navigate to Guided Page",async function()
