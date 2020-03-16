@@ -98,4 +98,7 @@ Given("I select category",async function(){
     await guidedImpl.selectCategoryEform(this.guidedItem.eform);
 });
 
-
+When("I add short description", async function(){
+    await guidedImpl.clickOnDescriptionLink();
+    await guidedImpl.fillDescription(this.reqBO.description);
+});

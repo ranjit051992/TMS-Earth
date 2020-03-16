@@ -155,6 +155,29 @@ module.exports = {
         
         return isPresent;
 
-    }
+    },
 
+    async clickOnShippingDetailsAndAssetTagging(itemName)
+    {   
+        let xpath = "//span[contains(text(),'"+itemName+"')]//following::a[1]";
+        await I.waitForClickable(xpath);
+        await I.click(xpath);
+        logger.info("Clicked on Shipping Details and Asset Tagging");
+    },
+
+    async getNoOfDeliverySplit()
+    {
+        let noOfSplit = await I.grabNumberOfVisibleElements(I.getElement(iViewReq.NO_OF_SPLIT));
+        logger.info("No Of Delivery split are --->"+noOfSplit);
+        return noOfSplit;
+    },
+
+    async getLineLevelDeliveryAddress(indexOf)
+    {
+        let xpath = "(//dew-row[@formarrayname='deliveries']["+indexOf+"]//div)[2]";
+        let address = await I.grabTextFrom(xpath);
+        logger.info("Updated Address is--->> "+address);
+        
+        return address;
+    },
 }

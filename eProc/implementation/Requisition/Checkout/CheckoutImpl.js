@@ -1176,8 +1176,8 @@ module.exports = {
         
         if(reqBO.convertToPoFlag) {
             await I.wait(prop.DEFAULT_MEDIUM_WAIT);
-            //await I.amOnPage(prop.DDS_BuyersDesk_Url);
-            await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("BUYERS_DESK_LISTING_PAGE"));
+            await I.amOnPage(prop.DDS_BuyersDesk_Url);
+            //await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("BUYERS_DESK_LISTING_PAGE"));
             await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
             await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
             status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
@@ -1329,6 +1329,12 @@ module.exports = {
         logger.info("Clicked on Add Another Address Button");
     },
 
-
+    async enterLineLevelAddress(address, index)
+    {
+        let xpath = "(//dew-row[@formarrayname='deliveries']["+index+"]//input)[2]";
+        let suggestionXpath = "//div[contains(text(),'"+address+"')]";
+        address = await commonComponent.searchAndSelectFromDropdown(xpath, address, suggestionXpath);
+        logger.info("Entered Line level addres ---->"+address);
+    },
 
 };

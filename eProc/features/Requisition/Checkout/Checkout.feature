@@ -226,13 +226,14 @@ Feature: Checkout
 #   Given I am logged in eProc
 
 #   When I Navigate to Guided Page
+#   And I Add guided item service
 #   And I add short description
 #   And I add qty and price
 #   And I add Sourcing status
-#   And I save it
+#   And I save guided item details
 #   And I select supplier from the Suggested Supplier dropdown.
 #   And I add contract for the item
-#   And I add item to cart
+#   And I add items to cart
 #   And I checkout
 
 #   Then I should contract linked to free text item on viewing the item
@@ -484,37 +485,37 @@ Feature: Checkout
 
 
 
-# @Non-COA @L1 @priyanka @deliverySplit
-#   Scenario: To verify that user is able to create requisition with conditions of delivery address
-#   Given I am logged in eProc
+@Non-COA @L1 @priyanka @deliverySplit
+  Scenario: To verify that user is able to create requisition with conditions of delivery address
+  Given I am logged in eProc
 
-#   When I add a catalog item "ITEM_NAME_FOR_SEARCHING" with quantity 2 to cart
-#   And I checkout
-#   And I enter Requisition Name
-#   And I add Purchase Type
-#   And I add Settlement Via
-#   And I add Required By Date
-#   And I add Delivery split at line level into 2 splits
-#   And I change the address for split 2
-#   And I save it
-#   And I add data in Cost Booking Details section at line level 
-#   And I submit requisition
+  When I add a catalog item "ITEM_NAME_FOR_SEARCHING" with quantity 2 to cart
+  And I checkout
+  And I enter Requisition Name
+  And I add Purchase Type
+  And I add Settlement Via
+  And I add Required By Date
+  And I add Delivery split at line level into 2 splits
+  And I change the address for split 2
+  And I save it
+  And I add data in Cost Booking Details section at line level 
+  And I submit requisition
 
-#   Then I should be able to view the requisition with the delivery split
-#   And I should see that the address is updated
+  Then I should be able to view the requisition with the delivery split
+  And I should see that the address is updated for split 2
 
 
 
-# @Non-COA @L1 @closeReq @priyanka
-#   Scenario: To verify that user is  able to close requisition
-#   Given I am logged in eProc
-#   And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
-#   And I close PO
+@Non-COA @L1 @closeReq @priyanka
+  Scenario: To verify that user is  able to close requisition
+  Given I am logged in eProc
+  And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
+  And I close PO
 
-#   When I navigate to Requisition Listing page
-#   And I close the requisition from actions
+  When I navigate to Requisition Listing page
+  And I close the requisition from actions
 
-#   Then I should be able to see the status of the requisition changed to Closed
+  Then I should be able to see the status of the requisition changed to Closed
 
 # @Non-COA @L1 @Snehal
 #   Scenario: To verify the behavior of requisition who has PO attached to them
@@ -625,7 +626,7 @@ Feature: Checkout
 
     Then I should be able to see the attachment which is added
 
-@COA @L1 @coaCopy 
+@COA @L1 @coaCopy @priyankaCOA
     Scenario: COA>>To verify that user is able to copy any requisition and modify it to create a new requisition.
     Given I am logged in eProc
 
@@ -712,7 +713,7 @@ Feature: Checkout
 #     Then I should be able to see Required by date should be auto calculated as per lead time defined in the catalog setting in this page
 
 
-@COA @L1 @coaAddr 
+@COA @L1 @coaAddr  @priyankaCOA
     Scenario: COA>>To verify that system auto populates user's default Delivery & Bill to address 
     Given I am logged in eProc
 
@@ -742,7 +743,7 @@ Feature: Checkout
 
     Then I should be able to see Deliver address as the Ship to Another Address on view requisition 
 
-@COA @L1 @coaApproval 
+@COA @L1 @coaApproval  @priyankaCOA
     Scenario: COA>> To verify that user is able to view approval Status
     Given I am logged in eProc
 
@@ -782,7 +783,7 @@ Feature: Checkout
     And I select Ship to Another Address in  Shipping Details section at header level
     And I should be able to see the saved address on creating a new requisition
 
-@COA @L1 @coaTaxes 
+@COA @L1 @coaTaxes @priyankaCOA
     Scenario: COA>>To verify that user is able to add taxes at line item level in a requisition for catalog item
     Given I am logged in eProc
 
@@ -815,7 +816,7 @@ Feature: Checkout
 
 #   Then I should be able see the taxes added on view requisition
 
-@COA @L1 @coafreeTextItem 
+@COA @L1 @coafreeTextItem @priyankaCOA
   Scenario: COA>>To verify that user is able to add taxes at line item level in a requisition for free-text item 
   Given I am logged in eProc
 
@@ -912,7 +913,7 @@ Feature: Checkout
 
 #   Then I should be able to view requisition with non stock item
 
-@COA @L1 @coaDraft 
+@COA @L1 @coaDraft @priyankaCOA
   Scenario: COA>>To verify requisition in draft and actions on it
     Given I am logged in eProc
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -963,21 +964,24 @@ Feature: Checkout
 
   Then I should be able to view requisition with buyer which was assigned
 
-# @COA @L1
-#   Scenario: COA>>To verify that user is able to create requisition with conditions of delivery address
-#   Given I am logged in eProc
+@COA @L1 @priyankaCOA @coaDeliverySplit
+  Scenario: COA>>To verify that user is able to create requisition with conditions of delivery address
+  Given I am logged in eProc
 
-#   When I add a catalog item with qty 2 to cart
-#   And I checkout
-#   And I add Purchase Type
-#   And I add Required By Date
-#   And I add Delivery split at line level into 2 splits
-#   And I change the address for one split
-#   And I add data in Cost Booking Details section at line level 
-#   And I submit requisition
+  When I add a catalog item "ITEM_NAME_FOR_SEARCHING" with quantity 2 to cart
+  And I checkout
+  And I enter Requisition Name
+  And I add Purchase Type
+  And I add Settlement Via
+  And I add Required By Date
+  And I add Delivery split at line level into 2 splits
+  And I change the address for split 2
+  And I save it
+  And I add data in Cost Booking Details section at line level 
+  And I submit requisition
 
-#   Then I should be able to view the requisition with the delivery split
-#   And I should see that the address is updated
+  Then I should be able to view the requisition with the delivery split
+  And I should see that the address is updated for split 2
 
 @COA @L1 @Snehal
   Scenario: COA>>To verify that user is able to add approver in requisition workflow if activity if assigned to him/her
@@ -1063,9 +1067,9 @@ Feature: Checkout
 # @COA @L1
 #     Scenario: To verify that if cost booking details are loading in COA form at Line item level in requisition.
 #     Given I am logged in eProc
-#     And I am on checkout page with a catalog item 
+#     And I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart 
+#     And I checkout
 
-#     when I add Cost booking details at line level 
-#     And I Save the COA form
-
+#     When I add data in Cost Booking Details section at line level
+  
 #     Then I should be able to Save the line level COA form 
