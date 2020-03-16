@@ -1,5 +1,5 @@
 const { I } = inject()
-const ApprovalPage = require("dd-cc-zycus-automation/components/approvalPage")
+const ApprovalPage = require("../../implementation/MyApproval/MyApprovalImpl")
 const CommonKeyword = require("dd-cc-zycus-automation/components/commonKeyword")
 
 

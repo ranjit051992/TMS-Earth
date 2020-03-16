@@ -116,12 +116,12 @@
         "uiElementTable": "iRequest_UI_Elements",
         "UserTable":"iRequest_credentials"
     },
-    "Home": {
+    "DD_Homes": {
         "url": "https://dewdrops-qcvw.zycus.net/home/#/auth",
-        "SETUP": "QCVM",
-        "TENANT": "KATALON_AUTOX",
+        "SETUP": "US_Staging",
+        "TENANT": "ZCS",
         "browser": "chrome",
-        "host": "127.0.0.1",
+        "host": "10.100.0.168",
         "restart": "false",
         "port": 4444,
         "windowSize": "maximize",
@@ -136,8 +136,8 @@
         "DBdatabase": "DD_Home_schema",
         "DBuser": "DDHome",
         "DBpassword": "ddhome@123",
-        "username": "eircom_supp@zycus.com",
-        "password": "Eproc@1234",
+        "username": "support.sanity@zycus.com",
+        "password": "NuIuRuDaLaAaPoLiPeViQeWoXa2$3",
         "testdataTable": "TestData_DD_Home",
         "uiElementTable": "DD_Home_UI_Elements",
         "UserTable":"DD_Home_UI_Elements"

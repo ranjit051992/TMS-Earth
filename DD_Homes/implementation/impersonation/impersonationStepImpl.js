@@ -1,7 +1,7 @@
 const { I } = inject()
 const ProductNavigator = require("dd-cc-zycus-automation/components/dewSideMenu")
 const DewImpersonation = require("./DewImpersonation")
-const ApprovalPage = require("dd-cc-zycus-automation/components/approvalPage")
+const ApprovalPage = require("../../implementation/MyApproval/MyApprovalImpl")
 const ImpersonationImpl = require ("./impersonationImpl")
 
 Given("I am on Home page",  async function() {

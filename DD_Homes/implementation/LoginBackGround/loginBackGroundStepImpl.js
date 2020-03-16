@@ -1,19 +1,18 @@
 const { I } = inject()
+const CommonKeyword = require("dd-cc-zycus-automation/components/commonKeyword")
 
-
+const prop = global.confi_prop;
 
 Given("I navigate to the login page", async function () {
     await I.amOnPage("https://dewdrops-staging.zycus.com/home/#/auth");
     });
     
 When("I submit {string} and {string}", async function (username,password) {
-    I.click("//input[@formcontrolname='emailAddress']");
-    I.fillField("//input[@formcontrolname='emailAddress']", "support.sanity@zycus.com");
-    I.click("//input[@formcontrolname='password']");
-    I.fillField("//input[@formcontrolname='password']", "NuIuRuDaLaAaPoLiPeViQeWoXa2$3");
+    CommonKeyword.clickElement("//input[@formcontrolname='emailAddress']");
+    CommonKeyword.enterText("Email Address", prop.username);
+    CommonKeyword.clickElement("//input[@formcontrolname='password']");
+    CommonKeyword.enterText("Password", prop.password);
     I.click("Login");
-    I.wait(5)
-    I.refreshPage()
     I.waitForElement("dew-navbar", 30);
     });
     
