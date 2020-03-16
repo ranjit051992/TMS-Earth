@@ -1,5 +1,5 @@
 const parsing= require("./Framework/PropertiesConfigurator");
-parsing("eProc");
+parsing();
 const prop = global.confi_prop;
 global.lang = 'en';
 exports.config = {
@@ -27,7 +27,7 @@ exports.config = {
 
 
     },
-   ChaiWrapper:
+    ChaiWrapper:
     {
       require: "codeceptjs-chai"
     },
@@ -38,19 +38,22 @@ exports.config = {
   },
   bootstrap: "./bootstrap.js",
   teardown: "./bootstrap.js",
+  teardownAll: "./get_all_reports.js",
   include: {
     I: prop.stepFilePath,
   },
-  multiple: {
-    parallel: {
-      // Splits tests into 2 chunks
-      chunks: 10
-    }
-  },
-  gherkin: {
-    features: "./DD_Homes/features/**/*.feature",
-    steps: "./DD_Homes/implementation/**/*.js"
-  },
+   multiple: {
+        sanityCases: {
+          // Splits tests into 2 chunks
+          chunks: 5
+        }
+      },
+    gherkin: {
+           //features: './iRequest/features/**/**.feature',
+            features: "./DD_Homes/features/**/*.feature",
+            steps: "./DD_Homes/implementation/**/*.js"
+        }, 
+ 
   name: prop.projectName,
   plugins: {
     retryFailedStep: {
@@ -65,6 +68,12 @@ exports.config = {
     },
     allure: {
       enabled: true
+    },
+    autoDelay: {
+      enabled: true,
+      delayBefore: 500,
+      delayAfter: 500,
+      methods: ["click", "fillField", "checkOption"]
     }
   }
 };
