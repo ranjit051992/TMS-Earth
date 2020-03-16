@@ -12,6 +12,9 @@ const faker = require("faker");
 const iApprovalObject = require("../../Approval/ApprovalObject");
 const coaImp = require("../../Coa/CoaImpl");
 const iViewReq = require("../../Requisition/ViewRequisition/ViewRequisitionObject");
+const buyersDeskImpl = require("../../BuyersDesk/BuyersDeskImpl");
+const spoImpl = require("../../PO/Spo/SpoImpl");
+const approveImpl = require("../../Approval/ApprovalImpl");
 
 When("I create requisition with {int} {string} item", async function(noOfItems, itemType) {
     this.reqBO= await objectCreation.getObjectOfRequisition(noOfItems, itemType);
@@ -391,3 +394,10 @@ Given("I Select Purchase Order", async function(){
     await checkoutImp.clickOnSelectedPOContinueButton();
     this.purchaseOrder = await checkoutImp.getSelectedPurchaseOrder();;
 });
+
+Given("I have created a requisition with that PO linked and converted it to PO with {int} {string}", async function(noOfItems, itemType) {
+    logger.info(`PO number of previous req --> ${this.reqBO.poNumber}`);
+    this.reqBO1 = await objectCreation.getObjectOfRequisition(noOfItems, itemType);
+    this.reqBO1.linkedPoNumber = this.reqBO.poNumber;
+    this.reqBO = await checkoutImp.createReqToPoWithPoLinked(this.reqBO1);
+ });

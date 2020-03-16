@@ -17,6 +17,9 @@ const coaImpl = require("../../Coa/CoaImpl");
 const approvalImpl = require("../../Approval/ApprovalImpl");
 const buyerDeskImpl = require("../../BuyersDesk/BuyersDeskImpl");
 const poListingImpl = require("../../PO/PoListing/PoListingImpl");
+const buyerDeskObject = require("../../BuyersDesk/BuyersDeskObject");
+const spoImpl = require("../../PO/Spo/SpoImpl");
+const spoObject = require("../../PO/Spo/SpoObject");
 
 module.exports = {
 
@@ -1329,6 +1332,39 @@ module.exports = {
         logger.info("Clicked on Add Another Address Button");
     },
 
+    async createReqToPoWithPoLinked(reqBO) {
+        reqBO = await this.createRequisitionFlow(reqBO);
+
+        await reqListingImpl.navigateToRequisitionListing();
+        await commonComponent.searchDocOnListing(reqBO.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+        reqBO.reqNumber = await commonComponent.getDocNumber();
+        reqBO.status = await reqListingImpl.getRequisitionStatus();
+
+        if(reqBO.status.includes(lmtVar.getLabel("IN_APPROVAL_STATUS"))) {
+            await approvalImpl.approveReqFlow(reqBO.reqNumber);
+        }
+        else {
+            logger.info(`Req status is not ${lmtVar.getLabel("IN_APPROVAL_STATUS")} after submitting. Current status is ${reqBO.status}. Hence, not executing the approve req action.`);
+        }
+
+        await buyerDeskImpl.navigateToBuyerListing();
+        await commonComponent.searchDocOnListing(reqBO.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+        await commonComponent.clickOnActionMenuIcon();
+        await commonComponent.clickOnActionMenuOption(lmtVar.getLabel("CONVERT_TO_PO"));
+        let flag = await commonComponent.waitForElementVisible(I.getElement(buyerDeskObject.CONVERT_TO_PO_CONFIRM_YES_BUTTON), prop.DEFAULT_WAIT);
+        if(flag) {
+            await buyerDeskImpl.clickOnConvertToPoConfirmYesButton();
+        }
+        await I.waitForVisible(I.getElement(spoObject.poDescriptionTextbox));
+        await spoImpl.fillAmendPoComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
+        await spoImpl.submitPo();
+        await commonComponent.waitForElementVisible(spoObject.spinner);
+        await I.waitForInvisible(I.getElement(spoObject.spinner));
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
+
+        return reqBO;
+    },
     async enterLineLevelAddress(address, index)
     {
         let xpath = "(//dew-row[@formarrayname='deliveries']["+index+"]//input)[2]";

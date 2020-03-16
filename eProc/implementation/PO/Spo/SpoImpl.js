@@ -621,6 +621,36 @@ module.exports = {
         await I.waitForVisible(itemNameXpath);
         let itemName = await I.grabTextFrom(itemNameXpath);
         return itemName;
+    },
+
+    async verifyViewSpoItemLevelSrNo() {
+        let flag = false;
+        let srNoArray = new Array();
+        await I.waitForVisible(I.getElement(iSpoObject.ITEM_LEVEL_SR_NO));
+        let count = await I.grabNumberOfVisibleElements(I.getElement(iSpoObject.ITEM_LEVEL_SR_NO));
+        if(count < 1) {
+            logger.info(`Locator for item sr no not found --> ${I.getElement(iSpoObject.ITEM_LEVEL_SR_NO)}`);
+            throw new Error(`Locator for item sr no not found --> ${I.getElement(iSpoObject.ITEM_LEVEL_SR_NO)}`);
+        }
+        else {
+            for(let i = 1; i <= count; i++) {
+                let srNoXpath = `(${I.getElement(iSpoObject.ITEM_LEVEL_SR_NO)})[${i}]`;
+                logger.info(`Sr no xpath --> ${srNoXpath}`);
+                let srNo = await (await I.grabTextFrom(srNoXpath)).toString().trim();
+                logger.info(`Sr no retrieved at item no ${i} is ${srNo}`);
+                srNoArray.push(srNo);
+                let filterSize = srNoArray.filter(x => x === srNo).length;
+                if(filterSize > 1) {
+                    logger.info(`Sr no --> ${srNo} is repeated at line item no ${i}`);
+                    return false;
+                }
+                else {
+                    flag = true;
+                }
+            }
+            logger.info("Item level sr no validation passed");
+        }
+        return flag;
     }
 
 }

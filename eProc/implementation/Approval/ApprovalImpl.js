@@ -386,5 +386,15 @@ module.exports = {
         else {
             logger.info("Spo is released successfully");
         }
+    },
+
+    async approveReqFlow(reqNumber) {
+        await this.navigateToApprovalListing();
+        await this.approveDoc(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        await commonKeywordImpl.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+        if(status.toString() !== lmtVar.getLabel("APPROVED_STATUS")) {
+            throw new Error(`Req status after approval is not Approved. Current status is --> ${status}`);
+        }
     }
 }

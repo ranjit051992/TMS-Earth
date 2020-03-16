@@ -237,28 +237,40 @@ Feature: Spo
   Then Item should be added "ITEM_NAME_FOR_SEARCHING" at index 1 in edit mode
 
 
-# @Non-COA @L1 @88noncoa
-#   Scenario: To verify that user is able to amend an existing PO to add more item via requisition
+@Non-COA @L1 @88noncoa
+  Scenario: To verify that user is able to amend an existing PO to add more item via requisition
 
-#   Given I am logged in eProc
-#   And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
-#   And I have created a requisition with that PO linked and with 1 "ITEM_NAME_FOR_SEARCHING[1]"
-#   And I navigate to req listing
-#   And I search for the created req on req listing
-#   And I fetch the req number on req listing
-#   And I fetch the req status on req listing
+  Given I am logged in eProc
+  And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
+  And I have created a requisition with that PO linked and with 1 "ITEM_NAME_FOR_SEARCHING[1]"
+  And I navigate to req listing
+  And I search for the created req on req listing
+  And I fetch the req number on req listing
+  And I fetch the req status on req listing
   
-#   When I approve the requisition
-#   And I navigate to Buyer Desk
-#   And I search for the created req on buyer listing
-#   And I click on option icon
-#   And I click on Convert to PO option for req created with linked PO
-#   And I select tax inclusive on create spo page
-#   And I add amend PO comments
-#   And I submit the PO 
-#   And I search for the converted PO by req number
-#   And I view the PO
-#   Then Item should be added "ITEM_NAME_FOR_SEARCHING[1]" at index 2
+  When I approve the requisition
+  And I navigate to Buyer Desk
+  And I search for the created req on buyer listing
+  And I click on option icon
+  And I click on Convert to PO option for req created with linked PO
+  And I add amend PO comments
+  And I submit the PO 
+  And I search for the converted PO by req number
+  And I view the PO
+  Then Item should be added "ITEM_NAME_FOR_SEARCHING[1]" at index 2
+
+
+@Non-COA @L1 @102noncoa
+  Scenario: To verify that the PO Line item numbering when linking a new PR to an Amended PO should be unique (per item) with respect to all the versions of a PO existing in the system
+
+  Given I am logged in eProc
+  And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
+  And I have created a requisition with that PO linked and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING[1]"
+
+  When I search for the converted PO by req number
+  And I view the PO
+
+  Then I should be able to see the new item with unique line item number
 
 
 # @Non-COA @L2     
@@ -396,19 +408,6 @@ Feature: Spo
 #   And I navigate to Release orders tab 
 
 #   Then the Release created against the BPO should be listed there
-
-
-# @Non-COA @L1
-#   Scenario: To verify that the PO Line item numbering when linking a new PR to an Amended PO should be unique (per item) with respect to all the versions of a PO existing in the system
-
-#   Given I am logged in eProc
-#   And I have created and released a PO with a catalog item
-#   And I have created a requisition with that PO linked
-
-#   When I convert the requisition to PO
-#   And I check the line item number of the new item added to the amendment
-
-#   Then I should be able to see the new item with unique line item number
 
 
 # @Non-COA @L1
@@ -817,6 +816,42 @@ Feature: Spo
   Then Item should be added "ITEM_NAME_FOR_SEARCHING" at index 1 in edit mode
 
 
+@COA @L1 @119coa
+  Scenario: COA _ To verify that user is able to amend an existing PO to add more item via requisition
+
+  Given I am logged in eProc
+  And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
+  And I have created a requisition with that PO linked and with 1 "ITEM_NAME_FOR_SEARCHING[1]"
+  And I navigate to req listing
+  And I search for the created req on req listing
+  And I fetch the req number on req listing
+  And I fetch the req status on req listing
+  
+  When I approve the requisition
+  When I navigate to Buyer Desk
+  And I search for the created req on buyer listing
+  And I click on option icon
+  And I click on Convert to PO option for req created with linked PO
+  And I add amend PO comments
+  And I submit the PO 
+  And I search for the converted PO by req number
+  And I view the PO
+  Then Item should be added "ITEM_NAME_FOR_SEARCHING[1]" at index 2
+
+
+@COA @L1 @133coa
+  Scenario: COA _ To verify that the PO Line item numbering when linking a new PR to an Amended PO should be unique (per item) with respect to all the versions of a PO existing in the system
+
+  Given I am logged in eProc
+  And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
+  And I have created a requisition with that PO linked and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING[1]"
+
+  When I search for the converted PO by req number
+  And I view the PO
+
+  Then I should be able to see the new item with unique line item number
+
+
 # @COA @L1      
 # Scenario: COA _ To verify that user is able to create a SPO with single & multiple line items and with attachments in Zycus eproc
 
@@ -848,20 +883,6 @@ Feature: Spo
 #   And I view the PO
 
 #   Then I should be able to see all the added items and attachments
-
-
-# @COA @L1
-#   Scenario: COA _ To verify that user is able to amend an existing PO to add more item via requisition
-
-#   Given I am logged in eProc
-#   And I have created and released a PO
-#   And I have created a requisition with that PO linked
-
-#   When I convert the requisition to PO
-#   And I submit the PO from amendment page
-#   And I view the amended PO
-
-#   Then I should be able to see the new item added in the amended version.
 
 
 # @COA @L1
@@ -966,19 +987,6 @@ Feature: Spo
 #   And I navigate to Release orders tab 
 
 #   Then the Release created against the BPO should be listed there
-
-
-# @COA @L1
-#   Scenario: COA _ To verify that the PO Line item numbering when linking a new PR to an Amended PO should be unique (per item) with respect to all the versions of a PO existing in the system
-
-#   Given I am logged in eProc
-#   And I have created and released a PO with a catalog item
-#   And I have created a requisition with that PO linked
-
-#   When I convert the requisition to PO
-#   And I check the line item number of the new item added to the amendment
-
-#   Then I should be able to see the new item with unique line item number
 
 
 # @COA @L1
