@@ -1,5 +1,5 @@
 const parsing = require("./Framework/PropertiesConfigurator");
-parsing("eProc");
+parsing("Home");
 const prop = global.confi_prop;
 global.lang = 'en';
 exports.config = {

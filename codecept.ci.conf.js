@@ -1,5 +1,5 @@
 const parsing= require("./Framework/PropertiesConfigurator");
-parsing("eProc");
+parsing("Home");
 const prop = global.confi_prop;
 global.lang = 'en';
 exports.config = {
@@ -48,8 +48,8 @@ exports.config = {
     }
   },
   gherkin: {
-    features: "./eProc/features/**/**/*.feature",
-    steps: "./eProc/implementation/**/**/*.js"
+    features: "./DD_Home/features/**/**/*.feature",
+    steps: "./DD_Home/implementation/**/**/*.js"
   },
   name: prop.projectName,
   plugins: {
