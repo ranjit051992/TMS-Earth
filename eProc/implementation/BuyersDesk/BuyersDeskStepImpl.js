@@ -9,10 +9,12 @@ const buyersDeskImpl = require("./BuyersDeskImpl");
 const approvalImpl = require("./../Approval/ApprovalImpl")
 const checkoutImpl = require("./../Requisition/Checkout/CheckoutImpl");
 const cartImpl = require("./../Requisition/Cart/CartImpl");
-const onlineStore = require("../Requisition/OnlineStore/OnlineStoreObject");
+const onlineStoreImpl = require("../Requisition/OnlineStore/OnlineStoreImpl");
 const commonKeywordImpl = require("../../commonKeywords/CommonComponent");
 const poListingObject = require("../PO/PoListing/PoListingObject");
 const spoObject = require("../PO/Spo/SpoObject");
+const commonComponent = require("../../commonKeywords/CommonComponent");
+const faker = require("faker");
 
 When("I navigate to Buyer Desk", async function() {
   await buyersDeskImpl.navigateToBuyerListing();
@@ -289,3 +291,20 @@ Then("I should be see the data on the page on the basis on Received on field", a
   let flag = await buyersDeskImpl.verifyReceivedOn();
   I.assertEqual(flag, true);
 });
+
+When("I filter with Submitted on field by {string}",async function(searchBy){
+  await buyersDeskImpl.selectSubmiitedOnOption(searchBy);
+});
+
+Then("I should be see the data on the page on the basis on Submitted on field", async function(){
+  logger.info("Submitted on Date to be searched is "+requisition.receivedOn);
+  let flag = await buyersDeskImpl.verifySubmittedOn();
+  I.assertEqual(flag, true);
+});
+
+// When("I add a catalog item to cart", async function(){
+//   this.reqBo= await objectCreation.getObjectOfRequisition("1", "ITEM_NAME_FOR_SEARCHING");
+//   await cartImpl.clearCart();
+//   let item = await I.getData("ITEM_NAME_FOR_SEARCHING");
+//   await onlineStoreImpl.addItemToCart(item,faker.random.number(20));
+// });
