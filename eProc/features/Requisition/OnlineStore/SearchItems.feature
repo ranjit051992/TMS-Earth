@@ -29,7 +29,7 @@ Feature: OnlineStore
   Then I should see "2" "ITEM_NAME_FOR_SEARCHING" items in Cart
 
 
-@Non-COA @L1 @online @autox @Snehal
+@Non-COA @L1 @online @compare @Snehal
 
   Scenario: To verify that user is be able to compare items within a catalog
   Given I am logged in eProc
