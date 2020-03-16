@@ -570,8 +570,8 @@ module.exports = {
     },
 
     async navigateToOnlineStore() {
-        // await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("ONLINE_STORE_PAGE"));
-        await I.amOnPage(prop.DDS_OnlineStore_Url);
-        await I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX));
+         await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("ONLINE_STORE_PAGE"));
+       // await I.amOnPage(prop.DDS_OnlineStore_Url);
+        //await I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX));
     }
 }
