@@ -86,7 +86,7 @@ Feature: Checkout
 
     Then I should be able to see the attachment which is added
 
-@Non-COA @L1 @Snehal
+@Non-COA @L1 @Snehal @onetime
 
     Scenario: To verify that user is able to create any custom / One time delivery address while Check out and save it for future use
     Given I am logged in eProc
