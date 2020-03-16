@@ -9,6 +9,9 @@ const approvalObject = require("../Approval/ApprovalObject");
 const poListingObject = require("../PO/PoListing/PoListingObject");
 const requisitionBo = require("../../dataCreation/bo/Requisition");
 const onlineStore = require("../Requisition/OnlineStore/OnlineStoreObject");
+const cartImpl = require("../Requisition/Cart/CartImpl");
+const onlineStoreImpl = require("../Requisition/OnlineStore/OnlineStoreImpl");
+const faker = require("faker");
 
 module.exports = {
 
@@ -556,7 +559,70 @@ module.exports = {
              }
      
              return flag;
+         },
+
+    async selectSubmiitedOnOption(option){
+        await this.clickOnSubmittedOnFilter();
+        if(option === lmtVar.getLabel("SEARCH_BY_CREATE_DATE"))
+        {
+            logger.info('Selected Submitted on option is : Create Date');
+            let createDate = await this.selectCreateDate();
+            requisitionBo.receivedOn = createDate;
+        }
+     
+        else if(option === lmtVar.getLabel("SEARCH_BY_DATE_WITHIN"))
+        {
+            logger.info('Selected Submitted on option is : Date Within');
+            await this.selectDateWithin(lmtVar.getLabel("DATE_WITHIN_LAST_WEEK")); 
+        }
+     
+        else if(option === lmtVar.getLabel("SEARCH_BY_DATE_PERIOD"))
+        {
+            logger.info('Selected Submitted on option is : Date Period');
+            await this.selectDatePeriod();
+        }
+     
+        else{
+            throw new Error("Invalid search option!");
+        }
+        await this.clickonApplyButton();
+     
+    },
+
+    async clickOnSubmittedOnFilter(){
+        I.click(I.getElement(iBuyersDeskObject.SUBMITTEDON_FILTER));
+        logger.info('Clicked on Submitted on filter')
+    },
+
+    async verifySubmittedOn(){
+        let fetchedSubmittedOn = await this.FetchSubmittedOn();
+        let flag = true;
+        if(fetchedSubmittedOn == requisitionBo.receivedOn)
+         {
+             logger.info(`Fetched Submiited On Date is -> ${fetchedSubmittedOn}`);
+             flag = true;
          }
+         else{
+             logger.info(`Fetched Submitted On Date is -> ${fetchedSubmittedOn}`);
+             flag = false;
+         }
+ 
+         return flag;
+    },
+
+    async FetchSubmittedOn()
+   {
+        I.waitForVisible(I.getElement(iBuyersDeskObject.RECEIVED_ON_LISTING),prop.DEFAULT_MEDIUM_WAIT);
+        let submittedOn = await I.grabTextFrom(I.getElement(iBuyersDeskObject.RECEIVED_ON_LISTING));
+        return submittedOn;
+    },
+
+    async addCatalogItem(requisitionBO) {
+        await onlineStoreImpl.navigateToOnlineStore();
+        await cartImpl.clearCart();
+        await onlineStoreImpl.addItemToCart(requisitionBO.itemName, faker.random.number(20));
+    }
+    
 }
 
  
