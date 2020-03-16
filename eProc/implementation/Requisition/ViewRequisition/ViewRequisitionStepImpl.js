@@ -244,3 +244,33 @@ Then("I should be able to view the workflow with On Behalf user as the requestor
    
     I.assertEqual(isPresent,true);
 });
+
+Then("I should be able to view the requisition with the delivery split", async function(){
+    let isDeliverySplit = false;
+
+    await reqListingImpl.searchAndViewReqByName(this.reqBO.reqName);
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    await viewReqImpl.clickOnShippingDetailsAndAssetTagging(this.reqBO.items[0].itemName);
+    let deliverySplit = await viewReqImpl.getNoOfDeliverySplit();
+
+    if(this.noOfSplit === deliverySplit)
+    {
+        isDeliverySplit = true;
+        logger.info("Requisition is created with delivery split")
+    }
+    I.assertEqual(isDeliverySplit, true);
+});
+
+Then("I should see that the address is updated for split {int}", async function(splitNo){
+    let isAdrressUpdated = false;
+
+    let address = await viewReqImpl.getLineLevelDeliveryAddress(splitNo);
+
+    if(address.toString() === this.changedAddress.toString())
+    {
+        isAdrressUpdated = true;
+        logger.info("Delivery Address is updated");
+    }
+    I.assertEqual(isAdrressUpdated, true);
+});
+

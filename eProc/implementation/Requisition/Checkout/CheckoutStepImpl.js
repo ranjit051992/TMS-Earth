@@ -381,7 +381,8 @@ When("I add Delivery split at line level into {int} splits", async function(noOf
 });
 
 When("I change the address for split {int}", async function(forSplit){
-    //SHIP_TO_ADDRESS_NAME
+    this.changedAddress = await checkoutImp.enterLineLevelAddress(I.getData("SHIP_TO_ADDRESS_NAME[1]"), forSplit);
+    logger.info("Changed address for split "+forSplit+" is --->>"+changedAddress);
 });
 
 Given("I Select Purchase Order", async function(){
