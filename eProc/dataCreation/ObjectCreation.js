@@ -212,6 +212,34 @@ class ObjectCreation
         bpo.setFillAdditionalDetails(false);
         return bpo;
     }
+
+    async getObjectOfGuidedItemForPo(index)
+    {
+        let guidedItem = new guidedItemBo();
+        guidedItem.itemName = `GuidedItem_${new Date().getTime()}`;
+        guidedItem.category = I.getData("ITEM_CATEGORY_FOR_SEARCHING");
+        guidedItem.partNumber = faker.random.number(10000);
+        guidedItem.description = "Description_"+faker.random.alphaNumeric(10);
+        guidedItem.type = I.getData("ITEM_TYPE");
+        guidedItem.receiveBillBy = I.getData("RECEIVE_BY");
+        guidedItem.sourcingStatus = I.getData("SOURCING_STATUS_OPTION");
+        guidedItem.quantity = faker.random.number({min:1, max:100})
+        guidedItem.uom = I.getData("ITEM_UOM");
+        guidedItem.price = faker.random.number({min:1, max:2000});
+        guidedItem.currency = I.getData("ITEM_CURRENCY");
+        guidedItem.zeroPriceItem = false;
+        guidedItem.buyerReviewRequired = true;
+        let supplier = new Array();
+        supplier.push(I.getData("SUPPLIER_NAME"));
+        guidedItem.suppliers = supplier;
+        guidedItem.nextAction = lmtVar.getLabel("ADD_TO_CART");
+        guidedItem.supplierAddress= (I.getData("OTHER_DELIVERY_ADD"));
+        guidedItem.supplierContact=(I.getData("SUPPLIER_CONTACT_NAME"));
+        guidedItem.supplierEmail=(I.getData("SUPPLIER_EMAIL"));
+        guidedItem.supplierPhone= (faker.phone.phoneNumber());
+        guidedItem.eform = I.getData("CATEGORY_EFORM");
+        return guidedItem;
+    }
     
 }
 
