@@ -1,3 +1,4 @@
+@DD_Homes @DD_Desk
 Feature: My Desk
 Background: Given I am logged on to the application
         Given I navigate to the login page
@@ -35,8 +36,3 @@ Examples:
 | Operational Suppliers |
 | Potential Suppliers |
 | Reports |
-
-
-
-
-

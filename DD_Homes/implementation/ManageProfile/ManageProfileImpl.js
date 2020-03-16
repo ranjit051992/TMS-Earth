@@ -1,6 +1,8 @@
 /* eslint-disable linebreak-style */
 "use strict";
 const { I } = inject();
+const CommonKeyword = require("dd-cc-zycus-automation/components/commonKeyword")
+
 /** 
  * Profile related class
  */
@@ -12,8 +14,8 @@ class ManageProfile {
    navigateToManageProfile() {
      I.wait(5);
     I.seeElement("//dew-dropdown[contains(@class,'profile')]");
-    I.click("//dew-dropdown[contains(@class,'profile')]");
-    I.click("//div[contains(@class,'dropdown-item') and text()[normalize-space()='Manage Profile']]");
+    CommonKeyword.clickElement("//dew-dropdown[contains(@class,'profile')]");
+    CommonKeyword.clickElement("//div[contains(@class,'dropdown-item') and text()[normalize-space()='Manage Profile']]");
     I.seeElement("//user-profile");
     I.click("User Details");
   }
@@ -21,12 +23,13 @@ class ManageProfile {
    * To upload profile picture
    */
   uploadProfilePicture() {
-    I.click("//button[@aria-label='Upload']");
+    CommonKeyword.clickElement("//button[@aria-label='Upload']");
     I.see("Upload Image");
     within(".modal-content", () => {
-      I.fillField("//div[@class='upload-btn-wrapper']/input",process.cwd() +"/Resources/branch300.jpg");
-      I.click("//button[@aria-label='Set Profile Photo']");
+      I.attachFile("//div[@class='upload-btn-wrapper']/input","./Resources/branch300.jpg");
+      CommonKeyword.clickElement("//button[@aria-label='Set Profile Photo']");
     });
+    I.dontSeeElement(".modal-content")
   }
 
   /**
@@ -40,7 +43,7 @@ class ManageProfile {
    * To reset profile picture
    */
   resetProfilePicture() {
-    I.click("//button[@aria-label='Reset Profile Picture']");
+    CommonKeyword.clickElement("//button[@aria-label='Reset Profile Picture']");
     I.seeElement("//button[@aria-label='Reset Profile Picture' and @disabled]");
   }
   /**
@@ -48,12 +51,12 @@ class ManageProfile {
    */
   changePassword() {
     this.navigateToManageProfile();
-    I.click("//button[@aria-label='Change Password']");
+    CommonKeyword.clickElement("//button[@aria-label='Change Password']");
 
-    I.fillField("//input[@formcontrolname='currentPassword']", "YoDeHaCoPoBiBaIoAiWiYeQe8&7");
-    I.fillField("//input[@formcontrolname='newPassword']", "YoDeHaCoPoBiBaIoAiWiYeQe8&71");
-    I.fillField("//input[@formcontrolname='confirmPassword']", "YoDeHaCoPoBiBaIoAiWiYeQe8&71");
-    I.click("//dew-modal-footer//button[@aria-label='Save' and not(@disabled)]");
+    CommonKeyword.enterText("Current Password", "YoDeHaCoPoBiBaIoAiWiYeQe8&7");
+    CommonKeyword.enterText("New Password", "YoDeHaCoPoBiBaIoAiWiYeQe8&71");
+    CommonKeyword.enterText("Confirm New Password]", "YoDeHaCoPoBiBaIoAiWiYeQe8&71");
+    CommonKeyword.clickElement("//dew-modal-footer//button[@aria-label='Save' and not(@disabled)]");
     
   }
 
@@ -68,12 +71,12 @@ class ManageProfile {
    * To change pin
    */
   changePin() {
-    I.click("//button[@aria-label='Change Pin']");
+    CommonKeyword.clickElement("//button[@aria-label='Change Pin']");
     console.log("Qw"+generateRandomNumber())
     let pin= "Qw"+generateRandomNumber();
-    I.fillField("//input[@formcontrolname='newMobilePin']", pin);
-    I.fillField("//input[@formcontrolname='confirmMobilePin']", pin);
-    I.click("//dew-modal-footer//button[@aria-label='Save' and not(@disabled)]");
+    CommonKeyword.enterText("New Pin", pin);
+    CommonKeyword.enterText("Confirm Pin", pin);
+    CommonKeyword.clickElement("//dew-modal-footer//button[@aria-label='Save' and not(@disabled)]");
   }
 
 
@@ -92,13 +95,13 @@ module.exports.ManageProfile = ManageProfile; // for inheritance
  */
 function navigateToManageProfile() {
   I.seeElement("//dew-dropdown[contains(@class,'profile')]");
-  I.click("//dew-dropdown[contains(@class,'profile')]");
-  I.click("//div[contains(@class,'dropdown-item') and text()[normalize-space()='Manage Profile']]");
+  CommonKeyword.clickElement("//dew-dropdown[contains(@class,'profile')]");
+  CommonKeyword.clickElement("//div[contains(@class,'dropdown-item') and text()[normalize-space()='Manage Profile']]");
   I.seeElement("//user-profile");
   I.click("User Details");
 }
 
 function generateRandomNumber() {
-  return Math.floor(Math.random() * 9000);
+  return Math.floor(1000+ Math.random() * 9000);
 }
 

@@ -1,7 +1,7 @@
 const { I } = inject();
 const DD_SearchImpl = require("./DD_SearchImpl");
 const FooterLinkImpl = require("./../footerLinks/DD_FooterLinksImpl");
-const DewHomeSearchField = require("../../../node_modules/dd-cc-zycus-automation/components/dewHomeSearchField");
+const DewHomeSearchField = require("dd-cc-zycus-automation/components/dewHomeSearchField");
 
 
 /**
@@ -62,7 +62,7 @@ Then("I should be able to see {string} in Frequently accessed list", async funct
 
 //To verify whether On search respective results to be displayed in different buckets. a. View All b. Create c. Configured d. Supplier in One View
 When("I search {string} of type VIEW ALL in home search box", async function (link) {
-    I.fillField(`//input[@id='input-text-area'][@type='MST_Search']`, link);
+    DD_SearchImpl.enterTextInSearch(link)
 });
 
 
@@ -71,7 +71,7 @@ Then("I should be able to see {string} search results in View All bucket", async
 });
 
 When("I search {string} of type CONFIGURE in home search box", async function (link) {
-    I.fillField(`//input[@id='input-text-area'][@type='MST_Search']`, link);
+    DD_SearchImpl.enterTextInSearch(link)
 });
 
 
@@ -81,7 +81,7 @@ Then("I should be able to see {string} search results in CONFIGURE bucket", asyn
 
 
 When("I search {string} of type SUPPLIERS IN ONE VIEW in home search box", async function (link) {
-    I.fillField(`//input[@id='input-text-area'][@type='MST_Search']`, link);
+    DD_SearchImpl.enterTextInSearch(link)
 });
 
 
@@ -91,7 +91,7 @@ Then("I should be able to see {string} search results in SUPPLIERS IN ONE VIEW b
 
 
 When("I search {string} of type CREATE in home search box", async function (link) {
-    I.fillField(`//input[@id='input-text-area'][@type='MST_Search']`, link);
+    DD_SearchImpl.enterTextInSearch(link)
 });
 
 

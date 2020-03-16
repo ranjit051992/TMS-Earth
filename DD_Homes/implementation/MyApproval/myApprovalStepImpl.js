@@ -1,6 +1,6 @@
-const ProductNavigator = require("../../../node_modules/dd-cc-zycus-automation/components/dewSideMenu");
+const ProductNavigator = require("dd-cc-zycus-automation/components/dewSideMenu");
 const { I } = inject();
-const DewNavBar = require("../../../node_modules/dd-cc-zycus-automation/components/dewNavBar");
+const DewNavBar = require("dd-cc-zycus-automation/components/dewNavBar");
 const ApprovalPage = require("./MyApprovalImpl");
 
 Given("I am on home page", async function () {
@@ -10,21 +10,23 @@ Given("I am on home page", async function () {
 
 When("I click on hamburger icon", async function () {
   DewNavBar.clickHamburger();
+  console.log("done")
 });
 
+
 When("I click on {string} module", async function (moduleName) {
-  ProductNavigator.navigate(moduleName);
+  await ProductNavigator.navigate(moduleName);
 });
 
 When("I click on {string} page", async function (listingName) {
-  ApprovalPage.selectHeaderTab(listingName);
+  await ApprovalPage.selectHeaderTab(listingName);
 });
 
 
 Then("I should see details of the {string} page", async function (listingName) {
-  ApprovalPage.verifyListingPage(listingName);
+  await ApprovalPage.verifyListingPage(listingName);
 });
 
 When("I navigate to all page", async function(){
-  ApprovalPage.navigateToAllSubListing();
+  await ApprovalPage.navigateToAllSubListing();
 });

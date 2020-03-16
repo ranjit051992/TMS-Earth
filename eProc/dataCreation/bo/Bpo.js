@@ -37,6 +37,7 @@ class Bpo
         this.fillShippingDetails;
         this.fillControlSettings;
         this.fillAdditionalDetails;
+        this.attachmentPath;
     }
     setPoNumber(poNumber)
     {
@@ -203,6 +204,10 @@ class Bpo
 
     setFillAdditionalDetails(fillAdditionalDetails) {
         this.fillAdditionalDetails = fillAdditionalDetails;
+    }
+    setAttachmentPath(attachmentPath)
+    {
+        this.attachmentPath = attachmentPath;
     }
 
 }

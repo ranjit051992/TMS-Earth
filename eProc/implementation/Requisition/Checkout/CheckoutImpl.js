@@ -5,7 +5,7 @@ const commonComponent = require("../../../commonKeywords/CommonComponent");
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const prop = global.confi_prop;
 const ObjectCreation = require("../../../dataCreation/ObjectCreation");
-const requisitionBO = require("../../../dataCreation/bo/Requisition");
+// const requisitionBO = require("../../../dataCreation/bo/Requisition");
 const cartImpl = require("../Cart/CartImpl");
 const iCart = require("../Cart/CartObject");
 const onlineStoreImpl = require("../OnlineStore/OnlineStoreImpl");
@@ -26,7 +26,7 @@ module.exports = {
   * @ return requisitionBO
   */
     async createRequisitionFlow(requisitionBO) {
-
+        await onlineStoreImpl.navigateToOnlineStore();
         await cartImpl.clearCart();
         await onlineStoreImpl.addItemToCart(requisitionBO.itemName, faker.random.number(20));
         await onlineStoreImpl.clickOnCartIcon();
@@ -634,6 +634,12 @@ module.exports = {
             await this.addAttachments(requisitionBO.attachmentPath.toString());
         }
 
+        if(typeof requisitionBO.linkedPoNumber !== "undefined") {
+            await this.selectPurchaseOrder(requisitionBO.linkedPoNumber);
+            await this.clickOnSelectedPOContinueButton();
+            await this.getSelectedPurchaseOrder();
+        }
+
         return requisitionBO;
     },
 
@@ -774,6 +780,7 @@ module.exports = {
     async isRequisitionSubmitted() {
         let flag = false;
 
+        await I.wait(prop.DEFAULT_HIGH_WAIT);
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         let number = await I.grabNumberOfVisibleElements(I.getElement(poListingObject.PO_NUMBER_LINK));
         if(number>0)
@@ -844,9 +851,10 @@ module.exports = {
 
     async submitRequisition() {
         await this.clickOnImDoneButton();
-        await I.wait(prop.DEFAULT_MEDIUM_WAIT);
+        await I.wait(prop.DEFAULT_LOW_WAIT);
         await this.clickOnContinueButton();
         await commonComponent.waitForLoadingSymbolNotDisplayed();
+        
         await this.isRequisitionSubmitted();
     },
 
@@ -858,9 +866,9 @@ module.exports = {
     },
 
     async clickOnCreateNewAddressOption() {
-        await I.waitForVisible("//div[contains(text(),'" + lmtVar.getLabel("CREATE_NEW_ADDRESS") + "')]", prop.DEFAULT_MEDIUM_WAIT);
-        await I.waitForClickable("//div[contains(text(),'" + lmtVar.getLabel("CREATE_NEW_ADDRESS") + "')]", prop.DEFAULT_MEDIUM_WAIT);
-        await I.click("//div[contains(text(),'" + lmtVar.getLabel("CREATE_NEW_ADDRESS") + "')]");
+        await I.waitForVisible("//button[contains(@aria-label,'" + lmtVar.getLabel("CREATE_NEW_ADDRESS") + "')]", prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable("//button[contains(@aria-label,'" + lmtVar.getLabel("CREATE_NEW_ADDRESS") + "')]", prop.DEFAULT_MEDIUM_WAIT);
+        await I.click("//button[contains(@aria-label,'" + lmtVar.getLabel("CREATE_NEW_ADDRESS") + "')]");
     },
 
     async fillAddressName(addressName) {
@@ -1075,19 +1083,6 @@ module.exports = {
    
     async createMultipleReqs(noOfReqs, noOfItems, itemType) {
         let reqArray = new Array();
-        
-        // let reqBO1 = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
-        // reqBO1.reqNumber = "46480000";
-        // reqArray.push(reqBO1);
-
-        // let reqBO2 = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
-        // reqBO2.reqNumber = "46490000";
-        // reqArray.push(reqBO2);
-
-        // let reqBO3 = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
-        // reqBO3.reqNumber = "46530000";
-        // reqArray.push(reqBO3);
-
         for (let i=0; i<noOfReqs; i++)
         {
         let reqBO = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
@@ -1095,7 +1090,11 @@ module.exports = {
         reqArray.push(reqBO);
         I.amOnPage(prop.DDS_OnlineStore_Url);
         }
-
+        I.amOnPage(prop.DDS_Requisition_Listing);
+        for (let i=0; i<reqArray.length; i++)
+        {
+        reqArray[i].reqNumber = await reqListingImpl.getRequisitionNumber(reqArray[i].reqName);
+        }
         return reqArray;
     },
 
@@ -1103,12 +1102,12 @@ module.exports = {
         I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
         for (let i = 0; i < reqArray.length; i++) 
         {
+        logger.info(`##########${reqArray[i].reqNumber}`);
         await commonComponent.searchDocOnListing(reqArray[i].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-        // let status = await reqListingImpl.getRequisitionStatus();
         let status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
         status = status.substring(status.indexOf("(")+1, status.indexOf(")"));
-        I.assertEqual(status, lmtVar.getLabel("IN_APPROVAL_STATUS"));
-        logger.info(`Status of Reqs ${status.toString()} matches with expected ${lmtVar.getLabel("IN_APPROVAL_STATUS")} `);
+        logger.info(`Status of Reqs ${status} should match with ${lmtVar.getLabel("IN_APPROVAL_STATUS")} `);
+        I.assertEqual(status.toString(), lmtVar.getLabel("IN_APPROVAL_STATUS"));
         }
     },
 
@@ -1175,6 +1174,7 @@ module.exports = {
         if(reqBO.convertToPoFlag) {
             await I.wait(prop.DEFAULT_MEDIUM_WAIT);
             await I.amOnPage(prop.DDS_BuyersDesk_Url);
+           // await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("BUYERS_DESK_LISTING_PAGE"));
             await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
             await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
             status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
@@ -1184,6 +1184,7 @@ module.exports = {
                 await buyerDeskImpl.clickOnPoDetailsCheckbox();
                 await buyerDeskImpl.clickOnSubmitPoButton();
                 await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+                await I.wait(prop.DEFAULT_HIGH_WAIT);
             }
             else {
                 logger.info(`Req status on Buyer Listing is ${status}. Hence, not executing the Convert to PO action`);
@@ -1247,9 +1248,9 @@ module.exports = {
 
     },
 
-    async fillMultipleCostCenter(costCenter,noOfSplits) {
+    async fillMultipleCostCenter(costCenter,index) {
         await I.waitForVisible(I.getElement(iCheckout.COST_CENTER), prop.DEFAULT_MEDIUM_WAIT);
-        let fieldXpath = "("+I.getElement(iCheckout.COST_CENTER)+")["+noOfSplits+"]";
+        let fieldXpath = "("+I.getElement(iCheckout.COST_CENTER)+")["+index+"]";
         let suggXpath = `//div[contains(text(),'${costCenter}')]`;
         let enterCostCenter = await commonComponent.searchAndSelectFromDropdown(fieldXpath, costCenter, suggXpath);
         logger.info(`Entered Cost Center is : ${enterCostCenter}`);
@@ -1264,9 +1265,9 @@ module.exports = {
 
     },
 
-    async fillMultiplePercentage(percentage,noOfSplits) {
+    async fillMultiplePercentage(percentage,index) {
         await I.waitForVisible(I.getElement(iCheckout.PERCENTAGE_TEXTBOX), prop.DEFAULT_MEDIUM_WAIT);
-        let fieldXpath = "("+I.getElement(iCheckout.PERCENTAGE_TEXTBOX)+")["+noOfSplits+"]";
+        let fieldXpath = "("+I.getElement(iCheckout.PERCENTAGE_TEXTBOX)+")["+index+"]";
         await I.click(fieldXpath);
         await I.clearField(fieldXpath);
         await I.fillField(fieldXpath, percentage);
@@ -1281,6 +1282,50 @@ module.exports = {
         await I.waitForVisible(I.getElement(iCheckout.BOOK_COST_TO_SINGLE_MULTIPLE_COSTCENTER));
         await I.waitForClickable(I.getElement(iCheckout.BOOK_COST_TO_SINGLE_MULTIPLE_COSTCENTER));
         await I.click(I.getElement(iCheckout.BOOK_COST_TO_SINGLE_MULTIPLE_COSTCENTER));
-    }
+    },
+
+    /**
+     * Clicks on shipping details and Assest Tagging link of specified item
+     * @param {String} itemName 
+     */
+    async clickOnShippingDetailsAndAssetTagging(itemName)
+    {
+        let xpath = `//span[contains(text(),'${itemName}')]//ancestor::dew-row//following-sibling::dew-row//dew-flex-item[1]`
+        await I.waitForVisible(xpath);
+        await I.waitForClickable(xpath);
+        await I.click(xpath);
+        logger.info("Clicked on Shipping Details Link");
+    },
+
+    async clickOnShipItemsToMultiplePersonLocationRadioButton()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.SHIP_ITEMS_TO_MULTIPLE_PERSON_LOCATION_RADIO_BUTTON));
+        await I.waitForClickable(I.getElement(iCheckout.SHIP_ITEMS_TO_MULTIPLE_PERSON_LOCATION_RADIO_BUTTON));
+        await I.click(I.getElement(iCheckout.SHIP_ITEMS_TO_MULTIPLE_PERSON_LOCATION_RADIO_BUTTON));
+        logger.info("Clicked on Ship Items to Multiple Person/Location");
+    },
+
+    async enterSplitQuantityAmount(quantity, index)
+    {
+        await I.waitForVisible(I.getElement(iCheckout.QUANTITY_AMOUNT_TEXTBOX), prop.DEFAULT_MEDIUM_WAIT);
+        let fieldXpath = "("+I.getElement(iCheckout.QUANTITY_AMOUNT_TEXTBOX)+")["+index+"]";
+        await I.click(fieldXpath);
+        await I.clearField(fieldXpath);
+        await I.fillField(fieldXpath, quantity);
+        quantity = await I.grabAttributeFrom(fieldXpath, "value");
+        logger.info("Entered Quantity Amount is ---> "+quantity);
+
+        return quantity;
+    },
+
+    async clickOnAddAnotherAddressButton()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.ADD_ANOTHER_ADDRESS_BUTTON));
+        await I.waitForClickable(I.getElement(iCheckout.ADD_ANOTHER_ADDRESS_BUTTON));
+        await I.click(I.getElement(iCheckout.ADD_ANOTHER_ADDRESS_BUTTON));
+        logger.info("Clicked on Add Another Address Button");
+    },
+
+
 
 };

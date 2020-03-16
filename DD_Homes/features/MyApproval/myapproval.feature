@@ -1,6 +1,5 @@
+@DD_Homes @DD_Desk
 Feature: My Approval
-
-
 
 Background: Given I am logged on to the application
         Given I navigate to the login page
@@ -29,10 +28,4 @@ Examples:
 | Task Approvals |
 | Phase Approvals |
 | Sourcing Approvals |
-| Request |
-| Change of Classification |
-| Vendor Normalization |
-| My Opportunities |
-
-
-
+| Request Approval |

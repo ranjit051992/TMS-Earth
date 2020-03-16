@@ -114,7 +114,8 @@ Then("I should see on header level, Shipping Details section Default Shipping Ad
 
 Then("I navigate to Line level Shipping Details and Asset Tagging section", async function(){
     commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
-    checkoutImp.clickOnShippingDetailsAndAssetTagging();
+    await checkoutImp.clickOnShippingDetailsAndAssetTagging(this.addedCartItems);
+
 });
 
 Then("I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated", async function(){
@@ -217,8 +218,7 @@ Given("I select buyer {string} at line level in Buyer section", async function(b
     await checkoutImp.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
     let value = I.getData(buyer);
     await checkoutImp.fillBuyerInTextBox(value);
-    await checkoutImp.getBuyer();
-    this.buyerName = value.substring(0,value.indexOf('@'));
+    this.buyerName = await checkoutImp.getBuyer();
 });
 
 
@@ -283,10 +283,19 @@ When("I add Tax Details at line level", async function(){
 Given( "I Create {int} requisitions with {int} {string} item", async function (noOfReqs, noOfItems, itemType) {
     this.reqArray = await checkoutImp.createMultipleReqs(noOfReqs, noOfItems, itemType);
     logger.info("Required number of POs created"+ this.reqArray.length);
+    logger.info("req number 0"+ this.reqArray[0].reqNumber);
+    logger.info("req number 1"+ this.reqArray[1].reqNumber);
+    logger.info("req number 2"+ this.reqArray[2].reqNumber);
  });
 
 Given( "I have {int} Requisitions In Approval status", async function() {
     I.amOnPage(prop.DDS_Requisition_Listing);
+    I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
+    I.waitForClickable(I.getElement(iApprovalObject.SEARCH_FIELD));
+    logger.info("req length ***"+ this.reqArray.length);
+    logger.info("req number 0 ***"+ this.reqArray[0].reqNumber);
+    logger.info("req number 1 ***"+ this.reqArray[1].reqNumber);
+    logger.info("req number 2 *** "+ this.reqArray[2].reqNumber);
     await checkoutImp.checkMultipleReqStatus(this.reqArray);
  });
 
@@ -345,5 +354,40 @@ When("I add Costing split at header level by Percentage into {int} splits", asyn
 Given("I have created a requisition and converted it to PO with {int} {string}", async function(noOfItems, itemType) {
     this.reqBO = await objectCreation.getObjectOfRequisition(noOfItems, itemType);
     this.reqBO = await checkoutImp.createReqToPoFlow(this.reqBO);
-    // this.reqBO.poNumber = "blue sanity -/2475";
+});
+
+
+When("I add deliver to user", async function(){
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
+    await checkoutImp.fillDeliverTo(this.reqBO.deliverTo);
+});
+
+When("I add Delivery split at line level into {int} splits", async function(noOfSplit){
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    await checkoutImp.clickOnShippingDetailsAndAssetTagging(this.addedItem);
+    await checkoutImp.clickOnShipItemsToMultiplePersonLocationRadioButton();
+    let index = 1;
+    for(let i=1; i<= noOfSplit; i++)
+    {
+        let quantity = this.addedQuantity/noOfSplit;
+        await checkoutImp.enterSplitQuantityAmount(quantity, index);
+
+        if(index<noOfSplit)
+        {
+            await checkoutImp.clickOnAddAnotherAddressButton();
+        }
+        index++;
+    }
+    this.noOfSplit = noOfSplit;
+});
+
+When("I change the address for split {int}", async function(forSplit){
+    //SHIP_TO_ADDRESS_NAME
+});
+
+Given("I Select Purchase Order", async function(){
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ADDITIONAL_DETAILS_SECTION"));
+    await checkoutImp.selectPurchaseOrder(this.reqBO.poNumber);
+    await checkoutImp.clickOnSelectedPOContinueButton();
+    this.purchaseOrder = await checkoutImp.getSelectedPurchaseOrder();;
 });

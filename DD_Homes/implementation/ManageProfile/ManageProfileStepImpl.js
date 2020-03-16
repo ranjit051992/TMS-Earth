@@ -2,7 +2,7 @@ const { I } = inject();
 const ManageProfile = require("./ManageProfileImpl");
 
 Given("I am on home page", async function(){
-	await I.seeElement(`//span[contains(@class,'welcome-message')]`)
+	I.seeElement(`//span[contains(@class,'welcome-message')]`)
 });
 
 When("I navigate to Manage Profile",async function()  {

@@ -52,7 +52,7 @@ When("click on document failure notification", async function () {
 });
 
 When("I click on {string};", async function (data) {
-    NotificationCheckcation.selectDataFromNotification();
+    await NotificationCheckcation.selectDataFromNotification();
 });
 
 When("i see details page for {string}", async function (data) {
@@ -60,14 +60,18 @@ When("i see details page for {string}", async function (data) {
 });
 
 When("I click on {string} button;", async function (actionToPerform) {
-    NotificationCheckcation.actionOnNotification(actionToPerform)
+   await NotificationCheckcation.actionOnNotification(actionToPerform)
 });
+
+When("I click on {string} button in notification", async function (actionToPerform) {
+    await NotificationCheckcation.actionFromNotification(actionToPerform)
+ });
 
 
 When("i click on download button", async function () {
-    NotificationCheckcation.downLoadDocumentFromNotification();
+   await NotificationCheckcation.downLoadDocumentFromNotification();
 });
 
 When("click on {string} notification", async function (headerName) {
-    NotificationCheckcation.selectNotificationHeader(headerName);
+    await NotificationCheckcation.selectNotificationHeader(headerName);
 });

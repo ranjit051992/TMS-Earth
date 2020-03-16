@@ -1,5 +1,5 @@
-const parsing = require("./Framework/PropertiesConfigurator");
-parsing("Home");
+const parsing= require("./Framework/PropertiesConfigurator");
+parsing();
 const prop = global.confi_prop;
 global.lang = 'en';
 exports.config = {
@@ -34,19 +34,20 @@ exports.config = {
   },
   bootstrap: "./bootstrap.js",
   teardown: "./bootstrap.js",
+  teardownAll: "./get_all_reports.js",
   include: {
     I: prop.stepFilePath,
   },
    multiple: {
         sanityCases: {
           // Splits tests into 2 chunks
-          chunks: 4
+          chunks: 5
         }
       },
     gherkin: {
            //features: './iRequest/features/**/**.feature',
-            features: "./DD_Homes/features/**/**/*.feature",
-            steps: "./DD_Homes/implementation/**/**/*.js"
+            features: "./DD_Homes/features/**/*.feature",
+            steps: "./DD_Homes/implementation/**/*.js"
         }, 
  
   name: prop.projectName,

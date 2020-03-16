@@ -11,6 +11,7 @@ const poListingImpl = require("../PO/PoListing/PoListingImpl");
 module.exports = {
     async navigateToApprovalListing() {
         await I.amOnPage(prop.DDS_Approval_Listing);
+       // await commonKeywordImpl.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("APPROVAL_LISTING_PAGE"));
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info("Navigated to approval listing page");
         await commonKeywordImpl.selectValueFromDropDown(I.getElement(approvalObject.LISTING_SELECTION_DROP_DOWN), lmtVar.getLabel("LISTING_ALL_ITEMS_OPTION"));
@@ -36,6 +37,7 @@ module.exports = {
         await I.waitForVisible(I.getElement(approvalObject.APPROVE_SPO_POPUP_APPROVE_BUTTON));
         await I.click(I.getElement(approvalObject.APPROVE_SPO_POPUP_APPROVE_BUTTON));
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.wait(prop.DEFAULT_HIGH_WAIT);
         logger.info("Clicked on Approve button");
     },
     async clickOnRejectSpoPopupRejectButton() {
@@ -123,15 +125,16 @@ module.exports = {
             await I.executeScript(function() {
             document.getElementById("ApprovalReqListing0").click();
             })
-            await this.clearSearchField();
         } 
+        await I.waitForVisible(I.getElement(approvalObject.FOOTER_APPROVE_ACTION));
         await I.click(I.getElement(approvalObject.FOOTER_APPROVE_ACTION));
         await this.fillApprovalComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
         await this.clickOnApproveSpoPopupApproveButton();
-        for (let i=1; i<reqArray.length; i++) {
-            let status = await this.getReqStatus();
-            reqArray[i].setStatus(status);
-            I.assertEqual(reqArray[i].status.toString(), lmtVar.getLabel("APPROVED_STATUS"));
+        for (i=1; i<reqArray.length; i++)
+        {   
+            await commonKeywordImpl.searchDocOnListing(reqArray[i].reqNumber, searchBy);
+            let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+            await reqArray[i].setStatus(status);
         }
         return reqArray;
     },
@@ -156,18 +159,18 @@ module.exports = {
         }     
     },
 
-    async checkMultipleReqStatus(reqArray, searchBy) {
-        for (let i=1; i<reqArray.length; i++) {
-            await commonKeywordImpl.searchDocOnListing(reqArray[i].reqNumber, searchBy);
+    async checkMultipleReqStatus(reqArray) {
+        for (let i=0; i<reqArray.length; i++) {
+            await commonKeywordImpl.searchDocOnListing(reqArray[i].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
             let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
-            await I.assertEqual(status.toString(), reqArray[i].status.toString());
-            let flag = status.toString() === reqArray[i].status.toString();
+            await I.assertEqual(status.toString(), reqArray[i].status);
+            let flag = status.toString() === reqArray[i].status;
         if(!flag) {
-            logger.info(`Failed to match the status of doc as ${status.toString()} is different from ${POArray[i].status.toString()}`);
-            throw new Error(`Failed to match the status of doc as ${status.toString()} is different from ${POArray[i].status.toString()}`);
+            logger.info(`Expected status is different from Actual i.e ${status.toString()}`);
+            throw new Error(`Expected status is different from Actual i.e ${status.toString()}`);
         }
         else {
-            logger.info("Status of doc matched successfully");
+            logger.info(`Status of requisition is ${status.toString()}`);
         }
         }     
     },
@@ -293,7 +296,7 @@ module.exports = {
     },
 
     async fetchBuyerOnPoApprovalListing(buyer) {
-        let buyerXpath = `//span[contains(text(),'${buyer.substring(0,buyer.indexOf("@"))}')]`;
+        let buyerXpath = `//span[contains(text(),'${buyer}')]`;
         await I.waitForVisible(buyerXpath);
         let buyerName = await I.grabTextFrom(buyerXpath);
         logger.info(`Buyer name fetched from listing is ---> ${buyerName}`);
@@ -336,20 +339,21 @@ module.exports = {
 
     async rejectMultipleReqs(reqArray, searchBy){
         for (let i=1; i<reqArray.length; i++) {
-            await commonKeywordImpl.searchDocOnListing(this.reqArray[i].reqNumber, searchBy);
+            await commonKeywordImpl.searchDocOnListing(reqArray[i].reqNumber, searchBy);
             await I.executeScript(function() {
             document.getElementById("ApprovalReqListing0").click();
             })
-            await this.clearSearchField();
         } 
+        await I.waitForVisible(I.getElement(approvalObject.FOOTER_REJECT_ACTION));
         await I.click(I.getElement(approvalObject.FOOTER_REJECT_ACTION));
-        for (let i=1; i<reqArray.length; i++) {
-            await I.waitForVisible(approvalObject.SEARCH_FIELD);
-            await this.clearSearchField();
-            await commonKeywordImpl.searchDocOnListing(this.reqArray[i].reqNumber, searchBy);
-            let status = await this.getReqStatus();
-            I.assertEqual(status, lmtVar.getLabel("REJECTED_STATUS"));
-        } 
+        await this.fillApprovalComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
+        await this.clickOnApproveSpoPopupApproveButton();
+        for (i=1; i<reqArray.length; i++)
+        {   
+            await commonKeywordImpl.searchDocOnListing(reqArray[i].reqNumber, searchBy);
+            let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+            await reqArray[i].setStatus(status);
+        }
         return reqArray;
     },
 

@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "staging": "$env:SETUP=\"US_Staging\";$env:TENANT=\"ZCS\";$env:PRODUCT=\"DD_Homes\";npx codeceptjs run-multiple sanityCases --grep \"@DD_Homes\"",
+    "poststaging": "allure generate output"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +15,7 @@
     "@wdio/cli": "^5.18.6",
     "@wdio/selenium-standalone-service": "^5.16.10",
     "codeceptjs": "^2.4.3",
-    "dd-cc-zycus-automation": "^1.0.5",
+    "dd-cc-zycus-automation": "^1.1.2",
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.14.0",
     "typescript": "^3.8.2",
@@ -30,6 +32,7 @@
     "log4js": "^6.1.2",
     "mssql-connection-string": "^0.3.2",
     "mysql": "^2.18.1",
+    "ncp": "^2.0.0",
     "properties-reader": "^1.0.0",
     "randomstring": "^1.1.5",
     "request": "^2.88.2",

@@ -1,6 +1,6 @@
-const ProductNavigator = require("../../../node_modules/dd-cc-zycus-automation/components/dewSideMenu");
+const ProductNavigator = require("dd-cc-zycus-automation/components/dewSideMenu");
 const { I } = inject();
-const DewNavBar = require("../../../node_modules/dd-cc-zycus-automation/components/dewNavBar");
+const DewNavBar = require("dd-cc-zycus-automation/components/dewNavBar");
 
 When("I click on Hamburgermenu", async function () {
     DewNavBar.clickHamburger();
@@ -29,6 +29,10 @@ Then("I should be redirected to selected {string} in new tab", async function (a
     await ProductNavigator.checkIfModuleOpenedInNewtab(adminproduct);
 });
 
+
+When("I Navigate to {string}",async function(product){
+    await ProductNavigator.navigate(product);
+});
 
 When("I Navigate to {string} {string}",async function(product,module){
     await ProductNavigator.navigate(product,module);

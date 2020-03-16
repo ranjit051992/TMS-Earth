@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 "use strict";
 const { I } = inject();
+const CommonKeyword = require("dd-cc-zycus-automation/components/commonKeyword")
 
 /**
  * Home Links class
@@ -18,7 +19,7 @@ class FooterLinkImpl {
    */
    clickHomeDirectLink(link) {
     I.seeElement(`//span[contains(text(),'${link}')]`)
-    I.click(`//span[contains(text(),'${link}')]`);
+    CommonKeyword.clickElement(`//span[contains(text(),'${link}')]`);
   }
 
   /**
@@ -41,7 +42,8 @@ class FooterLinkImpl {
    */
    clickHomeCircleLink(link) {
     I.seeElement(`//div[contains(@class,'circle')]/div[contains(text(),'${link}')]`)
-    I.click(`//div[contains(@class,'circle')]/div[contains(text(),'${link}')]`);
+    CommonKeyword.clickElement(`//div[contains(@class,'circle')]/div[contains(text(),'${link}')]`);
+    I.waitToProcess();
   }
 
   /**

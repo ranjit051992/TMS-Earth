@@ -9,13 +9,15 @@ const faker = require('faker');
 const reqObj = require("../../../dataCreation/bo/Requisition");
 const objCreation= require("../../../dataCreation/ObjectCreation");
 const checkoutObj = require("../../Requisition/Checkout/CheckoutObject");
+const commonComponent = require("../../../commonKeywords/CommonComponent");
 
 Given("I checkout", async function () {
 
     await onlinestoreImpl.clickOnCartIcon();
     await I.waitForVisible(I.getElement(iCart.CART_ITEM_TABLE), prop.DEFAULT_MEDIUM_WAIT);
     await cartImpl.clickOnCheckoutButton();
-    await I.waitForVisible(I.getElement(checkoutObj.REQUISITION_NAME));
+    //await I.waitForVisible(I.getElement(checkoutObj.REQUISITION_NAME));
+    await commonComponent.waitForElementVisible(I.getElement(checkoutObj.REQUISITION_NAME), prop.DEFAULT_MEDIUM_WAIT);
     //this.reqBO = await objCreation.getObjectOfRequisition("1", "Catalog");
 });
 

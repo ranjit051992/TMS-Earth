@@ -2,7 +2,7 @@ const OneView  = require("./OneViewImpl");
 
 
 Given("I navigate to Oneview page",async function() {
-	OneView.navigateOneView()
+	await OneView.navigateOneView()
 });
 
 
@@ -34,12 +34,12 @@ Then("I see results satisfying the filter conditions {string} are displayed", as
 });
 
 
-When("I search the supplier group with name {...string}", async function (...suppliers){
-	await OneView.searchAndSelectSuppliers(...suppliers)
+When("I search the supplier group with name {string},{string},{string}", async function (supplier,supplier1,supplier2){
+	await OneView.searchAndSelectSuppliers(supplier,supplier1,supplier2)
 });
 
-Then("I see oneview card for {...string} is displayed", async function (...suppliers)  {
-	await OneView.verifySupplierCards(...suppliers)
+Then("I see oneview card for {string},{string},{string} is displayed", async function (supplier,supplier1,supplier2)  {
+	await OneView.verifySupplierCards(supplier,supplier1,supplier2)
 });
 
 

@@ -319,7 +319,8 @@ Given( "I have PO with In Approval status", async function() {
    let status = await poListingImpl.getPoStatus();
    logger.info(`Retrived status is --> ${status}`);
    I.assertEqual(status.toString(), lmtVar.getLabel("IN_APPROVAL_STATUS"));
-   this.spo.buyer = global.users.get("USERNAME");
+   this.spo.buyer = global.displayName;
+   logger.info(`this.spo.buyer --> ${this.spo.buyer} || global.displayName --> ${global.displayName}`);
 });
 
 When("I search for the converted PO", async function() {
@@ -340,4 +341,14 @@ When("Item should be added {string} at index {int} in edit mode", async function
    await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_VIEW_LINE_ITEMS_SECTION"));
    let itemName = await spoImpl.getItemNameEditMode(index);
    I.assertEqual(itemName.toString(), itemNameFromDb.toString());
+});
+
+When("I select tax inclusive on create spo page", async function() {
+   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_TAXES_SECTION_SECTION"));
+   await spoImpl.selectTaxInclusive();
+   await spoImpl.clickRemoveTaxesConfirmButton();
+});
+
+When("I fill PO number", async function() {
+   await spoImpl.fillPONumber(this.spo.poNumber);
 });
