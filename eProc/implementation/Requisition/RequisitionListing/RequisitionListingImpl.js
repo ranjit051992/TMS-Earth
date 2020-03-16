@@ -13,6 +13,7 @@ module.exports = {
     async navigateToRequisitionListing() {
         await I.amOnPage(prop.DDS_Requisition_Listing);
         await commomComponent.waitForLoadingSymbolNotDisplayed();
+        //await commomComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("REQUISITION_LISTING_PAGE"));
         await I.waitForVisible(I.getElement(reqListingObj.REQUISITION_LISTING_PAGE));
         logger.info("Navigated to Requisition Listing page");
     },
@@ -154,4 +155,44 @@ module.exports = {
             throw new Error("Requisition Listing Page is not loaded.....")
         }
     },
+
+    async fillCloseRequisitionComments(comments) {
+        await I.waitForVisible(I.getElement(reqListingObj.CLOSE_REQUISITION_POPUP_COMMENTS_TEXTAREA));
+        await I.click(I.getElement(reqListingObj.CLOSE_REQUISITION_POPUP_COMMENTS_TEXTAREA));
+        await I.clearField(I.getElement(reqListingObj.CLOSE_REQUISITION_POPUP_COMMENTS_TEXTAREA));
+        await I.fillField(I.getElement(reqListingObj.CLOSE_REQUISITION_POPUP_COMMENTS_TEXTAREA), comments);
+        logger.info(`Entered close Requisition comments --> ${comments}`);
+    },
+
+    async clickOnCloseRequisitionButton() {
+        await I.waitForVisible(I.getElement(reqListingObj.CLOSE_REQUISITION_BUTTON));
+        await I.click(I.getElement(reqListingObj.CLOSE_REQUISITION_BUTTON));
+        logger.info("Clicked on Close Requisition button");
+    },
+
+    async clickOnClosedRequisitionSuccessDoneButton() {
+        await I.waitForVisible(I.getElement(reqListingObj.CLOSE_REQ_SUCESS_OK_BUTTON));
+        await I.click(I.getElement(reqListingObj.CLOSE_REQ_SUCESS_OK_BUTTON));
+        await I.waitForVisible(I.getElement(reqListingObj.REQUISITION_LISTING_PAGE));
+        logger.info("Clicked on Closed Requisition Success Done button");
+    },
+
+    async closeRequisition(reqNumber)
+    {
+        await this.navigateToRequisitionListing();
+
+        if(this.isRequisitionListingPageDisplayed())
+        {
+            if(reqNumber.toString() !== null)
+            {
+                await this.searchRequisitionByReqNumber(reqNumber);
+                await commomComponent.clickOnActionMenuIcon();
+                await commomComponent.clickOnActionMenuOption(lmtVar.getLabel("CLOSE_ACTION_MENU_OPTION"));
+                await this.fillCloseRequisitionComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
+                await this.clickOnCloseRequisitionButton();
+                await this.clickOnClosedRequisitionSuccessDoneButton();
+                await I.wait(prop.DEFAULT_MEDIUM_WAIT);
+            }
+        }
+    }
 };

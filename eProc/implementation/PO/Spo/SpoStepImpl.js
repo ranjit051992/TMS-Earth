@@ -348,3 +348,7 @@ When("I select tax inclusive on create spo page", async function() {
    await spoImpl.selectTaxInclusive();
    await spoImpl.clickRemoveTaxesConfirmButton();
 });
+
+When("I fill PO number", async function() {
+   await spoImpl.fillPONumber(this.spo.poNumber);
+});

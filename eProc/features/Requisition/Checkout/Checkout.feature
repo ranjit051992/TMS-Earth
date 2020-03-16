@@ -86,7 +86,7 @@ Feature: Checkout
 
     Then I should be able to see the attachment which is added
 
-@Non-COA @L1 @Snehal
+@Non-COA @L1 @Snehal @onetime
 
     Scenario: To verify that user is able to create any custom / One time delivery address while Check out and save it for future use
     Given I am logged in eProc
@@ -151,7 +151,7 @@ Feature: Checkout
   Then I should be able to view requisition with buyer which was assigned
   
 
-@Non-COA @L1 @adhoc @Snehal
+@Non-COA @L1 @adhocn @Snehal
   Scenario: To verify that user is able to add approver in requisition workflow if activity is assigned to him/her
   Given I am logged in eProc
 
@@ -204,6 +204,7 @@ Feature: Checkout
 
   When I Navigate to Guided Page
   And I Add guided item service
+  And I select category
   And I add Sourcing status
   And I add qty and price
   And I save guided item details
@@ -317,12 +318,12 @@ Feature: Checkout
     And I should be able to see split cost center added to each item at line level
 
 
+
 # @Non-COA @L1 @autoPO @Setting @priyanka
 #     Scenario: To verify that PR is directly flipped into PO after regular approval is complete.
 #     Given I am logged in eProc
 
 #     # When I enable the 'Automatically generate orders' for PO setting
-
 #     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
 #     And I checkout
 #     And I enter Requisition Name
@@ -482,18 +483,20 @@ Feature: Checkout
 #   Then I should be able to view requisition with non stock item
 
 
-# @Non-COA @L1 @priyanka
+
+# @Non-COA @L1 @priyanka @deliverySplit
 #   Scenario: To verify that user is able to create requisition with conditions of delivery address
 #   Given I am logged in eProc
 
-#   When I add a catalog item with qty 2 to cart
+#   When I add a catalog item "ITEM_NAME_FOR_SEARCHING" with quantity 2 to cart
 #   And I checkout
 #   And I enter Requisition Name
 #   And I add Purchase Type
 #   And I add Settlement Via
 #   And I add Required By Date
 #   And I add Delivery split at line level into 2 splits
-#   And I change the address for one split
+#   And I change the address for split 2
+#   And I save it
 #   And I add data in Cost Booking Details section at line level 
 #   And I submit requisition
 
@@ -502,29 +505,31 @@ Feature: Checkout
 
 
 
-# @Non-COA @L1
+# @Non-COA @L1 @closeReq @priyanka
 #   Scenario: To verify that user is  able to close requisition
 #   Given I am logged in eProc
+#   And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
+#   And I close PO
 
 #   When I navigate to Requisition Listing page
-#   And I filter for any Released requisition
 #   And I close the requisition from actions
 
-#   Then I should be able to see the status of the requisition changed to Closed.
+#   Then I should be able to see the status of the requisition changed to Closed
 
-# @Non-COA @L1
+# @Non-COA @L1 @Snehal
 #   Scenario: To verify the behavior of requisition who has PO attached to them
 #   Given I am logged in eProc
-
-#   When I add a catalog item to cart
+#   And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
+#   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
 #   And I checkout
+#   And I enter Requisition Name
 #   And I add Purchase Type
 #   And I add Required By Date
 #   And I Select Purchase Order
 #   And I add data in Cost Booking Details section at line level 
 #   And I submit requisition
 #   And I approve requisition
-#   And I navigate to Buyers Desk
+#   And I navigate to Buyer Desk
 #   And I edit the requisition on Buyers Desk
 #   And I select the item and Convert req to PO
 
@@ -620,7 +625,7 @@ Feature: Checkout
 
     Then I should be able to see the attachment which is added
 
-@COA @L1 @coaCopy
+@COA @L1 @coaCopy @priyankaCOA
     Scenario: COA>>To verify that user is able to copy any requisition and modify it to create a new requisition.
     Given I am logged in eProc
 
@@ -680,6 +685,7 @@ Feature: Checkout
     Then I should be able to view the workflow with On Behalf user as the requestor and On behalf user workflow should be applied
 
 
+
 # @COA @L1 @coaAutoPo
 #     Scenario: COA>>To verify that PR is directly flipped into PO after regular approval is complete.
 #     Given I am logged in eProc
@@ -706,7 +712,7 @@ Feature: Checkout
 #     Then I should be able to see Required by date should be auto calculated as per lead time defined in the catalog setting in this page
 
 
-@COA @L1 @coaAddr
+@COA @L1 @coaAddr @priyankaCOA
     Scenario: COA>>To verify that system auto populates user's default Delivery & Bill to address 
     Given I am logged in eProc
 
@@ -736,7 +742,7 @@ Feature: Checkout
 
     Then I should be able to see Deliver address as the Ship to Another Address on view requisition 
 
-@COA @L1 @coaApproval
+@COA @L1 @coaApproval @priyankaCOA
     Scenario: COA>> To verify that user is able to view approval Status
     Given I am logged in eProc
 
@@ -776,7 +782,7 @@ Feature: Checkout
     And I select Ship to Another Address in  Shipping Details section at header level
     And I should be able to see the saved address on creating a new requisition
 
-@COA @L1 @coaTaxes
+@COA @L1 @coaTaxes @priyankaCOA
     Scenario: COA>>To verify that user is able to add taxes at line item level in a requisition for catalog item
     Given I am logged in eProc
 
@@ -809,7 +815,7 @@ Feature: Checkout
 
 #   Then I should be able see the taxes added on view requisition
 
-@COA @L1 @coafreeTextItem @priyanka
+@COA @L1 @coafreeTextItem @priyankaCOA
   Scenario: COA>>To verify that user is able to add taxes at line item level in a requisition for free-text item 
   Given I am logged in eProc
 
@@ -906,7 +912,7 @@ Feature: Checkout
 
 #   Then I should be able to view requisition with non stock item
 
-@COA @L1 @coaDraft
+@COA @L1 @coaDraft @priyankaCOA
   Scenario: COA>>To verify requisition in draft and actions on it
     Given I am logged in eProc
   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -992,15 +998,16 @@ Feature: Checkout
 
   Then I should be able to view the requisition with adhoc approver added in the workflow
 
-# @COA @L1
+# @COA @L1 @closeReqCOA @priyankaCOA
 #   Scenario: COA>>To verify that user is  able to close requisition
 #   Given I am logged in eProc
+#   And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
+#   And I close PO
 
 #   When I navigate to Requisition Listing page
-#   And I filter for any Released requisition
 #   And I close the requisition from actions
 
-#   Then I should be able to see the status of the requisition changed to Closed.
+#   Then I should be able to see the status of the requisition changed to Closed
 
 # @COA @L1
 #   Scenario: COA>>To verify the behavior of requisition who has PO attached to them
@@ -1058,8 +1065,7 @@ Feature: Checkout
 #     Given I am logged in eProc
 #     And I am on checkout page with a catalog item 
 
-#     When I add items at line level
-#     And I add Cost booking details at line level 
+#     when I add Cost booking details at line level 
 #     And I Save the COA form
 
 #     Then I should be able to Save the line level COA form 

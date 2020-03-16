@@ -40,6 +40,7 @@ Given("I add Sourcing status",async function(){
 Given("I save guided item details",async function(){
 
     await guidedImpl.clickOnDoneButton();
+    await guidedImpl.clickOnEformDoneButton();
     await commonKeywordImpl.waitForElementVisible(I.getElement(iGuided.SUPPLIER_TEXTBOX));
 });
 
@@ -93,7 +94,8 @@ When("I add {int} free text item {string} to cart", async function(noOfItem, ite
 
 
 Given("I select category",async function(){
-
     await guidedImpl.fillCategory(this.guidedItem.category);
-
+    await guidedImpl.selectCategoryEform(this.guidedItem.eform);
 });
+
+

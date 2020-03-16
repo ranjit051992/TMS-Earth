@@ -15,7 +15,7 @@ Feature: Approval
     And I see the same Amount to be approved
     And I see the same status of Requisition
 
-@Non-COA 
+@Non-COA @Shubham
     Scenario: To verify Purchase Order details are properly displayed in approval listing
 
     Given I am logged in eProc

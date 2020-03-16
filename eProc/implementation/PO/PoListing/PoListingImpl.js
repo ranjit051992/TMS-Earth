@@ -11,6 +11,7 @@ module.exports = {
     async navigateToPoListing() {
         await I.amOnPage(prop.poListingUrl);
         await I.waitForInvisible(I.getElement(iSpoObject.spinner), prop.DEFAULT_HIGH_WAIT);
+       // await commonKeywordImpl.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("PO_LISTING_PAGE"));
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info("Navigated to Po Listing page");
@@ -96,6 +97,18 @@ module.exports = {
            logger.info("PO is Cancelled successfully");
         }
         return flag;
-    }
+    },
+
+    async closePO(poNumber)
+    {
+        await this.navigateToPoListing();
+        await commonKeywordImpl.searchDocOnListing(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        await commonKeywordImpl.clickOnActionMenuIcon();
+        await commonKeywordImpl.clickOnActionMenuOption(lmtVar.getLabel("CLOSE_ACTION_MENU_OPTION"));
+        await this.fillClosePoComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
+        await this.clickOnClosePoButton();
+        await this.clickOnClosedPoSuccessDoneButton();
+        await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
+    },
     
 }
