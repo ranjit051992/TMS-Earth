@@ -866,9 +866,9 @@ module.exports = {
     },
 
     async clickOnCreateNewAddressOption() {
-        await I.waitForVisible("//div[contains(text(),'" + lmtVar.getLabel("CREATE_NEW_ADDRESS") + "')]", prop.DEFAULT_MEDIUM_WAIT);
-        await I.waitForClickable("//div[contains(text(),'" + lmtVar.getLabel("CREATE_NEW_ADDRESS") + "')]", prop.DEFAULT_MEDIUM_WAIT);
-        await I.click("//div[contains(text(),'" + lmtVar.getLabel("CREATE_NEW_ADDRESS") + "')]");
+        await I.waitForVisible("//button[contains(@aria-label,'" + lmtVar.getLabel("CREATE_NEW_ADDRESS") + "')]", prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable("//button[contains(@aria-label,'" + lmtVar.getLabel("CREATE_NEW_ADDRESS") + "')]", prop.DEFAULT_MEDIUM_WAIT);
+        await I.click("//button[contains(@aria-label,'" + lmtVar.getLabel("CREATE_NEW_ADDRESS") + "')]");
     },
 
     async fillAddressName(addressName) {
