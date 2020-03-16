@@ -258,8 +258,7 @@ module.exports = {
     },
     async clickOnCostBookingSaveButton() {
         await I.waitForVisible(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
-        await I.click(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
-        await I.click(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
+        await commonKeywordImpl.clickUsingJsByXpath(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
         await I.waitForVisible(I.getElement(iSpoObject.poDescriptionTextbox));
         logger.info("Clicked on Save Button");
     },
@@ -501,7 +500,6 @@ module.exports = {
     },
     async createAndReleaseSpoFlow(spo) {
         spo = await this.createSpoFlow(spo);
-        await I.wait(prop.DEFAULT_HIGH_WAIT);
         if(spo.status.toString() === lmtVar.getLabel("IN_APPROVAL_STATUS")) {
             await approvalImpl.approvePoFlow(spo.poNumber);
         }

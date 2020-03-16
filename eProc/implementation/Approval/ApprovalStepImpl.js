@@ -122,7 +122,7 @@ Then ("I see the same Buyer name displayed for the corresponding PO number", asy
     let buyer = this.spo.buyer.toString();
     logger.info(`Buyer name stored in BO is ---> ${buyer}`);
     let updatedBuyer = await ApprovalImpl.fetchBuyerOnPoApprovalListing(buyer);
-    I.assertEqual(updatedBuyer, buyer.substring(0, buyer.indexOf("@")));
+    I.assertEqual(updatedBuyer, buyer);
 });
 
 Then ("I see the same Received on date on PO Approval listing", async function() {
@@ -182,6 +182,7 @@ Then ("I should be able to see the status of all Requisitions as Rejected", asyn
 
 
 When("I approve the requisition", async function(){
+    await I.wait(prop.DEFAULT_HIGH_WAIT);
     await ApprovalImpl.navigateToApprovalListing();
     await ApprovalImpl.approveDoc(this.reqBO.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
     await I.wait(prop.DEFAULT_MEDIUM_WAIT);
