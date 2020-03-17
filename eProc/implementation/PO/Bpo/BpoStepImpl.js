@@ -13,6 +13,7 @@ const coaImpl = require("../../Coa/CoaImpl");
 const iBpoObject = require("./BpoObject");
 const bpoImpl =require("./BpoImpl");
 const checkoutImp = require("../../Requisition/Checkout/CheckoutImpl");
+const approveImpl = require("../../Approval/ApprovalImpl")
 
 Given("I am on PO listing page", async function () {
     await poListingImpl.navigateToPoListing();
@@ -21,6 +22,10 @@ Given("I am on PO listing page", async function () {
 Given("I Create Blanket po with {int} {string} item", async function (noOfItems, itemType) {
     this.bpo = await objectCreation.getObjectOfBlanketPO(noOfItems, itemType);
     this.bpo = await bpoImpl.createBpoFlow(this.bpo);
+ });
+
+ Given("I approve the BPO", async function(){
+      await bpo
  });
 
  When("I click on Create Blanket PO button", async function(){
@@ -34,7 +39,7 @@ Given("I Create Blanket po with {int} {string} item", async function (noOfItems,
  });
 
  When("I update the spend limit", async function(){
-   await bpoImpl.updateOrderValue(this.bpo);
+   this.orderValue = await bpoImpl.updateOrderValue(this.bpo);
  });
 
  When("I add attachment {string}", async function(filePath){
@@ -51,7 +56,8 @@ Given("I Create Blanket po with {int} {string} item", async function (noOfItems,
  });
 
  Then("I should be able to view the BPO with Order Value entered", async function(){
-   
+    let orderValueView = await bpoImpl.getOrderValue();
+      I.assertEqual(this.orderValue, orderValueView);
 });
 
 //  Then("I should be able to see the BPO in Cancelled status", async function(){
