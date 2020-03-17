@@ -1,18 +1,18 @@
 {
     "eProc": {
-        "url": "https://dewdrops-staging.zycus.com/home/#",
-        "poListingUrl": "https://dewdrops-staging.zycus.com/eproc/#/purchaseorder/default/listing",
-        "DDS_OnlineStore_Url": "https://dewdrops-staging.zycus.com/eproc/#/online-store",
-        "DDS_Requisition_Listing": "https://dewdrops-staging.zycus.com/eproc/#/requisition/requisition",
-        "DDS_Approval_Listing": "https://dewdrops-staging.zycus.com/eproc/#/approval/allRequest/requisition",
-        "DDS_BuyersDesk_Url": "https://dewdrops-staging.zycus.com/eproc/#/buyersdesk/default/listing",
-        "DDS_AllRequests_Url": "https://dewdrops-staging.zycus.com/eproc/#/approval/allRequest/requisition",
-        "DDS_UpcomingRequisitions_Url":"https://dewdrops-staging.zycus.com/eproc/#/buyersdesk/upcomingRequisitions",
+        "url": "https://login-partner.zycus.com/sso/login",
+        "poListingUrl": "https://dewdrops-partner.zycus.com/eproc/#/purchaseorder/default/listing",
+        "DDS_OnlineStore_Url": "https://dewdrops-partner.zycus.com/eproc/#/online-store",
+        "DDS_Requisition_Listing": "https://dewdrops-partner.zycus.com/eproc/#/requisition/requisition",
+        "DDS_Approval_Listing": "https://dewdrops-partner.zycus.com/eproc/#/approval/allRequest/requisition",
+        "DDS_BuyersDesk_Url": "https://dewdrops-partner.zycus.com/eproc/#/buyersdesk/default/listing",
+        "DDS_AllRequests_Url": "https://dewdrops-partner.zycus.com/eproc/#/approval/allRequest/requisition",
+        "DDS_UpcomingRequisitions_Url":"https://dewdrops-partner.zycus.com/eproc/#/buyersdesk/upcomingRequisitions",
         "PASSWORD_MANAGER_URL": "https://passmanager.zycus.com/PassTrixMain.cc",
-        "SETUP": "STAGING",
+        "SETUP": "PARTNER",
         "TENANT": "ZCS",
         "browser": "chrome",
-        "host": "192.168.7.57",
+        "host": "192.168.6.227",
         "restart": "false",
         "port": 4444,
         "windowSize": "maximize",
@@ -33,10 +33,10 @@
         "LOGIN_WITH_PASSWORD_MANAGER": false,
         "isCoa": false,
         "runOnGrid": false,
-        "USERNAME": "kunal.requestingScope@zycus.com",
-        "PASSWORD": "CoVoYoUeXaTiRoUuVo55&"
-
+        "USERNAME": "auto.zcs7@zycus.com",
+        "PASSWORD": "eProc@123"
     },
+
     "iContract": {
         "url": "https://dewdrops-partner.zycus.com/",
         "poListingUrl": "https://dewdrops-partner.zycus.com/#eproc/purchaseorder/default/listing",
