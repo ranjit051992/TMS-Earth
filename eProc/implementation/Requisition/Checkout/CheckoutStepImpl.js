@@ -393,3 +393,15 @@ Given("I have created a requisition with that PO linked and converted it to PO w
     this.reqBO1.linkedPoNumber = this.reqBO.poNumber;
     this.reqBO = await checkoutImp.createReqToPoWithPoLinked(this.reqBO1);
  });
+
+ Given("I have created a req to po with {int} {string} and {int} free text item and header level attachment {string}", async function(noOfCatalogItems, catalogItemType, noOfGuidedItems, attachmentKey) {
+    this.reqBO = await objectCreation.getObjectOfRequisition(noOfCatalogItems, catalogItemType);
+    this.reqBO.setAttachmentPath(I.getData(attachmentKey));
+    for(let i = 0; i < noOfGuidedItems; i++) {
+        let guidedItem = await objectCreation.getObjectOfGuidedItem(noOfGuidedItems);
+        this.reqBO.items.push(guidedItem);
+    }
+    this.reqBO = await checkoutImp.createReqToPoFlow(this.reqBO);
+    // this.reqBO.items[0].itemName = "Dettol";
+    // this.reqBO.items[1].itemName = "GuidedItem_273694";
+ });

@@ -39,6 +39,7 @@ class GuidedItem
         this.eform;
         this.lineNumber;
         this.marketPrice;
+        this.itemType;
     }
     setItemName(itemName)
     {
@@ -201,6 +202,10 @@ class GuidedItem
 
     setMarketPrice(marketPrice) {
         this.marketPrice = marketPrice;
+    }
+
+    setItemType(itemType) {
+        this.itemType = itemType;
     }
 }
 module.exports=GuidedItem;

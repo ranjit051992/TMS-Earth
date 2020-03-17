@@ -358,3 +358,53 @@ Then("I should be able to see the new item with unique line item number", async 
    let flag = await spoImpl.verifyViewSpoItemLevelSrNo();
    assert.strictEqual(true, flag, "Item level sr no validation failed");
 });
+
+Given("I have created a PO with {int} {string} and {int} free text item and header level attachment", async function(noOfCatalogItems, catalogItemType, noOfGuidedItems) {
+   this.spo = await objectCreation.getObjectOfStandardPO(noOfCatalogItems, catalogItemType);
+   this.spo.setAttachmentPath(I.getData("ATTACHMENT_PATH"));
+   for(let i = 0; i < noOfGuidedItems; i++) {
+      let guidedItem = await objectCreation.getObjectOfGuidedItem(noOfGuidedItems);
+      this.spo.items.push(guidedItem);
+   }
+   this.spo = await spoImpl.createSpoFlow(this.spo);
+});
+
+Then("Free text item should be added at index {int}", async function(index) {
+   for(let i = 0; i < this.spo.items.length; i++) {
+      if(this.spo.items[i].itemType === lmtVar.getLabel("ITEM_TYPE_GUIDED")) {
+         let itemNameFromBo = this.spo.items[i].itemName;
+         await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_VIEW_LINE_ITEMS_SECTION"));
+         let itemName = await spoImpl.getItemNameOnSpoView(index);
+         assert.strictEqual(itemName.toString(), itemNameFromBo.toString(), `Item name did not match at index ${index}`);
+      }
+   }
+});
+
+Then("Attachment should be added", async function() {
+   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_ADD_ATTACHMENT_SECTION"));
+   let flag = await commonKeywordImpl.waitForElementVisible(I.getElement(iSpoObject.VIEW_SPO_ATTACHED_FILE));
+   assert.strictEqual(flag, true, "Attachment is not displayed on view spo");
+});
+
+Then("Req items should be added", async function() {
+   let itemName;
+   let flag = false;
+   let itemArray = new Array();
+   for(let i = 0; i < this.reqBO.items.length; i++) {
+      itemArray.push(this.reqBO.items[i].itemName);
+   }
+
+   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_VIEW_LINE_ITEMS_SECTION"));
+
+   for(let i = 0; i < this.reqBO.items.length; i++) {
+      itemName = await spoImpl.getItemNameOnSpoView(i + 1);
+      if(!itemArray.includes(itemName.toString())) {
+         flag = false;
+         break;
+      }
+      else {
+         flag = true;
+      }
+   }
+   assert.strictEqual(flag, true, `${itemName} not found in the item array --> ${itemArray}`);
+});

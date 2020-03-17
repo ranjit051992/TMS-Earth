@@ -96,6 +96,7 @@ class ObjectCreation
         let catalog = new catalogItem()
         catalog.setItemName(await commonUtilities.splitData(1,"ITEM_NAME_FOR_SEARCHING"));
         catalog.quantity = faker.random.number(20);
+        catalog.itemType = lmtVar.getLabel("ITEM_TYPE_CATALOG");
         return catalog;
     }
 
@@ -158,7 +159,7 @@ class ObjectCreation
         guidedItem.price = faker.random.number({min:1, max:2000});
         guidedItem.currency = I.getData("ITEM_CURRENCY");
         guidedItem.zeroPriceItem = false;
-        guidedItem.buyerReviewRequired = true;
+        guidedItem.buyerReviewRequired = false;
         let supplier = new Array();
         supplier.push(I.getData("SUPPLIER_NAME"));
         guidedItem.suppliers = supplier;
@@ -168,6 +169,8 @@ class ObjectCreation
         guidedItem.supplierEmail=(I.getData("SUPPLIER_EMAIL"));
         guidedItem.supplierPhone= (faker.phone.phoneNumber());
         guidedItem.eform = I.getData("CATEGORY_EFORM");
+        guidedItem.marketPrice = faker.random.number({min:1, max:10});
+        guidedItem.itemType = lmtVar.getLabel("ITEM_TYPE_GUIDED");
         return guidedItem;
     }
 
@@ -219,26 +222,11 @@ class ObjectCreation
         let guidedItem = new guidedItemBo();
         guidedItem.itemName = `GuidedItem_${new Date().getTime()}`;
         guidedItem.category = I.getData("ITEM_CATEGORY_FOR_SEARCHING");
-        guidedItem.partNumber = faker.random.number(10000);
-        guidedItem.description = "Description_"+faker.random.alphaNumeric(10);
         guidedItem.type = I.getData("ITEM_TYPE");
         guidedItem.receiveBillBy = I.getData("RECEIVE_BY");
-        guidedItem.sourcingStatus = I.getData("SOURCING_STATUS_OPTION");
         guidedItem.quantity = faker.random.number({min:1, max:100})
         guidedItem.uom = I.getData("ITEM_UOM");
-        guidedItem.price = faker.random.number({min:1, max:2000});
-        guidedItem.currency = I.getData("ITEM_CURRENCY");
         guidedItem.zeroPriceItem = false;
-        guidedItem.buyerReviewRequired = true;
-        let supplier = new Array();
-        supplier.push(I.getData("SUPPLIER_NAME"));
-        guidedItem.suppliers = supplier;
-        guidedItem.nextAction = lmtVar.getLabel("ADD_TO_CART");
-        guidedItem.supplierAddress= (I.getData("OTHER_DELIVERY_ADD"));
-        guidedItem.supplierContact=(I.getData("SUPPLIER_CONTACT_NAME"));
-        guidedItem.supplierEmail=(I.getData("SUPPLIER_EMAIL"));
-        guidedItem.supplierPhone= (faker.phone.phoneNumber());
-        guidedItem.eform = I.getData("CATEGORY_EFORM");
         return guidedItem;
     }
     
