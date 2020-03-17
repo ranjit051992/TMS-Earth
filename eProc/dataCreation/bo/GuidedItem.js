@@ -40,6 +40,7 @@ class GuidedItem
         this.lineNumber;
         this.marketPrice;
         this.itemType;
+        this.supplierContractId;
     }
     setItemName(itemName)
     {
@@ -206,6 +207,11 @@ class GuidedItem
 
     setItemType(itemType) {
         this.itemType = itemType;
+    }
+
+    setSupplierContractId(supplierContractId)
+    {
+        this.supplierContractId = supplierContractId;
     }
 }
 module.exports=GuidedItem;

@@ -112,8 +112,8 @@ class ObjectCreation
         requisition.businessUnit = I.getData("BUSINESS_UNIT_NAME");
         requisition.location = I.getData("LOCATION_NAME");
        // requisition.urgentRequirement = I.getData("No");
-        requisition.reasonForOrdering = I.getData("REASON_FOR_ORDERING");
-        requisition.commentsForSupplier = I.getData("COMMENTS_FOR_SUPPLIERS");
+       //  requisition.reasonForOrdering = I.getData("REASON_FOR_ORDERING");
+       // requisition.commentsForSupplier = I.getData("COMMENTS_FOR_SUPPLIERS");
         requisition.purchaseType = I.getData("PURCHASE_TYPE");
         requisition.attachmentPath = "";
         requisition.settlementVia = "Invoice";
@@ -168,9 +168,11 @@ class ObjectCreation
         guidedItem.supplierContact=(I.getData("SUPPLIER_CONTACT_NAME"));
         guidedItem.supplierEmail=(I.getData("SUPPLIER_EMAIL"));
         guidedItem.supplierPhone= (faker.phone.phoneNumber());
+
         guidedItem.eform = I.getData("CATEGORY_EFORM");
         guidedItem.marketPrice = faker.random.number({min:1, max:10});
         guidedItem.itemType = lmtVar.getLabel("ITEM_TYPE_GUIDED");
+        guidedItem.supplierContractId = I.getData("SUPPLIER_CONTRACT_ID");
         return guidedItem;
     }
 
@@ -199,9 +201,11 @@ class ObjectCreation
         bpo.setBuyer(I.getData("BUYER_NAME"));
         // bpo.setDeliverTo(I.getData("DELIVERES_TO/OWNER"));
         bpo.setDeliverTo(global.users.get("USERNAME"));
+        bpo.setNewApprover(I.getData("NEW_APPROVER"));
         bpo.setBookCostAtLineItemLevel("No");
         bpo.setBookCostToSingleMultipleCC("Yes");
         bpo.setAssignCostProject("No");
+        bpo.setDate(I.getData("DATE"));
         bpo.items = await this.getArrayOfItems(noOfItems,itemType);
         bpo.setGlAccount(I.getData("GL_ACCOUNT"));
         bpo.setCostCenter(I.getData("COST_CENTER"));

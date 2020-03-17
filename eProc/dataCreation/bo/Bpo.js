@@ -40,6 +40,8 @@ class Bpo
         this.attachmentPath;
         this.fromDate;
         this.toDate;
+        this.newApprover;
+        this.date;
     }
     setPoNumber(poNumber)
     {
@@ -218,6 +220,13 @@ class Bpo
     setToDate(toDate)
     {
         this.toDate = toDate;
+    }
+    setNewApprover(newApprover)
+    {
+        this.newApprover = newApprover;
+    setDate(date)
+    {
+        this.date=date;
     }
 
 }
