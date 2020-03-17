@@ -410,3 +410,19 @@ Then("I should see contract linked to free text item on viewing the item", async
     I.assertEqual(isContractLink, true);
 });
 
+Then("I should be able to Save the line level COA form", async function(){
+    let isCOAfilled = false;
+    let coaArray = new Array();
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));  
+    await checkoutImp.clickOnCostBookingLink(this.reqBO.items[0].itemName);
+    coaArray = await coaImp.fetchCoaFormData();
+
+    if(coaArray.length >0)
+    {
+        isCOAfilled = true;
+        logger.info("Line Level COA form is saved ---->"+coaArray);
+    }
+
+    I.assertEqual(isCOAfilled, true);
+
+});

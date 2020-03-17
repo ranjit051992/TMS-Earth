@@ -232,7 +232,7 @@ Feature: Checkout
   And I add qty and price
   And I add Sourcing status
   And I save guided item details
-  And I select supplier from the Suggested Supplier dropdown.
+  And I select supplier from the Suggested Supplier dropdown
   And I add contract for the item
   And I add items to cart
   And I checkout
@@ -593,21 +593,23 @@ Feature: Checkout
   Then I should be able to view requisition created with free text item
 
 
-# @COA @L1
-#   Scenario: COA>>To verify that user is able to tag a free-text item to a contract 
-#   Given I am logged in eProc
+@COA @L1 @contractCOA @priyankaCOA
+  Scenario: COA>>To verify that user is able to tag a free-text item to a contract 
+  Given I am logged in eProc
 
-#   When I Navigate to Guided Page
-#   And I add short description
-#   And I add qty and price
-#   And I add Sourcing status
-#   And I save it
-#   And I select supplier from the Suggested Supplier dropdown.
-#   And I add contract for the item
-#   And I add item to cart
-#   And I checkout
+  When I Navigate to Guided Page
+  And I Add guided item service
+  And I select category
+  And I add short description
+  And I add qty and price
+  And I add Sourcing status
+  And I save guided item details
+  And I select supplier from the Suggested Supplier dropdown
+  And I add contract for the item
+  And I add items to cart
+  And I checkout
 
-#   Then I should contract linked to free text item on viewing the item
+  Then I should see contract linked to free text item on viewing the item
 
 
 
@@ -1065,12 +1067,12 @@ Feature: Checkout
 
 #     Then I should be able to Save the header level COA form 
 
-@COA @L1
-    Scenario: To verify that if cost booking details are loading in COA form at Line item level in requisition.
-    Given I am logged in eProc
-    And I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart 
-    And I checkout
+# @COA @L1 @linelevelCOA
+#     Scenario: To verify that if cost booking details are loading in COA form at Line item level in requisition.
+#     Given I am logged in eProc
+#     And I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart 
+#     And I checkout
 
-    When I add data in Cost Booking Details section at line level
+#     When I add data in Cost Booking Details section at line level
   
-    Then I should be able to Save the line level COA form 
+#     Then I should be able to Save the line level COA form 

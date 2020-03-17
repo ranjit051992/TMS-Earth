@@ -124,4 +124,28 @@ module.exports = {
         logger.info(`Selected GlAccount: ${glAccount}`);
         return glAccount;
     },
+  
+
+    async fetchCoaFormData()
+    {
+        let elements;
+        let index = 1;
+        let coaArray = new Array();
+        let autoCompleteTextboxXpath = await (await this.getAutoCompleteTextboxXpath(I.getElement(coaObject.AUTO_COMPLETE_TEXTBOX), index)).toString();
+        elements = await I.grabNumberOfVisibleElements(autoCompleteTextboxXpath);
+        if(elements>0) {
+            while(elements>0)
+            {
+                logger.info("Inside while loop");
+                await I.scrollIntoView(autoCompleteTextboxXpath);
+                let value = await I.grabTextFrom(autoCompleteTextboxXpath);
+                coaArray.push(value);
+            }
+                index++;
+                autoCompleteTextboxXpath = await (await this.getAutoCompleteTextboxXpath(I.getElement(coaObject.AUTO_COMPLETE_TEXTBOX), index)).toString();
+                flag = await I.grabNumberOfVisibleElements(autoCompleteTextboxXpath);
+        }
+        
+        return coaArray;
+    },
 }
