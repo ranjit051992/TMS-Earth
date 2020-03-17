@@ -16,8 +16,9 @@
         "./eProc/implementation/**/*.js",
         "./iContract/implementation/**/*.js",
         "./eInvoice/implementation/**/*.js",
-        "./iRequest/implementation/**/*.js"
+        "./iRequest/implementation/**/*.js",
+        "./DD_Homes/implementation/**/*.js"
     ],
-    "cucumberautocomplete.syncfeatures": ["./Contract/feature/*.feature","./eProc/features/**/*.feature","./eInvoice/features/**/*.feature","./iRequest/features/**/*.feature"],
+    "cucumberautocomplete.syncfeatures": ["./Contract/feature/*.feature","./eProc/features/**/*.feature","./eInvoice/features/**/*.feature","./iRequest/features/**/*.feature","./DD_Homes/features/**/*.feature"],
     "cucumberautocomplete.strictGherkinCompletion": true
 }

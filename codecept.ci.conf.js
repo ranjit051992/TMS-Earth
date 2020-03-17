@@ -1,6 +1,7 @@
 const parsing= require("./Framework/PropertiesConfigurator");
-parsing("Home");
+parsing("DD_Homes");
 const prop = global.confi_prop;
+console.log(prop)
 global.lang = 'en';
 exports.config = {
   tests: "./*_test.js",
@@ -44,7 +45,7 @@ exports.config = {
   multiple: {
     parallel: {
       // Splits tests into 2 chunks
-      chunks: 10
+      chunks: 5
     }
   },
   gherkin: {
