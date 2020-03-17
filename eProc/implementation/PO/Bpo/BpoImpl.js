@@ -330,6 +330,19 @@ module.exports = {
         // await I.fillField(I.getElement(iBpoObject.ORDER_VALUE), poAmount);
     },
 
+    async createMultipleBPOs(noOfPOs, noOfItems, itemType) {
+        let bpoArray = new Array();
+        
+        for(let i=0; i<noOfPOs; i++)
+        {
+        let bpo = await objectCreation.getObjectOfBlanketPO(noOfItems, itemType);
+        bpo = await this.createBpoFlow(bpo);
+        await bpoArray.push(bpo);
+        }
+
+        return bpoArray;
+    },
+
 
 
 

@@ -232,8 +232,8 @@ module.exports = {
         let status = await this.getSpoStatus();
         let flag = status === lmtVar.getLabel("DELEGATED_STATUS")
         if(!flag) {
-            logger.info(`Failed to delegate spo because status is ${status} on Approval listing after delegation`);
-            throw new Error(`Failed to delegate spo because status is ${status} on Approval listing after delegating`);
+            logger.info(`Failed to delegate doc because status is ${status} on Approval listing after delegation`);
+            throw new Error(`Failed to delegate doc because status is ${status} on Approval listing after delegating`);
         }
         else {
             logger.info("Document is delegated successfully");
@@ -428,4 +428,79 @@ module.exports = {
         return reqArray;
     },
 
+    async approveMultipleBPOs(bpoArray, searchBy){
+        for (let i=1; i<bpoArray.length; i++) {
+            await commonKeywordImpl.searchDocOnListing(bpoArray[i].poNumber, searchBy);
+            await I.executeScript(function() {
+            document.getElementById("ApprovalBPOListing0").click();
+            })
+            await this.clearSearchField();
+        } 
+        await I.click(I.getElement(approvalObject.FOOTER_APPROVE_ACTION));
+        await this.fillApprovalComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
+        await this.clickOnApproveSpoPopupApproveButton();
+        for (let i=1; i<bpoArray.length; i++) {
+            await commonKeywordImpl.searchDocOnListing(bpoArray[i].poNumber, searchBy);
+            let status = await this.getSpoStatus();
+            bpoArray[i].setStatus(status);
+        } 
+        return bpoArray;
+    },
+
+    async checkMultipleBPOStatus(bpoArray, searchBy) {
+        for (let i=1; i<bpoArray.length; i++) {
+            await commonKeywordImpl.searchDocOnListing(bpoArray[i].poNumber, searchBy);
+            let BPOStatus = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+            await I.assertEqual(BPOStatus, bpoArray[i].status.toString());
+            let flag = BPOStatus === bpoArray[i].status.toString();
+        if(!flag) {
+            logger.info(`Failed to match the status of doc as ${BPOStatus} is different from ${bpoArray[i].status}`);
+            throw new Error(`Failed to match the status of doc as ${BPOStatus} is different from ${bpoArray[i].status}`);
+        }
+        else {
+            logger.info("Status of docs matched successfully");
+        }
+        }     
+    },
+
+    async rejectMultipleBPOs(bpoArray, searchBy){
+        for (let i=1; i<bpoArray.length; i++) {
+            await commonKeywordImpl.searchDocOnListing(bpoArray[i].poNumber, searchBy);
+            await I.executeScript(function() {
+            document.getElementById("ApprovalBPOListing0").click();
+            })
+            await this.clearSearchField();
+        } 
+        await I.click(I.getElement(approvalObject.FOOTER_REJECT_ACTION));
+        await this.fillApprovalComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
+        await this.clickOnApproveSpoPopupApproveButton();
+        for (let i=1; i<bpoArray.length; i++) {
+            await commonKeywordImpl.searchDocOnListing(bpoArray[i].poNumber, searchBy);
+            let status = await this.getSpoStatus();
+            bpoArray[i].setStatus(status);
+        } 
+        return bpoArray;
+    },
+
+    async delegateMultipleBPOs(bpoArray, searchBy){
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        for (let i=1; i<bpoArray.length; i++) {
+            await commonKeywordImpl.searchDocOnListing(bpoArray[i].poNumber, searchBy);
+            await I.executeScript(function() {
+            document.getElementById("ApprovalBPOListing0").click();
+            })
+            await this.clearSearchField();
+        }
+        await I.waitForVisible(I.getElement(approvalObject.FOOTER_DELEGATE_ACTION));
+        await I.click(I.getElement(approvalObject.FOOTER_DELEGATE_ACTION));
+        await this.selectDelegateApprovalToUser(bpoArray[0].newApprover);
+        await this.fillReasonForDelegate(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
+        await this.clickOnDelegateSpoPopupDelegateButton();
+        for (let i=1; i<bpoArray.length; i++) {
+            await commonKeywordImpl.searchDocOnListing(bpoArray[i].poNumber, searchBy);
+            let status = await this.getSpoStatus();
+            bpoArray[i].setStatus(status);
+        } 
+        return bpoArray;
+    },
 }
