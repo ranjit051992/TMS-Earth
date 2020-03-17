@@ -359,7 +359,7 @@ module.exports = {
         await I.fillField(maxPriceXpath, itemPrice.toString());
         await I.waitForVisible(I.getElement(iBpoObject.ITEM_SUMMARY_OK_BUTTON));
         await I.click(I.getElement(iBpoObject.ITEM_SUMMARY_OK_BUTTON));
-    }
+    },
 
     async createMultipleBPOs(noOfPOs, noOfItems, itemType) {
         let bpoArray = new Array();

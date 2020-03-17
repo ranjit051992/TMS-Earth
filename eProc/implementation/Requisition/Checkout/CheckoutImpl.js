@@ -541,8 +541,8 @@ module.exports = {
     * clickOnContinueButton: clicks on Contine Button
     */
     async clickOnContinueButton() {
-        await I.waitForVisible(I.getElement(iCheckout.CONTINUE_BUTTON), prop.DEFAULT_HIGH_WAIT);
-        await I.waitForClickable(I.getElement(iCheckout.CONTINUE_BUTTON), prop.DEFAULT_HIGH_WAIT);
+        await I.waitForVisible(I.getElement(iCheckout.CONTINUE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable(I.getElement(iCheckout.CONTINUE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
         await I.click(I.getElement(iCheckout.CONTINUE_BUTTON));
         logger.info("Clicked on Continue Button");
     },
@@ -580,19 +580,19 @@ module.exports = {
         }
 
         if (requisitionBO.urgentRequirement === "Yes") {
-            this.clickOnUrgentRequirementYesButton();
+            await this.clickOnUrgentRequirementYesButton();
         }
         else {
-            this.clickOnUrgentRequirementNoButton();
+           await this.clickOnUrgentRequirementNoButton();
         }
 
-        if (requisitionBO.reasonForOrdering !== "undefined") {
+        if (typeof requisitionBO.reasonForOrdering  !== "undefined") {
             await this.clickOnReasonForOrderingLink();
             let reasonForOrdering = await this.enterReasonForOrdering(requisitionBO.reasonForOrdering);
             requisitionBO.setReasonForOrdering(reasonForOrdering);
         }
 
-        if (requisitionBO.commentsForSupplier !== "undefined") {
+        if (typeof requisitionBO.commentsForSupplier !== "undefined") {
             await this.clickOnCommentsForSupplierLink();
             let commentsForSupplier = await this.enterCommentsForSupplier(requisitionBO.commentsForSupplier);
             requisitionBO.setCommentsForSupplier(commentsForSupplier);
@@ -856,8 +856,8 @@ module.exports = {
     },
 
     async submitRequisition() {
-        await this.clickOnImDoneButton();
         await I.wait(prop.DEFAULT_LOW_WAIT);
+        await this.clickOnImDoneButton();
         await this.clickOnContinueButton();
         await commonComponent.waitForLoadingSymbolNotDisplayed();
         
@@ -1180,7 +1180,7 @@ module.exports = {
         if(reqBO.convertToPoFlag) {
             await I.wait(prop.DEFAULT_MEDIUM_WAIT);
             await I.amOnPage(prop.DDS_BuyersDesk_Url);
-            //await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("BUYERS_DESK_LISTING_PAGE"));
+           // await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("BUYERS_DESK_LISTING_PAGE"));
             await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
             await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
             status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
@@ -1371,6 +1371,16 @@ module.exports = {
         let suggestionXpath = "//div[contains(text(),'"+address+"')]";
         address = await commonComponent.searchAndSelectFromDropdown(xpath, address, suggestionXpath);
         logger.info("Entered Line level addres ---->"+address);
+        
+        return address;
     },
 
+    async getSupplierContractId()
+    {
+        await I.waitForVisible(I.getElement(iCheckout.SUPPLIER_CONTRACT_ID));
+        let suppContractId = await I.grabTextFrom(I.getElement(iCheckout.SUPPLIER_CONTRACT_ID));
+        logger.info("Supplier Contract ID is "+suppContractId);
+
+        return suppContractId;
+    },
 };

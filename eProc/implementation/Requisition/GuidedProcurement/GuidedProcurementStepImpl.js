@@ -38,7 +38,6 @@ Given("I add Sourcing status",async function(){
 });
 
 Given("I save guided item details",async function(){
-
     await guidedImpl.clickOnDoneButton();
     await guidedImpl.clickOnEformDoneButton();
     await commonKeywordImpl.waitForElementVisible(I.getElement(iGuided.SUPPLIER_TEXTBOX));
@@ -50,9 +49,7 @@ Given("I add items to cart",async function(){
 });
 
 Given("I select supplier from the Suggested Supplier dropdown",async function(){
-
     this.guidedItem = await guidedImpl.selectSupplier(this.guidedItem);
-
 });
 
 
@@ -100,5 +97,11 @@ Given("I select category",async function(){
 
 When("I add short description", async function(){
     await guidedImpl.clickOnDescriptionLink();
-    await guidedImpl.fillDescription(this.reqBO.description);
+    await guidedImpl.fillDescription(this.guidedItem.description);
+});
+
+When("I add contract for the item", async function(){
+    await guidedImpl.clickOnSupplierEditIcon();
+    this.contractID =  await guidedImpl.fillSupplierContractID(this.guidedItem.supplierContractId);
+    await guidedImpl.clickOnSupplierModalDoneButton();
 });
