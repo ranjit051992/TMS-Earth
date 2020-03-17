@@ -14,6 +14,10 @@ Then("I should be able to see user's login time and IP", async function(){
     await LoginHistoryImpl.verifyHistory()
 });
 
+Then("I should be able to see user's login time and IP", async function(){
+   
+})
+
 
 Then("I navigate to manage profile", async function(){
 	
