@@ -54,7 +54,7 @@ Feature: BuyersDesk
 
      Then I should be see the data on the page on the basis on requisition name field
 
-@Non-COA @L1
+@Non-COA @L1 @gocd
     Scenario: To verify requestor filter on buyer's desk 
     Given I am logged in eProc
 
