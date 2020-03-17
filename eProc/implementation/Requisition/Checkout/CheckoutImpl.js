@@ -395,7 +395,7 @@ module.exports = {
         //         throw new Error(`Day --> ${day} not present in the datepicker`);
         //     }
         // }
-
+        commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
         await commonComponent.selectToday(I.getElement(iCheckout.REQUIRED_BY));
         let date = await I.grabAttributeFrom(I.getElement(iCheckout.REQUIRED_BY), 'value');
         logger.info("Clicked on date---> "+date);

@@ -302,9 +302,44 @@ Then("I should be see the data on the page on the basis on Submitted on field", 
   I.assertEqual(flag, true);
 });
 
-// When("I add a catalog item to cart", async function(){
-//   this.reqBo= await objectCreation.getObjectOfRequisition("1", "ITEM_NAME_FOR_SEARCHING");
-//   await cartImpl.clearCart();
-//   let item = await I.getData("ITEM_NAME_FOR_SEARCHING");
-//   await onlineStoreImpl.addItemToCart(item,faker.random.number(20));
-// });
+When("I add a catalog item to cart", async function(){
+  this.reqBO= await objectCreation.getObjectOfRequisition("1", "ITEM_NAME_FOR_SEARCHING");
+  logger.info('Purchase Type is '+this.reqBO.purchaseType)
+  await cartImpl.clearCart();
+  let item = await I.getData("ITEM_NAME_FOR_SEARCHING");
+  await onlineStoreImpl.addItemToCart(item,faker.random.number(20));
+});
+
+When("I edit the requisition on Buyers Desk", async function(){
+  logger.info("Requistion to be edited is "+ this.reqBO.reqName);
+  await buyersDeskImpl.SearchRequisitionNumber(this.reqBO.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+  await buyersDeskImpl.EditRequisition(this.reqBO.reqName);
+});
+
+When("I update Assigned Buyer at  line level for item", async function(){
+    this.reqBO.buyer = await buyersDeskImpl.updateBuyer(I.getData("UPDATED_BUYER_NAME"));
+    logger.info('Update Buyer Name is >>> '+this.reqBO.buyer);
+});
+
+When("I add data in Cost Booking Details section at line level with Buyer", async function(){
+  for(let i=0; i< this.reqBO.items.length; i++)
+  {
+      await checkoutImpl.fillItemDetails(this.reqBO);
+  }
+  
+});
+
+Then("I should be able to see the update Buyer for the requisition on Buyer Desk Listing",async function(){
+  await buyersDeskImpl.SearchRequisitionNumber(this.reqBO.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+  let fetchedBuyer = await buyersDeskImpl.fetchSearchedBuyer();
+  logger.info('Fetched Buyer from Buyer Desk Listing is '+fetchedBuyer);
+  logger.info('Updated Buyer is '+this.reqBO.buyer);
+  I.assertEqual(fetchedBuyer.toString().trim(), this.reqBO.buyer.trim());
+});
+
+Then("I should be able to see updated Buyer on Requisition page also.",async function(){  
+  let fetchedBuyer = await buyersDeskImpl.verifyBuyerOnRequisitionPage();
+  logger.info('Fetched Buyer from Requisition Page is '+fetchedBuyer);
+  logger.info('Updated Buyer is '+this.reqBO.buyer);
+  I.assertEqual(fetchedBuyer.toString().trim(), this.reqBO.buyer.trim());
+});
