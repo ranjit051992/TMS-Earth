@@ -10,7 +10,7 @@ exports.config = {
     WebDriver: {
       url: prop.url,
       browser: prop.browser,
-      host: '192.168.15.227',
+      host: prop.host,
       // port: prop.port,
       restart: prop.restart,
       windowSize: prop.windowSize,
@@ -25,10 +25,8 @@ exports.config = {
           enableVideo: false
       }
     }
-
-
     },
-   ChaiWrapper:
+    ChaiWrapper:
     {
       require: "codeceptjs-chai"
     },
@@ -39,6 +37,7 @@ exports.config = {
   },
   bootstrap: "./bootstrap.js",
   teardown: "./bootstrap.js",
+  teardownAll: "./get_all_reports.js",
   include: {
     I: prop.stepFilePath,
   },
@@ -66,6 +65,12 @@ exports.config = {
     },
     allure: {
       enabled: true
+    },
+    autoDelay: {
+      enabled: true,
+      delayBefore: 500,
+      delayAfter: 500,
+      methods: ["click", "fillField", "checkOption"]
     }
   }
 };
