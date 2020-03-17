@@ -61,6 +61,7 @@ class Requisition
         this.convertToPoFlag;
         this.approvePoFlag;
         this.linkedPoNumber;
+        this.newApprover;
     }
 
     setReqName(reqName)
@@ -277,6 +278,10 @@ class Requisition
 
     setLinkedPoNumber(linkedPoNumber) {
         this.linkedPoNumber = linkedPoNumber;
+    }
+
+    setNewApprover(newApprover) {
+        this.newApprover = newApprover;
     }
 }
 
