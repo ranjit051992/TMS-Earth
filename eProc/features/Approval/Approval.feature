@@ -1,6 +1,6 @@
 Feature: Approval
 
-@Non-COA @Shubham
+@Non-COA
     Scenario: To verify Requisition details are  properly displayed in approval listing
 
     Given I am logged in eProc
@@ -128,40 +128,40 @@ Feature: Approval
     Then I should be able to see the status of all POs as Delegated
 
 
-# @Non-COA
-#     Scenario: To verify that user is able to approve single/multiple BPO
+@Non-COA 
+    Scenario: To verify that user is able to approve single/multiple BPO
 
-#     Given I am logged in eProc
-#     And I Create 3 Blanket POs with 1 "ITEM_NAME_FOR_SEARCHING" item
-#     And I am on Blanket PO approval listing page
+    Given I am logged in eProc
+    And I Create 3 Blanket POs with 1 "ITEM_NAME_FOR_SEARCHING" item
+    And I am on Blanket PO approval listing page
 
-#     When I Approve 1 BPO
-#     And I Approve 2 BPOs
+    When I Approve 1 BPO
+    And I Approve 2 BPOs
 
-#     Then I should be able to see the status of all BPOs as Approved
-
-
-# @Non-COA
-#     Scenario: To verify that user is able to reject single/multiple BPO
-
-#     Given I am logged in eProc
-#     And I Create 3 Blanket POs with 1 "ITEM_NAME_FOR_SEARCHING" item
-#     And I am on Blanket PO approval listing page
-
-#     When I Reject 1 BPO
-#     And I Reject 2 BPOs
-
-#     Then I should be able to see the status of all BPOs as Rejected
+    Then I should be able to see the status of all BPOs as Approved
 
 
-# @Non-COA
-#     Scenario: To verify that user is able to delegate single/multiple BPO
+@Non-COA 
+    Scenario: To verify that user is able to reject single/multiple BPO
 
-#     Given I am logged in eProc
-#     And I Create 3 Blanket POs with 1 "ITEM_NAME_FOR_SEARCHING" item
-#     And I am on Blanket PO approval listing page
+    Given I am logged in eProc
+    And I Create 3 Blanket POs with 1 "ITEM_NAME_FOR_SEARCHING" item
+    And I am on Blanket PO approval listing page
 
-#     When I Delegate 1 BPO
-#     And I Delegate 2 BPOs
+    When I Reject 1 BPO
+    And I Reject 2 BPOs
 
-#     Then I should be able to see the status of all BPOs as Delegated
+    Then I should be able to see the status of all BPOs as Rejected
+
+
+@Non-COA @Shubham
+    Scenario: To verify that user is able to delegate single/multiple BPO
+
+    Given I am logged in eProc
+    And I Create 3 Blanket POs with 1 "ITEM_NAME_FOR_SEARCHING" item
+    And I am on Blanket PO approval listing page
+
+    When I Delegate 1 BPO
+    And I Delegate 2 BPOs
+
+    Then I should be able to see the status of all BPOs as Delegated

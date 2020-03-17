@@ -246,7 +246,7 @@ When ("I search for that BPO name on BPO approval listing", async function() {
 When ("I Approve 1 BPO", async function() {
     await ApprovalImpl.approveDoc(this.bpoArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
     let status = await ApprovalImpl.checkPOApprovalStatus(this.bpoArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-    this.bpoArray[0].setStatus(status);
+    await this.bpoArray[0].setStatus(status);
 });
 
 When ("I Approve 2 BPOs", async function() {
@@ -260,7 +260,7 @@ Then ("I should be able to see the status of all BPOs as Approved", async functi
 When ("I Reject 1 BPO", async function() {
     await ApprovalImpl.rejectDoc(this.bpoArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
     let status = await ApprovalImpl.checkPOApprovalStatus(this.bpoArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-    this.bpoArray[0].setStatus(status);
+    await this.bpoArray[0].setStatus(status);
 });
 
 When ("I Reject 2 BPOs", async function() {
@@ -274,7 +274,7 @@ Then ("I should be able to see the status of all BPOs as Rejected", async functi
 When ("I Delegate 1 BPO", async function() {
     await ApprovalImpl.delegateDoc(this.bpoArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"), this.bpoArray[0].newApprover);
     let status = await ApprovalImpl.checkPOApprovalStatus(this.bpoArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-    this.bpoArray[0].setStatus(status);
+    await this.bpoArray[0].setStatus(status);
 });
 
 When ("I Delegate 2 BPOs", async function() {

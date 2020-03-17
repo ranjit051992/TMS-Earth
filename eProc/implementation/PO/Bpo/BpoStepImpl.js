@@ -91,5 +91,5 @@ Given( "I have BPO with In Approval status", async function() {
 
 Given( "I Create {int} Blanket POs with {int} {string} item", async function (noOfPOs, noOfItems, itemType) {
    this.bpoArray = await bpoImpl.createMultipleBPOs(noOfPOs, noOfItems, itemType);
-   logger.info("Required number of BPOs created")
+   logger.info("Required number of BPOs created");
 });
