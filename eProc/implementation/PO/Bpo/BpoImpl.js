@@ -330,6 +330,31 @@ module.exports = {
         // await I.fillField(I.getElement(iBpoObject.ORDER_VALUE), poAmount);
     },
 
+    async createMultipleBPOs(noOfPOs, noOfItems, itemType) {
+        let bpoArray = new Array();
+        
+        let bpo1 = objectCreation.getObjectOfBlanketPO(noOfItems, itemType);
+        (await bpo1).poNumber = "";
+        await bpoArray.push(bpo1);
+
+        let bpo2 = objectCreation.getObjectOfBlanketPO(noOfItems, itemType);
+        (await bpo2).poNumber = "";
+        await bpoArray.push(bpo2);
+
+        let bpo3 = objectCreation.getObjectOfBlanketPO(noOfItems, itemType);
+        (await bpo3).poNumber = "";
+        await bpoArray.push(bpo3);
+
+        // for(let i=0; i<noOfPOs; i++)
+        // {
+        // let bpo = await objectCreation.getObjectOfBlanketPO(noOfItems, itemType);
+        // bpo = await this.createBpoFlow(bpo);
+        // await bpoArray.push(bpo);
+        // }
+
+        return bpoArray;
+    },
+
 
 
 

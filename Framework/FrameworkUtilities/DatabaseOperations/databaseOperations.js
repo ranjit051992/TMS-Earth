@@ -255,7 +255,8 @@ module.exports = {
 
         let timeout = 0;
         if(process.env.GRID) {
-            timeout = faker.random.number({min:60000, max:300000});
+            // timeout = faker.random.number({min:60000, max:300000});
+            timeout = faker.random.number(1);
         }
         logger.info(`waiting for timeout --> ${timeout}`);
         

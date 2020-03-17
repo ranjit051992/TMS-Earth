@@ -88,3 +88,8 @@ Given( "I have BPO with In Approval status", async function() {
    this.bpo.buyer = global.displayName;
    logger.info(`this.bpo.buyer --> ${this.bpo.buyer} || global.displayName --> ${global.displayName}`);
 });
+
+Given( "I Create {int} Blanket POs with {int} {string} item", async function (noOfPOs, noOfItems, itemType) {
+   this.bpoArray = await bpoImpl.createMultipleBPOs(noOfPOs, noOfItems, itemType);
+   logger.info("Required number of BPOs created")
+});
