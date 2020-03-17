@@ -196,6 +196,7 @@ class ObjectCreation
         bpo.setBuyer(I.getData("BUYER_NAME"));
         // bpo.setDeliverTo(I.getData("DELIVERES_TO/OWNER"));
         bpo.setDeliverTo(global.users.get("USERNAME"));
+        bpo.setNewApprover(I.getData("NEW_APPROVER"));
         bpo.setBookCostAtLineItemLevel("No");
         bpo.setBookCostToSingleMultipleCC("Yes");
         bpo.setAssignCostProject("No");

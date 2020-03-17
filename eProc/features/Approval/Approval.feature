@@ -1,6 +1,6 @@
 Feature: Approval
 
-@Non-COA 
+@Non-COA
     Scenario: To verify Requisition details are  properly displayed in approval listing
 
     Given I am logged in eProc
@@ -75,7 +75,7 @@ Feature: Approval
     Then I should be able to see the status of all Requisitions as Rejected
 
 
-@Non-COA @Shubham
+@Non-COA 
     Scenario: To verify that user is able to delegate single/multiple Requisition
 
     Given I am logged in eProc
@@ -128,58 +128,40 @@ Feature: Approval
     Then I should be able to see the status of all POs as Delegated
 
 
-# @Non-COA
-#     Scenario: To verify that user is able to approve single/multiple BPO
+@Non-COA 
+    Scenario: To verify that user is able to approve single/multiple BPO
 
-#     Given I am logged in eProc
-#     And I have submit 3 BPOs
-#     And I have POs In Approval status
-#     And I am on PO approval listing page
+    Given I am logged in eProc
+    And I Create 3 Blanket POs with 1 "ITEM_NAME_FOR_SEARCHING" item
+    And I am on Blanket PO approval listing page
 
-#     When I Approve 1 BPO
-#     And I fill in comments within popup
-#     And I click on Approve
-#     And I Approve another 2 BPOs
-#     And I fill in comments within popup
-#     And I click on Approve
-#     And I search for all the BPOs in the search filter
+    When I Approve 1 BPO
+    And I Approve 2 BPOs
 
-#     Then the status of all the BPOs should be displayed as Approved
+    Then I should be able to see the status of all BPOs as Approved
 
 
-# @Non-COA
-#     Scenario: To verify that user is able to reject single/multiple BPO
+@Non-COA 
+    Scenario: To verify that user is able to reject single/multiple BPO
 
-#     Given I am logged in eProc 
-#     And I have submit 3 BPOs
-#     And I have POs In Approval status
-#     And I am on BPO approval listing page
+    Given I am logged in eProc
+    And I Create 3 Blanket POs with 1 "ITEM_NAME_FOR_SEARCHING" item
+    And I am on Blanket PO approval listing page
 
-#     When I Reject 1 BPOs
-#     And I fill in comments within popup
-#     And I click on Reject
-#     And I Reject another 2 BPOs
-#     And I fill in comments within popup
-#     And I click on Reject
-#     And I search for all the BPOs in the search filter
+    When I Reject 1 BPO
+    And I Reject 2 BPOs
 
-#     Then the status of all the BPOs should be displayed as Rejected
+    Then I should be able to see the status of all BPOs as Rejected
 
 
-# @Non-COA
-#     Scenario: To verify that user is able to delegate single/multiple BPO
+@Non-COA @Shubham
+    Scenario: To verify that user is able to delegate single/multiple BPO
 
-#     Given I am logged in eProc 
-#     And I have submit 3 BPOs
-#     And I have BPOs In Approval status
-#     And I am on BPO approval listing page
+    Given I am logged in eProc
+    And I Create 3 Blanket POs with 1 "ITEM_NAME_FOR_SEARCHING" item
+    And I am on Blanket PO approval listing page
 
-#     When I Delegate 1 BPO
-#     And I fill in comments within popup
-#     And I click on Delegate
-#     And I Delegate another 2 BPOs
-#     And I fill in comments within popup
-#     And I click on Delegate
-#     And I search for all the BPOs in the search filter
+    When I Delegate 1 BPO
+    And I Delegate 2 BPOs
 
-#     Then the status of all the BPOs should be displayed as Delegated
+    Then I should be able to see the status of all BPOs as Delegated
