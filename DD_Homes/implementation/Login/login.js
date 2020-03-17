@@ -2,7 +2,7 @@ const { I } = inject();
 const CommonKeyword = require("dd-cc-zycus-automation/components/commonKeyword")
 
 Given ("user navigates to the login page", async function() {
-     await I.amOnPage("https://dewdrops-partner.zycus.com/home/#/auth");
+     I.amOnPage("/");
 });
 
 Given ("user enter valid {string},{string} credentials", async function(username,password) {

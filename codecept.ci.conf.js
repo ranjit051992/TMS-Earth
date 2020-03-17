@@ -1,6 +1,7 @@
 const parsing= require("./Framework/PropertiesConfigurator");
-parsing();
+parsing("DD_Homes");
 const prop = global.confi_prop;
+console.log(prop)
 global.lang = 'en';
 exports.config = {
   tests: "./*_test.js",
@@ -9,7 +10,7 @@ exports.config = {
     WebDriver: {
       url: prop.url,
       browser: prop.browser,
-      host: '192.168.15.227',
+      host: prop.host,
       // port: prop.port,
       restart: prop.restart,
       windowSize: prop.windowSize,
@@ -24,8 +25,6 @@ exports.config = {
           enableVideo: false
       }
     }
-
-
     },
     ChaiWrapper:
     {
@@ -42,18 +41,16 @@ exports.config = {
   include: {
     I: prop.stepFilePath,
   },
-   multiple: {
-        sanityCases: {
-          // Splits tests into 2 chunks
-          chunks: 5
-        }
-      },
-    gherkin: {
-           //features: './iRequest/features/**/**.feature',
-            features: "./DD_Homes/features/**/*.feature",
-            steps: "./DD_Homes/implementation/**/*.js"
-        }, 
- 
+  multiple: {
+    parallel: {
+      // Splits tests into 2 chunks
+      chunks: 5
+    }
+  },
+  gherkin: {
+    features: "./DD_Homes/features/**/*.feature",
+    steps: "./DD_Homes/implementation/**/*.js"
+  },
   name: prop.projectName,
   plugins: {
     retryFailedStep: {

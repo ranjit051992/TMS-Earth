@@ -5,7 +5,8 @@ function parseJson() {
   var obj = JSON.parse(data);
 
   Object.keys(obj).forEach(function (productName) {
-      if (productName === PRODUCT) {
+    console.log(productName, ' ----',PRODUCT );
+      if (productName === 'DD_Homes') {
           console.log("adding config data for :  " + PRODUCT)
           LMTMap = obj[productName];
           global.confi_prop=LMTMap;

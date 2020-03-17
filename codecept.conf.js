@@ -1,5 +1,5 @@
 const parsing= require("./Framework/PropertiesConfigurator");
-parsing();
+parsing("DD_Homes");
 const prop = global.confi_prop;
 global.lang = 'en';
 exports.config = {
@@ -39,7 +39,7 @@ exports.config = {
     I: prop.stepFilePath,
   },
    multiple: {
-        sanityCases: {
+    parallel: {
           // Splits tests into 2 chunks
           chunks: 5
         }

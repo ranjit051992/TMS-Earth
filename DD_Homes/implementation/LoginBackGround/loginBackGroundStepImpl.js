@@ -8,9 +8,9 @@ Given("I navigate to the login page", async function () {
     });
     
 When("I submit {string} and {string}", async function (username,password) {
-    CommonKeyword.clickElement("//input[@formcontrolname='emailAddress']");
+    CommonKeyword.click("//input[@formcontrolname='emailAddress']");
     CommonKeyword.enterText("Email Address", prop.username);
-    CommonKeyword.clickElement("//input[@formcontrolname='password']");
+    CommonKeyword.click("//input[@formcontrolname='password']");
     CommonKeyword.enterText("Password", prop.password);
     I.click("Login");
     I.waitForElement("dew-navbar", 30);
