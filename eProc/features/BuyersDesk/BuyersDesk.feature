@@ -165,7 +165,7 @@ Feature: BuyersDesk
 
 #     Then I should be able to view the requisition with all details
 
-@Non-COA @L1 @Shaniya
+@Non-COA @L1
     Scenario: To verify that Buyer is able to change buyer
     Given I am logged in eProc
 
