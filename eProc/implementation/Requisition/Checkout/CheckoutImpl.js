@@ -371,6 +371,7 @@ module.exports = {
     },
 
     async selectRequiredByDate() {
+        commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
         logger.info("Selecting date");
         let day = new Date().getDate();
         let dayXpath = `//div[text()='${day}']/..`;
