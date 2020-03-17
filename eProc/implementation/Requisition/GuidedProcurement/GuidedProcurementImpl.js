@@ -542,4 +542,23 @@ module.exports = {
             await I.click(I.getElement(iGuided.EFORM_DONE));
         }
     },
+
+    async clickOnSupplierEditIcon()
+    {
+        await I.waitForClickable(I.getElement(iGuided.SUPPLIER_FIELD_EDIT_ICON));
+        await I.click(I.getElement(iGuided.SUPPLIER_FIELD_EDIT_ICON));
+        logger.info("Clicked on Supplier Field Edit icon");
+    },
+
+    async fillSupplierContractID(contractID)
+    {
+        await I.waitForVisible(I.getElement(iGuided.SUPPLIER_CONTRACT_ID_TEXTBOX));
+        await I.waitForClickable(I.getElement(iGuided.SUPPLIER_CONTRACT_ID_TEXTBOX));
+        await I.click(I.getElement(iGuided.SUPPLIER_CONTRACT_ID_TEXTBOX));
+        await I.clearField(I.getElement(iGuided.SUPPLIER_CONTRACT_ID_TEXTBOX));
+        await I.fillField(I.getElement(iGuided.SUPPLIER_CONTRACT_ID_TEXTBOX), contractID);
+        contractID = await I.grabTextFrom(I.getElement(iGuided.SUPPLIER_CONTRACT_ID_TEXTBOX));
+        logger.info("Entered Contract Id is ---->"+contractID);
+        return contractID;
+    },
 };

@@ -111,8 +111,8 @@ class ObjectCreation
         requisition.businessUnit = I.getData("BUSINESS_UNIT_NAME");
         requisition.location = I.getData("LOCATION_NAME");
        // requisition.urgentRequirement = I.getData("No");
-        requisition.reasonForOrdering = I.getData("REASON_FOR_ORDERING");
-        requisition.commentsForSupplier = I.getData("COMMENTS_FOR_SUPPLIERS");
+       //  requisition.reasonForOrdering = I.getData("REASON_FOR_ORDERING");
+       // requisition.commentsForSupplier = I.getData("COMMENTS_FOR_SUPPLIERS");
         requisition.purchaseType = I.getData("PURCHASE_TYPE");
         requisition.attachmentPath = "";
         requisition.settlementVia = "Invoice";
@@ -166,7 +166,9 @@ class ObjectCreation
         guidedItem.supplierContact=(I.getData("SUPPLIER_CONTACT_NAME"));
         guidedItem.supplierEmail=(I.getData("SUPPLIER_EMAIL"));
         guidedItem.supplierPhone= (faker.phone.phoneNumber());
+
         guidedItem.eform = I.getData("CATEGORY_EFORM");
+        guidedItem.supplierContractId = I.getData("SUPPLIER_CONTRACT_ID");
         return guidedItem;
     }
 

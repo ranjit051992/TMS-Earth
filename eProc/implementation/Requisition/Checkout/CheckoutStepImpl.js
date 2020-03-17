@@ -73,6 +73,7 @@ When("I add a On Behalf of user", async function(){
 });
 
 When("I add Required By Date", async function(){
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
     await checkoutImp.selectRequiredByDate();
 });
 
@@ -382,7 +383,7 @@ When("I add Delivery split at line level into {int} splits", async function(noOf
 
 When("I change the address for split {int}", async function(forSplit){
     this.changedAddress = await checkoutImp.enterLineLevelAddress(I.getData("SHIP_TO_ADDRESS_NAME[1]"), forSplit);
-    logger.info("Changed address for split "+forSplit+" is --->>"+changedAddress);
+    logger.info("Changed address for split "+forSplit+" is --->>"+this.changedAddress);
 });
 
 Given("I Select Purchase Order", async function(){
@@ -390,4 +391,19 @@ Given("I Select Purchase Order", async function(){
     await checkoutImp.selectPurchaseOrder(this.reqBO.poNumber);
     await checkoutImp.clickOnSelectedPOContinueButton();
     this.purchaseOrder = await checkoutImp.getSelectedPurchaseOrder();;
+});
+
+Then("I should see contract linked to free text item on viewing the item", async function(){
+    let isContractLink = false;
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    await checkoutImp.clickOnSupplierEditIcon();
+    let contractID = await checkoutImp.getSupplierContractId();
+
+    if(contractID.toString().trim() === this.contractID.toString().trim())
+    {
+        isContractLink = true;
+        logger.info("Contract is Link to free text item");
+    }
+
+    I.assertEqual(isContractLink, true);
 });

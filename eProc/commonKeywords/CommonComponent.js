@@ -146,7 +146,7 @@ module.exports={
     {
         let sectionXapth = `//div[contains(text(),'${sectionName}')]`;
         await I.scrollIntoView(sectionXapth);
-        await  I.wait(prop.DEFAULT_MEDIUM_WAIT);
+        await  I.wait(prop.DEFAULT_WAIT);
         logger.info("Scrolled to Section "+sectionName);
     },
 
