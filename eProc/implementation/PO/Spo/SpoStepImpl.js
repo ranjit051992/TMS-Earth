@@ -19,7 +19,6 @@ Given("I am on PO listing page", async function () {
 
 Given("I Create Standard po with {int} {string} item", async function (noOfItems, itemType) {
    this.spo = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
-   //this.spo.poNumber = "Automation_Spo_1583163241883";
    this.spo = await spoImpl.createSpoFlow(this.spo);
 });
 

@@ -1089,6 +1089,7 @@ module.exports = {
    
     async createMultipleReqs(noOfReqs, noOfItems, itemType) {
         let reqArray = new Array();
+
         for (let i=0; i<noOfReqs; i++)
         {
         let reqBO = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
@@ -1108,9 +1109,8 @@ module.exports = {
         I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
         for (let i = 0; i < reqArray.length; i++) 
         {
-        logger.info(`##########${reqArray[i].reqNumber}`);
         await commonComponent.searchDocOnListing(reqArray[i].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-        let status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+        let status = await commonComponent.getValueForColumnNameOfReq(lmtVar.getLabel("STATUS_COLUMN"));
         status = status.substring(status.indexOf("(")+1, status.indexOf(")"));
         logger.info(`Status of Reqs ${status} should match with ${lmtVar.getLabel("IN_APPROVAL_STATUS")} `);
         I.assertEqual(status.toString(), lmtVar.getLabel("IN_APPROVAL_STATUS"));

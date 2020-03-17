@@ -12,7 +12,7 @@ const coaImpl = require("../../Coa/CoaImpl");
 const iBpoObject =require("./BpoObject");
 const spoImpl = require("../Spo/SpoImpl")
 const datePicker = require("../../../commonKeywords/CommonComponent")
-
+const bpo = require("./../../../dataCreation/bo/Bpo");
 module.exports = {
     async clickOnBlanketPOButton() {
         await I.waitForVisible(I.getElement(iBpoObject.BLANKET_PO_BUTTON));
@@ -91,6 +91,7 @@ module.exports = {
         await I.waitForInvisible(I.getElement(iSpoObject.spinner));
 
         await poListingImpl.navigateToPoListing();
+        
         await commonKeywordImpl.searchDocOnListing(bpo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
 
         let poNumber = await commonKeywordImpl.getDocNumber();
@@ -118,6 +119,7 @@ module.exports = {
     async fillBasicDetails(bpo) {
         logger.info(`**************Filling Basic Details**************`);
         await spoImpl.fillPONumber(bpo.poNumber);
+        logger.info("PO Number "+bpo.poNumber);
         await spoImpl.fillPODescription(bpo.poDescription);
         await spoImpl.selectPurchaseType(bpo.purchaseType);
         return bpo;

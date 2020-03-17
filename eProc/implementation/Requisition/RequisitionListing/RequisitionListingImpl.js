@@ -74,7 +74,7 @@ module.exports = {
         // let reqStatus = await I.grabTextFrom(I.getElement(reqListingObj.REQUISITION_STATUS));
         // logger.info(`Requisition status is ---->${reqStatus}`);
 
-        let reqStatus = await commomComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+        let reqStatus = await commomComponent.getValueForColumnNameOfReq(lmtVar.getLabel("STATUS_COLUMN"));
         logger.info(`Requisition status is ---->${reqStatus}`);
         return reqStatus;
     },
