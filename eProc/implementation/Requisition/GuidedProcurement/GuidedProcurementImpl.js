@@ -5,36 +5,49 @@ const prop = global.confi_prop;
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const commonKeywordImpl = require("../../../commonKeywords/CommonComponent");
 const onlineStoreImpl = require("./../OnlineStore/OnlineStoreImpl");
+const spoImpl = require("../../PO/Spo/SpoImpl");
 
 module.exports = {
     async addGuidedItemForPo(guidedItem) {
+        await spoImpl.clickOnAddLineItemButton();
+
+        await spoImpl.enterItemName(guidedItem.itemName);
+
         await this.clickOnAddItemServiceButtonPo();
-        await this.fillShortDescriptionPo();  //pass parameter
-        await this.selectProductCategoryPo(); //pass category
-        if (guidedItem.itemType === lmtVar.getLabel("ITEM_TYPE_GOODS")) {
-            await this.selectItemTypeGoods();
+
+        let lineNumber = await this.fetchLineNumber();
+        guidedItem.setLineNumber(lineNumber);
+
+        // await this.fillShortDescriptionPo(guidedItem.itemName);
+
+        let category = await this.selectProductCategoryPo(guidedItem.category);
+        guidedItem.setCategory(category);
+
+        if (guidedItem.type === lmtVar.getLabel("ITEM_TYPE_GOODS")) {
+            await this.selectItemTypeGoodsPo();
         }
         else {
-            logger.info(`Incorrect Item type passed --> ${guidedItem.itemType}`);
-            throw new Error(`Incorrect Item type passed --> ${guidedItem.itemType}`);
+            logger.info(`Incorrect Item type passed --> ${guidedItem.type}`);
+            throw new Error(`Incorrect Item type passed --> ${guidedItem.type}`);
         }
 
-        if (guidedItem.receiveBy === lmtVar.getLabel("RECEIVE_BY_QUANTITY")) {
-            await this.selectReceiveByQuantity();
+        if (guidedItem.receiveBillBy === lmtVar.getLabel("RECEIVE_BY_QUANTITY")) {
+            await this.selectReceiveByQuantityPo();
         }
         else if (lmtVar.getLabel("RECEIVE_BY_AMOUNT")) {
-            await this.selectReceiveByAmount();
+            await this.selectReceiveByAmountPo();
         }
         else {
-            logger.info(`Incorrect Receive By passed --> ${guidedItem.receiveBy}`);
-            throw new Error(`Incorrect Receive By passed --> ${guidedItem.receiveBy}`);
+            logger.info(`Incorrect Receive By passed --> ${guidedItem.receiveBillBy}`);
+            throw new Error(`Incorrect Receive By passed --> ${guidedItem.receiveBillBy}`);
         }
 
-        await this.fillMarketPricePo();   //pass market price
+        await this.fillMarketPricePo(guidedItem.marketPrice);
 
-        await this.fillQuantityPo();  //pass quantity
+        await this.fillQuantityPo(guidedItem.quantity);
 
-        await this.fillUomPo();   //pass uom
+        let uom = await this.fillUomPo(guidedItem.uom);
+        guidedItem.setUom(uom);
 
         await this.clickOnOkayButtonPo();
     },
@@ -542,4 +555,9 @@ module.exports = {
             await I.click(I.getElement(iGuided.EFORM_DONE));
         }
     },
+    async fetchLineNumber() {
+        await I.waitForVisible(I.getElement(iGuided.PO_GUIDED_LINE_NUMBER_TEXTBOX));
+        let lineNumber = await I.grabAttributeFrom(I.getElement(iGuided.PO_GUIDED_LINE_NUMBER_TEXTBOX), "value");
+        return lineNumber;
+    }
 };

@@ -199,7 +199,7 @@ Feature: BuyersDesk
 
     Then I should see the requisition In Returned for Amendment State on Requisition Listing
 
-@Non-COA @L1
+@Non-COA @L1konica
     Scenario: To verify that user(buyer) is not allowed to modify the requisition.
     Given I am logged in eProc
 

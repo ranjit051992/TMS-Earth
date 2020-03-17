@@ -10,8 +10,9 @@ module.exports = {
 
     async login()
     {
-        logger.info(global.confi_prop.url);
-        await I.amOnPage(global.confi_prop.url);
+        logger.info(I.getData("URL"));
+        //await I.amOnPage(global.confi_prop.url);
+        await I.amOnPage(I.getData("URL"));
         // I.seeElement(I.getElement(iLogin.EMAIL_ADDRESS_GHOST_TEXTBOX));
         await I.waitForVisible(I.getElement(iLogin.EMAIL_ADDRESS_TEXTBOX));
         logger.info("Navigated to login page");
@@ -27,9 +28,9 @@ module.exports = {
         logger.info("Clicked on Login button");
         // I.waitForVisible(I.getElement(iLogin.DDS_LOGIN_PAGE));
 
-        await I.amOnPage(global.confi_prop.DDS_OnlineStore_Url);
+        //await I.amOnPage(global.confi_prop.DDS_OnlineStore_Url);
         //await I.waitForVisible(I.getElement(iLogin.REQ_TABLE_OPTION_ICON));
-
+        await onlinestore.navigateToOnlineStore();
 
         logger.info("Navigated to DDS Online Store page");
         //onlinestore.waitForOnlineStoreToLoad();
@@ -42,7 +43,7 @@ module.exports = {
         await this.selectPmLogOnto("Local Authentication");
         await this.clickOnPmLoginButton();
         await this.clickOnPmSearchIcon();
-        await this.filterByPmResourceName(`CDK Global -(${global.confi_prop.SETUP})`);
+        await this.filterByPmResourceName(`CDK Global -(${process.env.SETUP})`);
         await this.filterByPmUserAccount(global.users.get("USERNAME"));
 
         await I.wait(prop.DEFAULT_WAIT);

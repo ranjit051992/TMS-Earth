@@ -54,4 +54,6 @@ module.exports={
 
     EFORM_DROPDOWN :"OnlineStore/GuidedProcurement/CreateNewItemModal/EFORM_DROPDOWN",
     EFORM_DONE :"OnlineStore/GuidedProcurement/CreateNewItemModal/EFORM_DONE_BUTTON",
+
+    PO_GUIDED_LINE_NUMBER_TEXTBOX: "Spo/ItemSummary/PO_GUIDED_LINE_NUMBER_TEXTBOX",
 };

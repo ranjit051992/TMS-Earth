@@ -13,7 +13,7 @@ module.exports = {
     async navigateToRequisitionListing() {
         await I.amOnPage(prop.DDS_Requisition_Listing);
         await commomComponent.waitForLoadingSymbolNotDisplayed();
-        //await commomComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("REQUISITION_LISTING_PAGE"));
+       // await commomComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("REQUISITION_LISTING_PAGE"));
         await I.waitForVisible(I.getElement(reqListingObj.REQUISITION_LISTING_PAGE));
         logger.info("Navigated to Requisition Listing page");
     },
@@ -74,7 +74,7 @@ module.exports = {
         // let reqStatus = await I.grabTextFrom(I.getElement(reqListingObj.REQUISITION_STATUS));
         // logger.info(`Requisition status is ---->${reqStatus}`);
 
-        let reqStatus = await commomComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+        let reqStatus = await commomComponent.getValueForColumnNameOfReq(lmtVar.getLabel("STATUS_COLUMN"));
         logger.info(`Requisition status is ---->${reqStatus}`);
         return reqStatus;
     },

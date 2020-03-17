@@ -11,6 +11,7 @@ const poListingImpl = require("../PoListing/PoListingImpl");
 const poListingObject = require("../PoListing/PoListingObject");
 const coaImpl = require("../../Coa/CoaImpl");
 const checkoutImpl = require("../../Requisition/Checkout/CheckoutImpl");
+const assert = require("assert");
 
 Given("I am on PO listing page", async function () {
    await poListingImpl.navigateToPoListing();
@@ -18,7 +19,6 @@ Given("I am on PO listing page", async function () {
 
 Given("I Create Standard po with {int} {string} item", async function (noOfItems, itemType) {
    this.spo = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
-   //this.spo.poNumber = "Automation_Spo_1583163241883";
    this.spo = await spoImpl.createSpoFlow(this.spo);
 });
 
@@ -351,4 +351,10 @@ When("I select tax inclusive on create spo page", async function() {
 
 When("I fill PO number", async function() {
    await spoImpl.fillPONumber(this.spo.poNumber);
+});
+
+Then("I should be able to see the new item with unique line item number", async function() {
+   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_VIEW_LINE_ITEMS_SECTION"));
+   let flag = await spoImpl.verifyViewSpoItemLevelSrNo();
+   assert.strictEqual(true, flag, "Item level sr no validation failed");
 });

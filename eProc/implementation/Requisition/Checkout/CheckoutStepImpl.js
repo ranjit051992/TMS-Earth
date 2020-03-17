@@ -12,6 +12,9 @@ const faker = require("faker");
 const iApprovalObject = require("../../Approval/ApprovalObject");
 const coaImp = require("../../Coa/CoaImpl");
 const iViewReq = require("../../Requisition/ViewRequisition/ViewRequisitionObject");
+const buyersDeskImpl = require("../../BuyersDesk/BuyersDeskImpl");
+const spoImpl = require("../../PO/Spo/SpoImpl");
+const approveImpl = require("../../Approval/ApprovalImpl");
 
 When("I create requisition with {int} {string} item", async function(noOfItems, itemType) {
     this.reqBO= await objectCreation.getObjectOfRequisition(noOfItems, itemType);
@@ -113,9 +116,8 @@ Then("I should see on header level, Shipping Details section Default Shipping Ad
 });
 
 Then("I navigate to Line level Shipping Details and Asset Tagging section", async function(){
-    commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
     await checkoutImp.clickOnShippingDetailsAndAssetTagging(this.addedCartItems);
-
 });
 
 Then("I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated", async function(){
@@ -282,20 +284,12 @@ When("I add Tax Details at line level", async function(){
 
 Given( "I Create {int} requisitions with {int} {string} item", async function (noOfReqs, noOfItems, itemType) {
     this.reqArray = await checkoutImp.createMultipleReqs(noOfReqs, noOfItems, itemType);
-    logger.info("Required number of POs created"+ this.reqArray.length);
-    logger.info("req number 0"+ this.reqArray[0].reqNumber);
-    logger.info("req number 1"+ this.reqArray[1].reqNumber);
-    logger.info("req number 2"+ this.reqArray[2].reqNumber);
  });
 
 Given( "I have {int} Requisitions In Approval status", async function() {
     I.amOnPage(prop.DDS_Requisition_Listing);
     I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
     I.waitForClickable(I.getElement(iApprovalObject.SEARCH_FIELD));
-    logger.info("req length ***"+ this.reqArray.length);
-    logger.info("req number 0 ***"+ this.reqArray[0].reqNumber);
-    logger.info("req number 1 ***"+ this.reqArray[1].reqNumber);
-    logger.info("req number 2 *** "+ this.reqArray[2].reqNumber);
     await checkoutImp.checkMultipleReqStatus(this.reqArray);
  });
 
@@ -382,7 +376,8 @@ When("I add Delivery split at line level into {int} splits", async function(noOf
 });
 
 When("I change the address for split {int}", async function(forSplit){
-    //SHIP_TO_ADDRESS_NAME
+    this.changedAddress = await checkoutImp.enterLineLevelAddress(I.getData("SHIP_TO_ADDRESS_NAME[1]"), forSplit);
+    logger.info("Changed address for split "+forSplit+" is --->>"+changedAddress);
 });
 
 Given("I Select Purchase Order", async function(){
@@ -391,3 +386,10 @@ Given("I Select Purchase Order", async function(){
     await checkoutImp.clickOnSelectedPOContinueButton();
     this.purchaseOrder = await checkoutImp.getSelectedPurchaseOrder();;
 });
+
+Given("I have created a requisition with that PO linked and converted it to PO with {int} {string}", async function(noOfItems, itemType) {
+    logger.info(`PO number of previous req --> ${this.reqBO.poNumber}`);
+    this.reqBO1 = await objectCreation.getObjectOfRequisition(noOfItems, itemType);
+    this.reqBO1.linkedPoNumber = this.reqBO.poNumber;
+    this.reqBO = await checkoutImp.createReqToPoWithPoLinked(this.reqBO1);
+ });
