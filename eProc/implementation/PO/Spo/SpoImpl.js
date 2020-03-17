@@ -592,12 +592,14 @@ module.exports = {
 
     async createMultiplePOs(noOfPOs, noOfItems, itemType) {
         let POArray = new Array();
+        
         for(let i=0; i<noOfPOs; i++)
         {
         let spo = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
         spo = await this.createSpoFlow(spo);
         await POArray.push(spo);
         }
+
         return POArray;
     },
 

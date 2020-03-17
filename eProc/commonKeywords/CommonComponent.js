@@ -345,7 +345,7 @@ module.exports={
     {
         let columnIndex = await (await this.getColumnIndexOnListingPage(columnName)).toString();
         let columnHeaderXpath = await I.getElement(commonKeywordObject.ALL_COLUMN_HEADER_TEXT);
-        columnHeaderXpath = "((" + columnHeaderXpath + "/..)[" + columnIndex + "]//dew-row[contains(@class,'list-body')]//div)[1]";
+        columnHeaderXpath = "((" + columnHeaderXpath + "/..)[" + columnIndex + "]//dew-row[contains(@class,'list-body')]//span)[1]";
         logger.info("Xpath for retrieving column value --> " + columnHeaderXpath);
         await I.scrollIntoView(columnHeaderXpath);
         //await I.waitForVisible(columnHeaderXpath, prop.DEFAULT_HIGH_WAIT);
@@ -415,6 +415,19 @@ module.exports={
         await I.click(pageXpath);
         await this.waitForLoadingSymbolNotDisplayed();
         logger.info("Navigated to Page-----> "+pageName);
-    }
+    },
+
+    async getValueForColumnNameOfReq(columnName)
+    {
+        let columnIndex = await (await this.getColumnIndexOnListingPage(columnName)).toString();
+        let columnHeaderXpath = await I.getElement(commonKeywordObject.ALL_COLUMN_HEADER_TEXT);
+        columnHeaderXpath = "((" + columnHeaderXpath + "/..)[" + columnIndex + "]//dew-row[contains(@class,'list-body')])//div[2]";
+        logger.info("Xpath for retrieving column value --> " + columnHeaderXpath);
+        await I.scrollIntoView(columnHeaderXpath);
+        //await I.waitForVisible(columnHeaderXpath, prop.DEFAULT_HIGH_WAIT);
+        let columnValue = await I.grabTextFrom(columnHeaderXpath);
+		logger.info("Retrieved value for column " + columnName + " is --> " + columnValue);
+		return columnValue;
+    },
 
 };

@@ -119,6 +119,7 @@ class ObjectCreation
         requisition.shipToDefaultAddress = "Yes";
         requisition.shipToAnotherAddress = "No";
         requisition.deliverTo = I.getData("DELIVERES_TO/OWNER");
+        requisition.newApprover = I.getData("NEW_APPROVER");
        // requisition.deliverTo = (global.users.get("USERNAME"));
         //requisition.requiredBy = faker.date.
         requisition.assignCostProject = "No";
