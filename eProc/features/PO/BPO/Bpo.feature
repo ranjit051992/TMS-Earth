@@ -6,14 +6,14 @@ Feature: Bpo
 #   Given I am logged in eproc
 #   And I am on PO listing page
 #   And I Create Blanket po with 1 "ITEM_NAME_FOR_SEARCHING" item
-#   And I approve BPO
+#   And I approve the BPO
 
 #   When I cancel the BPO which is in Parked status
 
 #   Then I should be able to see the BPO in Cancelled status
 
 
-@Non-COA @L1 @BPO @Pooja
+@Non-COA @L1 @Pooja
     Scenario: To verify that user is able to create a blanket PO with attachments in Zycus P2P
 
     Given I am logged in eproc
@@ -27,7 +27,7 @@ Feature: Bpo
     Then I should be able to view the BPO with the attachments
 
 
- @Non-COA @L1 @BPO @Pooja
+ @Non-COA @L1 @Pooja
    Scenario: To verify that user is able to choose a start date and an End Date
 
    Given I am logged in eproc
@@ -40,32 +40,32 @@ Feature: Bpo
    Then I should be able to view the BPO with Validity To and From dates selected
 
 
+ @Non-COA @L1 @Pooja
+   Scenario: To verify that user is able to choose a spend limit
+
+    Given I am logged in eproc
+    And I am on PO listing page
+
+    When I click on Create Blanket PO button
+    And I add all required details in BPO with 1 "ITEM_NAME_FOR_SEARCHING" item
+    And I update the spend limit
+    And I submit the BPO
+
+   Then I should be able to view the BPO with Order Value entered
+
+
 #  @Non-COA @L1 @BPO @Pooja
-#    Scenario: To verify that user is able to choose a spend limit
+  #  Scenario: To verify that user is able to create PO releases against Blanket PO
 
-#     Given I am logged in eproc
-#     And I am on PO listing page
+  #  Given I am logged in eproc
+  #  And I Create Blanket po with 1 "ITEM_NAME_FOR_SEARCHING" item
 
-#     When I click on Create Blanket PO button
-#     And I add all required details in BPO with 1 "ITEM_NAME_FOR_SEARCHING" item
-#     And I update the spend limit
-#     And I submit the BPO
+  #  When I click on Create Release action against the BPO created
+  #  And I fill the accounting details against the item
+  #  And I submit the Release
+  #  And I view the release created
 
-#    Then I should be able to view the BPO with Order Value entered
-
-
-#  @Non-COA @L1 @Pooja
-#    Scenario: To verify that user is able to create PO releases against Blanket PO
-
-#    Given I am logged in eproc
-#    And I Create Blanket po with 1 "ITEM_NAME_FOR_SEARCHING" item
-
-#    When I click on Create Release action against the BPO created
-#    And I fill the accounting details against the item
-#    And I submit the Release
-#    And I view the release created
-
-#    Then I should be able to view the details filled in Release (Supplier, item name, item price, GL Account)
+  #  Then I should be able to view the details filled in Release (Supplier, item name, item price, GL Account)
 
 
 #  @Non-COA @L1 @Pooja

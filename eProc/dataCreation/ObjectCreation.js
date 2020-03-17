@@ -202,6 +202,7 @@ class ObjectCreation
         bpo.setBookCostAtLineItemLevel("No");
         bpo.setBookCostToSingleMultipleCC("Yes");
         bpo.setAssignCostProject("No");
+        bpo.setDate(I.getData("DATE"));
         bpo.items = await this.getArrayOfItems(noOfItems,itemType);
         bpo.setGlAccount(I.getData("GL_ACCOUNT"));
         bpo.setCostCenter(I.getData("COST_CENTER"));
