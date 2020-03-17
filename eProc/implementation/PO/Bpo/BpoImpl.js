@@ -208,6 +208,7 @@ module.exports = {
             await spoImpl.selectItemOption(bpo.items[i].itemName);
             await this.clickOnCostBookingLink(bpo.items[i].itemName);
             await coaImpl.fillCoaDetails();
+            await this.addMaxUnitPrice();
         }
 
         return bpo;
@@ -240,7 +241,7 @@ module.exports = {
     async fillValidity(bpo){
         logger.info(`*****************Filling Validity*****************`);
         let fromDate = await this.selectFromDate();
-        let toDate = await this.selectToDate();
+        let toDate = await this.selectToDate(bpo);
         // await this.selectAcceptInvoicesUntil();
         bpo.setFromDate(fromDate);
         bpo.setToDate(toDate);
@@ -301,9 +302,9 @@ module.exports = {
         fromDate = fromDate.toString();
         return fromDate;
     },
-    async selectToDate(){
+    async selectToDate(bpo){
         await I.waitForVisible(I.getElement(iBpoObject.TO_DATE));
-        await datePicker.selectInNextMonth(I.getElement(iBpoObject.TO_DATE),"15");
+        await datePicker.selectInNextMonth(I.getElement(iBpoObject.TO_DATE), bpo.date);
         let toDate = await I.grabAttributeFrom(I.getElement(iBpoObject.TO_DATE),"value");
         toDate = toDate.toString();
         return toDate;
@@ -323,10 +324,40 @@ module.exports = {
         await I.waitForVisible(I.getElement(iBpoObject.ORDER_VALUE));
         await I.clearField(I.getElement(iBpoObject.ORDER_VALUE));
         await I.click(I.getElement(iBpoObject.ORDER_VALUE));
-        // let poAmount = parseInt(this.bpo.PoAmount);
-        // poAmount = poAmount * 10;
-        // await I.fillField(I.getElement(iBpoObject.ORDER_VALUE), poAmount);
+        let orderValue = bpo.PoAmount.toString();
+        orderValue = orderValue.substring(orderValue.indexOf(" ")+1);
+        orderValue = parseFloat(orderValue)+ parseFloat(bpo.date);
+        await I.fillField(I.getElement(iBpoObject.ORDER_VALUE), orderValue);
+        return orderValue;
     },
+    async getOrderValue(){
+        let orderValueView = await I.grabTextFrom(I.getElement(iBpoObject.ORDER_VALUE_VIEW));
+        orderValueView= orderValueView.toString();
+        orderValueView = orderValueView.substring(orderValueView.indexOf(" ")+1);
+        return parseFloat(orderValueView);
+
+    },
+    async approveBpoFlow(bpo){
+        await approvalImpl.navigateToApprovalListing();
+        // await approvalImpl.navi
+        // await approvalImpl.approveDoc
+
+    },
+    async addMaxUnitPrice()
+    {
+        await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
+        await I.waitForVisible(I.getElement(iBpoObject.ITEM_EDIT));
+        await I.click(I.getElement(iBpoObject.ITEM_EDIT));
+        let marketPrice = lmtVar.getLabel("MARKET_PRICE");
+        let maxPrice = lmtVar.getLabel("MAXIMUM_RELEASE_AMOUNT");
+        let marketPriceXpath = `//input[@aria-label='${marketPrice}']`;
+        let maxPriceXpath = `//input[@aria-label='${maxPrice}']`;
+        await I.scrollIntoView(marketPriceXpath);
+        let itemPrice = await I.grabAttributeFrom(marketPriceXpath, "value");
+        await I.fillField(maxPriceXpath, itemPrice.toString());
+        await I.waitForVisible(I.getElement(iBpoObject.ITEM_SUMMARY_OK_BUTTON));
+        await I.click(I.getElement(iBpoObject.ITEM_SUMMARY_OK_BUTTON));
+    }
 
 
 
