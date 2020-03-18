@@ -13,10 +13,6 @@ const spo = require("../../dataCreation/bo/Spo")
 const commonComponent =require("../../commonKeywords/CommonComponent")
 const logger = require("../../../Framework/FrameworkUtilities/Logger/logger");
 
-Given("I am logged in eproc", async function(){
-    await iLogin.login();
-});
-
 Given("I navigate to PO listing", async function(){
     await I.amOnPage(prop.poListingUrl)
     await I.waitForInvisible(global.uiElements.get(iSpoObject.spinner), prop.DEFAULT_MEDIUM_WAIT);

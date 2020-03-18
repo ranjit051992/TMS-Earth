@@ -54,7 +54,7 @@ Feature: Bpo
     Then I should be able to view the BPO with Order Value entered
 
 
- @Non-COA @L1 @BPO @Pooja
+ @Non-COA @L1 @Pooja
    Scenario: To verify that user is able to create PO releases against Blanket PO
 
    Given I am logged in eProc
@@ -65,15 +65,15 @@ Feature: Bpo
    Then I should be able to view the proper details in Release Order
 
 
-#  @Non-COA @L1 @Pooja
-#    Scenario: To verify that user is able to view all the released orders generated against a  BPO on a new tab called "Release Orders"
+ @Non-COA @L1 @Pooja
+   Scenario: To verify that user is able to view all the released orders generated against a  BPO on a new tab called "Release Orders"
 
-#    Given I am logged in eproc
-#    And I Create Blanket po with 1 "ITEM_NAME_FOR_SEARCHING" item and approve it
+   Given I am logged in eProc
+   And I Create Blanket po with 1 "ITEM_NAME_FOR_SEARCHING" item and approve it
 
-#    When I create Release of the BPO
+   When I create Release of the BPO
 
-#    Then I should be able to view released order against the BPO
+   Then I should be able to view released order against the BPO
 
 
 #  @Non-COA @L1 @Pooja
