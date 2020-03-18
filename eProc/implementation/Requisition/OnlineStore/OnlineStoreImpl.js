@@ -108,7 +108,7 @@ module.exports = {
         await this.searchItem(itemName);
         await this.fillItemQuantity(itemName, quantity);
         await this.clickOnAddToCartButton(itemName);
-        I.waitForVisible(I.getElement(iOnlineStore.ADD_TO_CART_SUCCESS_MSG), prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForVisible(I.getElement(iOnlineStore.ADD_TO_CART_SUCCESS_MSG), prop.DEFAULT_MEDIUM_WAIT);
         logger.info("Add to cart success msg is displayed. Item " + itemName + " is added to cart.");
         await I.scrollIntoView(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
     },

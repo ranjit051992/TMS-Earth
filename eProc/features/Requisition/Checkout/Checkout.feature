@@ -255,19 +255,19 @@ Feature: Checkout
 
     Then I should be able to see submitted requisition with updated details
 
-# @Non-COA @L1
-#     Scenario: To verify that user is able to create free text line item and items from Hosted Catalog in a single PR.
-#     Given I am logged in eProc
+@Non-COA @L1
+    Scenario: To verify that user is able to create free text line item and items from Hosted Catalog in a single PR.
+    Given I am logged in eProc
 
-#     When I add a free text item to cart
-#     And I add 2 catalog items to cart
-#     And I checkout
-#     And I add Purchase Type
-#     And I add Required By Date
-#     And I add data in Cost Booking Details section at line level 
-#     And I submit requisition
+    When I add a free text item to cart
+    And I add 2 catalog items to cart
+    And I checkout
+    And I add Purchase Type
+    And I add Required By Date
+    And I add data in Cost Booking Details section at line level 
+    And I submit requisition
 
-#     Then I should be able to view the requisition with free text item and the catalog items.
+    Then I should be able to view the requisition with free text item and the catalog items.
 
 @Non-COA @L1 @hierarchy @Snehal
     Scenario: To verify that user is able to see the approval hierarchy after raising a requisition
