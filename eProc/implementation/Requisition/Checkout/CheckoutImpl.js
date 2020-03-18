@@ -1,4 +1,4 @@
-const { I } = inject();
+xconst { I } = inject();
 const iCheckout = require("./CheckoutObject");
 const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger");
 const commonComponent = require("../../../commonKeywords/CommonComponent");
@@ -1385,7 +1385,7 @@ module.exports = {
     async getSupplierContractId()
     {
         await I.waitForVisible(I.getElement(iCheckout.SUPPLIER_CONTRACT_ID));
-        let suppContractId = await I.grabTextFrom(I.getElement(iCheckout.SUPPLIER_CONTRACT_ID));
+       let suppContractId = await I.grabAttributeFrom(I.getElement(iCheckout.SUPPLIER_CONTRACT_ID), "value");
         logger.info("Supplier Contract ID is "+suppContractId);
 
         return suppContractId;
