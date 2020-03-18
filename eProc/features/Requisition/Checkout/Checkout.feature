@@ -4,7 +4,7 @@ Feature: Checkout
 @Non-COA @L1 @priyanka @costCenter
   Scenario: To verify that user is able to add Cost center information to the requisition.
   Given I am logged in eProc
-  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+  When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
   And I edit Cost Allocation section at header level
   And I update cost center "COST_CENTER[1]"
@@ -14,7 +14,7 @@ Feature: Checkout
 @Non-COA @L1  @project @priyanka
     Scenario: To verify that user is able to add Project information to the requisition.
     Given I am logged in eProc
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I edit Cost Allocation section at header level
     And I update project "PROJECT"
@@ -24,7 +24,7 @@ Feature: Checkout
 @Non-COA @L1  @priyanka
     Scenario: To verify that System auto populates user's Cost center when a user is creating a requisition.
     Given I am logged in eProc
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     Then I should see on header level Cost Booking section cost center should be populated
     And I navigate to Line level Cost Booking Details
@@ -33,7 +33,7 @@ Feature: Checkout
 @Non-COA @L1  @priyanka @default
     Scenario: To verify that system auto populates user's default Delivery & Bill to address 
     Given I am logged in eProc
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
 
     Then I should see on header level, Shipping Details section Default Shipping Address field should be auto populated
@@ -43,7 +43,7 @@ Feature: Checkout
 @Non-COA @L1  @approval @priyanka
     Scenario:  To verify that user is able to view approval Status
     Given I am logged in eProc
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I enter Requisition Name
     And I add Purchase Type
@@ -56,8 +56,8 @@ Feature: Checkout
 @Non-COA @L1 @draft @priyanka
   Scenario: To verify requisition in draft and actions on it
   Given I am logged in eProc
- 
-  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+
+  When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
   And I enter Requisition Name
   And I add Purchase Type
@@ -74,7 +74,7 @@ Feature: Checkout
     Scenario: To verify that user is able to add attachments to the requisition.
     Given I am logged in eProc
 
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I enter Requisition Name
     And I add Purchase Type
@@ -91,7 +91,7 @@ Feature: Checkout
     Scenario: To verify that user is able to create any custom / One time delivery address while Check out and save it for future use
     Given I am logged in eProc
 
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I enter Requisition Name
     And I add Purchase Type
@@ -107,7 +107,7 @@ Feature: Checkout
 
     Then I should be able to see new Deliver address as the Ship to Another Address on view requisition 
     And I navigate to OnlineStore
-    And I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I select Ship to Another Address in  Shipping Details section at header level
     And I should be able to see the saved address on creating a new requisition
@@ -119,7 +119,7 @@ Feature: Checkout
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer group
   Given I am logged in eProc
 
-  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+  When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
   And I enter Requisition Name
   And I add Purchase Type
@@ -137,7 +137,7 @@ Feature: Checkout
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer
   Given I am logged in eProc
 
-  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+  When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
   And I enter Requisition Name
   And I add Purchase Type
@@ -155,7 +155,7 @@ Feature: Checkout
   Scenario: To verify that user is able to add approver in requisition workflow if activity is assigned to him/her
   Given I am logged in eProc
 
-  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+  When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
   And I enter Requisition Name
   And I add Purchase Type
@@ -174,7 +174,7 @@ Feature: Checkout
   Scenario: To verify that user is able to raise a request with stock items
   Given I am logged in eProc
 
-  When I add "1" "SEARCH_ITEM_STOCK" items to cart
+  When I add 1 "SEARCH_ITEM_STOCK" items to cart
   And I checkout
   And I enter Requisition Name
   And I add Purchase Type
@@ -273,7 +273,7 @@ Feature: Checkout
     Scenario: To verify that user is able to see the approval hierarchy after raising a requisition
     Given I am logged in eProc
 
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I enter Requisition Name
     And I add Purchase Type
@@ -288,7 +288,7 @@ Feature: Checkout
     Scenario: To verify that user should be able to buy items on behalf of other individuals. 
     Given I am logged in eProc
 
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I enter Requisition Name
     And I add a On Behalf of user
@@ -305,7 +305,7 @@ Feature: Checkout
     Scenario: To verify that user is able to create requisition for multiple items with multiple cost center for each item
     Given I am logged in eProc
 
-    When I add "2" "ITEM_NAME_FOR_SEARCHING" items to cart
+    When I add 2 "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I enter Requisition Name
     And I add Purchase Type
@@ -326,7 +326,7 @@ Feature: Checkout
 #     Given I am logged in eProc
 
 #     # When I enable the 'Automatically generate orders' for PO setting
-#     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+#     When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
 #     And I checkout
 #     And I enter Requisition Name
 #     And I add Purchase Type
@@ -352,7 +352,7 @@ Feature: Checkout
     Scenario: To verify that user is able to change the default Delivery & Bill to address in the requisition.
     Given I am logged in eProc
 
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I enter Requisition Name
     And I add Purchase Type
@@ -370,7 +370,7 @@ Feature: Checkout
     Scenario: To verify that user is able to add taxes at line item level in a requisition for catalog item
     Given I am logged in eProc
 
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I enter Requisition Name
     And I add Purchase Type
@@ -452,37 +452,42 @@ Feature: Checkout
 #   Then I should be allowed to make changes to the requisition (edit the qty)
 #   And I should be able to send the requisition for approval
 
-# @Non-COA @L1
-#   Scenario: To verify that buyer is not allowed to modify the requisition in case of Return for Amendment.
-#   Given I am logged in eProc
+@Non-COA @L1 @buyermodify
+  Scenario: To verify that buyer is not allowed to modify the requisition in case of Return for Amendment.
+  Given I am logged in eProc
 
-#   When I add a catalog item to cart
-#   And I checkout
-#   And I add Purchase Type
-#   And I add Required By Date
-#   And I add data in Cost Booking Details section at line level
-#   And I submit requisition
-#   And I approve the requisition
-#   And I navigate to Buyers Desk
-#   And I return the requisition on Buyers Desk
-#   And I allow requestor to resubmit the requisition
-#   And I view the requisition on Buyer Desk
+  When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
+  And I checkout
+  And I enter Requisition Name
+  And I add Purchase Type
+  And I add Settlement Via
+  And I add Required By Date
+  And I add data in Cost Booking Details section at line level
+  And I submit requisition
+  And I get requisition number
+  And I approve the requisition
+  And I navigate to Buyer Desk
+  And I edit and return the requisition on Buyers Desk
+  And I allow requestor to resubmit the requisition
+  And I search the requisition on Buyer Desk
 
-#   Then I should not be allowed to edit the requisition
+  Then I should not be allowed to edit the requisition
 
 
-# @Non-COA @L1
-#   Scenario: To verify that user is able to raise a request with non stock items
-#   Given I am logged in eProc
+@Non-COA @L1 @nonstock
+  Scenario: To verify that user is able to raise a request with non stock items
+  Given I am logged in eProc
 
-#   When I add a non stock item to cart
-#   And I checkout
-#   And I add Purchase Type
-#   And I add Required By Date
-#   And I add data in Cost Booking Details section at line level
-#   And I submit requisition
+  When I add 1 "SEARCH_ITEM_NONSTOCK" items to cart
+  And I checkout
+  And I enter Requisition Name
+  And I add Settlement Via
+  And I add Purchase Type
+  And I add Required By Date
+  And I add data in Cost Booking Details section at line level
+  And I submit requisition
 
-#   Then I should be able to view requisition with non stock item
+  Then I should be able to view requisition with non stock item
 
 
 
@@ -518,42 +523,40 @@ Feature: Checkout
 
   Then I should be able to see the status of the requisition changed to Closed
 
-# @Non-COA @L1 @Snehal
-#   Scenario: To verify the behavior of requisition who has PO attached to them
-#   Given I am logged in eProc
-#   And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
-#   When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
-#   And I checkout
-#   And I enter Requisition Name
-#   And I add Purchase Type
-#   And I add Required By Date
-#   And I Select Purchase Order
-#   And I add data in Cost Booking Details section at line level 
-#   And I submit requisition
-#   And I approve requisition
-#   And I navigate to Buyer Desk
-#   And I edit the requisition on Buyers Desk
-#   And I select the item and Convert req to PO
+@Non-COA @L1 @Snehal @reqPo
+  Scenario: To verify the behavior of requisition who has PO attached to them
+  Given I am logged in eProc
+  And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
+  And I have created a requisition with that PO linked and with 1 "ITEM_NAME_FOR_SEARCHING[1]"
+  And I approve the requisition
+  And I navigate to Buyer Desk
+  And I edit the requisition on buyers desk listing
+  And I select the item and Convert req to PO
 
-#   Then I should be able to see PO Amendment page of the PO which is added
+  Then I should be able to see PO Amendment page of the PO which is added
 
-# @Non-COA @L1
-#   Scenario: To verify the behavior of requisition with free text item and who has BPO attached to them
-#   Given I am logged in eProc
-
-#   When I add a free text item
-#   And I add BPO to the free text item
-#   And I checkout
-#   And I add Purchase Type
-#   And I add Required By Date
-#   And I add data in Cost Booking Details section at line level 
-#   And I submit requisition
-#   And I approve requisition
-#   And I navigate to Buyers Desk
-#   And I edit the requisition on Buyers Desk
-#   And I select the item and Convert req to PO
-
-#   Then I should be able to see BPO Release Order page on convert to PO.
+@Non-COA @L1 @bpo
+  Scenario: To verify the behavior of requisition with free text item and who has BPO attached to them
+  Given I am logged in eProc
+  # And I Create Blanket po with 1 "ITEM_NAME_FOR_SEARCHING" item
+  # And I navigate to OnlineStore
+  When I add 1 free text item
+  And I add BPO to the free text item
+  And I add free text item to cart
+  And I checkout
+  And I enter Requisition Name
+  And I add Purchase Type
+  And I add Settlement Via
+  And I add Required By Date
+  And I add data in Cost Booking Details section at line level 
+  And I submit requisition
+  And I approve the requisition
+  And I navigate to Buyer Desk
+  And I edit the requisition on buyers desk listing
+  And I select the item and Convert req to PO
+  And I select po and submit po for processing on suggested po page
+  And I search bpo and navigate to release order tab
+  Then I should be able to see BPO Release Order page on convert to PO
 
 
 
@@ -617,7 +620,7 @@ Feature: Checkout
  Scenario: COA>>To verify that user is able to add attachments to the requisition.
     Given I am logged in eProc
 
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I enter Requisition Name
     And I add Purchase Type
@@ -656,26 +659,26 @@ Feature: Checkout
 
 #     Then I should be able to view the requisition with free text item and the catalog items.
 
-# @COA @L1 @hierarchyCoa
-#     Scenario: COA>>To verify that user is able to see the approval hierarchy after raising a requisition
-#     Given I am logged in eProc
+@COA @L1 @hierarchyCoa
+    Scenario: COA>>To verify that user is able to see the approval hierarchy after raising a requisition
+    Given I am logged in eProc
 
-#     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
-#     And I checkout
-#     And I enter Requisition Name
-#     And I add Purchase Type
-#     And I add Settlement Via
-#     And I add Required By Date
-#     And I add data in Cost Booking Details section at line level 
-#     And I submit requisition
+    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I checkout
+    And I enter Requisition Name
+    And I add Purchase Type
+    And I add Settlement Via
+    And I add Required By Date
+    And I add data in Cost Booking Details section at line level 
+    And I submit requisition
 
-#     Then I should be able to view the workflow Approval hierarchy
+    Then I should be able to view the workflow Approval hierarchy
 
 @COA @L1 @Snehal @behalfCoa
     Scenario: COA>>To verify that user should be able to buy items on behalf of other individuals. 
     Given I am logged in eProc
 
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I enter Requisition Name
     And I add a On Behalf of user
@@ -695,7 +698,7 @@ Feature: Checkout
 #     Given I am logged in eProc
 
 #     # When I enable the 'Automatically generate orders' for PO setting
-#     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+#     When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
 #     And I checkout
 #     And I enter Requisition Name
 #     And I add Purchase Type
@@ -720,7 +723,7 @@ Feature: Checkout
     Scenario: COA>>To verify that system auto populates user's default Delivery & Bill to address 
     Given I am logged in eProc
 
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
 
     Then I should see on header level, Shipping Details section Default Shipping Address field should be auto populated
@@ -732,7 +735,7 @@ Feature: Checkout
     Scenario: COA>>To verify that user is able to change the default Delivery & Bill to address in the requisition.
     Given I am logged in eProc
 
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I enter Requisition Name
     And I add Purchase Type
@@ -750,7 +753,7 @@ Feature: Checkout
     Scenario: COA>> To verify that user is able to view approval Status
     Given I am logged in eProc
 
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I enter Requisition Name
     And I add Purchase Type
@@ -765,7 +768,7 @@ Feature: Checkout
     Scenario: COA>>To verify that user is able to create any custom / One time delivery address while Check out and save it for future use
     Given I am logged in eProc
 
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I enter Requisition Name
     And I add Purchase Type
@@ -781,7 +784,7 @@ Feature: Checkout
 
     Then I should be able to see new Deliver address as the Ship to Another Address on view requisition 
     And I navigate to OnlineStore
-    And I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    And I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I select Ship to Another Address in  Shipping Details section at header level
     And I should be able to see the saved address on creating a new requisition
@@ -790,7 +793,7 @@ Feature: Checkout
     Scenario: COA>>To verify that user is able to add taxes at line item level in a requisition for catalog item
     Given I am logged in eProc
 
-    When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
     And I checkout
     And I enter Requisition Name
     And I add Purchase Type
@@ -870,23 +873,26 @@ Feature: Checkout
 #   Then I should be allowed to make changes to the requisition (edit the qty)
 #   And I should be able to send the requisition for approval
 
-# @COA @L1
-#   Scenario: COA>>To verify that buyer is not allowed to modify the requisition in case of Return for Amendment.
-#   Given I am logged in eProc
+@COA @L1
+  Scenario: COA>>To verify that buyer is not allowed to modify the requisition in case of Return for Amendment.
+  Given I am logged in eProc
 
-#   When I add a catalog item to cart
-#   And I checkout
-#   And I add Purchase Type
-#   And I add Required By Date
-#   And I add data in Cost Booking Details section at line level
-#   And I submit requisition
-#   And I approve the requisition
-#   And I navigate to Buyers Desk
-#   And I return the requisition on Buyers Desk
-#   And I allow requestor to resubmit the requisition
-#   And I view the requisition on Buyer Desk
+  When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
+  And I checkout
+  And I enter Requisition Name
+  And I add Purchase Type
+  And I add Settlement Via
+  And I add Required By Date
+  And I add data in Cost Booking Details section at line level
+  And I submit requisition
+  And I get requisition number
+  And I approve the requisition
+  And I navigate to Buyer Desk
+  And I edit and return the requisition on Buyers Desk
+  And I allow requestor to resubmit the requisition
+  And I search the requisition on Buyer Desk
 
-#   Then I should not be allowed to edit the requisition
+  Then I should not be allowed to edit the requisition
 
 
 
@@ -894,7 +900,7 @@ Feature: Checkout
   Scenario: COA>>To verify that user is able to raise a request with stock items
   Given I am logged in eProc
 
-  When I add "1" "SEARCH_ITEM_STOCK" items to cart
+  When I add 1 "SEARCH_ITEM_STOCK" items to cart
   And I checkout
   And I add Purchase Type
   And I add Required By Date
@@ -903,23 +909,25 @@ Feature: Checkout
 
   Then I should be able to view requisition with stock item
 
-# @COA @L1
-#   Scenario: COA>>To verify that user is able to raise a request with non stock items
-#   Given I am logged in eProc
+@COA @L1
+  Scenario: COA>>To verify that user is able to raise a request with non stock items
+  Given I am logged in eProc
 
-#   When I add a non stock item to cart
-#   And I checkout
-#   And I add Purchase Type
-#   And I add Required By Date
-#   And I add data in Cost Booking Details section at line level
-#   And I submit requisition
+  When I add 1 "SEARCH_ITEM_NONSTOCK" items to cart
+  And I checkout
+  And I enter Requisition Name
+  And I add Settlement Via
+  And I add Purchase Type
+  And I add Required By Date
+  And I add data in Cost Booking Details section at line level
+  And I submit requisition
 
-#   Then I should be able to view requisition with non stock item
+  Then I should be able to view requisition with non stock item
 
 @COA @L1 @coaDraft @priyankaCOA
   Scenario: COA>>To verify requisition in draft and actions on it
     Given I am logged in eProc
-  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+  When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
   And I enter Requisition Name
   And I add Purchase Type
@@ -936,7 +944,7 @@ Feature: Checkout
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer group
   Given I am logged in eProc
 
-  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+  When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
   And I enter Requisition Name
   And I add Purchase Type
@@ -954,7 +962,7 @@ Feature: Checkout
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer
   Given I am logged in eProc
 
-  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+  When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
   And I enter Requisition Name
   And I add Purchase Type
@@ -990,7 +998,7 @@ Feature: Checkout
   Scenario: COA>>To verify that user is able to add approver in requisition workflow if activity if assigned to him/her
   Given I am logged in eProc
 
-  When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+  When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
   And I checkout
   And I enter Requisition Name
   And I add Purchase Type
@@ -1016,23 +1024,16 @@ Feature: Checkout
 
   Then I should be able to see the status of the requisition changed to Closed
 
-# @COA @L1
-#   Scenario: COA>>To verify the behavior of requisition who has PO attached to them
-#   Given I am logged in eProc
-
-#   When I add a catalog item to cart
-#   And I checkout
-#   And I add Purchase Type
-#   And I add Required By Date
-#   And I Select Purchase Order
-#   And I add data in Cost Booking Details section at line level 
-#   And I submit requisition
-#   And I approve requisition
-#   And I navigate to Buyers Desk
-#   And I edit the requisition on Buyers Desk
-#   And I select the item and Convert req to PO
-
-#   Then I should be able to see PO Amendment page of the PO which is added
+@COA @L1 @CoaPo
+  Scenario: COA>>To verify the behavior of requisition who has PO attached to them
+  Given I am logged in eProc
+  And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
+  And I have created a requisition with that PO linked and with 1 "ITEM_NAME_FOR_SEARCHING[1]"
+  And I approve the requisition
+  And I navigate to Buyer Desk
+  And I edit the requisition on buyers desk
+  And I select the item and Convert req to PO
+  Then I should be able to see PO Amendment page of the PO which is added
 
 # @COA @L1
 #   Scenario: COA>>To verify the behavior of requisition with free text item and who has BPO attached to them

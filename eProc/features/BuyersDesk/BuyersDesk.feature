@@ -215,7 +215,7 @@ Feature: BuyersDesk
 #     Scenario: To verify that user(buyer) is not allowed to modify the requisition.
 #     Given I am logged in eProc
 
-#     When I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart
+#    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
 #     And I checkout
 #     And I add Purchase Type
 #     And I add Required By Date

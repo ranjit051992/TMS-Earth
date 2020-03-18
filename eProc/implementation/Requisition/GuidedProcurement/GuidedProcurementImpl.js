@@ -182,6 +182,9 @@ module.exports = {
     },
 
     async fillUom(uom) {
+        await I.scrollIntoView(I.getElement(iGuided.UOM_TEXTBOX));
+        await I.waitForVisible(I.getElement(iGuided.UOM_TEXTBOX));
+        await I.clearField(I.getElement(iGuided.UOM_TEXTBOX));
         await commonKeywordImpl.searchAndSelectFromDropdown(I.getElement(iGuided.UOM_TEXTBOX), uom, "//span[contains(text(),'" + uom + "')]");
     },
 
@@ -460,7 +463,7 @@ module.exports = {
         if (guidedItem.buyerReviewRequired) {
             for (let i = 0; i < guidedItem.suppliers.length; i++) {
                 await this.fillSupplier(guidedItem.suppliers[i]);
-                let isPresent = await this.checkIfSupplierSuggestionsPresent()
+                let isPresent = await this.checkIfSupplierSuggestionsPresent();
                 if (isPresent) {
                     await this.selectSupplierCheckbox(guidedItem.suppliers[i]);
                     await this.clickOnAdditionalDetailsButton();
@@ -472,6 +475,11 @@ module.exports = {
                     guidedItem.supplierContact = contact;
                     let email = await this.getSupplierEmail();
                     guidedItem.supplierEmail= email;
+
+                    if(typeof guidedItem.bpo !== 'undefined')
+                    {
+                        await this.fillBpo(guidedItem.bpo);
+                    }
                     await this.clickOnSupplierModalDoneButton();
                 }
                 else {
@@ -496,6 +504,16 @@ module.exports = {
                     //await this.clickOnAdditionalDetailsButton();
                     await this.clickOnAddressTextbox();
                     await this.clickOnSupplierAddressSuggestion();
+                    let address = await this.getSupplierAddress();
+                    guidedItem.supplierAddress = address;
+                    let contact = await this.getSupplierContactName();
+                    guidedItem.supplierContact = contact;
+                    let email = await this.getSupplierEmail();
+                    guidedItem.supplierEmail= email;
+                    if(typeof guidedItem.bpo !== 'undefined')
+                    {
+                        await this.fillBpo(guidedItem.bpo);
+                    }
                     await this.clickOnSupplierModalDoneButton();
                 }
                 else {
@@ -580,4 +598,9 @@ module.exports = {
         logger.info("Entered Contract Id is ---->"+contractID);
         return contractID;
     },
-};
+    
+    async fillBpo(bpo) 
+    {
+        await commonKeywordImpl.searchAndSelectFromDropdown(I.getElement(iGuided.SUPPLIER_BPO_TEXTBOX), bpo, "//span[contains(text(),'" + bpo + "')]");
+    },
+}

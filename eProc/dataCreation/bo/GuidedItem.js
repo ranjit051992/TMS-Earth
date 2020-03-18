@@ -40,6 +40,7 @@ class GuidedItem
         this.lineNumber;
         this.marketPrice;
         this.supplierContractId;
+        this.bpo;
     }
     setItemName(itemName)
     {
@@ -206,7 +207,11 @@ class GuidedItem
     setSupplierContractId(supplierContractId)
     {
         this.supplierContractId = supplierContractId;
-
+    }
+    
+    setBpo(bpo)
+    {
+        this.bpo = bpo;
     }
 }
 module.exports=GuidedItem;

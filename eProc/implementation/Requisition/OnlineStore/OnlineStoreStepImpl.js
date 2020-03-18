@@ -13,7 +13,8 @@ const objCreation= require("../../../dataCreation/ObjectCreation");
 const iGuided = require("../GuidedProcurement/GuidedProcurementObject");
 const commonComponent = require("../../../commonKeywords/CommonComponent");
 let map = new Map();
-
+const addItemDetailsImpl = require("../AddItemDetails/AddItemDetailsImpl");
+const guidedImpl = require("../GuidedProcurement/GuidedProcurementImpl");
 
 When("I search for {string} {string} items", async function (noOfItem, itemType) {
 
@@ -40,7 +41,7 @@ When("I search for {string} {string} items", async function (noOfItem, itemType)
 });
 
 
-When("I add {string} {string} items to cart", async function (noOfItem, itemType) {
+When("I add {int} {string} items to cart", async function (noOfItem, itemType) {
 
     //onlineStoreImpl.addItemsToCart(noOfItem,itemType);
     this.reqBO = await objCreation.getObjectOfRequisition(noOfItem, itemType);
@@ -48,10 +49,24 @@ When("I add {string} {string} items to cart", async function (noOfItem, itemType
     await I.wait(prop.DEFAULT_WAIT);
     let itemArray = new Array();
 
-    if((itemType.indexOf('[')) > 0 && noOfItem==="1")
+    if((itemType.indexOf('[')) > 0 && noOfItem===1)
     {
         let item = await I.getData(itemType);
-        await onlineStoreImpl.searchItem(item);
+
+        if(itemType==="SEARCH_ITEM_NONSTOCK")
+        {
+            await addItemDetailsImpl.addNonStockItemToCart(this.reqBO.items[0]);
+            item = this.reqBO.items[0].itemName;
+        }
+        else if(itemType==="SEARCH_GUIDED_ITEM")
+        {
+            await guidedImpl.CreateGuidedItem(this.reqBO.items[0]);
+            item = this.reqBO.items[0].itemName;
+        }
+        else
+        {    
+            await onlineStoreImpl.addItemToCart(item,faker.random.number(20));
+        }
         itemArray.push(item);
     }
     else
@@ -59,10 +74,24 @@ When("I add {string} {string} items to cart", async function (noOfItem, itemType
         for (let i = 0; i < noOfItem; i++) 
         {
             let item = await I.getData(itemType+"["+i+"]");
-            await onlineStoreImpl.addItemToCart(item, faker.random.number(20));
+
+            if(itemType==="SEARCH_ITEM_NONSTOCK")
+            {
+                await addItemDetailsImpl.addNonStockItemToCart(this.reqBO.items[i]);
+                item = this.reqBO.items[i].itemName;
+            }
+            else if(itemType==="SEARCH_GUIDED_ITEM")
+            {
+                await guidedImpl.CreateGuidedItem(this.reqBO.item[i]);
+                item = this.reqBO.items[i].itemName;
+            }
+            else
+            {    
+                await onlineStoreImpl.addItemToCart(item,faker.random.number(20));
+            }
             itemArray.push(item);
 
-        }
+        }``
     }
     this.addedCartItems = itemArray;
 
@@ -236,3 +265,4 @@ When("I add a catalog item {string} with quantity {int} to cart", async function
     this.addedItem = itemName;
     this.addedQuantity = quantity;
 });
+

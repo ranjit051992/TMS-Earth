@@ -22,6 +22,7 @@ Given("I am on PO listing page", async function () {
 Given("I Create Blanket po with {int} {string} item", async function (noOfItems, itemType) {
     this.bpo = await objectCreation.getObjectOfBlanketPO(noOfItems, itemType);
     this.bpo = await bpoImpl.createBpoFlow(this.bpo);
+  await I.wait(30);
  });
 
  Given("I approve the BPO", async function(){
@@ -99,3 +100,19 @@ Given( "I Create {int} Blanket POs with {int} {string} item", async function (no
    this.bpoArray = await bpoImpl.createMultipleBPOs(noOfPOs, noOfItems, itemType);
    logger.info("Required number of BPOs created");
 });
+
+
+
+ Given("I search bpo and navigate to release order tab", async function(){
+   await commonKeywordImpl.searchDocOnListing(this.bpo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+   await poListingImpl.clickOnPoNumber(this.bpo.poNumber);
+   await bpoImpl.clickOnReleaseOrderTab();
+   
+ });
+
+ Then("I should be able to see BPO Release Order page on convert to PO", async function(){
+   
+   await bpoImpl.clickOnPoNumberLinkOnReleaseOrderTab(this.bpo.poNumber);
+   let isPresent = await bpoImpl.checkReqNumberOnReleaseOrders(this.reqBO.reqNumber);
+   I.assertEqual(isPresent, true);
+ });

@@ -358,3 +358,8 @@ Then("I should be able to see the new item with unique line item number", async 
    let flag = await spoImpl.verifyViewSpoItemLevelSrNo();
    assert.strictEqual(true, flag, "Item level sr no validation failed");
 });
+
+Then("I should be able to see PO Amendment page of the PO which is added", async function(){
+   let isPresent = await spoImpl.checkIfAmendPoPageDisplayed(this.reqBO.linkedPoNumber);
+   I.assertEqual(isPresent,true);
+ });

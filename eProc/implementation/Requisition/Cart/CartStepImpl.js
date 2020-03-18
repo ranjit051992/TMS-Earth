@@ -22,7 +22,7 @@ Given("I checkout", async function () {
 });
 
 
-Then("I should see {string} {string} items in Cart", async function(noOfItem,itemType){
+Then("I should see {int} {string} items in Cart", async function(noOfItem,itemType){
     let isPresent = true;
 
     await onlinestoreImpl.clickOnCartIcon();

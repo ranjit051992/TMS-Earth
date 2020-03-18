@@ -625,7 +625,9 @@ module.exports = {
         return itemName;
     },
 
-    async verifyViewSpoItemLevelSrNo() {
+
+    async verifyViewSpoItemLevelSrNo() 
+    {
         let flag = false;
         let srNoArray = new Array();
         await I.waitForVisible(I.getElement(iSpoObject.ITEM_LEVEL_SR_NO));
@@ -653,6 +655,20 @@ module.exports = {
             logger.info("Item level sr no validation passed");
         }
         return flag;
+    },
+
+    async checkIfAmendPoPageDisplayed(poNumber)
+    {
+        await I.waitForElement("//div[contains(text(),'"+poNumber+"')]");
+        let noOfElement = await I.grabNumberOfVisibleElements("//div[contains(text(),'"+poNumber+"')]");
+        let isPresent = false;
+        if(noOfElement>0)
+        {
+            isPresent = true;
+        }
+
+        return isPresent;
     }
+
 
 }
