@@ -273,37 +273,29 @@ Feature: Spo
   Then I should be able to see the new item with unique line item number
 
 
-# @Non-COA @L2     
-# Scenario: To verify that user is able to create a SPO with single & multiple line items and with attachments in Zycus eproc
+@Non-COA @L2 @85noncoa
+Scenario: To verify that user is able to create a SPO with single & multiple line items and with attachments in Zycus eproc
 
-#   Given I am logged in eProc
-#   And I am on PO listing page 
+  Given I am logged in eProc
+  And I have created a PO with 1 "ITEM_NAME_FOR_SEARCHING" and 1 free text item and header level attachment
 
+  When I view the PO
 
-#   When I click on Create SPO button
-#   And I select supplier details
-#   And I add Purchase type 
-#   And I add Required by date
-#   And I search catalog item with "search_term"
-#   And I add costing and accounting details for that item
-#   And I add 1 free text item with details
-#   And I add attachment at header level
-#   And I submit the PO 
-
-#   Then I should be able to view the SPO with multiple items and attachments
+  Then Item should be added "ITEM_NAME_FOR_SEARCHING" at index 1
+  And Free text item should be added at index 2
+  And Attachment should be added
 
 
-# @Non-COA @L1
-#   Scenario: To verify that user is able to create a Req_PO with single and multiple line items and with attachments in Zycus eproc
+@Non-COA @L1 @86noncoa
+  Scenario: To verify that user is able to create a Req_PO with single and multiple line items and with attachments in Zycus eproc
 
-#   Given I am logged in eProc 
-#   And I have submitted a requisition with two catalog items and header level attachments
+  Given I am logged in eProc 
+  And I have created a req to po with 1 "ITEM_NAME_FOR_SEARCHING" and 1 free text item and header level attachment "ATTACHMENT_PATH"
 
-#   When I convert the requisition to PO
-#   And I navigate to PO listing
-#   And I view the PO
+  When I view the PO
 
-#   Then I should be able to see all the added items and attachments
+  Then Req items should be added
+  And Attachment should be added
 
 
 # @Non-COA @L1
