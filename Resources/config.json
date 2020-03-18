@@ -38,9 +38,9 @@
     },
 
     "iContract": {
-        "url": "https://dewdrops-partner.zycus.com/",
-        "poListingUrl": "https://dewdrops-partner.zycus.com/#eproc/purchaseorder/default/listing",
-        "DDS_OnlineStore_Url": "https://dewdrops-partner.zycus.com/eproc/#/online-store",
+        "url": "https://dewdrops-staging.zycus.com/",
+        "poListingUrl": "https://dewdrops-staging.zycus.com/#eproc/purchaseorder/default/listing",
+        "DDS_OnlineStore_Url": "https://dewdrops-staging.zycus.com/eproc/#/online-store",
         "SETUP": "RM",
         "TENANT": "ZCS",
         "browser": "chrome",
@@ -65,10 +65,10 @@
         "uiElementTable":"Cucumber_CodeCept_iContract_OR"             
     },
     "eInvoice": {
-        "url": "https://dewdrops-partner.zycus.com/home/#/auth",
-        "poListingUrl": "https://dewdrops-partner.zycus.com/eproc/#/purchaseorder/default/listing",
-        "DDS_OnlineStore_Url": "https://dewdrops-partner.zycus.com/eproc/#/online-store",
-        "SETUP": "PARTNER",
+        "url": "https://dewdrops-staging.zycus.com/home/#/auth",
+        "poListingUrl": "https://dewdrops-staging.zycus.com/eproc/#/purchaseorder/default/listing",
+        "DDS_OnlineStore_Url": "https://dewdrops-staging.zycus.com/eproc/#/online-store",
+        "SETUP": "staging",
         "TENANT": "ZCS",
         "browser": "chrome",
         "host": "127.0.0.1",
