@@ -232,13 +232,16 @@ module.exports = {
     },
     async fillAgreementDetails(bpo){
         logger.info(`**************Filling Agreement Details**************`);
-        await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_AGREEMENT_DETAILS_SECTION"));
-        await this.clickDefineBuyingScope();
-        await this.fillBusinessUnit(bpo.businessUnit);
-        await this.fillLocation(bpo.location);
-        await this.fillCostCenter(bpo.costCenter);
-        
-
+        if(prop.isCoa) {
+            await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_AGREEMENT_DETAILS_SECTION"));
+            await this.clickDefineBuyingScope();
+            await this.fillBusinessUnit(bpo.businessUnit);
+            await this.fillLocation(bpo.location);
+            await this.fillCostCenter(bpo.costCenter);
+        }
+        else {
+            logger.info(`****************Define Buying scope skipped in COA Form******************`);
+        }
     },
     async fillValidity(bpo){
         logger.info(`*****************Filling Validity*****************`);
