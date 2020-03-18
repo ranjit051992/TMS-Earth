@@ -3,13 +3,13 @@ Feature: Login
 
 
 Scenario: verify Login with valid credential.
-Given user navigates to the login page
-And user enter valid "GDQA-P2P@zycus.com","YoDeHaCoPoBiBaIoAiWiYeQe8&7" credentials
+Given I navigate to the login page
+And user enter valid "support.sanity@zycus.com","NuIuRuDaLaAaPoLiPeViQeWoXa2$3" credentials
 Then login must be successful
 
 Scenario: verify Login with Invalid credential.
-Given user navigates to the login page
-And user enter invalid "GDQA-P2P@zycus.com","YoDeHaCoPoBiBaIoAiWiYeQe28&7" credentials
+Given I navigate to the login page
+And user enter invalid "support.sanity@zycus.com","NuIuRuDaLaAaPoLiPeViQeWoXa21$3" credentials
 Then login must give validation error
 
 

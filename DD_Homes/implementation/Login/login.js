@@ -1,10 +1,6 @@
 const { I } = inject();
 const CommonKeyword = require("dd-cc-zycus-automation/components/commonKeyword")
 
-Given ("user navigates to the login page", async function() {
-     I.amOnPage("/");
-});
-
 Given ("user enter valid {string},{string} credentials", async function(username,password) {
     CommonKeyword.clickElement("//input[@formcontrolname='emailAddress']");
     CommonKeyword.enterText("Email Address", username);
