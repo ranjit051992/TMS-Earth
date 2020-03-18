@@ -114,46 +114,31 @@ Feature: Bpo
 #    Then I should be able to see the BPO in Cancelled status
 
  
-#  @COA @L1
-#    Scenario: COA _ To verify that user is able to create a blanket PO with attachments in Zycus P2P
+ @COA @L1
+   Scenario: COA _ To verify that user is able to create a blanket PO with attachments in Zycus P2P
 
-#    Given I am logged in eproc
-#    And I am on PO listing page 
+   Given I am logged in eproc
+   And I am on PO listing page
 
+   When I click on Create Blanket PO button
+   And I add all required details in BPO with 1 "ITEM_NAME_FOR_SEARCHING" item
+   And I add attachment "ATTACHMENT_PATH"
+   And I submit the BPO
 
-#    When I click on Create Blanket PO button
-#    And I select supplier details
-#    And I add Required by date
-#    And I search catalog item with "search_term" 
-#    And I add costing and accounting details for that item
-#    And I add 1 free text item with details
-#    And I add 1 attachment at header level
-#    And I Define Buying Scope
-#    And I enter current date in Validity To date
-#    And I enter current date in Validity From date
-#    And I submit the PO 
-
-#    Then I should be able to view the BPO with multiple items and attachments 
+   Then I should be able to view the BPO with the attachments 
 
 
 #  @COA @L1
 #    Scenario: COA _ To verify that user is able to choose a start date and an End Date
 
-#    Given I am logged in eproc
-#    And I am on PO listing page 
+   Given I am logged in eproc
+   And I am on PO listing page
 
+    When I click on Create Blanket PO button
+    And I add all required details in BPO with 1 "ITEM_NAME_FOR_SEARCHING" item
+    And I submit the BPO
 
-#    When I click on Create Blanket PO button
-#    And I select supplier details
-#    And I add Required by date
-#    And I search catalog item with "search_term" 
-#    And I add costing and accounting details for that item
-#    And I Define Buying Scope
-#    And I enter current date in Validity To date
-#    And I enter 3 days ahead of current date in Validity From date
-#    And I submit the BPO 
-
-#    Then I should be able to view the BPO with Validity To and From dates selected
+   Then I should be able to view the BPO with Validity To and From dates selected
 
   
 #  @COA @L1
