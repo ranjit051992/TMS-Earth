@@ -76,6 +76,7 @@ When("I add a On Behalf of user", async function(){
 });
 
 When("I add Required By Date", async function(){
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
     await checkoutImp.selectRequiredByDate();
 });
 
@@ -377,7 +378,7 @@ When("I add Delivery split at line level into {int} splits", async function(noOf
 
 When("I change the address for split {int}", async function(forSplit){
     this.changedAddress = await checkoutImp.enterLineLevelAddress(I.getData("SHIP_TO_ADDRESS_NAME[1]"), forSplit);
-    logger.info("Changed address for split "+forSplit+" is --->>"+changedAddress);
+    logger.info("Changed address for split "+forSplit+" is --->>"+this.changedAddress);
 });
 
 Given("I Select Purchase Order", async function(){
@@ -393,3 +394,35 @@ Given("I have created a requisition with that PO linked and converted it to PO w
     this.reqBO1.linkedPoNumber = this.reqBO.poNumber;
     this.reqBO = await checkoutImp.createReqToPoWithPoLinked(this.reqBO1);
  });
+
+Then("I should see contract linked to free text item on viewing the item", async function(){
+    let isContractLink = false;
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    await checkoutImp.clickOnSupplierEditIcon();
+    let contractID = await checkoutImp.getSupplierContractId();
+
+    if(contractID.toString().trim() === this.contractID.toString().trim())
+    {
+        isContractLink = true;
+        logger.info("Contract is Link to free text item");
+    }
+
+    I.assertEqual(isContractLink, true);
+});
+
+Then("I should be able to Save the line level COA form", async function(){
+    let isCOAfilled = false;
+    let coaArray = new Array();
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));  
+    await checkoutImp.clickOnCostBookingLink(this.reqBO.items[0].itemName);
+    coaArray = await coaImp.fetchCoaFormData();
+
+    if(coaArray.length >0)
+    {
+        isCOAfilled = true;
+        logger.info("Line Level COA form is saved ---->"+coaArray);
+    }
+
+    I.assertEqual(isCOAfilled, true);
+
+});

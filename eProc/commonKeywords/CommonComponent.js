@@ -146,7 +146,7 @@ module.exports={
     {
         let sectionXapth = `//div[contains(text(),'${sectionName}')]`;
         await I.scrollIntoView(sectionXapth);
-        await  I.wait(prop.DEFAULT_MEDIUM_WAIT);
+        await  I.wait(prop.DEFAULT_WAIT);
         logger.info("Scrolled to Section "+sectionName);
     },
 
@@ -428,7 +428,7 @@ module.exports={
     {
         let columnIndex = await (await this.getColumnIndexOnListingPage(columnName)).toString();
         let columnHeaderXpath = await I.getElement(commonKeywordObject.ALL_COLUMN_HEADER_TEXT);
-        columnHeaderXpath = "((" + columnHeaderXpath + "/..)[" + columnIndex + "]//dew-row[contains(@class,'list-body')])//div[2]";
+        columnHeaderXpath = "((" + columnHeaderXpath + "/..)[" + columnIndex + "]//dew-row[contains(@class,'list-body')])//div";
         logger.info("Xpath for retrieving column value --> " + columnHeaderXpath);
         await I.scrollIntoView(columnHeaderXpath);
         //await I.waitForVisible(columnHeaderXpath, prop.DEFAULT_HIGH_WAIT);

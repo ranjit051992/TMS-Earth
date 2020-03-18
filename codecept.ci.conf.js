@@ -1,5 +1,5 @@
 const parsing= require("./Framework/PropertiesConfigurator");
-parsing("eProc");
+parsing();
 const prop = global.confi_prop;
 global.lang = 'en';
 exports.config = {
@@ -38,6 +38,7 @@ exports.config = {
   },
   bootstrap: "./bootstrap.js",
   teardown: "./bootstrap.js",
+  teardownAll: "./get_all_reports.js",
   include: {
     I: prop.stepFilePath,
   },

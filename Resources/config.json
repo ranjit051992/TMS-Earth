@@ -33,10 +33,10 @@
         "LOGIN_WITH_PASSWORD_MANAGER": false,
         "isCoa": false,
         "runOnGrid": false,
-        "USERNAME": "auto.staging3@zycus.com",
-        "PASSWORD": "MeEeQoBuIaRuRaL$97"
-
+        "USERNAME": "auto.staging1@zycus.com",
+        "PASSWORD": "NuEuOiBuCeFe&40"
     },
+
     "iContract": {
         "url": "https://dewdrops-partner.zycus.com/",
         "poListingUrl": "https://dewdrops-partner.zycus.com/#eproc/purchaseorder/default/listing",
