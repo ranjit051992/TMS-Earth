@@ -1,4 +1,4 @@
-xconst { I } = inject();
+const { I } = inject();
 const iCheckout = require("./CheckoutObject");
 const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger");
 const commonComponent = require("../../../commonKeywords/CommonComponent");
