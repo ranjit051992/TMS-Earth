@@ -176,19 +176,13 @@ module.exports = {
 
     },
 
-<<<<<<< HEAD
-    async fetchStatus() {
-        I.waitForVisible(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING), prop.DEFAULT_MEDIUM_WAIT);
-        let status = await I.grabTextFrom(I.getElement(iBuyersDeskObject.STATUS_LISTING));
-=======
     async fetchStatus(){
         I.waitForVisible(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
         let status = await I.grabTextFrom(I.getElement(iBuyersDeskObject.REQUISITION_STATUS_LISTING));
->>>>>>> 860537ecf26811d1a94ab3ad88bac44b2a282285
         return status;
 
     },
-
+    
     async SearchRequestor(requestor) {
 
         logger.info('Searched Requestor :' + requestor);
