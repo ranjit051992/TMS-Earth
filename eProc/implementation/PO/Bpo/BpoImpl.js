@@ -111,11 +111,6 @@ module.exports = {
     },
 
 
-
-
-
-
-
     async fillBasicDetails(bpo) {
         logger.info(`**************Filling Basic Details**************`);
         await spoImpl.fillPONumber(bpo.poNumber);
@@ -210,7 +205,7 @@ module.exports = {
             await spoImpl.selectItemOption(bpo.items[i].itemName);
             await this.clickOnCostBookingLink(bpo.items[i].itemName);
             await coaImpl.fillCoaDetails();
-            await this.addMaxUnitPrice();
+            await this.addMaxUnitPrice(bpo);
         }
 
         return bpo;
@@ -232,7 +227,7 @@ module.exports = {
     },
     async fillAgreementDetails(bpo){
         logger.info(`**************Filling Agreement Details**************`);
-        if(prop.isCoa) {
+        if(!prop.isCoa) {
             await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_AGREEMENT_DETAILS_SECTION"));
             await this.clickDefineBuyingScope();
             await this.fillBusinessUnit(bpo.businessUnit);
@@ -294,9 +289,10 @@ module.exports = {
     async fillCostCenter(costCenter){
         await I.waitForVisible(I.getElement(iBpoObject.COST_CENTER_DROPDOWN));
         await I.click(I.getElement(iBpoObject.COST_CENTER_DROPDOWN));
-        await I.fillField(I.getElement(iBpoObject.COST_CENTER_DROPDOWN), costCenter);
-        await I.waitForVisible(I.getElement(iBpoObject.BUSINESS_UNIT_LOCATION_SELECTION));
-        await I.click(I.getElement(iBpoObject.BUSINESS_UNIT_LOCATION_SELECTION));
+        let xpath = `//span[contains(text(),'${costCenter}')]`;
+        // await I.fillField(I.getElement(iBpoObject.COST_CENTER_DROPDOWN), costCenter);
+        await I.scrollIntoView(xpath);
+        await I.click(xpath);
         await I.waitForVisible(I.getElement(iBpoObject.OK_BUTTON));
         await I.click(I.getElement(iBpoObject.OK_BUTTON));
     },
@@ -331,6 +327,7 @@ module.exports = {
         await I.click(I.getElement(iBpoObject.ORDER_VALUE));
         let orderValue = bpo.PoAmount.toString();
         orderValue = orderValue.substring(orderValue.indexOf(" ")+1);
+        orderValue = orderValue.replace(",","");
         orderValue = parseFloat(orderValue)+ parseFloat(bpo.date);
         await I.fillField(I.getElement(iBpoObject.ORDER_VALUE), orderValue);
         return orderValue;
@@ -342,13 +339,7 @@ module.exports = {
         return parseFloat(orderValueView);
 
     },
-    async approveBpoFlow(bpo){
-        await approvalImpl.navigateToApprovalListing();
-        // await approvalImpl.navi
-        // await approvalImpl.approveDoc
-
-    },
-    async addMaxUnitPrice()
+    async addMaxUnitPrice(bpo)
     {
         await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
         await I.waitForVisible(I.getElement(iBpoObject.ITEM_EDIT));
@@ -359,6 +350,7 @@ module.exports = {
         let maxPriceXpath = `//input[@aria-label='${maxPrice}']`;
         await I.scrollIntoView(marketPriceXpath);
         let itemPrice = await I.grabAttributeFrom(marketPriceXpath, "value");
+        bpo.setItemPrice(itemPrice);
         await I.fillField(maxPriceXpath, itemPrice.toString());
         await I.waitForVisible(I.getElement(iBpoObject.ITEM_SUMMARY_OK_BUTTON));
         await I.click(I.getElement(iBpoObject.ITEM_SUMMARY_OK_BUTTON));
@@ -375,6 +367,77 @@ module.exports = {
         }
 
         return bpoArray;
+    },
+    async approveBpoFlow(poNumber) {
+        await approvalImpl.navigateToApprovalListing();
+        await approvalImpl.navigateToBPOApprovalListingTab();
+        await approvalImpl.approveDoc(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        await approvalImpl.checkPOApprovalStatus(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        let status = await approvalImpl.getSpoStatus();
+
+        let flag = status.toString() === lmtVar.getLabel("APPROVED_STATUS")
+        if(!flag) {
+            logger.info(`Failed to approve bpo because status is ${status} on Approval listing after approving`);
+            throw new Error(`Failed to approve bpo because status is ${status} on Approval listing after approving`);
+        }
+        else {
+            logger.info("Bpo is approved successfully");
+        }
+        
+        await I.wait(prop.DEFAULT_HIGH_WAIT);
+        await poListingImpl.navigateToPoListing();
+        await commonKeywordImpl.searchDocOnListing(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        status = await poListingImpl.getPoStatus();
+        logger.info(`Status in db --> ${lmtVar.getLabel("RELEASED_STATUS")}`);
+        flag = status.toString().includes(lmtVar.getLabel("RELEASED_STATUS"));
+        if(!flag) {
+            logger.info(`Failed to release bpo because status is ${status} on po listing after approving`);
+            throw new Error(`Failed to release bpo because status is ${status} on po listing after approving`);
+        }
+        else {
+            logger.info("Bpo is released successfully");
+        }
+    },
+
+    async createReleaseOrder()
+    {
+        await I.waitForVisible(I.getElement(iBpoObject.CREATE_RELEASE_BUTTON));
+        await I.click(I.getElement(iBpoObject.CREATE_RELEASE_BUTTON));
+        await this.submitPo();
+    },
+
+    async compareReleaseOrderData()
+    {
+        await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_SUPPLIER_DETAILS_SECTION"));
+        await I.waitForVisible(I.getElement(iBpoObject.SUPPLIER_NAME));
+        let supplierName = await I.grabTextFrom(I.getElement(iBpoObject.SUPPLIER_NAME));
+        await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_LINE_ITEMS_SECTION"));
+        await I.waitForVisible(I.getElement(iBpoObject.ITEM_NAME));
+        let itemName = await I.grabTextFrom(I.getElement(iBpoObject.ITEM_NAME));
+        let itemPrice = await I.grabTextFrom(I.getElement(iBpoObject.ITEM_PRICE));
+        itemPrice = itemPrice.substring(itemPrice.indexOf(" ")+1);
+        itemPrice = itemPrice.replace(",","");
+        itemPrice = parseFloat(itemPrice);
+        await I.click(I.getElement(iBpoObject.COST_BOOKING_DETAILS_TAB));
+        await I.waitForVisible(I.getElement(iBpoObject.GL_ACCOUNT));
+        let glAccount = await I.grabTextFrom(I.getElement(iBpoObject.GL_ACCOUNT));
+        glAccount = glAccount.substring(glAccount.indexOf(" ")+1);
+        let array = new Array;
+        array.push(supplierName);
+        array.push(itemName);
+        array.push(itemPrice);
+        array.push(glAccount);
+        return array;
+    },
+    async createAndReleaseBpoFlow(bpo) {
+        bpo = await this.createBpoFlow(bpo);
+        if(bpo.status.toString() === lmtVar.getLabel("IN_APPROVAL_STATUS")) {
+            await this.approveBpoFlow(bpo.poNumber);
+        }
+        else {
+            logger.info(`PO status after submission was ${bpo.status} and not ${lmtVar.getLabel("IN_APPROVAL_STATUS")}. Hence, not executing the Approve PO action.`);
+        }
+        return bpo;
     },
 
 
