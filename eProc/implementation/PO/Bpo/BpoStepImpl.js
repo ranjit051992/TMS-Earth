@@ -24,8 +24,13 @@ Given("I Create Blanket po with {int} {string} item", async function (noOfItems,
     this.bpo = await bpoImpl.createBpoFlow(this.bpo);
  });
 
+Given("I Create Blanket po with {int} {string} item and approve it", async function (noOfItems, itemType) {
+   this.bpo = await objectCreation.getObjectOfBlanketPO(noOfItems, itemType);
+   this.bpo = await bpoImpl.createAndReleaseBpoFlow(this.bpo);
+});
+
  Given("I approve the BPO", async function(){
-      await bpo
+      await bpoImpl.approveBpoFlow(this.bpo.poNumber);
  });
 
  When("I click on Create Blanket PO button", async function(){
@@ -52,17 +57,26 @@ Given("I Create Blanket po with {int} {string} item", async function (noOfItems,
  });
 
  When("I submit the BPO", async function(){
-        await bpoImpl.submitPo();
+      await bpoImpl.submitPo();
+ });
+
+ When("I create Release of the BPO", async function(){
+      await bpoImpl.createReleaseOrder();     
+ });
+
+ Then("I should be able to view the proper details in Release Order", async function(){
+   let array = await bpoImpl.compareReleaseOrderData();
+   I.assertEqual(array[0], this.bpo.supplierName);
+   I.assertEqual(array[1], this.bpo.items[0].itemName);
+   let itemPrice = this.bpo.itemPrice.toString();
+   I.assertEqual(array[2], parseInt(itemPrice));
+   I.assertEqual(array[3], this.bpo.glAccount);   
  });
 
  Then("I should be able to view the BPO with Order Value entered", async function(){
     let orderValueView = await bpoImpl.getOrderValue();
       I.assertEqual(this.orderValue, orderValueView);
 });
-
-//  Then("I should be able to see the BPO in Cancelled status", async function(){
-
-//  });
 
  Then("I should be able to view the BPO with the attachments", async function(){
     await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_ADD_ATTACHMENT_SECTION"));
@@ -76,12 +90,12 @@ Given("I Create Blanket po with {int} {string} item", async function (noOfItems,
     I.assertEqual(fromDateView, this.bpo.fromDate);
     I.assertEqual(toDateView, this.bpo.toDate);
  });
+
+// Then("I should be able to view released order against the BPO", async function(){
+
+//  });
 When("I add attachment at header level", async function(){
       await bpoImpl.addAttachment(this.bpo.attachmentPath);
- });
-
-Then("I should be able to see the BPO in Cancelled status", async function(){
-
  });
 
 Given( "I have BPO with In Approval status", async function() {

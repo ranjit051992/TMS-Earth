@@ -28,20 +28,20 @@ Feature: Bpo
 
 
  @Non-COA @L1 @Pooja
-   Scenario: To verify that user is able to choose a start date and an End Date
+    Scenario: To verify that user is able to choose a start date and an End Date
 
-   Given I am logged in eproc
-   And I am on PO listing page
+    Given I am logged in eproc
+    And I am on PO listing page
 
     When I click on Create Blanket PO button
     And I add all required details in BPO with 1 "ITEM_NAME_FOR_SEARCHING" item
     And I submit the BPO
 
-   Then I should be able to view the BPO with Validity To and From dates selected
+    Then I should be able to view the BPO with Validity To and From dates selected
 
 
  @Non-COA @L1 @Pooja
-   Scenario: To verify that user is able to choose a spend limit
+    Scenario: To verify that user is able to choose a spend limit
 
     Given I am logged in eproc
     And I am on PO listing page
@@ -51,34 +51,29 @@ Feature: Bpo
     And I update the spend limit
     And I submit the BPO
 
-   Then I should be able to view the BPO with Order Value entered
+    Then I should be able to view the BPO with Order Value entered
 
 
-#  @Non-COA @L1 @BPO @Pooja
-  #  Scenario: To verify that user is able to create PO releases against Blanket PO
+ @Non-COA @L1 @BPO @Pooja
+   Scenario: To verify that user is able to create PO releases against Blanket PO
 
-  #  Given I am logged in eproc
-  #  And I Create Blanket po with 1 "ITEM_NAME_FOR_SEARCHING" item
+   Given I am logged in eproc
+   And I Create Blanket po with 1 "ITEM_NAME_FOR_SEARCHING" item and approve it
 
-  #  When I click on Create Release action against the BPO created
-  #  And I fill the accounting details against the item
-  #  And I submit the Release
-  #  And I view the release created
+   When I create Release of the BPO
 
-  #  Then I should be able to view the details filled in Release (Supplier, item name, item price, GL Account)
+   Then I should be able to view the proper details in Release Order
 
 
 #  @Non-COA @L1 @Pooja
 #    Scenario: To verify that user is able to view all the released orders generated against a  BPO on a new tab called "Release Orders"
 
 #    Given I am logged in eproc
-#    And I have created a Blanket PO with a catalog item
-#    And I have created a release against the BPO.
+#    And I Create Blanket po with 1 "ITEM_NAME_FOR_SEARCHING" item and approve it
 
-#    When I view the BPO
-#    And I navigate to Release orders tab 
+#    When I create Release of the BPO
 
-#    Then the Release created against the BPO should be listed there
+#    Then I should be able to view released order against the BPO
 
 
 #  @Non-COA @L1 @Pooja

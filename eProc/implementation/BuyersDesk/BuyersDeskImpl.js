@@ -648,7 +648,7 @@ module.exports = {
         let buyer = await I.grabTextFrom(I.getElement(iBuyersDeskObject.ASSIGNED_BUYER_REQUISITION));
         return buyer;
     }
-    
+
 }
 
  
