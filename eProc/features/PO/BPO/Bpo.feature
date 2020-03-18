@@ -30,7 +30,7 @@ Feature: Bpo
  @Non-COA @L1 @Pooja
     Scenario: To verify that user is able to choose a start date and an End Date
 
-    Given I am logged in eproc
+    Given I am logged in eProc
     And I am on PO listing page
 
    When I click on Create Blanket PO button
@@ -57,7 +57,7 @@ Feature: Bpo
  @Non-COA @L1 @BPO @Pooja
    Scenario: To verify that user is able to create PO releases against Blanket PO
 
-   Given I am logged in eproc
+   Given I am logged in eProc
    And I Create Blanket po with 1 "ITEM_NAME_FOR_SEARCHING" item and approve it
 
    When I create Release of the BPO
