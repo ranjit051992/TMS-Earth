@@ -151,12 +151,12 @@ When ("I filter with Purchase Amount {string} and {string}" , async function(min
 
 
 
-When ("I filter with {string} status", async function(status){
-  logger.info("Status to be searched"+status);
-  buyersDeskImpl.clickonStatusFilterButton();
-  buyersDeskImpl.filterStatus(requisition.status);
+// When ("I filter with {string} status", async function(status){
+//   logger.info("Status to be searched"+status);
+//   buyersDeskImpl.clickonStatusFilterButton();
+//   buyersDeskImpl.filterStatus(requisition.status);
 
-});
+// });
 
 
 Then ("I should be see the data on the page with the filtered amount {string} and {string}", async function(minValue,maxValue){
@@ -178,9 +178,8 @@ Then ("I should be see the data on the page with the filtered amount {string} an
   });
 
   Then("I should be see the data on the page with the filtered status", async function(){
-    let fetchedStatus = await buyersDeskImpl.fetchStatus();
-    logger.info('Searched Status '+fStatus);
-    I.assertContain(fetchedStatus.toString(),requisition.status.toString());  
+    let fetchedflag = await buyersDeskImpl.verifyReqStatusAfterReSubmitReq();
+    I.assertEqual(fetchedflag,true);  
 
 });
 
@@ -302,6 +301,32 @@ Then("I should be see the data on the page on the basis on Submitted on field", 
   I.assertEqual(flag, true);
 });
 
+
+When ("I filter with {string} status requisition", async function(status){
+let fetchedStatus;
+logger.info("Status selected is:"+status);
+await buyersDeskImpl.selectReqStatusFilter(status);
+});
+
+
+When ("I view any requisition", async function(){
+logger.info("Viewing the Requisition");
+await buyersDeskImpl.clickonViewReq();
+logger.info("Clicked on View Requisition");
+
+});
+
+Then ("I should be able to view the requisition with all details",async function(){
+   await verifyreqdetails();
+
+});
+
+// When("I add a catalog item to cart", async function(){
+//   this.reqBo= await objectCreation.getObjectOfRequisition("1", "ITEM_NAME_FOR_SEARCHING");
+//   await cartImpl.clearCart();
+//   let item = await I.getData("ITEM_NAME_FOR_SEARCHING");
+//   await onlineStoreImpl.addItemToCart(item,faker.random.number(20));
+// });
 When("I add a catalog item to cart", async function(){
   this.reqBO= await objectCreation.getObjectOfRequisition("1", "ITEM_NAME_FOR_SEARCHING");
   logger.info('Purchase Type is '+this.reqBO.purchaseType)
@@ -343,3 +368,5 @@ Then("I should be able to see updated Buyer on Requisition page also.",async fun
   logger.info('Updated Buyer is '+this.reqBO.buyer);
   I.assertEqual(fetchedBuyer.toString().trim(), this.reqBO.buyer.trim());
 });
+
+
