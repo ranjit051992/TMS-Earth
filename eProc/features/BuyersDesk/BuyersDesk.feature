@@ -23,19 +23,18 @@ Feature: BuyersDesk
 
 #     Then I should be able to create a PO with multiple requisition merged into one
 
-# @konica
-#     Scenario: To verify filters on buyer's desk status filter
-#     Given I am logged in eProc
+@konica
+    Scenario: To verify filters on buyer's desk status filter
+    Given I am logged in eProc
 
-#     When I navigate to Buyer Desk 
-#     And I filter with "IN PROCESS" status
+    When I navigate to Buyer Desk 
+    And I filter with "IN PROCESS" status requisition
 
-    #Then I should be see the data on the page with the filtered status
+    Then I should be see the data on the page with the filtered status
 
  @Non-COA @L1
      Scenario: To verify requisition number filter on buyer's desk 
      Given I am logged in eProc
-
      When I create "1" requisition with "1" "ITEM_NAME_FOR_SEARCHING"
      And I Approve "1" Requisitions
      And I navigate to Buyer Desk
@@ -155,15 +154,18 @@ Feature: BuyersDesk
 
     Then I should be see the data on the page with the filtered amount "PURCHASE_AMOUNT_MIN_VALUE" and "PURCHASE_AMOUNT_MAX_VALUE"
 
-# @Non-COA @L1konica
-#     Scenario: To verify that Buyer is able to view ordered requisitions
-#     Given I am logged in eProc
+@Non-COA @L1
+    Scenario: To verify that Buyer is able to view ordered requisitions
+    Given I am logged in eProc
 
-#     When I navigate to Buyers Desk
-#     And I filter Released requisition
-#     And I view any requisition
+    When I create "1" requisition with "1" "ITEM_NAME_FOR_SEARCHING"
+    And I Approve "1" Requisitions
+    And I navigate to Buyer Desk
+    And I edit the requisition on Buyers Desk
+    # And I filter with "Released" status requisition
+    # And I view any requisition
 
-#     Then I should be able to view the requisition with all details
+    # Then I should be able to view the requisition with all details
 
 # @Non-COA @L1
 #     Scenario: To verify that Buyer is able to change buyer
@@ -197,7 +199,7 @@ Feature: BuyersDesk
 
     Then I should see the requisition In Returned for Amendment State on Requisition Listing
 
-@Non-COA @L1konica
+@Non-COA @L1
     Scenario: To verify that user(buyer) is not allowed to modify the requisition.
     Given I am logged in eProc
 

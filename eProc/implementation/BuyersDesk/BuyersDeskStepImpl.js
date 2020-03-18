@@ -151,12 +151,12 @@ When ("I filter with Purchase Amount {string} and {string}" , async function(min
 
 
 
-When ("I filter with {string} status", async function(status){
-  logger.info("Status to be searched"+status);
-  buyersDeskImpl.clickonStatusFilterButton();
-  buyersDeskImpl.filterStatus(requisition.status);
+// When ("I filter with {string} status", async function(status){
+//   logger.info("Status to be searched"+status);
+//   buyersDeskImpl.clickonStatusFilterButton();
+//   buyersDeskImpl.filterStatus(requisition.status);
 
-});
+// });
 
 
 Then ("I should be see the data on the page with the filtered amount {string} and {string}", async function(minValue,maxValue){
@@ -178,9 +178,8 @@ Then ("I should be see the data on the page with the filtered amount {string} an
   });
 
   Then("I should be see the data on the page with the filtered status", async function(){
-    let fetchedStatus = await buyersDeskImpl.fetchStatus();
-    logger.info('Searched Status '+fStatus);
-    I.assertContain(fetchedStatus.toString(),requisition.status.toString());  
+    let fetchedflag = await buyersDeskImpl.verifyReqStatusAfterReSubmitReq();
+    I.assertEqual(fetchedflag,true);  
 
 });
 
@@ -300,6 +299,26 @@ Then("I should be see the data on the page on the basis on Submitted on field", 
   logger.info("Submitted on Date to be searched is "+requisition.receivedOn);
   let flag = await buyersDeskImpl.verifySubmittedOn();
   I.assertEqual(flag, true);
+});
+
+
+When ("I filter with {string} status requisition", async function(status){
+let fetchedStatus;
+logger.info("Status selected is:"+status);
+await buyersDeskImpl.selectReqStatusFilter(status);
+});
+
+
+When ("I view any requisition", async function(){
+logger.info("Viewing the Requisition");
+await buyersDeskImpl.clickonViewReq();
+logger.info("Clicked on View Requisition");
+
+});
+
+Then ("I should be able to view the requisition with all details",async function(){
+  
+
 });
 
 // When("I add a catalog item to cart", async function(){
