@@ -436,3 +436,14 @@ Then("I should be able to Save the line level COA form", async function(){
     I.assertEqual(isCOAfilled, true);
 
 });
+
+
+Given("I create requisition with {int} {string} and {int} free text item", async function (noOfCatalogItems, itemType, noOfGuidedItems) {
+
+    this.reqBO = await objectCreation.getObjectOfRequisition(noOfCatalogItems, itemType);
+   for(let i = 0; i < noOfGuidedItems; i++) {
+      let guidedItem = await objectCreation.getObjectOfGuidedItem(noOfGuidedItems);
+      this.reqBO.items.push(guidedItem);
+   }
+   this.reqBO = await checkoutImp.createRequisitionFlow(this.reqBO);
+});

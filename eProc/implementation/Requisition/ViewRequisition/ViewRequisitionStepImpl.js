@@ -291,4 +291,22 @@ Then("I should be able to view requisition with non stock item", async function(
     I.assertEqual(isPresent,true);
  });
 
+ Then("I view Requisition", async function(){
+
+    await reqListingImpl.searchAndViewReqByName(this.reqBO.reqName);
+   
+ });
+
+
+ Then("I should be able to view the requisition with free text item and the catalog items", async function(){
+
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    let items = new Array();
+    for(let i =0;i<this.reqBO.items.length;i++)
+    {
+        items.push(this.reqBO.items[i].itemName);
+    }
+    let isPresent = await viewReqImpl.checkLineItems(items);
+    I.assertEqual(isPresent,true);
+ });
 
