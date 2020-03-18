@@ -439,6 +439,30 @@ module.exports = {
         }
         return bpo;
     },
+    async getReleaseOrderPoNumberHeader(){
+        await I.waitForVisible(I.getElement(iBpoObject.RELEASE_ORDER_PO_NUMBER_HEADER));
+        await I.scrollIntoView(I.getElement(iBpoObject.RELEASE_ORDER_PO_NUMBER_HEADER));
+        let releaseOrderNumber = await I.grabTextFrom(I.getElement(iBpoObject.RELEASE_ORDER_PO_NUMBER_HEADER));
+        releaseOrderNumber = releaseOrderNumber.substring(releaseOrderNumber.indexOf(":")+2);
+        releaseOrderNumber = releaseOrderNumber.substring(0, releaseOrderNumber.indexOf(" "));
+        return releaseOrderNumber;
+    },
+    async getReleaseOrderPoNumber(){
+
+        await I.waitForVisible(I.getElement(iBpoObject.RELEASE_ORDER_TAB));
+        await I.click(I.getElement(iBpoObject.RELEASE_ORDER_TAB));
+        await I.waitForVisible(I.getElement(iBpoObject.RELEASE_ORDER_PO_NUMBER));
+        let releaseOrderPONumber = await I.grabTextFrom(I.getElement(iBpoObject.RELEASE_ORDER_PO_NUMBER));
+        return releaseOrderPONumber;
+
+    },
+    async viewBPO()
+    {
+        await I.waitForVisible(I.getElement(iBpoObject.BPO_VIEW));
+        await I.click(I.getElement(iBpoObject.BPO_VIEW));
+
+    },
+
 
     async clickOnReleaseOrderTab(){
         
