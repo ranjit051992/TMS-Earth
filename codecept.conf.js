@@ -1,4 +1,6 @@
 const parsing= require("./Framework/PropertiesConfigurator");
+const addTimeStampToReport = require('./add_timestamp_report');
+addTimeStampToReport();
 parsing();
 const prop = global.confi_prop;
 global.lang = 'en';
