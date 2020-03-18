@@ -21,6 +21,7 @@ Given("I am on PO listing page", async function () {
     this.bpo = await objectCreation.getObjectOfBlanketPO(noOfItems, itemType);
     //this.spo.poNumber = "Automation_Spo_1583163241883";
     this.bpo = await bpoImpl.createBpoFlow(this.bpo);
+  await I.wait(30);
  });
 
  When("I add attachment at header level", async function(){
@@ -29,4 +30,19 @@ Given("I am on PO listing page", async function () {
 
  Then("I should be able to see the BPO in Cancelled status", async function(){
 
+ });
+
+
+ Given("I search bpo and navigate to release order tab", async function(){
+   await commonKeywordImpl.searchDocOnListing(this.bpo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+   await poListingImpl.clickOnPoNumber(this.bpo.poNumber);
+   await bpoImpl.clickOnReleaseOrderTab();
+   
+ });
+
+ Then("I should be able to see BPO Release Order page on convert to PO", async function(){
+   
+   await bpoImpl.clickOnPoNumberLinkOnReleaseOrderTab(this.bpo.poNumber);
+   let isPresent = await bpoImpl.checkReqNumberOnReleaseOrders(this.reqBO.reqNumber);
+   I.assertEqual(isPresent, true);
  });

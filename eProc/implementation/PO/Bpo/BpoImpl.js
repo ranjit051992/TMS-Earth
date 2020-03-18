@@ -278,7 +278,39 @@ module.exports = {
         await I.fillField(I.getElement(iBpoObject.ADD_ATTACHMENT), attachment.toString());
     },
 
+    async clickOnReleaseOrderTab(){
+        
+        await I.waitForVisible("//*[contains(text(),'"+lmtVar.getLabel("RELEASE_ORDER_TAB")+"')]");
+        await I.waitForClickable("//*[contains(text(),'"+lmtVar.getLabel("RELEASE_ORDER_TAB")+"')]");
+        await I.click("//*[contains(text(),'"+lmtVar.getLabel("RELEASE_ORDER_TAB")+"')]");
+    },
 
+    async clickOnPoNumberLinkOnReleaseOrderTab(poNumber){
+        
+        await I.waitForVisible("//a[contains(text(),'"+poNumber+"')]");
+        await I.waitForClickable("//a[contains(text(),'"+poNumber+"')]");
+        await I.click("//a[contains(text(),'"+poNumber+"')]");
+    },
+
+    async checkReqNumberOnReleaseOrders(reqNumber)
+    {
+        
+        let xpath = "//a[contains(text(),'"+reqNumber+"')]";
+        let noOfElements = await I.grabNumberOfVisibleElements(xpath);
+        let isPresent = false;
+        if(noOfElements>0)
+        {
+            isPresent = true;
+            logger.info("Requisition number is present on release order.")
+        }
+        else
+        {
+            logger.info("Requisition number is not present on release order.")
+        }
+
+        return isPresent;
+
+    },
 
 
 

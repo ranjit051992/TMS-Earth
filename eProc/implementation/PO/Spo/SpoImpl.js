@@ -621,6 +621,20 @@ module.exports = {
         await I.waitForVisible(itemNameXpath);
         let itemName = await I.grabTextFrom(itemNameXpath);
         return itemName;
+    },
+
+    async checkIfAmendPoPageDisplayed(poNumber)
+    {
+        await I.waitForElement("//div[contains(text(),'"+poNumber+"')]");
+        let noOfElement = await I.grabNumberOfVisibleElements("//div[contains(text(),'"+poNumber+"')]");
+        let isPresent = false;
+        if(noOfElement>0)
+        {
+            isPresent = true;
+        }
+
+        return isPresent;
     }
+
 
 }

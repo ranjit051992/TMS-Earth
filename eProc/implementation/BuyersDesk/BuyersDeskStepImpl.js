@@ -13,6 +13,7 @@ const onlineStore = require("../Requisition/OnlineStore/OnlineStoreObject");
 const commonKeywordImpl = require("../../commonKeywords/CommonComponent");
 const poListingObject = require("../PO/PoListing/PoListingObject");
 const spoObject = require("../PO/Spo/SpoObject");
+const faker = require("faker");
 
 When("I navigate to Buyer Desk", async function() {
   await buyersDeskImpl.navigateToBuyerListing();
@@ -225,6 +226,7 @@ When("I return the requisition on Buyers Desk", async function(){
 When ("I allow requestor to resubmit the requisition", async function(){
    logger.info("Allowing the requestor to resubmit the requition"); 
    await buyersDeskImpl.clickonResubmitReq();
+   await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
 });
 
 Then ("I should see the requisition In Returned for Amendment State on Requisition Listing", async function(){
@@ -289,3 +291,57 @@ Then("I should be see the data on the page on the basis on Received on field", a
   let flag = await buyersDeskImpl.verifyReceivedOn();
   I.assertEqual(flag, true);
 });
+
+When("I edit the requisition on buyers desk listing", async function(){
+  logger.info("Requistion to be edited is "+ this.reqBO.reqNumber);
+  await buyersDeskImpl.SearchRequisitionNumber(this.reqBO.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+  await buyersDeskImpl.EditRequisition(this.reqBO.reqNumber);
+});
+
+Given("I select the item and Convert req to PO", async function(){
+  await commonKeywordImpl.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+  await buyersDeskImpl.selectAllLineItems();
+  await buyersDeskImpl.clickOnConvertToPOButton();
+  await buyersDeskImpl.clickOnAddItemToExistingPOYesButton();
+  await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
+});
+
+When("I edit and return the requisition on Buyers Desk", async function(){
+
+  logger.info("Requistion to be edited is "+ this.reqBO.reqNumber);
+  await buyersDeskImpl.SearchRequisitionNumber(this.reqBO.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+  await buyersDeskImpl.EditRequisition(this.reqBO.reqNumber);
+  await buyersDeskImpl.fillReturnReqComments(faker.random.alphaNumeric(10));
+  await buyersDeskImpl.clickOnReturnButton();
+});
+
+When("I search the requisition on Buyer Desk", async function(){
+
+  await buyersDeskImpl.SearchRequisitionNumber(this.reqBO.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+  await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
+});
+
+Then("I should not be allowed to edit the requisition", async function(){
+
+  let isActionPresent = await buyersDeskImpl.checkIfActionMenuPresent();
+  let isView = await buyersDeskImpl.checkPrimaryActionPresent(lmtVar.getLabel("VIEW_ACTION"));
+  
+  if((!isActionPresent) && isView)
+  {
+    isActionPresent = true;
+  }
+  else
+  {
+    isActionPresent = false;
+  }
+
+  I.assertEqual(isActionPresent,true);
+});
+
+Given("I select po and submit po for processing on suggested po page", async function(){
+  await buyerDeskImpl.clickOnPoDetailsCheckbox();
+  await buyerDeskImpl.clickOnSubmitPoButton();
+  await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+  await I.wait(prop.DEFAULT_HIGH_WAIT);
+});
+

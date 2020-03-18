@@ -98,4 +98,29 @@ Given("I select category",async function(){
     await guidedImpl.selectCategoryEform(this.guidedItem.eform);
 });
 
+Given("I add {int} free text item",async function(noOfItem){
 
+    await cartImpl.clearCart();
+    this.reqBO = await objectCreation.getObjectOfRequisition(noOfItem,"SEARCH_GUIDED_ITEM");
+    this.reqBO.items[0].buyerReviewRequired =false;
+    await onlinestoreImpl.clickOnCreateRequestButton();
+    await commonKeywordImpl.waitForElementVisible(I.getElement(iGuided.ITEM_NAME_TEXTBOX));
+    await guidedImpl.fillItemServiceName(this.reqBO.items[0].itemName);
+    await guidedImpl.clickOnAddItemServiceButton();
+    await guidedImpl.fillGuidedItemDetails(this.reqBO.items[0]);
+});
+ 
+Given("I add BPO to the free text item",async function(){
+
+//    this.reqBO.items[0].bpo = this.bpo.poNumber;
+   this.reqBO.items[0].bpo = "OU_1-951/20/7388";
+
+   await guidedImpl.selectSupplier(this.reqBO.items[0]);
+
+});
+
+Given("I add free text item to cart",async function(){
+
+    await guidedImpl.addItemToCart();
+ 
+ });

@@ -352,3 +352,8 @@ When("I select tax inclusive on create spo page", async function() {
 When("I fill PO number", async function() {
    await spoImpl.fillPONumber(this.spo.poNumber);
 });
+
+Then("I should be able to see PO Amendment page of the PO which is added", async function(){
+   let isPresent = await spoImpl.checkIfAmendPoPageDisplayed(this.reqBO.linkedPoNumber);
+   I.assertEqual(isPresent,true);
+ });

@@ -24,9 +24,9 @@ Feature: OnlineStore
   Scenario: To verify that user is able to add an item from Hosted Catalog to the Cart.
   Given I am logged in eProc
 
-  When I add "2" "ITEM_NAME_FOR_SEARCHING" items to cart
+  When I add 2 "ITEM_NAME_FOR_SEARCHING" items to cart
 
-  Then I should see "2" "ITEM_NAME_FOR_SEARCHING" items in Cart
+  Then I should see 2 "ITEM_NAME_FOR_SEARCHING" items in Cart
 
 
 @Non-COA @L1 @online @compare @Snehal

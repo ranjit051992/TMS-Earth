@@ -54,4 +54,6 @@ module.exports={
 
     EFORM_DROPDOWN :"OnlineStore/GuidedProcurement/CreateNewItemModal/EFORM_DROPDOWN",
     EFORM_DONE :"OnlineStore/GuidedProcurement/CreateNewItemModal/EFORM_DONE_BUTTON",
+
+    SUPPLIER_BPO_TEXTBOX : "OnlineStore/GuidedProcurement/SupplierDetailsModal/BPO_TEXTBOX",
 };

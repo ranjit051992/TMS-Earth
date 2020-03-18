@@ -234,6 +234,7 @@ Then("I should be able to see new Deliver address as the Ship to Another Address
     I.assertEqual(isPresent,true);
 });
 
+
 Then("I should be able to view the workflow with On Behalf user as the requestor and On behalf user workflow should be applied", async function(){
 
     await reqListingImpl.searchAndViewReqByName(this.reqBO.reqName);
@@ -244,3 +245,20 @@ Then("I should be able to view the workflow with On Behalf user as the requestor
    
     I.assertEqual(isPresent,true);
 });
+
+Then("I get requisition number", async function(){
+
+    await reqListingImpl.navigateToRequisitionListing();
+    let reqNumber = await reqListingImpl.getRequisitionNumber(this.reqBO.reqName);
+    this.reqBO.reqNumber = reqNumber;
+});
+
+Then("I should be able to view requisition with non stock item", async function(){
+
+    await reqListingImpl.searchAndViewReqByName(this.reqBO.reqName);
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    let isPresent = await viewReqImpl.checkLineItems(this.reqBO.items[0].itemName);
+    I.assertEqual(isPresent,true);
+ });
+
+

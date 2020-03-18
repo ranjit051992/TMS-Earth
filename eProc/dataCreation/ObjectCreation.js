@@ -10,6 +10,7 @@ const prop = global.confi_prop;
 const lmtVar = require("../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const guidedItemBo = require("../dataCreation/bo/GuidedItem")
 const stockItemBo = require("../dataCreation/bo/StockItem")
+const nonStockItemBo = require("../dataCreation/bo/NonStockItem");
 
 
 class ObjectCreation
@@ -79,12 +80,12 @@ class ObjectCreation
             }
         }
         
-        if(itemType === "SEARCH_GUIDED_ITEM")
+        if(itemType === "SEARCH_ITEM_NON_STOCK_WO_SUPPLIER" || itemType === "SEARCH_ITEM_NON_STOCK_WITH_SUPPLIER" || itemType === "SEARCH_ITEM_NONSTOCK")
         {
             for(let i=0; i<noOfItems; i++)
             {
-                let guided = await this.getObjectOfGuidedItem(i);
-                items[i] = guided;
+                let nonstock = await this.getObjectOfNonStockItem(i,itemType);
+                items[i] = nonstock;
             }
         }
         
@@ -152,12 +153,12 @@ class ObjectCreation
         guidedItem.type = I.getData("ITEM_TYPE");
         guidedItem.receiveBillBy = I.getData("RECEIVE_BY");
         guidedItem.sourcingStatus = I.getData("SOURCING_STATUS_OPTION");
-        guidedItem.quantity = faker.random.number({min:1, max:100})
+        guidedItem.quantity = faker.random.number({min:1, max:5})
         guidedItem.uom = I.getData("ITEM_UOM");
-        guidedItem.price = faker.random.number({min:1, max:2000});
+        guidedItem.price = faker.random.number({min:1, max:20});
         guidedItem.currency = I.getData("ITEM_CURRENCY");
         guidedItem.zeroPriceItem = false;
-        guidedItem.buyerReviewRequired = true;
+        guidedItem.buyerReviewRequired = false;
         let supplier = new Array();
         supplier.push(I.getData("SUPPLIER_NAME"));
         guidedItem.suppliers = supplier;
@@ -213,6 +214,25 @@ class ObjectCreation
         return bpo;
     }
     
+
+    async getObjectOfNonStockItem(index,itemType)
+    {
+        let nonStockItem = new nonStockItemBo();
+        nonStockItem.itemName = I.getData(itemType+"["+index+"]");
+        //nonStockItem.category = I.getData("ITEM_CATEGORY_FOR_SEARCHING");
+        //nonStockItem.partId = faker.random.number(10000);
+        nonStockItem.itemDescription= "Description_"+faker.random.alphaNumeric(10);
+        nonStockItem.sourcingStatus = I.getData("SOURCING_STATUS_OPTION");
+        nonStockItem.quantity = faker.random.number({min:1, max:50})
+        //nonStockItem.uom = I.getData("ITEM_UOM");
+        nonStockItem.price = faker.random.number({min:1, max:1000});
+        nonStockItem.currency = I.getData("ITEM_CURRENCY");
+        nonStockItem.zeroPriceItem = false;
+        nonStockItem.supplier=I.getData("SUPPLIER_NAME");
+        nonStockItem.nextAction = lmtVar.getLabel("ADD_TO_CART");
+
+        return nonStockItem;
+    }
 }
 
 module.exports = new ObjectCreation();

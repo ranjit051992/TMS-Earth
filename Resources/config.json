@@ -12,7 +12,7 @@
         "SETUP": "STAGING",
         "TENANT": "ZCS",
         "browser": "chrome",
-        "host": "192.168.7.57",
+        "host": "192.168.2.45",
         "restart": "false",
         "port": 4444,
         "windowSize": "maximize",
@@ -35,6 +35,7 @@
         "runOnGrid": false,
         "USERNAME": "auto.staging3@zycus.com",
         "PASSWORD": "MeEeQoBuIaRuRaL$97"
+
     },
     "iContract": {
         "url": "https://dewdrops-partner.zycus.com/",
