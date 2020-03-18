@@ -270,7 +270,7 @@ When("I click on Save PO as draft button", async function(){
 });
 
 When("I check if req status is in Pending Order status on buyer listing", async function(){
-  let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+  let status = await commonKeywordImpl.getValueForColumnNameOfReq(lmtVar.getLabel("STATUS_COLUMN"));
   if(!status.toString().includes(lmtVar.getLabel("PENDING_ORDER_STATUS"))) {
     throw new Error(`Req status is not ${lmtVar.getLabel("PENDING_ORDER_STATUS")}. Current status is ${status}. As this case requires req to be in Pending Order state on buyer listing, hence terminating`);
   }
