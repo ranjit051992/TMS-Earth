@@ -14,6 +14,7 @@ const iBpoObject = require("./BpoObject");
 const bpoImpl =require("./BpoImpl");
 const checkoutImp = require("../../Requisition/Checkout/CheckoutImpl");
 const approveImpl = require("../../Approval/ApprovalImpl")
+const receiptImpl = require("../../Receipt/ReceiptImpl");
 
 Given("I am on PO listing page", async function () {
     await poListingImpl.navigateToPoListing();
@@ -91,9 +92,15 @@ Given("I Create Blanket po with {int} {string} item and approve it", async funct
     I.assertEqual(toDateView, this.bpo.toDate);
  });
 
-// Then("I should be able to view released order against the BPO", async function(){
+Then("I should be able to view released order against the BPO", async function(){
+   let releaseOrderNumber = await bpoImpl.getReleaseOrderPoNumberHeader();
+   await poListingImpl.navigateToPoListing();
+   await commonKeywordImpl.searchDocOnListing(this.bpo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+   await bpoImpl.viewBPO();
+   let releaseOrderPONumber = await bpoImpl.getReleaseOrderPoNumber();
+   I.assertEqual(releaseOrderNumber, releaseOrderPONumber);
 
-//  });
+ });
 When("I add attachment at header level", async function(){
       await bpoImpl.addAttachment(this.bpo.attachmentPath);
  });
