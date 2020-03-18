@@ -301,7 +301,6 @@ Then("I should be see the data on the page on the basis on Submitted on field", 
   I.assertEqual(flag, true);
 });
 
-<<<<<<< HEAD
 
 When ("I filter with {string} status requisition", async function(status){
 let fetchedStatus;
@@ -318,7 +317,7 @@ logger.info("Clicked on View Requisition");
 });
 
 Then ("I should be able to view the requisition with all details",async function(){
-  
+   await verifyreqdetails();
 
 });
 
@@ -328,7 +327,6 @@ Then ("I should be able to view the requisition with all details",async function
 //   let item = await I.getData("ITEM_NAME_FOR_SEARCHING");
 //   await onlineStoreImpl.addItemToCart(item,faker.random.number(20));
 // });
-=======
 When("I add a catalog item to cart", async function(){
   this.reqBO= await objectCreation.getObjectOfRequisition("1", "ITEM_NAME_FOR_SEARCHING");
   logger.info('Purchase Type is '+this.reqBO.purchaseType)
@@ -370,4 +368,5 @@ Then("I should be able to see updated Buyer on Requisition page also.",async fun
   logger.info('Updated Buyer is '+this.reqBO.buyer);
   I.assertEqual(fetchedBuyer.toString().trim(), this.reqBO.buyer.trim());
 });
->>>>>>> 15c1f875318d25e8a22c08e0e38a205ab206e855
+
+

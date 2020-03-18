@@ -154,18 +154,18 @@ Feature: BuyersDesk
 
     Then I should be see the data on the page with the filtered amount "PURCHASE_AMOUNT_MIN_VALUE" and "PURCHASE_AMOUNT_MAX_VALUE"
 
-@Non-COA @L1
+@Non-COA
     Scenario: To verify that Buyer is able to view ordered requisitions
     Given I am logged in eProc
 
-    When I create "1" requisition with "1" "ITEM_NAME_FOR_SEARCHING"
-    And I Approve "1" Requisitions
+    When I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
     And I navigate to Buyer Desk
+    And I filter with Requisition number field
     And I edit the requisition on Buyers Desk
-    # And I filter with "Released" status requisition
-    # And I view any requisition
+    #And I filter with "Released" status requisition
+     And I view any requisition
 
-    # Then I should be able to view the requisition with all details
+ #   Then I should be able to view the requisition with all details
 
 @Non-COA @L1
     Scenario: To verify that Buyer is able to change buyer

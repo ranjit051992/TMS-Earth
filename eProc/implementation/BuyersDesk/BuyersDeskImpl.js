@@ -645,7 +645,6 @@ module.exports = {
         await onlineStoreImpl.addItemToCart(requisitionBO.itemName, faker.random.number(20));
     },
 
-<<<<<<< HEAD
     async selectReqStatusFilter(status){
       let index;
       let selectedStatus;
@@ -701,8 +700,8 @@ module.exports = {
       let clickOnView = `(//dew-row[contains(@class,'scrolling')]//a[contains(text(),'${lmtVar.getLabel("VIEW_ACTION")}')])[1]`;
       I.waitForVisible(clickOnView);
       I.click(clickOnView);
+    },
 
-=======
     async updateBuyer(updatedBuyer){
         logger.info("Update Buyer to >>> "+updatedBuyer)
         commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
@@ -725,8 +724,9 @@ module.exports = {
         I.click(I.getElement(iBuyersDeskObject.BUYER_LINK_LINEITEM));
         let buyer = await I.grabTextFrom(I.getElement(iBuyersDeskObject.ASSIGNED_BUYER_REQUISITION));
         return buyer;
->>>>>>> 15c1f875318d25e8a22c08e0e38a205ab206e855
-    }
+    },
+
+    
     
 }
 
