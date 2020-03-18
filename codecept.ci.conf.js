@@ -42,7 +42,7 @@ exports.config = {
     I: prop.stepFilePath,
   },
   multiple: {
-    sanityCases: {
+    parallel: {
       // Splits tests into 2 chunks
       chunks: 5
     }
