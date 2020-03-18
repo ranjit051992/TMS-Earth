@@ -121,8 +121,8 @@ Given("I add {int} free text item",async function(noOfItem){
  
 Given("I add BPO to the free text item",async function(){
 
-//    this.reqBO.items[0].bpo = this.bpo.poNumber;
-   this.reqBO.items[0].bpo = "OU_1-951/20/7388";
+   this.reqBO.items[0].bpo = this.bpo.poNumber;
+//    this.reqBO.items[0].bpo = "OU_1-951/20/7420";
 
    await guidedImpl.selectSupplier(this.reqBO.items[0]);
 

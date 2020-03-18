@@ -364,7 +364,7 @@ Then("I should be able to see PO Amendment page of the PO which is added", async
    I.assertEqual(isPresent,true);
  });
 
- 
+
 Given("I have created a PO with {int} {string} and {int} free text item and header level attachment", async function(noOfCatalogItems, catalogItemType, noOfGuidedItems) {
    this.spo = await objectCreation.getObjectOfStandardPO(noOfCatalogItems, catalogItemType);
    this.spo.setAttachmentPath(I.getData("ATTACHMENT_PATH"));

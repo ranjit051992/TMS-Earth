@@ -180,10 +180,11 @@ module.exports = {
     async fetchStatus() {
         I.waitForVisible(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING), prop.DEFAULT_MEDIUM_WAIT);
         let status = await I.grabTextFrom(I.getElement(iBuyersDeskObject.STATUS_LISTING));
+
         return status;
 
     },
-
+    
     async SearchRequestor(requestor) {
 
         logger.info('Searched Requestor :' + requestor);
@@ -626,6 +627,10 @@ module.exports = {
         await onlineStoreImpl.addItemToCart(requisitionBO.itemName, faker.random.number(20));
     },
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> Snehal_1803
     async selectReqStatusFilter(status){
       let index;
       let selectedStatus;
@@ -748,7 +753,12 @@ module.exports = {
 
         return isPresent;
     },
+<<<<<<< HEAD
 
+=======
+    
+    
+>>>>>>> Snehal_1803
 }
 
 

@@ -294,7 +294,7 @@ module.exports = {
     async selectTaxInclusive() {
         await I.waitForElement(I.getElement(iSpoObject.SPO_TAX_INCLUSIVE));
         let selected = await commonKeywordImpl.isSelectedByXpath(I.getElement(iSpoObject.SPO_TAX_INCLUSIVE));
-        if(!selected) {
+        if (!selected) {
             await commonKeywordImpl.clickUsingJsByXpath(I.getElement(iSpoObject.SPO_TAX_INCLUSIVE));
             logger.info("Selected Tax Inclusive");
         }
@@ -304,7 +304,7 @@ module.exports = {
     },
     async clickRemoveTaxesConfirmButton() {
         let flag = await commonKeywordImpl.waitForElementPresent(I.getElement(iSpoObject.REMOVE_TAXES_CONFIRM_BUTTON), prop.DEFAULT_WAIT);
-        if(flag) {
+        if (flag) {
             await I.click(I.getElement(iSpoObject.REMOVE_TAXES_CONFIRM_BUTTON));
             logger.info("Clicked on Remove taxes confirm button");
         }
@@ -371,7 +371,7 @@ module.exports = {
 
         let poNumber = await commonKeywordImpl.getDocNumber();
 
-        if(!poNumber.toString() === spo.poNumber) {
+        if (!poNumber.toString() === spo.poNumber) {
             logger.info(`PO is not submitted. PO number fetched after submission --> ${poNumber}`);
             throw new Error(`PO is not submitted. PO number fetched after submission --> ${poNumber}`);
         }
@@ -395,7 +395,7 @@ module.exports = {
     async fillBillingInformation(spo) {
         logger.info(`**************Filling Billing Information**************`);
         await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_BILLING_INFORMATION_SECTION"));
-        if(spo.fillCbl) {
+        if (spo.fillCbl) {
             await this.clickOnBuyingUnitLink();
             await this.fillCompany(spo.company);
             await this.fillBusinessUnit(spo.businessUnit);
@@ -428,7 +428,7 @@ module.exports = {
         return spo
     },
     async fillShippingDetails(spo) {
-        if(spo.fillShippingDetails) {
+        if (spo.fillShippingDetails) {
             logger.info(`**************Filling Shipping Details**************`);
             await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_SHIPPING_DETAILS_SECTION"));
             let deliverTo = await this.selectDeliverTo(spo.deliverTo);
@@ -440,7 +440,7 @@ module.exports = {
         return spo;
     },
     async fillCostAllocation(spo) {
-        if(!prop.isCoa) {
+        if (!prop.isCoa) {
             logger.info(`**************Filling Cost Allocation**************`);
             await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_COST_ALLOCATION_SECTION"));
             await this.clickOnAssignCostNOButton();
@@ -451,7 +451,7 @@ module.exports = {
         return spo;
     },
     async fillControlSettings(spo) {
-        if(spo.fillControlSettings) {
+        if (spo.fillControlSettings) {
             logger.info(`**************Filling Control Settings**************`);
             await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_CONTROL_SETTINGS_SECTION"));
             if (spo.receiptRuleAtHeaderLevel) {
@@ -465,14 +465,14 @@ module.exports = {
     },
     async fillLineItems(spo) {
         logger.info(`**************Filling Line Items**************`);
-        if(spo.taxInclusive) {
+        if (spo.taxInclusive) {
             await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_TAXES_SECTION_SECTION"));
             await this.selectTaxInclusive();
             await this.clickRemoveTaxesConfirmButton();
         }
 
-        for(let i = 0; i < spo.items.length; i++) {
-            if(spo.items[i].itemType === lmtVar.getLabel("ITEM_TYPE_CATALOG")) {
+        for (let i = 0; i < spo.items.length; i++) {
+            if (spo.items[i].itemType === lmtVar.getLabel("ITEM_TYPE_CATALOG")) {
                 await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
                 await this.clickOnAddLineItemButton();
                 await this.enterItemName(spo.items[i].itemName);
@@ -480,7 +480,7 @@ module.exports = {
                 await this.clickOnCostBookingLink(spo.items[i].itemName);
                 await coaImpl.fillCoaDetails();
             }
-            else if(spo.items[i].itemType === lmtVar.getLabel("ITEM_TYPE_GUIDED")) {
+            else if (spo.items[i].itemType === lmtVar.getLabel("ITEM_TYPE_GUIDED")) {
                 await this.addGuidedItemForPo(spo.items[i]);
             }
         }
@@ -494,7 +494,7 @@ module.exports = {
         return spo;
     },
     async fillAdditionalDetails(spo) {
-        if(spo.fillAdditionalDetails) {
+        if (spo.fillAdditionalDetails) {
             logger.info(`**************Filling Additional Details**************`);
             await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_ADDITIONAL_DETAILS_SECTION"));
             await this.fillTermsAndConditions(spo.termsAndConditions);
@@ -509,7 +509,7 @@ module.exports = {
     },
     async createAndReleaseSpoFlow(spo) {
         spo = await this.createSpoFlow(spo);
-        if(spo.status.toString() === lmtVar.getLabel("IN_APPROVAL_STATUS")) {
+        if (spo.status.toString() === lmtVar.getLabel("IN_APPROVAL_STATUS")) {
             await approvalImpl.approvePoFlow(spo.poNumber);
         }
         else {
@@ -570,7 +570,7 @@ module.exports = {
     },
     async fillLineLevelAddress(address) {
         // address = await commonKeywordImpl.searchAndSelectFromDropdown(I.getElement(iSpoObject.LINE_LEVEL_ADDRESS_TEXTBOX), address, I.getElement(iSpoObject.LINE_LEVEL_ADDRESS_OPTION));
-        await I.waitForVisible(I.getElement(iSpoObject.LINE_LEVEL_ADDRESS_TEXTBOX));        
+        await I.waitForVisible(I.getElement(iSpoObject.LINE_LEVEL_ADDRESS_TEXTBOX));
         await I.click(I.getElement(iSpoObject.LINE_LEVEL_ADDRESS_TEXTBOX));
         await I.clearField(I.getElement(iSpoObject.LINE_LEVEL_ADDRESS_TEXTBOX));
         await I.fillField(I.getElement(iSpoObject.LINE_LEVEL_ADDRESS_TEXTBOX), address);
@@ -600,22 +600,21 @@ module.exports = {
 
     async createMultiplePOs(noOfPOs, noOfItems, itemType) {
         let POArray = new Array();
-        
-        for(let i=0; i<noOfPOs; i++)
-        {
-        let spo = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
-        spo = await this.createSpoFlow(spo);
-        await POArray.push(spo);
+
+        for (let i = 0; i < noOfPOs; i++) {
+            let spo = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
+            spo = await this.createSpoFlow(spo);
+            await POArray.push(spo);
         }
 
         return POArray;
     },
 
     async checkMultiplePOStatus(POArray) {
-        for (let i=0; i<POArray.length; i++) {
+        for (let i = 0; i < POArray.length; i++) {
             await commonKeywordImpl.searchDocOnListing(POArray[i].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
             let status = await poListingImpl.getPoStatus();
-            I.assertEqual(status,lmtVar.getLabel("IN_APPROVAL_STATUS"));
+            I.assertEqual(status, lmtVar.getLabel("IN_APPROVAL_STATUS"));
         }
     },
 
@@ -635,25 +634,24 @@ module.exports = {
     },
 
 
-    async verifyViewSpoItemLevelSrNo() 
-    {
+    async verifyViewSpoItemLevelSrNo() {
         let flag = false;
         let srNoArray = new Array();
         await I.waitForVisible(I.getElement(iSpoObject.ITEM_LEVEL_SR_NO));
         let count = await I.grabNumberOfVisibleElements(I.getElement(iSpoObject.ITEM_LEVEL_SR_NO));
-        if(count < 1) {
+        if (count < 1) {
             logger.info(`Locator for item sr no not found --> ${I.getElement(iSpoObject.ITEM_LEVEL_SR_NO)}`);
             throw new Error(`Locator for item sr no not found --> ${I.getElement(iSpoObject.ITEM_LEVEL_SR_NO)}`);
         }
         else {
-            for(let i = 1; i <= count; i++) {
+            for (let i = 1; i <= count; i++) {
                 let srNoXpath = `(${I.getElement(iSpoObject.ITEM_LEVEL_SR_NO)})[${i}]`;
                 logger.info(`Sr no xpath --> ${srNoXpath}`);
                 let srNo = await (await I.grabTextFrom(srNoXpath)).toString().trim();
                 logger.info(`Sr no retrieved at item no ${i} is ${srNo}`);
                 srNoArray.push(srNo);
                 let filterSize = srNoArray.filter(x => x === srNo).length;
-                if(filterSize > 1) {
+                if (filterSize > 1) {
                     logger.info(`Sr no --> ${srNo} is repeated at line item no ${i}`);
                     return false;
                 }
@@ -672,8 +670,7 @@ module.exports = {
         await I.waitForElement("//div[contains(text(),'"+poNumber+"')]");
         let noOfElement = await I.grabNumberOfVisibleElements("//div[contains(text(),'"+poNumber+"')]");
         let isPresent = false;
-        if(noOfElement>0)
-        {
+        if (noOfElement > 0) {
             isPresent = true;
         }
 
@@ -726,12 +723,12 @@ module.exports = {
         await guidedItemImpl.clickOnOkayButtonPo();
 
         await this.clickOnCostBookingLink(guidedItem.itemName);
-        
+
         await coaImpl.fillCoaDetails();
     },
 
     async fillAttachments(spo) {
-        if(spo.attachmentPath) {
+        if (spo.attachmentPath) {
             logger.info(`**************Filling Attachment**************`);
             await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_ADD_ATTACHMENT_SECTION"));
             logger.info(`filepath-------${spo.attachmentPath.toString()}`);

@@ -119,7 +119,9 @@ Given( "I Create {int} Blanket POs with {int} {string} item", async function (no
 
  Given("I search bpo and navigate to release order tab", async function(){
    await commonKeywordImpl.searchDocOnListing(this.bpo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-   await poListingImpl.clickOnPoNumber(this.bpo.poNumber);
+   await poListingImpl.clickOnPoNumberLink(this.bpo.poNumber);
+   //await poListingImpl.clickOnPoNumberLink("OU_1-951/20/7420");
+
    await bpoImpl.clickOnReleaseOrderTab();
    
  });
@@ -127,6 +129,8 @@ Given( "I Create {int} Blanket POs with {int} {string} item", async function (no
  Then("I should be able to see BPO Release Order page on convert to PO", async function(){
    
    await bpoImpl.clickOnPoNumberLinkOnReleaseOrderTab(this.bpo.poNumber);
+   //await bpoImpl.clickOnPoNumberLinkOnReleaseOrderTab("OU_1-951/20/7420");
+
    let isPresent = await bpoImpl.checkReqNumberOnReleaseOrders(this.reqBO.reqNumber);
    I.assertEqual(isPresent, true);
  });

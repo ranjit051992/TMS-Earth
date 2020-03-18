@@ -457,7 +457,8 @@ module.exports = {
     async checkReqNumberOnReleaseOrders(reqNumber)
     {
         
-        let xpath = "//a[contains(text(),'"+reqNumber+"')]";
+        let xpath = "//span[contains(text(),'"+reqNumber+"')]";
+        await I.waitForVisible(xpath);
         let noOfElements = await I.grabNumberOfVisibleElements(xpath);
         let isPresent = false;
         if(noOfElements>0)

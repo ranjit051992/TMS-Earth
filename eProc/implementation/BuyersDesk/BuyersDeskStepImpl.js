@@ -416,8 +416,9 @@ Then("I should not be allowed to edit the requisition", async function(){
 });
 
 Given("I select po and submit po for processing on suggested po page", async function(){
-  await buyerDeskImpl.clickOnPoDetailsCheckbox();
-  await buyerDeskImpl.clickOnSubmitPoButton();
+  await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
+  await buyersDeskImpl.clickOnPoDetailsCheckbox();
+  await buyersDeskImpl.clickOnSubmitPoButton();
   await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
   await I.wait(prop.DEFAULT_HIGH_WAIT);
 });
