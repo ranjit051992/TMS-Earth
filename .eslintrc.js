@@ -1,22 +1,46 @@
 module.exports = {
   'env': {
     'browser': true,
+    'commonjs': true,
     'es6': true,
   },
   'extends': [
-   
+    'google',
   ],
   'globals': {
     'Atomics': 'readonly',
     'SharedArrayBuffer': 'readonly',
   },
+  'parser': '@typescript-eslint/parser',
   'parserOptions': {
     'ecmaVersion': 2018,
-    'sourceType': 'module',
   },
+  'plugins': [
+    '@typescript-eslint',
+  ],
   'rules': {
-    // "semi": ["error", "always"],
-    //     "quotes": ["error", "double"],
-        "require-jsdoc" : 0
+    strict : ['error', 'global'],
+    'multiline-comment-style': ['error', 'bare-block'],
+    'spaced-comment': ['error', 'always'],
+    semi: ['error', 'always'],
+    'semi-spacing': 'error',
+    'no-extra-semi': 'error',
+    'no-unexpected-multiline': 'error',
+    'max-len': ['error', {'ignoreStrings': true}],
+    'comma-style': ['error', 'last'],
+    'comma-dangle': ['error', 'always-multiline'],
+    indent: ['error', 2],
+    'space-infix-ops': 'error',
+    'space-before-blocks': 'error',
+    'brace-style': 'error',
+    'keyword-spacing': 'error',
+    'arrow-spacing': 'error',
+    'newline-per-chained-call': 'error',
+    'space-in-parens': ['error', 'never'],
+    'array-bracket-spacing': ['error', 'never'],
+    'object-curly-spacing': ['error', 'always'],
+    'comma-spacing': ['error', {'before': false, 'after': true}],
+    'no-multiple-empty-lines': ['error', {'max': 1, 'maxEOF': 1}],
+    quotes: ['error', 'double'],
   },
 };
