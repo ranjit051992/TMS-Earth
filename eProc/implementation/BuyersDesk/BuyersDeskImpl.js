@@ -12,7 +12,6 @@ const onlineStore = require("../Requisition/OnlineStore/OnlineStoreObject");
 const cartImpl = require("../Requisition/Cart/CartImpl");
 const onlineStoreImpl = require("../Requisition/OnlineStore/OnlineStoreImpl");
 const faker = require("faker");
-const checkoutImpl = require("./../Requisition/Checkout/CheckoutImpl");
 const reqListingImpl = require("./../Requisition/RequisitionListing/RequisitionListingImpl");
 
 module.exports = {
@@ -623,20 +622,6 @@ module.exports = {
         await onlineStoreImpl.navigateToOnlineStore();
         await cartImpl.clearCart();
         await onlineStoreImpl.addItemToCart(requisitionBO.itemName, faker.random.number(20));
-    },
-
-    async updateBuyer(updatedBuyer){
-        logger.info("Update Buyer to >>> "+updatedBuyer)
-        commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
-        I.click("//label[contains(text(),'" + lmtVar.getLabel("LINE_ITEM") + "')]");
-        logger.info("Clicking on Line Item Checkbox");
-        I.click(I.getElement(iBuyersDeskObject.BUYER_LINK_LINEITEM));
-        I.click(I.getElement(iBuyersDeskObject.BUYER_DELETE_ICON));
-        await checkoutImpl.fillBuyerInTextBox(updatedBuyer);
-        let buyer = await checkoutImpl.getBuyer();
-        logger.info('Updated Buyer is '+buyer);
-        I.click(I.getElement(iBuyersDeskObject.COSTBOOKING_SAVE_BUUTON));
-        return buyer;
     },
 
     async verifyBuyerOnRequisitionPage()

@@ -317,7 +317,7 @@ When("I edit the requisition on Buyers Desk", async function(){
 });
 
 When("I update Assigned Buyer at  line level for item", async function(){
-    this.reqBO.buyer = await buyersDeskImpl.updateBuyer(I.getData("UPDATED_BUYER_NAME"));
+    this.reqBO.buyer = await checkoutImpl.updateBuyer(I.getData("UPDATED_BUYER_NAME"));
     logger.info('Update Buyer Name is >>> '+this.reqBO.buyer);
 });
 
