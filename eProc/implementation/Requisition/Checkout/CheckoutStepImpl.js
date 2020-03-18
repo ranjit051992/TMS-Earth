@@ -403,8 +403,6 @@ Given("I have created a requisition with that PO linked and converted it to PO w
         this.reqBO.items.push(guidedItem);
     }
     this.reqBO = await checkoutImp.createReqToPoFlow(this.reqBO);
-    // this.reqBO.items[0].itemName = "Dettol";
-    // this.reqBO.items[1].itemName = "GuidedItem_273694";
  });
  
 Then("I should see contract linked to free text item on viewing the item", async function(){

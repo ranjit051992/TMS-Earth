@@ -212,6 +212,7 @@ module.exports = {
         await this.clickOnApproveSpoPopupApproveButton();
         for (let i=1; i<POArray.length; i++) {
             await commonKeywordImpl.searchDocOnListing(POArray[i].poNumber, searchBy);
+            await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
             let status = await this.getSpoStatus();
             POArray[i].setStatus(status);
         } 
@@ -229,6 +230,7 @@ module.exports = {
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
         await commonKeywordImpl.searchDocOnListing(docNumber, searchBy);
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         let status = await this.getSpoStatus();
         let flag = status === lmtVar.getLabel("DELEGATED_STATUS")
         if(!flag) {

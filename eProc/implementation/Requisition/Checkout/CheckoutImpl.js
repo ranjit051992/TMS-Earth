@@ -647,7 +647,7 @@ module.exports = {
             await this.clickOnRetrospectivePurchaseNoButton();
         }
 
-        if (requisitionBO.attachmentPath.toString() !== null) {
+        if (requisitionBO.attachmentPath) {
             await this.addAttachments(requisitionBO.attachmentPath.toString());
         }
 
@@ -1389,5 +1389,19 @@ module.exports = {
         logger.info("Supplier Contract ID is "+suppContractId);
 
         return suppContractId;
+    },
+
+    async updateBuyer(updatedBuyer){
+        logger.info("Update Buyer to >>> "+updatedBuyer)
+        commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+        I.click("//label[contains(text(),'" + lmtVar.getLabel("LINE_ITEM") + "')]");
+        logger.info("Clicking on Line Item Checkbox");
+        I.click(I.getElement(buyerDeskObject.BUYER_LINK_LINEITEM));
+        I.click(I.getElement(buyerDeskObject.BUYER_DELETE_ICON));
+        await this.fillBuyerInTextBox(updatedBuyer);
+        let buyer = await this.getBuyer();
+        logger.info('Updated Buyer is '+buyer);
+        I.click(I.getElement(buyerDeskObject.COSTBOOKING_SAVE_BUUTON));
+        return buyer;
     },
 };

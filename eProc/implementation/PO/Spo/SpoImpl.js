@@ -109,6 +109,7 @@ module.exports = {
     },
     async fillSupplierAddress(address) {
         await I.waitForVisible(I.getElement(iSpoObject.supplierAddressTextbox), address);
+        await I.clearField(I.getElement(iSpoObject.supplierAddressTextbox));
         await I.fillField(I.getElement(iSpoObject.supplierAddressTextbox), address);
     },
     async selectSupplierAddress(address) {

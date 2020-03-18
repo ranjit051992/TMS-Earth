@@ -53,12 +53,11 @@ class ObjectCreation
     async getArrayOfItems(noOfItems,itemType)
     {
         let items = new Array();
-        
-        if(itemType==="ITEM_NAME_FOR_SEARCHING")
+        if(itemType.includes("ITEM_NAME_FOR_SEARCHING"))
         {
             for(let i =0;i<noOfItems;i++)
             {
-                let catalog = await this.getObjectOfCatalogItem(i);
+                let catalog = await this.getObjectOfCatalogItem(i, itemType);
                 items[i] = catalog;
             }
         }
@@ -91,10 +90,10 @@ class ObjectCreation
         return items;
     }
 
-    async getObjectOfCatalogItem(itemIndex)
+    async getObjectOfCatalogItem(itemIndex, itemType)
     {
         let catalog = new catalogItem()
-        catalog.setItemName(await commonUtilities.splitData(1,"ITEM_NAME_FOR_SEARCHING"));
+        catalog.setItemName(await I.getData(itemType));
         catalog.quantity = faker.random.number(20);
         catalog.itemType = lmtVar.getLabel("ITEM_TYPE_CATALOG");
         return catalog;
@@ -115,7 +114,7 @@ class ObjectCreation
        //  requisition.reasonForOrdering = I.getData("REASON_FOR_ORDERING");
        // requisition.commentsForSupplier = I.getData("COMMENTS_FOR_SUPPLIERS");
         requisition.purchaseType = I.getData("PURCHASE_TYPE");
-        requisition.attachmentPath = "";
+        // requisition.attachmentPath = "";
         requisition.settlementVia = "Invoice";
         requisition.retrospectivePurchase = "No";
         requisition.shipToDefaultAddress = "Yes";
