@@ -111,4 +111,22 @@ module.exports = {
         await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
     },
     
+    async clickOnPoNumberLink(poNumber) {
+
+        let noOfElements = await I.grabNumberOfVisibleElements(I.getElement(poListingObject.PO_NUMBER_LINK));
+        for(let i=1;i<=noOfElements;i++)
+        {
+            let xpath = "("+I.getElement(poListingObject.PO_NUMBER_LINK)+")["+i+"]";
+            let value = await I.grabTextFrom(xpath);
+            if(poNumber===value.trim())
+            {
+                await I.scrollIntoView(xpath);
+                await I.waitForClickable(xpath);
+                await I.click(xpath);
+                await I.waitForVisible(I.getElement(iSpoObject.PO_VIEW_BASIC_DETAILS_SECTION));
+                break;
+            }
+        }
+
+    },
 }

@@ -359,6 +359,12 @@ Then("I should be able to see the new item with unique line item number", async 
    assert.strictEqual(true, flag, "Item level sr no validation failed");
 });
 
+Then("I should be able to see PO Amendment page of the PO which is added", async function(){
+   let isPresent = await spoImpl.checkIfAmendPoPageDisplayed(this.reqBO.linkedPoNumber);
+   I.assertEqual(isPresent,true);
+ });
+
+
 Given("I have created a PO with {int} {string} and {int} free text item and header level attachment", async function(noOfCatalogItems, catalogItemType, noOfGuidedItems) {
    this.spo = await objectCreation.getObjectOfStandardPO(noOfCatalogItems, catalogItemType);
    this.spo.setAttachmentPath(I.getData("ATTACHMENT_PATH"));

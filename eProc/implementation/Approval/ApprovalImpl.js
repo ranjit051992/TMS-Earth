@@ -92,6 +92,7 @@ module.exports = {
     },
 
     async navigateToPOApprovalListingTab() {
+        await I.scrollIntoView(I.getElement(approvalObject.SPO_TAB));
         await I.waitForVisible(I.getElement(approvalObject.SPO_TAB));
         await I.waitForClickable(I.getElement(approvalObject.SPO_TAB));
         await I.click(I.getElement(approvalObject.SPO_TAB));
@@ -440,6 +441,7 @@ module.exports = {
         }
     },
     async navigateToBPOApprovalListingTab() {
+        await I.scrollIntoView(I.getElement(approvalObject.BPO_TAB));
         await I.waitForVisible(I.getElement(approvalObject.BPO_TAB));
         await I.waitForClickable(I.getElement(approvalObject.BPO_TAB));
         await I.click(I.getElement(approvalObject.BPO_TAB));
