@@ -12,7 +12,6 @@ const onlineStore = require("../Requisition/OnlineStore/OnlineStoreObject");
 const cartImpl = require("../Requisition/Cart/CartImpl");
 const onlineStoreImpl = require("../Requisition/OnlineStore/OnlineStoreImpl");
 const faker = require("faker");
-const checkoutImpl = require("./../Requisition/Checkout/CheckoutImpl");
 const reqListingImpl = require("./../Requisition/RequisitionListing/RequisitionListingImpl");
 
 module.exports = {
@@ -645,6 +644,7 @@ module.exports = {
         await onlineStoreImpl.addItemToCart(requisitionBO.itemName, faker.random.number(20));
     },
 
+<<<<<<< HEAD
     async selectReqStatusFilter(status){
       let index;
       let selectedStatus;
@@ -716,6 +716,8 @@ module.exports = {
         return buyer;
     },
 
+=======
+>>>>>>> 8b0e227d86283355775653d25392b1cf78219fe6
     async verifyBuyerOnRequisitionPage()
     {
         await reqListingImpl.navigateToRequisitionListing();
