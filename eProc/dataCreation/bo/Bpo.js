@@ -224,6 +224,7 @@ class Bpo
     setNewApprover(newApprover)
     {
         this.newApprover = newApprover;
+    }
     setDate(date)
     {
         this.date=date;
