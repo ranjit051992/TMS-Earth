@@ -395,6 +395,16 @@ Given("I have created a requisition with that PO linked and converted it to PO w
     this.reqBO = await checkoutImp.createReqToPoWithPoLinked(this.reqBO1);
  });
 
+ Given("I have created a req to po with {int} {string} and {int} free text item and header level attachment {string}", async function(noOfCatalogItems, catalogItemType, noOfGuidedItems, attachmentKey) {
+    this.reqBO = await objectCreation.getObjectOfRequisition(noOfCatalogItems, catalogItemType);
+    this.reqBO.setAttachmentPath(I.getData(attachmentKey));
+    for(let i = 0; i < noOfGuidedItems; i++) {
+        let guidedItem = await objectCreation.getObjectOfGuidedItem(noOfGuidedItems);
+        this.reqBO.items.push(guidedItem);
+    }
+    this.reqBO = await checkoutImp.createReqToPoFlow(this.reqBO);
+ });
+ 
 Then("I should see contract linked to free text item on viewing the item", async function(){
     let isContractLink = false;
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));

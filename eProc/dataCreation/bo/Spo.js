@@ -38,6 +38,7 @@ class Spo
         this.fillControlSettings;
         this.fillAdditionalDetails;
         this.newApprover;
+        this.attachmentPath;
     }
     setPoNumber(poNumber)
     {
@@ -208,6 +209,11 @@ class Spo
 
     setNewApprover(newApprover) {
         this.newApprover = newApprover;
+    }
+
+    setAttachmentPath(attachmentPath)
+    {
+        this.attachmentPath = attachmentPath;
     }
 
 }

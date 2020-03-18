@@ -428,7 +428,7 @@ module.exports={
     {
         let columnIndex = await (await this.getColumnIndexOnListingPage(columnName)).toString();
         let columnHeaderXpath = await I.getElement(commonKeywordObject.ALL_COLUMN_HEADER_TEXT);
-        columnHeaderXpath = "((" + columnHeaderXpath + "/..)[" + columnIndex + "]//dew-row[contains(@class,'list-body')])//div";
+        columnHeaderXpath = "(((" + columnHeaderXpath + "/..)[" + columnIndex + "]//dew-row[contains(@class,'list-body')])//div)[1]";
         logger.info("Xpath for retrieving column value --> " + columnHeaderXpath);
         await I.scrollIntoView(columnHeaderXpath);
         //await I.waitForVisible(columnHeaderXpath, prop.DEFAULT_HIGH_WAIT);
