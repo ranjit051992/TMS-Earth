@@ -20,6 +20,7 @@ const poListingImpl = require("../../PO/PoListing/PoListingImpl");
 const buyerDeskObject = require("../../BuyersDesk/BuyersDeskObject");
 const spoImpl = require("../../PO/Spo/SpoImpl");
 const spoObject = require("../../PO/Spo/SpoObject");
+const guidedItemImpl = require("../GuidedProcurement/GuidedProcurementImpl");
 
 module.exports = {
 
@@ -31,7 +32,17 @@ module.exports = {
     async createRequisitionFlow(requisitionBO) {
         await onlineStoreImpl.navigateToOnlineStore();
         await cartImpl.clearCart();
-        await onlineStoreImpl.addItemToCart(requisitionBO.itemName, faker.random.number(20));
+        for(let i = 0; i < requisitionBO.items.length; i++) {
+            if(requisitionBO.items[i].itemType === lmtVar.getLabel("ITEM_TYPE_CATALOG")) {
+                await onlineStoreImpl.addItemToCart(requisitionBO.itemName, faker.random.number(20));
+                await onlineStoreImpl.navigateToOnlineStore();
+            }
+            else if(requisitionBO.items[i].itemType === lmtVar.getLabel("ITEM_TYPE_GUIDED")) {
+                await guidedItemImpl.CreateGuidedItem(requisitionBO.items[i]);
+                await onlineStoreImpl.navigateToOnlineStore();
+            }
+        }
+
         await onlineStoreImpl.clickOnCartIcon();
         await I.waitForVisible(I.getElement(iCart.CART_ITEM_TABLE));
         await cartImpl.clickOnCheckoutButton();
@@ -636,7 +647,7 @@ module.exports = {
             await this.clickOnRetrospectivePurchaseNoButton();
         }
 
-        if (requisitionBO.attachmentPath.toString() !== null) {
+        if (requisitionBO.attachmentPath) {
             await this.addAttachments(requisitionBO.attachmentPath.toString());
         }
 
@@ -702,27 +713,30 @@ module.exports = {
 
     async fillItemDetails(requisitionBO) {
         logger.info("*********Filling Requisition Item Details");
-        await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
-
+        
         //for(let i = 0; i <requisitionBO.items.length; i++)
-       // {
-        await this.clickOnCostBookingLink(requisitionBO.itemName);
-
-        if (requisitionBO.buyer !== "undefined") {
-            await this.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
-            let buyer = await this.fillBuyerInTextBox(requisitionBO.buyer);
-            requisitionBO.setBuyer(buyer);
-
+        // {
+            
+            for(let i = 0; i < requisitionBO.items.length; i++) {
+            await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+            await this.clickOnCostBookingLink(requisitionBO.items[i].itemName);
+    
+            if (requisitionBO.buyer !== "undefined") {
+                await this.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
+                let buyer = await this.fillBuyerInTextBox(requisitionBO.buyer);
+                requisitionBO.setBuyer(buyer);
+    
+            }
+    
+            else if (requisitionBO.assignedBuyerGroup !== "undefined") {
+                await this.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
+                /// assigned BuyerGroup code
+            }
+    
+            await this.clickOnCostBookingTab();
+    
+            await coaImpl.fillCoaDetails();
         }
-
-        else if (requisitionBO.assignedBuyerGroup !== "undefined") {
-            await this.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
-            /// assigned BuyerGroup code
-        }
-
-        await this.clickOnCostBookingTab();
-
-        await coaImpl.fillCoaDetails();
 
         // if(!prop.isCoa)
         // {
@@ -1157,7 +1171,6 @@ module.exports = {
 
     async createReqToPoFlow(reqBO) {
         reqBO = await this.createRequisitionFlow(reqBO);
-
         let reqName = reqBO.reqName.toString();
         await reqListingImpl.navigateToRequisitionListing();
         let reqNumber = await reqListingImpl.getRequisitionNumber(reqName);
@@ -1165,32 +1178,26 @@ module.exports = {
 
         let status = await reqListingImpl.getRequisitionStatus();
         if(status.toString().includes(lmtVar.getLabel("IN_APPROVAL_STATUS"))) {
-            await approvalImpl.navigateToApprovalListing();
-            await approvalImpl.approveDoc(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-            await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-            status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
-            if(status.toString() !== lmtVar.getLabel("APPROVED_STATUS")) {
-                throw new Error(`Req status after approval is not Approved. Current status is --> ${status}`);
-            }
+            await approvalImpl.approveReqFlow(reqBO.reqNumber);
         }
         else {
             logger.info(`Req status is not ${lmtVar.getLabel("IN_APPROVAL_STATUS")} after submitting. Current status is ${status}. Hence, not executing the approve req action.`);
         }
         
         if(reqBO.convertToPoFlag) {
-            await I.wait(prop.DEFAULT_MEDIUM_WAIT);
+            // await I.wait(prop.DEFAULT_MEDIUM_WAIT);
             await I.amOnPage(prop.DDS_BuyersDesk_Url);
            // await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("BUYERS_DESK_LISTING_PAGE"));
             await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
             await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-            status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+            status = await commonComponent.getValueForColumnNameOfReq(lmtVar.getLabel("STATUS_COLUMN"));
             if(!status.toString().includes(lmtVar.getLabel("ORDERING_STATUS"))) {
                 await commonComponent.clickOnActionMenuIcon();
                 await commonComponent.clickOnActionMenuOption(lmtVar.getLabel("CONVERT_TO_PO"));
                 await buyerDeskImpl.clickOnPoDetailsCheckbox();
                 await buyerDeskImpl.clickOnSubmitPoButton();
                 await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
-                await I.wait(prop.DEFAULT_HIGH_WAIT);
+                // await I.wait(prop.DEFAULT_HIGH_WAIT);
             }
             else {
                 logger.info(`Req status on Buyer Listing is ${status}. Hence, not executing the Convert to PO action`);
