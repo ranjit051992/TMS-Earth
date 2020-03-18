@@ -644,7 +644,6 @@ module.exports = {
         await onlineStoreImpl.addItemToCart(requisitionBO.itemName, faker.random.number(20));
     },
 
-<<<<<<< HEAD
     async selectReqStatusFilter(status){
       let index;
       let selectedStatus;
@@ -702,22 +701,6 @@ module.exports = {
       I.click(clickOnView);
     },
 
-    async updateBuyer(updatedBuyer){
-        logger.info("Update Buyer to >>> "+updatedBuyer)
-        commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
-        I.click("//label[contains(text(),'" + lmtVar.getLabel("LINE_ITEM") + "')]");
-        logger.info("Clicking on Line Item Checkbox");
-        I.click(I.getElement(iBuyersDeskObject.BUYER_LINK_LINEITEM));
-        I.click(I.getElement(iBuyersDeskObject.BUYER_DELETE_ICON));
-        await checkoutImpl.fillBuyerInTextBox(updatedBuyer);
-        let buyer = await checkoutImpl.getBuyer();
-        logger.info('Updated Buyer is '+buyer);
-        I.click(I.getElement(iBuyersDeskObject.COSTBOOKING_SAVE_BUUTON));
-        return buyer;
-    },
-
-=======
->>>>>>> 8b0e227d86283355775653d25392b1cf78219fe6
     async verifyBuyerOnRequisitionPage()
     {
         await reqListingImpl.navigateToRequisitionListing();

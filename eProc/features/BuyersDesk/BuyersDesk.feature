@@ -23,7 +23,7 @@ Feature: BuyersDesk
 
 #     Then I should be able to create a PO with multiple requisition merged into one
 
-@konica
+@Non-COA @L1konica
     Scenario: To verify filters on buyer's desk status filter
     Given I am logged in eProc
 
@@ -154,7 +154,7 @@ Feature: BuyersDesk
 
     Then I should be see the data on the page with the filtered amount "PURCHASE_AMOUNT_MIN_VALUE" and "PURCHASE_AMOUNT_MAX_VALUE"
 
-@Non-COA
+@Non-COA @L1
     Scenario: To verify that Buyer is able to view ordered requisitions
     Given I am logged in eProc
 
