@@ -5,52 +5,8 @@ const prop = global.confi_prop;
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const commonKeywordImpl = require("../../../commonKeywords/CommonComponent");
 const onlineStoreImpl = require("./../OnlineStore/OnlineStoreImpl");
-const spoImpl = require("../../PO/Spo/SpoImpl");
 
 module.exports = {
-    async addGuidedItemForPo(guidedItem) {
-        await spoImpl.clickOnAddLineItemButton();
-
-        await spoImpl.enterItemName(guidedItem.itemName);
-
-        await this.clickOnAddItemServiceButtonPo();
-
-        let lineNumber = await this.fetchLineNumber();
-        guidedItem.setLineNumber(lineNumber);
-
-        // await this.fillShortDescriptionPo(guidedItem.itemName);
-
-        let category = await this.selectProductCategoryPo(guidedItem.category);
-        guidedItem.setCategory(category);
-
-        if (guidedItem.type === lmtVar.getLabel("ITEM_TYPE_GOODS")) {
-            await this.selectItemTypeGoodsPo();
-        }
-        else {
-            logger.info(`Incorrect Item type passed --> ${guidedItem.type}`);
-            throw new Error(`Incorrect Item type passed --> ${guidedItem.type}`);
-        }
-
-        if (guidedItem.receiveBillBy === lmtVar.getLabel("RECEIVE_BY_QUANTITY")) {
-            await this.selectReceiveByQuantityPo();
-        }
-        else if (lmtVar.getLabel("RECEIVE_BY_AMOUNT")) {
-            await this.selectReceiveByAmountPo();
-        }
-        else {
-            logger.info(`Incorrect Receive By passed --> ${guidedItem.receiveBillBy}`);
-            throw new Error(`Incorrect Receive By passed --> ${guidedItem.receiveBillBy}`);
-        }
-
-        await this.fillMarketPricePo(guidedItem.marketPrice);
-
-        await this.fillQuantityPo(guidedItem.quantity);
-
-        let uom = await this.fillUomPo(guidedItem.uom);
-        guidedItem.setUom(uom);
-
-        await this.clickOnOkayButtonPo();
-    },
     async clickOnAddItemServiceButtonPo() {
         await I.waitForVisible(I.getElement(iGuided.ADD_ITEM_SERVICE_BUTTON));
         await I.click(I.getElement(iGuided.ADD_ITEM_SERVICE_BUTTON));
@@ -93,24 +49,25 @@ module.exports = {
         return price;
     },
     async fillQuantityPo(quantity) {
-        await I.waitForVisible(I.getElement(iGuided.PO_GUIDED_ITEM_MARKET_PRICE_TEXTBOX));
-        await I.click(I.getElement(iGuided.PO_GUIDED_ITEM_MARKET_PRICE_TEXTBOX));
-        await I.clearField(I.getElement(iGuided.PO_GUIDED_ITEM_MARKET_PRICE_TEXTBOX));
-        await I.fillField(I.getElement(iGuided.PO_GUIDED_ITEM_MARKET_PRICE_TEXTBOX), price);
+        await I.waitForVisible(I.getElement(iGuided.PO_GUIDED_ITEM_QUANTITY_TEXTBOX));
+        await I.click(I.getElement(iGuided.PO_GUIDED_ITEM_QUANTITY_TEXTBOX));
+        await I.clearField(I.getElement(iGuided.PO_GUIDED_ITEM_QUANTITY_TEXTBOX));
+        await I.fillField(I.getElement(iGuided.PO_GUIDED_ITEM_QUANTITY_TEXTBOX), quantity);
         logger.info(`Filled quantity --> ${quantity}`);
-        return price;
+        return quantity;
     },
     async fillUomPo(uom) {
         let optionXpath = `//span[text()='${uom}']`;
+        await I.waitForVisible(I.getElement(iGuided.PO_GUIDED_ITEM_UOM_TEXTBOX));
+        await I.scrollIntoView(I.getElement(iGuided.PO_GUIDED_ITEM_UOM_TEXTBOX));
         uom = await commonKeywordImpl.searchAndSelectFromDropdown(I.getElement(iGuided.PO_GUIDED_ITEM_UOM_TEXTBOX), uom, optionXpath);
         logger.info(`Selected Uom --> ${uom}`);
         return uom;
     },
-    async clickOnOkayButtonPo(uom) {
-        let optionXpath = `//span[text()='${uom}']`;
-        uom = await commonKeywordImpl.searchAndSelectFromDropdown(I.getElement(iGuided.PO_GUIDED_ITEM_UOM_TEXTBOX), uom, optionXpath);
-        logger.info(`Selected Uom --> ${uom}`);
-        return uom;
+    async clickOnOkayButtonPo() {
+        await I.waitForVisible(I.getElement(iGuided.PO_GUIDED_ITEM_OK_BUTTON));
+        await commonKeywordImpl.clickUsingJsByXpath(I.getElement(iGuided.PO_GUIDED_ITEM_OK_BUTTON));
+        logger.info("Clicked on Ok button");
     },
 
 

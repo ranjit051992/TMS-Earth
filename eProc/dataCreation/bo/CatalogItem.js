@@ -4,6 +4,7 @@ class CatalogItem
     {
         let itemName;
         let quantity;
+        let itemType;
     }
 
     setItemName(itemName)
@@ -14,6 +15,10 @@ class CatalogItem
     setQuantity(quantity)
     {
         this.quantity = quantity;
+    }
+
+    setItemType(itemType) {
+        this.itemType = itemType;
     }
 }
 module.exports = CatalogItem;

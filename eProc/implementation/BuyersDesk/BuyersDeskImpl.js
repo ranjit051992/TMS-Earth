@@ -12,7 +12,6 @@ const onlineStore = require("../Requisition/OnlineStore/OnlineStoreObject");
 const cartImpl = require("../Requisition/Cart/CartImpl");
 const onlineStoreImpl = require("../Requisition/OnlineStore/OnlineStoreImpl");
 const faker = require("faker");
-const checkoutImpl = require("./../Requisition/Checkout/CheckoutImpl");
 const reqListingImpl = require("./../Requisition/RequisitionListing/RequisitionListingImpl");
 
 module.exports = {
@@ -184,7 +183,7 @@ module.exports = {
 
     async fetchStatus(){
         I.waitForVisible(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
-        let status = await I.grabTextFrom(I.getElement(iBuyersDeskObject.STATUS_LISTING));
+        let status = await I.grabTextFrom(I.getElement(iBuyersDeskObject.REQUISITION_STATUS_LISTING));
         return status;
 
     },
@@ -306,6 +305,26 @@ module.exports = {
             flag = true;
         }
         else if(reqstatus === lmtVar.getLabel("REJECTED_STATUS"))
+        {
+            logger.info(`Requisition is in -> ${reqstatus}`);
+            flag = true;
+        }
+        else if(reqstatus === lmtVar.getLabel("SOURCING_STATUS"))
+        {
+            logger.info(`Requisition is in -> ${reqstatus}`);
+            flag = true;
+        }
+        else if(reqstatus === lmtVar.getLabel("CLOSED_STATUS"))
+        {
+            logger.info(`Requisition is in -> ${reqstatus}`);
+            flag = true;
+        }
+        else if(reqstatus === lmtVar.getLabel("CANCELLED_STATUS"))
+        {
+            logger.info(`Requisition is in -> ${reqstatus}`);
+            flag = true;
+        }
+        else if(reqstatus === lmtVar.getLabel("RELEASED_STATUS"))
         {
             logger.info(`Requisition is in -> ${reqstatus}`);
             flag = true;
@@ -625,18 +644,61 @@ module.exports = {
         await onlineStoreImpl.addItemToCart(requisitionBO.itemName, faker.random.number(20));
     },
 
-    async updateBuyer(updatedBuyer){
-        logger.info("Update Buyer to >>> "+updatedBuyer)
-        commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
-        I.click("//label[contains(text(),'" + lmtVar.getLabel("LINE_ITEM") + "')]");
-        logger.info("Clicking on Line Item Checkbox");
-        I.click(I.getElement(iBuyersDeskObject.BUYER_LINK_LINEITEM));
-        I.click(I.getElement(iBuyersDeskObject.BUYER_DELETE_ICON));
-        await checkoutImpl.fillBuyerInTextBox(updatedBuyer);
-        let buyer = await checkoutImpl.getBuyer();
-        logger.info('Updated Buyer is '+buyer);
-        I.click(I.getElement(iBuyersDeskObject.COSTBOOKING_SAVE_BUUTON));
-        return buyer;
+    async selectReqStatusFilter(status){
+      let index;
+      let selectedStatus;
+      await I.waitForVisible(I.getElement(iBuyersDeskObject.FILTER_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
+      await I.click(I.getElement(iBuyersDeskObject.FILTER_BUTTON));
+      await I.fillField(I.getElement(iBuyersDeskObject.FILTER_SEARCH_BOX),lmtVar.getLabel("STATUS_COLUMN"));
+        if(status === lmtVar.getLabel("STATUS_IN_PROCESS"))
+         {
+           index = 1;
+           logger.info("Requisition Status to be searched is : In Process");
+         }
+         else if (status === lmtVar.getLabel("SOURCING_STATUS"))
+         {
+            index = 2;
+            logger.info("Requisition Status to be searched is : Sourcing Status");
+         }
+         else if (status === lmtVar.getLabel("RELEASED_STATUS"))
+         {
+            index = 3;
+            logger.info("Requisition Status to be searched is : Released");
+         }
+         else if (status === lmtVar.getLabel("REJECTED_STATUS"))
+         {
+            index = 4;
+            logger.info("Requisition Status to be searched is : Rejected");
+         }
+         else if (status === lmtVar.getLabel("CANCELLED_STATUS"))
+         {
+            index = 5;
+            logger.info("Requisition Status to be searched is : Cancelled");
+         }
+         else if (status === lmtVar.getLabel("CLOSED_STATUS"))
+         {
+            index = 6;
+            logger.info("Requisition Status to be searched is : Closed");
+         }
+         else
+         {
+             throw new Error("Invalid status search option");
+             
+         }
+
+         let xpath = `(//dew-master-filter//dew-checkbox//label)[${index}]`;
+         I.waitForVisible(xpath);
+         I.click(xpath);
+         I.waitForClickable(I.getElement(iBuyersDeskObject.FILTER_APPLY_BUTTON),prop.DEFAULT_MEDIUM_WAIT);
+         I.click(I.getElement(iBuyersDeskObject.FILTER_APPLY_BUTTON));
+         await commonComponent.waitForLoadingSymbolNotDisplayed();
+    },
+
+    async clickonViewReq()
+    {
+      let clickOnView = `(//dew-row[contains(@class,'scrolling')]//a[contains(text(),'${lmtVar.getLabel("VIEW_ACTION")}')])[1]`;
+      I.waitForVisible(clickOnView);
+      I.click(clickOnView);
     },
 
     async verifyBuyerOnRequisitionPage()
@@ -647,8 +709,10 @@ module.exports = {
         I.click(I.getElement(iBuyersDeskObject.BUYER_LINK_LINEITEM));
         let buyer = await I.grabTextFrom(I.getElement(iBuyersDeskObject.ASSIGNED_BUYER_REQUISITION));
         return buyer;
-    }
+    },
 
+    
+    
 }
 
  
