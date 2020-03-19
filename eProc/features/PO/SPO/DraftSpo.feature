@@ -47,7 +47,7 @@ Feature: DraftSpo
   Then Item should be added "ITEM_NAME_FOR_SEARCHING" at index 1 in edit mode
 
 
-//**********************COA**********************//
+# //**********************COA**********************//
 
 
 @COA @L1 @137coa
