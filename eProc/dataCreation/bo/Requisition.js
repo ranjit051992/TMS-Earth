@@ -62,6 +62,7 @@ class Requisition
         this.approvePoFlag;
         this.linkedPoNumber;
         this.newApprover;
+        this.fillTaxes;
     }
 
     setReqName(reqName)
@@ -282,6 +283,11 @@ class Requisition
 
     setNewApprover(newApprover) {
         this.newApprover = newApprover;
+    }
+
+    setFillTaxes(fillTaxes)
+    {
+        this.fillTaxes = fillTaxes;
     }
 }
 

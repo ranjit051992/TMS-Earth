@@ -141,6 +141,7 @@ class ObjectCreation
         requisition.setApplyTaxItemLevel = false;
         requisition.convertToPoFlag = true;
         requisition.approvePoFlag = true;
+        requisition.fillTaxes = false;
         return requisition;
     }
 
