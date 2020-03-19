@@ -310,3 +310,20 @@ Then("I should be able to view requisition with non stock item", async function(
     I.assertEqual(isPresent,true);
  });
 
+Then("I should be able see the taxes added for multiple items on view requisition", async function(){
+    let verifyTaxes = false;
+    let taxValueArray = new Array();
+    await reqListingImpl.searchAndViewReqByName(this.reqBO.reqName);
+    for(let i=0; i<this.reqBO.items.length; i++)
+    {
+        await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+        taxValueArray = await viewReqImpl.fetchTaxesDetails(this.reqBO.items[i].itemName);
+        if(taxValueArray.toString().includes(this.reqBO.taxType.toString()) && taxValueArray.includes(this.reqBO.taxName.toString()))
+        {
+            verifyTaxes = true;
+            logger.info("Verified updated Taxes-->"+verifyTaxes);
+        }
+        await viewReqImpl.clickOnBackArrow();
+    }
+    I.assertEqual(verifyTaxes, true);
+});

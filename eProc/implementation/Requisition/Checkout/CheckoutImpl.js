@@ -34,7 +34,7 @@ module.exports = {
         await cartImpl.clearCart();
         for(let i = 0; i < requisitionBO.items.length; i++) {
             if(requisitionBO.items[i].itemType === lmtVar.getLabel("ITEM_TYPE_CATALOG")) {
-                await onlineStoreImpl.addItemToCart(requisitionBO.itemName, faker.random.number(20));
+                await onlineStoreImpl.addItemToCart(requisitionBO.items[i].itemName, faker.random.number(20));
                 await onlineStoreImpl.navigateToOnlineStore();
             }
             else if(requisitionBO.items[i].itemType === lmtVar.getLabel("ITEM_TYPE_GUIDED")) {
@@ -406,7 +406,6 @@ module.exports = {
         //         throw new Error(`Day --> ${day} not present in the datepicker`);
         //     }
         // }
-        commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
         await commonComponent.selectToday(I.getElement(iCheckout.REQUIRED_BY));
         let date = await I.grabAttributeFrom(I.getElement(iCheckout.REQUIRED_BY), 'value');
         logger.info("Clicked on date---> "+date);
@@ -733,6 +732,11 @@ module.exports = {
                 /// assigned BuyerGroup code
             }
     
+            if(requisitionBO.fillTaxes)
+            {
+                requisitionBO = await this.fillTaxDetails(requisitionBO);
+            }
+
             await this.clickOnCostBookingTab();
     
             await coaImpl.fillCoaDetails();
@@ -1066,8 +1070,8 @@ module.exports = {
     },
 
     async fillTaxDetails(requisitionBO) {
+        logger.info("*********Filling Taxes Details");
         await this.clickOnTab(lmtVar.getLabel("CHECKOUT_TAXES_TAB"));
-
         await this.clickOnRemoveAllTaxesButton();
 
         if (requisitionBO.taxType !== "undefined") {
@@ -1125,9 +1129,15 @@ module.exports = {
         {
         await commonComponent.searchDocOnListing(reqArray[i].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
         let status = await commonComponent.getValueForColumnNameOfReq(lmtVar.getLabel("STATUS_COLUMN"));
-        status = status.toString().trim().includes(lmtVar.getLabel("IN_APPROVAL_STATUS"));
-        logger.info(`Status of Reqs ${status} should match with ${lmtVar.getLabel("IN_APPROVAL_STATUS")} `);
-        I.assertEqual(status.toString(), lmtVar.getLabel("IN_APPROVAL_STATUS"));
+        let flag = status.toString().trim().includes(lmtVar.getLabel("IN_APPROVAL_STATUS")) === true
+        if(!flag) {
+            logger.info(`Failed to get In Approval status`);
+            throw new Error(`Failed to get In Approval status`);
+        }
+        else {
+            logger.info("Requisition is in In Approval status");
+        }
+    logger.info("Status is In Approval");
         }
     },
 
@@ -1186,8 +1196,8 @@ module.exports = {
         
         if(reqBO.convertToPoFlag) {
             // await I.wait(prop.DEFAULT_MEDIUM_WAIT);
-            await I.amOnPage(prop.DDS_BuyersDesk_Url);
-           // await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("BUYERS_DESK_LISTING_PAGE"));
+           // await I.amOnPage(prop.DDS_BuyersDesk_Url);
+            await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("BUYERS_DESK_LISTING_PAGE"));
             await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
             await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
             status = await commonComponent.getValueForColumnNameOfReq(lmtVar.getLabel("STATUS_COLUMN"));
@@ -1384,7 +1394,7 @@ module.exports = {
 
     async getSupplierContractId()
     {
-        await I.waitForVisible(I.getElement(iCheckout.SUPPLIER_CONTRACT_ID));
+       await I.waitForVisible(I.getElement(iCheckout.SUPPLIER_CONTRACT_ID));
        let suppContractId = await I.grabAttributeFrom(I.getElement(iCheckout.SUPPLIER_CONTRACT_ID), "value");
         logger.info("Supplier Contract ID is "+suppContractId);
 

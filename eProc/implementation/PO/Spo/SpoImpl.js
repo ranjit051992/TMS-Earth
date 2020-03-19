@@ -258,11 +258,10 @@ module.exports = {
         await I.click(costBookingLink);
         logger.info("Clicked on Cost booking Link");
     },
-    async clickOnCostBookingSaveButton() {
+    async clickOnCostBookingSaveButton(){
         await I.waitForVisible(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
-        await commonKeywordImpl.clickUsingJsByXpath(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
-        await I.waitForVisible(I.getElement(iSpoObject.poDescriptionTextbox));
-        logger.info("Clicked on Save Button");
+        await commonKeywordsImpl.clickUsingJsByXpath(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
+        logger.info("Clicked on coa form save button");
     },
     async clickOnRemoveAllTaxesButton() {
         await I.waitForVisible(I.getElement(iSpoObject.REMOVE_ALL_TAXES_BUTTON));
@@ -355,7 +354,7 @@ module.exports = {
 
         spo = await this.storePoAmount(spo);
 
-        spo = await this.fillTaxes(spo);
+        // spo = await this.fillTaxes(spo);
 
         spo = await this.fillAdditionalDetails(spo);
 
@@ -465,11 +464,11 @@ module.exports = {
     },
     async fillLineItems(spo) {
         logger.info(`**************Filling Line Items**************`);
-        if (spo.taxInclusive) {
-            await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_TAXES_SECTION_SECTION"));
-            await this.selectTaxInclusive();
-            await this.clickRemoveTaxesConfirmButton();
-        }
+        // if (spo.taxInclusive) {
+        //     await this.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_TAXES_SECTION_SECTION"));
+        //     await this.selectTaxInclusive();
+        //     await this.clickRemoveTaxesConfirmButton();
+        // }
 
         for (let i = 0; i < spo.items.length; i++) {
             if (spo.items[i].itemType === lmtVar.getLabel("ITEM_TYPE_CATALOG")) {

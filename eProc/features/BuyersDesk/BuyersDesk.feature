@@ -473,3 +473,46 @@ Feature: BuyersDesk
 
 #     Then I should not be see the requisition in Pending Order state on Buyers desk
 
+
+@COA @L1 @Snehal
+  Scenario: COA>>To verify that buyer is not allowed to modify the requisition in case of Return for Amendment.
+  Given I am logged in eProc
+
+  When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
+  And I checkout
+  And I enter Requisition Name
+  And I add Purchase Type
+  And I add Settlement Via
+  And I add Required By Date
+  And I add data in Cost Booking Details section at line level
+  And I submit requisition
+  And I get requisition number
+  And I approve the requisition
+  And I navigate to Buyer Desk
+  And I edit and return the requisition on Buyers Desk
+  And I allow requestor to resubmit the requisition
+  And I search the requisition on Buyer Desk
+
+  Then I should not be allowed to edit the requisition
+
+
+@Non-COA @L1 @buyermodify @Snehal
+  Scenario: To verify that buyer is not allowed to modify the requisition in case of Return for Amendment.
+  Given I am logged in eProc
+
+  When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
+  And I checkout
+  And I enter Requisition Name
+  And I add Purchase Type
+  And I add Settlement Via
+  And I add Required By Date
+  And I add data in Cost Booking Details section at line level
+  And I submit requisition
+  And I get requisition number
+  And I approve the requisition
+  And I navigate to Buyer Desk
+  And I edit and return the requisition on Buyers Desk
+  And I allow requestor to resubmit the requisition
+  And I search the requisition on Buyer Desk
+
+  Then I should not be allowed to edit the requisition

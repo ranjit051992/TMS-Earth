@@ -240,6 +240,7 @@ module.exports = {
     },
     async fillValidity(bpo){
         logger.info(`*****************Filling Validity*****************`);
+        await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_VALIDITY_SECTION"));
         let fromDate = await this.selectFromDate();
         let toDate = await this.selectToDate(bpo);
         // await this.selectAcceptInvoicesUntil();
@@ -328,7 +329,7 @@ module.exports = {
         let orderValue = bpo.PoAmount.toString();
         orderValue = orderValue.substring(orderValue.indexOf(" ")+1);
         orderValue = orderValue.replace(",","");
-        orderValue = parseFloat(orderValue)+ parseFloat(bpo.date);
+        orderValue = parseFloat(orderValue)* parseFloat(bpo.date);
         await I.fillField(I.getElement(iBpoObject.ORDER_VALUE), orderValue);
         return orderValue;
     },
