@@ -34,7 +34,7 @@ module.exports = {
         await cartImpl.clearCart();
         for(let i = 0; i < requisitionBO.items.length; i++) {
             if(requisitionBO.items[i].itemType === lmtVar.getLabel("ITEM_TYPE_CATALOG")) {
-                await onlineStoreImpl.addItemToCart(requisitionBO.itemName, faker.random.number(20));
+                await onlineStoreImpl.addItemToCart(requisitionBO.items[i].itemName, faker.random.number(20));
                 await onlineStoreImpl.navigateToOnlineStore();
             }
             else if(requisitionBO.items[i].itemType === lmtVar.getLabel("ITEM_TYPE_GUIDED")) {

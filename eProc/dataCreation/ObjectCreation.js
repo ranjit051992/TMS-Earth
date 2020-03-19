@@ -58,7 +58,8 @@ class ObjectCreation
         {
             for(let i =0;i<noOfItems;i++)
             {
-                let catalog = await this.getObjectOfCatalogItem(i, itemType);
+                let itemKey = itemType+"["+i+"]";
+                let catalog = await this.getObjectOfCatalogItem(i, itemKey);
                 items[i] = catalog;
             }
         }
