@@ -206,7 +206,7 @@ Feature: BuyersDesk
     Scenario: To verify that user(buyer) is not allowed to modify the requisition.
     Given I am logged in eProc
 
-    When I create "1" requisition with "1" "ITE0M_NAME_FOR_SEARCHING"
+    When I create "1" requisition with "1" "ITEM_NAME_FOR_SEARCHING"
     And I Approve "1" Requisitions
     And I navigate to Buyer Desk
     And I return the requisition on Buyers Desk
