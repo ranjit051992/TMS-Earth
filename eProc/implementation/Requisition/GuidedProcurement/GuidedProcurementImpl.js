@@ -87,6 +87,7 @@ module.exports = {
 
     async fillCategory(category) {
         await commonKeywordImpl.searchAndSelectFromDropdown(I.getElement(iGuided.CATEGORY_TEXTBOX), category, "//span[contains(text(),'" + category + "')]");
+        await I.wait(prop.DEFAULT_LOW_WAIT);
     },
 
     async clickOnGoodsRadioButton() {
@@ -132,6 +133,8 @@ module.exports = {
     },
 
     async fillQuantity(quantity) {
+        await I.scrollIntoView(I.getElement(iGuided.QUANTITY_TEXTBOX));
+
         await I.waitForVisible(I.getElement(iGuided.QUANTITY_TEXTBOX));
         await I.waitForClickable(I.getElement(iGuided.QUANTITY_TEXTBOX));
         await I.clearField(I.getElement(iGuided.QUANTITY_TEXTBOX));
@@ -162,12 +165,14 @@ module.exports = {
     },
 
     async clickOnBuyerReviewYesRadioButton() {
+        await I.scrollIntoView(I.getElement(iGuided.BUYER_REVIEW_REQUIRED_YES_RADIO_BUTTON));
         await I.waitForVisible(I.getElement(iGuided.BUYER_REVIEW_REQUIRED_YES_RADIO_BUTTON));
         await I.waitForClickable(I.getElement(iGuided.BUYER_REVIEW_REQUIRED_YES_RADIO_BUTTON));
         await I.click(I.getElement(iGuided.BUYER_REVIEW_REQUIRED_YES_RADIO_BUTTON));
     },
 
     async clickOnBuyerReviewNoRadioButton() {
+        await I.scrollIntoView(I.getElement(iGuided.BUYER_REVIEW_REQUIRED_NO_RADIO_BUTTON));
         await I.waitForVisible(I.getElement(iGuided.BUYER_REVIEW_REQUIRED_NO_RADIO_BUTTON));
         await I.waitForClickable(I.getElement(iGuided.BUYER_REVIEW_REQUIRED_NO_RADIO_BUTTON));
         await I.click(I.getElement(iGuided.BUYER_REVIEW_REQUIRED_NO_RADIO_BUTTON));
@@ -377,7 +382,7 @@ module.exports = {
             await this.clickOnQuantityRadioButton();
         }
 
-        this.selectSourcingStatus(guidedItem.sourcingStatus);
+        this.selectSourcingStatus(guidedItem.sourcingStatus,guidedItem.buyerReviewRequired);
 
         if (guidedItem.quantity > 0) {
             await this.fillQuantity(guidedItem.quantity.toString());
@@ -399,13 +404,14 @@ module.exports = {
             await this.clickOnZeroPriceItemCheckbox();
         }
 
-        if (guidedItem.buyerReviewRequired) {
-            await this.clickOnBuyerReviewYesRadioButton();
-        }
+        
+        // if (guidedItem.buyerReviewRequired) {
+        //     await this.clickOnBuyerReviewYesRadioButton();
+        // }
 
-        if (!guidedItem.buyerReviewRequired) {
-            await this.clickOnBuyerReviewNoRadioButton();
-        }
+        // if (!guidedItem.buyerReviewRequired) {
+        //     await this.clickOnBuyerReviewNoRadioButton();
+        // }
 
         if (!guidedItem.description) {
             await this.clickOnDescriptionLink();
@@ -482,7 +488,7 @@ module.exports = {
         return guidedItem;
     },
 
-    async selectSourcingStatus(sourcingStatus)
+    async selectSourcingStatus(sourcingStatus,buyerReviewRequired)
     {
         logger.info(`Selecting sourcing status : ${sourcingStatus}`);
         if (sourcingStatus === lmtVar.getLabel("SOURCING_STATUS_NEED_QUOTE")) {
@@ -493,8 +499,19 @@ module.exports = {
             await this.clickOnEstimatedPriceRadioButton();
         }
 
-        if (sourcingStatus === lmtVar.getLabel("SOURCING_STATUS_QUOTED_BY_SUPPLIER")) {
+        if (sourcingStatus === lmtVar.getLabel("SOURCING_STATUS_QUOTED_BY_SUPPLIER")) 
+        {
             await this.clickOnQuotedBySupplierRadioButton();
+    
+            if(buyerReviewRequired)
+            {
+                await this.clickOnBuyerReviewYesRadioButton();
+            }
+            else
+            {
+                await this.clickOnBuyerReviewNoRadioButton();
+            }
+    
         }
     },
 
@@ -515,17 +532,19 @@ module.exports = {
 
     async selectCategoryEform(eformName)
     {
-        await I.waitForVisible(I.getElement(iGuided.EFORM_DROPDOWN));
-        // await I.waitForClickable(I.getElement(iGuided.EFORM_DROPDOWN));
-        // await I.click(I.getElement(iGuided.EFORM_DROPDOWN));
-        await commonKeywordImpl.selectValueFromDropDown(I.getElement(iGuided.EFORM_DROPDOWN),eformName);
+        let noOfElements = await I.grabNumberOfVisibleElements(I.getElement(iGuided.EFORM_DROPDOWN));
+       // await I.waitForVisible(I.getElement(iGuided.EFORM_DROPDOWN));
+        if(noOfElements>0)
+        {
+            await commonKeywordImpl.selectValueFromDropDown(I.getElement(iGuided.EFORM_DROPDOWN),eformName);
+        }
     },
     async clickOnEformDoneButton() 
     {
-        let isPresent = await commonKeywordImpl.isElementVisible(I.getElement(iGuided.EFORM_DONE));
-        if(isPresent)
+        let noOfElements = await I.grabNumberOfVisibleElements(I.getElement(iGuided.EFORM_DONE));
+        if(noOfElements>0)
         {
-            await I.waitForVisible(I.getElement(iGuided.EFORM_DONE));
+           // await I.waitForVisible(I.getElement(iGuided.EFORM_DONE));
             await I.waitForClickable(I.getElement(iGuided.EFORM_DONE));
             await I.click(I.getElement(iGuided.EFORM_DONE));
         }

@@ -106,7 +106,7 @@ module.exports = {
     },
     async clickOnCostBookingSaveButton(){
         await I.waitForVisible(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
-        await I.doubleClick(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
+        await commonKeywordsImpl.clickUsingJsByXpath(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
         logger.info("Clicked on coa form save button");
     },
     async getAutoCompleteTextboxXpath(autoCompleteTextboxXpath, index) {
