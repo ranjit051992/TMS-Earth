@@ -406,7 +406,6 @@ module.exports = {
         //         throw new Error(`Day --> ${day} not present in the datepicker`);
         //     }
         // }
-        commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
         await commonComponent.selectToday(I.getElement(iCheckout.REQUIRED_BY));
         let date = await I.grabAttributeFrom(I.getElement(iCheckout.REQUIRED_BY), 'value');
         logger.info("Clicked on date---> "+date);
@@ -1384,7 +1383,7 @@ module.exports = {
 
     async getSupplierContractId()
     {
-        await I.waitForVisible(I.getElement(iCheckout.SUPPLIER_CONTRACT_ID));
+       await I.waitForVisible(I.getElement(iCheckout.SUPPLIER_CONTRACT_ID));
        let suppContractId = await I.grabAttributeFrom(I.getElement(iCheckout.SUPPLIER_CONTRACT_ID), "value");
         logger.info("Supplier Contract ID is "+suppContractId);
 

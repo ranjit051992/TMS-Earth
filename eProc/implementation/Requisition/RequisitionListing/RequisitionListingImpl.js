@@ -4,9 +4,7 @@ const logger = require("../../../../Framework/FrameworkUtilities/Logger/logger")
 const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI18NProp");
 const commomComponent = require("../../../commonKeywords/CommonComponent");
 const prop = global.confi_prop;
-const checkoutObject = require("../Checkout/CheckoutObject")
-// const checkoutImpl = require("../Checkout/CheckoutImpl");
-// const requisitionBO = require("../../../dataCreation/bo/Requisition");
+const checkoutObject = require("../Checkout/CheckoutObject");
 
 module.exports = {
 
