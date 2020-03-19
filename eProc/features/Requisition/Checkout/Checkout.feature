@@ -255,7 +255,7 @@ Feature: Checkout
 
     Then I should be able to see submitted requisition with updated details
 
-@Non-COA @L1 @multiple
+@Non-COA @L1 @multipleItem
     Scenario: To verify that user is able to create free text line item and items from Hosted Catalog in a single PR.
     Given I am logged in eProc
 
@@ -641,7 +641,7 @@ Feature: Checkout
 
     Then I should be able to see submitted requisition with updated details
 
-@COA @L1 @multiple
+@COA @L1 @multipleItems
     Scenario: COA>>To verify that user is able to create free text line item and items from Hosted Catalog in a single PR.
     Given I am logged in eProc
 
