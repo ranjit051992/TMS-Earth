@@ -576,7 +576,7 @@ module.exports = {
         await I.click(I.getElement(iGuided.SUPPLIER_CONTRACT_ID_TEXTBOX));
         await I.clearField(I.getElement(iGuided.SUPPLIER_CONTRACT_ID_TEXTBOX));
         await I.fillField(I.getElement(iGuided.SUPPLIER_CONTRACT_ID_TEXTBOX), contractID);
-        contractID = await I.grabTextFrom(I.getElement(iGuided.SUPPLIER_CONTRACT_ID_TEXTBOX));
+        contractID = await I.grabAttributeFrom(I.getElement(iGuided.SUPPLIER_CONTRACT_ID_TEXTBOX), "value");
         logger.info("Entered Contract Id is ---->"+contractID);
         return contractID;
     },

@@ -416,7 +416,7 @@ Then("I should be able to Save the line level COA form", async function(){
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));  
     await checkoutImp.clickOnCostBookingLink(this.reqBO.items[0].itemName);
     coaArray = await coaImp.fetchCoaFormData();
-
+    
     if(coaArray.length >0)
     {
         isCOAfilled = true;

@@ -128,24 +128,26 @@ module.exports = {
 
     async fetchCoaFormData()
     {
-        let elements;
-        let index = 1;
-        let coaArray = new Array();
-        let autoCompleteTextboxXpath = await (await this.getAutoCompleteTextboxXpath(I.getElement(coaObject.AUTO_COMPLETE_TEXTBOX), index)).toString();
-        elements = await I.grabNumberOfVisibleElements(autoCompleteTextboxXpath);
-        if(elements>0) {
-            while(elements>0)
-            {
-                logger.info("Inside while loop");
-                await I.scrollIntoView(autoCompleteTextboxXpath);
-                let value = await I.grabTextFrom(autoCompleteTextboxXpath);
+    let flag;
+    let index = 1;
+    let coaArray = new Array();
+    let autoCompleteTextboxXpath = await (await this.getAutoCompleteTextboxXpath(I.getElement(coaObject.AUTO_COMPLETE_TEXTBOX), index)).toString();
+    flag = await commonKeywordsImpl.waitForElementPresent(autoCompleteTextboxXpath);
+    if(flag) {
+        while (flag) {
+            await I.scrollIntoView(autoCompleteTextboxXpath);
+            await I.wait(prop.DEFAULT_WAIT);
+            let isEnabled = await commonKeywordsImpl.isEnabledByXpath(autoCompleteTextboxXpath);
+            if(isEnabled) {
+                let autoCompleteTextboxXpath = await (await this.getAutoCompleteTextboxXpath(I.getElement(coaObject.AUTO_COMPLETE_TEXTBOX), index)).toString();
+                let value = await I.grabAttributeFrom(autoCompleteTextboxXpath, "value");
                 coaArray.push(value);
             }
-                index++;
-                autoCompleteTextboxXpath = await (await this.getAutoCompleteTextboxXpath(I.getElement(coaObject.AUTO_COMPLETE_TEXTBOX), index)).toString();
-                flag = await I.grabNumberOfVisibleElements(autoCompleteTextboxXpath);
+            index++;
+            autoCompleteTextboxXpath = await (await this.getAutoCompleteTextboxXpath(I.getElement(coaObject.AUTO_COMPLETE_TEXTBOX), index)).toString();
+            flag = await commonKeywordsImpl.isElementPresent(autoCompleteTextboxXpath);
         }
-        
+    }
         return coaArray;
     },
 }

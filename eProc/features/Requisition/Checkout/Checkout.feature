@@ -338,7 +338,7 @@ Feature: Checkout
 
 #     Then I should see that PR is directly flipped to PO
 
-# @Non-COA @L1
+# @Non-COA @L1 @setting
 #     Scenario: To verify a setting called ‘Required by date should be auto calculated as per lead time defined in the catalog’ is present under Customize setting for Requisition
 #     Given I am logged in eProc
 
@@ -1067,12 +1067,12 @@ Feature: Checkout
 
 #     Then I should be able to Save the header level COA form 
 
-# @COA @L1 @linelevelCOA
-#     Scenario: To verify that if cost booking details are loading in COA form at Line item level in requisition.
-#     Given I am logged in eProc
-#     And I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart 
-#     And I checkout
+@COA @L1 @linelevelCOA
+    Scenario: To verify that if cost booking details are loading in COA form at Line item level in requisition.
+    Given I am logged in eProc
+    And I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart 
+    And I checkout
 
-#     When I add data in Cost Booking Details section at line level
+    When I add data in Cost Booking Details section at line level
   
-#     Then I should be able to Save the line level COA form 
+    Then I should be able to Save the line level COA form 
