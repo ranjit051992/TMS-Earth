@@ -14,6 +14,7 @@ const commonKeywordImpl = require("../../commonKeywords/CommonComponent");
 const poListingObject = require("../PO/PoListing/PoListingObject");
 const spoObject = require("../PO/Spo/SpoObject");
 const faker = require("faker");
+const reqListingImpl = require("./../Requisition/RequisitionListing/RequisitionListingImpl");
 
 When("I navigate to Buyer Desk", async function() {
   await buyersDeskImpl.navigateToBuyerListing();
@@ -182,9 +183,15 @@ Then ("I should be see the data on the page with the filtered amount {string} an
 
 });
 
-Then("I should be see the data on the page with the filtered buyer", async function() {
+Then("I should be see the data on the Buyer page with the filtered buyer", async function() {
   logger.info("Buyer to be searched is "+requisition.buyer);
-  let flag = await buyersDeskImpl.verifyBuyer();
+  let flag = await buyersDeskImpl.verifyBuyerOnBuyerPage();
+  I.assertEqual(flag, true);   
+});
+
+Then("I should be see the data on the Upcoming Requisition page with the filtered buyer", async function() {
+  logger.info("Buyer to be searched is "+requisition.buyer);
+  let flag = await buyersDeskImpl.verifyBuyerOnUpcomingReqPage();
   I.assertEqual(flag, true);   
 });
 
@@ -194,8 +201,15 @@ Then("I should be able to create a PO with multiple requisition merged into one"
   
 });
 
-Then("I should be see the data on the page on the basis on Requestor field",async function(){
-  let searchedRequestor = await buyersDeskImpl.fetchSearchedRequestor();
+Then("I should be see the data on the Buyer page on the basis on Requestor field",async function(){
+  let searchedRequestor = await buyersDeskImpl.fetchSearchedRequestorOnBuyerPage();
+  logger.info('Fetched Requestor is '+searchedRequestor);
+  logger.info('Requestor to be searched is '+requisition.requestor);
+  I.assertEqual(searchedRequestor.toString().trim(), requisition.requestor.toString().trim());
+});
+
+Then("I should be see the data on the Upcoming Requisition page on the basis on Requestor field",async function(){
+  let searchedRequestor = await buyersDeskImpl.fetchSearchedRequestorOnUpcomingReqPage();
   logger.info('Fetched Requestor is '+searchedRequestor);
   logger.info('Requestor to be searched is '+requisition.requestor);
   I.assertEqual(searchedRequestor.toString().trim(), requisition.requestor.toString().trim());
@@ -362,7 +376,9 @@ Then("I should be able to see the update Buyer for the requisition on Buyer Desk
   I.assertEqual(fetchedBuyer.toString().trim(), this.reqBO.buyer.trim());
 });
 
-Then("I should be able to see updated Buyer on Requisition page also.",async function(){  
+Then("I should be able to see updated Buyer on Requisition page also.",async function(){ 
+  await reqListingImpl.navigateToRequisitionListing();
+  await buyersDeskImpl.SearchRequisitionNumber(this.reqBO.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
   let fetchedBuyer = await buyersDeskImpl.verifyBuyerOnRequisitionPage();
   logger.info('Fetched Buyer from Requisition Page is '+fetchedBuyer);
   logger.info('Updated Buyer is '+this.reqBO.buyer);

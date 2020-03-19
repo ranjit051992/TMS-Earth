@@ -63,7 +63,7 @@ Feature: BuyersDesk
     And I navigate to Buyer Desk
     And I filter with Requestor field
 
-    Then I should be see the data on the page on the basis on Requestor field
+    Then I should be see the data on the Buyer page on the basis on Requestor field
 
 @Non-COA @L1
     Scenario: To verify Received On filter on buyer's desk 
@@ -85,7 +85,7 @@ Feature: BuyersDesk
      And I navigate to Buyer Desk
      And I filter any buyer "BUYER_NAME"
 
-     Then I should be see the data on the page with the filtered buyer
+     Then I should be see the data on the Buyer page with the filtered buyer
 
 @Non-COA @L1
     Scenario: To verify Purchase Amount filter on buyer's desk 
@@ -124,7 +124,7 @@ Feature: BuyersDesk
     And I navigate to Upcoming Requisition
     And I filter with Requestor field
 
-    Then I should be see the data on the page on the basis on Requestor field
+    Then I should be see the data on the Upcoming Requisition page on the basis on Requestor field
 
 @Non-COA @L1
     Scenario: To verify Submitted On filter on Upcoming Requisition
@@ -144,7 +144,7 @@ Feature: BuyersDesk
     And I navigate to Upcoming Requisition
     And I filter any buyer "BUYER_NAME"
 
-    Then I should be see the data on the page with the filtered buyer
+    Then I should be see the data on the Upcoming Requisition page with the filtered buyer
 
 @Non-COA @L1
     Scenario: To verify Purchase Amount filter on Upcoming Requisition
@@ -298,7 +298,7 @@ Feature: BuyersDesk
     And I navigate to Buyer Desk
     And I filter with Requestor field
 
-    Then I should be see the data on the page on the basis on Requestor field
+    Then I should be see the data on the Buyer page on the basis on Requestor field
 
 @COA @L1
     Scenario: COA>>To verify Received On filter on buyer's desk 
@@ -320,7 +320,7 @@ Feature: BuyersDesk
      And I navigate to Buyer Desk
      And I filter any buyer "BUYER_NAME"
 
-    Then I should be see the data on the page with the filtered buyer
+    Then I should be see the data on the Buyer page with the filtered buyer
 
 # @COA @L1
 #     Scenario: COA>>To verify Purchase Amount filter on buyer's desk 
@@ -359,7 +359,7 @@ Feature: BuyersDesk
     And I navigate to Upcoming Requisition
     And I filter with Requestor field
 
-    Then I should be see the data on the page on the basis on Requestor field
+    Then I should be see the data on the Upcoming Requisition page on the basis on Requestor field
 
 @COA @L1
     Scenario: COA>>To verify Submitted On filter on Upcoming Requisition
@@ -379,7 +379,7 @@ Feature: BuyersDesk
     And I navigate to Upcoming Requisition
     And I filter any buyer "BUYER_NAME"
 
-    Then I should be see the data on the page with the filtered buyer
+    Then I should be see the data on the Upcoming Requisition page with the filtered buyer
 
 #  @COA @L1
 #      Scenario: COA>>To verify Purchase Amount filter on Upcoming Requisition
