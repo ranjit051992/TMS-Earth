@@ -58,4 +58,6 @@ module.exports={
     SUPPLIER_FIELD_EDIT_ICON : "OnlineStore/GuidedProcurement/SUPPLIER_FIELD_EDIT_ICON",
     SUPPLIER_CONTRACT_ID_TEXTBOX: "OnlineStore/GuidedProcurement/SupplierDetailsModal/SUPPLIER_CONTRACT_ID_TEXTBOX",
 
+
+    SUPPLIER_BPO_TEXTBOX : "OnlineStore/GuidedProcurement/SupplierDetailsModal/BPO_TEXTBOX",
 };

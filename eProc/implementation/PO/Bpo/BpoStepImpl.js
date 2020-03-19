@@ -14,6 +14,7 @@ const iBpoObject = require("./BpoObject");
 const bpoImpl =require("./BpoImpl");
 const checkoutImp = require("../../Requisition/Checkout/CheckoutImpl");
 const approveImpl = require("../../Approval/ApprovalImpl")
+const receiptImpl = require("../../Receipt/ReceiptImpl");
 
 Given("I am on PO listing page", async function () {
     await poListingImpl.navigateToPoListing();
@@ -22,10 +23,16 @@ Given("I am on PO listing page", async function () {
 Given("I Create Blanket po with {int} {string} item", async function (noOfItems, itemType) {
     this.bpo = await objectCreation.getObjectOfBlanketPO(noOfItems, itemType);
     this.bpo = await bpoImpl.createBpoFlow(this.bpo);
+  await I.wait(30);
  });
 
+Given("I Create Blanket po with {int} {string} item and approve it", async function (noOfItems, itemType) {
+   this.bpo = await objectCreation.getObjectOfBlanketPO(noOfItems, itemType);
+   this.bpo = await bpoImpl.createAndReleaseBpoFlow(this.bpo);
+});
+
  Given("I approve the BPO", async function(){
-      await bpo
+      await bpoImpl.approveBpoFlow(this.bpo.poNumber);
  });
 
  When("I click on Create Blanket PO button", async function(){
@@ -52,17 +59,26 @@ Given("I Create Blanket po with {int} {string} item", async function (noOfItems,
  });
 
  When("I submit the BPO", async function(){
-        await bpoImpl.submitPo();
+      await bpoImpl.submitPo();
+ });
+
+ When("I create Release of the BPO", async function(){
+      await bpoImpl.createReleaseOrder();     
+ });
+
+ Then("I should be able to view the proper details in Release Order", async function(){
+   let array = await bpoImpl.compareReleaseOrderData();
+   I.assertEqual(array[0], this.bpo.supplierName);
+   I.assertEqual(array[1], this.bpo.items[0].itemName);
+   let itemPrice = this.bpo.itemPrice.toString();
+   I.assertEqual(array[2], parseInt(itemPrice));
+   I.assertEqual(array[3], this.bpo.glAccount);   
  });
 
  Then("I should be able to view the BPO with Order Value entered", async function(){
     let orderValueView = await bpoImpl.getOrderValue();
       I.assertEqual(this.orderValue, orderValueView);
 });
-
-//  Then("I should be able to see the BPO in Cancelled status", async function(){
-
-//  });
 
  Then("I should be able to view the BPO with the attachments", async function(){
     await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_ADD_ATTACHMENT_SECTION"));
@@ -76,12 +92,18 @@ Given("I Create Blanket po with {int} {string} item", async function (noOfItems,
     I.assertEqual(fromDateView, this.bpo.fromDate);
     I.assertEqual(toDateView, this.bpo.toDate);
  });
+
+Then("I should be able to view released order against the BPO", async function(){
+   let releaseOrderNumber = await bpoImpl.getReleaseOrderPoNumberHeader();
+   await poListingImpl.navigateToPoListing();
+   await commonKeywordImpl.searchDocOnListing(this.bpo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+   await bpoImpl.viewBPO();
+   let releaseOrderPONumber = await bpoImpl.getReleaseOrderPoNumber();
+   I.assertEqual(releaseOrderNumber, releaseOrderPONumber);
+
+ });
 When("I add attachment at header level", async function(){
       await bpoImpl.addAttachment(this.bpo.attachmentPath);
- });
-
-Then("I should be able to see the BPO in Cancelled status", async function(){
-
  });
 
 Given( "I have BPO with In Approval status", async function() {
@@ -99,3 +121,23 @@ Given( "I Create {int} Blanket POs with {int} {string} item", async function (no
    this.bpoArray = await bpoImpl.createMultipleBPOs(noOfPOs, noOfItems, itemType);
    logger.info("Required number of BPOs created");
 });
+
+
+
+ Given("I search bpo and navigate to release order tab", async function(){
+   await commonKeywordImpl.searchDocOnListing(this.bpo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+   await poListingImpl.clickOnPoNumberLink(this.bpo.poNumber);
+   //await poListingImpl.clickOnPoNumberLink("OU_1-951/20/7420");
+
+   await bpoImpl.clickOnReleaseOrderTab();
+   
+ });
+
+ Then("I should be able to see BPO Release Order page on convert to PO", async function(){
+   
+   await bpoImpl.clickOnPoNumberLinkOnReleaseOrderTab(this.bpo.poNumber);
+   //await bpoImpl.clickOnPoNumberLinkOnReleaseOrderTab("OU_1-951/20/7420");
+
+   let isPresent = await bpoImpl.checkReqNumberOnReleaseOrders(this.reqBO.reqNumber);
+   I.assertEqual(isPresent, true);
+ });

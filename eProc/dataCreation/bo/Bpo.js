@@ -42,6 +42,7 @@ class Bpo
         this.toDate;
         this.newApprover;
         this.date;
+        this.itemPrice;
     }
     setPoNumber(poNumber)
     {
@@ -228,6 +229,10 @@ class Bpo
     setDate(date)
     {
         this.date=date;
+    }
+    setItemPrice(itemPrice)
+    {
+        this.itemPrice=itemPrice;
     }
 
 }

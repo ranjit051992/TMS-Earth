@@ -1125,7 +1125,7 @@ module.exports = {
         {
         await commonComponent.searchDocOnListing(reqArray[i].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
         let status = await commonComponent.getValueForColumnNameOfReq(lmtVar.getLabel("STATUS_COLUMN"));
-        status = status.substring(status.indexOf("(")+1, status.indexOf(")"));
+        status = status.toString().trim().includes(lmtVar.getLabel("IN_APPROVAL_STATUS"));
         logger.info(`Status of Reqs ${status} should match with ${lmtVar.getLabel("IN_APPROVAL_STATUS")} `);
         I.assertEqual(status.toString(), lmtVar.getLabel("IN_APPROVAL_STATUS"));
         }
@@ -1385,7 +1385,7 @@ module.exports = {
     async getSupplierContractId()
     {
         await I.waitForVisible(I.getElement(iCheckout.SUPPLIER_CONTRACT_ID));
-        let suppContractId = await I.grabTextFrom(I.getElement(iCheckout.SUPPLIER_CONTRACT_ID));
+       let suppContractId = await I.grabAttributeFrom(I.getElement(iCheckout.SUPPLIER_CONTRACT_ID), "value");
         logger.info("Supplier Contract ID is "+suppContractId);
 
         return suppContractId;

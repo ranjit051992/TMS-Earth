@@ -41,6 +41,7 @@ class GuidedItem
         this.marketPrice;
         this.itemType;
         this.supplierContractId;
+        this.bpo;
     }
     setItemName(itemName)
     {
@@ -212,6 +213,11 @@ class GuidedItem
     setSupplierContractId(supplierContractId)
     {
         this.supplierContractId = supplierContractId;
+    }
+    
+    setBpo(bpo)
+    {
+        this.bpo = bpo;
     }
 }
 module.exports=GuidedItem;

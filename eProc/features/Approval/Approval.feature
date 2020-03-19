@@ -154,7 +154,7 @@ Feature: Approval
     Then I should be able to see the status of all BPOs as Rejected
 
 
-@Non-COA @Shubham
+@Non-COA 
     Scenario: To verify that user is able to delegate single/multiple BPO
 
     Given I am logged in eProc
