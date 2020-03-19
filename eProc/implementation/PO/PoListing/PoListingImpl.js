@@ -129,4 +129,10 @@ module.exports = {
         }
 
     },
+
+    async searchAndViewPO(docDetail, searchBy) {
+        I.amOnPage(prop.poListingUrl);
+        await commonKeywordImpl.searchDocOnListing(docDetail, searchBy);
+        await commonKeywordImpl.clickOnDocNumberLink();
+    }
 }

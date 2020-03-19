@@ -76,7 +76,7 @@ Feature: Bpo
    Then I should be able to view released order against the BPO
 
 
-#  @Non-COA @L1 @Pooja
+# @Non-COA @L1 @Shubham
 #    Scenario: To verify that user is able to tag a free text item to a particular Blanket PO
 
 #    Given I am logged in eProc
@@ -84,16 +84,9 @@ Feature: Bpo
 
 
 #    When I click on Create Blanket PO button
-#    And I select supplier details
-#    And I add Required by date
-#    And I add 1 free text item with details
-#    And I add 1 attachment at header level
-#    And I Define Buying Scope
-#    And I enter current date in Validity To date
-#    And I enter current date in Validity From date
-#    And I submit the PO 
+#    And I create a BPO with 1 "SEARCH_GUIDED_ITEM" item
 
-#    Then I should be able to view the BPO with free text item added to it
+#    Then I should be able to view the BPO with free text item added at index 1
 
 
 #  @COA @L1
@@ -177,7 +170,7 @@ Feature: Bpo
 #    Then the Release created against the BPO should be listed there
 
 
-#  @COA @L1
+# @COA @L1
 #    Scenario: COA _ To verify that user is able to tag a free text item to a particular Blanket PO
 
 #    Given I am logged in eProc
@@ -185,13 +178,6 @@ Feature: Bpo
 
 
 #    When I click on Create Blanket PO button
-#    And I select supplier details
-#    And I add Required by date
-#    And I add 1 free text item with details
-#    And I add 1 attachment at header level
-#    And I Define Buying Scope
-#    And I enter current date in Validity To date
-#    And I enter current date in Validity From date
-#    And I submit the PO 
+#    And I create a BPO with 1 "SEARCH_GUIDED_ITEM" item
 
-#    Then I should be able to view the BPO with free text item added ot it
+#    Then I should be able to view the BPO with free text item added at index 1
