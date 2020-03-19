@@ -232,7 +232,7 @@ module.exports = {
     },
     async fillAgreementDetails(bpo){
         logger.info(`**************Filling Agreement Details**************`);
-        if(prop.isCoa) {
+        if(!prop.isCoa) {
             await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_AGREEMENT_DETAILS_SECTION"));
             await this.clickDefineBuyingScope();
             await this.fillBusinessUnit(bpo.businessUnit);
@@ -245,6 +245,7 @@ module.exports = {
     },
     async fillValidity(bpo){
         logger.info(`*****************Filling Validity*****************`);
+        await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_VALIDITY_SECTION"));
         let fromDate = await this.selectFromDate();
         let toDate = await this.selectToDate(bpo);
         // await this.selectAcceptInvoicesUntil();

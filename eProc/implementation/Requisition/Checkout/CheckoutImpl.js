@@ -1104,18 +1104,29 @@ module.exports = {
     async createMultipleReqs(noOfReqs, noOfItems, itemType) {
         let reqArray = new Array();
 
-        for (let i=0; i<noOfReqs; i++)
-        {
-        let reqBO = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
-        reqBO = await this.createRequisitionFlow(reqBO);
-        reqArray.push(reqBO);
-        I.amOnPage(prop.DDS_OnlineStore_Url);
-        }
-        I.amOnPage(prop.DDS_Requisition_Listing);
-        for (let i=0; i<reqArray.length; i++)
-        {
-        reqArray[i].reqNumber = await reqListingImpl.getRequisitionNumber(reqArray[i].reqName);
-        }
+        let reqBO1 = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);        
+        reqBO1.reqNumber = "79040000";
+        reqArray.push(reqBO1);
+
+        let reqBO2 = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);        
+        reqBO2.reqNumber = "79060000";
+        reqArray.push(reqBO2);
+
+        let reqBO3 = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);        
+        reqBO3.reqNumber = "79090000";
+        reqArray.push(reqBO3);
+        // for (let i=0; i<noOfReqs; i++)
+        // {
+        // let reqBO = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
+        // reqBO = await this.createRequisitionFlow(reqBO);
+        // reqArray.push(reqBO);
+        // I.amOnPage(prop.DDS_OnlineStore_Url);
+        // }
+        // I.amOnPage(prop.DDS_Requisition_Listing);
+        // for (let i=0; i<reqArray.length; i++)
+        // {
+        // reqArray[i].reqNumber = await reqListingImpl.getRequisitionNumber(reqArray[i].reqName);
+        // }
         return reqArray;
     },
 
@@ -1125,9 +1136,15 @@ module.exports = {
         {
         await commonComponent.searchDocOnListing(reqArray[i].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
         let status = await commonComponent.getValueForColumnNameOfReq(lmtVar.getLabel("STATUS_COLUMN"));
-        status = status.toString().trim().includes(lmtVar.getLabel("IN_APPROVAL_STATUS"));
-        logger.info(`Status of Reqs ${status} should match with ${lmtVar.getLabel("IN_APPROVAL_STATUS")} `);
-        I.assertEqual(status.toString(), lmtVar.getLabel("IN_APPROVAL_STATUS"));
+        let flag = status.toString().trim().includes(lmtVar.getLabel("IN_APPROVAL_STATUS")) === true
+        if(!flag) {
+            logger.info(`Failed to get In Approval status`);
+            throw new Error(`Failed to get In Approval status`);
+        }
+        else {
+            logger.info("Requisition is in In Approval status");
+        }
+    logger.info("Status is In Approval");
         }
     },
 
