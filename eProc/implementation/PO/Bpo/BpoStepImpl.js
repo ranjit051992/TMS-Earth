@@ -67,12 +67,13 @@ Given("I Create Blanket po with {int} {string} item and approve it", async funct
  });
 
  Then("I should be able to view the proper details in Release Order", async function(){
-   let array = await bpoImpl.compareReleaseOrderData();
+   let array = await bpoImpl.compareReleaseOrderData(this.bpo);
    I.assertEqual(array[0], this.bpo.supplierName);
    I.assertEqual(array[1], this.bpo.items[0].itemName);
    let itemPrice = this.bpo.itemPrice.toString();
-   I.assertEqual(array[2], parseInt(itemPrice));
-   I.assertEqual(array[3], this.bpo.glAccount);   
+   I.assertEqual(array[2], parseFloat(itemPrice));
+   if(!prop.isCoa)
+      I.assertEqual(array[3], this.bpo.glAccount);   
  });
 
  Then("I should be able to view the BPO with Order Value entered", async function(){
