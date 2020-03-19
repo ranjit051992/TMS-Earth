@@ -69,7 +69,7 @@
         "url": "https://dewdrops-staging.zycus.com/home/#/auth",
         "poListingUrl": "https://dewdrops-staging.zycus.com/eproc/#/purchaseorder/default/listing",
         "DDS_OnlineStore_Url": "https://dewdrops-staging.zycus.com/eproc/#/online-store",
-        "SETUP": "staging",
+        "SETUP": "STAGING",
         "TENANT": "ZCS",
         "browser": "chrome",
         "host": "127.0.0.1",
