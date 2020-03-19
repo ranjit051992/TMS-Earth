@@ -732,6 +732,11 @@ module.exports = {
                 /// assigned BuyerGroup code
             }
     
+            if(requisitionBO.fillTaxes)
+            {
+                requisitionBO = await this.fillTaxDetails(requisitionBO);
+            }
+
             await this.clickOnCostBookingTab();
     
             await coaImpl.fillCoaDetails();
@@ -1065,8 +1070,8 @@ module.exports = {
     },
 
     async fillTaxDetails(requisitionBO) {
+        logger.info("*********Filling Taxes Details");
         await this.clickOnTab(lmtVar.getLabel("CHECKOUT_TAXES_TAB"));
-
         await this.clickOnRemoveAllTaxesButton();
 
         if (requisitionBO.taxType !== "undefined") {
@@ -1185,8 +1190,8 @@ module.exports = {
         
         if(reqBO.convertToPoFlag) {
             // await I.wait(prop.DEFAULT_MEDIUM_WAIT);
-            await I.amOnPage(prop.DDS_BuyersDesk_Url);
-           // await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("BUYERS_DESK_LISTING_PAGE"));
+           // await I.amOnPage(prop.DDS_BuyersDesk_Url);
+            await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("BUYERS_DESK_LISTING_PAGE"));
             await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
             await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
             status = await commonComponent.getValueForColumnNameOfReq(lmtVar.getLabel("STATUS_COLUMN"));

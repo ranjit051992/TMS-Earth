@@ -420,7 +420,10 @@ module.exports = {
         if (guidedItem.buyerReviewRequired) {
             for (let i = 0; i < guidedItem.suppliers.length; i++) {
                 await this.fillSupplier(guidedItem.suppliers[i]);
+                pause();
                 let isPresent = await this.checkIfSupplierSuggestionsPresent();
+                logger.info("isPresent"+isPresent)
+               
                 if (isPresent) {
                     await this.selectSupplierCheckbox(guidedItem.suppliers[i]);
                     await this.clickOnAdditionalDetailsButton();

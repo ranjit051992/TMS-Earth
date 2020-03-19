@@ -445,5 +445,18 @@ Given("I create requisition with {int} {string} and {int} free text item", async
       let guidedItem = await objectCreation.getObjectOfGuidedItem(noOfGuidedItems);
       this.reqBO.items.push(guidedItem);
    }
+   this.reqBO.fillTaxes
    this.reqBO = await checkoutImp.createRequisitionFlow(this.reqBO);
+});
+
+When("I add taxes to requition for {int} {string} and {int} free text item", async function(noOfCatalogItems, catalogItemType, noOfGuidedItems){
+    this.reqBO = await objectCreation.getObjectOfRequisition(noOfCatalogItems, catalogItemType);
+    
+    for(let i = 0; i < noOfGuidedItems; i++) {
+        let guidedItem = await objectCreation.getObjectOfGuidedItem(noOfGuidedItems);
+        this.reqBO.items.push(guidedItem);
+    }
+    this.reqBO.fillTaxes = true;
+    this.reqBO = await checkoutImp.createRequisitionFlow(this.reqBO);
+ 
 });

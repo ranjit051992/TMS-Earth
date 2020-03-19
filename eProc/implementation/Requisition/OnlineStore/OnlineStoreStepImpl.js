@@ -91,7 +91,7 @@ When("I add {int} {string} items to cart", async function (noOfItem, itemType) {
             }
             itemArray.push(item);
 
-        }``
+        }
     }
     this.addedCartItems = itemArray;
 
