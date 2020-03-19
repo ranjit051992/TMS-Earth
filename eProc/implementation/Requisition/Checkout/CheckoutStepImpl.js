@@ -426,7 +426,7 @@ Then("I should be able to Save the line level COA form", async function(){
     await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));  
     await checkoutImp.clickOnCostBookingLink(this.reqBO.items[0].itemName);
     coaArray = await coaImp.fetchCoaFormData();
-
+    
     if(coaArray.length >0)
     {
         isCOAfilled = true;
@@ -445,5 +445,18 @@ Given("I create requisition with {int} {string} and {int} free text item", async
       let guidedItem = await objectCreation.getObjectOfGuidedItem(noOfGuidedItems);
       this.reqBO.items.push(guidedItem);
    }
+   this.reqBO.fillTaxes
    this.reqBO = await checkoutImp.createRequisitionFlow(this.reqBO);
+});
+
+When("I add taxes to requition for {int} {string} and {int} free text item", async function(noOfCatalogItems, catalogItemType, noOfGuidedItems){
+    this.reqBO = await objectCreation.getObjectOfRequisition(noOfCatalogItems, catalogItemType);
+    
+    for(let i = 0; i < noOfGuidedItems; i++) {
+        let guidedItem = await objectCreation.getObjectOfGuidedItem(noOfGuidedItems);
+        this.reqBO.items.push(guidedItem);
+    }
+    this.reqBO.fillTaxes = true;
+    this.reqBO = await checkoutImp.createRequisitionFlow(this.reqBO);
+ 
 });

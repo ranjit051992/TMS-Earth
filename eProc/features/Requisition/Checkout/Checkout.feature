@@ -1,7 +1,7 @@
 Feature: Checkout
 
 
-@Non-COA @L1 @priyanka @costCenter
+@Non-COA @L1 @priyankaNCoa @costCenter
   Scenario: To verify that user is able to add Cost center information to the requisition.
   Given I am logged in eProc
   When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -11,7 +11,7 @@ Feature: Checkout
   And I navigate to Line level Cost Booking Details
   Then I should be see the updated cost center on line level Cost Booking section
 
-@Non-COA @L1  @project @priyanka
+@Non-COA @L1  @project @priyankaNCoa
     Scenario: To verify that user is able to add Project information to the requisition.
     Given I am logged in eProc
     When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -21,7 +21,7 @@ Feature: Checkout
     And I navigate to Line level Cost Booking Details
     Then I should be see the updated project on line level Cost Booking section
 
-@Non-COA @L1  @priyanka
+@Non-COA @L1  @priyankaNCoa
     Scenario: To verify that System auto populates user's Cost center when a user is creating a requisition.
     Given I am logged in eProc
     When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -30,7 +30,7 @@ Feature: Checkout
     And I navigate to Line level Cost Booking Details
     And I should see on line level Cost Booking Details section cost center should be populated
 
-@Non-COA @L1  @priyanka @default
+@Non-COA @L1  @priyankaNCoa @default
     Scenario: To verify that system auto populates user's default Delivery & Bill to address 
     Given I am logged in eProc
     When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
@@ -39,35 +39,6 @@ Feature: Checkout
     Then I should see on header level, Shipping Details section Default Shipping Address field should be auto populated
     And I navigate to Line level Shipping Details and Asset Tagging section
     And I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated
-
-@Non-COA @L1  @approval @priyanka
-    Scenario:  To verify that user is able to view approval Status
-    Given I am logged in eProc
-    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
-    And I checkout
-    And I enter Requisition Name
-    And I add Purchase Type
-    And I add Settlement Via
-    And I add Required By Date
-    And I add data in Cost Booking Details section at line level 
-    And I submit requisition
-    Then I should be able see the status of requisition on the Listing page
-
-@Non-COA @L1 @draft @priyanka
-  Scenario: To verify requisition in draft and actions on it
-  Given I am logged in eProc
-
-  When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
-  And I checkout
-  And I enter Requisition Name
-  And I add Purchase Type
-  And I add Settlement Via
-  And I add Required By Date
-  And I add data in Cost Booking Details section at line level
-  And I save requisition in Draft state
-  Then I should be able to view the actions for the draft requisition on Listing page
-  And I should be able to Edit and submit the Draft requisition
-  And I should be able to delete the requisition
 
 @Non-COA @L1 @attach @Snehal
 
@@ -221,7 +192,7 @@ Feature: Checkout
   Then I should be able to view requisition created with free text item
 
 
-@Non-COA @L1 @contract @priyanka
+@Non-COA @L1 @contract @priyankaNCoa
   Scenario: To verify that user is able to tag a free-text item to a contract 
   Given I am logged in eProc
 
@@ -239,30 +210,6 @@ Feature: Checkout
 
   Then I should see contract linked to free text item on viewing the item
 
-
-
-@Non-COA @L1 @copy @priyanka
-    Scenario: To verify that user is able to copy any requisition and modify it to create a new requisition.
-    Given I am logged in eProc
-
-    When I create requisition with 1 "ITEM_NAME_FOR_SEARCHING" item
-    And I copy that requisition
-    And I fetch Requisition Name
-    And I modify the field quantity
-    And I add Tax Details at line level
-    And I save it
-    And I submit requisition
-
-    Then I should be able to see submitted requisition with updated details
-
-@Non-COA @L1 @multiple
-    Scenario: To verify that user is able to create free text line item and items from Hosted Catalog in a single PR.
-    Given I am logged in eProc
-
-    When I create requisition with 2 "ITEM_NAME_FOR_SEARCHING" and 1 free text item
-    And I view Requisition
-
-    Then I should be able to view the requisition with free text item and the catalog items
 
 @Non-COA @L1 @hierarchy @Snehal
     Scenario: To verify that user is able to see the approval hierarchy after raising a requisition
@@ -296,27 +243,9 @@ Feature: Checkout
 
     Then I should be able to view the workflow with On Behalf user as the requestor and On behalf user workflow should be applied
 
-@Non-COA @L1 @multipleCostCenter @priyanka
-    Scenario: To verify that user is able to create requisition for multiple items with multiple cost center for each item
-    Given I am logged in eProc
-
-    When I add 2 "ITEM_NAME_FOR_SEARCHING" items to cart
-    And I checkout
-    And I enter Requisition Name
-    And I add Purchase Type
-    And I add Settlement Via
-    And I add Required By Date
-    And I add Costing split at header level by Percentage into 2 splits
-    And I add data in Cost Booking Details section at line level 
-    And I submit requisition
-
-    Then I should be able to view the requisition with multiple items
-    And I should see split cost center added to each item at header level 
-    And I should be able to see split cost center added to each item at line level
 
 
-
-# @Non-COA @L1 @autoPO @Setting @priyanka
+# @Non-COA @L1 @autoPO @Setting @priyankaNCoa
 #     Scenario: To verify that PR is directly flipped into PO after regular approval is complete.
 #     Given I am logged in eProc
 
@@ -361,23 +290,6 @@ Feature: Checkout
     Then I should be able to see Deliver address as the Ship to Another Address on view requisition 
 
 
-@Non-COA @L1 @taxes @priyanka
-    Scenario: To verify that user is able to add taxes at line item level in a requisition for catalog item
-    Given I am logged in eProc
-
-    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
-    And I checkout
-    And I enter Requisition Name
-    And I add Purchase Type
-    And I add Settlement Via
-    And I add Required By Date
-    And I add data in Cost Booking Details section at line level 
-    And I add Tax Details at line level
-    And I save it
-    And I submit requisition
-
-    Then I should be able see the taxes added on view requisition
-
 # @Non-COA @L1
 #   Scenario: To verify that user is able to add taxes at line item level in a requisition for punchout item
 #   Given I am logged in eProc
@@ -394,40 +306,7 @@ Feature: Checkout
 
 #   Then I should be able see the taxes added on view requisition
 
-@Non-COA @L1 @freeTextItem @priyanka
-  Scenario: To verify that user is able to add taxes at line item level in a requisition for free-text item 
-  Given I am logged in eProc
 
-  When I add 1 free text item "SEARCH_GUIDED_ITEM" to cart
-  And I checkout
-  And I enter Requisition Name
-  And I add Purchase Type
-  And I add Settlement Via
-  And I add Required By Date
-  And I add data in Cost Booking Details section at line level 
-  And I add Tax Details at line level
-  And I save it
-  And I submit requisition
-
-  Then I should be able see the taxes added on view requisition
-
-# @Non-COA @L1
-#   Scenario: To verify that user is able to add taxes at line item level in a requisition for catalog,punchout & free-text item
-#   Given I am logged in eProc
-#   And I navigate to punchout site
-
-#   When I add a punchout item to cart
-#   And I add a free text item to cart
-#   And I add a catalog item to cart
-#   And I checkout
-#   And I add Purchase Type
-#   And I add Required By Date
-#   And I add data in Cost Booking Details section at line level for all items
-#   And I add Tax Details at line level
-#   And I save it
-#   And I submit requisition
-
-#   Then I should be able see the taxes added on view requisition
 
 # @Non-COA @L1 @setting
 #   Scenario: To verify that buyer is allowed to modify the requisition before sending it for approval in case of Buyer Review
@@ -483,40 +362,6 @@ Feature: Checkout
   And I submit requisition
 
   Then I should be able to view requisition with non stock item
-
-
-
-@Non-COA @L1 @priyanka @deliverySplit
-  Scenario: To verify that user is able to create requisition with conditions of delivery address
-  Given I am logged in eProc
-
-  When I add a catalog item "ITEM_NAME_FOR_SEARCHING" with quantity 2 to cart
-  And I checkout
-  And I enter Requisition Name
-  And I add Purchase Type
-  And I add Settlement Via
-  And I add Required By Date
-  And I add Delivery split at line level into 2 splits
-  And I change the address for split 2
-  And I save it
-  And I add data in Cost Booking Details section at line level 
-  And I submit requisition
-
-  Then I should be able to view the requisition with the delivery split
-  And I should see that the address is updated for split 2
-
-
-
-@Non-COA @L1 @closeReq @priyanka
-  Scenario: To verify that user is  able to close requisition
-  Given I am logged in eProc
-  And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
-  And I close PO
-
-  When I navigate to Requisition Listing page
-  And I close the requisition from actions
-
-  Then I should be able to see the status of the requisition changed to Closed
 
 @Non-COA @L1 @Snehal @reqPo
   Scenario: To verify the behavior of requisition who has PO attached to them
@@ -628,20 +473,9 @@ Feature: Checkout
 
     Then I should be able to see the attachment which is added
 
-@COA @L1 @coaCopy @priyankaCOA
-    Scenario: COA>>To verify that user is able to copy any requisition and modify it to create a new requisition.
-    Given I am logged in eProc
 
-    When I create requisition with 1 "ITEM_NAME_FOR_SEARCHING" item
-    And I copy that requisition
-    And I modify the field quantity
-    And I add Tax Details at line level
-    And I save it
-    And I submit requisition
 
-    Then I should be able to see submitted requisition with updated details
-
-@COA @L1 @multiple
+@COA @L1 @multipleItems
     Scenario: COA>>To verify that user is able to create free text line item and items from Hosted Catalog in a single PR.
     Given I am logged in eProc
 
@@ -740,20 +574,6 @@ Feature: Checkout
 
     Then I should be able to see Deliver address as the Ship to Another Address on view requisition 
 
-@COA @L1 @coaApproval  @priyankaCOA
-    Scenario: COA>> To verify that user is able to view approval Status
-    Given I am logged in eProc
-
-    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
-    And I checkout
-    And I enter Requisition Name
-    And I add Purchase Type
-    And I add Settlement Via
-    And I add Required By Date
-    And I add data in Cost Booking Details section at line level 
-    And I submit requisition
-
-    Then I should be able see the status of requisition on the Listing page
 
 @COA @L1 @Snehal @custom
     Scenario: COA>>To verify that user is able to create any custom / One time delivery address while Check out and save it for future use
@@ -780,22 +600,7 @@ Feature: Checkout
     And I select Ship to Another Address in  Shipping Details section at header level
     And I should be able to see the saved address on creating a new requisition
 
-@COA @L1 @coaTaxes @priyankaCOA
-    Scenario: COA>>To verify that user is able to add taxes at line item level in a requisition for catalog item
-    Given I am logged in eProc
 
-    When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
-    And I checkout
-    And I enter Requisition Name
-    And I add Purchase Type
-    And I add Settlement Via
-    And I add Required By Date
-    And I add data in Cost Booking Details section at line level 
-    And I add Tax Details at line level
-    And I save it
-    And I submit requisition
-
-    Then I should be able see the taxes added on view requisition
 
 # @COA @L1
 #   Scenario: COA>>To verify that user is able to add taxes at line item level in a requisition for punchout item
@@ -813,38 +618,6 @@ Feature: Checkout
 
 #   Then I should be able see the taxes added on view requisition
 
-@COA @L1 @coafreeTextItem @priyankaCOA
-  Scenario: COA>>To verify that user is able to add taxes at line item level in a requisition for free-text item 
-  Given I am logged in eProc
-
-  When I add 1 free text item "SEARCH_GUIDED_ITEM" to cart
-  And I checkout
-  And I add Purchase Type
-  And I add Required By Date
-  And I add data in Cost Booking Details section at line level 
-  And I add Tax Details at line level
-  And I save it
-  And I submit requisition
-
-  Then I should be able see the taxes added on view requisition
-
-# @COA @L1
-#   Scenario: COA>>To verify that user is able to add taxes at line item level in a requisition for catalog,punchout & free-text item
-#   Given I am logged in eProc
-#   And I navigate to punchout site
-
-#   When I add a punchout item to cart
-#   And I add a free text item to cart
-#   And I add a catalog item to cart
-#   And I checkout
-#   And I add Purchase Type
-#   And I add Required By Date
-#   And I add data in Cost Booking Details section at line level for all items
-#   And I add Tax Details at line level
-#   And I save it
-#   And I submit requisition
-
-#   Then I should be able see the taxes added on view requisition
 
 # @COA @L1 @setting
 #   Scenario: COA>>To verify that buyer is allowed to modify the requisition before sending it for approval in case of Buyer Review
@@ -915,20 +688,7 @@ Feature: Checkout
 
   Then I should be able to view requisition with non stock item
 
-@COA @L1 @coaDraft @priyankaCOA
-  Scenario: COA>>To verify requisition in draft and actions on it
-    Given I am logged in eProc
-  When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
-  And I checkout
-  And I enter Requisition Name
-  And I add Purchase Type
-  And I add Settlement Via
-  And I add Required By Date
-  And I add data in Cost Booking Details section at line level
-  And I save requisition in Draft state
-  Then I should be able to view the actions for the draft requisition on Listing page
-  And I should be able to Edit and submit the Draft requisition
-  And I should be able to delete the requisition
+
 
 @COA @L1  @Snehal 
 
@@ -966,24 +726,6 @@ Feature: Checkout
 
   Then I should be able to view requisition with buyer which was assigned
 
-@COA @L1 @priyankaCOA @coaDeliverySplit
-  Scenario: COA>>To verify that user is able to create requisition with conditions of delivery address
-  Given I am logged in eProc
-
-  When I add a catalog item "ITEM_NAME_FOR_SEARCHING" with quantity 2 to cart
-  And I checkout
-  And I enter Requisition Name
-  And I add Purchase Type
-  And I add Settlement Via
-  And I add Required By Date
-  And I add Delivery split at line level into 2 splits
-  And I change the address for split 2
-  And I save it
-  And I add data in Cost Booking Details section at line level 
-  And I submit requisition
-
-  Then I should be able to view the requisition with the delivery split
-  And I should see that the address is updated for split 2
 
 @COA @L1 @Snehal
   Scenario: COA>>To verify that user is able to add approver in requisition workflow if activity if assigned to him/her
@@ -1003,17 +745,6 @@ Feature: Checkout
   And I submit requisition
 
   Then I should be able to view the requisition with adhoc approver added in the workflow
-
-@COA @L1 @closeReqCOA @priyankaCOA
-  Scenario: COA>>To verify that user is  able to close requisition
-  Given I am logged in eProc
-  And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
-  And I close PO
-
-  When I navigate to Requisition Listing page
-  And I close the requisition from actions
-
-  Then I should be able to see the status of the requisition changed to Closed
 
 @COA @L1 @CoaPo
   Scenario: COA>>To verify the behavior of requisition who has PO attached to them
@@ -1063,12 +794,12 @@ Feature: Checkout
 
 #     Then I should be able to Save the header level COA form 
 
-# @COA @L1 @linelevelCOA
-#     Scenario: To verify that if cost booking details are loading in COA form at Line item level in requisition.
-#     Given I am logged in eProc
-#     And I add "1" "ITEM_NAME_FOR_SEARCHING" items to cart 
-#     And I checkout
+@COA @L1 @linelevelCOA
+    Scenario: To verify that if cost booking details are loading in COA form at Line item level in requisition.
+    Given I am logged in eProc
+    And I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart 
+    And I checkout
 
-#     When I add data in Cost Booking Details section at line level
+    When I add data in Cost Booking Details section at line level
   
-#     Then I should be able to Save the line level COA form 
+    Then I should be able to Save the line level COA form 
