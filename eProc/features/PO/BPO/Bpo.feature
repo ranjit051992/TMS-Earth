@@ -109,7 +109,7 @@ Feature: Bpo
 #    Then I should be able to see the BPO in Cancelled status
 
  
-@COA @L1 @Shubham
+@COA @L1 
    Scenario: COA _ To verify that user is able to create a blanket PO with attachments in Zycus P2P
 
    Given I am logged in eProc
@@ -123,7 +123,7 @@ Feature: Bpo
    Then I should be able to view the BPO with the attachments 
 
 
-@COA @L1
+@COA @L1 
    Scenario: COA _ To verify that user is able to choose a start date and an End Date
 
    Given I am logged in eProc
@@ -136,7 +136,7 @@ Feature: Bpo
    Then I should be able to view the BPO with Validity To and From dates selected
 
   
-@COA @L1
+@COA @L1 
    Scenario: COA _ To verify that user is able to choose a spend limit
 
    Given I am logged in eProc

@@ -240,6 +240,7 @@ module.exports = {
     },
     async fillValidity(bpo){
         logger.info(`*****************Filling Validity*****************`);
+        await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_VALIDITY_SECTION"));
         let fromDate = await this.selectFromDate();
         let toDate = await this.selectToDate(bpo);
         // await this.selectAcceptInvoicesUntil();
