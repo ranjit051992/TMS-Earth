@@ -152,44 +152,6 @@ Feature: Checkout
 #   Then I should be allowed to make changes to the requisition (edit the qty)
 #   And I should be able to send the requisition for approval
 
-@Non-COA @L1 @buyermodify @Snehal
-  Scenario: To verify that buyer is not allowed to modify the requisition in case of Return for Amendment.
-  Given I am logged in eProc
-
-  When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
-  And I checkout
-  And I enter Requisition Name
-  And I add Purchase Type
-  And I add Settlement Via
-  And I add Required By Date
-  And I add data in Cost Booking Details section at line level
-  And I submit requisition
-  And I get requisition number
-  And I approve the requisition
-  And I navigate to Buyer Desk
-  And I edit and return the requisition on Buyers Desk
-  And I allow requestor to resubmit the requisition
-  And I search the requisition on Buyer Desk
-
-  Then I should not be allowed to edit the requisition
-
-
-
-
-@Non-COA @L1 @Snehal @reqPo
-  Scenario: To verify the behavior of requisition who has PO attached to them
-  Given I am logged in eProc
-  And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
-  And I have created a requisition with that PO linked and with 1 "ITEM_NAME_FOR_SEARCHING[1]"
-  And I approve the requisition
-  And I navigate to Buyer Desk
-  And I edit the requisition on buyers desk listing
-  And I select the item and Convert req to PO
-
-  Then I should be able to see PO Amendment page of the PO which is added
-
-
-
 
 # @COA @L1
 #   Scenario: COA>>To verify that user is be able to raise a request using Punchout
@@ -201,10 +163,6 @@ Feature: Checkout
 #   And I submit requisition with data filled in all mandatory fields
 
 #   Then I should see the added punchout item with all the details on requisition view page
-
-
-
-
 
 
 @COA @L1 @contractCOA @priyankaCOA
@@ -329,42 +287,6 @@ Feature: Checkout
 
 #   Then I should be allowed to make changes to the requisition (edit the qty)
 #   And I should be able to send the requisition for approval
-
-@COA @L1
-  Scenario: COA>>To verify that buyer is not allowed to modify the requisition in case of Return for Amendment.
-  Given I am logged in eProc
-
-  When I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart
-  And I checkout
-  And I enter Requisition Name
-  And I add Purchase Type
-  And I add Settlement Via
-  And I add Required By Date
-  And I add data in Cost Booking Details section at line level
-  And I submit requisition
-  And I get requisition number
-  And I approve the requisition
-  And I navigate to Buyer Desk
-  And I edit and return the requisition on Buyers Desk
-  And I allow requestor to resubmit the requisition
-  And I search the requisition on Buyer Desk
-
-  Then I should not be allowed to edit the requisition
-
-
-
-
-
-@COA @L1 @CoaPo
-  Scenario: COA>>To verify the behavior of requisition who has PO attached to them
-  Given I am logged in eProc
-  And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
-  And I have created a requisition with that PO linked and with 1 "ITEM_NAME_FOR_SEARCHING[1]"
-  And I approve the requisition
-  And I navigate to Buyer Desk
-  And I edit the requisition on buyers desk
-  And I select the item and Convert req to PO
-  Then I should be able to see PO Amendment page of the PO which is added
 
 
 
