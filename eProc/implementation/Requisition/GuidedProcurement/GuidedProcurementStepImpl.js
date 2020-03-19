@@ -34,17 +34,7 @@ Given("I add Sourcing status",async function(){
 
     let sourcingStatus = await this.guidedItem.sourcingStatus;
     await guidedImpl.selectSourcingStatus(sourcingStatus.toString(),this.guidedItem.buyerReviewRequired);
-    // if(sourcingStatus===lmtVar.getLabel("SOURCING_STATUS_QUOTED_BY_SUPPLIER"))
-    // {
-    //     if(guidedImpl.buyerReviewRequired)
-    //     {
-    //         await guidedImpl.clickOnBuyerReviewYesRadioButton();
-    //     }
-    //     else
-    //     {
-    //         await guidedImpl.clickOnBuyerReviewNoRadioButton();
-    //     }
-    // }
+    
 });
 
 Given("I save guided item details",async function(){
