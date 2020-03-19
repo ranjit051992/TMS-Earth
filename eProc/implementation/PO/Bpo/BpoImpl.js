@@ -321,8 +321,11 @@ module.exports = {
     },
 
     async updateOrderValue(bpo){
-        await I.waitForVisible(I.getElement(iBpoObject.AUTO_UPDATE_CHECKBOX));
-        await I.click(I.getElement(iBpoObject.AUTO_UPDATE_CHECKBOX));
+        await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_AGREEMENT_DETAILS_SECTION"));
+        let autoUpdate = lmtVar.getLabel("AUTO_UPDATE_CHECKBOX");
+        let autoUpdateXpath = `//label[contains(text(),'${autoUpdate}')]`;
+        await I.waitForVisible(autoUpdateXpath);
+        await I.click(autoUpdateXpath);
         await I.waitForVisible(I.getElement(iBpoObject.ORDER_VALUE));
         await I.clearField(I.getElement(iBpoObject.ORDER_VALUE));
         await I.click(I.getElement(iBpoObject.ORDER_VALUE));
@@ -337,8 +340,8 @@ module.exports = {
         let orderValueView = await I.grabTextFrom(I.getElement(iBpoObject.ORDER_VALUE_VIEW));
         orderValueView= orderValueView.toString();
         orderValueView = orderValueView.substring(orderValueView.indexOf(" ")+1);
+        orderValueView = orderValueView.replace(",","");
         return parseFloat(orderValueView);
-
     },
     async addMaxUnitPrice(bpo)
     {
@@ -407,11 +410,12 @@ module.exports = {
         await this.submitPo();
     },
 
-    async compareReleaseOrderData()
+    async compareReleaseOrderData(bpo)
     {
         await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_SUPPLIER_DETAILS_SECTION"));
-        await I.waitForVisible(I.getElement(iBpoObject.SUPPLIER_NAME));
-        let supplierName = await I.grabTextFrom(I.getElement(iBpoObject.SUPPLIER_NAME));
+        let supplierNameXpath = `//div[contains(text(),'${bpo.supplierName}')]`;
+        await I.waitForVisible(supplierNameXpath);
+        let supplierName = await I.grabTextFrom(supplierNameXpath);
         await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_LINE_ITEMS_SECTION"));
         await I.waitForVisible(I.getElement(iBpoObject.ITEM_NAME));
         let itemName = await I.grabTextFrom(I.getElement(iBpoObject.ITEM_NAME));
