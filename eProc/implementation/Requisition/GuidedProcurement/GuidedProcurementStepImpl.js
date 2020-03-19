@@ -33,8 +33,8 @@ Given("I add qty and price",async function(){
 Given("I add Sourcing status",async function(){
 
     let sourcingStatus = await this.guidedItem.sourcingStatus;
-    await guidedImpl.selectSourcingStatus(sourcingStatus.toString());
-
+    await guidedImpl.selectSourcingStatus(sourcingStatus.toString(),this.guidedItem.buyerReviewRequired);
+    
 });
 
 Given("I save guided item details",async function(){
