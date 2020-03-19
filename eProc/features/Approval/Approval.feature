@@ -47,7 +47,7 @@ Feature: Approval
 
 
 
-@Non-COA 
+@Non-COA @Shubham
     Scenario: To verify that user is able to approve single/multiple Requisition
 
     Given I am logged in eProc
