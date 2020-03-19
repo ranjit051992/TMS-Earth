@@ -549,7 +549,7 @@ module.exports = {
             logger.info(`Fetched Buyer is -> ${searchedBuyer}`);
             flag = true;
         }
-        else if (searchedBuyer.toString().includes('More')) {
+        else if (searchedBuyer.toString().includes(lmtVar.getLabel("MOREBUYERS"))) {
             logger.info('Buyer is Hidden');
             let noOfbuyers = await I.grabTextFrom(I.getElement(iBuyersDeskObject.BUYER_NAME_PLUSMORE_BUYER_PAGE));
             noOfbuyers = noOfbuyers.toString().charAt(1);
@@ -557,7 +557,7 @@ module.exports = {
             await I.moveCursorTo(I.getElement(iBuyersDeskObject.BUYER_NAME_PLUSMORE_BUYER_PAGE));
             logger.info('Mouse over on +More')
             for (let x = 0; x < noOfbuyers; x++) {
-                let xpath = `/html/body/ngb-tooltip-window/div[2]/div/div[${x + 1}]`
+                let xpath = `//div[contains(@class,'tooltip-inner')]//div//div[${x + 1}]`
                 let hiddenBuyer = await I.grabAttributeFrom(xpath, "textContent");
                 if (hiddenBuyer.toString().trim == requisitionBo.buyer.toString().trim) {
                     logger.info('Fetched Hidden buyer is >> ' + hiddenBuyer);
@@ -585,7 +585,7 @@ module.exports = {
             logger.info(`Fetched Buyer is -> ${searchedBuyer}`);
             flag = true;
         }
-        else if (searchedBuyer.toString().includes('More')) {
+        else if (searchedBuyer.toString().includes(lmtVar.getLabel("MOREBUYERS"))) {
             logger.info('Buyer is Hidden');
             let noOfbuyers = await I.grabTextFrom(I.getElement(iBuyersDeskObject.BUYER_NAME_PLUSMORE_UPCOMING_REQ_PAGE));
             noOfbuyers = noOfbuyers.toString().charAt(1);
@@ -593,7 +593,7 @@ module.exports = {
             await I.moveCursorTo(I.getElement(iBuyersDeskObject.BUYER_NAME_PLUSMORE_UPCOMING_REQ_PAGE));
             logger.info('Mouse over on +More')
             for (let x = 0; x < noOfbuyers; x++) {
-                let xpath = `/html/body/ngb-tooltip-window/div[2]/div/div[${x + 1}]`
+                let xpath = `//div[contains(@class,'tooltip-inner')]//div//div[${x + 1}]`
                 let hiddenBuyer = await I.grabAttributeFrom(xpath, "textContent");
                 if (hiddenBuyer.toString().trim == requisitionBo.buyer.toString().trim) {
                     logger.info('Fetched Hidden buyer is >> ' + hiddenBuyer);
