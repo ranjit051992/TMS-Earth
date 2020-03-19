@@ -87,6 +87,7 @@ module.exports = {
 
     async fillCategory(category) {
         await commonKeywordImpl.searchAndSelectFromDropdown(I.getElement(iGuided.CATEGORY_TEXTBOX), category, "//span[contains(text(),'" + category + "')]");
+        await I.wait(prop.DEFAULT_LOW_WAIT);
     },
 
     async clickOnGoodsRadioButton() {
