@@ -12,7 +12,6 @@ const onlineStore = require("../Requisition/OnlineStore/OnlineStoreObject");
 const cartImpl = require("../Requisition/Cart/CartImpl");
 const onlineStoreImpl = require("../Requisition/OnlineStore/OnlineStoreImpl");
 const faker = require("faker");
-const reqListingImpl = require("./../Requisition/RequisitionListing/RequisitionListingImpl");
 
 module.exports = {
 
@@ -81,8 +80,8 @@ module.exports = {
 
     async fetchSearchedBuyer()
     {
-         I.waitForVisible(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING),prop.DEFAULT_MEDIUM_WAIT);
-         let buyerName = await I.grabTextFrom(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING));
+         I.waitForVisible(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING_BUYER_PAGE),prop.DEFAULT_MEDIUM_WAIT);
+         let buyerName = await I.grabTextFrom(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING_BUYER_PAGE));
          return buyerName;
     },
 
@@ -125,7 +124,6 @@ module.exports = {
         await this.clickOnAssignedBuyerFilter();
         await this.selectBuyerOption(buyerName, searchBy);
         await this.clickonApplyButton();
-        await I.waitForVisible(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING), prop.DEFAULT_MEDIUM_WAIT);
     },
 
     async clickOnAssignedBuyerFilter() {
@@ -170,7 +168,7 @@ module.exports = {
     },
 
     async fetchPurchaseAmount() {
-        I.waitForVisible(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForVisible(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING_BUYER_PAGE), prop.DEFAULT_MEDIUM_WAIT);
         let purchaseamountwithcurrency = await I.grabTextFrom(I.getElement(iBuyersDeskObject.PURCHASE_AMOUNT_LISTING));
         let purchaseamount = purchaseamountwithcurrency.slice(3);
         return purchaseamount;
@@ -178,7 +176,7 @@ module.exports = {
     },
 
     async fetchStatus() {
-        I.waitForVisible(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING), prop.DEFAULT_MEDIUM_WAIT);
+        I.waitForVisible(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING_BUYER_PAGE), prop.DEFAULT_MEDIUM_WAIT);
         let status = await I.grabTextFrom(I.getElement(iBuyersDeskObject.STATUS_LISTING));
 
         return status;
@@ -269,7 +267,7 @@ module.exports = {
         requisitionBo.requestor = requestor.toString().trim();
         logger.info('Requester after selector is ' + requisitionBo.requestor);
         await this.clickonApplyButton();
-        I.waitForVisible(I.getElement(iBuyersDeskObject.REQUESTER_NAME_LISTING), prop.DEFAULT_MEDIUM_WAIT);
+        
     },
 
     async clickOnRequesterFilter() {
@@ -287,9 +285,15 @@ module.exports = {
         return requester;
     },
 
-    async fetchSearchedRequestor() {
-        I.waitForVisible(I.getElement(iBuyersDeskObject.REQUESTER_NAME_LISTING), prop.DEFAULT_MEDIUM_WAIT);
-        let requestorName = await I.grabTextFrom(I.getElement(iBuyersDeskObject.REQUESTER_NAME_LISTING));
+    async fetchSearchedRequestorOnBuyerPage() {
+        I.waitForVisible(I.getElement(iBuyersDeskObject.REQUESTER_NAME_LISTING_BUYER_PAGE), prop.DEFAULT_MEDIUM_WAIT);
+        let requestorName = await I.grabTextFrom(I.getElement(iBuyersDeskObject.REQUESTER_NAME_LISTING_BUYER_PAGE));
+        return requestorName;
+    },
+
+    async fetchSearchedRequestorOnUpcomingReqPage() {
+        I.waitForVisible(I.getElement(iBuyersDeskObject.REQUESTER_NAME_LISTING_UPCOMING_REQ_PAGE), prop.DEFAULT_MEDIUM_WAIT);
+        let requestorName = await I.grabTextFrom(I.getElement(iBuyersDeskObject.REQUESTER_NAME_LISTING_UPCOMING_REQ_PAGE));
         return requestorName;
     },
 
@@ -517,8 +521,8 @@ module.exports = {
     },
 
     async FetchReceivedOn() {
-        I.waitForVisible(I.getElement(iBuyersDeskObject.RECEIVED_ON_LISTING), prop.DEFAULT_MEDIUM_WAIT);
-        let receivedOn = await I.grabTextFrom(I.getElement(iBuyersDeskObject.RECEIVED_ON_LISTING));
+        I.waitForVisible(I.getElement(iBuyersDeskObject.RECEIVED_ON_LISTING_BUYER_PAGE), prop.DEFAULT_MEDIUM_WAIT);
+        let receivedOn = await I.grabTextFrom(I.getElement(iBuyersDeskObject.RECEIVED_ON_LISTING_BUYER_PAGE));
         return receivedOn;
     },
 
@@ -535,24 +539,61 @@ module.exports = {
     },
 
 
-    async verifyBuyer() {
+    async verifyBuyerOnBuyerPage() {
         let flag = true;
-        let searchedBuyer = await this.fetchSearchedBuyer();
+        I.waitForVisible(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING_BUYER_PAGE),prop.DEFAULT_MEDIUM_WAIT);
+        let searchedBuyer = await I.grabTextFrom(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING_BUYER_PAGE));
         logger.info('Searched Buyer is ' + searchedBuyer);
 
         if (searchedBuyer.includes(requisitionBo.buyer)) {
             logger.info(`Fetched Buyer is -> ${searchedBuyer}`);
             flag = true;
         }
-        else if (searchedBuyer.toString().includes('More')) {
+        else if (searchedBuyer.toString().includes(lmtVar.getLabel("MOREBUYERS"))) {
             logger.info('Buyer is Hidden');
-            let noOfbuyers = await I.grabTextFrom(I.getElement(iBuyersDeskObject.BUYER_NAME_PLUSMORE));
+            let noOfbuyers = await I.grabTextFrom(I.getElement(iBuyersDeskObject.BUYER_NAME_PLUSMORE_BUYER_PAGE));
             noOfbuyers = noOfbuyers.toString().charAt(1);
             logger.info('Number of buyers hidden are ' + noOfbuyers)
-            await I.moveCursorTo(I.getElement(iBuyersDeskObject.BUYER_NAME_PLUSMORE));
+            await I.moveCursorTo(I.getElement(iBuyersDeskObject.BUYER_NAME_PLUSMORE_BUYER_PAGE));
             logger.info('Mouse over on +More')
             for (let x = 0; x < noOfbuyers; x++) {
-                let xpath = `/html/body/ngb-tooltip-window/div[2]/div/div[${x + 1}]`
+                let xpath = `//div[contains(@class,'tooltip-inner')]//div//div[${x + 1}]`
+                let hiddenBuyer = await I.grabAttributeFrom(xpath, "textContent");
+                if (hiddenBuyer.toString().trim == requisitionBo.buyer.toString().trim) {
+                    logger.info('Fetched Hidden buyer is >> ' + hiddenBuyer);
+                    flag = true;
+                    break;
+                }
+            }
+
+        }
+        else {
+            logger.info(`Fetched Buyer is -> ${searchedBuyer}`);
+            flag = false;
+        }
+
+        return flag;
+    },
+
+    async verifyBuyerOnUpcomingReqPage() {
+        let flag = true;
+        I.waitForVisible(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING_UPCOMING_REQ_PAGE),prop.DEFAULT_MEDIUM_WAIT);
+        let searchedBuyer = await I.grabTextFrom(I.getElement(iBuyersDeskObject.BUYER_NAME_LISTING_UPCOMING_REQ_PAGE));
+        logger.info('Searched Buyer is ' + searchedBuyer);
+
+        if (searchedBuyer.includes(requisitionBo.buyer)) {
+            logger.info(`Fetched Buyer is -> ${searchedBuyer}`);
+            flag = true;
+        }
+        else if (searchedBuyer.toString().includes(lmtVar.getLabel("MOREBUYERS"))) {
+            logger.info('Buyer is Hidden');
+            let noOfbuyers = await I.grabTextFrom(I.getElement(iBuyersDeskObject.BUYER_NAME_PLUSMORE_UPCOMING_REQ_PAGE));
+            noOfbuyers = noOfbuyers.toString().charAt(1);
+            logger.info('Number of buyers hidden are ' + noOfbuyers)
+            await I.moveCursorTo(I.getElement(iBuyersDeskObject.BUYER_NAME_PLUSMORE_UPCOMING_REQ_PAGE));
+            logger.info('Mouse over on +More')
+            for (let x = 0; x < noOfbuyers; x++) {
+                let xpath = `//div[contains(@class,'tooltip-inner')]//div//div[${x + 1}]`
                 let hiddenBuyer = await I.grabAttributeFrom(xpath, "textContent");
                 if (hiddenBuyer.toString().trim == requisitionBo.buyer.toString().trim) {
                     logger.info('Fetched Hidden buyer is >> ' + hiddenBuyer);
@@ -616,8 +657,8 @@ module.exports = {
     },
 
     async FetchSubmittedOn() {
-        I.waitForVisible(I.getElement(iBuyersDeskObject.RECEIVED_ON_LISTING), prop.DEFAULT_MEDIUM_WAIT);
-        let submittedOn = await I.grabTextFrom(I.getElement(iBuyersDeskObject.RECEIVED_ON_LISTING));
+        I.waitForVisible(I.getElement(iBuyersDeskObject.RECEIVED_ON_LISTING_UPCOMING_REQ_PAGE), prop.DEFAULT_MEDIUM_WAIT);
+        let submittedOn = await I.grabTextFrom(I.getElement(iBuyersDeskObject.RECEIVED_ON_LISTING_UPCOMING_REQ_PAGE));
         return submittedOn;
     },
 
@@ -687,7 +728,6 @@ module.exports = {
 
     async verifyBuyerOnRequisitionPage()
     {
-        await reqListingImpl.navigateToRequisitionListing();
         await commonComponent.clickOnDocNumberLink();
         commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
         I.click(I.getElement(iBuyersDeskObject.BUYER_LINK_LINEITEM));
