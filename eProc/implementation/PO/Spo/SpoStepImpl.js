@@ -76,9 +76,9 @@ When("I add costing and accounting details for that item", async function() {
    await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
    await spoImpl.clickOnCostBookingLink(this.spo.items[0].itemName);
    await coaImpl.fillCoaDetails();
-   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_TAXES_SECTION_SECTION"));
-   await spoImpl.selectTaxInclusive();
-   await spoImpl.clickRemoveTaxesConfirmButton();
+   // await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_TAXES_SECTION_SECTION"));
+   // await spoImpl.selectTaxInclusive();
+   // await spoImpl.clickRemoveTaxesConfirmButton();
 });
 
 When("I add 1 free text item with details", async function() {
