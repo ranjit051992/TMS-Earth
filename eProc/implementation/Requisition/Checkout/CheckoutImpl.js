@@ -1113,9 +1113,10 @@ module.exports = {
         let reqBO = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
         reqBO = await this.createRequisitionFlow(reqBO);
         reqArray.push(reqBO);
-        I.amOnPage(prop.DDS_OnlineStore_Url);
+        await I.amOnPage(prop.DDS_OnlineStore_Url);
         }
-        I.amOnPage(prop.DDS_Requisition_Listing);
+        await I.amOnPage(prop.DDS_Requisition_Listing);
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         for (let i=0; i<reqArray.length; i++)
         {
         reqArray[i].reqNumber = await reqListingImpl.getRequisitionNumber(reqArray[i].reqName);
