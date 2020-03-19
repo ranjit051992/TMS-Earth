@@ -1,6 +1,6 @@
 Feature: CreatePR
 
-@Non-COA @L1 @copy @priyankaNCoa
+@Non-COA @L1 @copyPR @priyankaNCoa
     Scenario: To verify that user is able to copy any requisition and modify it to create a new requisition.
     Given I am logged in eProc
 

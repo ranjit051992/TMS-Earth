@@ -37,7 +37,8 @@ module.exports = {
     },
     async loginWithPasswordManager() {
         logger.info("Logging with password manager");
-        await I.amOnPage(prop.PASSWORD_MANAGER_URL);
+        //await I.amOnPage(prop.PASSWORD_MANAGER_URL);
+        await I.amOnPage(I.getData("PASSWORD_MANAGER_URL"));
         await this.enterPmUsername("non_AD_user1");
         await this.enterPmPassword("Password@234");
         await this.selectPmLogOnto("Local Authentication");
@@ -54,9 +55,10 @@ module.exports = {
         await I.switchToWindow(searchWindow);
         await this.clickOnPmOpenConnectionButton();
         await this.switchToNewWindow();
-        await I.amOnPage(global.confi_prop.DDS_OnlineStore_Url);
+        //await I.amOnPage(global.confi_prop.DDS_OnlineStore_Url);
+        await I.amOnPage(I.getData("DDS_OnlineStore_Url"));
         logger.info("Navigated to DDS Online Store page");
-        await onlinestore.waitForOnlineStoreToLoad();
+        await onlinestore.waitForOnlinceStoreToLoad();
        // await I.waitForVisible(I.getElement(iLogin.REQ_TABLE_OPTION_ICON));
     },
     async enterPmUsername(username) {
@@ -109,6 +111,7 @@ module.exports = {
         logger.info("Searched with filter --> " + userAccount);
     },
     async clickOnPmOpenConnectionButton() {
+        await I.scrollIntoView(I.getElement(iLogin.OPEN_CONNECTION_BUTTON_PM));
         await I.waitForVisible(I.getElement(iLogin.OPEN_CONNECTION_BUTTON_PM));
         await I.click(I.getElement(iLogin.OPEN_CONNECTION_BUTTON_PM));
         logger.info("Clicked on Open connection button");

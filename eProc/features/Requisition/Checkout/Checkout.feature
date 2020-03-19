@@ -794,7 +794,7 @@ Feature: Checkout
 
 #     Then I should be able to Save the header level COA form 
 
-@COA @L1 @linelevelCOA
+@COA @L1 @linelevelCOA @priyankaCOA
     Scenario: To verify that if cost booking details are loading in COA form at Line item level in requisition.
     Given I am logged in eProc
     And I add 1 "ITEM_NAME_FOR_SEARCHING" items to cart 
