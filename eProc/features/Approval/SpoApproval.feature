@@ -1,6 +1,6 @@
 Feature: Spo Approval
 
-@Non-COA 
+@Non-COA @Shubham
     Scenario: To verify Purchase Order details are properly displayed in approval listing
 
     Given I am logged in eProc

@@ -618,9 +618,10 @@ module.exports = {
     },
 
     async storePoAmount(spo) {
-        I.scrollIntoView(I.getElement(iSpoObject.TOTAL_ORDER_AMOUNT));
-        I.waitForVisible(I.getElement(iSpoObject.TOTAL_ORDER_AMOUNT));
-        let PoAmount = await I.grabTextFrom(I.getElement(iSpoObject.TOTAL_ORDER_AMOUNT));
+        AmountXpath = `//div[text()='${lmtVar.getLabel("TOTAL_ORDER_AMOUNT")}']/..//div[2]`
+        I.scrollIntoView(AmountXpath);
+        I.waitForVisible(AmountXpath);
+        let PoAmount = await I.grabTextFrom(AmountXpath);
         spo.setPoAmount(PoAmount);
         return spo;
     },
