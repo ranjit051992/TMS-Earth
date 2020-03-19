@@ -124,20 +124,35 @@ Given( "I Create {int} Blanket POs with {int} {string} item", async function (no
 
 
 
- Given("I search bpo and navigate to release order tab", async function(){
+Given("I search bpo and navigate to release order tab", async function(){
    await commonKeywordImpl.searchDocOnListing(this.bpo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
    await poListingImpl.clickOnPoNumberLink(this.bpo.poNumber);
    //await poListingImpl.clickOnPoNumberLink("OU_1-951/20/7420");
 
    await bpoImpl.clickOnReleaseOrderTab();
-   
- });
 
- Then("I should be able to see BPO Release Order page on convert to PO", async function(){
+   });
+
+Then("I should be able to see BPO Release Order page on convert to PO", async function(){
    
    await bpoImpl.clickOnPoNumberLinkOnReleaseOrderTab(this.bpo.poNumber);
    //await bpoImpl.clickOnPoNumberLinkOnReleaseOrderTab("OU_1-951/20/7420");
 
    let isPresent = await bpoImpl.checkReqNumberOnReleaseOrders(this.reqBO.reqNumber);
    I.assertEqual(isPresent, true);
- });
+   });
+
+Given("I create a BPO with {int} {string} item", async function(noOfItems,itemType) {
+   this.bpo = await objectCreation.getObjectOfStandardPO(noOfItems,itemType);
+   this.bpo = await bpoImpl.createBpoFlow(this.bpo);
+   });
+
+Then("I should be able to view the BPO with free text item added at index {int}", async function(index) {
+   await poListingImpl.searchAndViewPO(docDetail, searchBy);
+   let itemNameFromBo = this.bpo.itemName;
+   await bpoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_VIEW_LINE_ITEMS_SECTION"));
+   let itemName = await spoImpl.getItemNameOnSpoView(index);
+   assert.strictEqual(itemName.toString(), itemNameFromBo.toString(), `Item name did not match at index ${index}`);
+   });
+
+
