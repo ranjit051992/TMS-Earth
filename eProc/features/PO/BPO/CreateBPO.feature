@@ -94,39 +94,7 @@ Feature: CreateBPO
 
    Then I should be able to view the BPO with Order Value entered
 
-<<<<<<< HEAD:eProc/features/PO/BPO/CreateBPO.feature
 #  @COA @L1
-=======
-
-#  @COA @L1
-#    Scenario: COA _ To verify that user is able to create PO releases against Blanket PO
-
-#    Given I am logged in eProc
-#    And I have created a Blanket PO with a catalog item
-
-#    When I click on Create Release action against the BPO created
-#    And I fill the accounting details against the item
-#    And I submit the Release
-#    And I view the release created
-
-#    Then I should be able to view the details filled in Release (Supplier, item name, item price, GL Account)
-
-
-#  @COA @L1
-#    Scenario: COA _ To verify that user is able to view all the released orders generated against a  BPO on a new tab called "Release Orders"
-
-#    Given I am logged in eProc
-#    And I have created a Blanket PO with a catalog item
-#    And I have created a release against the BPO.
-
-#    When I view the BPO
-#    And I navigate to Release orders tab 
-
-#    Then the Release created against the BPO should be listed there
-
-
-# @COA @L1
->>>>>>> Shubham_19Mar_1:eProc/features/PO/BPO/Bpo.feature
 #    Scenario: COA _ To verify that user is able to tag a free text item to a particular Blanket PO
 
 #    Given I am logged in eProc
