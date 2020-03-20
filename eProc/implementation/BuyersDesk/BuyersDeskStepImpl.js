@@ -432,3 +432,9 @@ Given("I select po and submit po for processing on suggested po page", async fun
   await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
   await I.wait(prop.DEFAULT_HIGH_WAIT);
 });
+
+When("I edit the requisition on Buyers Desk", async function(){
+logger.info("Requistion to be edited is "+ this.reqBO.reqName);
+await buyersDeskImpl.SearchRequisitionNumber(this.reqBO.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+await buyersDeskImpl.EditRequisition(this.reqBO.reqName);
+  });
