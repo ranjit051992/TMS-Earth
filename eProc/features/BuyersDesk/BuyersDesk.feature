@@ -314,7 +314,7 @@ Feature: BuyersDesk
 #     Then I should not be see the requisition in Pending Order state on Buyers desk
 
 
-@COA @L1 @Snehal
+@COA @L1 @SnehalCoa 
   Scenario: COA>>To verify that buyer is not allowed to modify the requisition in case of Return for Amendment.
   Given I am logged in eProc
 

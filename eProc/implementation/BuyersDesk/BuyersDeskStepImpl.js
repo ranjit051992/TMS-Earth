@@ -349,12 +349,6 @@ When("I add a catalog item to cart", async function(){
   await onlineStoreImpl.addItemToCart(item,faker.random.number(20));
 });
 
-When("I edit the requisition on Buyers Desk", async function(){
-  logger.info("Requistion to be edited is "+ this.reqBO.reqName);
-  await buyersDeskImpl.SearchRequisitionNumber(this.reqBO.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
-  await buyersDeskImpl.EditRequisition(this.reqBO.reqName);
-});
-
 When("I update Assigned Buyer at  line level for item", async function(){
     this.reqBO.buyer = await checkoutImpl.updateBuyer(I.getData("UPDATED_BUYER_NAME"));
     logger.info('Update Buyer Name is >>> '+this.reqBO.buyer);
@@ -438,3 +432,9 @@ Given("I select po and submit po for processing on suggested po page", async fun
   await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
   await I.wait(prop.DEFAULT_HIGH_WAIT);
 });
+
+When("I edit the requisition on Buyers Desk", async function(){
+logger.info("Requistion to be edited is "+ this.reqBO.reqName);
+await buyersDeskImpl.SearchRequisitionNumber(this.reqBO.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+await buyersDeskImpl.EditRequisition(this.reqBO.reqName);
+  });
