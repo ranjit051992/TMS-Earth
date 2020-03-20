@@ -2,6 +2,7 @@
 "use strict";
 const { I } = inject();
 const CommonKeyword = require("dd-cc-zycus-automation/components/commonKeyword")
+const DewElement = require("dd-cc-zycus-automation/components/element")
 /**
  * Notifications related class
  */
@@ -11,11 +12,12 @@ class NotificationCheck {
    */
   async checkNotificationCount() {
 
-    I.waitForVisible("//span[contains(@class,'icon-notification')]",30)
-    const checkIfNotification  = await I.grabNumberOfVisibleElements("//span[contains(@class,'icon-notification')]/following-sibling::span[contains(@class,'count')]")
-    if(checkIfNotification == 0){
-      console.log("No Notification present")
-    }else{
+    I.waitForVisible("//span[contains(@class,'icon-notification')]", 30)
+    I.wait("5")
+    const checkIfNotification = await I.grabNumberOfVisibleElements("//span[contains(@class,'icon-notification')]/following-sibling::span[contains(@class,'count')]")
+    if (checkIfNotification == 0) {
+      I.saveScreenshot("No Notification present.png")
+    } else {
       const totalNumberOfNotification = await I.grabTextFrom("//span[contains(@class,'icon-notification')]/following-sibling::span[contains(@class,'count')]");
       I.see(totalNumberOfNotification);
     }
@@ -23,8 +25,8 @@ class NotificationCheck {
   }
 
 
-  async selectNotificationHeader(headerName){
-    CommonKeyword.clickElement("//dew-default-tab-head[contains(text(),'"+headerName+"')]")
+  async selectNotificationHeader(headerName) {
+    CommonKeyword.clickElement("//dew-default-tab-head[contains(text(),'" + headerName + "')]")
   }
 
 
@@ -36,11 +38,11 @@ class NotificationCheck {
   }
 
 
-  async clickNotificationIcon(){
+  async clickNotificationIcon() {
 
-    I.waitForVisible("//span[contains(@class,'icon-notification')]",30)
+    I.waitForVisible("//span[contains(@class,'icon-notification')]", 30)
     let checkIfNotificationIsClicked = await I.grabNumberOfVisibleElements("//dew-notification")
-    console.log("notification:",checkIfNotificationIsClicked)
+    console.log("notification:", checkIfNotificationIsClicked)
     if (checkIfNotificationIsClicked == 0)
       CommonKeyword.clickElement("//span[contains(@class,'icon-notification')]");
   }
@@ -57,7 +59,7 @@ class NotificationCheck {
     CommonKeyword.clickElement("//div[contains(@class,'text-body-link')]/span[text()[normalize-space()='Download']]")
   }
 
-  async selectDataFromNotification(data){
+  async selectDataFromNotification(data) {
 
     I.scrollIntoView("//span[text()[normalize-space()='" + data + "']]");
     I.see(data);
@@ -66,13 +68,23 @@ class NotificationCheck {
     I.see(data);
   }
 
-  async actionFromNotification(action){
+  async actionFromNotification(action) {
 
-    I.scrollIntoView("//button[@aria-label='"+action+"']");
-    I.see(action);
+    try {
+      if (await DewElement.checkIfElementPresent("//button[@aria-label='" + action + "']")) {
+        CommonKeyword.clickElement("//button[@aria-label='" + action + "']");
+        I.see(action);
+        return true;
+      } else
+        return false;
 
-    CommonKeyword.clickElement("//button[@aria-label='"+action+"']");
-    I.see(action);
+    } catch (err) {
+      I.saveScreenshot("No Notification Present for " + action + ".png")
+      return false;
+    }
+
+
+
   }
 
   /**
@@ -89,7 +101,7 @@ class NotificationCheck {
         // })
         within('//dew-approve-reject-pop-up//div[@class="modal-content"]', () => {
           I.seeElement(".//textarea[@aria-label='This is comment box']");
-          
+
           I.fillField(".//textarea[@aria-label='This is comment box']", "Approving");
           CommonKeyword.clickElement(".//dew-modal-footer//button[@aria-label='Approve']");
         })

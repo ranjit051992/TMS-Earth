@@ -4,7 +4,7 @@ const CommonKeyword = require("dd-cc-zycus-automation/components/commonKeyword")
 const prop = global.confi_prop;
 
 Given("I navigate to the login page", async function () {
-    await I.amOnPage("https://dewdrops-staging.zycus.com/home/#/auth");
+    await I.amOnPage("/home/#/auth");
     });
     
 When("I submit {string} and {string}", async function (username,password) {

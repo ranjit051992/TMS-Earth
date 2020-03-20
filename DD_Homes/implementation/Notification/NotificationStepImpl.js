@@ -1,7 +1,7 @@
 const NotificationCheckcation  = require("./NotificationImpl");
 const { I } = inject();
 
-
+let dataPresent;
 Given("I am on home page", async function () {
     await I.seeElement(`//span[contains(@class,'welcome-message')]`)
 });
@@ -60,11 +60,16 @@ When("i see details page for {string}", async function (data) {
 });
 
 When("I click on {string} button;", async function (actionToPerform) {
-   await NotificationCheckcation.actionOnNotification(actionToPerform)
+    if(this.dataPresent){
+        await NotificationCheckcation.actionOnNotification(actionToPerform)
+    }else{
+        I.saveScreenshot("Data not present.png")
+    }
+   
 });
 
 When("I click on {string} button in notification", async function (actionToPerform) {
-    await NotificationCheckcation.actionFromNotification(actionToPerform)
+    this.dataPresent = await NotificationCheckcation.actionFromNotification(actionToPerform)
  });
 
 
