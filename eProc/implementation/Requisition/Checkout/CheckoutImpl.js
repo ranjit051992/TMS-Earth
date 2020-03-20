@@ -1224,7 +1224,7 @@ module.exports = {
                     await approvalImpl.approvePoFlow(poNumber);
                 }
                 else {
-                    logger.info(`PO status after submission was ${spo.status} and not ${lmtVar.getLabel("IN_APPROVAL_STATUS")}. Hence, not executing the Approve PO action.`);
+                    logger.info(`PO status after submission was ${status} and not ${lmtVar.getLabel("IN_APPROVAL_STATUS")}. Hence, not executing the Approve PO action.`);
                 }
             }
             else {

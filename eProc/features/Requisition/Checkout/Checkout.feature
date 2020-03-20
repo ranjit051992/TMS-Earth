@@ -226,7 +226,7 @@ Feature: Checkout
 
 
 
-@COA @L1 @Snehal @custom
+@COA @L1 @SnehalCoa @custom
     Scenario: COA>>To verify that user is able to create any custom / One time delivery address while Check out and save it for future use
     Given I am logged in eProc
 

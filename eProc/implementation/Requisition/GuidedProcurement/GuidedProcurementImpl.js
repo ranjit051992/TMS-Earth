@@ -543,6 +543,7 @@ module.exports = {
     },
     async clickOnEformDoneButton() 
     {
+        await commonKeywordImpl.waitForElementVisible(I.getElement(iGuided.EFORM_DONE));
         let noOfElements = await I.grabNumberOfVisibleElements(I.getElement(iGuided.EFORM_DONE));
         if(noOfElements>0)
         {

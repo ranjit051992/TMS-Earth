@@ -49,7 +49,7 @@ Feature: CreateBOR
 #    Then the Release created against the BPO should be listed there
 
 
-@COA @L1 @Snehal
+@COA @L1 @SnehalCoa 
   Scenario: COA>>To verify the behavior of requisition with free text item and who has BPO attached to them
   Given I am logged in eProc
   And I Create Blanket po with 1 "ITEM_NAME_FOR_SEARCHING" item and approve it

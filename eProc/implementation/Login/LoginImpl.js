@@ -109,6 +109,7 @@ module.exports = {
         logger.info("Searched with filter --> " + userAccount);
     },
     async clickOnPmOpenConnectionButton() {
+        await I.scrollIntoView(I.getElement(iLogin.OPEN_CONNECTION_BUTTON_PM));
         await I.waitForVisible(I.getElement(iLogin.OPEN_CONNECTION_BUTTON_PM));
         await I.click(I.getElement(iLogin.OPEN_CONNECTION_BUTTON_PM));
         logger.info("Clicked on Open connection button");
