@@ -200,16 +200,15 @@ Feature: AmendSpo
   And I navigate to Buyer Desk
   And I edit the requisition on buyers desk listing
   And I select the item and Convert req to PO
-
   Then I should be able to see PO Amendment page of the PO which is added
 
-@COA @L1 @CoaPo
+@COA @L1 @SnehalCoa @amendReq
   Scenario: COA>>To verify the behavior of requisition who has PO attached to them
   Given I am logged in eProc
   And I have created a requisition and converted it to PO with 1 "ITEM_NAME_FOR_SEARCHING"
   And I have created a requisition with that PO linked and with 1 "ITEM_NAME_FOR_SEARCHING[1]"
   And I approve the requisition
   And I navigate to Buyer Desk
-  And I edit the requisition on buyers desk
+  And I edit the requisition on buyers desk listing
   And I select the item and Convert req to PO
   Then I should be able to see PO Amendment page of the PO which is added

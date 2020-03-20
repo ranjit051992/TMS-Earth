@@ -350,7 +350,7 @@ Feature: CreatePR
 
     Then I should be able to see Deliver address as the Ship to Another Address on view requisition 
 
-@Non-COA @L1 @nonstock
+@Non-COA @L1 @nonstock @Snehal
   Scenario: To verify that user is able to raise a request with non stock items
   Given I am logged in eProc
 
@@ -366,7 +366,7 @@ Feature: CreatePR
   Then I should be able to view requisition with non stock item
 
 
-@COA @L1 @coaFree @Snehal
+@COA @L1 @coaFree @SnehalCoa
   Scenario: COA>>To verify user is able to create a requisition for a free-text item or service
   Given I am logged in eProc
 
@@ -388,7 +388,7 @@ Feature: CreatePR
 
   Then I should be able to view requisition created with free text item
 
-@COA @L1 @Snehal
+@COA @L1 @SnehalCoa
  Scenario: COA>>To verify that user is able to add attachments to the requisition.
     Given I am logged in eProc
 
@@ -406,7 +406,7 @@ Feature: CreatePR
 
 
 
-@COA @L1 @multipleItems
+@COA @L1 @multipleItems @SnehalCoa
     Scenario: COA>>To verify that user is able to create free text line item and items from Hosted Catalog in a single PR.
     Given I am logged in eProc
 
@@ -415,7 +415,7 @@ Feature: CreatePR
 
     Then I should be able to view the requisition with free text item and the catalog items
 
-@COA @L1 @hierarchyCoa
+@COA @L1 @hierarchyCoa @SnehalCoa
     Scenario: COA>>To verify that user is able to see the approval hierarchy after raising a requisition
     Given I am logged in eProc
 
@@ -430,7 +430,7 @@ Feature: CreatePR
 
     Then I should be able to view the workflow Approval hierarchy
 
-@COA @L1 @Snehal @behalfCoa
+@COA @L1 @SnehalCoa @behalfCoa
     Scenario: COA>>To verify that user should be able to buy items on behalf of other individuals. 
     Given I am logged in eProc
 
@@ -447,7 +447,7 @@ Feature: CreatePR
 
     Then I should be able to view the workflow with On Behalf user as the requestor and On behalf user workflow should be applied
 
-@COA @L1 @Snehal
+@COA @L1 @SnehalCoa
     Scenario: COA>>To verify that user is able to change the default Delivery & Bill to address in the requisition.
     Given I am logged in eProc
 
@@ -466,7 +466,7 @@ Feature: CreatePR
     Then I should be able to see Deliver address as the Ship to Another Address on view requisition 
 
 
-@COA @L1 @Snehal @stockItem
+@COA @L1 @SnehalCoa @stockItem
   Scenario: COA>>To verify that user is able to raise a request with stock items
   Given I am logged in eProc
 
@@ -479,7 +479,7 @@ Feature: CreatePR
 
   Then I should be able to view requisition with stock item
 
-@COA @L1
+@COA @L1 @SnehalCoa
   Scenario: COA>>To verify that user is able to raise a request with non stock items
   Given I am logged in eProc
 
@@ -496,7 +496,7 @@ Feature: CreatePR
 
 
 
-@COA @L1  @Snehal 
+@COA @L1  @SnehalCoa
 
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer group
   Given I am logged in eProc
@@ -514,7 +514,7 @@ Feature: CreatePR
 
   Then I should be able to view requisition with buyer as the buyer group which was assigned
 
-@COA @L1  @Snehal @buyerCoa
+@COA @L1  @SnehalCoa @buyerCoa
 
   Scenario: To verify that user is able to create requisition with assigned buyer as buyer
   Given I am logged in eProc
@@ -533,7 +533,7 @@ Feature: CreatePR
   Then I should be able to view requisition with buyer which was assigned
 
 
-@COA @L1 @Snehal
+@COA @L1 @SnehalCoa
   Scenario: COA>>To verify that user is able to add approver in requisition workflow if activity if assigned to him/her
   Given I am logged in eProc
 
@@ -551,3 +551,13 @@ Feature: CreatePR
   And I submit requisition
 
   Then I should be able to view the requisition with adhoc approver added in the workflow
+
+
+@Non-COA @L1 @multipleItems @Snehal
+    Scenario: To verify that user is able to create free text line item and items from Hosted Catalog in a single PR.
+    Given I am logged in eProc
+
+    When I create requisition with 2 "ITEM_NAME_FOR_SEARCHING" and 1 free text item
+    And I view Requisition
+
+    Then I should be able to view the requisition with free text item and the catalog items
