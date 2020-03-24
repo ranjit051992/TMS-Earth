@@ -117,7 +117,7 @@
         "UserTable":"iRequest_credentials"
     },
     "DD_Homes": {
-        "url": "https://dewdrops-staging.zycus.com",
+        "url": "https://dewdrops-partner.zycus.com",
         "SETUP": "US_Staging",
         "TENANT": "ZCS",
         "browser": "chrome",
@@ -136,11 +136,11 @@
         "DBdatabase": "DD_Home_schema",
         "DBuser": "DDHome",
         "DBpassword": "ddhome@123",
-        "username": "support.sanity@zycus.com",
-        "password": "NuIuRuDaLaAaPoLiPeViQeWoXa2$3",
+        "username": "admin.zcs@zycus.com",
+        "password": "MoHuHoNaJaK#10",
         "testdataTable": "TestData_DD_Home",
         "uiElementTable": "DD_Home_UI_Elements",
-        "UserTable":"DD_Home_UI_Elements"
+        "UserTable":"Homes_credentials"
     }
 
 }

@@ -1,5 +1,5 @@
 const parsing= require("./Framework/PropertiesConfigurator");
-parsing("DD_Homes");
+parsing();
 const prop = global.confi_prop;
 console.log(prop)
 global.lang = 'en';
@@ -26,10 +26,10 @@ exports.config = {
       }
     }
     },
-    ChaiWrapper:
-    {
-      require: "codeceptjs-chai"
-    },
+    // ChaiWrapper:
+    // {
+    //   require: "codeceptjs-chai"
+    // },
     MyHelper:
     {
       require: "./Framework/CustomHelper/myHelper.js",

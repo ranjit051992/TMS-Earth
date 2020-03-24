@@ -1,5 +1,7 @@
 const parsing= require("./Framework/PropertiesConfigurator");
-parsing("DD_Homes");
+
+
+parsing();
 const prop = global.confi_prop;
 global.lang = 'en';
 exports.config = {
@@ -23,10 +25,10 @@ exports.config = {
       default_medium_wait: prop.DEFAULT_MEDIUM_WAIT,
       default_high_wait: prop.DEFAULT_HIGH_WAIT,
     },
-    ChaiWrapper:
-    {
-      require: "codeceptjs-chai"
-    },
+    // ChaiWrapper:
+    // {
+    //   require: "codeceptjs-chai"
+    // },
     MyHelper:
     {
       require: "./Framework/CustomHelper/myHelper.js",
@@ -45,7 +47,6 @@ exports.config = {
         }
       },
     gherkin: {
-           //features: './iRequest/features/**/**.feature',
             features: "./DD_Homes/features/**/*.feature",
             steps: "./DD_Homes/implementation/**/*.js"
         }, 

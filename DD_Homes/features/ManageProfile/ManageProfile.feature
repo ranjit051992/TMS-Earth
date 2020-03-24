@@ -5,7 +5,7 @@ Feature: ManageProfile
 
 Background: Given I am logged on to the application
         Given I navigate to the login page
-        When I submit "GDQA-P2P@zycus.com" and "YoDeHaCoPoBiBaIoAiWiYeQe8&7"
+        When I submit "username" and "password"
         Then I should be logged in
 
 @Upload

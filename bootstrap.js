@@ -6,8 +6,9 @@ const {I} = inject();
 module.exports = {
         
         bootstrap: async function () {
-                 //global.testData = await databaseOperations.getTestData();
-                //global.uiElements = await databaseOperations.getUiElementXpath();
+                 global.testData = await databaseOperations.getTestData();
+                global.uiElements = await databaseOperations.getUiElementXpath();
+                global.users = await databaseOperations.getUser();
                 // if(process.env.GRID) {
                 //         global.users = await databaseOperations.getAndUpdateUser();
                 // }

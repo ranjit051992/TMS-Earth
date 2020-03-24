@@ -3,28 +3,28 @@ Feature: DD_OneView
 
 Background: Given I am logged on to the application
         Given I navigate to the login page
-        When I submit "GDQA-P2P@zycus.com" and "YoDeHaCoPoBiBaIoAiWiYeQe8&7"
+        When I submit "username" and "password"
         Then I should be logged in
 
 
     Scenario: Verify whether on OneView listing individual suppliers are displayed
         Given I navigate to Oneview page
-        When I search the supplier with name "PEGDUMMY23"
-        Then I see oneview card for "PEGDUMMY23" is displayed
+        When I search the supplier with name "SupplierName"
+        Then I see oneview card for "SupplierName" is displayed
       
 
     Scenario: Verify whether user is able to export the data in excel file
         Given I navigate to Oneview page
-        When I search the supplier with name "PEGDUMMY23"
+        When I search the supplier with name "SupplierName"
         And I click on export option
         Then Supplier data is exported in excel format
 
 
     Scenario: Verify whether supplier data is loaded as per the filters applied
         Given I navigate to Oneview page
-        When I search the supplier with name "PEGDUMMY23"
-        And I filter the data with "PEGDUMMY23"
-        Then I see results satisfying the filter conditions "PEGDUMMY23" are displayed
+        When I search the supplier with name "SupplierName"
+        And I filter the data with "SupplierName"
+        Then I see results satisfying the filter conditions "SupplierName" are displayed
 
     #Scenario:Verify whether on OneView listing group of suppliers are displayed
        # Given I navigate to Oneview page
