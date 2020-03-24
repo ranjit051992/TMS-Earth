@@ -18,4 +18,5 @@ module.exports = function() {
       }
     })
   }
+  console.log("tearDown All executed");
 }
