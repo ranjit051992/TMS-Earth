@@ -28,7 +28,7 @@ Feature: DD_QuickLink
         # Given I have configured "Quick Link" Menus
         When I click on hamburger icon
         When I Navigate to "eProc" "Online Store"
-        # And I click on QuickLink Dropdown
+        And I click on QuickLink Dropdown
         Then I should be see the same "Requisitions" as on Landing Page
 
     @QuickLinkCheck
