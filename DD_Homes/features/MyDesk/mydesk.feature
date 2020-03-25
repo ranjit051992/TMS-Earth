@@ -5,7 +5,7 @@ Background: Given I am logged on to the application
         When I submit "GDQA-P2P@zycus.com" and "YoDeHaCoPoBiBaIoAiWiYeQe8&7"
         Then I should be logged in
 
-@tag7
+@tag89
 Scenario Outline: Verify whether able to move into listing pages are working in My Desk
 Given I am on home page
 When I click on hamburger icon
@@ -24,7 +24,7 @@ Examples:
 | Projects |
 | Request |
 | Requisitions |
-| Buyer's Desk |
+| Buyer |
 | Purchase Orders |
 | Invoices |
 | Credit Memo  |
@@ -32,7 +32,7 @@ Examples:
 | Performance Events |
 | Supplier Requests |
 | All Supplier Requests |
-| Savings Projects |
+#| Savings Projects |
 | Operational Suppliers |
 | Potential Suppliers |
 | Reports |
