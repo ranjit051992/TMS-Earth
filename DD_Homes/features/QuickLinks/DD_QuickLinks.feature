@@ -2,7 +2,7 @@
 Feature: DD_QuickLink
  Background: Given I am logged on to the application
         Given I navigate to the login page
-        When I submit "GDQA-P2P@zycus.com" and "YoDeHaCoPoBiBaIoAiWiYeQe8&7"
+        When I submit "username" and "password"
         Then I should be logged in
 
 
@@ -28,7 +28,7 @@ Feature: DD_QuickLink
         # Given I have configured "Quick Link" Menus
         When I click on hamburger icon
         When I Navigate to "eProc" "Online Store"
-        # And I click on QuickLink Dropdown
+        And I click on QuickLink Dropdown
         Then I should be see the same "Requisitions" as on Landing Page
 
     @QuickLinkCheck

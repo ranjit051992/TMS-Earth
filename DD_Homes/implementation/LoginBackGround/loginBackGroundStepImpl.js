@@ -4,14 +4,14 @@ const CommonKeyword = require("dd-cc-zycus-automation/components/commonKeyword")
 const prop = global.confi_prop;
 
 Given("I navigate to the login page", async function () {
-    await I.amOnPage("/home/#/auth");
+    await I.amOnPage(global.testData.get("URL"));
     });
     
 When("I submit {string} and {string}", async function (username,password) {
     CommonKeyword.clickElement("//input[@formcontrolname='emailAddress']");
-    CommonKeyword.enterText("Email Address", prop.username);
+    CommonKeyword.enterText("Email Address",global.users.get("USERNAME"));
     CommonKeyword.clickElement("//input[@formcontrolname='password']");
-    CommonKeyword.enterText("Password", prop.password);
+    CommonKeyword.enterText("Password", global.users.get("PASSWORD"));
     I.click("Login");
     I.waitForElement("dew-navbar", 30);
     });

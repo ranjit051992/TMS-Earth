@@ -4,12 +4,12 @@ Feature: Login
 
 Scenario: verify Login with valid credential.
 Given I navigate to the login page
-And user enter valid "support.sanity@zycus.com","NuIuRuDaLaAaPoLiPeViQeWoXa2$3" credentials
+And user enter valid "username","password" credentials
 Then login must be successful
 
 Scenario: verify Login with Invalid credential.
 Given I navigate to the login page
-And user enter invalid "support.sanity@zycus.com","NuIuRuDaLaAaPoLiPeViQeWoXa21$3" credentials
+And user enter invalid "username","NuIuRuDaLaAaPoLiPeViQeWoXa21$3" credentials
 Then login must give validation error
 
 

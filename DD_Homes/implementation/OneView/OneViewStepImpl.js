@@ -7,11 +7,11 @@ Given("I navigate to Oneview page",async function() {
 
 
 When("I search the supplier with name {string}", async function (supplier){
-	await OneView.searchAndSelectSupplier(supplier)
+	await OneView.searchAndSelectSupplier(global.testData.get(supplier))
 });
 
 Then("I see oneview card for {string} is displayed", async function (supplier){
-	await OneView.verifySupplierCard(supplier)
+	await OneView.verifySupplierCard(global.testData.get(supplier))
 });
 
 
@@ -26,11 +26,11 @@ Then("Supplier data is exported in excel format",async function (){
 
 When("I filter the data with {string}",async function(supplier) {
 
-	await OneView.filterSupplier(supplier)
+	await OneView.filterSupplier(global.testData.get(supplier))
 });
 
 Then("I see results satisfying the filter conditions {string} are displayed", async function (supplier) {
-	await OneView.verifySupplierCard(supplier)
+	await OneView.verifySupplierCard(global.testData.get(supplier))
 });
 
 

@@ -3,9 +3,9 @@ const CommonKeyword = require("dd-cc-zycus-automation/components/commonKeyword")
 
 Given ("user enter valid {string},{string} credentials", async function(username,password) {
     CommonKeyword.clickElement("//input[@formcontrolname='emailAddress']");
-    CommonKeyword.enterText("Email Address", username);
+    CommonKeyword.enterText("Email Address",global.users.get("USERNAME"));
     CommonKeyword.clickElement("//input[@formcontrolname='password']");
-    CommonKeyword.enterText("Password", password);
+    CommonKeyword.enterText("Password", global.users.get("PASSWORD"));
     I.click("Login");
     I.wait(5)
     I.refreshPage()
@@ -14,7 +14,7 @@ Given ("user enter valid {string},{string} credentials", async function(username
 
 Given ("user enter invalid {string},{string} credentials", async function(username,password) {
     CommonKeyword.clickElement("//input[@formcontrolname='emailAddress']");
-    CommonKeyword.enterText("Email Address", username);
+    CommonKeyword.enterText("Email Address", global.users.get("USERNAME"));
     CommonKeyword.clickElement("//input[@formcontrolname='password']");
     CommonKeyword.enterText("Password", password);
     I.click("Login");
