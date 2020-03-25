@@ -61,7 +61,7 @@ exports.config = {
     },
     wdio: {
       enabled: true,
-      services: ["selenium-standalone"]
+      // services: ["selenium-standalone"]
     },
     allure: {
       enabled: true
