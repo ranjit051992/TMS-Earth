@@ -6,9 +6,11 @@ Background: Given I am logged on to the application
         When I submit "username" and "password"
         Then I should be logged in
 
-@tag7
+@tag71
 Scenario Outline: Verify whether all the listing pages are working in My Approval
 Given I am on home page
+When I navigate to Oneview page
+When I navigate back to home page
 When I click on hamburger icon
 And I click on "My Approvals" module
 And I click on "<Tab Name>" page
@@ -21,8 +23,8 @@ Examples:
 | Blanket PO |
 | Invoices |
 | Recurring Contracts |
-| Operational Supplier Approvals |
-| Potential Supplier Approvals |
+| Operational Supplier Requests |
+| Potential Supplier Requests |
 | Contracts |
 | Savings Approvals |
 | Task Approvals |
