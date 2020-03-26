@@ -16,6 +16,7 @@ class DewImpersonation {
  */
   navigateToAllowImpersonation() {
     I.wait(10);
+    I.scrollIntoView(`//dew-dropdown[contains(@class,'profile')]`);
     I.waitForVisible(`//dew-dropdown[contains(@class,'profile')]`,20);
     I.seeElement(`//dew-dropdown[contains(@class,'profile')]`);   
     CommonKeyword.clickElement(`//dew-dropdown[contains(@class,'profile')]`);
@@ -42,6 +43,18 @@ class DewImpersonation {
     //textarea[@formcontrolname='description']
     CommonKeyword.clickElement(`//button[@aria-label='Save']`);
    
+  }
+
+  async createImpersonation(radioBtnLabel){
+    //CommonKeyword.clickElement(`//a[contains(@class,'nav-link')]/*[text()[normalize-space()='Authorize Impersonation']]`);
+    I.seeElement(`//a[contains(@class,'nav-link active')]/*[text()[normalize-space()='Authorize Impersonation']]`);
+    DewRadioButton.selectRadioButton(radioBtnLabel);
+    I.wait(2);
+    DatePicker.selectInNextMonth(`//div[contains(@class,'pickerDiv')]/input[@aria-label='date']`);
+    I.fillField("//textarea[@formcontrolname='description']",varDesc);
+    //TextAreaWithPlaceholder.enterText("Enter description","AutoDescription"+generateRandomNumber());
+    //textarea[@formcontrolname='description']
+    CommonKeyword.clickElement(`//button[@aria-label='Save']`);
   }
 }
 

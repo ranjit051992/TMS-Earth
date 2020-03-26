@@ -9,6 +9,11 @@ Given("I am on Home page",  async function() {
 I.seeElement(`//span[contains(@class,'welcome-message')]`);
 });
 
+Given("I navigate to iSupplier MyApproval Page", async function(){
+    I.click(".menu-btn");
+    await ProductNavigator.navigate("iSupplier","Approvals")
+})
+
 When("I select allow company admin to impersonate me",  async function() {
     await DewImpersonation.authorizeImpersonation("Allow Company admin to impersonate me");
 console.log("Impersonation done");
@@ -34,6 +39,22 @@ Then("I see request status change to revoke state", async function () {
     await ImpersonationImpl.verifyRevoke(); 
 });
 
+Then("I should see request status change to revoke state", async function(){
+    await ImpersonationImpl.createAndRevoke();
+    await ImpersonationImpl.verifyRevoke();
+
+})
+
+Then("I create new impersonation for admin", async function(){
+    await DewImpersonation.createImpersonation("Allow Company admin to impersonate me");
+    await ImpersonationImpl.verifySuccessAlert();
+})
+
+Then("I create new impersonation for support user", async function(){
+    await DewImpersonation.createImpersonation("Allow Product Support Personnel to impersonate me");
+    await ImpersonationImpl.verifySuccessAlert();
+})
+
 Given("I select view impersonate request page", async function () {
     await ApprovalPage.selectHeaderTab("View Impersonation Requests");
 });
@@ -44,9 +65,10 @@ Given("I have active impersonate request from company admin", async function () 
 });
 
 Then("I navigate back to create impersonate page", async function () {
-    ApprovalPage.selectHeaderTab("Authorize Impersonation");
+    //ApprovalPage.selectHeaderTab("Authorize Impersonation");
     I.waitForVisible('//a[dew-default-tab-head[text()[normalize-space()="Authorize Impersonation"]] and contains(@class,"active")]',120); 
     I.seeElement('//a[dew-default-tab-head[text()[normalize-space()="Authorize Impersonation"]] and contains(@class,"active")]'); 
+
 });
 
 When("I click on revoke option", async function () {

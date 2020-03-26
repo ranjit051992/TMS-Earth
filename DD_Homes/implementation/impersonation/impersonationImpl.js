@@ -21,10 +21,10 @@ class ImpersonationImpl{
         CommonKeyword.clickElement("(//span[@title='Revoke & Create New'])[1]");
         I.waitForVisible("//label[text()='Allow Company admin to impersonate me']",20);
         I.seeElement("//label[text()='Allow Company admin to impersonate me']",20);
-        ApprovalPage.selectHeaderTab("View Impersonation Requests");
-        I.waitForVisible("(//span[@title='Revoked'])[1]",20);
-        I.seeElement("(//span[@title='Revoked'])[1]");
-        console.log("create and revoke done");
+        //ApprovalPage.selectHeaderTab("View Impersonation Requests");
+        //I.waitForVisible("(//span[@title='Revoked'])[1]",20);
+        //I.seeElement("(//span[@title='Revoked'])[1]");
+        //console.log("create and revoke done");
 
     }
 
