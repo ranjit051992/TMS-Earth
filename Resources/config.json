@@ -144,7 +144,7 @@
         "username": "admin.zcs@zycus.com",
         "password": "MoHuHoNaJaK#10",
         "testdataTable": "TestData_DD_Home",
-        "uiElementTable": "DD_Home_UI_Elements",
+        "US_STAGING_uiElementTable": "DD_Home_UI_Elements",
         "UserTable":"Homes_credentials"
     }
 
