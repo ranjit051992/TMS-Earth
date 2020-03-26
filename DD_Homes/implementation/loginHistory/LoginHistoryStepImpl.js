@@ -1,5 +1,6 @@
 const { I } = inject();
 const LoginHistoryImpl = require("./LoginHistoryImpl");
+const ManageProfile = require("../ManageProfile/ManageProfileImpl");
 
 
 Given("I am on Home page", async function(){
@@ -7,6 +8,8 @@ Given("I am on Home page", async function(){
 });
 
 When("I navigate to Login History", async function(){
+    I.amOnPage("/home")
+    I.waitToProcess()
    await LoginHistoryImpl.navigateToLoginHistory()
 });
 
@@ -14,23 +17,14 @@ Then("I should be able to see user's login time and IP", async function(){
     await LoginHistoryImpl.verifyHistory()
 });
 
-Then("I should be able to see user's login time and IP", async function(){
-   
-})
-
-
 Then("I navigate to manage profile", async function(){
-	
+    await ManageProfile.navigateToManageProfile()
 });
 
-Then("I see date and time preference", async function(){
-	
+Then("I fetch Timezone under User preferences", async function(){
+    await LoginHistoryImpl.getTimezone()
 });
 
-When("I Select Login history from user profile", async function(){
-	
-});
-
-Then("I am able to see login history popup containing date and time as per my preference", async function() {
-	
+Then("I should be able to see Timezone as per my preference", async function() {
+    await LoginHistoryImpl.verifyTimezoneInLoginHistory()
 });
