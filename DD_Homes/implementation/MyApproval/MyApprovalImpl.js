@@ -9,9 +9,9 @@ class ApprovalPage {
      */
     selectHeaderTab(tabName) {
 
-        I.scrollIntoView(`//a[dew-default-tab-head[text()[normalize-space()="${tabName}"]] and contains(@class,'paginated-nav-link')]`)
-        I.waitForVisible(`//a[dew-default-tab-head[text()[normalize-space()="${tabName}"]] and contains(@class,'paginated-nav-link')]`)
-        CommonKeyword.clickElement(`//a[dew-default-tab-head[text()[normalize-space()="${tabName}"]] and contains(@class,'paginated-nav-link')]`)
+        I.scrollIntoView(`//a[dew-default-tab-head[contains(text(),'${tabName}')] and contains(@class,'paginated-nav-link') ]`)
+        I.waitForVisible(`//a[dew-default-tab-head[contains(text(),'${tabName}')] and contains(@class,'paginated-nav-link') ]`)
+        CommonKeyword.clickElement(`//a[dew-default-tab-head[contains(text(),'${tabName}')] and contains(@class,'paginated-nav-link') ]`)
         // I.scrollIntoView("//a[dew-default-tab-head[contains(text(),'" + tabName + "')] and contains(@class,'paginated-nav-link')]")
         // I.waitForVisible("//a[dew-default-tab-head[contains(text(),'" + tabName + "')] and contains(@class,'paginated-nav-link')]")
         // CommonKeyword.clickElement("//a[dew-default-tab-head[contains(text(),'" + tabName + "')] and contains(@class,'paginated-nav-link')]")
@@ -25,8 +25,8 @@ class ApprovalPage {
     async verifyListingPage(tabName) {
         // I.seeElement("//dew-default-tab-head");
         //I.seeElement('//a[dew-default-tab-head[text()[normalize-space()="'+tabName +'"]] and contains(@class,"active")]');
-        I.waitForElement(`//a[dew-default-tab-head[text()[normalize-space()="${tabName}"]] and contains(@class,'active')]`, 20);
-        I.seeElement(`//a[dew-default-tab-head[text()[normalize-space()="${tabName}"]] and contains(@class,'active')]`);
+        I.waitForElement(`//a[dew-default-tab-head[contains(text(),"${tabName}")] and contains(@class,'active') ]`, 20);
+        I.seeElement(`//a[dew-default-tab-head[contains(text(),"${tabName}")] and contains(@class,'active') ]`);
         console.log("Navigated to: " + tabName);
         I.waitForElement('dew-listing', 20);
         let num = await I.grabNumberOfVisibleElements('dew-listing');
