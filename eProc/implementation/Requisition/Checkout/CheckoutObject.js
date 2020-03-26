@@ -108,5 +108,6 @@ module.exports= {
     REQUISITION_AMOUNT: "Checkout/REQUISITION_AMOUNT",
 
     SUPPLIER_EDIT_ICON: "Checkout/ItemDetails/SUPPLIER_EDIT_ICON",
+    SUPPLIER_CONTRACT_ID: "Checkout/ItemDetails/SupplierModal/SUPPLIER_CONTRACT_ID",
 
 };

@@ -146,7 +146,7 @@ module.exports={
     {
         let sectionXapth = `//div[contains(text(),'${sectionName}')]`;
         await I.scrollIntoView(sectionXapth);
-        await  I.wait(prop.DEFAULT_MEDIUM_WAIT);
+        await  I.wait(prop.DEFAULT_WAIT);
         logger.info("Scrolled to Section "+sectionName);
     },
 
@@ -350,7 +350,7 @@ module.exports={
     {
         let columnIndex = await (await this.getColumnIndexOnListingPage(columnName)).toString();
         let columnHeaderXpath = await I.getElement(commonKeywordObject.ALL_COLUMN_HEADER_TEXT);
-        columnHeaderXpath = "((" + columnHeaderXpath + "/..)[" + columnIndex + "]//dew-row[contains(@class,'list-body')]//div)[1]";
+        columnHeaderXpath = "((" + columnHeaderXpath + "/..)[" + columnIndex + "]//dew-row[contains(@class,'list-body')]//span)[1]";
         logger.info("Xpath for retrieving column value --> " + columnHeaderXpath);
         await I.scrollIntoView(columnHeaderXpath);
         //await I.waitForVisible(columnHeaderXpath, prop.DEFAULT_HIGH_WAIT);
@@ -389,8 +389,8 @@ module.exports={
     },
 
     async selectToday(locator) {
-        I.click(locator);
-        I.click(".currentDate", ".d-picker");
+       await I.click(locator);
+       await I.click(".currentDate", ".d-picker");
     },
     async selectInNextMonth(locator, date) {
         I.click(locator);
@@ -401,25 +401,40 @@ module.exports={
 
 
     /**
-     * This Function navigates to Page from Hamburger menu to specified productNameand pageName
+     * This Function navigates to Page from Hamburger menu to specified productName and pageName
      * @param {String} productName 
      * @param {String} pageName 
      */
     async navigateToPage(productName , pageName){
         await I.scrollIntoView(I.getElement(commonKeywordObject.HAMBURGER_MENU));
         await I.click(I.getElement(commonKeywordObject.HAMBURGER_MENU));
+        await I.wait(prop.DEFAULT_WAIT);
+        logger.info("Clicked on Hamburger Menu");
         await I.seeElement(I.getElement(commonKeywordObject.MENU_PANEL));
-
+        logger.info("I can see Menu Panel");
         let applicationXpath = "//dew-side-menu//ul/li[@title='"+productName+"']";
         await this.waitForElementVisible(applicationXpath, prop.DEFAULT_MEDIUM_WAIT);
         await I.click(applicationXpath);
         logger.info("Clicked on Application-----> "+productName);
 
-        let pageXpath = "//ul[contains(@class,'sidemenu-column')][2]/li[@title='"+pageName+"']";
+        let pageXpath = "//ul[contains(@class,'sidemenu-column')][2]/li[@title=\""+pageName+"\"]";
         await this.waitForElementVisible(pageXpath, prop.DEFAULT_MEDIUM_WAIT);
         await I.click(pageXpath);
         await this.waitForLoadingSymbolNotDisplayed();
         logger.info("Navigated to Page-----> "+pageName);
-    }
+    },
+
+    async getValueForColumnNameOfReq(columnName)
+    {
+        let columnIndex = await (await this.getColumnIndexOnListingPage(columnName)).toString();
+        let columnHeaderXpath = await I.getElement(commonKeywordObject.ALL_COLUMN_HEADER_TEXT);
+        columnHeaderXpath = "(((" + columnHeaderXpath + "/..)[" + columnIndex + "]//dew-row[contains(@class,'list-body')])//div)[1]";
+        logger.info("Xpath for retrieving column value --> " + columnHeaderXpath);
+        await I.scrollIntoView(columnHeaderXpath);
+        //await I.waitForVisible(columnHeaderXpath, prop.DEFAULT_HIGH_WAIT);
+        let columnValue = await I.grabTextFrom(columnHeaderXpath);
+		logger.info("Retrieved value for column " + columnName + " is --> " + columnValue);
+		return columnValue;
+    },
 
 };

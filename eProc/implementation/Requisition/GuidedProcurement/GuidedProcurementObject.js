@@ -54,4 +54,10 @@ module.exports={
 
     EFORM_DROPDOWN :"OnlineStore/GuidedProcurement/CreateNewItemModal/EFORM_DROPDOWN",
     EFORM_DONE :"OnlineStore/GuidedProcurement/CreateNewItemModal/EFORM_DONE_BUTTON",
+    PO_GUIDED_LINE_NUMBER_TEXTBOX: "Spo/ItemSummary/PO_GUIDED_LINE_NUMBER_TEXTBOX",
+    SUPPLIER_FIELD_EDIT_ICON : "OnlineStore/GuidedProcurement/SUPPLIER_FIELD_EDIT_ICON",
+    SUPPLIER_CONTRACT_ID_TEXTBOX: "OnlineStore/GuidedProcurement/SupplierDetailsModal/SUPPLIER_CONTRACT_ID_TEXTBOX",
+
+
+    SUPPLIER_BPO_TEXTBOX : "OnlineStore/GuidedProcurement/SupplierDetailsModal/BPO_TEXTBOX",
 };

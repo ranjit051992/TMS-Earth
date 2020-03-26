@@ -7,37 +7,6 @@ const commonKeywordImpl = require("../../../commonKeywords/CommonComponent");
 const onlineStoreImpl = require("./../OnlineStore/OnlineStoreImpl");
 
 module.exports = {
-    async addGuidedItemForPo(guidedItem) {
-        await this.clickOnAddItemServiceButtonPo();
-        await this.fillShortDescriptionPo();  //pass parameter
-        await this.selectProductCategoryPo(); //pass category
-        if (guidedItem.itemType === lmtVar.getLabel("ITEM_TYPE_GOODS")) {
-            await this.selectItemTypeGoods();
-        }
-        else {
-            logger.info(`Incorrect Item type passed --> ${guidedItem.itemType}`);
-            throw new Error(`Incorrect Item type passed --> ${guidedItem.itemType}`);
-        }
-
-        if (guidedItem.receiveBy === lmtVar.getLabel("RECEIVE_BY_QUANTITY")) {
-            await this.selectReceiveByQuantity();
-        }
-        else if (lmtVar.getLabel("RECEIVE_BY_AMOUNT")) {
-            await this.selectReceiveByAmount();
-        }
-        else {
-            logger.info(`Incorrect Receive By passed --> ${guidedItem.receiveBy}`);
-            throw new Error(`Incorrect Receive By passed --> ${guidedItem.receiveBy}`);
-        }
-
-        await this.fillMarketPricePo();   //pass market price
-
-        await this.fillQuantityPo();  //pass quantity
-
-        await this.fillUomPo();   //pass uom
-
-        await this.clickOnOkayButtonPo();
-    },
     async clickOnAddItemServiceButtonPo() {
         await I.waitForVisible(I.getElement(iGuided.ADD_ITEM_SERVICE_BUTTON));
         await I.click(I.getElement(iGuided.ADD_ITEM_SERVICE_BUTTON));
@@ -80,24 +49,25 @@ module.exports = {
         return price;
     },
     async fillQuantityPo(quantity) {
-        await I.waitForVisible(I.getElement(iGuided.PO_GUIDED_ITEM_MARKET_PRICE_TEXTBOX));
-        await I.click(I.getElement(iGuided.PO_GUIDED_ITEM_MARKET_PRICE_TEXTBOX));
-        await I.clearField(I.getElement(iGuided.PO_GUIDED_ITEM_MARKET_PRICE_TEXTBOX));
-        await I.fillField(I.getElement(iGuided.PO_GUIDED_ITEM_MARKET_PRICE_TEXTBOX), price);
+        await I.waitForVisible(I.getElement(iGuided.PO_GUIDED_ITEM_QUANTITY_TEXTBOX));
+        await I.click(I.getElement(iGuided.PO_GUIDED_ITEM_QUANTITY_TEXTBOX));
+        await I.clearField(I.getElement(iGuided.PO_GUIDED_ITEM_QUANTITY_TEXTBOX));
+        await I.fillField(I.getElement(iGuided.PO_GUIDED_ITEM_QUANTITY_TEXTBOX), quantity);
         logger.info(`Filled quantity --> ${quantity}`);
-        return price;
+        return quantity;
     },
     async fillUomPo(uom) {
         let optionXpath = `//span[text()='${uom}']`;
+        await I.waitForVisible(I.getElement(iGuided.PO_GUIDED_ITEM_UOM_TEXTBOX));
+        await I.scrollIntoView(I.getElement(iGuided.PO_GUIDED_ITEM_UOM_TEXTBOX));
         uom = await commonKeywordImpl.searchAndSelectFromDropdown(I.getElement(iGuided.PO_GUIDED_ITEM_UOM_TEXTBOX), uom, optionXpath);
         logger.info(`Selected Uom --> ${uom}`);
         return uom;
     },
-    async clickOnOkayButtonPo(uom) {
-        let optionXpath = `//span[text()='${uom}']`;
-        uom = await commonKeywordImpl.searchAndSelectFromDropdown(I.getElement(iGuided.PO_GUIDED_ITEM_UOM_TEXTBOX), uom, optionXpath);
-        logger.info(`Selected Uom --> ${uom}`);
-        return uom;
+    async clickOnOkayButtonPo() {
+        await I.waitForVisible(I.getElement(iGuided.PO_GUIDED_ITEM_OK_BUTTON));
+        await commonKeywordImpl.clickUsingJsByXpath(I.getElement(iGuided.PO_GUIDED_ITEM_OK_BUTTON));
+        logger.info("Clicked on Ok button");
     },
 
 
@@ -117,6 +87,7 @@ module.exports = {
 
     async fillCategory(category) {
         await commonKeywordImpl.searchAndSelectFromDropdown(I.getElement(iGuided.CATEGORY_TEXTBOX), category, "//span[contains(text(),'" + category + "')]");
+        await I.wait(prop.DEFAULT_LOW_WAIT);
     },
 
     async clickOnGoodsRadioButton() {
@@ -162,6 +133,8 @@ module.exports = {
     },
 
     async fillQuantity(quantity) {
+        await I.scrollIntoView(I.getElement(iGuided.QUANTITY_TEXTBOX));
+
         await I.waitForVisible(I.getElement(iGuided.QUANTITY_TEXTBOX));
         await I.waitForClickable(I.getElement(iGuided.QUANTITY_TEXTBOX));
         await I.clearField(I.getElement(iGuided.QUANTITY_TEXTBOX));
@@ -169,6 +142,9 @@ module.exports = {
     },
 
     async fillUom(uom) {
+        await I.scrollIntoView(I.getElement(iGuided.UOM_TEXTBOX));
+        await I.waitForVisible(I.getElement(iGuided.UOM_TEXTBOX));
+        await I.clearField(I.getElement(iGuided.UOM_TEXTBOX));
         await commonKeywordImpl.searchAndSelectFromDropdown(I.getElement(iGuided.UOM_TEXTBOX), uom, "//span[contains(text(),'" + uom + "')]");
     },
 
@@ -189,12 +165,14 @@ module.exports = {
     },
 
     async clickOnBuyerReviewYesRadioButton() {
+        await I.scrollIntoView(I.getElement(iGuided.BUYER_REVIEW_REQUIRED_YES_RADIO_BUTTON));
         await I.waitForVisible(I.getElement(iGuided.BUYER_REVIEW_REQUIRED_YES_RADIO_BUTTON));
         await I.waitForClickable(I.getElement(iGuided.BUYER_REVIEW_REQUIRED_YES_RADIO_BUTTON));
         await I.click(I.getElement(iGuided.BUYER_REVIEW_REQUIRED_YES_RADIO_BUTTON));
     },
 
     async clickOnBuyerReviewNoRadioButton() {
+        await I.scrollIntoView(I.getElement(iGuided.BUYER_REVIEW_REQUIRED_NO_RADIO_BUTTON));
         await I.waitForVisible(I.getElement(iGuided.BUYER_REVIEW_REQUIRED_NO_RADIO_BUTTON));
         await I.waitForClickable(I.getElement(iGuided.BUYER_REVIEW_REQUIRED_NO_RADIO_BUTTON));
         await I.click(I.getElement(iGuided.BUYER_REVIEW_REQUIRED_NO_RADIO_BUTTON));
@@ -404,7 +382,7 @@ module.exports = {
             await this.clickOnQuantityRadioButton();
         }
 
-        this.selectSourcingStatus(guidedItem.sourcingStatus);
+        this.selectSourcingStatus(guidedItem.sourcingStatus,guidedItem.buyerReviewRequired);
 
         if (guidedItem.quantity > 0) {
             await this.fillQuantity(guidedItem.quantity.toString());
@@ -426,13 +404,14 @@ module.exports = {
             await this.clickOnZeroPriceItemCheckbox();
         }
 
-        if (guidedItem.buyerReviewRequired) {
-            await this.clickOnBuyerReviewYesRadioButton();
-        }
+        
+        // if (guidedItem.buyerReviewRequired) {
+        //     await this.clickOnBuyerReviewYesRadioButton();
+        // }
 
-        if (!guidedItem.buyerReviewRequired) {
-            await this.clickOnBuyerReviewNoRadioButton();
-        }
+        // if (!guidedItem.buyerReviewRequired) {
+        //     await this.clickOnBuyerReviewNoRadioButton();
+        // }
 
         if (!guidedItem.description) {
             await this.clickOnDescriptionLink();
@@ -447,7 +426,9 @@ module.exports = {
         if (guidedItem.buyerReviewRequired) {
             for (let i = 0; i < guidedItem.suppliers.length; i++) {
                 await this.fillSupplier(guidedItem.suppliers[i]);
-                let isPresent = await this.checkIfSupplierSuggestionsPresent()
+                let isPresent = await this.checkIfSupplierSuggestionsPresent();
+                logger.info("isPresent"+isPresent)
+               
                 if (isPresent) {
                     await this.selectSupplierCheckbox(guidedItem.suppliers[i]);
                     await this.clickOnAdditionalDetailsButton();
@@ -459,6 +440,11 @@ module.exports = {
                     guidedItem.supplierContact = contact;
                     let email = await this.getSupplierEmail();
                     guidedItem.supplierEmail= email;
+
+                    if(typeof guidedItem.bpo !== 'undefined')
+                    {
+                        await this.fillBpo(guidedItem.bpo);
+                    }
                     await this.clickOnSupplierModalDoneButton();
                 }
                 else {
@@ -483,6 +469,16 @@ module.exports = {
                     //await this.clickOnAdditionalDetailsButton();
                     await this.clickOnAddressTextbox();
                     await this.clickOnSupplierAddressSuggestion();
+                    let address = await this.getSupplierAddress();
+                    guidedItem.supplierAddress = address;
+                    let contact = await this.getSupplierContactName();
+                    guidedItem.supplierContact = contact;
+                    let email = await this.getSupplierEmail();
+                    guidedItem.supplierEmail= email;
+                    if(typeof guidedItem.bpo !== 'undefined')
+                    {
+                        await this.fillBpo(guidedItem.bpo);
+                    }
                     await this.clickOnSupplierModalDoneButton();
                 }
                 else {
@@ -494,7 +490,7 @@ module.exports = {
         return guidedItem;
     },
 
-    async selectSourcingStatus(sourcingStatus)
+    async selectSourcingStatus(sourcingStatus,buyerReviewRequired)
     {
         logger.info(`Selecting sourcing status : ${sourcingStatus}`);
         if (sourcingStatus === lmtVar.getLabel("SOURCING_STATUS_NEED_QUOTE")) {
@@ -505,8 +501,19 @@ module.exports = {
             await this.clickOnEstimatedPriceRadioButton();
         }
 
-        if (sourcingStatus === lmtVar.getLabel("SOURCING_STATUS_QUOTED_BY_SUPPLIER")) {
+        if (sourcingStatus === lmtVar.getLabel("SOURCING_STATUS_QUOTED_BY_SUPPLIER")) 
+        {
             await this.clickOnQuotedBySupplierRadioButton();
+    
+            if(buyerReviewRequired)
+            {
+                await this.clickOnBuyerReviewYesRadioButton();
+            }
+            else
+            {
+                await this.clickOnBuyerReviewNoRadioButton();
+            }
+    
         }
     },
 
@@ -527,19 +534,52 @@ module.exports = {
 
     async selectCategoryEform(eformName)
     {
-        await I.waitForVisible(I.getElement(iGuided.EFORM_DROPDOWN));
-        // await I.waitForClickable(I.getElement(iGuided.EFORM_DROPDOWN));
-        // await I.click(I.getElement(iGuided.EFORM_DROPDOWN));
-        await commonKeywordImpl.selectValueFromDropDown(I.getElement(iGuided.EFORM_DROPDOWN),eformName);
+        let noOfElements = await I.grabNumberOfVisibleElements(I.getElement(iGuided.EFORM_DROPDOWN));
+       // await I.waitForVisible(I.getElement(iGuided.EFORM_DROPDOWN));
+        if(noOfElements>0)
+        {
+            await commonKeywordImpl.selectValueFromDropDown(I.getElement(iGuided.EFORM_DROPDOWN),eformName);
+        }
     },
     async clickOnEformDoneButton() 
     {
-        let isPresent = await commonKeywordImpl.isElementVisible(I.getElement(iGuided.EFORM_DONE));
-        if(isPresent)
+        await commonKeywordImpl.waitForElementVisible(I.getElement(iGuided.EFORM_DONE));
+        let noOfElements = await I.grabNumberOfVisibleElements(I.getElement(iGuided.EFORM_DONE));
+        if(noOfElements>0)
         {
-            await I.waitForVisible(I.getElement(iGuided.EFORM_DONE));
+           // await I.waitForVisible(I.getElement(iGuided.EFORM_DONE));
             await I.waitForClickable(I.getElement(iGuided.EFORM_DONE));
             await I.click(I.getElement(iGuided.EFORM_DONE));
         }
     },
-};
+
+    async fetchLineNumber() {
+        await I.waitForVisible(I.getElement(iGuided.PO_GUIDED_LINE_NUMBER_TEXTBOX));
+        let lineNumber = await I.grabAttributeFrom(I.getElement(iGuided.PO_GUIDED_LINE_NUMBER_TEXTBOX), "value");
+        return lineNumber;
+    },
+
+    async clickOnSupplierEditIcon()
+    {
+        await I.waitForClickable(I.getElement(iGuided.SUPPLIER_FIELD_EDIT_ICON));
+        await I.click(I.getElement(iGuided.SUPPLIER_FIELD_EDIT_ICON));
+        logger.info("Clicked on Supplier Field Edit icon");
+    },
+
+    async fillSupplierContractID(contractID)
+    {
+        await I.waitForVisible(I.getElement(iGuided.SUPPLIER_CONTRACT_ID_TEXTBOX));
+        await I.waitForClickable(I.getElement(iGuided.SUPPLIER_CONTRACT_ID_TEXTBOX));
+        await I.click(I.getElement(iGuided.SUPPLIER_CONTRACT_ID_TEXTBOX));
+        await I.clearField(I.getElement(iGuided.SUPPLIER_CONTRACT_ID_TEXTBOX));
+        await I.fillField(I.getElement(iGuided.SUPPLIER_CONTRACT_ID_TEXTBOX), contractID);
+        contractID = await I.grabAttributeFrom(I.getElement(iGuided.SUPPLIER_CONTRACT_ID_TEXTBOX), "value");
+        logger.info("Entered Contract Id is ---->"+contractID);
+        return contractID;
+    },
+    
+    async fillBpo(bpo) 
+    {
+        await commonKeywordImpl.searchAndSelectFromDropdown(I.getElement(iGuided.SUPPLIER_BPO_TEXTBOX), bpo, "//span[contains(text(),'" + bpo + "')]");
+    },
+}

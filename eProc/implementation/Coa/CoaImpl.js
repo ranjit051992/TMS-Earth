@@ -106,7 +106,7 @@ module.exports = {
     },
     async clickOnCostBookingSaveButton(){
         await I.waitForVisible(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
-        await I.doubleClick(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
+        await commonKeywordsImpl.clickUsingJsByXpath(I.getElement(iSpoObject.COSTBOOKING_SAVE_BUUTON));
         logger.info("Clicked on coa form save button");
     },
     async getAutoCompleteTextboxXpath(autoCompleteTextboxXpath, index) {
@@ -124,4 +124,31 @@ module.exports = {
         logger.info(`Selected GlAccount: ${glAccount}`);
         return glAccount;
     },
+  
+
+    async fetchCoaFormData()
+    {
+    let flag;
+    let index = 1;
+    let coaArray = new Array();
+    let autoCompleteTextboxXpath = await (await this.getAutoCompleteTextboxXpath(I.getElement(coaObject.AUTO_COMPLETE_TEXTBOX), index)).toString();
+    flag = await commonKeywordsImpl.waitForElementPresent(autoCompleteTextboxXpath);
+    if(flag) {
+        while (flag) {
+            await I.scrollIntoView(autoCompleteTextboxXpath);
+            await I.wait(prop.DEFAULT_WAIT);
+            let isEnabled = await commonKeywordsImpl.isEnabledByXpath(autoCompleteTextboxXpath);
+            if(isEnabled) {
+                let autoCompleteTextboxXpath = await (await this.getAutoCompleteTextboxXpath(I.getElement(coaObject.AUTO_COMPLETE_TEXTBOX), index)).toString();
+                let value = await I.grabAttributeFrom(autoCompleteTextboxXpath, "value");
+                coaArray.push(value);
+            }
+            index++;
+            autoCompleteTextboxXpath = await (await this.getAutoCompleteTextboxXpath(I.getElement(coaObject.AUTO_COMPLETE_TEXTBOX), index)).toString();
+            flag = await commonKeywordsImpl.isElementPresent(autoCompleteTextboxXpath);
+        }
+    }
+        return coaArray;
+    },
+
 }

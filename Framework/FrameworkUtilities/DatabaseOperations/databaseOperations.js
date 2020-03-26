@@ -67,14 +67,22 @@ module.exports = {
     },
 
     async getUiElementXpath(uiElementKey) {
-        const prop = global.confi_prop;
+       const prop = global.confi_prop;
+        let tablename = "uiElementTable"
 
-        const connectionString = "Data Source=tcp:"+prop.DBhost+",3306;Initial Catalog="+prop.DBdatabase+";User Id="+prop.DBuser+";Password="+prop.DBpassword+";";
+        const connectionString = "Data Source=tcp:" + prop.DBhost + ",3306;Initial Catalog=" + prop.DBdatabase + ";User Id=" + prop.DBuser + ";Password=" + prop.DBpassword + ";";
         logger.info("connectionString  : " + connectionString);
 
         const connectionObj = parser(connectionString);
+        if (process.env.SETUP) {
+            tablename = process.env.SETUP + "_uiElementTable";
+        }
+        else {
+            tablename = prop.SETUP + "_uiElementTable";
+        }
 
-        const query = `SELECT PAGE_NAME, ELEMENT_NAME, XPATH FROM ${prop.uiElementTable}`;
+        const query = `SELECT PAGE_NAME, ELEMENT_NAME, XPATH FROM ${global.configmap.get(tablename)}`;
+        console.log("Query : " + query)
 
         return new Promise((resolve, reject) => {
             let elementMap = new Map();

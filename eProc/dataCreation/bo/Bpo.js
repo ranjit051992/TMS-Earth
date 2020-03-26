@@ -38,6 +38,11 @@ class Bpo
         this.fillControlSettings;
         this.fillAdditionalDetails;
         this.attachmentPath;
+        this.fromDate;
+        this.toDate;
+        this.newApprover;
+        this.date;
+        this.itemPrice;
     }
     setPoNumber(poNumber)
     {
@@ -208,6 +213,26 @@ class Bpo
     setAttachmentPath(attachmentPath)
     {
         this.attachmentPath = attachmentPath;
+    }
+    setFromDate(fromDate)
+    {
+        this.fromDate = fromDate;
+    }
+    setToDate(toDate)
+    {
+        this.toDate = toDate;
+    }
+    setNewApprover(newApprover)
+    {
+        this.newApprover = newApprover;
+    }
+    setDate(date)
+    {
+        this.date=date;
+    }
+    setItemPrice(itemPrice)
+    {
+        this.itemPrice=itemPrice;
     }
 
 }

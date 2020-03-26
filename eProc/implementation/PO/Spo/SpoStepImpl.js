@@ -11,6 +11,7 @@ const poListingImpl = require("../PoListing/PoListingImpl");
 const poListingObject = require("../PoListing/PoListingObject");
 const coaImpl = require("../../Coa/CoaImpl");
 const checkoutImpl = require("../../Requisition/Checkout/CheckoutImpl");
+const assert = require("assert");
 
 Given("I am on PO listing page", async function () {
    await poListingImpl.navigateToPoListing();
@@ -18,7 +19,6 @@ Given("I am on PO listing page", async function () {
 
 Given("I Create Standard po with {int} {string} item", async function (noOfItems, itemType) {
    this.spo = await objectCreation.getObjectOfStandardPO(noOfItems, itemType);
-   //this.spo.poNumber = "Automation_Spo_1583163241883";
    this.spo = await spoImpl.createSpoFlow(this.spo);
 });
 
@@ -76,9 +76,9 @@ When("I add costing and accounting details for that item", async function() {
    await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
    await spoImpl.clickOnCostBookingLink(this.spo.items[0].itemName);
    await coaImpl.fillCoaDetails();
-   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_TAXES_SECTION_SECTION"));
-   await spoImpl.selectTaxInclusive();
-   await spoImpl.clickRemoveTaxesConfirmButton();
+   // await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_TAXES_SECTION_SECTION"));
+   // await spoImpl.selectTaxInclusive();
+   // await spoImpl.clickRemoveTaxesConfirmButton();
 });
 
 When("I add 1 free text item with details", async function() {
@@ -351,4 +351,66 @@ When("I select tax inclusive on create spo page", async function() {
 
 When("I fill PO number", async function() {
    await spoImpl.fillPONumber(this.spo.poNumber);
+});
+
+Then("I should be able to see the new item with unique line item number", async function() {
+   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_VIEW_LINE_ITEMS_SECTION"));
+   let flag = await spoImpl.verifyViewSpoItemLevelSrNo();
+   assert.strictEqual(true, flag, "Item level sr no validation failed");
+});
+
+Then("I should be able to see PO Amendment page of the PO which is added", async function(){
+   let isPresent = await spoImpl.checkIfAmendPoPageDisplayed(this.reqBO.linkedPoNumber);
+   I.assertEqual(isPresent,true);
+ });
+
+
+Given("I have created a PO with {int} {string} and {int} free text item and header level attachment", async function(noOfCatalogItems, catalogItemType, noOfGuidedItems) {
+   this.spo = await objectCreation.getObjectOfStandardPO(noOfCatalogItems, catalogItemType);
+   this.spo.setAttachmentPath(I.getData("ATTACHMENT_PATH"));
+   for(let i = 0; i < noOfGuidedItems; i++) {
+      let guidedItem = await objectCreation.getObjectOfGuidedItem(noOfGuidedItems);
+      this.spo.items.push(guidedItem);
+   }
+   this.spo = await spoImpl.createSpoFlow(this.spo);
+});
+
+Then("Free text item should be added at index {int}", async function(index) {
+   for(let i = 0; i < this.spo.items.length; i++) {
+      if(this.spo.items[i].itemType === lmtVar.getLabel("ITEM_TYPE_GUIDED")) {
+         let itemNameFromBo = this.spo.items[i].itemName;
+         await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_VIEW_LINE_ITEMS_SECTION"));
+         let itemName = await spoImpl.getItemNameOnSpoView(index);
+         assert.strictEqual(itemName.toString(), itemNameFromBo.toString(), `Item name did not match at index ${index}`);
+      }
+   }
+});
+
+Then("Attachment should be added", async function() {
+   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_ADD_ATTACHMENT_SECTION"));
+   let flag = await commonKeywordImpl.waitForElementVisible(I.getElement(iSpoObject.VIEW_SPO_ATTACHED_FILE));
+   assert.strictEqual(flag, true, "Attachment is not displayed on view spo");
+});
+
+Then("Req items should be added", async function() {
+   let itemName;
+   let flag = false;
+   let itemArray = new Array();
+   for(let i = 0; i < this.reqBO.items.length; i++) {
+      itemArray.push(this.reqBO.items[i].itemName);
+   }
+
+   await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_VIEW_LINE_ITEMS_SECTION"));
+
+   for(let i = 0; i < this.reqBO.items.length; i++) {
+      itemName = await spoImpl.getItemNameOnSpoView(i + 1);
+      if(!itemArray.includes(itemName.toString())) {
+         flag = false;
+         break;
+      }
+      else {
+         flag = true;
+      }
+   }
+   assert.strictEqual(flag, true, `${itemName} not found in the item array --> ${itemArray}`);
 });

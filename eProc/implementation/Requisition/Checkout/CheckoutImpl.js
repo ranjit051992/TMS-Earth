@@ -17,6 +17,10 @@ const coaImpl = require("../../Coa/CoaImpl");
 const approvalImpl = require("../../Approval/ApprovalImpl");
 const buyerDeskImpl = require("../../BuyersDesk/BuyersDeskImpl");
 const poListingImpl = require("../../PO/PoListing/PoListingImpl");
+const buyerDeskObject = require("../../BuyersDesk/BuyersDeskObject");
+const spoImpl = require("../../PO/Spo/SpoImpl");
+const spoObject = require("../../PO/Spo/SpoObject");
+const guidedItemImpl = require("../GuidedProcurement/GuidedProcurementImpl");
 
 module.exports = {
 
@@ -28,7 +32,17 @@ module.exports = {
     async createRequisitionFlow(requisitionBO) {
         await onlineStoreImpl.navigateToOnlineStore();
         await cartImpl.clearCart();
-        await onlineStoreImpl.addItemToCart(requisitionBO.itemName, faker.random.number(20));
+        for(let i = 0; i < requisitionBO.items.length; i++) {
+            if(requisitionBO.items[i].itemType === lmtVar.getLabel("ITEM_TYPE_CATALOG")) {
+                await onlineStoreImpl.addItemToCart(requisitionBO.items[i].itemName, faker.random.number(20));
+                await onlineStoreImpl.navigateToOnlineStore();
+            }
+            else if(requisitionBO.items[i].itemType === lmtVar.getLabel("ITEM_TYPE_GUIDED")) {
+                await guidedItemImpl.CreateGuidedItem(requisitionBO.items[i]);
+                await onlineStoreImpl.navigateToOnlineStore();
+            }
+        }
+
         await onlineStoreImpl.clickOnCartIcon();
         await I.waitForVisible(I.getElement(iCart.CART_ITEM_TABLE));
         await cartImpl.clickOnCheckoutButton();
@@ -371,28 +385,30 @@ module.exports = {
     },
 
     async selectRequiredByDate() {
-        logger.info("Selecting date");
-        let day = new Date().getDate();
-        let dayXpath = `//div[text()='${day}']/..`;
-        await I.click(I.getElement(iCheckout.REQUIRED_BY));
-        let numberOfElements = await I.grabNumberOfVisibleElements(dayXpath);
-        for (let i = 0; i < numberOfElements; i++) {
-            dayXpath = `(//div[text()='${day}']/..)[${i + 1}]`;
-            try {
-                await I.waitForEnabled(dayXpath, 2);
-                logger.info(`Date enabled for xpath --> ${dayXpath}`);
-                I.click(dayXpath);
-                logger.info(`Clicked on date ${day}`);
-                break;
-            } catch (e) {
-                logger.info(`Date disabled for xpath --> ${dayXpath}`);
-            }
+        // logger.info("Selecting date");
+        // let day = new Date().getDate();
+        // let dayXpath = `//div[text()='${day}']/..`;
+        // await I.click(I.getElement(iCheckout.REQUIRED_BY));
+        // let numberOfElements = await I.grabNumberOfVisibleElements(dayXpath);
+        // for (let i = 0; i < numberOfElements; i++) {
+        //     dayXpath = `(//div[text()='${day}']/..)[${i + 1}]`;
+        //     try {
+        //         await I.waitForEnabled(dayXpath, 2);
+        //         logger.info(`Date enabled for xpath --> ${dayXpath}`);
+        //         I.click(dayXpath);
+        //         logger.info(`Clicked on date ${day}`);
+        //         break;
+        //     } catch (e) {
+        //         logger.info(`Date disabled for xpath --> ${dayXpath}`);
+        //     }
 
-            if (i == numberOfElements) {
-                throw new Error(`Day --> ${day} not present in the datepicker`);
-            }
-        }
-
+        //     if (i == numberOfElements) {
+        //         throw new Error(`Day --> ${day} not present in the datepicker`);
+        //     }
+        // }
+        await commonComponent.selectToday(I.getElement(iCheckout.REQUIRED_BY));
+        let date = await I.grabAttributeFrom(I.getElement(iCheckout.REQUIRED_BY), 'value');
+        logger.info("Clicked on date---> "+date);
     },
 
     /**
@@ -535,8 +551,8 @@ module.exports = {
     * clickOnContinueButton: clicks on Contine Button
     */
     async clickOnContinueButton() {
-        await I.waitForVisible(I.getElement(iCheckout.CONTINUE_BUTTON), prop.DEFAULT_HIGH_WAIT);
-        await I.waitForClickable(I.getElement(iCheckout.CONTINUE_BUTTON), prop.DEFAULT_HIGH_WAIT);
+        await I.waitForVisible(I.getElement(iCheckout.CONTINUE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForClickable(I.getElement(iCheckout.CONTINUE_BUTTON), prop.DEFAULT_MEDIUM_WAIT);
         await I.click(I.getElement(iCheckout.CONTINUE_BUTTON));
         logger.info("Clicked on Continue Button");
     },
@@ -574,19 +590,19 @@ module.exports = {
         }
 
         if (requisitionBO.urgentRequirement === "Yes") {
-            this.clickOnUrgentRequirementYesButton();
+            await this.clickOnUrgentRequirementYesButton();
         }
         else {
-            this.clickOnUrgentRequirementNoButton();
+           await this.clickOnUrgentRequirementNoButton();
         }
 
-        if (requisitionBO.reasonForOrdering !== "undefined") {
+        if (typeof requisitionBO.reasonForOrdering  !== "undefined") {
             await this.clickOnReasonForOrderingLink();
             let reasonForOrdering = await this.enterReasonForOrdering(requisitionBO.reasonForOrdering);
             requisitionBO.setReasonForOrdering(reasonForOrdering);
         }
 
-        if (requisitionBO.commentsForSupplier !== "undefined") {
+        if (typeof requisitionBO.commentsForSupplier !== "undefined") {
             await this.clickOnCommentsForSupplierLink();
             let commentsForSupplier = await this.enterCommentsForSupplier(requisitionBO.commentsForSupplier);
             requisitionBO.setCommentsForSupplier(commentsForSupplier);
@@ -630,7 +646,7 @@ module.exports = {
             await this.clickOnRetrospectivePurchaseNoButton();
         }
 
-        if (requisitionBO.attachmentPath.toString() !== null) {
+        if (requisitionBO.attachmentPath) {
             await this.addAttachments(requisitionBO.attachmentPath.toString());
         }
 
@@ -696,27 +712,35 @@ module.exports = {
 
     async fillItemDetails(requisitionBO) {
         logger.info("*********Filling Requisition Item Details");
-        await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
-
+        
         //for(let i = 0; i <requisitionBO.items.length; i++)
-       // {
-        await this.clickOnCostBookingLink(requisitionBO.itemName);
+        // {
+            
+            for(let i = 0; i < requisitionBO.items.length; i++) {
+            await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+            await this.clickOnCostBookingLink(requisitionBO.items[i].itemName);
+    
+            if (requisitionBO.buyer !== "undefined") {
+                await this.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
+                let buyer = await this.fillBuyerInTextBox(requisitionBO.buyer);
+                requisitionBO.setBuyer(buyer);
+    
+            }
+    
+            else if (requisitionBO.assignedBuyerGroup !== "undefined") {
+                await this.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
+                /// assigned BuyerGroup code
+            }
+    
+            if(requisitionBO.fillTaxes)
+            {
+                requisitionBO = await this.fillTaxDetails(requisitionBO);
+            }
 
-        if (requisitionBO.buyer !== "undefined") {
-            await this.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
-            let buyer = await this.fillBuyerInTextBox(requisitionBO.buyer);
-            requisitionBO.setBuyer(buyer);
-
+            await this.clickOnCostBookingTab();
+    
+            await coaImpl.fillCoaDetails();
         }
-
-        else if (requisitionBO.assignedBuyerGroup !== "undefined") {
-            await this.clickOnTab(lmtVar.getLabel("CHECKOUT_BUYER_TAB"));
-            /// assigned BuyerGroup code
-        }
-
-        await this.clickOnCostBookingTab();
-
-        await coaImpl.fillCoaDetails();
 
         // if(!prop.isCoa)
         // {
@@ -850,8 +874,8 @@ module.exports = {
     },
 
     async submitRequisition() {
-        await this.clickOnImDoneButton();
         await I.wait(prop.DEFAULT_LOW_WAIT);
+        await this.clickOnImDoneButton();
         await this.clickOnContinueButton();
         await commonComponent.waitForLoadingSymbolNotDisplayed();
         
@@ -1046,8 +1070,8 @@ module.exports = {
     },
 
     async fillTaxDetails(requisitionBO) {
+        logger.info("*********Filling Taxes Details");
         await this.clickOnTab(lmtVar.getLabel("CHECKOUT_TAXES_TAB"));
-
         await this.clickOnRemoveAllTaxesButton();
 
         if (requisitionBO.taxType !== "undefined") {
@@ -1083,14 +1107,16 @@ module.exports = {
    
     async createMultipleReqs(noOfReqs, noOfItems, itemType) {
         let reqArray = new Array();
+
         for (let i=0; i<noOfReqs; i++)
         {
         let reqBO = await ObjectCreation.getObjectOfRequisition(noOfItems, itemType);
         reqBO = await this.createRequisitionFlow(reqBO);
         reqArray.push(reqBO);
-        I.amOnPage(prop.DDS_OnlineStore_Url);
+        await I.amOnPage(prop.DDS_OnlineStore_Url);
         }
-        I.amOnPage(prop.DDS_Requisition_Listing);
+        await I.amOnPage(prop.DDS_Requisition_Listing);
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         for (let i=0; i<reqArray.length; i++)
         {
         reqArray[i].reqNumber = await reqListingImpl.getRequisitionNumber(reqArray[i].reqName);
@@ -1102,12 +1128,17 @@ module.exports = {
         I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
         for (let i = 0; i < reqArray.length; i++) 
         {
-        logger.info(`##########${reqArray[i].reqNumber}`);
         await commonComponent.searchDocOnListing(reqArray[i].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-        let status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
-        status = status.substring(status.indexOf("(")+1, status.indexOf(")"));
-        logger.info(`Status of Reqs ${status} should match with ${lmtVar.getLabel("IN_APPROVAL_STATUS")} `);
-        I.assertEqual(status.toString(), lmtVar.getLabel("IN_APPROVAL_STATUS"));
+        let status = await commonComponent.getValueForColumnNameOfReq(lmtVar.getLabel("STATUS_COLUMN"));
+        let flag = status.toString().trim().includes(lmtVar.getLabel("IN_APPROVAL_STATUS")) === true
+        if(!flag) {
+            logger.info(`Failed to get In Approval status`);
+            throw new Error(`Failed to get In Approval status`);
+        }
+        else {
+            logger.info("Requisition is in In Approval status");
+        }
+    logger.info("Status is In Approval");
         }
     },
 
@@ -1151,7 +1182,6 @@ module.exports = {
 
     async createReqToPoFlow(reqBO) {
         reqBO = await this.createRequisitionFlow(reqBO);
-
         let reqName = reqBO.reqName.toString();
         await reqListingImpl.navigateToRequisitionListing();
         let reqNumber = await reqListingImpl.getRequisitionNumber(reqName);
@@ -1159,32 +1189,26 @@ module.exports = {
 
         let status = await reqListingImpl.getRequisitionStatus();
         if(status.toString().includes(lmtVar.getLabel("IN_APPROVAL_STATUS"))) {
-            await approvalImpl.navigateToApprovalListing();
-            await approvalImpl.approveDoc(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-            await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-            status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
-            if(status.toString() !== lmtVar.getLabel("APPROVED_STATUS")) {
-                throw new Error(`Req status after approval is not Approved. Current status is --> ${status}`);
-            }
+            await approvalImpl.approveReqFlow(reqBO.reqNumber);
         }
         else {
             logger.info(`Req status is not ${lmtVar.getLabel("IN_APPROVAL_STATUS")} after submitting. Current status is ${status}. Hence, not executing the approve req action.`);
         }
         
         if(reqBO.convertToPoFlag) {
-            await I.wait(prop.DEFAULT_MEDIUM_WAIT);
-            await I.amOnPage(prop.DDS_BuyersDesk_Url);
-           // await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("BUYERS_DESK_LISTING_PAGE"));
+            // await I.wait(prop.DEFAULT_MEDIUM_WAIT);
+           // await I.amOnPage(prop.DDS_BuyersDesk_Url);
+            await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("BUYERS_DESK_LISTING_PAGE"));
             await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
             await commonComponent.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-            status = await commonComponent.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+            status = await commonComponent.getValueForColumnNameOfReq(lmtVar.getLabel("STATUS_COLUMN"));
             if(!status.toString().includes(lmtVar.getLabel("ORDERING_STATUS"))) {
                 await commonComponent.clickOnActionMenuIcon();
                 await commonComponent.clickOnActionMenuOption(lmtVar.getLabel("CONVERT_TO_PO"));
                 await buyerDeskImpl.clickOnPoDetailsCheckbox();
                 await buyerDeskImpl.clickOnSubmitPoButton();
                 await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
-                await I.wait(prop.DEFAULT_HIGH_WAIT);
+                // await I.wait(prop.DEFAULT_HIGH_WAIT);
             }
             else {
                 logger.info(`Req status on Buyer Listing is ${status}. Hence, not executing the Convert to PO action`);
@@ -1201,7 +1225,7 @@ module.exports = {
                     await approvalImpl.approvePoFlow(poNumber);
                 }
                 else {
-                    logger.info(`PO status after submission was ${spo.status} and not ${lmtVar.getLabel("IN_APPROVAL_STATUS")}. Hence, not executing the Approve PO action.`);
+                    logger.info(`PO status after submission was ${status} and not ${lmtVar.getLabel("IN_APPROVAL_STATUS")}. Hence, not executing the Approve PO action.`);
                 }
             }
             else {
@@ -1326,6 +1350,69 @@ module.exports = {
         logger.info("Clicked on Add Another Address Button");
     },
 
+    async createReqToPoWithPoLinked(reqBO) {
+        reqBO = await this.createRequisitionFlow(reqBO);
 
+        await reqListingImpl.navigateToRequisitionListing();
+        await commonComponent.searchDocOnListing(reqBO.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+        reqBO.reqNumber = await commonComponent.getDocNumber();
+        reqBO.status = await reqListingImpl.getRequisitionStatus();
 
+        if(reqBO.status.includes(lmtVar.getLabel("IN_APPROVAL_STATUS"))) {
+            await approvalImpl.approveReqFlow(reqBO.reqNumber);
+        }
+        else {
+            logger.info(`Req status is not ${lmtVar.getLabel("IN_APPROVAL_STATUS")} after submitting. Current status is ${reqBO.status}. Hence, not executing the approve req action.`);
+        }
+
+        await buyerDeskImpl.navigateToBuyerListing();
+        await commonComponent.searchDocOnListing(reqBO.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+        await commonComponent.clickOnActionMenuIcon();
+        await commonComponent.clickOnActionMenuOption(lmtVar.getLabel("CONVERT_TO_PO"));
+        let flag = await commonComponent.waitForElementVisible(I.getElement(buyerDeskObject.CONVERT_TO_PO_CONFIRM_YES_BUTTON), prop.DEFAULT_WAIT);
+        if(flag) {
+            await buyerDeskImpl.clickOnConvertToPoConfirmYesButton();
+        }
+        await I.waitForVisible(I.getElement(spoObject.poDescriptionTextbox));
+        await spoImpl.fillAmendPoComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
+        await spoImpl.submitPo();
+        await commonComponent.waitForElementVisible(spoObject.spinner);
+        await I.waitForInvisible(I.getElement(spoObject.spinner));
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
+
+        return reqBO;
+    },
+    async enterLineLevelAddress(address, index)
+    {
+        let xpath = "(//dew-row[@formarrayname='deliveries']["+index+"]//input)[2]";
+        let suggestionXpath = "//div[contains(text(),'"+address+"')]";
+        address = await commonComponent.searchAndSelectFromDropdown(xpath, address, suggestionXpath);
+        logger.info("Entered Line level addres ---->"+address);
+        
+        return address;
+    },
+
+    async getSupplierContractId()
+    {
+       await I.waitForVisible(I.getElement(iCheckout.SUPPLIER_CONTRACT_ID));
+       let suppContractId = await I.grabAttributeFrom(I.getElement(iCheckout.SUPPLIER_CONTRACT_ID), "value");
+        logger.info("Supplier Contract ID is "+suppContractId);
+
+        return suppContractId;
+    },
+
+    async updateBuyer(updatedBuyer){
+        logger.info("Update Buyer to >>> "+updatedBuyer)
+        commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+        I.click("//label[contains(text(),'" + lmtVar.getLabel("LINE_ITEM") + "')]");
+        logger.info("Clicking on Line Item Checkbox");
+        I.click(I.getElement(buyerDeskObject.BUYER_LINK_LINEITEM));
+        I.click(I.getElement(buyerDeskObject.BUYER_DELETE_ICON));
+        await this.fillBuyerInTextBox(updatedBuyer);
+        let buyer = await this.getBuyer();
+        logger.info('Updated Buyer is '+buyer);
+        I.click(I.getElement(buyerDeskObject.COSTBOOKING_SAVE_BUUTON));
+        return buyer;
+    },
 };

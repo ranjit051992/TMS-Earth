@@ -12,7 +12,7 @@ const coaImpl = require("../../Coa/CoaImpl");
 const iBpoObject =require("./BpoObject");
 const spoImpl = require("../Spo/SpoImpl")
 const datePicker = require("../../../commonKeywords/CommonComponent")
-
+const bpo = require("./../../../dataCreation/bo/Bpo");
 module.exports = {
     async clickOnBlanketPOButton() {
         await I.waitForVisible(I.getElement(iBpoObject.BLANKET_PO_BUTTON));
@@ -20,6 +20,38 @@ module.exports = {
         await I.waitForVisible(I.getElement(iSpoObject.poNumberTextbox));
         I.saveScreenshot("CreateBpo.png");
         logger.info("Clicked on create blanket po button.");
+    },
+
+    async addAllRequiredDetails(bpo)
+    {
+        bpo = await this.fillBasicDetails(bpo);
+
+        bpo = await this.fillBillingInformation(bpo);
+
+        bpo = await this.fillSupplierDetails(bpo);
+
+        bpo = await this.fillBuyerAndOtherInformation(bpo);
+
+        bpo = await this.fillShippingDetails(bpo);
+
+        bpo = await this.fillCostAllocation(bpo);
+
+        bpo = await this.fillControlSettings(bpo);
+
+        bpo = await this.fillLineItems(bpo);
+
+        bpo = await this.storePoAmount(bpo);
+
+        bpo = await this.fillTaxes(bpo);
+
+        bpo = await this.fillAdditionalDetails(bpo);
+
+        await this.fillAgreementDetails(bpo);
+
+        bpo = await this.fillValidity(bpo);
+
+        return bpo;
+
     },
 
     async createBpoFlow(bpo){
@@ -48,9 +80,9 @@ module.exports = {
 
         bpo = await this.fillAdditionalDetails(bpo);
 
-        bpo = await this.fillAgreementDetails(bpo);
+        await this.fillAgreementDetails(bpo);
 
-        bpo = await this.fillValidity();
+        bpo = await this.fillValidity(bpo);
 
         await this.submitPo();
 
@@ -59,7 +91,7 @@ module.exports = {
         await I.waitForInvisible(I.getElement(iSpoObject.spinner));
 
         await poListingImpl.navigateToPoListing();
-
+        
         await commonKeywordImpl.searchDocOnListing(bpo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
 
         let poNumber = await commonKeywordImpl.getDocNumber();
@@ -79,14 +111,10 @@ module.exports = {
     },
 
 
-
-
-
-
-
     async fillBasicDetails(bpo) {
         logger.info(`**************Filling Basic Details**************`);
         await spoImpl.fillPONumber(bpo.poNumber);
+        logger.info("PO Number "+bpo.poNumber);
         await spoImpl.fillPODescription(bpo.poDescription);
         await spoImpl.selectPurchaseType(bpo.purchaseType);
         return bpo;
@@ -177,6 +205,7 @@ module.exports = {
             await spoImpl.selectItemOption(bpo.items[i].itemName);
             await this.clickOnCostBookingLink(bpo.items[i].itemName);
             await coaImpl.fillCoaDetails();
+            await this.addMaxUnitPrice(bpo);
         }
 
         return bpo;
@@ -198,19 +227,26 @@ module.exports = {
     },
     async fillAgreementDetails(bpo){
         logger.info(`**************Filling Agreement Details**************`);
-        await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_AGREEMENT_DETAILS_SECTION"));
-        await this.clickDefineBuyingScope();
-        await this.fillBusinessUnit(bpo.businessUnit);
-        await this.fillLocation(bpo.location);
-        await this.fillCostCenter(bpo.costCenter);
-        
-
+        if(!prop.isCoa) {
+            await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_AGREEMENT_DETAILS_SECTION"));
+            await this.clickDefineBuyingScope();
+            await this.fillBusinessUnit(bpo.businessUnit);
+            await this.fillLocation(bpo.location);
+            await this.fillCostCenter(bpo.costCenter);
+        }
+        else {
+            logger.info(`****************Define Buying scope skipped in COA Form******************`);
+        }
     },
-    async fillValidity(){
+    async fillValidity(bpo){
         logger.info(`*****************Filling Validity*****************`);
-        await this.selectFromDate();
-        await this.selectToDate();
+        await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_VALIDITY_SECTION"));
+        let fromDate = await this.selectFromDate();
+        let toDate = await this.selectToDate(bpo);
         // await this.selectAcceptInvoicesUntil();
+        bpo.setFromDate(fromDate);
+        bpo.setToDate(toDate);
+        return bpo;
     },
 
     async storePoAmount(bpo) {
@@ -254,31 +290,219 @@ module.exports = {
     async fillCostCenter(costCenter){
         await I.waitForVisible(I.getElement(iBpoObject.COST_CENTER_DROPDOWN));
         await I.click(I.getElement(iBpoObject.COST_CENTER_DROPDOWN));
-        await I.fillField(I.getElement(iBpoObject.COST_CENTER_DROPDOWN), costCenter);
-        await I.waitForVisible(I.getElement(iBpoObject.BUSINESS_UNIT_LOCATION_SELECTION));
-        await I.click(I.getElement(iBpoObject.BUSINESS_UNIT_LOCATION_SELECTION));
+        let xpath = `//span[contains(text(),'${costCenter}')]`;
+        // await I.fillField(I.getElement(iBpoObject.COST_CENTER_DROPDOWN), costCenter);
+        await I.scrollIntoView(xpath);
+        await I.click(xpath);
         await I.waitForVisible(I.getElement(iBpoObject.OK_BUTTON));
         await I.click(I.getElement(iBpoObject.OK_BUTTON));
     },
     async selectFromDate(){
         await I.waitForVisible(I.getElement(iBpoObject.FROM_DATE));
         await datePicker.selectToday(I.getElement(iBpoObject.FROM_DATE));
+        let fromDate = await I.grabAttributeFrom(I.getElement(iBpoObject.FROM_DATE),"value");
+        fromDate = fromDate.toString();
+        return fromDate;
     },
-    async selectToDate(){
+    async selectToDate(bpo){
         await I.waitForVisible(I.getElement(iBpoObject.TO_DATE));
-        await datePicker.selectInNextMonth(I.getElement(iBpoObject.TO_DATE),"15");
+        await datePicker.selectInNextMonth(I.getElement(iBpoObject.TO_DATE), bpo.date);
+        let toDate = await I.grabAttributeFrom(I.getElement(iBpoObject.TO_DATE),"value");
+        toDate = toDate.toString();
+        return toDate;
     },
     async selectAcceptInvoicesUntil(){
         await I.waitForVisible(I.getElement(iBpoObject.ACCEPT_INVOICES_UNTIL));
         await datePicker.selectInNextMonth(I.getElement(iBpoObject.ACCEPT_INVOICES_UNTIL),"15");
     },
     async addAttachment(attachment){
-        await I.waitForVisible(I.getElement(iBpoObject.ADD_ATTACHMENT));
-        await I.click(I.getElement(iBpoObject.ADD_ATTACHMENT));
         await I.fillField(I.getElement(iBpoObject.ADD_ATTACHMENT), attachment.toString());
+        await I.wait(prop.DEFAULT_LOW_WAIT);
+    },
+
+    async updateOrderValue(bpo){
+        await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_AGREEMENT_DETAILS_SECTION"));
+        let autoUpdate = lmtVar.getLabel("AUTO_UPDATE_CHECKBOX");
+        let autoUpdateXpath = `//label[contains(text(),'${autoUpdate}')]`;
+        await I.waitForVisible(autoUpdateXpath);
+        await I.click(autoUpdateXpath);
+        await I.waitForVisible(I.getElement(iBpoObject.ORDER_VALUE));
+        await I.clearField(I.getElement(iBpoObject.ORDER_VALUE));
+        await I.click(I.getElement(iBpoObject.ORDER_VALUE));
+        let orderValue = bpo.PoAmount.toString();
+        orderValue = orderValue.substring(orderValue.indexOf(" ")+1);
+        orderValue = orderValue.replace(",","");
+        orderValue = parseFloat(orderValue)* parseFloat(bpo.date);
+        await I.fillField(I.getElement(iBpoObject.ORDER_VALUE), orderValue);
+        return orderValue;
+    },
+    async getOrderValue(){
+        let orderValueView = await I.grabTextFrom(I.getElement(iBpoObject.ORDER_VALUE_VIEW));
+        orderValueView= orderValueView.toString();
+        orderValueView = orderValueView.substring(orderValueView.indexOf(" ")+1);
+        orderValueView = orderValueView.replace(",","");
+        return parseFloat(orderValueView);
+    },
+    async addMaxUnitPrice(bpo)
+    {
+        await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("SPO_LINE_ITEMS_SECTION"));
+        await I.waitForVisible(I.getElement(iBpoObject.ITEM_EDIT));
+        await I.click(I.getElement(iBpoObject.ITEM_EDIT));
+        let marketPrice = lmtVar.getLabel("MARKET_PRICE");
+        let maxPrice = lmtVar.getLabel("MAXIMUM_RELEASE_AMOUNT");
+        let marketPriceXpath = `//input[@aria-label='${marketPrice}']`;
+        let maxPriceXpath = `//input[@aria-label='${maxPrice}']`;
+        await I.scrollIntoView(marketPriceXpath);
+        let itemPrice = await I.grabAttributeFrom(marketPriceXpath, "value");
+        bpo.setItemPrice(itemPrice);
+        await I.fillField(maxPriceXpath, itemPrice.toString());
+        await I.waitForVisible(I.getElement(iBpoObject.ITEM_SUMMARY_OK_BUTTON));
+        await I.click(I.getElement(iBpoObject.ITEM_SUMMARY_OK_BUTTON));
+    },
+
+    async createMultipleBPOs(noOfPOs, noOfItems, itemType) {
+        let bpoArray = new Array();
+        
+        for(let i=0; i<noOfPOs; i++)
+        {
+        let bpo = await objectCreation.getObjectOfBlanketPO(noOfItems, itemType);
+        bpo = await this.createBpoFlow(bpo);
+        await bpoArray.push(bpo);
+        }
+
+        return bpoArray;
+    },
+    async approveBpoFlow(poNumber) {
+        await approvalImpl.navigateToApprovalListing();
+        await approvalImpl.navigateToBPOApprovalListingTab();
+        await approvalImpl.approveDoc(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        await approvalImpl.checkPOApprovalStatus(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        let status = await approvalImpl.getSpoStatus();
+
+        let flag = status.toString() === lmtVar.getLabel("APPROVED_STATUS")
+        if(!flag) {
+            logger.info(`Failed to approve bpo because status is ${status} on Approval listing after approving`);
+            throw new Error(`Failed to approve bpo because status is ${status} on Approval listing after approving`);
+        }
+        else {
+            logger.info("Bpo is approved successfully");
+        }
+        
+        await I.wait(prop.DEFAULT_HIGH_WAIT);
+        await poListingImpl.navigateToPoListing();
+        await commonKeywordImpl.searchDocOnListing(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        status = await poListingImpl.getPoStatus();
+        logger.info(`Status in db --> ${lmtVar.getLabel("RELEASED_STATUS")}`);
+        flag = status.toString().includes(lmtVar.getLabel("RELEASED_STATUS"));
+        if(!flag) {
+            logger.info(`Failed to release bpo because status is ${status} on po listing after approving`);
+            throw new Error(`Failed to release bpo because status is ${status} on po listing after approving`);
+        }
+        else {
+            logger.info("Bpo is released successfully");
+        }
+    },
+
+    async createReleaseOrder()
+    {
+        await I.waitForVisible(I.getElement(iBpoObject.CREATE_RELEASE_BUTTON));
+        await I.click(I.getElement(iBpoObject.CREATE_RELEASE_BUTTON));
+        await this.submitPo();
+    },
+
+    async compareReleaseOrderData(bpo)
+    {
+        await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_SUPPLIER_DETAILS_SECTION"));
+        let supplierNameXpath = `//div[contains(text(),'${bpo.supplierName}')]`;
+        await I.waitForVisible(supplierNameXpath);
+        let supplierName = await I.grabTextFrom(supplierNameXpath);
+        await spoImpl.clickonTab(I.getElement(iSpoObject.TAB_NAME_LIST), lmtVar.getLabel("BPO_LINE_ITEMS_SECTION"));
+        await I.waitForVisible(I.getElement(iBpoObject.ITEM_NAME));
+        let itemName = await I.grabTextFrom(I.getElement(iBpoObject.ITEM_NAME));
+        let itemPrice = await I.grabTextFrom(I.getElement(iBpoObject.ITEM_PRICE));
+        itemPrice = itemPrice.substring(itemPrice.indexOf(" ")+1);
+        itemPrice = itemPrice.replace(",","");
+        itemPrice = parseFloat(itemPrice);
+        await I.click(I.getElement(iBpoObject.COST_BOOKING_DETAILS_TAB));
+        await I.waitForVisible(I.getElement(iBpoObject.GL_ACCOUNT));
+        let glAccount = await I.grabTextFrom(I.getElement(iBpoObject.GL_ACCOUNT));
+        glAccount = glAccount.substring(glAccount.indexOf(" ")+1);
+        let array = new Array;
+        array.push(supplierName);
+        array.push(itemName);
+        array.push(itemPrice);
+        array.push(glAccount);
+        return array;
+    },
+    async createAndReleaseBpoFlow(bpo) {
+        bpo = await this.createBpoFlow(bpo);
+        if(bpo.status.toString() === lmtVar.getLabel("IN_APPROVAL_STATUS")) {
+            await this.approveBpoFlow(bpo.poNumber);
+        }
+        else {
+            logger.info(`PO status after submission was ${bpo.status} and not ${lmtVar.getLabel("IN_APPROVAL_STATUS")}. Hence, not executing the Approve PO action.`);
+        }
+        return bpo;
+    },
+    async getReleaseOrderPoNumberHeader(){
+        await I.waitForVisible(I.getElement(iBpoObject.RELEASE_ORDER_PO_NUMBER_HEADER));
+        await I.scrollIntoView(I.getElement(iBpoObject.RELEASE_ORDER_PO_NUMBER_HEADER));
+        let releaseOrderNumber = await I.grabTextFrom(I.getElement(iBpoObject.RELEASE_ORDER_PO_NUMBER_HEADER));
+        releaseOrderNumber = releaseOrderNumber.substring(releaseOrderNumber.indexOf(":")+2);
+        releaseOrderNumber = releaseOrderNumber.substring(0, releaseOrderNumber.indexOf(" "));
+        return releaseOrderNumber;
+    },
+    async getReleaseOrderPoNumber(){
+
+        await I.waitForVisible(I.getElement(iBpoObject.RELEASE_ORDER_TAB));
+        await I.click(I.getElement(iBpoObject.RELEASE_ORDER_TAB));
+        await I.waitForVisible(I.getElement(iBpoObject.RELEASE_ORDER_PO_NUMBER));
+        let releaseOrderPONumber = await I.grabTextFrom(I.getElement(iBpoObject.RELEASE_ORDER_PO_NUMBER));
+        return releaseOrderPONumber;
+
+    },
+    async viewBPO()
+    {
+        await I.waitForVisible(I.getElement(iBpoObject.BPO_VIEW));
+        await I.click(I.getElement(iBpoObject.BPO_VIEW));
+
     },
 
 
+    async clickOnReleaseOrderTab(){
+        
+        await I.waitForVisible("//*[contains(text(),'"+lmtVar.getLabel("RELEASE_ORDER_TAB")+"')]");
+        await I.waitForClickable("//*[contains(text(),'"+lmtVar.getLabel("RELEASE_ORDER_TAB")+"')]");
+        await I.click("//*[contains(text(),'"+lmtVar.getLabel("RELEASE_ORDER_TAB")+"')]");
+    },
+
+    async clickOnPoNumberLinkOnReleaseOrderTab(poNumber){
+        
+        await I.waitForVisible("//a[contains(text(),'"+poNumber+"')]");
+        await I.waitForClickable("//a[contains(text(),'"+poNumber+"')]");
+        await I.click("//a[contains(text(),'"+poNumber+"')]");
+    },
+
+    async checkReqNumberOnReleaseOrders(reqNumber)
+    {
+        
+        let xpath = "//span[contains(text(),'"+reqNumber+"')]";
+        await I.waitForVisible(xpath);
+        let noOfElements = await I.grabNumberOfVisibleElements(xpath);
+        let isPresent = false;
+        if(noOfElements>0)
+        {
+            isPresent = true;
+            logger.info("Requisition number is present on release order.")
+        }
+        else
+        {
+            logger.info("Requisition number is not present on release order.")
+        }
+
+        return isPresent;
+
+    },
 
 
 

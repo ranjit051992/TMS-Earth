@@ -9,10 +9,12 @@ const buyersDeskImpl = require("./BuyersDeskImpl");
 const approvalImpl = require("./../Approval/ApprovalImpl")
 const checkoutImpl = require("./../Requisition/Checkout/CheckoutImpl");
 const cartImpl = require("./../Requisition/Cart/CartImpl");
-const onlineStore = require("../Requisition/OnlineStore/OnlineStoreObject");
+const onlineStoreImpl = require("../Requisition/OnlineStore/OnlineStoreImpl");
 const commonKeywordImpl = require("../../commonKeywords/CommonComponent");
 const poListingObject = require("../PO/PoListing/PoListingObject");
 const spoObject = require("../PO/Spo/SpoObject");
+const faker = require("faker");
+const reqListingImpl = require("./../Requisition/RequisitionListing/RequisitionListingImpl");
 
 When("I navigate to Buyer Desk", async function() {
   await buyersDeskImpl.navigateToBuyerListing();
@@ -149,12 +151,12 @@ When ("I filter with Purchase Amount {string} and {string}" , async function(min
 
 
 
-When ("I filter with {string} status", async function(status){
-  logger.info("Status to be searched"+status);
-  buyersDeskImpl.clickonStatusFilterButton();
-  buyersDeskImpl.filterStatus(requisition.status);
+// When ("I filter with {string} status", async function(status){
+//   logger.info("Status to be searched"+status);
+//   buyersDeskImpl.clickonStatusFilterButton();
+//   buyersDeskImpl.filterStatus(requisition.status);
 
-});
+// });
 
 
 Then ("I should be see the data on the page with the filtered amount {string} and {string}", async function(minValue,maxValue){
@@ -176,15 +178,20 @@ Then ("I should be see the data on the page with the filtered amount {string} an
   });
 
   Then("I should be see the data on the page with the filtered status", async function(){
-    let fetchedStatus = await buyersDeskImpl.fetchStatus();
-    logger.info('Searched Status '+fStatus);
-    I.assertContain(fetchedStatus.toString(),requisition.status.toString());  
+    let fetchedflag = await buyersDeskImpl.verifyReqStatusAfterReSubmitReq();
+    I.assertEqual(fetchedflag,true);  
 
 });
 
-Then("I should be see the data on the page with the filtered buyer", async function() {
+Then("I should be see the data on the Buyer page with the filtered buyer", async function() {
   logger.info("Buyer to be searched is "+requisition.buyer);
-  let flag = await buyersDeskImpl.verifyBuyer();
+  let flag = await buyersDeskImpl.verifyBuyerOnBuyerPage();
+  I.assertEqual(flag, true);   
+});
+
+Then("I should be see the data on the Upcoming Requisition page with the filtered buyer", async function() {
+  logger.info("Buyer to be searched is "+requisition.buyer);
+  let flag = await buyersDeskImpl.verifyBuyerOnUpcomingReqPage();
   I.assertEqual(flag, true);   
 });
 
@@ -194,8 +201,15 @@ Then("I should be able to create a PO with multiple requisition merged into one"
   
 });
 
-Then("I should be see the data on the page on the basis on Requestor field",async function(){
-  let searchedRequestor = await buyersDeskImpl.fetchSearchedRequestor();
+Then("I should be see the data on the Buyer page on the basis on Requestor field",async function(){
+  let searchedRequestor = await buyersDeskImpl.fetchSearchedRequestorOnBuyerPage();
+  logger.info('Fetched Requestor is '+searchedRequestor);
+  logger.info('Requestor to be searched is '+requisition.requestor);
+  I.assertEqual(searchedRequestor.toString().trim(), requisition.requestor.toString().trim());
+});
+
+Then("I should be see the data on the Upcoming Requisition page on the basis on Requestor field",async function(){
+  let searchedRequestor = await buyersDeskImpl.fetchSearchedRequestorOnUpcomingReqPage();
   logger.info('Fetched Requestor is '+searchedRequestor);
   logger.info('Requestor to be searched is '+requisition.requestor);
   I.assertEqual(searchedRequestor.toString().trim(), requisition.requestor.toString().trim());
@@ -225,6 +239,7 @@ When("I return the requisition on Buyers Desk", async function(){
 When ("I allow requestor to resubmit the requisition", async function(){
    logger.info("Allowing the requestor to resubmit the requition"); 
    await buyersDeskImpl.clickonResubmitReq();
+   await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
 });
 
 Then ("I should see the requisition In Returned for Amendment State on Requisition Listing", async function(){
@@ -269,7 +284,7 @@ When("I click on Save PO as draft button", async function(){
 });
 
 When("I check if req status is in Pending Order status on buyer listing", async function(){
-  let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+  let status = await commonKeywordImpl.getValueForColumnNameOfReq(lmtVar.getLabel("STATUS_COLUMN"));
   if(!status.toString().includes(lmtVar.getLabel("PENDING_ORDER_STATUS"))) {
     throw new Error(`Req status is not ${lmtVar.getLabel("PENDING_ORDER_STATUS")}. Current status is ${status}. As this case requires req to be in Pending Order state on buyer listing, hence terminating`);
   }
@@ -289,3 +304,137 @@ Then("I should be see the data on the page on the basis on Received on field", a
   let flag = await buyersDeskImpl.verifyReceivedOn();
   I.assertEqual(flag, true);
 });
+
+When("I filter with Submitted on field by {string}",async function(searchBy){
+  await buyersDeskImpl.selectSubmiitedOnOption(searchBy);
+});
+
+Then("I should be see the data on the page on the basis on Submitted on field", async function(){
+  logger.info("Submitted on Date to be searched is "+requisition.receivedOn);
+  let flag = await buyersDeskImpl.verifySubmittedOn();
+  I.assertEqual(flag, true);
+});
+
+
+When ("I filter with {string} status requisition", async function(status){
+let fetchedStatus;
+logger.info("Status selected is:"+status);
+await buyersDeskImpl.selectReqStatusFilter(status);
+});
+
+
+When ("I view any requisition", async function(){
+logger.info("Viewing the Requisition");
+await buyersDeskImpl.clickonViewReq();
+logger.info("Clicked on View Requisition");
+
+});
+
+Then ("I should be able to view the requisition with all details",async function(){
+   await verifyreqdetails();
+
+});
+
+// When("I add a catalog item to cart", async function(){
+//   this.reqBo= await objectCreation.getObjectOfRequisition("1", "ITEM_NAME_FOR_SEARCHING");
+//   await cartImpl.clearCart();
+//   let item = await I.getData("ITEM_NAME_FOR_SEARCHING");
+//   await onlineStoreImpl.addItemToCart(item,faker.random.number(20));
+// });
+When("I add a catalog item to cart", async function(){
+  this.reqBO= await objectCreation.getObjectOfRequisition("1", "ITEM_NAME_FOR_SEARCHING");
+  logger.info('Purchase Type is '+this.reqBO.purchaseType)
+  await cartImpl.clearCart();
+  let item = await I.getData("ITEM_NAME_FOR_SEARCHING");
+  await onlineStoreImpl.addItemToCart(item,faker.random.number(20));
+});
+
+When("I update Assigned Buyer at  line level for item", async function(){
+    this.reqBO.buyer = await checkoutImpl.updateBuyer(I.getData("UPDATED_BUYER_NAME"));
+    logger.info('Update Buyer Name is >>> '+this.reqBO.buyer);
+});
+
+When("I add data in Cost Booking Details section at line level with Buyer", async function(){
+  for(let i=0; i< this.reqBO.items.length; i++)
+  {
+      await checkoutImpl.fillItemDetails(this.reqBO);
+  }
+  
+});
+
+Then("I should be able to see the update Buyer for the requisition on Buyer Desk Listing",async function(){
+  await buyersDeskImpl.SearchRequisitionNumber(this.reqBO.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+  let fetchedBuyer = await buyersDeskImpl.fetchSearchedBuyer();
+  logger.info('Fetched Buyer from Buyer Desk Listing is '+fetchedBuyer);
+  logger.info('Updated Buyer is '+this.reqBO.buyer);
+  I.assertEqual(fetchedBuyer.toString().trim(), this.reqBO.buyer.trim());
+});
+
+Then("I should be able to see updated Buyer on Requisition page also.",async function(){ 
+  await reqListingImpl.navigateToRequisitionListing();
+  await buyersDeskImpl.SearchRequisitionNumber(this.reqBO.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+  let fetchedBuyer = await buyersDeskImpl.verifyBuyerOnRequisitionPage();
+  logger.info('Fetched Buyer from Requisition Page is '+fetchedBuyer);
+  logger.info('Updated Buyer is '+this.reqBO.buyer);
+  I.assertEqual(fetchedBuyer.toString().trim(), this.reqBO.buyer.trim());
+});
+
+When("I edit the requisition on buyers desk listing", async function(){
+  logger.info("Requistion to be edited is "+ this.reqBO.reqNumber);
+  await buyersDeskImpl.SearchRequisitionNumber(this.reqBO.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+  await buyersDeskImpl.EditRequisition(this.reqBO.reqNumber);
+});
+
+Given("I select the item and Convert req to PO", async function(){
+  await commonKeywordImpl.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+  await buyersDeskImpl.selectAllLineItems();
+  await buyersDeskImpl.clickOnConvertToPOButton();
+  await buyersDeskImpl.clickOnAddItemToExistingPOYesButton();
+  await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
+});
+
+When("I edit and return the requisition on Buyers Desk", async function(){
+
+  logger.info("Requistion to be edited is "+ this.reqBO.reqNumber);
+  await buyersDeskImpl.SearchRequisitionNumber(this.reqBO.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+  await buyersDeskImpl.EditRequisition(this.reqBO.reqNumber);
+  await buyersDeskImpl.fillReturnReqComments(faker.random.alphaNumeric(10));
+  await buyersDeskImpl.clickOnReturnButton();
+});
+
+When("I search the requisition on Buyer Desk", async function(){
+
+  await buyersDeskImpl.SearchRequisitionNumber(this.reqBO.reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+  await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
+});
+
+Then("I should not be allowed to edit the requisition", async function(){
+
+  let isActionPresent = await buyersDeskImpl.checkIfActionMenuPresent();
+  let isView = await buyersDeskImpl.checkPrimaryActionPresent(lmtVar.getLabel("VIEW_ACTION"));
+  
+  if((!isActionPresent) && isView)
+  {
+    isActionPresent = true;
+  }
+  else
+  {
+    isActionPresent = false;
+  }
+
+  I.assertEqual(isActionPresent,true);
+});
+
+Given("I select po and submit po for processing on suggested po page", async function(){
+  await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
+  await buyersDeskImpl.clickOnPoDetailsCheckbox();
+  await buyersDeskImpl.clickOnSubmitPoButton();
+  await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+  await I.wait(prop.DEFAULT_HIGH_WAIT);
+});
+
+When("I edit the requisition on Buyers Desk", async function(){
+logger.info("Requistion to be edited is "+ this.reqBO.reqName);
+await buyersDeskImpl.SearchRequisitionNumber(this.reqBO.reqName, lmtVar.getLabel("SEARCH_BY_DOC_NAME_OR_DESCRIPTION"));
+await buyersDeskImpl.EditRequisition(this.reqBO.reqName);
+  });

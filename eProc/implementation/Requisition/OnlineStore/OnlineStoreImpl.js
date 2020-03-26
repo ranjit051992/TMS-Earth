@@ -108,8 +108,9 @@ module.exports = {
         await this.searchItem(itemName);
         await this.fillItemQuantity(itemName, quantity);
         await this.clickOnAddToCartButton(itemName);
-        I.waitForVisible(I.getElement(iOnlineStore.ADD_TO_CART_SUCCESS_MSG), prop.DEFAULT_MEDIUM_WAIT);
+        await I.waitForVisible(I.getElement(iOnlineStore.ADD_TO_CART_SUCCESS_MSG), prop.DEFAULT_MEDIUM_WAIT);
         logger.info("Add to cart success msg is displayed. Item " + itemName + " is added to cart.");
+        await I.scrollIntoView(I.getElement(iOnlineStore.ONLINE_STORE_LINK));
     },
 
     /** 
@@ -570,8 +571,8 @@ module.exports = {
     },
 
     async navigateToOnlineStore() {
-        // await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("ONLINE_STORE_PAGE"));
-        await I.amOnPage(prop.DDS_OnlineStore_Url);
-        await I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX));
+        await commonComponent.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("ONLINE_STORE_PAGE"));
+       // await I.amOnPage(prop.DDS_OnlineStore_Url);
+       // await I.waitForVisible(I.getElement(iOnlineStore.SEARCH_TEXTBOX));
     }
 }
