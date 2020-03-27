@@ -8,8 +8,7 @@ Given("I am on Home page", async function(){
 });
 
 When("I navigate to Login History", async function(){
-    I.amOnPage("/home")
-    I.waitToProcess()
+    
    await LoginHistoryImpl.navigateToLoginHistory()
 });
 

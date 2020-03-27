@@ -35,7 +35,7 @@ exports.config = {
     },
   },
   bootstrap: "./bootstrap.js",
-  teardown: "./bootstrap.js",
+  bootstrapAll : "./bootstrap.js",
   teardownAll: "./get_all_reports.js",
   include: {
     I: prop.stepFilePath,

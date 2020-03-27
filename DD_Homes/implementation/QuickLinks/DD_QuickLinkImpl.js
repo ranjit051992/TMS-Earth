@@ -16,8 +16,12 @@ class DewQuickLinks {
    * Navigate to Quick link
    */
    async navigateQuickLink() {
-
-    CommonKeyword.clickElement(`//dew-dropdown-trigger//div[contains(text(),'Quick Links')]`);
+    I.wait(5);
+    let dropdownLink = `//dew-dropdown-trigger//div[contains(text(),'Quick Links')]`;
+    I.scrollPageToTop();
+    I.seeElement(dropdownLink);
+    I.click(dropdownLink);
+    // CommonKeyword.clickElement();
     I.waitForVisible(`//div[contains(@class,'dropdown-menu show')]`);
     console.log("Navigated to quick links");
   }

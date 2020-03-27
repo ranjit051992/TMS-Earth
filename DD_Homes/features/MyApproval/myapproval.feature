@@ -11,7 +11,6 @@ Scenario Outline: Verify whether all the listing pages are working in My Approva
 Given I am on home page
 When I navigate to Oneview page
 When I navigate back to home page
-When I click on hamburger icon
 And I click on "My Approvals" module
 And I click on "<Tab Name>" page
 Then I should see details of the "<Tab Name>" page

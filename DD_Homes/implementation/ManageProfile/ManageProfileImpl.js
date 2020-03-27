@@ -43,7 +43,12 @@ class ManageProfile {
    * To reset profile picture
    */
   resetProfilePicture() {
-    CommonKeyword.clickElement("//button[@aria-label='Reset Profile Picture']");
+
+    let locator = "//button[@aria-label='Reset Profile Picture']";
+    I.scrollIntoView(locator,{ behavior: "smooth", block: "center", inline: "center" });
+    I.waitForVisible(locator, "10")
+    I.seeElement(locator)
+    I.click(locator)
     I.seeElement("//button[@aria-label='Reset Profile Picture' and @disabled]");
   }
   /**

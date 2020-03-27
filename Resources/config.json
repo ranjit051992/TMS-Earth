@@ -126,7 +126,7 @@
         "SETUP": "US_Staging",
         "TENANT": "ZCS",
         "browser": "chrome",
-        "host": "10.100.0.168",
+        "host": "127.0.0.1",
         "restart": "false",
         "port": 4444,
         "windowSize": "maximize",
@@ -145,7 +145,8 @@
         "password": "MoHuHoNaJaK#10",
         "testdataTable": "TestData_DD_Home",
         "US_STAGING_uiElementTable": "DD_Home_UI_Elements",
+        "PARTNER_uiElementTable": "DD_Home_UI_Elements",
+        "AUS_STAGING_uiElementTable": "DD_Home_UI_Elements",
         "UserTable":"Homes_credentials"
     }
-
 }

@@ -2,11 +2,14 @@ const databaseOperations = require("./Framework/FrameworkUtilities/DatabaseOpera
 const lmtVar = require("./Framework/FrameworkUtilities/i18nUtil/readI18NProp")
 const logger = require("./Framework/FrameworkUtilities/Logger/logger");
 const prop = global.confi_prop;
-const {I} = inject();
+const fs = require('fs');
+const path = require('path');
+
+
 module.exports = {
-        
+
         bootstrap: async function () {
-                 global.testData = await databaseOperations.getTestData();
+                global.testData = await databaseOperations.getTestData();
                 global.uiElements = await databaseOperations.getUiElementXpath();
                 global.users = await databaseOperations.getUser();
                 // if(process.env.GRID) {
@@ -23,22 +26,27 @@ module.exports = {
                 //  global.allkeys = await databaseOperations.getLMTKeys();
                 //  logger.info(" for this Chunk USERNAME  : " + global.users.get("USERNAME"));
         },
-        teardown: async function ()
-        {
+        teardown: async function () {
 
                 // I.click("//dew-dropdown[contains(@class,'profile')]")
                 // I.click("Logout")
                 // I.wait(2)
                 // if(prop.runOnGrid) {
-                        // await databaseOperations.updateUSER(global.users.get("USERNAME"),"true");
+                // await databaseOperations.updateUSER(global.users.get("USERNAME"),"true");
                 // }
         },
-        bootstrapAll: async function()
-        {
-                console.log("inside bootstrapAll ");
+        bootstrapAll: async function () {
+
+                const outputDir = path.resolve(__dirname, "./output/environment.properties")
+                const setup = "Setup=" + process.env.SETUP;
+                const product = "Product=" + process.env.PRODUCT;
+                const Tenant = "Tenant=" + process.env.Tenant;
+                fs.writeFile(outputDir, setup + "\n" + product + "\n" + Tenant, function (err) {
+                        if (err) throw err;
+                        console.log('Environment Properties File Created');
+                });
         },
-        teardownAll: async function()
-        {
+        teardownAll: async function () {
                 console.log("inside tearDownAll ");
         }
 }

@@ -23,7 +23,7 @@
     "codeceptjs-chai": "^1.0.0",
     "commander": "^4.1.1",
     "data-store": "^4.0.3",
-    "dd-cc-zycus-automation": "^1.1.6",
+    "dd-cc-zycus-automation": "^1.1.8",
     "faker": "^4.1.0",
     "log4js": "^6.1.2",
     "mssql-connection-string": "^0.3.2",

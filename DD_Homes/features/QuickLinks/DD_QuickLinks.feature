@@ -26,10 +26,8 @@ Feature: DD_QuickLink
     Scenario: To Verify the same list is displayed across products for the user
         Given I am on home page
         # Given I have configured "Quick Link" Menus
-        When I click on hamburger icon
         When I Navigate to "eProc" "Online Store"
-        And I click on QuickLink Dropdown
-        Then I should be see the same "Requisitions" as on Landing Page
+        Then I should be see the same "Requisitions" as on Landing Page in quicklink
 
     @QuickLinkCheck
     Scenario: To Verify whether admin menus in Quick Links are opened in different tab

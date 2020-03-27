@@ -8,8 +8,7 @@ Background: Given I am logged on to the application
 @tag89
 Scenario Outline: Verify whether able to move into listing pages are working in My Desk
 Given I am on home page
-When I click on hamburger icon
-And I click on "My Desk" module
+When I click on "My Desk" module
 And I click on "<Tab Name>" page
 Then I should see details of the "<Tab Name>" page
 

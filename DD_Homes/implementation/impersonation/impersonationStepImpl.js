@@ -10,7 +10,6 @@ I.seeElement(`//span[contains(@class,'welcome-message')]`);
 });
 
 Given("I navigate to iSupplier MyApproval Page", async function(){
-    I.click(".menu-btn");
     await ProductNavigator.navigate("iSupplier","Approvals")
 })
 

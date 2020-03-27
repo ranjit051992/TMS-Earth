@@ -6,7 +6,7 @@ var newTimezone = null;
 module.exports = {
 
   async navigateToLoginHistory() {
-    I.seeElement("//dew-dropdown[contains(@class,'profile')]");
+  
     CommonKeyword.clickElement("//dew-dropdown[contains(@class,'profile')]");
     CommonKeyword.clickElement("//div[contains(@class,'dropdown-item') and text()[normalize-space()='Login History']]");
     I.seeElement("//dew-modal-header//span[text()='Login History']");
@@ -18,6 +18,8 @@ module.exports = {
   },
 
   async getTimezone() {
+
+    I.scrollPageToBottom();
     var timezone = await I.grabAttributeFrom("//dew-select[@formcontrolname='timezone']//dew-dropdown-trigger/p", "title")
     console.log(timezone)
     newTimezone = timezone.toString().split("-")[0]

@@ -58,7 +58,7 @@ When("I click on {string} Dropdown", async function(QuickLink) {
     return true;
 });
 
-Then("I should be see the same {string} as on Landing Page", async function(QuickLinkMenus) {
+Then("I should be see the same {string} as on Landing Page in quicklink", async function(QuickLinkMenus) {
     await DewQuickLinks.verifyQuickLinksInDropdown(QuickLinkMenus)
 });
 
