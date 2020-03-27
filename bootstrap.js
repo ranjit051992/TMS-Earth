@@ -40,7 +40,7 @@ module.exports = {
                 const outputDir = path.resolve(__dirname, "./output/environment.properties")
                 const setup = "Setup=" + process.env.SETUP;
                 const product = "Product=" + process.env.PRODUCT;
-                const Tenant = "Tenant=" + process.env.Tenant;
+                const Tenant = "Tenant=" + process.env.TENANT;
                 fs.writeFile(outputDir, setup + "\n" + product + "\n" + Tenant, function (err) {
                         if (err) throw err;
                         console.log('Environment Properties File Created');
