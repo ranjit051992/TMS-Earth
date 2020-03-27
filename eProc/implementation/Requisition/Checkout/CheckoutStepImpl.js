@@ -12,6 +12,9 @@ const faker = require("faker");
 const iApprovalObject = require("../../Approval/ApprovalObject");
 const coaImp = require("../../Coa/CoaImpl");
 const iViewReq = require("../../Requisition/ViewRequisition/ViewRequisitionObject");
+const buyersDeskImpl = require("../../BuyersDesk/BuyersDeskImpl");
+const spoImpl = require("../../PO/Spo/SpoImpl");
+const approveImpl = require("../../Approval/ApprovalImpl");
 
 When("I create requisition with {int} {string} item", async function(noOfItems, itemType) {
     this.reqBO= await objectCreation.getObjectOfRequisition(noOfItems, itemType);
@@ -73,6 +76,7 @@ When("I add a On Behalf of user", async function(){
 });
 
 When("I add Required By Date", async function(){
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_SHIPPING_DETAILS_SECTION"));
     await checkoutImp.selectRequiredByDate();
 });
 
@@ -113,9 +117,8 @@ Then("I should see on header level, Shipping Details section Default Shipping Ad
 });
 
 Then("I navigate to Line level Shipping Details and Asset Tagging section", async function(){
-    commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
     await checkoutImp.clickOnShippingDetailsAndAssetTagging(this.addedCartItems);
-
 });
 
 Then("I should see on line level, in Shipping Details and Asset Tagging section Address field should be auto populated", async function(){
@@ -282,20 +285,12 @@ When("I add Tax Details at line level", async function(){
 
 Given( "I Create {int} requisitions with {int} {string} item", async function (noOfReqs, noOfItems, itemType) {
     this.reqArray = await checkoutImp.createMultipleReqs(noOfReqs, noOfItems, itemType);
-    logger.info("Required number of POs created"+ this.reqArray.length);
-    logger.info("req number 0"+ this.reqArray[0].reqNumber);
-    logger.info("req number 1"+ this.reqArray[1].reqNumber);
-    logger.info("req number 2"+ this.reqArray[2].reqNumber);
  });
 
 Given( "I have {int} Requisitions In Approval status", async function() {
     I.amOnPage(prop.DDS_Requisition_Listing);
     I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
     I.waitForClickable(I.getElement(iApprovalObject.SEARCH_FIELD));
-    logger.info("req length ***"+ this.reqArray.length);
-    logger.info("req number 0 ***"+ this.reqArray[0].reqNumber);
-    logger.info("req number 1 ***"+ this.reqArray[1].reqNumber);
-    logger.info("req number 2 *** "+ this.reqArray[2].reqNumber);
     await checkoutImp.checkMultipleReqStatus(this.reqArray);
  });
 
@@ -382,7 +377,8 @@ When("I add Delivery split at line level into {int} splits", async function(noOf
 });
 
 When("I change the address for split {int}", async function(forSplit){
-    //SHIP_TO_ADDRESS_NAME
+    this.changedAddress = await checkoutImp.enterLineLevelAddress(I.getData("SHIP_TO_ADDRESS_NAME[1]"), forSplit);
+    logger.info("Changed address for split "+forSplit+" is --->>"+this.changedAddress);
 });
 
 Given("I Select Purchase Order", async function(){
@@ -390,4 +386,77 @@ Given("I Select Purchase Order", async function(){
     await checkoutImp.selectPurchaseOrder(this.reqBO.poNumber);
     await checkoutImp.clickOnSelectedPOContinueButton();
     this.purchaseOrder = await checkoutImp.getSelectedPurchaseOrder();;
+});
+
+Given("I have created a requisition with that PO linked and converted it to PO with {int} {string}", async function(noOfItems, itemType) {
+    logger.info(`PO number of previous req --> ${this.reqBO.poNumber}`);
+    this.reqBO1 = await objectCreation.getObjectOfRequisition(noOfItems, itemType);
+    this.reqBO1.linkedPoNumber = this.reqBO.poNumber;
+    this.reqBO = await checkoutImp.createReqToPoWithPoLinked(this.reqBO1);
+ });
+
+ Given("I have created a req to po with {int} {string} and {int} free text item and header level attachment {string}", async function(noOfCatalogItems, catalogItemType, noOfGuidedItems, attachmentKey) {
+    this.reqBO = await objectCreation.getObjectOfRequisition(noOfCatalogItems, catalogItemType);
+    this.reqBO.setAttachmentPath(I.getData(attachmentKey));
+    for(let i = 0; i < noOfGuidedItems; i++) {
+        let guidedItem = await objectCreation.getObjectOfGuidedItem(noOfGuidedItems);
+        this.reqBO.items.push(guidedItem);
+    }
+    this.reqBO = await checkoutImp.createReqToPoFlow(this.reqBO);
+ });
+ 
+Then("I should see contract linked to free text item on viewing the item", async function(){
+    let isContractLink = false;
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));
+    await checkoutImp.clickOnSupplierEditIcon();
+    let contractID = await checkoutImp.getSupplierContractId();
+
+    if(contractID.toString().trim() === this.contractID.toString().trim())
+    {
+        isContractLink = true;
+        logger.info("Contract is Link to free text item");
+    }
+
+    I.assertEqual(isContractLink, true);
+});
+
+Then("I should be able to Save the line level COA form", async function(){
+    let isCOAfilled = false;
+    let coaArray = new Array();
+    await commonComponent.scrollToSection(lmtVar.getLabel("CHECKOUT_ITEM_DETAILS_SECTION"));  
+    await checkoutImp.clickOnCostBookingLink(this.reqBO.items[0].itemName);
+    coaArray = await coaImp.fetchCoaFormData();
+    
+    if(coaArray.length >0)
+    {
+        isCOAfilled = true;
+        logger.info("Line Level COA form is saved ---->"+coaArray);
+    }
+
+    I.assertEqual(isCOAfilled, true);
+
+});
+
+
+Given("I create requisition with {int} {string} and {int} free text item", async function (noOfCatalogItems, itemType, noOfGuidedItems) {
+
+    this.reqBO = await objectCreation.getObjectOfRequisition(noOfCatalogItems, itemType);
+   for(let i = 0; i < noOfGuidedItems; i++) {
+      let guidedItem = await objectCreation.getObjectOfGuidedItem(noOfGuidedItems);
+      this.reqBO.items.push(guidedItem);
+   }
+   this.reqBO.fillTaxes
+   this.reqBO = await checkoutImp.createRequisitionFlow(this.reqBO);
+});
+
+When("I add taxes to requition for {int} {string} and {int} free text item", async function(noOfCatalogItems, catalogItemType, noOfGuidedItems){
+    this.reqBO = await objectCreation.getObjectOfRequisition(noOfCatalogItems, catalogItemType);
+    
+    for(let i = 0; i < noOfGuidedItems; i++) {
+        let guidedItem = await objectCreation.getObjectOfGuidedItem(noOfGuidedItems);
+        this.reqBO.items.push(guidedItem);
+    }
+    this.reqBO.fillTaxes = true;
+    this.reqBO = await checkoutImp.createRequisitionFlow(this.reqBO);
+ 
 });

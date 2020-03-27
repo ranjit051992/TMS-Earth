@@ -51,10 +51,10 @@ Feature: DDSearch
         Then I should be able to see "Upload New Contract" search results in CREATE bucket
 
 
-    Scenario: To verify whether On search respective results to be displayed in different buckets- Configured
-        Given I am on home page
-        When I search "Configure Potential Supplier Pre-Qualification" of type CONFIGURE in home search box
-        Then I should be able to see "Configure Potential Supplier Pre-Qualification" search results in CONFIGURE bucket
+    # Scenario: To verify whether On search respective results to be displayed in different buckets- Configured
+    #     Given I am on home page
+    #     When I search "Configure Potential Supplier Pre-Qualification" of type CONFIGURE in home search box
+    #     Then I should be able to see "Configure Potential Supplier Pre-Qualification" search results in CONFIGURE bucket
 
 
 

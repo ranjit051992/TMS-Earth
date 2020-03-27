@@ -1,4 +1,6 @@
-const parsing= require("./Framework/PropertiesConfigurator");
+const parsing = require("./Framework/PropertiesConfigurator");
+const addTimeStampToReport = require('./add_timestamp_report');
+addTimeStampToReport();
 parsing();
 const prop = global.confi_prop;
 console.log(prop)
@@ -23,8 +25,14 @@ exports.config = {
         'selenoid:options': {
           enableVNC: true,
           enableVideo: false
+        }
       }
-    }
+
+
+    },
+    ChaiWrapper:
+    {
+      require: "codeceptjs-chai"
     },
     // ChaiWrapper:
     // {

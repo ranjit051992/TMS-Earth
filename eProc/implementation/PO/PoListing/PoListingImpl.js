@@ -9,9 +9,9 @@ const lmtVar = require("../../../../Framework/FrameworkUtilities/i18nUtil/readI1
 
 module.exports = {
     async navigateToPoListing() {
-        await I.amOnPage(prop.poListingUrl);
-        await I.waitForInvisible(I.getElement(iSpoObject.spinner), prop.DEFAULT_HIGH_WAIT);
-       // await commonKeywordImpl.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("PO_LISTING_PAGE"));
+       // await I.amOnPage(prop.poListingUrl);
+       // await I.waitForInvisible(I.getElement(iSpoObject.spinner), prop.DEFAULT_HIGH_WAIT);
+        await commonKeywordImpl.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("PO_LISTING_PAGE"));
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info("Navigated to Po Listing page");
@@ -111,4 +111,28 @@ module.exports = {
         await commonKeywordImpl.waitForLoadingSymbolNotDisplayed();
     },
     
+    async clickOnPoNumberLink(poNumber) {
+
+        let noOfElements = await I.grabNumberOfVisibleElements(I.getElement(poListingObject.PO_NUMBER_LINK));
+        for(let i=1;i<=noOfElements;i++)
+        {
+            let xpath = "("+I.getElement(poListingObject.PO_NUMBER_LINK)+")["+i+"]";
+            let value = await I.grabTextFrom(xpath);
+            if(poNumber===value.trim())
+            {
+                await I.scrollIntoView(xpath);
+                await I.waitForClickable(xpath);
+                await I.click(xpath);
+                await I.waitForVisible(I.getElement(iSpoObject.PO_VIEW_BASIC_DETAILS_SECTION));
+                break;
+            }
+        }
+
+    },
+
+    async searchAndViewPO(docDetail, searchBy) {
+        I.amOnPage(prop.poListingUrl);
+        await commonKeywordImpl.searchDocOnListing(docDetail, searchBy);
+        await commonKeywordImpl.clickOnDocNumberLink();
+    }
 }

@@ -10,7 +10,7 @@ Feature: OnlineStore
   Then I should see all the matching items for "ITEM_NAME_FOR_SEARCHING" on Listing
 
 
-@Non-COA @L1  @online @autox @fav @Snehal
+@Non-COA @L1  @online @autox @fav @Snehal @gocd
 
   Scenario: To verify that user is able to select an item from Catalog and add it as my Favourite.
   Given I am logged in eProc
@@ -24,9 +24,9 @@ Feature: OnlineStore
   Scenario: To verify that user is able to add an item from Hosted Catalog to the Cart.
   Given I am logged in eProc
 
-  When I add "2" "ITEM_NAME_FOR_SEARCHING" items to cart
+  When I add 2 "ITEM_NAME_FOR_SEARCHING" items to cart
 
-  Then I should see "2" "ITEM_NAME_FOR_SEARCHING" items in Cart
+  Then I should see 2 "ITEM_NAME_FOR_SEARCHING" items in Cart
 
 
 @Non-COA @L1 @online @compare @Snehal

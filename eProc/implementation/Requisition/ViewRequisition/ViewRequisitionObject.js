@@ -7,4 +7,6 @@ module.exports={
     LINE_LEVEL_ITEMS: "ViewRequisition/Item Details/ITEM_NAMES",
     COST_CENTER: "ViewRequisition/Cost Allocation/COST_CENTER",
     BACK_ARROW: "ViewRequisition/Item Level/BACK_ARROW",
+    NO_OF_SPLIT: "ViewRequisition/ShippingDetailsAndAssetTagging/NO_OF_SPLIT",
+    
 };

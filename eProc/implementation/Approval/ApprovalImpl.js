@@ -10,8 +10,8 @@ const poListingImpl = require("../PO/PoListing/PoListingImpl");
 
 module.exports = {
     async navigateToApprovalListing() {
-        await I.amOnPage(prop.DDS_Approval_Listing);
-       // await commonKeywordImpl.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("APPROVAL_LISTING_PAGE"));
+       // await I.amOnPage(prop.DDS_Approval_Listing);
+        await commonKeywordImpl.navigateToPage(lmtVar.getLabel("APPLICATION_NAME"), lmtVar.getLabel("APPROVAL_LISTING_PAGE"));
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         logger.info("Navigated to approval listing page");
         await commonKeywordImpl.selectValueFromDropDown(I.getElement(approvalObject.LISTING_SELECTION_DROP_DOWN), lmtVar.getLabel("LISTING_ALL_ITEMS_OPTION"));
@@ -37,7 +37,7 @@ module.exports = {
         await I.waitForVisible(I.getElement(approvalObject.APPROVE_SPO_POPUP_APPROVE_BUTTON));
         await I.click(I.getElement(approvalObject.APPROVE_SPO_POPUP_APPROVE_BUTTON));
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
-        await I.wait(prop.DEFAULT_HIGH_WAIT);
+        // await I.wait(prop.DEFAULT_HIGH_WAIT);
         logger.info("Clicked on Approve button");
     },
     async clickOnRejectSpoPopupRejectButton() {
@@ -51,7 +51,7 @@ module.exports = {
         return status;
     },
     async approveDoc(docNumber, searchBy){
-        await I.wait(prop.DEFAULT_HIGH_WAIT);
+        // await I.wait(prop.DEFAULT_HIGH_WAIT);
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         await commonKeywordImpl.searchDocOnListing(docNumber, searchBy);
         await this.clickOnApproveAction();
@@ -92,6 +92,7 @@ module.exports = {
     },
 
     async navigateToPOApprovalListingTab() {
+        await I.scrollIntoView(I.getElement(approvalObject.SPO_TAB));
         await I.waitForVisible(I.getElement(approvalObject.SPO_TAB));
         await I.waitForClickable(I.getElement(approvalObject.SPO_TAB));
         await I.click(I.getElement(approvalObject.SPO_TAB));
@@ -212,6 +213,7 @@ module.exports = {
         await this.clickOnApproveSpoPopupApproveButton();
         for (let i=1; i<POArray.length; i++) {
             await commonKeywordImpl.searchDocOnListing(POArray[i].poNumber, searchBy);
+            await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
             let status = await this.getSpoStatus();
             POArray[i].setStatus(status);
         } 
@@ -229,11 +231,12 @@ module.exports = {
         await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
         await commonKeywordImpl.searchDocOnListing(docNumber, searchBy);
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
         let status = await this.getSpoStatus();
         let flag = status === lmtVar.getLabel("DELEGATED_STATUS")
         if(!flag) {
-            logger.info(`Failed to delegate spo because status is ${status} on Approval listing after delegation`);
-            throw new Error(`Failed to delegate spo because status is ${status} on Approval listing after delegating`);
+            logger.info(`Failed to delegate doc because status is ${status} on Approval listing after delegation`);
+            throw new Error(`Failed to delegate doc because status is ${status} on Approval listing after delegating`);
         }
         else {
             logger.info("Document is delegated successfully");
@@ -284,7 +287,7 @@ module.exports = {
         }
         await I.waitForVisible(I.getElement(approvalObject.FOOTER_DELEGATE_ACTION));
         await I.click(I.getElement(approvalObject.FOOTER_DELEGATE_ACTION));
-        await this.selectDelegateApprovalToUser(POArray[i].newApprover);
+        await this.selectDelegateApprovalToUser(POArray[0].newApprover);
         await this.fillReasonForDelegate(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
         await this.clickOnDelegateSpoPopupDelegateButton();
         for (let i=1; i<POArray.length; i++) {
@@ -304,20 +307,20 @@ module.exports = {
     },
 
     async fetchReceivedOnDateOnPOApprovalListing() {
-        let date = await I.grabTextFrom(I.getElement(approvalObject.RECEIVED_ON));
-        logger.info("Received on date fetched from listing");
+        let date = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("RECEIVED_ON"));;
+        logger.info(`Received on date fetched from listing is ---> ${date}`);
         return date;
     },
 
     async fetchAmountToBeApprovedOnPoApprovalListing() {
-        let amount = await I.grabTextFrom(I.getElement(approvalObject.AMOUNT_TO_BE_APPROVED));
-        logger.info("Amount to be approved fetched from listing");
+        let amount = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("AMOUNT_TO_BE_APPROVED"));
+        logger.info(`Amount to be approved fetched from listing is ---> ${amount}`);
         return amount;
     },
 
     async fetchPoStatusOnPoApprovalListing() {
-        let status = await I.grabTextFrom(I.getElement(approvalObject.STATUS_SPO));
-        logger.info("PO status fetched from listing");
+        let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+        logger.info(`Status of doc fetched from listing is ---> ${status}`);
         return status;
     },
 
@@ -361,30 +364,187 @@ module.exports = {
         await this.navigateToApprovalListing();
         await this.navigateToPOApprovalListingTab();
         await this.approveDoc(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-        await this.checkPOApprovalStatus(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
-        let status = await this.getSpoStatus();
+        let status = await this.checkPOApprovalStatus(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
 
         let flag = status.toString() === lmtVar.getLabel("APPROVED_STATUS")
         if(!flag) {
-            logger.info(`Failed to approve spo because status is ${status} on Approval listing after approving`);
-            throw new Error(`Failed to approve spo because status is ${status} on Approval listing after approving`);
+            logger.info(`Reattempting to check po status after approval. Waiting for ${prop.CONDITIONAL_WAIT} seconds before retrying.`);
+            await I.wait(prop.CONDITIONAL_WAIT);
+
+            await I.refreshPage();
+            status = await this.checkPOApprovalStatus(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            flag = status.toString() === lmtVar.getLabel("APPROVED_STATUS");
+            if(!flag) {
+                logger.info(`Failed to approve spo because status is ${status} on Approval listing after approving`);
+                throw new Error(`Failed to approve spo because status is ${status} on Approval listing after approving`);
+            }
+            else {
+                logger.info("Spo is approved successfully");
+            }
         }
         else {
             logger.info("Spo is approved successfully");
         }
         
-        await I.wait(prop.DEFAULT_HIGH_WAIT);
+        // await I.wait(prop.DEFAULT_HIGH_WAIT);
         await poListingImpl.navigateToPoListing();
         await commonKeywordImpl.searchDocOnListing(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
         status = await poListingImpl.getPoStatus();
         logger.info(`Status in db --> ${lmtVar.getLabel("RELEASED_STATUS")}`);
         flag = status.toString().includes(lmtVar.getLabel("RELEASED_STATUS"));
         if(!flag) {
-            logger.info(`Failed to release spo because status is ${status} on po listing after approving`);
-            throw new Error(`Failed to release spo because status is ${status} on po listing after approving`);
+            logger.info(`Reattempting to check po status on po listing after approval. Waiting for ${prop.CONDITIONAL_WAIT} seconds before retrying.`);
+            await I.wait(prop.CONDITIONAL_WAIT);
+
+            await I.refreshPage();
+            await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+            await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
+            await commonKeywordImpl.searchDocOnListing(poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            status = await poListingImpl.getPoStatus();
+            flag = status.toString().includes(lmtVar.getLabel("RELEASED_STATUS"));
+            if(!flag) {
+                logger.info(`Failed to release spo because status is ${status} on po listing after approving`);
+                throw new Error(`Failed to release spo because status is ${status} on po listing after approving`);
+            }
+            else {
+                logger.info("Spo is released successfully");
+            }
         }
         else {
             logger.info("Spo is released successfully");
         }
-    }
+    },
+
+    async approveReqFlow(reqNumber) {
+        await this.navigateToApprovalListing();
+        await this.approveDoc(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        await commonKeywordImpl.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+        let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+        if(status.toString() !== lmtVar.getLabel("APPROVED_STATUS")) {
+            logger.info(`Reattempting to check req status after approval. Waiting for ${prop.CONDITIONAL_WAIT} seconds before retrying.`);
+            await I.wait(prop.CONDITIONAL_WAIT);
+
+            await I.refreshPage();
+            await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+            await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
+            await commonKeywordImpl.searchDocOnListing(reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+            status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+            if(status.toString() !== lmtVar.getLabel("APPROVED_STATUS")) {
+                throw new Error(`Req status after approval is not Approved. Current status is --> ${status}`);
+            }
+            else {
+                logger.info("Req is approved successfully");
+            }
+        }
+        else {
+            logger.info("Req is approved successfully");
+        }
+    },
+    async navigateToBPOApprovalListingTab() {
+        await I.scrollIntoView(I.getElement(approvalObject.BPO_TAB));
+        await I.waitForVisible(I.getElement(approvalObject.BPO_TAB));
+        await I.waitForClickable(I.getElement(approvalObject.BPO_TAB));
+        await I.click(I.getElement(approvalObject.BPO_TAB));
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        await I.waitForClickable(I.getElement(poListingObject.PO_NUMBER_LINK));
+        logger.info("I am on BPO approval listing");
+    },
+
+    async delegateMultipleReqs(reqArray, searchBy){
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        for (let i=1; i<reqArray.length; i++) {
+            await commonKeywordImpl.searchDocOnListing(reqArray[i].reqNumber, searchBy);
+            await I.executeScript(function() {
+            document.getElementById("ApprovalReqListing0").click();
+            })
+            await this.clearSearchField();
+        }
+        await I.waitForVisible(I.getElement(approvalObject.FOOTER_DELEGATE_ACTION));
+        await I.click(I.getElement(approvalObject.FOOTER_DELEGATE_ACTION));
+        await this.selectDelegateApprovalToUser(reqArray[0].newApprover);
+        await this.fillReasonForDelegate(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
+        await this.clickOnDelegateSpoPopupDelegateButton();
+        for (let i=1; i<reqArray.length; i++) {
+            await commonKeywordImpl.searchDocOnListing(reqArray[i].reqNumber, searchBy);
+            let status = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+            reqArray[i].setStatus(status);
+        }
+        return reqArray;
+    },
+
+    async approveMultipleBPOs(bpoArray, searchBy){
+        for (let i=1; i<bpoArray.length; i++) {
+            await commonKeywordImpl.searchDocOnListing(bpoArray[i].poNumber, searchBy);
+            await I.executeScript(function() {
+            document.getElementById("ApprovalBPOListing0").click();
+            })
+            await this.clearSearchField();
+        } 
+        await I.click(I.getElement(approvalObject.FOOTER_APPROVE_ACTION));
+        await this.fillApprovalComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
+        await this.clickOnApproveSpoPopupApproveButton();
+        for (let i=1; i<bpoArray.length; i++) {
+            await commonKeywordImpl.searchDocOnListing(bpoArray[i].poNumber, searchBy);
+            let status = await this.getSpoStatus();
+            bpoArray[i].setStatus(status);
+        } 
+        return bpoArray;
+    },
+
+    async checkMultipleBPOStatus(bpoArray, searchBy) {
+        for (let i=1; i<bpoArray.length; i++) {
+            await commonKeywordImpl.searchDocOnListing(bpoArray[i].poNumber, searchBy);
+            let BPOStatus = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"));
+            await I.assertEqual(BPOStatus, bpoArray[i].status.toString());
+            let flag = BPOStatus === bpoArray[i].status.toString();
+        if(!flag) {
+            logger.info(`Failed to match the status of doc as ${BPOStatus} is different from ${bpoArray[i].status}`);
+            throw new Error(`Failed to match the status of doc as ${BPOStatus} is different from ${bpoArray[i].status}`);
+        }
+        else {
+            logger.info("Status of docs matched successfully");
+        }
+        }     
+    },
+
+    async rejectMultipleBPOs(bpoArray, searchBy){
+        for (let i=1; i<bpoArray.length; i++) {
+            await commonKeywordImpl.searchDocOnListing(bpoArray[i].poNumber, searchBy);
+            await I.executeScript(function() {
+            document.getElementById("ApprovalBPOListing0").click();
+            })
+            await this.clearSearchField();
+        } 
+        await I.click(I.getElement(approvalObject.FOOTER_REJECT_ACTION));
+        await this.fillApprovalComments(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
+        await this.clickOnApproveSpoPopupApproveButton();
+        for (let i=1; i<bpoArray.length; i++) {
+            await commonKeywordImpl.searchDocOnListing(bpoArray[i].poNumber, searchBy);
+            let status = await this.getSpoStatus();
+            bpoArray[i].setStatus(status);
+        } 
+        return bpoArray;
+    },
+
+    async delegateMultipleBPOs(bpoArray, searchBy){
+        await I.waitForVisible(I.getElement(poListingObject.PO_NUMBER_LINK));
+        for (let i=1; i<bpoArray.length; i++) {
+            await commonKeywordImpl.searchDocOnListing(bpoArray[i].poNumber, searchBy);
+            await I.executeScript(function() {
+            document.getElementById("ApprovalBPOListing0").click();
+            })
+            await this.clearSearchField();
+        }
+        await I.waitForVisible(I.getElement(approvalObject.FOOTER_DELEGATE_ACTION));
+        await I.click(I.getElement(approvalObject.FOOTER_DELEGATE_ACTION));
+        await this.selectDelegateApprovalToUser(bpoArray[0].newApprover);
+        await this.fillReasonForDelegate(lmtVar.getLabel("AUTO_GENERATED_COMMENT"));
+        await this.clickOnDelegateSpoPopupDelegateButton();
+        for (let i=1; i<bpoArray.length; i++) {
+            await commonKeywordImpl.searchDocOnListing(bpoArray[i].poNumber, searchBy);
+            let status = await this.getSpoStatus();
+            bpoArray[i].setStatus(status);
+        } 
+        return bpoArray;
+    },
 }

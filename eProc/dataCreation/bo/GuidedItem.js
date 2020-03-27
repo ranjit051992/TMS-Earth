@@ -37,6 +37,11 @@ class GuidedItem
         this.suppliers = [];
         this.supplierAddress;
         this.eform;
+        this.lineNumber;
+        this.marketPrice;
+        this.itemType;
+        this.supplierContractId;
+        this.bpo;
     }
     setItemName(itemName)
     {
@@ -191,6 +196,28 @@ class GuidedItem
     setEform(eform)
     {
         this.eform = eform;
+    }
+
+    setLineNumber(lineNumber) {
+        this.lineNumber = lineNumber;
+    }
+
+    setMarketPrice(marketPrice) {
+        this.marketPrice = marketPrice;
+    }
+
+    setItemType(itemType) {
+        this.itemType = itemType;
+    }
+
+    setSupplierContractId(supplierContractId)
+    {
+        this.supplierContractId = supplierContractId;
+    }
+    
+    setBpo(bpo)
+    {
+        this.bpo = bpo;
     }
 }
 module.exports=GuidedItem;

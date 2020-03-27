@@ -19,8 +19,8 @@ Given ("I have requisition In Approval status", async function() {
     await I.amOnPage(prop.DDS_Requisition_Listing);
     await I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
     this.reqBO.reqNumber =  await reqListingImpl.getRequisitionNumber(this.reqBO.reqName);
-    let reqStatus = await commonKeywordImpl.getValueForColumnName(lmtVar.getLabel("STATUS_COLUMN"))
-    let flag = reqStatus.includes(lmtVar.getLabel("IN_APPROVAL_STATUS")) === true
+    let reqStatus = await commonKeywordImpl.getValueForColumnNameOfReq(lmtVar.getLabel("STATUS_COLUMN"));
+    let flag = reqStatus.toString().trim().includes(lmtVar.getLabel("IN_APPROVAL_STATUS")) === true
         if(!flag) {
             logger.info(`Failed to get In Approval status`);
             throw new Error(`Failed to get In Approval status`);
@@ -110,7 +110,7 @@ When ("I Delegate 2 POs", async function() {
 });
 
 Then ("I should be able to see the status of all POs as Delegated", async function() {
-    await ApprovalImpl.checkMultiplePOStatus();
+    await ApprovalImpl.checkMultiplePOStatus(this.POArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
 });
 
 When ("I search for that PO name on PO approval listing", async function() {
@@ -177,7 +177,7 @@ When ("I Reject 2 Requisitions", async function() {
 });
 
 Then ("I should be able to see the status of all Requisitions as Rejected", async function() {
-    await ApprovalImpl.checkMultipleReqStatus(reqArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    await ApprovalImpl.checkMultipleReqStatus(this.reqArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
 });
 
 
@@ -190,5 +190,98 @@ When("I approve the requisition", async function(){
     if(status !== lmtVar.getLabel("APPROVED_STATUS")) {
         logger.info(`Req status is not ${lmtVar.getLabel("APPROVED_STATUS")} after approval. Current status is ${status}`);
         throw new Error(`Req status is not ${lmtVar.getLabel("APPROVED_STATUS")} after approval. Current status is ${status}`);
-    }    
+    }
 });
+    
+
+Given ("I am on Blanket PO approval listing page", async function() {
+        await ApprovalImpl.navigateToApprovalListing();
+        await ApprovalImpl.navigateToBPOApprovalListingTab();
+    });
+
+Then ("I see the same Buyer name displayed for the corresponding BPO number", async function() {
+    let buyer = this.bpo.buyer.toString();
+    logger.info(`Buyer name stored in BO is ---> ${buyer}`);
+    let updatedBuyer = await ApprovalImpl.fetchBuyerOnPoApprovalListing(buyer);
+    I.assertEqual(updatedBuyer, buyer);
+    });
+
+Then ("I see the same Amount to be approved on BPO Approval listing", async function() {
+    let amount = await ApprovalImpl.fetchAmountToBeApprovedOnPoApprovalListing();
+    let poTotal = await this.bpo.PoAmount.toString();
+    I.assertEqual(amount, poTotal);
+    });
+
+Then ("I see the same status of BPO on BPO Approval listing", async function() {
+    let PoStatus = await ApprovalImpl.fetchPoStatusOnPoApprovalListing();
+    I.assertEqual(PoStatus, lmtVar.getLabel("PENDING_STATUS"));
+    });
+
+Then ("I see the same Received on date on BPO Approval listing", async function() {
+    let receivedOn = await ApprovalImpl.fetchReceivedOnDateOnPOApprovalListing();
+    let PODate = await new Date(receivedOn.toString()).toLocaleDateString(); 
+    let sysDate = await new Date().toLocaleDateString();
+    logger.info(`*****${PODate === sysDate}*****`);
+    I.assertEqual(PODate, sysDate);
+    });
+
+When ("I Delegate 1 Requisition", async function() {
+    let status = await ApprovalImpl.delegateDoc(this.reqArray[0].reqNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"), this.reqArray[0].newApprover);
+    await this.reqArray[0].setStatus(status);
+    });
+
+When ("I Delegate 2 Requisitions", async function() {
+    this.POArray = await ApprovalImpl.delegateMultipleReqs(this.reqArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    });
+
+Then ("I should be able to see the status of all Requisitions as Delegated", async function() {
+    await ApprovalImpl.checkMultipleReqStatus(this.reqArray);
+    });
+
+When ("I search for that BPO name on BPO approval listing", async function() {
+    await I.waitForVisible(I.getElement(iApprovalObject.SEARCH_FIELD));
+    await commonKeywordImpl.searchDocOnListing(this.bpo.poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    });
+
+When ("I Approve 1 BPO", async function() {
+    await ApprovalImpl.approveDoc(this.bpoArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    let status = await ApprovalImpl.checkPOApprovalStatus(this.bpoArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    await this.bpoArray[0].setStatus(status);
+});
+
+When ("I Approve 2 BPOs", async function() {
+    this.bpoArray = await ApprovalImpl.approveMultipleBPOs(this.bpoArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+});
+
+Then ("I should be able to see the status of all BPOs as Approved", async function() {
+    await ApprovalImpl.checkMultipleBPOStatus(this.bpoArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+});
+
+When ("I Reject 1 BPO", async function() {
+    await ApprovalImpl.rejectDoc(this.bpoArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    let status = await ApprovalImpl.checkPOApprovalStatus(this.bpoArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    await this.bpoArray[0].setStatus(status);
+});
+
+When ("I Reject 2 BPOs", async function() {
+    this.bpoArray = await ApprovalImpl.rejectMultipleBPOs(this.bpoArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+});
+
+Then ("I should be able to see the status of all BPOs as Rejected", async function() {
+    await ApprovalImpl.checkMultipleBPOStatus(this.bpoArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+});
+
+When ("I Delegate 1 BPO", async function() {
+    await ApprovalImpl.delegateDoc(this.bpoArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"), this.bpoArray[0].newApprover);
+    let status = await ApprovalImpl.checkPOApprovalStatus(this.bpoArray[0].poNumber, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+    await this.bpoArray[0].setStatus(status);
+});
+
+When ("I Delegate 2 BPOs", async function() {
+    this.bpoArray = await ApprovalImpl.delegateMultipleBPOs(this.bpoArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+});
+
+Then ("I should be able to see the status of all BPOs as Delegated", async function() {
+    await ApprovalImpl.checkMultipleBPOStatus(this.bpoArray, lmtVar.getLabel("SEARCH_BY_DOC_NUMBER"));
+});
+
