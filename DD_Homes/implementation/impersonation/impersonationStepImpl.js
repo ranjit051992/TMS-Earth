@@ -3,6 +3,7 @@ const ProductNavigator = require("dd-cc-zycus-automation/components/dewSideMenu"
 const DewImpersonation = require("./DewImpersonation")
 const ApprovalPage = require("../../implementation/MyApproval/MyApprovalImpl")
 const ImpersonationImpl = require ("./impersonationImpl")
+const ImpersonationObject = require("./ImpersonationObject")
 
 Given("I am on Home page",  async function() {
     await ProductNavigator.navigate("Home");
@@ -65,8 +66,8 @@ Given("I have active impersonate request from company admin", async function () 
 
 Then("I navigate back to create impersonate page", async function () {
     //ApprovalPage.selectHeaderTab("Authorize Impersonation");
-    I.waitForVisible('//a[dew-default-tab-head[text()[normalize-space()="Authorize Impersonation"]] and contains(@class,"active")]',120); 
-    I.seeElement('//a[dew-default-tab-head[text()[normalize-space()="Authorize Impersonation"]] and contains(@class,"active")]'); 
+    I.waitForVisible(ImpersonationObject.VerifyUserAtAuthorizationTab,120); 
+    I.seeElement(ImpersonationObject.VerifyUserAtAuthorizationTab); 
 
 });
 

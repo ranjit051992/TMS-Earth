@@ -2,9 +2,10 @@
 "use strict";
 const DewRadioButton = require("dd-cc-zycus-automation/components/dewRadioButton")
 const DatePicker = require("dd-cc-zycus-automation/components/datePicker")
+const ImpersonationObject = require("./ImpersonationObject")
 const { I } = inject();
 const CommonKeyword = require("dd-cc-zycus-automation/components/commonKeyword")
-let varDesc="AutoDescription"+generateRandomNumber();
+let varDesc;
 
 /**
  * Home links class
@@ -16,14 +17,14 @@ class DewImpersonation {
  */
   navigateToAllowImpersonation() {
     I.wait(10);
-    I.scrollIntoView(`//dew-dropdown[contains(@class,'profile')]`);
-    I.waitForVisible(`//dew-dropdown[contains(@class,'profile')]`,20);
-    I.seeElement(`//dew-dropdown[contains(@class,'profile')]`);   
-    CommonKeyword.clickElement(`//dew-dropdown[contains(@class,'profile')]`);
-    I.waitForVisible(`//div[contains(@class,'dropdown-item') and text()[normalize-space()='Allow Impersonation']]`,20);
-    CommonKeyword.clickElement(`//div[contains(@class,'dropdown-item') and text()[normalize-space()='Allow Impersonation']]`);
-    I.waitForVisible(`//h1[@title='Manage your Impersonation Authorizations']`,20);
-    I.seeElement(`//h1[@title='Manage your Impersonation Authorizations']`);
+    I.scrollIntoView(ImpersonationObject.ProfileIcon);
+    I.waitForVisible(ImpersonationObject.ProfileIcon,20);
+    I.seeElement(ImpersonationObject.ProfileIcon);   
+    CommonKeyword.clickElement(ImpersonationObject.ProfileIcon);
+    I.waitForVisible(ImpersonationObject.AllowImpersonationProfileOption,20);
+    CommonKeyword.clickElement(ImpersonationObject.AllowImpersonationProfileOption);
+    I.waitForVisible(ImpersonationObject.ImpersonationPagetitle,20);
+    I.seeElement(ImpersonationObject.ImpersonationPagetitle);
   }
   /**
    * Impersonation function
@@ -32,29 +33,31 @@ class DewImpersonation {
   
 
   async authorizeImpersonation(radioBtnLabel) {
+    varDesc="Auto Description-"+generateRandomNumber();
     this.navigateToAllowImpersonation();
-    CommonKeyword.clickElement(`//a[contains(@class,'nav-link')]/*[text()[normalize-space()='Authorize Impersonation']]`);
-    I.seeElement(`//a[contains(@class,'nav-link active')]/*[text()[normalize-space()='Authorize Impersonation']]`);
+    CommonKeyword.clickElement(ImpersonationObject.AuthorizeImpersonationTab);
+    I.seeElement(ImpersonationObject.AuthorizeTabVerification);
     DewRadioButton.selectRadioButton(radioBtnLabel);
     I.wait(2);
-    DatePicker.selectInNextMonth(`//div[contains(@class,'pickerDiv')]/input[@aria-label='date']`);
-    I.fillField("//textarea[@formcontrolname='description']",varDesc);
+    DatePicker.selectInNextMonth(ImpersonationObject.AuthorizeDate);
+    I.fillField(ImpersonationObject.AuthorizeDescription,varDesc);
     //TextAreaWithPlaceholder.enterText("Enter description","AutoDescription"+generateRandomNumber());
     //textarea[@formcontrolname='description']
-    CommonKeyword.clickElement(`//button[@aria-label='Save']`);
+    CommonKeyword.clickElement(ImpersonationObject.AuthorizeSave);
    
   }
 
   async createImpersonation(radioBtnLabel){
-    //CommonKeyword.clickElement(`//a[contains(@class,'nav-link')]/*[text()[normalize-space()='Authorize Impersonation']]`);
-    I.seeElement(`//a[contains(@class,'nav-link active')]/*[text()[normalize-space()='Authorize Impersonation']]`);
+    varDesc="Auto Description"+generateRandomNumber();
+    //CommonKeyword.clickElement(ImpersonationObject.AuthorizeImpersonationTab);
+    I.seeElement(ImpersonationObject.AuthorizeTabVerification);
     DewRadioButton.selectRadioButton(radioBtnLabel);
     I.wait(2);
-    DatePicker.selectInNextMonth(`//div[contains(@class,'pickerDiv')]/input[@aria-label='date']`);
-    I.fillField("//textarea[@formcontrolname='description']",varDesc);
+    DatePicker.selectInNextMonth(ImpersonationObject.AuthorizeDate);
+    I.fillField(ImpersonationObject.AuthorizeDescription,varDesc);
     //TextAreaWithPlaceholder.enterText("Enter description","AutoDescription"+generateRandomNumber());
     //textarea[@formcontrolname='description']
-    CommonKeyword.clickElement(`//button[@aria-label='Save']`);
+    CommonKeyword.clickElement(ImpersonationObject.AuthorizeSave);
   }
 }
 
