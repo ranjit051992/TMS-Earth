@@ -25,13 +25,13 @@ Background: Given I am logged on to the application
     #     Then I should be able to see Password updated success message
 
 
-    Scenario: To verify whether user is able to change mobile pin
+    # Scenario: To verify whether user is able to change mobile pin
     
    
-      Given I am on Home page
-        When I navigate to Manage Profile
-        When I Change Pin
-        Then I should be able to see Pin updated success message
+    #   Given I am on Home page
+    #     When I navigate to Manage Profile
+    #     When I Change Pin
+    #     Then I should be able to see Pin updated success message
 
 
     Scenario: To verify whether user is able to change user level setting
