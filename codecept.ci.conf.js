@@ -22,6 +22,9 @@ exports.config = {
       default_high_wait: prop.DEFAULT_HIGH_WAIT,
       desiredCapabilities: {
         pageLoadStrategy: 'none',
+        chromeOptions: {
+          args: ["--disable-gpu", "--no-sandbox", "--ignore-certificate-errors"],
+        },
         'selenoid:options': {
           enableVNC: true,
           enableVideo: false
