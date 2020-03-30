@@ -17,6 +17,12 @@ exports.config = {
       windowSize: prop.windowSize,
       waitForTimeout: 60000,
       smartWait: 5000,
+      desiredCapabilities: {
+        pageLoadStrategy: "none",
+        chromeOptions: {
+          args: ["--disable-gpu", "--no-sandbox", "--ignore-certificate-errors"],
+        },
+      },
       timeouts: {
         "script": 10000,
         "page load": 10000
