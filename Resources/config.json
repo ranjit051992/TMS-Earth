@@ -126,7 +126,7 @@
         "SETUP": "US_Staging",
         "TENANT": "ZCS",
         "browser": "chrome",
-        "host": "10.100.0.168",
+        "host": "127.0.0.1",
         "restart": "false",
         "port": 4444,
         "windowSize": "maximize",

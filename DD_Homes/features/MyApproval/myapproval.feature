@@ -29,4 +29,4 @@ Examples:
 | Task Approvals |
 | Phase Approvals |
 | Sourcing Approvals |
-| Request Approval |
+| Request |
