@@ -1,14 +1,15 @@
 const NotificationCheckcation  = require("./NotificationImpl");
+const IHome = require("../../../DD_Homes/implementation/DDSearch/DD_SearchObject");
 const { I } = inject();
 
 let dataPresent;
 Given("I am on home page", async function () {
-    await I.seeElement(`//span[contains(@class,'welcome-message')]`)
+    await I.seeElement(IHome.Welcome_Message)
 });
 
 
 When("I am on home page", async function () {
-    await I.seeElement(`//span[contains(@class,'welcome-message')]`)
+    await I.seeElement(IHome.Welcome_Message)
 });
 
 When("I click on notification icon", async function () {
@@ -44,7 +45,7 @@ Then("i see list of {string} notifications", async function (alertsandreminders)
 });
 
 Given("I am on home page", async function () {
-    await I.seeElement(`//span[contains(@class,'welcome-message')]`)
+    await I.seeElement(IHome.Welcome_Message)
 });
 
 When("click on document failure notification", async function () {
@@ -79,4 +80,11 @@ When("i click on download button", async function () {
 
 When("click on {string} notification", async function (headerName) {
     await NotificationCheckcation.selectNotificationHeader(headerName);
+});
+
+Then("i see View All option", async function(){
+
+});
+When("click on View All option",async function(){
+
 });

@@ -3,6 +3,7 @@
 const { I } = inject();
 const CommonKeyword = require("dd-cc-zycus-automation/components/commonKeyword")
 const DewElement = require("dd-cc-zycus-automation/components/element")
+const INotification = require("./NotificationObject")
 /**
  * Notifications related class
  */
@@ -12,13 +13,13 @@ class NotificationCheck {
    */
   async checkNotificationCount() {
 
-    I.waitForVisible("//span[contains(@class,'icon-notification')]", 30)
+    I.waitForVisible(INotification.Bell_Icon, 30)
     I.wait("5")
-    const checkIfNotification = await I.grabNumberOfVisibleElements("//span[contains(@class,'icon-notification')]/following-sibling::span[contains(@class,'count')]")
+    const checkIfNotification = await I.grabNumberOfVisibleElements(INotification.Notification_Count)
     if (checkIfNotification == 0) {
       I.saveScreenshot("No Notification present.png")
     } else {
-      const totalNumberOfNotification = await I.grabTextFrom("//span[contains(@class,'icon-notification')]/following-sibling::span[contains(@class,'count')]");
+      const totalNumberOfNotification = await I.grabTextFrom(INotification.Notification_Count);
       I.see(totalNumberOfNotification);
     }
 
@@ -31,20 +32,20 @@ class NotificationCheck {
 
 
   async checkNotificationForAlertAndReminder() {
-    let alertAndReminderNotificationCount = await I.grabNumberOfVisibleElements("//dew-notification//div[contains(@class,'notify-content')]")
+    let alertAndReminderNotificationCount = await I.grabNumberOfVisibleElements(INotification.NumberOfVisibleElements)
     if (alertAndReminderNotificationCount > 0) {
-      I.seeElement("//dew-notification//div[contains(@class,'notify-content')]")
+      I.seeElement(INotification.NumberOfVisibleElements)
     }
   }
 
 
   async clickNotificationIcon() {
 
-    I.waitForVisible("//span[contains(@class,'icon-notification')]", 30)
-    let checkIfNotificationIsClicked = await I.grabNumberOfVisibleElements("//dew-notification")
+    I.waitForVisible(INotification.Bell_Icon, 30)
+    let checkIfNotificationIsClicked = await I.grabNumberOfVisibleElements(INotification.View_Notification)
     console.log("notification:", checkIfNotificationIsClicked)
     if (checkIfNotificationIsClicked == 0)
-      CommonKeyword.clickElement("//span[contains(@class,'icon-notification')]");
+      CommonKeyword.clickElement(INotification.Bell_Icon);
   }
 
 
@@ -53,10 +54,10 @@ class NotificationCheck {
     this.selectNotificationHeader("APPROVAL")
     this.selectDataFromNotification(data);
 
-    I.seeElement("//dew-view-attachments")
-    I.scrollIntoView("//dew-view-attachments")
+    I.seeElement(INotification.View_Attachment)
+    I.scrollIntoView(INotification.View_Attachment)
 
-    CommonKeyword.clickElement("//div[contains(@class,'text-body-link')]/span[text()[normalize-space()='Download']]")
+    CommonKeyword.clickElement(INotification.Download_Attachment)
   }
 
   async selectDataFromNotification(data) {
@@ -99,33 +100,33 @@ class NotificationCheck {
         // within('.modal-content', () => {
         //   CommonKeyword.clickElement(".//dew-modal-footer//button[@aria-label='Approve']");
         // })
-        within('//dew-approve-reject-pop-up//div[@class="modal-content"]', () => {
-          I.seeElement(".//textarea[@aria-label='This is comment box']");
+        within(INotification.Action_PopUp, () => {
+          I.seeElement(INotification.Comment_box);
 
-          I.fillField(".//textarea[@aria-label='This is comment box']", "Approving");
-          CommonKeyword.clickElement(".//dew-modal-footer//button[@aria-label='Approve']");
+          I.fillField(INotification.Comment_box, "Approving");
+          CommonKeyword.clickElement(INotification.Approve_Action_Popup);
         })
         break;
       case "Reject":
         // within('.modal-content', () => {
         //   CommonKeyword.clickElement(".//dew-modal-footer//button[@aria-label='Reject']");
         // })
-        within('//dew-approve-reject-pop-up//div[@class="modal-content"]', () => {
-          I.seeElement(".//textarea[@aria-label='This is comment box']");
-          I.fillField(".//textarea[@aria-label='This is comment box']", "Rejecting");
-          CommonKeyword.clickElement(".//dew-modal-footer//button[@aria-label='Reject']");
+        within(INotification.Action_PopUp, () => {
+          I.seeElement(INotification.Comment_box);
+          I.fillField(INotification.Comment_box, "Rejecting");
+          CommonKeyword.clickElement(INotification.Reject_Action_Popup);
         })
         break;
       case "Delegate":
         // within('.modal-content', () => {
         //   CommonKeyword.clickElement(".//dew-modal-footer//button[@aria-label='Delegate']");
         // })
-        within('//dew-delegate-popup//div[@class="modal-content"]', () => {
+        within(INotification.Delegate_PopUp, () => {
           I.see("Delegate Approval To");
-          CommonKeyword.clickElement("//input[@title='autocomplete-user']")
-          CommonKeyword.clickElement("(//div[@dew-autocomplete-body]//div[@activeclass='ac-item-focused'])[1]");
-          I.fillField(".//textarea[@aria-label='This is input for reason for delegation']", "Delegating");
-          CommonKeyword.clickElement(".//dew-modal-footer//button[@aria-label='Delegate']");
+          CommonKeyword.clickElement(INotification.Delegate_User)
+          CommonKeyword.clickElement(INotification.First_Delegate_User);
+          I.fillField(INotification.Delegate_Comment, "Delegating");
+          CommonKeyword.clickElement(INotification.Delegate_Action_Popup);
         })
         break;
     }
