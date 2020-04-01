@@ -21,8 +21,8 @@ module.exports = {
     I.seeElement(`//input[@placeholder='Search and select suppliers']`)
     I.clearField(`//input[@placeholder='Search and select suppliers']`)
     I.fillField(`//input[@placeholder='Search and select suppliers']`, supplier)
-    I.waitForVisible(`//div[contains(@class,'flex-column')]//label[text()='${supplier}']`, 10)
-    CommonKeyword.clickElement(`//div[contains(@class,'flex-column')]//label[text()='${supplier}']`)
+    I.waitForVisible(`//div[contains(@class,'custom-control custom-checkbox ')]//label/span[text()='${supplier}']`, 10)
+    CommonKeyword.clickElement(`//div[contains(@class,'custom-control custom-checkbox ')]//label/span[text()='${supplier}']`)
     CommonKeyword.clickElement(`//div[contains(@class,'flex-column')]//div[text()='Done']`)
     I.waitToProcess()
   },
@@ -33,8 +33,8 @@ module.exports = {
     suppliers.forEach(async (supplier) => {
       I.clearField(`//input[@placeholder='Search and select suppliers']`)
       I.fillField(`//input[@placeholder='Search and select suppliers']`, supplier)
-      I.waitForVisible(`//div[contains(@class,'flex-column')]//label[text()='${supplier}']`, 10)
-      CommonKeyword.clickElement(`//div[contains(@class,'flex-column')]//label[text()='${supplier}']`)
+      I.waitForVisible(`//div[contains(@class,'custom-control custom-checkbox ')]//label/span[[text()='${supplier}']`, 10)
+      CommonKeyword.clickElement(`//div[contains(@class,'custom-control custom-checkbox ')]//label/span[[text()='${supplier}']`)
     });
     CommonKeyword.clickElement(`//div[contains(@class,'flex-column')]//div[text()='Done']`)
     I.waitToProcess()
@@ -42,6 +42,8 @@ module.exports = {
 
   async verifySupplierCard(supplier) {
     I.waitToProcess()
+    CommonKeyword.clickElement(`//dew-default-tab-head[text()='Supplier Information ']`)
+    I.waitForElement(`//div[@class='tab-links-wrapper main dew-container']//dew-default-tab-head[text()[normalize-space()='${supplier}']]`,10)
     I.seeElement(`//div[@class='tab-links-wrapper main dew-container']//dew-default-tab-head[text()[normalize-space()='${supplier}']]`)
   },
 
@@ -52,7 +54,11 @@ module.exports = {
   },
 
   async exportFiles() {
-    CommonKeyword.clickElement(`//button[@type='button']/span[contains(@class,'import')]`)
+  
+    I.scrollIntoView(`//span[contains(@class,'nav-link')]//div[text()[normalize-space()='OneView']]`)
+    I.wait(3);
+    
+    I.click(`//span[contains(@class,'import')]/..`);
 
   },
 
@@ -61,7 +67,7 @@ module.exports = {
     Filter.clearAllFilters()
     Filter.applyFilter("Suppliers")
     Checkbox.searchSelect("Suppliers",suppliername)
-    CommonKeyword.clickElement("//div[@class='modal-content']//span[text()='Apply']")
+  //  I.click("//div[@class='modal-content']//span[text()='Apply']")
   }
 
 
