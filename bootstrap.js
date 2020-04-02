@@ -12,16 +12,16 @@ module.exports = {
                 global.testData = await databaseOperations.getTestData();
                 global.uiElements = await databaseOperations.getUiElementXpath();
                 global.users = await databaseOperations.getUser();
-                if(process.env.GRID) {
-                        global.users = await databaseOperations.getAndUpdateUser();
-                }
-                else {
-                         logger.info(`Using local credentials --> ${prop.USERNAME} / ${prop.PASSWORD}`);
-                        let testDataMap = new Map();
-                         testDataMap.set("USERNAME", prop.USERNAME);
-                         testDataMap.set("PASSWORD", prop.PASSWORD);
-                         global.users = testDataMap;
-                }
+                // if(process.env.GRID) {
+                //         global.users = await databaseOperations.getAndUpdateUser();
+                // }
+                // else {
+                //          logger.info(`Using local credentials --> ${prop.USERNAME} / ${prop.PASSWORD}`);
+                //         let testDataMap = new Map();
+                //          testDataMap.set("USERNAME", prop.USERNAME);
+                //          testDataMap.set("PASSWORD", prop.PASSWORD);
+                //          global.users = testDataMap;
+                // }
                  global.lmt = await databaseOperations.getLMTDetails();
                  global.allkeys = await databaseOperations.getLMTKeys();
                  logger.info(" for this Chunk USERNAME  : " + global.users.get("USERNAME"));
