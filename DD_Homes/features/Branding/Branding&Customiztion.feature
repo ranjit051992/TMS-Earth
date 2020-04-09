@@ -18,7 +18,6 @@ Given I am on home page
 When I modify the branding color "#ff8c00" 
 When I navigate to Oneview page
 When I navigate back to home page
-And I click on hamburger icon
 And I click on "My Approvals" module
 And I click on "<Tab Name>" page
 Then I should see modified color
