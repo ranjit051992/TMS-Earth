@@ -7,7 +7,7 @@ const ImpersonationObject = require("./ImpersonationObject")
 
 Given("I am on Home page",  async function() {
     await ProductNavigator.navigate("Home");
-I.seeElement(`//span[contains(@class,'welcome-message')]`);
+I.seeElement(ImpersonationObject.WelcomeMessage);
 });
 
 Given("I navigate to iSupplier MyApproval Page", async function(){
@@ -15,7 +15,7 @@ Given("I navigate to iSupplier MyApproval Page", async function(){
 })
 
 When("I select allow company admin to impersonate me",  async function() {
-    await DewImpersonation.authorizeImpersonation("Allow Company admin to impersonate me");
+    await DewImpersonation.authorizeImpersonation(ImpersonationObject.CompanyAdminToImpersonateOption);
 console.log("Impersonation done");
 });
 
@@ -46,12 +46,12 @@ Then("I should see request status change to revoke state", async function(){
 })
 
 Then("I create new impersonation for admin", async function(){
-    await DewImpersonation.createImpersonation("Allow Company admin to impersonate me");
+    await DewImpersonation.createImpersonation(ImpersonationObject.CompanyAdminToImpersonateOption);
     await ImpersonationImpl.verifySuccessAlert();
 })
 
 Then("I create new impersonation for support user", async function(){
-    await DewImpersonation.createImpersonation("Allow Product Support Personnel to impersonate me");
+    await DewImpersonation.createImpersonation(ImpersonationObject.SupportPersonnelToImpersonateOption);
     await ImpersonationImpl.verifySuccessAlert();
 })
 
@@ -60,7 +60,7 @@ Given("I select view impersonate request page", async function () {
 });
 
 Given("I have active impersonate request from company admin", async function () {
-    await DewImpersonation.authorizeImpersonation("Allow Company admin to impersonate me");
+    await DewImpersonation.authorizeImpersonation(ImpersonationObject.CompanyAdminToImpersonateOption);
     await ImpersonationImpl.verifySuccessAlert();
 });
 
@@ -76,10 +76,10 @@ When("I click on revoke option", async function () {
   });
 
 When("I select allow Support user to impersonate me", async function () {
-    await DewImpersonation.authorizeImpersonation("Allow Product Support Personnel to impersonate me");
+    await DewImpersonation.authorizeImpersonation(ImpersonationObject.SupportPersonnelToImpersonateOption);
   });
 
 Given("I have active impersonate request from support user", async function () {
-   await  DewImpersonation.authorizeImpersonation("Allow Product Support Personnel to impersonate me");
+   await  DewImpersonation.authorizeImpersonation(ImpersonationObject.SupportPersonnelToImpersonateOption);
    await ImpersonationImpl.verifySuccessAlert();
   });

@@ -2,6 +2,8 @@
 "use strict";
 const { I } = inject();
 const CommonKeyword = require("dd-cc-zycus-automation/components/commonKeyword")
+const ManageProfileObject = require("./ManageProfileObject")
+const Element = require("dd-cc-zycus-automation/components/element")
 
 /** 
  * Profile related class
@@ -11,77 +13,76 @@ class ManageProfile {
    * To navigate to manage Profile
    */
 
-   navigateToManageProfile() {
+   async navigateToManageProfile() {
      I.wait(5);
-    I.seeElement("//dew-dropdown[contains(@class,'profile')]");
-    CommonKeyword.clickElement("//dew-dropdown[contains(@class,'profile')]");
-    CommonKeyword.clickElement("//div[contains(@class,'dropdown-item') and text()[normalize-space()='Manage Profile']]");
-    I.seeElement("//user-profile");
-    I.click("User Details");
+    I.seeElement(ManageProfileObject.Profile);
+    await CommonKeyword.clickElement(ManageProfileObject.Profile);
+    await CommonKeyword.clickElement(ManageProfileObject.ClickDropdownProfile);
+    await I.seeElement(ManageProfileObject.UserProfile);
+    I.click(ManageProfileObject.UserDetails);
   }
   /**
    * To upload profile picture
    */
-  uploadProfilePicture() {
-    CommonKeyword.clickElement("//button[@aria-label='Upload']");
-    I.see("Upload Image");
-    within(".modal-content", () => {
-      I.attachFile("//div[@class='upload-btn-wrapper']/input","./Resources/branch300.jpg");
-      CommonKeyword.clickElement("//button[@aria-label='Set Profile Photo']");
+  async uploadProfilePicture() {
+    await CommonKeyword.clickElement(ManageProfileObject.UploadPicture);
+    I.see(ManageProfileObject.VerifyUploadImage);
+    within(".modal-content", async () => {
+      await I.attachFile(ManageProfileObject.UploadInput,"./Resources/branch300.jpg");
+      await CommonKeyword.clickElement(ManageProfileObject.SetProfilePhoto);
     });
-    I.dontSeeElement(".modal-content")
+    await I.dontSeeElement(ManageProfileObject.ModalContent)
   }
 
   /**
    * To verify if profile picture is updated
    */
 
-  verifyUploadedProfilePicture(){
-    I.seeElement("//img[@class='media-object' and contains(@src,'base64')]");
+  async verifyUploadedProfilePicture(){
+    await I.seeElement(ManageProfileObject.VerifyUploadedPicture);
   }
   /**
    * To reset profile picture
    */
-  resetProfilePicture() {
+  async resetProfilePicture() {
 
-    let locator = "//button[@aria-label='Reset Profile Picture']";
-    I.scrollIntoView(locator,{ behavior: "smooth", block: "center", inline: "center" });
-    I.waitForVisible(locator, "10")
-    I.seeElement(locator)
+    let locator = ManageProfileObject.ResetProfilePicture;
+    await I.scrollIntoView(locator,{ behavior: "smooth", block: "center", inline: "center" });
+    await I.waitForVisible(locator, "10")
+    await I.seeElement(locator)
     I.click(locator)
-    I.seeElement("//button[@aria-label='Reset Profile Picture' and @disabled]");
+    I.seeElement(ManageProfileObject.VerifyResetPicture);
   }
   /**
    * To change password
    */
-  changePassword() {
+  async changePassword() {
     this.navigateToManageProfile();
-    CommonKeyword.clickElement("//button[@aria-label='Change Password']");
+    await CommonKeyword.clickElement(ManageProfileObject.ChangePassword);
 
-    CommonKeyword.enterText("Current Password", "YoDeHaCoPoBiBaIoAiWiYeQe8&7");
-    CommonKeyword.enterText("New Password", "YoDeHaCoPoBiBaIoAiWiYeQe8&71");
-    CommonKeyword.enterText("Confirm New Password]", "YoDeHaCoPoBiBaIoAiWiYeQe8&71");
-    CommonKeyword.clickElement("//dew-modal-footer//button[@aria-label='Save' and not(@disabled)]");
-    
+    await CommonKeyword.enterText(ManageProfileObject.CurrentPassowrdLabel, "YoDeHaCoPoBiBaIoAiWiYeQe8&7");
+    await CommonKeyword.enterText(ManageProfileObject.NewPassowrdLabel, "YoDeHaCoPoBiBaIoAiWiYeQe8&71");
+    await CommonKeyword.enterText(ManageProfileObject.ConfirmNewPassowrdLabel, "YoDeHaCoPoBiBaIoAiWiYeQe8&71");
+    await CommonKeyword.clickElement(ManageProfileObject.PasswordSaveBtn);    
   }
 
 /**
    * To verify if password is updated
    */
-  verifyIfPasswordUpdated(){
-    I.see("Password Updated");
+  async verifyIfPasswordUpdated(){
+    await I.see(ManageProfileObject.PasswordUpdatedLabel);
   }
 
   /**
    * To change pin
    */
-  changePin() {
-    CommonKeyword.clickElement("//button[@aria-label='Change Pin']");
+  async changePin() {
+    await CommonKeyword.clickElement(ManageProfileObject.ChangePin);
     console.log("Qw"+generateRandomNumber())
     let pin= "Qw"+generateRandomNumber();
-    CommonKeyword.enterText("New Pin", pin);
-    CommonKeyword.enterText("Confirm Pin", pin);
-    CommonKeyword.clickElement("//dew-modal-footer//button[@aria-label='Save' and not(@disabled)]");
+    await CommonKeyword.enterText(ManageProfileObject.NewPinLabel, pin);
+    await CommonKeyword.enterText(ManageProfileObject.ConfirmPinLabel, pin);
+    await CommonKeyword.clickElement(ManageProfileObject.PasswordSaveBtn);
   }
 
 
@@ -89,7 +90,7 @@ class ManageProfile {
    * To verify if pin is updated
    */
   verifyIfPinUpdated(){
-    I.see("Pin Updated");
+    I.see(ManageProfileObject.PinUpdatedLabel);
   }
 }
 
@@ -99,11 +100,11 @@ module.exports.ManageProfile = ManageProfile; // for inheritance
  * To navigate to manage profile
  */
 function navigateToManageProfile() {
-  I.seeElement("//dew-dropdown[contains(@class,'profile')]");
-  CommonKeyword.clickElement("//dew-dropdown[contains(@class,'profile')]");
-  CommonKeyword.clickElement("//div[contains(@class,'dropdown-item') and text()[normalize-space()='Manage Profile']]");
-  I.seeElement("//user-profile");
-  I.click("User Details");
+  I.seeElement(ManageProfileObject.Profile);
+  CommonKeyword.clickElement(ManageProfileObject.Profile);
+  CommonKeyword.clickElement(ManageProfileObject.ClickDropdownProfile);
+  I.seeElement(ManageProfileObject.UserProfile);
+  I.click(ManageProfileObject.UserDetails);
 }
 
 function generateRandomNumber() {

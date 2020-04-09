@@ -2,6 +2,8 @@
 "use strict";
 const { I } = inject();
 const CommonKeyword = require("dd-cc-zycus-automation/components/commonKeyword")
+const DynamicLocator = require("dd-cc-zycus-automation/components/element")
+const FooterObject = require("./DD_FooterObject")
 
 /**
  * Home Links class
@@ -17,9 +19,9 @@ class FooterLinkImpl {
    * Click Home Direct Link
    * @param {*} link
    */
-   clickHomeDirectLink(link) {
-    I.seeElement(`//span[contains(text(),'${link}')]`)
-    CommonKeyword.clickElement(`//span[contains(text(),'${link}')]`);
+   async clickHomeDirectLink(link) {
+    await I.seeElement(await DynamicLocator.getDynamicLocator(FooterObject.HomeDirectLink,"<<link>>",link))
+    await CommonKeyword.clickElement(await DynamicLocator.getDynamicLocator(FooterObject.HomeDirectLink,"<<link>>",link));
   }
 
   /**
@@ -40,9 +42,9 @@ class FooterLinkImpl {
    * Click Home Circle Links
    * @param {*} link
    */
-   clickHomeCircleLink(link) {
-    I.seeElement(`//div[contains(@class,'circle')]/div[contains(text(),'${link}')]`)
-    CommonKeyword.clickElement(`//div[contains(@class,'circle')]/div[contains(text(),'${link}')]`);
+   async clickHomeCircleLink(link) {
+    await I.seeElement(await DynamicLocator.getDynamicLocator(FooterObject.CircleLink,"<<link>>",link))
+    await CommonKeyword.clickElement(await DynamicLocator.getDynamicLocator(FooterObject.CircleLink,"<<link>>",link));
     I.waitToProcess();
   }
 

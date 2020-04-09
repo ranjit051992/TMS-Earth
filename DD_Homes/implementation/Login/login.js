@@ -1,10 +1,11 @@
 const { I } = inject();
 const CommonKeyword = require("dd-cc-zycus-automation/components/commonKeyword")
+const LoginObject = require("./LoginObject")
 
 Given ("user enter valid {string},{string} credentials", async function(username,password) {
-    CommonKeyword.clickElement("//input[@formcontrolname='emailAddress']");
+    await CommonKeyword.clickElement(LoginObject.EmailAddress);
     CommonKeyword.enterText("Email Address",global.users.get("USERNAME"));
-    CommonKeyword.clickElement("//input[@formcontrolname='password']");
+    await CommonKeyword.clickElement(LoginObject.Password);
     CommonKeyword.enterText("Password", global.users.get("PASSWORD"));
     I.click("Login");
     I.wait(5)
@@ -13,9 +14,9 @@ Given ("user enter valid {string},{string} credentials", async function(username
 });
 
 Given ("user enter invalid {string},{string} credentials", async function(username,password) {
-    CommonKeyword.clickElement("//input[@formcontrolname='emailAddress']");
+    await CommonKeyword.clickElement(LoginObject.EmailAddress);
     CommonKeyword.enterText("Email Address", global.users.get("USERNAME"));
-    CommonKeyword.clickElement("//input[@formcontrolname='password']");
+    await CommonKeyword.clickElement(LoginObject.Password);
     CommonKeyword.enterText("Password", password);
     I.click("Login");
     I.wait(5)

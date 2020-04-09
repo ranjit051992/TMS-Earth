@@ -1,5 +1,6 @@
 const { I } = inject()
 const CommonKeyword = require("dd-cc-zycus-automation/components/commonKeyword")
+const LoginBackGroundObject = require("./loginBackGroundObject")
 
 const prop = global.confi_prop;
 
@@ -8,9 +9,9 @@ Given("I navigate to the login page", async function () {
     });
     
 When("I submit {string} and {string}", async function (username,password) {
-    CommonKeyword.clickElement("//input[@formcontrolname='emailAddress']");
+    CommonKeyword.clickElement(LoginBackGroundObject.EmailAddress);
     CommonKeyword.enterText("Email Address",global.users.get("USERNAME"));
-    CommonKeyword.clickElement("//input[@formcontrolname='password']");
+    CommonKeyword.clickElement(LoginBackGroundObject.Passowrd);
     CommonKeyword.enterText("Password", global.users.get("PASSWORD"));
     I.click("Login");
     I.waitForElement("dew-navbar", 30);
@@ -19,4 +20,3 @@ When("I submit {string} and {string}", async function (username,password) {
 Then("I should be logged in", async function (link) {
        I.seeElement("dew-navbar")
     });
-    //"GDQA-P2P@zycus.com", "nUnEwOgElI1%" "YoDeHaCoPoBiBaIoAiWiYeQe8&7"

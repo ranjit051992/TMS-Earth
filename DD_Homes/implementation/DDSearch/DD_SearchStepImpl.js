@@ -2,17 +2,18 @@ const { I } = inject();
 const DD_SearchImpl = require("./DD_SearchImpl");
 const FooterLinkImpl = require("./../footerLinks/DD_FooterLinksImpl");
 const DewHomeSearchField = require("dd-cc-zycus-automation/components/dewHomeSearchField");
+const DD_SearchObject = require("./DD_SearchObject")
 
 
 /**
  * To verify whether on Home Page load, frequently accessed list is displayed and user is able to navigate to the product
  */
 Given("I am on home page", async function () {
-    await I.seeElement(`//span[contains(@class,'welcome-message')]`)
+    await I.seeElement(DD_SearchObject.Welcome_Message)
 });
 
 When("I see Frequently accessed list", async function () {
-    await I.seeElement(`//div[text()='FREQUENTLY ACCESSED']`)
+    await I.seeElement(DD_SearchObject.FrequentlyAccessHeader)
 });
 
 When("I click on link {string}", async function (link) {
@@ -29,7 +30,7 @@ Then("I should able to navigate to {string}", async function (link) {
  */
 
 // When("I have access to Onew View", async function () {
-//     await I.seeElement(`//div[text()='FREQUENTLY ACCESSED']`)
+//     await I.seeElement(DD_SearchObject.FrequentlyAccessHeader)
 // });
 
 
@@ -39,7 +40,7 @@ When("I search {string} in home search box", async function (supplier) {
 
 
 Then("I should able to land to One View page", async function () {
-    await I.seeElement(`//div/h1[text()[normalize-space()='One View']]`)
+    await I.seeElement(DD_SearchObject.OneViewHeader)
 });
 
 

@@ -1,4 +1,5 @@
 module.exports = {
+    WelcomeMessage: "//span[contains(@class,'welcome-message')]",
     ProfileIcon: "//dew-dropdown[contains(@class,'profile')]",
     AllowImpersonationProfileOption: "//div[contains(@class,'dropdown-item') and text()[normalize-space()='Allow Impersonation']]",
     ImpersonationPagetitle:"//h1[@title='Manage your Impersonation Authorizations']",
@@ -17,7 +18,11 @@ module.exports = {
     RevokeBtn:"(//span[@title='Revoke'])[1]",
 
     RevokedStatus:"(//span[@title='Revoked'])[1]",
-    VerifyUserAtAuthorizationTab:"//a[dew-default-tab-head[text()[normalize-space()='Authorize Impersonation']] and contains(@class,'active')]"
+    VerifyUserAtAuthorizationTab:"//a[dew-default-tab-head[text()[normalize-space()='Authorize Impersonation']] and contains(@class,'active')]",
+
+    CompanyAdminToImpersonateOption: "Allow Company admin to impersonate me",
+    SupportPersonnelToImpersonateOption: "Allow Product Support Personnel to impersonate me"
+
 
 
 

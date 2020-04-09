@@ -1,10 +1,10 @@
 const { I } = inject();
 const LoginHistoryImpl = require("./LoginHistoryImpl");
 const ManageProfile = require("../ManageProfile/ManageProfileImpl");
-
+const LoginHistoryObject = require("./LoginHistoryObject")
 
 Given("I am on Home page", async function(){
-    await I.seeElement(`//span[contains(@class,'welcome-message')]`)
+    await I.seeElement(LoginHistoryObject.WelcomeMessage)
 });
 
 When("I navigate to Login History", async function(){
