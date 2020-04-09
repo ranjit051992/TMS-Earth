@@ -9,9 +9,10 @@ Given("I am on home page", async function () {
 });
 
 
-When("I click on hamburger icon", async function () {
-  I.wait(10)
-  DewNavBar.clickHamburger();
+When("I click on threebar icon", async function () {
+  I.wait(5)
+ 
+ I.click("//dew-navbar//span[contains(@class,'menu-link')]");
   console.log("done")
 });
 
