@@ -15,7 +15,7 @@ exports.config = {
       port: prop.port,
       restart: prop.restart,
       windowSize: prop.windowSize,
-      waitForTimeout: 60000,
+      waitForTimeout: 50000,
       smartWait: 5000,
       timeouts: {
         "script": 10000,
