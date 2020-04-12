@@ -20,8 +20,8 @@ CommonKeyword.clickElement(`//span[contains(@class,'icon-wheel ')]`);
  I.clearField(`//div[@class='customizeBox']/dew-row/dew-col[2]/input`)
  I.fillField(`//div[@class='customizeBox']/dew-row/dew-col[2]/input`,hexcode);
  I.wait(3);
- I.click(`//div[text()='Apply']`);
- I.waitForInvisible(`//div[text()='Apply']`);
+ I.click(`//div[contains(text(),'Apply')]`);
+ I.waitForInvisible(`//div[contains(text(),'Apply')]`);
  
 },
 
