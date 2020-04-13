@@ -23,9 +23,9 @@ module.exports = {
         },
         teardown: async function ()
         {
-                // if(prop.runOnGrid) {
+                if(process.env.GRID) {
                         await databaseOperations.updateUSER(global.users.get("USERNAME"),"true");
-                // }
+                 }
         },
         bootstrapAll: async function()
         {
