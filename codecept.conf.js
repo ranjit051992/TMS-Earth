@@ -14,7 +14,7 @@ exports.config = {
       host: prop.host,
       port: prop.port,
       restart: prop.restart,
-      windowSize: "1920x1080", //prop.windowSize,
+      windowSize: "1024x768", //prop.windowSize,
       waitForTimeout: 60000,
       smartWait: 5000,
       desiredCapabilities: {
