@@ -1,5 +1,7 @@
 const parsing = require("./Framework/PropertiesConfigurator");
 const addTimeStampToReport = require('./add_timestamp_report');
+const {startShareDataService} = require('./Share_data/startShareDataService');
+startShareDataService();
 addTimeStampToReport();
 parsing();
 const prop = global.confi_prop;

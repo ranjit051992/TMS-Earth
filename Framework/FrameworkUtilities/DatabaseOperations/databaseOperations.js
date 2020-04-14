@@ -346,5 +346,64 @@ module.exports = {
         let testDataMap = await this.getUser();
         await this.updateUSER(testDataMap.get("USERNAME"), "false");
         return testDataMap;
+    },
+    async getAutomationKey() {
+        const prop = global.confi_prop;
+
+        const connectionString = "Data Source=tcp:"+prop.DBhost+",3306;Initial Catalog="+prop.DBdatabase+";User Id="+prop.DBuser+";Password="+prop.DBpassword+";";
+        logger.info("connectionString  : " + connectionString)
+
+        const connectionObj = parser(connectionString);
+
+        const columnName = process.env.SETUP + "_" + process.env.TENANT;
+        logger.info(columnName);
+        
+        const query = "SELECT `Key`, MST_key FROM LMT";
+        logger.info(query);
+
+        return new Promise((resolve, reject) => {
+            let testDataMap = new Map();
+
+            logger.info("Creating sql connection");
+
+            connection = mysql.createConnection(connectionObj);
+
+            logger.info("Checking sql connection");
+            connection.connect(function (error) {
+                if (!!error) {
+                    logger.info("Error");
+                }
+                else {
+                    logger.info("Connected");
+                    logger.info("Triggering sql query");
+                    connection.query(query, function (error, rows, fields) {
+                        if (!!error) {
+                            logger.info("Error in the query");
+                        }
+                        else {
+                            logger.info("SUCCESS!");
+
+                            for(let i = 0; i < rows.length; i++) {
+                                let mapKey;
+                                let mapValue;
+
+                                for (let [key, value] of Object.entries(rows[i])) {
+                                    if(key === "Key") {
+                                        mapKey = value;
+                                    }
+                                    else {//if(key === "en") {
+                                        mapValue = value;
+                                    }
+                                }
+                                testDataMap.set(mapKey, mapValue);
+                            }
+                            connection.destroy();
+                            logger.info(`Automation Keys size --> ${testDataMap.size}`);
+                            resolve(testDataMap);
+                        }
+                    });
+                }
+            });
+        });
     }
 };

@@ -17,6 +17,20 @@ class MyHelper extends Helper {
     // remove if not used
   }
 
+  async getCookie(){
+    const browser = this.helpers['WebDriver'].browser;
+    let SAAS_TOKEN ;
+    return new Promise(async function(resolve, reject){
+     (await browser.getCookies()).forEach(async function(a)  {
+       if(a.name == "SAAS_COMMON_BASE_TOKEN_ID"){
+        SAAS_TOKEN = a.value;
+        resolve (SAAS_TOKEN);
+       }
+      });
+    })
+    
+  }
+
   // add custom methods here
   // If you need to access other helpers
   // use: this.helpers['helperName']
