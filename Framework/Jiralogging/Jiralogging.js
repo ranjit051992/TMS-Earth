@@ -2,13 +2,17 @@
 // https://www.npmjs.com/package/node-fetch
 const fetch = require('node-fetch');
 const assigneeMap = {
-  "iSource": "",
-  "iContract":"",
-  "iAnalyze":"",
-  "iSave":"",
-  "iManage":"",
+  "iSource": "rushabh.shah",
+  "iContract":"liji.vadassery",
+  "iAnalyze":"archana.maheshwari",
+  "iSave":"liji.vadassery",
+  "iManage":"liji.vadassery",
   "iPerform":"",
-  "eProc":"",
+  "eProc":"mahesh.chikane",
+  "CRMS" : "archana.maheshwari",
+  "SIM" : "srinivasa.jyothi",
+  "iRequest" : "",
+  "eInvoice" : "ram.samal"
   }
 // const {I} = inject();
 // let desc = `element not interactable\n(Session info: chrome=74.0.3729.108)\n(Driver info: chromedriver=2.43.600210\n(68dcf5eebde37173d4027fa8635e332711d2874a),platform=Windows NT 10.0.15063 x86_64)\nScenario Steps:\n I.click(\"//label[contains(text(),'Test Event')]\") at CreateEventFlow.checkTestEvent\n  at Object.onceWrapper (events.js:421:28)`
@@ -21,8 +25,8 @@ const bodyData = `{
           "key": "DDS"
        },
        "summary": "`+ScenarioName+` SCENARIO has failed from FEATURE `+FeatureName+`",
-       "components":[{"name": "`+process.env.PRRODUCT_COMPONENT+`"}],
-       "assignee": {"name": "`+process.env.ASSIGNEE || +`"},
+       "components":[{"name": "`+process.env.PRODUCT_COMPONENT+`"}],
+       "assignee": {"name": "`+process.env.ASSIGNEE || assigneeMap[process.env.PRODUCT]+`"},
        "description": "`+((errorStack.replace(/\\/g,"\\\\")).replace(/\"/g, "\\\"")).replace(/\n/g,"")+`",
        "issuetype": {
           "name": "Bug"
