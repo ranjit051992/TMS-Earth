@@ -21,7 +21,7 @@ const bodyData = `{
           "key": "DDS"
        },
        "summary": "`+ScenarioName+` SCENARIO has failed from FEATURE `+FeatureName+`",
-       "components":[{"name": "`+process.env.PRRODUCT_COMPONENT+`"}],
+       "components":[{"name": "`+process.env.PRODUCT_COMPONENT+`"}],
        "assignee": {"name": "`+process.env.ASSIGNEE || +`"},
        "description": "`+((errorStack.replace(/\\/g,"\\\\")).replace(/\"/g, "\\\"")).replace(/\n/g,"")+`",
        "issuetype": {
