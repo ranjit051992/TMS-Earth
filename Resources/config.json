@@ -121,12 +121,12 @@
         "uiElementTable": "iRequest_UI_Elements",
         "UserTable":"iRequest_credentials"
     },
-    "Home": {
-        "url": "https://dewdrops-qcvw.zycus.net/home/#/auth",
-        "SETUP": "QCVM",
-        "TENANT": "Eircom_QA",
+    "DD_Homes": {
+        "url": "https://dewdrops-partner.zycus.com",
+        "SETUP": "US_Staging",
+        "TENANT": "ZCS",
         "browser": "chrome",
-        "host": "192.168.15.227",
+        "host": "127.0.0.1",
         "restart": "false",
         "port": 4444,
         "windowSize": "maximize",
@@ -141,11 +141,14 @@
         "DBdatabase": "DD_Home_schema",
         "DBuser": "DDHome",
         "DBpassword": "ddhome@123",
-        "username": "eircom_supp@zycus.com",
-        "password": "Eproc@1234",
-        "testdataTable": "TestData_iRequest",
-        "uiElementTable": "iRequest_UI_Elements",
-        "UserTable":"iRequest_credentials"
+        "username": "admin.zcs@zycus.com",
+        "password": "MoHuHoNaJaK#10",
+        "testdataTable": "TestData_DD_Home",
+        "QCVM_uiElementTable": "DD_Home_UI_Elements",
+        "US_STAGING_uiElementTable": "DD_Home_UI_Elements",
+        "PARTNER_uiElementTable": "DD_Home_UI_Elements",
+        "AUS_STAGING_uiElementTable": "DD_Home_UI_Elements",
+        "UserTable":"Homes_credentials",
+        "JiraloggingFlag" : true
     }
-
 }

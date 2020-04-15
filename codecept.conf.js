@@ -4,6 +4,7 @@ const {startShareDataService} = require('./Share_data/startShareDataService');
 startShareDataService();
 addTimeStampToReport();
 parsing();
+require("./Framework/CustomHelper/eventListeners").init();
 const prop = global.confi_prop;
 global.lang = 'en';
 exports.config = {
