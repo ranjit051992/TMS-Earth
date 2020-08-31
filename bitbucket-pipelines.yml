@@ -1,0 +1,40 @@
+# This is a sample build configuration for Ruby.
+# Check our guides at https://confluence.atlassian.com/x/8r-5Mw for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: atlassian/default-image:2
+
+clone:
+  depth: 1
+
+pipelines:
+  default:
+      - step:
+          name: Push to jira
+          caches:
+            - bundler
+          script: # Modify the commands below to build your repository.
+            - npm install
+            - npx tsc
+            - node ./dist/Framework/fileOperations/importFeature.js
+
+      - step:
+          name: get from Jira
+          caches:
+            - bundler
+          script:
+            - npm install
+            - npx tsc
+            - node ./dist/Framework/fileOperations/fs_ops.js
+            - export status=$(git status -u)
+            - export SUB='nothing to commit'
+            - if [[ "$status" != *"$SUB"* ]]; then
+               echo "committing the changes pulled from JIRA";
+               git add -A;
+               git commit -m "Commiting tags from jira";
+               git push origin $BITBUCKET_BRANCH;
+               fi
+definitions:
+  caches:
+    bundler: ./vendor
