@@ -16,17 +16,11 @@ pipelines:
             - bundler
           script: # Modify the commands below to build your repository.
             - npm install
+            - npm install -g ts-node typescript
+            - git submodule update --init --recursive
+            - git submodule update --remote --recursive
             - npx tsc
-            - node ./dist/Framework/fileOperations/importFeature.js
-
-      - step:
-          name: get from Jira
-          caches:
-            - bundler
-          script:
-            - npm install
-            - npx tsc
-            - node ./dist/Framework/fileOperations/fs_ops.js
+            - ts-node ./src/COE_AUTOMATION/src/Framework/fileOperations/importFeature.ts
             - export status=$(git status -u)
             - export SUB='nothing to commit'
             - if [[ "$status" != *"$SUB"* ]]; then
@@ -35,6 +29,7 @@ pipelines:
                git commit -m "Commiting tags from jira";
                git push origin $BITBUCKET_BRANCH;
                fi
+               
 definitions:
   caches:
     bundler: ./vendor

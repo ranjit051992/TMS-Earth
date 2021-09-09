@@ -1,3 +1,0 @@
-module.exports = {
-    ITEM_NAME_FOR_SEARCHING: "ITEM_NAME_FOR_SEARCHING",
-}

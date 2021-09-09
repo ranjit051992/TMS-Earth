@@ -3,4 +3,6 @@
 /node_modules/allure-commandline/
 /node_modules/.bin
 /node_modules/
-settings.json
+/dist/TMS/
+/dist/Framework/
+debug.log

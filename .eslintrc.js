@@ -2,10 +2,10 @@ module.exports = {
   'env': {
     'browser': true,
     'commonjs': true,
-    'es6': true,
+    //'es6': true,
   },
   'extends': [
-    'google',
+    // 'google',
   ],
   'globals': {
     'Atomics': 'readonly',
@@ -13,34 +13,42 @@ module.exports = {
   },
   'parser': '@typescript-eslint/parser',
   'parserOptions': {
-    'ecmaVersion': 2018,
+    // "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true,
+      "jsx": true
+    }
   },
   'plugins': [
-    '@typescript-eslint',
+    'dd-eslint-rules', "unused-imports", "cucumber"
   ],
   'rules': {
-    strict : ['error', 'global'],
-    'multiline-comment-style': ['error', 'bare-block'],
-    'spaced-comment': ['error', 'always'],
-    semi: ['error', 'always'],
-    'semi-spacing': 'error',
-    'no-extra-semi': 'error',
-    'no-unexpected-multiline': 'error',
-    'max-len': ['error', {'ignoreStrings': true}],
-    'comma-style': ['error', 'last'],
-    'comma-dangle': ['error', 'always-multiline'],
-    indent: ['error', 2],
-    'space-infix-ops': 'error',
-    'space-before-blocks': 'error',
-    'brace-style': 'error',
-    'keyword-spacing': 'error',
-    'arrow-spacing': 'error',
-    'newline-per-chained-call': 'error',
-    'space-in-parens': ['error', 'never'],
-    'array-bracket-spacing': ['error', 'never'],
-    'object-curly-spacing': ['error', 'always'],
-    'comma-spacing': ['error', {'before': false, 'after': true}],
-    'no-multiple-empty-lines': ['error', {'max': 1, 'maxEOF': 1}],
-    quotes: ['error', 'double'],
+
+    "dd-eslint-rules/hard-coded-wait": ["warn"],
+    "dd-eslint-rules/I.actions-removal": ["warn"],
+    "dd-eslint-rules/dd-cc-zycus-automation-component-adoption": ["warn"],
+    "dd-eslint-rules/Startup-automation-component-adoption": ["warn"],
+    "dd-eslint-rules/Actionbot-automation-component-adoption": ["warn"],
+    "dd-eslint-rules/i18nUtil-LMT-automation-component-adoption": ["warn"],
+    "dd-eslint-rules/xpath-locators-inside-the_script": ["warn"],
+    "unused-imports/no-unused-imports": "warn",
+    "cucumber/async-then": "warn",
+    "require-await": "off",
+    "@typescript-eslint/require-await": "warn",
+    "dd-eslint-rules/wdio-in-codecept.config": "warn",
+    "dd-eslint-rules/z.waitForClickable_Should_NotbeUsed": "warn",
+    "dd-eslint-rules/z.waitForEnabled_Should_NotbeUsed": "warn",
+    "dd-eslint-rules/z.waitForVisible_Should_NotbeUsed": "warn"
   },
+  "overrides": [
+    {
+      "files": ["*.d.ts", "*Impl.ts"],
+      "rules": {
+
+        "dd-eslint-rules/Startup-automation-component-adoption": ["off"],
+
+      }
+    }
+  ]
 };

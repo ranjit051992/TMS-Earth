@@ -1,0 +1,1303 @@
+{
+    "ZSN": {
+        "dd-eslint-rules/Actionbot-automation-component-adoption": {
+            "threshold": 25,
+            "message": "component - Actionbot automation componenet not adopted",
+            "weightage": 20
+        },
+        "dd-eslint-rules/I.actions-removal": {
+            "threshold": 10,
+            "message": "user still using the I actions",
+            "weightage": 10
+        },
+        "dd-eslint-rules/hard-coded-wait": {
+            "threshold": 20,
+            "message": "User added hard coded wait",
+            "weightage": 13
+        },
+        "dd-eslint-rules/i18nUtil-LMT-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - i18nUtil LMT automation componenet not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/xpath-locators-inside-the_script": {
+            "threshold": 50,
+            "message": "****** xpath/CSS in the script ******",
+            "weightage": 10
+        },
+        "max-scenarios-per-file": {
+            "threshold": 50,
+            "message": "Number of scenarios exceeds maximum",
+            "weightage": 5
+        },
+        "z.waitForClickable_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForClickable should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForEnabled_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForEnabled should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForVisible_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForVisible should not be used in the scrit directly",
+            "weightage": 1
+        },
+        "no-background-only-scenario": {
+            "threshold": 0,
+            "message": "COE recommends not to use @Backgrounds in feature files.",
+            "weightage": 5
+        },
+        "require-await": {
+            "threshold": 50,
+            "message": "Async function has no 'await' expression.",
+            "weightage": 5
+        },
+        "use-and": {
+            "threshold": 0,
+            "message": "Step \"<Then > step\" should use <And> instead of <Then> ",
+            "weightage": 5
+        },
+        "use-then": {
+            "threshold": 0,
+            "message": "Step \"<Given > step\" should use <Then> instead of <Given> ",
+            "weightage": 10
+        },
+        "cucumber/async-then": {
+            "threshold": 0,
+            "message": "<Then> block implementation has issues",
+            "weightage": 0
+        },
+        "unused-imports/no-unused-imports": {
+            "threshold": 0,
+            "message": "<import variable> is defined but never used.",
+            "weightage": 0
+        },
+        "wdio-in-codecept.config": {
+            "threshold": 0,
+            "message": "wdio is there in the codecept.config file",
+            "weightage": 0
+        }
+    },
+    "iSupplier": {
+        "dd-eslint-rules/Actionbot-automation-component-adoption": {
+            "threshold": 45,
+            "message": "component - Actionbot automation componenet not adopted",
+            "weightage": 20
+        },
+        "dd-eslint-rules/I.actions-removal": {
+            "threshold": 10,
+            "message": "user still using the I actions",
+            "weightage": 5
+        },
+        "dd-eslint-rules/dd-cc-zycus-automation-component-adoption": {
+            "threshold": 100,
+            "message": "component - dd-cc-zycus-automation is not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/hard-coded-wait": {
+            "threshold": 20,
+            "message": "User added hard coded wait",
+            "weightage": 8
+        },
+        "dd-eslint-rules/i18nUtil-LMT-automation-component-adoption": {
+            "threshold": 95,
+            "message": "component - i18nUtil LMT automation componenet not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/xpath-locators-inside-the_script": {
+            "threshold": 0,
+            "message": "****** xpath/CSS in the script ******",
+            "weightage": 10
+        },
+        "max-scenarios-per-file": {
+            "threshold": 50,
+            "message": "Number of scenarios exceeds maximum",
+            "weightage": 5
+        },
+        "z.waitForClickable_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForClickable should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForEnabled_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForEnabled should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForVisible_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForVisible should not be used in the scrit directly",
+            "weightage": 1
+        },
+        "no-background-only-scenario": {
+            "threshold": 0,
+            "message": "COE recommends not to use @Backgrounds in feature files.",
+            "weightage": 5
+        },
+        "require-await": {
+            "threshold": 50,
+            "message": "Async function has no 'await' expression.",
+            "weightage": 5
+        },
+        "use-and": {
+            "threshold": 0,
+            "message": "Step \"<Then > step\" should use <And> instead of <Then> ",
+            "weightage": 5
+        },
+        "use-then": {
+            "threshold": 0,
+            "message": "Step \"<Given > step\" should use <Then> instead of <Given> ",
+            "weightage": 10
+        },
+        "cucumber/async-then": {
+            "threshold": 0,
+            "message": "<Then> block implementation has issues",
+            "weightage": 0
+        },
+        "unused-imports/no-unused-imports": {
+            "threshold": 0,
+            "message": "<import variable> is defined but never used.",
+            "weightage": 0
+        },
+        "wdio-in-codecept.config": {
+            "threshold": 0,
+            "message": "wdio is there in the codecept.config file",
+            "weightage": 2
+        }
+    },
+    "eInvoice": {
+        "dd-eslint-rules/Actionbot-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - Actionbot automation componenet not adopted",
+            "weightage": 20
+        },
+        "dd-eslint-rules/I.actions-removal": {
+            "threshold": 0,
+            "message": "user still using the I actions",
+            "weightage": 5
+        },
+        "dd-eslint-rules/dd-cc-zycus-automation-component-adoption": {
+            "threshold": 10,
+            "message": "component - dd-cc-zycus-automation is not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/hard-coded-wait": {
+            "threshold": 20,
+            "message": "User added hard coded wait",
+            "weightage": 8
+        },
+        "dd-eslint-rules/i18nUtil-LMT-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - i18nUtil LMT automation componenet not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/xpath-locators-inside-the_script": {
+            "threshold": 0,
+            "message": "****** xpath/CSS in the script ******",
+            "weightage": 10
+        },
+        "max-scenarios-per-file": {
+            "threshold": 50,
+            "message": "Number of scenarios exceeds maximum",
+            "weightage": 5
+        },
+        "z.waitForClickable_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForClickable should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForEnabled_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForEnabled should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForVisible_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForVisible should not be used in the scrit directly",
+            "weightage": 1
+        },
+        "no-background-only-scenario": {
+            "threshold": 0,
+            "message": "COE recommends not to use @Backgrounds in feature files.",
+            "weightage": 5
+        },
+        "require-await": {
+            "threshold": 50,
+            "message": "Async function has no 'await' expression.",
+            "weightage": 5
+        },
+        "use-and": {
+            "threshold": 0,
+            "message": "Step \"<Then > step\" should use <And> instead of <Then> ",
+            "weightage": 5
+        },
+        "use-then": {
+            "threshold": 0,
+            "message": "Step \"<Given > step\" should use <Then> instead of <Given> ",
+            "weightage": 10
+        },
+        "cucumber/async-then": {
+            "threshold": 0,
+            "message": "<Then> block implementation has issues",
+            "weightage": 0
+        },
+        "unused-imports/no-unused-imports": {
+            "threshold": 0,
+            "message": "<import variable> is defined but never used.",
+            "weightage": 0
+        },
+        "wdio-in-codecept.config": {
+            "threshold": 0,
+            "message": "wdio is there in the codecept.config file",
+            "weightage": 2
+        }
+    },
+    "iRequest": {
+        "dd-eslint-rules/Actionbot-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - Actionbot automation componenet not adopted",
+            "weightage": 20
+        },
+        "dd-eslint-rules/I.actions-removal": {
+            "threshold": 0,
+            "message": "user still using the I actions",
+            "weightage": 5
+        },
+        "dd-eslint-rules/dd-cc-zycus-automation-component-adoption": {
+            "threshold": 10,
+            "message": "component - dd-cc-zycus-automation is not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/hard-coded-wait": {
+            "threshold": 20,
+            "message": "User added hard coded wait",
+            "weightage": 8
+        },
+        "dd-eslint-rules/i18nUtil-LMT-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - i18nUtil LMT automation componenet not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/xpath-locators-inside-the_script": {
+            "threshold": 0,
+            "message": "****** xpath/CSS in the script ******",
+            "weightage": 10
+        },
+        "max-scenarios-per-file": {
+            "threshold": 50,
+            "message": "Number of scenarios exceeds maximum",
+            "weightage": 5
+        },
+        "z.waitForClickable_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForClickable should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForEnabled_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForEnabled should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForVisible_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForVisible should not be used in the scrit directly",
+            "weightage": 1
+        },
+        "no-background-only-scenario": {
+            "threshold": 0,
+            "message": "COE recommends not to use @Backgrounds in feature files.",
+            "weightage": 5
+        },
+        "require-await": {
+            "threshold": 50,
+            "message": "Async function has no 'await' expression.",
+            "weightage": 5
+        },
+        "use-and": {
+            "threshold": 0,
+            "message": "Step \"<Then > step\" should use <And> instead of <Then> ",
+            "weightage": 5
+        },
+        "use-then": {
+            "threshold": 0,
+            "message": "Step \"<Given > step\" should use <Then> instead of <Given> ",
+            "weightage": 10
+        },
+        "cucumber/async-then": {
+            "threshold": 0,
+            "message": "<Then> block implementation has issues",
+            "weightage": 0
+        },
+        "unused-imports/no-unused-imports": {
+            "threshold": 0,
+            "message": "<import variable> is defined but never used.",
+            "weightage": 0
+        },
+        "wdio-in-codecept.config": {
+            "threshold": 0,
+            "message": "wdio is there in the codecept.config file",
+            "weightage": 2
+        }
+    },
+    "iSource": {
+        "dd-eslint-rules/Actionbot-automation-component-adoption": {
+            "threshold": 150,
+            "message": "component - Actionbot automation componenet not adopted",
+            "weightage": 20
+        },
+        "dd-eslint-rules/I.actions-removal": {
+            "threshold": 0,
+            "message": "user still using the I actions",
+            "weightage": 5
+        },
+        "dd-eslint-rules/dd-cc-zycus-automation-component-adoption": {
+            "threshold": 150,
+            "message": "component - dd-cc-zycus-automation is not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/hard-coded-wait": {
+            "threshold": 20,
+            "message": "User added hard coded wait",
+            "weightage": 8
+        },
+        "dd-eslint-rules/i18nUtil-LMT-automation-component-adoption": {
+            "threshold": 150,
+            "message": "component - i18nUtil LMT automation componenet not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/xpath-locators-inside-the_script": {
+            "threshold": 0,
+            "message": "****** xpath/CSS in the script ******",
+            "weightage": 10
+        },
+        "max-scenarios-per-file": {
+            "threshold": 50,
+            "message": "Number of scenarios exceeds maximum",
+            "weightage": 5
+        },
+        "z.waitForClickable_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForClickable should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForEnabled_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForEnabled should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForVisible_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForVisible should not be used in the scrit directly",
+            "weightage": 1
+        },
+        "no-background-only-scenario": {
+            "threshold": 0,
+            "message": "COE recommends not to use @Backgrounds in feature files.",
+            "weightage": 5
+        },
+        "require-await": {
+            "threshold": 50,
+            "message": "Async function has no 'await' expression.",
+            "weightage": 5
+        },
+        "use-and": {
+            "threshold": 0,
+            "message": "Step \"<Then > step\" should use <And> instead of <Then> ",
+            "weightage": 5
+        },
+        "use-then": {
+            "threshold": 0,
+            "message": "Step \"<Given > step\" should use <Then> instead of <Given> ",
+            "weightage": 10
+        },
+        "cucumber/async-then": {
+            "threshold": 0,
+            "message": "<Then> block implementation has issues",
+            "weightage": 0
+        },
+        "unused-imports/no-unused-imports": {
+            "threshold": 0,
+            "message": "<import variable> is defined but never used.",
+            "weightage": 0
+        },
+        "wdio-in-codecept.config": {
+            "threshold": 0,
+            "message": "wdio is there in the codecept.config file",
+            "weightage": 2
+        }
+    },
+    "iPerform": {
+        "dd-eslint-rules/Actionbot-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - Actionbot automation componenet not adopted",
+            "weightage": 20
+        },
+        "dd-eslint-rules/I.actions-removal": {
+            "threshold": 0,
+            "message": "user still using the I actions",
+            "weightage": 5
+        },
+        "dd-eslint-rules/dd-cc-zycus-automation-component-adoption": {
+            "threshold": 10,
+            "message": "component - dd-cc-zycus-automation is not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/hard-coded-wait": {
+            "threshold": 20,
+            "message": "User added hard coded wait",
+            "weightage": 8
+        },
+        "dd-eslint-rules/i18nUtil-LMT-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - i18nUtil LMT automation componenet not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/xpath-locators-inside-the_script": {
+            "threshold": 0,
+            "message": "****** xpath/CSS in the script ******",
+            "weightage": 10
+        },
+        "max-scenarios-per-file": {
+            "threshold": 50,
+            "message": "Number of scenarios exceeds maximum",
+            "weightage": 5
+        },
+        "z.waitForClickable_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForClickable should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForEnabled_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForEnabled should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForVisible_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForVisible should not be used in the scrit directly",
+            "weightage": 1
+        },
+        "no-background-only-scenario": {
+            "threshold": 0,
+            "message": "COE recommends not to use @Backgrounds in feature files.",
+            "weightage": 5
+        },
+        "require-await": {
+            "threshold": 50,
+            "message": "Async function has no 'await' expression.",
+            "weightage": 5
+        },
+        "use-and": {
+            "threshold": 0,
+            "message": "Step \"<Then > step\" should use <And> instead of <Then> ",
+            "weightage": 5
+        },
+        "use-then": {
+            "threshold": 0,
+            "message": "Step \"<Given > step\" should use <Then> instead of <Given> ",
+            "weightage": 10
+        },
+        "cucumber/async-then": {
+            "threshold": 0,
+            "message": "<Then> block implementation has issues",
+            "weightage": 0
+        },
+        "unused-imports/no-unused-imports": {
+            "threshold": 0,
+            "message": "<import variable> is defined but never used.",
+            "weightage": 0
+        },
+        "wdio-in-codecept.config": {
+            "threshold": 0,
+            "message": "wdio is there in the codecept.config file",
+            "weightage": 2
+        }
+    },
+    "CRMS": {
+        "dd-eslint-rules/Actionbot-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - Actionbot automation componenet not adopted",
+            "weightage": 20
+        },
+        "dd-eslint-rules/I.actions-removal": {
+            "threshold": 0,
+            "message": "user still using the I actions",
+            "weightage": 5
+        },
+        "dd-eslint-rules/dd-cc-zycus-automation-component-adoption": {
+            "threshold": 10,
+            "message": "component - dd-cc-zycus-automation is not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/hard-coded-wait": {
+            "threshold": 20,
+            "message": "User added hard coded wait",
+            "weightage": 8
+        },
+        "dd-eslint-rules/i18nUtil-LMT-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - i18nUtil LMT automation componenet not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/xpath-locators-inside-the_script": {
+            "threshold": 0,
+            "message": "****** xpath/CSS in the script ******",
+            "weightage": 10
+        },
+        "max-scenarios-per-file": {
+            "threshold": 50,
+            "message": "Number of scenarios exceeds maximum",
+            "weightage": 5
+        },
+        "z.waitForClickable_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForClickable should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForEnabled_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForEnabled should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForVisible_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForVisible should not be used in the scrit directly",
+            "weightage": 1
+        },
+        "no-background-only-scenario": {
+            "threshold": 0,
+            "message": "COE recommends not to use @Backgrounds in feature files.",
+            "weightage": 5
+        },
+        "require-await": {
+            "threshold": 50,
+            "message": "Async function has no 'await' expression.",
+            "weightage": 5
+        },
+        "use-and": {
+            "threshold": 0,
+            "message": "Step \"<Then > step\" should use <And> instead of <Then> ",
+            "weightage": 5
+        },
+        "use-then": {
+            "threshold": 0,
+            "message": "Step \"<Given > step\" should use <Then> instead of <Given> ",
+            "weightage": 10
+        },
+        "cucumber/async-then": {
+            "threshold": 0,
+            "message": "<Then> block implementation has issues",
+            "weightage": 0
+        },
+        "unused-imports/no-unused-imports": {
+            "threshold": 0,
+            "message": "<import variable> is defined but never used.",
+            "weightage": 0
+        },
+        "wdio-in-codecept.config": {
+            "threshold": 0,
+            "message": "wdio is there in the codecept.config file",
+            "weightage": 2
+        }
+    },
+    "iSave": {
+        "dd-eslint-rules/Actionbot-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - Actionbot automation componenet not adopted",
+            "weightage": 20
+        },
+        "dd-eslint-rules/I.actions-removal": {
+            "threshold": 15,
+            "message": "user still using the I actions",
+            "weightage": 5
+        },
+        "dd-eslint-rules/dd-cc-zycus-automation-component-adoption": {
+            "threshold": 10,
+            "message": "component - dd-cc-zycus-automation is not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/hard-coded-wait": {
+            "threshold": 20,
+            "message": "User added hard coded wait",
+            "weightage": 8
+        },
+        "dd-eslint-rules/i18nUtil-LMT-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - i18nUtil LMT automation componenet not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/xpath-locators-inside-the_script": {
+            "threshold": 0,
+            "message": "****** xpath/CSS in the script ******",
+            "weightage": 10
+        },
+        "max-scenarios-per-file": {
+            "threshold": 50,
+            "message": "Number of scenarios exceeds maximum",
+            "weightage": 5
+        },
+        "z.waitForClickable_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForClickable should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForEnabled_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForEnabled should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForVisible_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForVisible should not be used in the scrit directly",
+            "weightage": 1
+        },
+        "no-background-only-scenario": {
+            "threshold": 0,
+            "message": "COE recommends not to use @Backgrounds in feature files.",
+            "weightage": 5
+        },
+        "require-await": {
+            "threshold": 50,
+            "message": "Async function has no 'await' expression.",
+            "weightage": 5
+        },
+        "use-and": {
+            "threshold": 0,
+            "message": "Step \"<Then > step\" should use <And> instead of <Then> ",
+            "weightage": 5
+        },
+        "use-then": {
+            "threshold": 0,
+            "message": "Step \"<Given > step\" should use <Then> instead of <Given> ",
+            "weightage": 10
+        },
+        "cucumber/async-then": {
+            "threshold": 0,
+            "message": "<Then> block implementation has issues",
+            "weightage": 0
+        },
+        "unused-imports/no-unused-imports": {
+            "threshold": 0,
+            "message": "<import variable> is defined but never used.",
+            "weightage": 0
+        },
+        "wdio-in-codecept.config": {
+            "threshold": 0,
+            "message": "wdio is there in the codecept.config file",
+            "weightage": 2
+        }
+    },
+    "iAnalyze": {
+        "dd-eslint-rules/Actionbot-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - Actionbot automation componenet not adopted",
+            "weightage": 20
+        },
+        "dd-eslint-rules/I.actions-removal": {
+            "threshold": 0,
+            "message": "user still using the I actions",
+            "weightage": 5
+        },
+        "dd-eslint-rules/dd-cc-zycus-automation-component-adoption": {
+            "threshold": 10,
+            "message": "component - dd-cc-zycus-automation is not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/hard-coded-wait": {
+            "threshold": 20,
+            "message": "User added hard coded wait",
+            "weightage": 8
+        },
+        "dd-eslint-rules/i18nUtil-LMT-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - i18nUtil LMT automation componenet not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/xpath-locators-inside-the_script": {
+            "threshold": 0,
+            "message": "****** xpath/CSS in the script ******",
+            "weightage": 10
+        },
+        "max-scenarios-per-file": {
+            "threshold": 50,
+            "message": "Number of scenarios exceeds maximum",
+            "weightage": 5
+        },
+        "z.waitForClickable_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForClickable should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForEnabled_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForEnabled should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForVisible_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForVisible should not be used in the scrit directly",
+            "weightage": 1
+        },
+        "no-background-only-scenario": {
+            "threshold": 0,
+            "message": "COE recommends not to use @Backgrounds in feature files.",
+            "weightage": 5
+        },
+        "require-await": {
+            "threshold": 50,
+            "message": "Async function has no 'await' expression.",
+            "weightage": 5
+        },
+        "use-and": {
+            "threshold": 0,
+            "message": "Step \"<Then > step\" should use <And> instead of <Then> ",
+            "weightage": 5
+        },
+        "use-then": {
+            "threshold": 0,
+            "message": "Step \"<Given > step\" should use <Then> instead of <Given> ",
+            "weightage": 10
+        },
+        "cucumber/async-then": {
+            "threshold": 0,
+            "message": "<Then> block implementation has issues",
+            "weightage": 0
+        },
+        "unused-imports/no-unused-imports": {
+            "threshold": 0,
+            "message": "<import variable> is defined but never used.",
+            "weightage": 0
+        },
+        "wdio-in-codecept.config": {
+            "threshold": 0,
+            "message": "wdio is there in the codecept.config file",
+            "weightage": 2
+        }
+    },
+    "eProc": {
+        "dd-eslint-rules/Actionbot-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - Actionbot automation componenet not adopted",
+            "weightage": 20
+        },
+        "dd-eslint-rules/I.actions-removal": {
+            "threshold": 0,
+            "message": "user still using the I actions",
+            "weightage": 5
+        },
+        "dd-eslint-rules/dd-cc-zycus-automation-component-adoption": {
+            "threshold": 10,
+            "message": "component - dd-cc-zycus-automation is not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/hard-coded-wait": {
+            "threshold": 20,
+            "message": "User added hard coded wait",
+            "weightage": 8
+        },
+        "dd-eslint-rules/i18nUtil-LMT-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - i18nUtil LMT automation componenet not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/xpath-locators-inside-the_script": {
+            "threshold": 0,
+            "message": "****** xpath/CSS in the script ******",
+            "weightage": 10
+        },
+        "max-scenarios-per-file": {
+            "threshold": 50,
+            "message": "Number of scenarios exceeds maximum",
+            "weightage": 5
+        },
+        "z.waitForClickable_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForClickable should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForEnabled_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForEnabled should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForVisible_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForVisible should not be used in the scrit directly",
+            "weightage": 1
+        },
+        "no-background-only-scenario": {
+            "threshold": 0,
+            "message": "COE recommends not to use @Backgrounds in feature files.",
+            "weightage": 5
+        },
+        "require-await": {
+            "threshold": 50,
+            "message": "Async function has no 'await' expression.",
+            "weightage": 5
+        },
+        "use-and": {
+            "threshold": 0,
+            "message": "Step \"<Then > step\" should use <And> instead of <Then> ",
+            "weightage": 5
+        },
+        "use-then": {
+            "threshold": 0,
+            "message": "Step \"<Given > step\" should use <Then> instead of <Given> ",
+            "weightage": 10
+        },
+        "cucumber/async-then": {
+            "threshold": 0,
+            "message": "<Then> block implementation has issues",
+            "weightage": 0
+        },
+        "unused-imports/no-unused-imports": {
+            "threshold": 0,
+            "message": "<import variable> is defined but never used.",
+            "weightage": 0
+        },
+        "wdio-in-codecept.config": {
+            "threshold": 0,
+            "message": "wdio is there in the codecept.config file",
+            "weightage": 2
+        }
+    },
+    "DD_Homes": {
+        "dd-eslint-rules/Actionbot-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - Actionbot automation componenet not adopted",
+            "weightage": 20
+        },
+        "dd-eslint-rules/I.actions-removal": {
+            "threshold": 25,
+            "message": "user still using the I actions",
+            "weightage": 5
+        },
+        "dd-eslint-rules/dd-cc-zycus-automation-component-adoption": {
+            "threshold": 10,
+            "message": "component - dd-cc-zycus-automation is not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/hard-coded-wait": {
+            "threshold": 20,
+            "message": "User added hard coded wait",
+            "weightage": 8
+        },
+        "dd-eslint-rules/i18nUtil-LMT-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - i18nUtil LMT automation componenet not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/xpath-locators-inside-the_script": {
+            "threshold": 5,
+            "message": "****** xpath/CSS in the script ******",
+            "weightage": 10
+        },
+        "max-scenarios-per-file": {
+            "threshold": 50,
+            "message": "Number of scenarios exceeds maximum",
+            "weightage": 5
+        },
+        "z.waitForClickable_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForClickable should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForEnabled_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForEnabled should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForVisible_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForVisible should not be used in the scrit directly",
+            "weightage": 1
+        },
+        "no-background-only-scenario": {
+            "threshold": 0,
+            "message": "COE recommends not to use @Backgrounds in feature files.",
+            "weightage": 5
+        },
+        "require-await": {
+            "threshold": 50,
+            "message": "Async function has no 'await' expression.",
+            "weightage": 5
+        },
+        "use-and": {
+            "threshold": 0,
+            "message": "Step \"<Then > step\" should use <And> instead of <Then> ",
+            "weightage": 5
+        },
+        "use-then": {
+            "threshold": 0,
+            "message": "Step \"<Given > step\" should use <Then> instead of <Given> ",
+            "weightage": 10
+        },
+        "cucumber/async-then": {
+            "threshold": 0,
+            "message": "<Then> block implementation has issues",
+            "weightage": 0
+        },
+        "unused-imports/no-unused-imports": {
+            "threshold": 0,
+            "message": "<import variable> is defined but never used.",
+            "weightage": 0
+        },
+        "wdio-in-codecept.config": {
+            "threshold": 0,
+            "message": "wdio is there in the codecept.config file",
+            "weightage": 2
+        }
+    },
+    "iManage": {
+        "dd-eslint-rules/Actionbot-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - Actionbot automation componenet not adopted",
+            "weightage": 20
+        },
+        "dd-eslint-rules/I.actions-removal": {
+            "threshold": 10,
+            "message": "user still using the I actions",
+            "weightage": 5
+        },
+        "dd-eslint-rules/dd-cc-zycus-automation-component-adoption": {
+            "threshold": 10,
+            "message": "component - dd-cc-zycus-automation is not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/hard-coded-wait": {
+            "threshold": 20,
+            "message": "User added hard coded wait",
+            "weightage": 8
+        },
+        "dd-eslint-rules/i18nUtil-LMT-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - i18nUtil LMT automation componenet not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/xpath-locators-inside-the_script": {
+            "threshold": 0,
+            "message": "****** xpath/CSS in the script ******",
+            "weightage": 10
+        },
+        "max-scenarios-per-file": {
+            "threshold": 50,
+            "message": "Number of scenarios exceeds maximum",
+            "weightage": 5
+        },
+        "z.waitForClickable_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForClickable should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForEnabled_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForEnabled should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForVisible_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForVisible should not be used in the scrit directly",
+            "weightage": 1
+        },
+        "no-background-only-scenario": {
+            "threshold": 0,
+            "message": "COE recommends not to use @Backgrounds in feature files.",
+            "weightage": 5
+        },
+        "require-await": {
+            "threshold": 50,
+            "message": "Async function has no 'await' expression.",
+            "weightage": 5
+        },
+        "use-and": {
+            "threshold": 0,
+            "message": "Step \"<Then > step\" should use <And> instead of <Then> ",
+            "weightage": 5
+        },
+        "use-then": {
+            "threshold": 0,
+            "message": "Step \"<Given > step\" should use <Then> instead of <Given> ",
+            "weightage": 10
+        },
+        "cucumber/async-then": {
+            "threshold": 0,
+            "message": "<Then> block implementation has issues",
+            "weightage": 0
+        },
+        "unused-imports/no-unused-imports": {
+            "threshold": 0,
+            "message": "<import variable> is defined but never used.",
+            "weightage": 0
+        },
+        "wdio-in-codecept.config": {
+            "threshold": 0,
+            "message": "wdio is there in the codecept.config file",
+            "weightage": 2
+        }
+    },
+    "iContract": {
+        "dd-eslint-rules/Actionbot-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - Actionbot automation componenet not adopted",
+            "weightage": 20
+        },
+        "dd-eslint-rules/I.actions-removal": {
+            "threshold": 30,
+            "message": "user still using the I actions",
+            "weightage": 5
+        },
+        "dd-eslint-rules/dd-cc-zycus-automation-component-adoption": {
+            "threshold": 10,
+            "message": "component - dd-cc-zycus-automation is not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/hard-coded-wait": {
+            "threshold": 20,
+            "message": "User added hard coded wait",
+            "weightage": 8
+        },
+        "dd-eslint-rules/i18nUtil-LMT-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - i18nUtil LMT automation componenet not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/xpath-locators-inside-the_script": {
+            "threshold": 0,
+            "message": "****** xpath/CSS in the script ******",
+            "weightage": 10
+        },
+        "max-scenarios-per-file": {
+            "threshold": 50,
+            "message": "Number of scenarios exceeds maximum",
+            "weightage": 5
+        },
+        "z.waitForClickable_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForClickable should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForEnabled_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForEnabled should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForVisible_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForVisible should not be used in the scrit directly",
+            "weightage": 1
+        },
+        "no-background-only-scenario": {
+            "threshold": 0,
+            "message": "COE recommends not to use @Backgrounds in feature files.",
+            "weightage": 5
+        },
+        "require-await": {
+            "threshold": 50,
+            "message": "Async function has no 'await' expression.",
+            "weightage": 5
+        },
+        "use-and": {
+            "threshold": 0,
+            "message": "Step \"<Then > step\" should use <And> instead of <Then> ",
+            "weightage": 5
+        },
+        "use-then": {
+            "threshold": 0,
+            "message": "Step \"<Given > step\" should use <Then> instead of <Given> ",
+            "weightage": 10
+        },
+        "cucumber/async-then": {
+            "threshold": 0,
+            "message": "<Then> block implementation has issues",
+            "weightage": 0
+        },
+        "unused-imports/no-unused-imports": {
+            "threshold": 0,
+            "message": "<import variable> is defined but never used.",
+            "weightage": 0
+        },
+        "wdio-in-codecept.config": {
+            "threshold": 0,
+            "message": "wdio is there in the codecept.config file",
+            "weightage": 2
+        }
+    },
+    "TMS": {
+        "dd-eslint-rules/Actionbot-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - Actionbot automation componenet not adopted",
+            "weightage": 20
+        },
+        "dd-eslint-rules/I.actions-removal": {
+            "threshold": 0,
+            "message": "user still using the I actions",
+            "weightage": 5
+        },
+        "dd-eslint-rules/dd-cc-zycus-automation-component-adoption": {
+            "threshold": 10,
+            "message": "component - dd-cc-zycus-automation is not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/hard-coded-wait": {
+            "threshold": 20,
+            "message": "User added hard coded wait",
+            "weightage": 8
+        },
+        "dd-eslint-rules/i18nUtil-LMT-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - i18nUtil LMT automation componenet not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/xpath-locators-inside-the_script": {
+            "threshold": 0,
+            "message": "****** xpath/CSS in the script ******",
+            "weightage": 10
+        },
+        "max-scenarios-per-file": {
+            "threshold": 50,
+            "message": "Number of scenarios exceeds maximum",
+            "weightage": 5
+        },
+        "z.waitForClickable_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForClickable should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForEnabled_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForEnabled should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForVisible_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForVisible should not be used in the scrit directly",
+            "weightage": 1
+        },
+        "no-background-only-scenario": {
+            "threshold": 0,
+            "message": "COE recommends not to use @Backgrounds in feature files.",
+            "weightage": 5
+        },
+        "require-await": {
+            "threshold": 50,
+            "message": "Async function has no 'await' expression.",
+            "weightage": 5
+        },
+        "use-and": {
+            "threshold": 0,
+            "message": "Step \"<Then > step\" should use <And> instead of <Then> ",
+            "weightage": 5
+        },
+        "use-then": {
+            "threshold": 0,
+            "message": "Step \"<Given > step\" should use <Then> instead of <Given> ",
+            "weightage": 10
+        },
+        "cucumber/async-then": {
+            "threshold": 0,
+            "message": "<Then> block implementation has issues",
+            "weightage": 0
+        },
+        "unused-imports/no-unused-imports": {
+            "threshold": 0,
+            "message": "<import variable> is defined but never used.",
+            "weightage": 0
+        },
+        "wdio-in-codecept.config": {
+            "threshold": 0,
+            "message": "wdio is there in the codecept.config file",
+            "weightage": 2
+        }
+    },
+    
+    "LMT": {
+        "dd-eslint-rules/Actionbot-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - Actionbot automation componenet not adopted",
+            "weightage": 20
+        },
+        "dd-eslint-rules/I.actions-removal": {
+            "threshold": 0,
+            "message": "user still using the I actions",
+            "weightage": 5
+        },
+        "dd-eslint-rules/dd-cc-zycus-automation-component-adoption": {
+            "threshold": 10,
+            "message": "component - dd-cc-zycus-automation is not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/hard-coded-wait": {
+            "threshold": 20,
+            "message": "User added hard coded wait",
+            "weightage": 8
+        },
+        "dd-eslint-rules/i18nUtil-LMT-automation-component-adoption": {
+            "threshold": 0,
+            "message": "component - i18nUtil LMT automation componenet not adopted",
+            "weightage": 10
+        },
+        "dd-eslint-rules/xpath-locators-inside-the_script": {
+            "threshold": 0,
+            "message": "****** xpath/CSS in the script ******",
+            "weightage": 10
+        },
+        "max-scenarios-per-file": {
+            "threshold": 50,
+            "message": "Number of scenarios exceeds maximum",
+            "weightage": 5
+        },
+        "z.waitForClickable_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForClickable should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForEnabled_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForEnabled should not be used in the scrit directly",
+            "weightage": 2
+        },
+        "z.waitForVisible_Should_NotbeUsed": {
+            "threshold": 20,
+            "message": "Z.waitForVisible should not be used in the scrit directly",
+            "weightage": 1
+        },
+        "no-background-only-scenario": {
+            "threshold": 0,
+            "message": "COE recommends not to use @Backgrounds in feature files.",
+            "weightage": 5
+        },
+        "require-await": {
+            "threshold": 50,
+            "message": "Async function has no 'await' expression.",
+            "weightage": 5
+        },
+        "use-and": {
+            "threshold": 0,
+            "message": "Step \"<Then > step\" should use <And> instead of <Then> ",
+            "weightage": 5
+        },
+        "use-then": {
+            "threshold": 0,
+            "message": "Step \"<Given > step\" should use <Then> instead of <Given> ",
+            "weightage": 10
+        },
+        "cucumber/async-then": {
+            "threshold": 0,
+            "message": "<Then> block implementation has issues",
+            "weightage": 0
+        },
+        "unused-imports/no-unused-imports": {
+            "threshold": 0,
+            "message": "<import variable> is defined but never used.",
+            "weightage": 0
+        },
+        "wdio-in-codecept.config": {
+            "threshold": 0,
+            "message": "wdio is there in the codecept.config file",
+            "weightage": 2
+        }
+    }
+}

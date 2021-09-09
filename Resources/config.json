@@ -1,23 +1,23 @@
 {
-    "eProc": {
-        "url": "https://dewdrops-partner.zycus.com/home/#",
+    "TMS": {
+        "url": "https://dewdrops-qcvw.zycus.net/home/#/auth",
         "browser": "chrome",
-        "host": "192.168.7.57",
+        "host": "127.0.0.1",
         "restart": "false",
         "port": 4444,
         "windowSize": "maximize",
         "stepFilePath": "./steps_file",
         "projectName": "BDD_UI_Automation",
-        "UserTable": "eProc_credentials",
-        "testdataTable": "TestData_eproc",
+        "UserTable": "TMS_credentials",
+        "testdataTable": "TestData_TMS",
         "DBhost": "192.168.5.221",
         "DBdatabase": "Gauge_schema",
         "DBuser": "gauge.poc",
         "DBpassword": "gauge@123",
 
   
-        "SETUP": "STAGING",
-        "TENANT": "ZCS",
+        "SETUP": "QC",
+        "TENANT": "SpaceX",
         "LOGIN_WITH_PASSWORD_MANAGER": false,
         "isCoa": false,
         "runOnGrid": false,
@@ -30,14 +30,19 @@
         "CONDITIONAL_WAIT": "120",
 
  
-        "uiElementTable": "eProc_UI_Elements",
+        "uiElementTable": "TMS_UI_Elements",
+        "RM_uiElementTable": "RM_TMS_UI_Elements",
         "DEV_uiElementTable": "Dev_eProc_UI_Elements",
         "QC_uiElementTable": "Dev_eProc_UI_Elements",
         "SIT_uiElementTable": "Prod_eProc_UI_Elements",
         "SPEEDY_uiElementTable": "Stage_eProc_UI_Elements",
         "PARTNER_uiElementTable": "Stage_eProc_UI_Elements",
         "STAGING_uiElementTable": "Stage_eProc_UI_Elements",
-        "PROD_uiElementTable": "Prod_eProc_UI_Elements"
+        "PROD_uiElementTable": "Prod_eProc_UI_Elements",
+        "AUS_PROD_uiElementTable":"Prod_eProc_UI_Elements",
+        "SG_PROD_uiElementTable":"TMS_UI_Elements",
+        "US_PROD_uiElementTable":"Prod_eProc_UI_Elements",
+        "DSSO_US_PROD_uiElementTable":"Prod_eProc_UI_Elements"
 
     },
 

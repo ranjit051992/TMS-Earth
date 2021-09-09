@@ -14,10 +14,8 @@
     "cucumberautocomplete.onTypeFormat": true,
     "cucumberautocomplete.steps": [
         "./eProc/implementation/**/*.js",
-        "./iContract/implementation/**/*.js",
-        "./eInvoice/implementation/**/*.js",
-        "./iRequest/implementation/**/*.js"
+        "./src/TMS/implementation/**/*.ts", 
     ],
-    "cucumberautocomplete.syncfeatures": ["./Contract/feature/*.feature","./eProc/features/**/*.feature","./eInvoice/features/**/*.feature","./iRequest/features/**/*.feature"],
+    "cucumberautocomplete.syncfeatures": ["./src/TMS/feature/*.feature"],
     "cucumberautocomplete.strictGherkinCompletion": true
 }

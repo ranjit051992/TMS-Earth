@@ -1,0 +1,202 @@
+[
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\Approval\\BpoApproval.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\Approval\\ReqApproval.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\Approval\\SpoApproval.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\BuyersDesk\\RequisitionView.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\BuyersDesk\\BuyersDesk.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\BuyersDesk\\UpcomingRequisition.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\PO\\BPO\\BPOListing.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\PO\\BPO\\CreateBOR.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\PO\\SPO\\AmendSpo.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\PO\\BPO\\CreateBPO.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\PO\\SPO\\CreateSpo.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\PO\\SPO\\DraftSpo.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\PO\\SPO\\SpoListing.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\Receipt\\POToReceipt.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\Receipt\\PRToReceipt.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\Requisition\\Checkout\\DraftPR.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\Requisition\\Checkout\\Checkout.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\Requisition\\Checkout\\CreatePR.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\Requisition\\Checkout\\PRListing.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\Requisition\\OnlineStore\\SearchItems.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\ReturnNote\\PRToReturnNote.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\eProc\\features\\ReturnNote\\POToReturnNote.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\DSSO\\ADFS.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\AuditTrail\\AuditTrail.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\Company\\CreateCompany.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\Impersonation\\Impersonation.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\DSSO\\ExpectionCase.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\Impersonation\\VerifyImpersonation.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\DSSO\\Okta.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\login\\login.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\ImportAndExport\\RoleExport.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\ManageEmailPreference\\ManageEmailPreference.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\ImportAndExport\\UserExport.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\Master Items Tab\\MasterItemTab.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\Role\\CreateRole.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\Reports\\AccessDefaultReports.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\Reports\\CreateReport.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\Product\\CreateProduct.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\Settings\\DisplaySettings.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\Settings\\SecurityPolicy.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\Users\\EditUser.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\UserGroup\\UserGroup.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\Users\\UserListing.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\Users\\CreateUser.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\UserProfile_Classic\\UserProfile.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\ZycusAdmin\\ZA_Access_AllReports.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\ZycusAdmin\\ZA_AccessTabs.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\Users\\Users.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\ZycusAdmin\\ZA_ReportCreation.feature",
+        "errors": []
+    },
+    {
+        "filePath": "D:\\Automation UI TS\\Json Migration QCVM\\dd-ui-automation\\src\\TMS\\features\\ZycusAdmin\\ZA_RoleMgmt.feature",
+        "errors": []
+    }
+]

@@ -1,6 +1,8 @@
 const ncp = require('ncp').ncp
 const { readdirSync } = require('fs')
+//const { tearDownAll } = require('./dist/Framework/FrameworkUtilities/Bootstrap/teardownAll.js')
 const outputPath = './output/'
+
 
 const getDirectories = (source) =>
   readdirSync(source, { withFileTypes: true })
@@ -9,7 +11,7 @@ const getDirectories = (source) =>
 
 const allFodlers = getDirectories(outputPath)
 
-module.exports = function() {
+module.exports = async function() {
   for (const folder of allFodlers) {
     ncp.limit = 16;
     ncp(`${outputPath}${folder}`, outputPath, (error) => {
@@ -18,5 +20,6 @@ module.exports = function() {
       }
     })
   }
-  console.log("tearDown All executed");
+  //await tearDownAll.teardownAllMethod()
 }
+

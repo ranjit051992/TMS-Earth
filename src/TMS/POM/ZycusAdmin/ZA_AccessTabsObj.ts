@@ -1,0 +1,32 @@
+export let ZA_AccessTabsObj =
+{
+    // Searchfor: "QMS Sanity AUS",
+    // CompTab:    "//a[text()='Companies']",
+    // CompSearch: "//input[@id='eventSearchText']",
+    // GoBtn: "//input[@value='Go']",
+    // SearchRes: "//td/label[text()='QMS Sanity AUS']",
+    // //SearchRes: '//td/label[text()="'+Searchfor+'"]',
+    // ProdTab: "//a[text()='Products']",
+    // AdministratorTab: "//a[@id='ADMINISTRATOR']",
+    // LiveSession: "//a[text()='Live Session']",
+    // ApplySettings: "//a[text()='Apply Settings']",
+    // ImpersonateUS: "//a[text()='Impersonate User Requests']",
+    // RoleMgmt: "//a[text()='Role Management']",
+    // MastersTab: "//a[@id='MASTER_DATA']",
+    // Masters: "//a[text()='Masters']",
+
+    Searchfor: "QMS Sanity AUS",
+    CompTab:    "ZAACCESSTABS/CompTab",
+    CompSearch: "ZAACCESSTABS/CompSearch",
+    GoBtn: "ZAACCESSTABS/GoBtn",
+    SearchRes: "ZAACCESSTABS/SearchRes",
+    //SearchRes: '//td/label[text()="'+Searchfor+'"]',
+    ProdTab: "ZAACCESSTABS/ProdTab",
+    AdministratorTab: "ZAACCESSTABS/AdministratorTab",
+    LiveSession: "ZAACCESSTABS/LiveSession",
+    ApplySettings: "ZAACCESSTABS/ApplySettings",
+    ImpersonateUS: "ZAACCESSTABS/ImpersonateUS",
+    RoleMgmt: "ZAACCESSTABS/RoleMgmt",
+    MastersTab: "ZAACCESSTABS/MastersTab",
+    Masters: "ZAACCESSTABS/Masters"
+}

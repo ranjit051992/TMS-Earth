@@ -1,0 +1,71 @@
+export let UserExportObj ={
+    
+    ReportingManagerValue: "jyotizDoc406@spacex.com",
+
+    // ExportUserData: "//label[text()='Export user data']",
+    ExportUserData: "ImportAndExport/ExportUserData",
+    UserEmailExportUserData: "EmailExport/EmailExportUserData",
+    UserEmailExportLink: "EmailExport/UserEmailExportLink",
+    //UserExpPopUpOK: "//span[text()='Ok']",
+    UserExpPopUpOK: "ImportAndExport/UserExpPopUpOK",
+    // BellIcon: "//div[@title='Bulk User Upload/Export History']",
+    BellIcon: "ImportAndExport/BellIcon",
+    AuditBellIcon: "ImportAndExport/AuditBellIcon",
+    // BellIconExportTab: "//a[text()='Exports']",
+    BellIconExportTab: "ImportAndExport/BellIconExportTab",
+    // DownloadFileUserExport: "//label[text()='download file']",
+    DownloadFileUserExport: "ImportAndExport/DownloadFileUserExport",
+
+    // InProgressUserExportData: "//span[text()='In Progress']",
+    InProgressUserExportData: "ImportAndExport/InProgressUserExportData",
+
+    // BulkEditUserlink: "//label[text()='Bulk Edit of Users']",
+    // AllDataRadioBtn: "//input[@id='allDataRadio']",
+    // AllUserBulkEditDownloadBtn: "//input[@value='Download Excel File']",
+    // AllUserBulkEditConfirmationOK: "//div[@class='ui-dialog-buttonset']/button[@role='button']",
+    BulkEditUserlink: "ImportAndExport/BulkEditUserlink",
+    AllDataRadioBtn: "ImportAndExport/AllDataRadioBtn",
+    AllUserBulkEditDownloadBtn: "ImportAndExport/AllUserBulkEditDownloadBtn",
+    AllUserBulkEditConfirmationOK: "ImportAndExport/AllUserBulkEditConfirmationOK",
+
+    // FilteredDataRadioBtn: "//input[@id='filteredDataRadio']",
+    // FilteredListSelectStatusOption: "//select[@id='statusDropDwn']",
+    // Inactive: "//select[@id='statusDropDwn']/option[@value='Inactive']",
+    // FilteredListReportingMgrTxtBox: "//input[@id='reportingMngrTxt']",
+    // RepMgrFieldAfterSelection: "//li[@title='QMS ADMIN | qmssanity.admin@zycus.com']",
+    // ProductDDTxtBox: "//div[@id='custProdList']",
+    // ProductsDDBox: "//div[@id='custProdList']/following-sibling::div[@class='cust-drop-inner']",
+    // ProductList:["Dashboard","TMS","eInvoice","iConsole"],
+    // FilteredListDwnloadBtn: "//input[@value='Download Excel File']",
+    FilteredDataRadioBtn: "ImportAndExport/FilteredDataRadioBtn",
+    FilteredListSelectStatusOption: "ImportAndExport/FilteredListSelectStatusOption",
+    Inactive: "ImportAndExport/Inactive",
+    FilteredListReportingMgrTxtBox: "ImportAndExport/FilteredListReportingMgrTxtBox",
+    RepMgrFieldAfterSelection: "ImportAndExport/RepMgrFieldAfterSelection",
+    ProductDDTxtBox: "ImportAndExport/ProductDDTxtBox",
+    ProductsDDBox: "ImportAndExport/ProductsDDBox",
+    FilteredListDwnloadBtn: "ImportAndExport/FilteredListDwnloadBtn",
+
+    ProductList:["Dashboard","TMS","eInvoice","iConsole"],
+
+    // UploadUsersLink: "//label[text()='Upload Users']",
+    // DownloadExcelForUploadUsers: "//a[text()='Download Excel Template']",
+    UploadUsersLink: "ImportAndExport/UploadUsersLink",
+    DownloadExcelForUploadUsers: "ImportAndExport/DownloadExcelForUploadUsers",
+
+    // AssignRolesInBulkLink: "//label[contains(text(),'Assign Roles in Bulk')]",
+    // DownloadDynamicExcelLink: "//a[contains(text(),'Download Dynamic Excel Template')]",
+    // DownloadAssignmentRoleSheetLink:"//a[contains(text(),'Download Assignment & Edit Role Sheet')]",
+    // exportConfirmation: "//span[text()='Ok']",
+    AssignRolesInBulkLink: "ImportAndExport/AssignRolesInBulkLink",
+    DownloadDynamicExcelLink: "ImportAndExport/DownloadDynamicExcelLink",
+    DownloadAssignmentRoleSheetLink:"ImportAndExport/DownloadAssignmentRoleSheetLink",
+    exportConfirmation: "ImportAndExport/exportConfirmation",
+
+    // UserUploadBrowse: "//input[@value='Browse']",
+    // UserUpload: "//input[@value='Upload']",
+    
+    UserUploadBrowse: "ImportAndExport/UserUploadBrowse",
+    UserUpload: "ImportAndExport/UserUpload",
+    
+}

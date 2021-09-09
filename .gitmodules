@@ -1,0 +1,3 @@
+[submodule "src/COE_AUTOMATION"]
+	path = src/COE_AUTOMATION
+	url = https://avinash_zycus:St3z3gCKrdZQcmf9w6HH@bitbucket.org/procurement_zycus/coe_automation.git

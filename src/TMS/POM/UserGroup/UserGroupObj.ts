@@ -1,0 +1,50 @@
+export let UserGroupObj = {
+    UserGroupTab: "USERGROUP/UserGroupTab",
+    // UserGroupTab: "//a[@id='USER_GROUPS']",
+    // AddUG: "//input[@title='Create New Group']",
+    AddUG: "USERGROUP/AddUG",
+    // UGName: "//input[@id='grpName']",
+    UGName: "USERGROUP/UGName",
+    // UGDesc: "//textarea[@id='grpDesp']",
+    UGDesc: "USERGROUP/UGDesc",
+    // SearchByName: "//input[@id='name']",
+    SearchByName: "USERGROUP/SearchByName",
+    // SelectUser: "//input[@id='row0']",
+    SelectUser: "USERGROUP/SelectUser",
+    // CreateBtn: "//input[@value='Create']",
+    CreateBtn: "USERGROUP/CreateBtn",
+    //SearchUG: "//td[text()='AutoGroupName_1408886']",
+    
+    // Actions: "//a[text()='Actions']",
+    Actions: "USERGROUP/Actions",
+    // Modify: "//a[text()='Modify']",
+    Modify: "USERGROUP/Modify",
+    // ViewSelected: "//a[@id='selectedAnchorId']",
+    ViewSelected: "USERGROUP/ViewSelected",
+    // DeleteiconsViewSel: "//label[@title='Delete']",
+    DeleteiconsViewSel: "USERGROUP/DeleteiconsViewSel",
+    
+    // GrabDesc: "//td[@class='filterGridTblTd ']/following-sibling::td[@class='filterGridTblTd ']",
+    GrabDesc: "USERGROUP/GrabDesc",
+    // SaveNClose: "//input[@title='Save and Close']",
+    SaveNClose: "USERGROUP/SaveNClose",
+    
+    // AuditUGUpdateFilter: "//select[@id='action']/option[text()='User Group Updated']",
+    // UGDescUpdateAuditLink: "//span[text()='User Group Updated through  UI']",
+    AuditUGUpdateFilter: "USERGROUP/AuditUGUpdateFilter",
+    UGDescUpdateAuditLink: "USERGROUP/UGDescUpdateAuditLink",
+    
+    // InactiveStatus: "//label[text()='Inactive ']",
+    // ActiveStatus: "//label[text()='Active ']",
+    // DeactivateUG: "a[text()='Deactivate']",
+    // ActivateUG: "a[text()='Activate']",
+    // ChangeStatusConfirmationPopUp: "//span[text()='Ok']",
+    InactiveStatus: "USERGROUP/InactiveStatus",
+    ActiveStatus: "USERGROUP/ActiveStatus",
+    DeactivateUG: "USERGROUP/DeactivateUG",
+    ActivateUG: "USERGROUP/ActivateUG",
+    ChangeStatusConfirmationPopUp: "USERGROUP/ChangeStatusConfirmationPopUp",
+    
+    // SelectAllUsers: "//input[@id='mainCheck']"
+    SelectAllUsers: "USERGROUP/SelectAllUsers"
+}
