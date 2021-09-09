@@ -1,0 +1,77 @@
+Status: FAILED
+Time Taken: 2168
+Size: 123
+Timestamp: Mon Jan 27 21:30:29 IST 2020
+TestStep: Menu
+
+----------------- Messages ------------------------------
+[Response SLA] Response did not meet SLA 2168/980
+
+----------------- Properties ------------------------------
+HTTP Version: HTTP/1.1
+Endpoint: http://10.121.0.7:15301/
+Method: POST
+StatusCode: 201
+URL: http://10.121.0.7:15301/sso/rest/v2/menu
+
+---------------- Request ---------------------------
+Connection: [Keep-Alive]
+User-Agent: [Apache-HttpClient/4.1.1 (java 1.5)]
+Host: [10.121.0.7:15301]
+Accept-Encoding: [gzip,deflate]
+x-zycus-token-id: [3374dcda-0c1f-4882-934d-615d3efd0d06]
+Content-Length: [1204]
+Content-Type: [application/json]
+
+POST http://10.121.0.7:15301/sso/rest/v2/menu HTTP/1.1
+Accept-Encoding: gzip,deflate
+Content-Type: application/json
+x-zycus-token-id: 3374dcda-0c1f-4882-934d-615d3efd0d06
+Content-Length: 1204
+Host: 10.121.0.7:15301
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
+
+{
+	"productId": "4a9784d4-8798-4782-9e63-33814a89daf0",
+	"productName": "",
+	"name" : "TESTSOAPUI36233",
+	"rainbowDisplayNameKey": "",
+	"rainbowProductUri": "rainbow_URI",
+	"rainbowIconName": "rainbow_IconName",
+	"sequenceNumber": 5,
+	"parentMenuId": "NULL",
+	"addActivities": ["ACT001"],
+	"test": "what is this",
+
+	"themeMappings":
+	{
+		"Rainbow": 
+		{
+			"iconName": "eCatalog_ICON_NAME_TEST_8503",
+			"uri": "DD_URI",
+			"displayNameKey": "eCatalog_DISPLAY_NAME_TEST_003",
+			 "customProperty": {
+                                                                "isAdmin": true,
+                                                                "customProperty1": "demo1",
+                                                                "customProperty2": {
+                                                                                "customSubProperty1": "demo Sub 1",
+                                                                                "customSubProperty2": "demo Sub 2"
+                                                                },
+                                                                "customProperty3": 1000
+                                                }
+		}
+	
+	}
+}
+
+---------------- Response --------------------------
+Transfer-Encoding: [chunked]
+X-OneAgent-JS-Injection: [true]
+Server: [Not Available]
+Set-Cookie: [dtCookie=5F02CC4DA30C94B373841A280C67A359||1; Path=/]
+#status#: [HTTP/1.1 201 ]
+Date: [Mon, 27 Jan 2020 16:00:31 GMT]
+Content-Type: [application/json;charset=UTF-8]
+
+{"timestamp":1580140831745,"payload":{"entity":"Menu","action":"CREATE","entityId":"5bc6a316-1386-43c3-a1d7-a459a7d499da"}}

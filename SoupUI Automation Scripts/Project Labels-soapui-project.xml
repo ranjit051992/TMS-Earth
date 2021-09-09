@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="592df4da-ca2f-4700-9d7f-01260389ea4c" activeEnvironment="Default" name="Project Labels" resourceRoot="${projectDir}" soapui-version="5.4.0-EB" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="d5bcb1de-cb61-476c-8f38-35a4195ebf2c" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://hpx.app.inmu.qc.zycus.local:15302" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://hpx.app.inmu.qc.zycus.local:15302</con:endpoint></con:endpoints><con:resource name="Label" path="/sso/rest/v2/label" id="813fd44b-7c59-4f33-81ce-e35fc39f0d59"><con:settings/><con:parameters/><con:method name="Label 1" id="90946c45-0f95-4fc5-8d5c-e7a1f402b185" method="POST"><con:settings/><con:parameters/><con:representation type="FAULT"><con:mediaType>application/json;charset=UTF-8</con:mediaType><con:status>500</con:status><con:params/><con:element xmlns:lab="http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/label">lab:Fault</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json;charset=UTF-8</con:mediaType><con:status>201</con:status><con:params/><con:element xmlns:lab="http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/label">lab:Response</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" id="02881ffe-7369-4101-9511-e3b1a7cfe5db" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="x-zycus-token-id" value=""/>
+  &lt;con:entry key="Content-Type" value="application/json"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>http://hpx.app.inmu.qc.zycus.local:15302</con:endpoint><con:request>[
+  {
+    "labelName": "TESTLABEL2",
+    "labelUri": "http://www.google.com",
+    "labelHostPage": "MyDesk",
+    "themeName": "Rainbow",
+    "labelSequenceNumber": 1,
+    "activitiesProductMap": {
+      "TMS": [
+        "View Master Data tab"
+      ]
+    }
+  },
+  {
+    "labelName": "TESTLABEL1",
+    "labelUri": "http://www.google.com",
+    "labelHostPage": "MyDesk",
+    "themeName": "Rainbow",
+    "activitiesProductMap": {
+      "TMS": [
+        "act4"
+      ]
+    }
+  }
+]</con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:RestService" id="bca09e47-6db2-4e2b-a388-2043e133d132" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://hpx.app.inmu.qc.zycus.local:15302" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://hpx.app.inmu.qc.zycus.local:15302</con:endpoint></con:endpoints><con:resource name="Servicehandler" path="/sso/servicehandler" id="502813ec-412c-451f-bbfb-98a6f9811689"><con:settings/><con:parameters><con:parameter><con:name>action</con:name><con:value>authenticate</con:value><con:style>QUERY</con:style><con:default>authenticate</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>loginId</con:name><con:value>admin@zycus.com</con:value><con:style>QUERY</con:style><con:default>admin@zycus.com</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>password</con:name><con:value>Zycus@123</con:value><con:style>QUERY</con:style><con:default>Zycus@123</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Servicehandler 1" id="6eca20ed-a59b-4b31-828e-e0a26f623974" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" id="8613bf08-c36a-45ef-ae3b-a91ceea1f9e6" mediaType="application/json"><con:settings/><con:endpoint>http://hpx.app.inmu.qc.zycus.local:15302</con:endpoint><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="password" value="Zycus@123"/>
+  <con:entry key="loginId" value="admin@zycus.com"/>
+  <con:entry key="action" value="authenticate"/>
+</con:parameters><con:parameterOrder><con:entry>action</con:entry><con:entry>loginId</con:entry><con:entry>password</con:entry></con:parameterOrder></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:RestService" id="0afa5a44-4d2e-4cf4-95ba-a3226d311c63" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://hpx.app.inmu.qc.zycus.local:15302" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://hpx.app.inmu.qc.zycus.local:15302</con:endpoint></con:endpoints><con:resource name="Email" path="/sso/rest/v2/label/email" id="2f206c0f-0093-4025-912c-f2eee7bf284e"><con:settings/><con:parameters><con:parameter><con:name>email_id</con:name><con:value>11w_2@tms.com</con:value><con:style>QUERY</con:style><con:default>11w_2@tms.com</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Email 1" id="cc91c01b-76df-46f8-9c6b-f5194199c582" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json;charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:ema="http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/label/email">ema:Response</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:request name="Request 1" id="5a141281-b87f-4f42-84ef-643de5d27ae3" mediaType="application/json"><con:settings/><con:endpoint>http://hpx.app.inmu.qc.zycus.local:15302</con:endpoint><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="email_id" value="11w_2@tms.com" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>email_id</con:entry></con:parameterOrder></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:RestService" id="b13e8169-0367-476f-89e0-8001714df9e5" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://hpx.app.inmu.qc.zycus.local:15302" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://hpx.app.inmu.qc.zycus.local:15302</con:endpoint></con:endpoints><con:resource name="Id" path="/sso/rest/v2/label/id" id="59330bc3-d3ba-4f66-b37f-5d04a671198b"><con:settings/><con:parameters><con:parameter><con:name>id</con:name><con:value>fbddb275-b4ad-47d8-8273-7e9217439d3f</con:value><con:style>QUERY</con:style><con:default>fbddb275-b4ad-47d8-8273-7e9217439d3f</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Id 1" id="acaa2f6b-a2a4-4c1d-9d7f-0234388a0d18" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json;charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:id="http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/label/id">id:Response</con:element></con:representation><con:request name="Request 1" id="afdd5de3-a337-44d1-8df1-0d74a50b8183" mediaType="application/json"><con:settings/><con:endpoint>http://hpx.app.inmu.qc.zycus.local:15302</con:endpoint><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="fbddb275-b4ad-47d8-8273-7e9217439d3f" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:request></con:method></con:resource></con:interface><con:testSuite id="cfa1e667-b9b8-476b-9a66-34c9be6381fe" name="Insert labels and get it by ID and Email"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="74586323-a499-4e25-8499-301c5548146e" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Theme invalid" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="fetching token" id="0d733b12-7ece-4455-b46a-df89c21c8ede"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/servicehandler" methodName="Servicehandler 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="fetching token" id="116e2506-136a-4e6d-9772-476bc42d36ea" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request/><con:originalUri>http://192.168.5.68/sso/servicehandler</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="password" value="Zycus@123"/>
+  <con:entry key="loginId" value="admin@zycus.com"/>
+  <con:entry key="action" value="authenticate"/>
+</con:parameters><con:parameterOrder><con:entry>action</con:entry><con:entry>loginId</con:entry><con:entry>password</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="Fetch token" id="1eb90617-23af-4cdd-856f-a765783ce9d4"><con:settings/><con:config><script>def myTestCase = context.testCase
+propTestStep = myTestCase.getTestStepByName("Properties for token")
+def str = testRunner.testCase.testSteps["fetching token"].testRequest.response.responseHeaders["Set-Cookie"]
+log.info(str) 
+str = str.toString()
+def a=str.indexOf("tokenId=")
+log.info(a)
+def b=a.toInteger()+8;
+log.info(b)
+token = str.substring(b.toInteger(),b.toInteger()+36)
+log.info(token)
+propTestStep.setPropertyValue("Properties for token", token.toString())
+</script></con:config></con:testStep><con:testStep type="properties" name="Properties for token" id="a6f3b23e-2435-44e2-8083-8fd237f9b8e2"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>Properties for token</con:name><con:value>836a9114-bcbe-433e-a1e8-2d801ac06ea5</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="groovy" name="LabelName" id="bddf754c-3a50-45b4-adf4-b4368ce9f5bb"><con:settings/><con:config><script>//generating random values
+Random rand = new Random()
+String NameAPI = "LbaleAutoGen" + rand.nextInt(100000)
+
+//setting test case properties
+testRunner.testCase.testSteps["StoredLabelname"].setPropertyValue("LabelName", NameAPI);
+</script></con:config></con:testStep><con:testStep type="properties" name="StoredLabelname" id="5f7be4d1-7797-45d1-9364-01f0ea5e9509"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>LabelName</con:name><con:value>LbaleAutoGen74790</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="groovy" name="LabelName1" id="2cba38db-a210-4f5b-b1bd-2adff9f3dd39"><con:settings/><con:config><script>//generating random values
+Random rand = new Random()
+String NameAPI = "LbaleAutoGen1" + rand.nextInt(100000)
+
+//setting test case properties
+testRunner.testCase.testSteps["StoredLabelname1"].setPropertyValue("LabelName", NameAPI);
+</script></con:config></con:testStep><con:testStep type="properties" name="StoredLabelname1" id="e1ab3f55-8ea1-4178-bfb1-5ff8236146a3"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>LabelName</con:name><con:value>LbaleAutoGen173607</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="restrequest" name="CreateLabel" id="6532514c-97ea-4487-9b45-0b140cae539c"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/rest/v2/label" methodName="Label 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="CreateLabel" id="02881ffe-7369-4101-9511-e3b1a7cfe5db" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="x-zycus-token-id" value="${Properties for token#Properties for token}"/>
+  &lt;con:entry key="Content-Type" value="application/json"/>
+&lt;/xml-fragment></con:setting><con:setting id="RecordRequestRepresentations">true</con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request>[{
+	"labelName":"${StoredLabelname#LabelName}",
+	"labelUri":"http://www.google.com",
+	"labelHostPage":"Dummy 1",
+	"themeName":"Rainbow",
+	"labelProductName":"tms",
+	"labelSequenceNumber": 1,
+	"activitiesProductMap":
+	{
+		"TMS":["Company Admin"]  
+	}
+}
+]
+</con:request><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/label</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="121a7498-8112-4c89-8d2c-a66f76bac5fb" name="Valid HTTP Status Codes"><con:configuration><codes>201</codes></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="06c4e95b-2185-47e8-b077-a9fdbdb80e69" name="Script Assertion"><con:configuration><scriptText>import groovy.json.JsonSlurper
+
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper()
+def apiResponse = jsonSlurper.parseText(ResponseMessage)
+
+
+
+assert apiResponse.timestamp != null
+assert apiResponse.payload.entity != null
+assert apiResponse.payload.entity.contains ("Label")
+assert apiResponse.payload.action != null
+assert apiResponse.payload.action.contains ("CREATE")
+assert apiResponse.payload.entityId != null
+assert apiResponse.payload.entityInfo.labelHostPage != null
+assert apiResponse.payload.entityInfo.labelHostPage.contains ("Dummy 1")
+assert apiResponse.payload.entityInfo.labelName != null
+
+
+//assert apiResponse.code == "NR-TMS-C-LAB001" 
+//assert apiResponse.error.contains ("Label
+
+
+//if (apiResponse.payload[0].action == "CREAc")
+//{
+//log.info ("ok")
+//}
+//else 
+//{log.info ("false")}
+
+
+//"code": "NR-TMS-C-LAB001",
+   //"error": "Label [Labelauto_12_1] already exists. "
+
+ //  import groovy.json.JsonSlurper
+//import jxl.*
+//import jxl.write.*
+ 
+//grab the response
+//def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+//def jsonSlurper = new JsonSlurper()
+
+//def apiResponse = jsonSlurper.parseText(ResponseMessage)
+ 
+//verify the slurper isn't empty
+//assert !(apiResponse.isEmpty())
+
+//verify the status, source, processedrecords, totalRecords &amp; description aren't null
+
+//assert apiResponse.code == "NR-TMS-C-LAB001" 
+//assert apiResponse.error.contains ("Label [Labelauto_12_1] already exists.")</scriptText></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="a7f35f32-c64a-406b-9317-ef0654900d20" name="Response SLA"><con:configuration><SLA>4000</SLA></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="ThemeNameInvalid" id="a69efd08-8564-4fc4-999a-66e90e795ce6"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/rest/v2/label" methodName="Label 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="ThemeNameInvalid" id="02881ffe-7369-4101-9511-e3b1a7cfe5db" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="x-zycus-token-id" value="${Properties for token#Properties for token}"/>
+  &lt;con:entry key="Content-Type" value="application/json"/>
+&lt;/xml-fragment></con:setting><con:setting id="RecordRequestRepresentations">true</con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request>[{
+	"labelName":"${StoredLabelname#LabelName}",
+	"labelUri":"http://www.google.com",
+	"labelHostPage":"MyDesk",
+	"themeName":"Rainbow2",
+	"labelProductName":"tms",
+	"labelSequenceNumber": 1,
+	"activitiesProductMap":
+	{
+		"TMS":["Company Admin"]  
+	}
+}
+]
+</con:request><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/label</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="121a7498-8112-4c89-8d2c-a66f76bac5fb" name="Valid HTTP Status Codes"><con:configuration><codes>500</codes></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="bd21e13b-c860-4220-8e27-67ea6425deb8" name="Script Assertion"><con:configuration><scriptText>//imports
+import groovy.json.JsonSlurper
+import jxl.*
+import jxl.write.*
+ 
+//grab the response
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper()
+
+def apiResponse = jsonSlurper.parseText(ResponseMessage)
+ 
+//verify the slurper isn't empty
+//assert !(apiResponse.isEmpty())
+
+//verify the status, source, processedrecords, totalRecords &amp; description aren't null
+assert apiResponse.code != null
+assert apiResponse.error != null
+assert apiResponse.code == "NR-TMS-C-TH001"
+assert apiResponse.error == "Theme [Rainbow2] not found. "
+
+
+
+
+ //"code": "NR-TMS-C-TH001",
+ //  "error": "Theme [Rainbow2] not found. "
+</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="LabelProductNameinvalid" id="3fb5a6ab-9c0f-4830-a03e-1f645a89996d"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/rest/v2/label" methodName="Label 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="LabelProductNameinvalid" id="02881ffe-7369-4101-9511-e3b1a7cfe5db" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="x-zycus-token-id" value="${Properties for token#Properties for token}"/>
+  &lt;con:entry key="Content-Type" value="application/json"/>
+&lt;/xml-fragment></con:setting><con:setting id="RecordRequestRepresentations">true</con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request>[{
+	"labelName":"${StoredLabelname#LabelName}",
+	"labelUri":"http://www.google.com",
+	"labelHostPage":"MyDesk",
+	"themeName":"Rainbow",
+	"labelProductName":"tms1",
+	"labelSequenceNumber": 1,
+	"activitiesProductMap":
+	{
+		"TMS":["Company Admin"]  
+	}
+}
+]
+</con:request><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/label</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="121a7498-8112-4c89-8d2c-a66f76bac5fb" name="Valid HTTP Status Codes"><con:configuration><codes>500</codes></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="369b4b7a-df2d-49b9-91a3-bfad48b1df49" name="Script Assertion"><con:configuration><scriptText>//imports
+import groovy.json.JsonSlurper
+import jxl.*
+import jxl.write.*
+ 
+//grab the response
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper()
+
+def apiResponse = jsonSlurper.parseText(ResponseMessage)
+ 
+//verify the slurper isn't empty
+//assert !(apiResponse.isEmpty())
+
+//verify the status, source, processedrecords, totalRecords &amp; description aren't null
+assert apiResponse.code != null
+assert apiResponse.error != null
+assert apiResponse.code == "NR-TMS-C-PROD001"
+assert apiResponse.error.contains ("Product Name not found [tms1]. Check request for label")
+//"error": "Product Name not found [tms1]. Check request for label"
+</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="ActivitiesProductMapinvalidProduct" id="f655f646-6744-4e70-ac8c-18fa763c3610"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/rest/v2/label" methodName="Label 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="ActivitiesProductMapinvalidProduct" id="02881ffe-7369-4101-9511-e3b1a7cfe5db" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="x-zycus-token-id" value="${Properties for token#Properties for token}"/>
+  &lt;con:entry key="Content-Type" value="application/json"/>
+&lt;/xml-fragment></con:setting><con:setting id="RecordRequestRepresentations">true</con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request>[{
+	"labelName":"${StoredLabelname#LabelName}",
+	"labelUri":"http://www.google.com",
+	"labelHostPage":"MyDesk",
+	"themeName":"Rainbow",
+	"labelProductName":"tms",
+	"labelSequenceNumber": 1,
+	"activitiesProductMap":
+	{
+		"TMS1":["Company Admin"]  
+	}
+}
+]
+</con:request><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/label</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="121a7498-8112-4c89-8d2c-a66f76bac5fb" name="Valid HTTP Status Codes"><con:configuration><codes>500</codes></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="3990f952-2168-4aea-9bc6-4dcabf3c75fd" name="Script Assertion"><con:configuration><scriptText>//imports
+import groovy.json.JsonSlurper
+import jxl.*
+import jxl.write.*
+ 
+//grab the response
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper()
+
+def apiResponse = jsonSlurper.parseText(ResponseMessage)
+ 
+//verify the slurper isn't empty
+//assert !(apiResponse.isEmpty())
+
+//verify the status, source, processedrecords, totalRecords &amp; description aren't null
+assert apiResponse.code != null
+assert apiResponse.error != null
+assert apiResponse.code == "NR-TMS-C-ACT002"
+assert apiResponse.error.contains ("No labels created. One or more activites were invalid or missing for products: [TMS1]. Check if all activities are present inside appropriate products.")
+//"error": "Product Name not found [tms1]. Check request for label"
+
+
+   //"code": "NR-TMS-C-ACT002",
+   //"error": "No labels created. One or more activites were invalid or missing for products: [TMS1]. Check if all activities are present inside appropriate products. "
+
+
+</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="ActivitiesProductMapInvalidactivity" id="36f9cba2-681b-461f-a250-354ca4509304"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/rest/v2/label" methodName="Label 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="ActivitiesProductMapInvalidactivity" id="02881ffe-7369-4101-9511-e3b1a7cfe5db" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="x-zycus-token-id" value="${Properties for token#Properties for token}"/>
+  &lt;con:entry key="Content-Type" value="application/json"/>
+&lt;/xml-fragment></con:setting><con:setting id="RecordRequestRepresentations">true</con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request>[{
+	"labelName":"${StoredLabelname#LabelName}",
+	"labelUri":"http://www.google.com",
+	"labelHostPage":"MyDesk",
+	"themeName":"Rainbow",
+	"labelProductName":"tms",
+	"labelSequenceNumber": 1,
+	"activitiesProductMap":
+	{
+		"TMS":["Company Admin1"]  
+	}
+}
+]
+</con:request><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/label</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="121a7498-8112-4c89-8d2c-a66f76bac5fb" name="Valid HTTP Status Codes"><con:configuration><codes>500</codes></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="f9975bb3-37b0-4289-ab6d-fe668f584c0b" name="Script Assertion"><con:configuration><scriptText>//   "code": "NR-TMS-C-ACT002",
+ 
+
+
+import groovy.json.JsonSlurper
+import jxl.*
+import jxl.write.*
+ 
+//grab the response
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper()
+
+def apiResponse = jsonSlurper.parseText(ResponseMessage)
+ 
+//verify the slurper isn't empty
+//assert !(apiResponse.isEmpty())
+
+//verify the status, source, processedrecords, totalRecords &amp; description aren't null
+assert apiResponse.code != null
+assert apiResponse.error != null
+assert apiResponse.code == "NR-TMS-C-ACT002"
+assert apiResponse.error.contains ("No labels created. One or more activites were invalid or missing for products: [TMS]. Check if all activities are present inside appropriate products.")
+ // "error": "No labels created. One or more activites were invalid or missing for products: [TMS]. Check if all activities are present inside appropriate products. "
+</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="ActivityProductMapMissmatch" id="248427ee-5d36-4fd8-b209-9d65e8260340"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/rest/v2/label" methodName="Label 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="ActivityProductMapMissmatch" id="02881ffe-7369-4101-9511-e3b1a7cfe5db" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="x-zycus-token-id" value="${Properties for token#Properties for token}"/>
+  &lt;con:entry key="Content-Type" value="application/json"/>
+&lt;/xml-fragment></con:setting><con:setting id="RecordRequestRepresentations">true</con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request>[{
+	"labelName":"${StoredLabelname#LabelName}",
+	"labelUri":"http://www.google.com",
+	"labelHostPage":"MyDesk",
+	"themeName":"Rainbow",
+	"labelProductName":"tms",
+	"labelSequenceNumber": 1,
+	"activitiesProductMap":
+	{
+		"SIM":["Company Admin"]  
+	}
+}
+]
+</con:request><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/label</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="121a7498-8112-4c89-8d2c-a66f76bac5fb" name="Valid HTTP Status Codes"><con:configuration><codes>500</codes></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="29d0b84d-cf98-4cf7-87cc-43240223b034" name="Script Assertion"><con:configuration><scriptText>//"code": "NR-TMS-C-ACT002",
+  // "error": "No labels created. One or more activites were invalid or missing for products: [SIM]. Check if all activities are present inside appropriate products. "
+
+
+
+import groovy.json.JsonSlurper
+import jxl.*
+import jxl.write.*
+ 
+//grab the response
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper()
+
+def apiResponse = jsonSlurper.parseText(ResponseMessage)
+ 
+//verify the slurper isn't empty
+//assert !(apiResponse.isEmpty())
+
+//verify the status, source, processedrecords, totalRecords &amp; description aren't null
+assert apiResponse.code != null
+assert apiResponse.error != null
+assert apiResponse.code == "NR-TMS-C-ACT002"
+assert apiResponse.error.contains ("No labels created. One or more activites were invalid or missing for products: [SIM]. Check if all activities are present inside appropriate products.")</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="NullLabelName" id="e90b6d99-96a7-48d1-963e-55bc3c05420e"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/rest/v2/label" methodName="Label 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="NullLabelName" id="02881ffe-7369-4101-9511-e3b1a7cfe5db" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="x-zycus-token-id" value="${Properties for token#Properties for token}"/>
+  &lt;con:entry key="Content-Type" value="application/json"/>
+&lt;/xml-fragment></con:setting><con:setting id="RecordRequestRepresentations">true</con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request>[{
+	"labelName":"",
+	"labelUri":"dqwdqd.in",
+	"labelHostPage":"dasdad",
+	"themeName":"rainbow",
+	"labelProductName":"tms",
+	"labelSequenceNumber": 1,
+	"activitiesProductMap":
+	{
+		"TMS":["Company Admin"]  
+	}
+}
+]
+</con:request><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/label</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="121a7498-8112-4c89-8d2c-a66f76bac5fb" name="Valid HTTP Status Codes"><con:configuration><codes>500</codes></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="156c0b1b-773e-4c53-8dfe-f8414af399ae" name="Script Assertion"><con:configuration><scriptText> //"code": "NR-TMS-C-LAB002",
+   //"error": "Label Name invalid or missing. Check request. "
+
+  
+
+import groovy.json.JsonSlurper
+import jxl.*
+import jxl.write.*
+ 
+//grab the response
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper()
+
+def apiResponse = jsonSlurper.parseText(ResponseMessage)
+ 
+//verify the slurper isn't empty
+//assert !(apiResponse.isEmpty())
+
+//verify the status, source, processedrecords, totalRecords &amp; description aren't null
+assert apiResponse.code != null
+assert apiResponse.error != null
+assert apiResponse.code == "NR-TMS-C-LAB002"
+assert apiResponse.error.contains ("Label Name invalid or missing. Check request.")</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="NullHostPage" id="dc950766-508b-4f65-8c7a-d0969ab7d229"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/rest/v2/label" methodName="Label 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="NullHostPage" id="02881ffe-7369-4101-9511-e3b1a7cfe5db" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="x-zycus-token-id" value="${Properties for token#Properties for token}"/>
+  &lt;con:entry key="Content-Type" value="application/json"/>
+&lt;/xml-fragment></con:setting><con:setting id="RecordRequestRepresentations">true</con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request>[{
+	"labelName":"${StoredLabelname#LabelName}",
+	"labelUri":"www.google.com",
+	"labelHostPage":"",
+	"themeName":"Rainbow",
+	"labelProductName":"TMS",
+	"labelSequenceNumber": 1,
+	"activitiesProductMap":
+	{
+		"TMS":["Company Admin"]  
+	}
+}
+]
+</con:request><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/label</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="121a7498-8112-4c89-8d2c-a66f76bac5fb" name="Valid HTTP Status Codes"><con:configuration><codes>500</codes></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="96bb05aa-1bfd-4204-94f9-28f7b85cec40" name="Script Assertion"><con:configuration><scriptText>// "code": "NR-TMS-C-LAB002",
+  // "error": "Label Host Page Name invalid or missing. Check request for label [LbaleAutoGen47240]. "
+
+
+  
+
+import groovy.json.JsonSlurper
+import jxl.*
+import jxl.write.*
+ 
+//grab the response
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper()
+
+def apiResponse = jsonSlurper.parseText(ResponseMessage)
+ 
+//verify the slurper isn't empty
+//assert !(apiResponse.isEmpty())
+
+//verify the status, source, processedrecords, totalRecords &amp; description aren't null
+assert apiResponse.code != null
+assert apiResponse.error != null
+assert apiResponse.code == "NR-TMS-C-LAB002" 
+assert apiResponse.error.contains ("Label Host Page Name invalid or missing. Check request for label")</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="NullThemeName" id="45cb0b60-7427-4563-b543-377d7376c4e0"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/rest/v2/label" methodName="Label 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="NullThemeName" id="02881ffe-7369-4101-9511-e3b1a7cfe5db" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="x-zycus-token-id" value="${Properties for token#Properties for token}"/>
+  &lt;con:entry key="Content-Type" value="application/json"/>
+&lt;/xml-fragment></con:setting><con:setting id="RecordRequestRepresentations">true</con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request>[{
+	"labelName":"${StoredLabelname#LabelName}",
+	"labelUri":"www.google.com",
+	"labelHostPage":"MyDesk",
+	"themeName":"",
+	"labelProductName":"TMS",
+	"labelSequenceNumber": 1,
+	"activitiesProductMap":
+	{
+		"TMS":["Company Admin"]  
+	}
+}
+]
+</con:request><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/label</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="121a7498-8112-4c89-8d2c-a66f76bac5fb" name="Valid HTTP Status Codes"><con:configuration><codes>500</codes></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="377fe369-5c73-4727-851f-9974d4f07fa2" name="Script Assertion"><con:configuration><scriptText>//"code": "NR-TMS-C-LAB002",
+//   "error": "Theme Name invalid or missing. Check request for label [LbaleAutoGen47240]. "
+
+ 
+
+import groovy.json.JsonSlurper
+import jxl.*
+import jxl.write.*
+ 
+//grab the response
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper()
+
+def apiResponse = jsonSlurper.parseText(ResponseMessage)
+ 
+//verify the slurper isn't empty
+//assert !(apiResponse.isEmpty())
+
+//verify the status, source, processedrecords, totalRecords &amp; description aren't null
+assert apiResponse.code != null
+assert apiResponse.error != null
+assert apiResponse.code == "NR-TMS-C-LAB002" 
+assert apiResponse.error.contains ("Theme Name invalid or missing. Check request for label")</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="NulllabelUri" id="5e4d8779-4a02-41fa-97cb-36c03be97856"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/rest/v2/label" methodName="Label 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="NulllabelUri" id="02881ffe-7369-4101-9511-e3b1a7cfe5db" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="x-zycus-token-id" value="${Properties for token#Properties for token}"/>
+  &lt;con:entry key="Content-Type" value="application/json"/>
+&lt;/xml-fragment></con:setting><con:setting id="RecordRequestRepresentations">true</con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request>[{
+	"labelName":"${StoredLabelname#LabelName}",
+	"labelUri":"",
+	"labelHostPage":"MyDesk",
+	"themeName":"Rainbow",
+	"labelProductName":"TMS",
+	"labelSequenceNumber": 1,
+	"activitiesProductMap":
+	{
+		"TMS":["Company Admin"]  
+	}
+}
+]
+</con:request><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/label</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="121a7498-8112-4c89-8d2c-a66f76bac5fb" name="Valid HTTP Status Codes"><con:configuration><codes>500</codes></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="06f79f1e-9989-4331-b504-b8ec37b5937c" name="Script Assertion"><con:configuration><scriptText>//"code": "NR-TMS-C-LAB002",
+   //"error": "Label Uri invalid or missing. Check request for label [LbaleAutoGen47240]. "
+
+   import groovy.json.JsonSlurper
+import jxl.*
+import jxl.write.*
+ 
+//grab the response
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper()
+
+def apiResponse = jsonSlurper.parseText(ResponseMessage)
+ 
+//verify the slurper isn't empty
+//assert !(apiResponse.isEmpty())
+
+//verify the status, source, processedrecords, totalRecords &amp; description aren't null
+assert apiResponse.code != null
+assert apiResponse.error != null
+assert apiResponse.code == "NR-TMS-C-LAB002" 
+assert apiResponse.error.contains ("Label Uri invalid or missing. Check request for label")</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="NullProductName" id="b07a3f48-acbb-463d-bbde-1e1e8e94645e"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/rest/v2/label" methodName="Label 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="NullProductName" id="02881ffe-7369-4101-9511-e3b1a7cfe5db" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="x-zycus-token-id" value="${Properties for token#Properties for token}"/>
+  &lt;con:entry key="Content-Type" value="application/json"/>
+&lt;/xml-fragment></con:setting><con:setting id="RecordRequestRepresentations">true</con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request>[{
+	"labelName":"${StoredLabelname#LabelName}",
+	"labelUri":"http://www.google.com",
+	"labelHostPage":"MyDesk",
+	"themeName":"Rainbow",
+	"labelProductName":"",
+	"labelSequenceNumber": 1,
+	"activitiesProductMap":
+	{
+		"TMS":["Company Admin"]  
+	}
+}
+]
+</con:request><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/label</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="121a7498-8112-4c89-8d2c-a66f76bac5fb" name="Valid HTTP Status Codes"><con:configuration><codes>500</codes></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="f120a52a-a03a-4cab-9e9b-75923d121418" name="Script Assertion"><con:configuration><scriptText>//"code": "NR-TMS-C-PROD001",
+  // "error": "Product Name cannot be empty. Check request for label [LbaleAutoGen47240]. "
+
+   import groovy.json.JsonSlurper
+import jxl.*
+import jxl.write.*
+ 
+//grab the response
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper()
+
+def apiResponse = jsonSlurper.parseText(ResponseMessage)
+ 
+//verify the slurper isn't empty
+//assert !(apiResponse.isEmpty())
+
+//verify the status, source, processedrecords, totalRecords &amp; description aren't null
+assert apiResponse.code != null
+assert apiResponse.error != null
+assert apiResponse.code == "NR-TMS-C-PROD001" 
+assert apiResponse.error.contains ("Product Name cannot be empty. Check request for label")</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="NullLabelSequenceNumber" id="d1a29e9f-622a-47da-a617-15e976f6c226"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/rest/v2/label" methodName="Label 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="NullLabelSequenceNumber" id="02881ffe-7369-4101-9511-e3b1a7cfe5db" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="x-zycus-token-id" value="${Properties for token#Properties for token}"/>
+  &lt;con:entry key="Content-Type" value="application/json"/>
+&lt;/xml-fragment></con:setting><con:setting id="RecordRequestRepresentations">true</con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request>[{
+	"labelName":"${StoredLabelname1#LabelName}",
+	"labelUri":"dqwdqd.in",
+	"labelHostPage":"Dummy 1",
+	"themeName":"Rainbow",
+	"labelProductName":"TMS",
+	"labelSequenceNumber": "",
+	"activitiesProductMap":
+	{
+		"TMS":["Company Admin"]  
+	}
+}
+]
+</con:request><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/label</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="121a7498-8112-4c89-8d2c-a66f76bac5fb" name="Valid HTTP Status Codes"><con:configuration><codes>201</codes></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="156c0b1b-773e-4c53-8dfe-f8414af399ae" name="Script Assertion"><con:configuration><scriptText> //"code": "NR-TMS-C-LAB002",
+   //"error": "Label Name invalid or missing. Check request. "
+
+  
+
+import groovy.json.JsonSlurper
+import jxl.*
+import jxl.write.*
+ 
+//grab the response
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper()
+
+def apiResponse = jsonSlurper.parseText(ResponseMessage)
+ 
+//verify the slurper isn't empty
+//assert !(apiResponse.isEmpty())
+
+//verify the status, source, processedrecords, totalRecords &amp; description aren't null
+assert apiResponse.timestamp != null
+assert apiResponse.payload.entity != null
+assert apiResponse.payload.entity.contains ("Label")
+assert apiResponse.payload.action != null
+assert apiResponse.payload.action.contains ("CREATE")
+assert apiResponse.payload.entityId != null
+assert apiResponse.payload.entityInfo.labelHostPage != null
+assert apiResponse.payload.entityInfo.labelHostPage.contains ("Dummy 1")
+assert apiResponse.payload.entityInfo.labelName != null
+</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="LableAlreadyExists" id="c0da0e21-c999-43e0-a6c3-d9813109a9ec"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/rest/v2/label" methodName="Label 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="LableAlreadyExists" id="02881ffe-7369-4101-9511-e3b1a7cfe5db" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="x-zycus-token-id" value="${Properties for token#Properties for token}"/>
+  &lt;con:entry key="Content-Type" value="application/json"/>
+&lt;/xml-fragment></con:setting><con:setting id="RecordRequestRepresentations">true</con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request>[{
+	"labelName":"Labelauto_12_2",
+	"labelUri":"http://www.google.com",
+	"labelHostPage":"MyDesk",
+	"themeName":"Rainbow",
+	"labelProductName":"tms",
+	"labelSequenceNumber": 1,
+	"activitiesProductMap":
+	{
+		"TMS":["Company Admin"]  
+	}
+},
+{
+	"labelName":"Labelauto_12_2",
+	"labelUri":"http://www.google.com",
+	"labelHostPage":"MyDesk",
+	"themeName":"Rainbow",
+	"labelProductName":"tms",
+	"labelSequenceNumber": 1,
+	"activitiesProductMap":
+	{
+		"TMS":["Company Admin"]  
+	}
+}
+]
+</con:request><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/label</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="121a7498-8112-4c89-8d2c-a66f76bac5fb" name="Valid HTTP Status Codes"><con:configuration><codes>500</codes></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="6c9e1fa7-b9ca-4b96-972c-94ae1ef8af19" name="Script Assertion"><con:configuration><scriptText>//"code": "NR-TMS-C-LAB001",
+   //"error": "Label [Labelauto_12_1] already exists. "
+
+   import groovy.json.JsonSlurper
+import jxl.*
+import jxl.write.*
+ 
+//grab the response
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper()
+
+def apiResponse = jsonSlurper.parseText(ResponseMessage)
+ 
+//verify the slurper isn't empty
+//assert !(apiResponse.isEmpty())
+
+//verify the status, source, processedrecords, totalRecords &amp; description aren't null
+assert apiResponse.code != null
+assert apiResponse.error != null
+assert apiResponse.code == "NR-TMS-C-LAB001" 
+assert apiResponse.error.contains ("No labels created. Duplicate Label Name [Labelauto_12_2] in request. Label Name should be unique.")</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:setupScript/><con:tearDownScript/><con:properties/></con:testCase><con:testCase id="47b5f364-ccae-4e51-8379-20c36424f776" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getbyid" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="fetching token" id="92e95cb1-6db3-4e3d-b1e3-ccb84a85eaf9"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/servicehandler" methodName="Servicehandler 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="fetching token" id="8613bf08-c36a-45ef-ae3b-a91ceea1f9e6" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request/><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/servicehandler</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="password" value="Zycus@123"/>
+  <con:entry key="loginId" value="admin@zycus.com"/>
+  <con:entry key="action" value="authenticate"/>
+</con:parameters><con:parameterOrder><con:entry>action</con:entry><con:entry>loginId</con:entry><con:entry>password</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="Fetch token" id="0f742da1-eb78-4c1d-8fc3-276476b1cd97"><con:settings/><con:config><script>def myTestCase = context.testCase
+propTestStep = myTestCase.getTestStepByName("Properties for token")
+def str = testRunner.testCase.testSteps["fetching token"].testRequest.response.responseHeaders["Set-Cookie"]
+log.info(str) 
+str = str.toString()
+def a=str.indexOf("tokenId=")
+log.info(a)
+def b=a.toInteger()+8;
+log.info(b)
+token = str.substring(b.toInteger(),b.toInteger()+36)
+log.info(token)
+propTestStep.setPropertyValue("Properties for token", token.toString())
+</script></con:config></con:testStep><con:testStep type="properties" name="Properties for token" id="000b4029-7fec-4968-b2eb-ef1182fe3da5"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>Properties for token</con:name><con:value>988612fa-ecf1-4c47-bbac-623f89eb6877</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="groovy" name="LabelName" id="d031a6d7-ed37-4aaa-add8-2fe4756c5d8b"><con:settings/><con:config><script>//generating random values
+Random rand = new Random()
+String MenuNameAPI = "LbaleAutoGen" + rand.nextInt(100000)
+
+//setting test case properties
+testRunner.testCase.testSteps["StoredLabelname"].setPropertyValue("LabelName", MenuNameAPI);
+</script></con:config></con:testStep><con:testStep type="properties" name="StoredLabelname" id="0449f752-73c1-4889-8e71-034563ab2b11"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>LabelName</con:name><con:value>LbaleAutoGen87934</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="restrequest" name="insertvalues1" id="a1bf9eaf-80ac-4180-b904-f482752c888d"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/rest/v2/label" methodName="Label 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="insertvalues1" id="02881ffe-7369-4101-9511-e3b1a7cfe5db" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="x-zycus-token-id" value="${Properties for token#Properties for token}"/>
+  &lt;con:entry key="Content-Type" value="application/json"/>
+&lt;/xml-fragment></con:setting><con:setting id="RecordRequestRepresentations">true</con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request>[{
+	"labelName":"${StoredLabelname#LabelName}",
+	"labelUri":"www.google.com",
+	"labelHostPage":"Dummy 1",
+	"themeName":"dewdrops",
+	"labelProductName":"tms",
+	"labelSequenceNumber": 32,
+	"activitiesProductMap":
+	{
+		"TMS":["Company Admin"]  
+	}
+}]
+</con:request><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/label</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="121a7498-8112-4c89-8d2c-a66f76bac5fb" name="Valid HTTP Status Codes"><con:configuration><codes>201</codes></con:configuration></con:assertion><con:assertion type="Simple Contains" id="4cfb3a77-f3ae-49a5-bd82-4eb37cda56bf" name="Contains"><con:configuration><token>CREATE</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="308ccca8-7794-4da1-ac56-1995cced09c6" name="Script Assertion"><con:configuration><scriptText>//imports
+import groovy.json.JsonSlurper
+import jxl.*
+import jxl.write.*
+//grab the response
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper()
+def apiResponse = jsonSlurper.parseText(ResponseMessage)
+
+//to insert lable id in properties
+def myTestCase = context.testCase
+propTestStep = myTestCase.getTestStepByName("Properties of insertvalues")
+
+def labelid = apiResponse.payload[0].entityId
+propTestStep.setPropertyValue("labelid", labelid.toString())
+
+
+
+// validation
+assert apiResponse.timestamp != null
+assert apiResponse.payload.entity != null
+assert apiResponse.payload.entity.contains ("Label")
+assert apiResponse.payload.action != null
+assert apiResponse.payload.action.contains ("CREATE")
+assert apiResponse.payload.entityId != null
+assert apiResponse.payload.entityInfo.labelHostPage != null
+assert apiResponse.payload.entityInfo.labelHostPage.contains ("Dummy 1")
+assert apiResponse.payload.entityInfo.labelName != null
+
+
+
+
+
+</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="Label id" id="d9dbc3c3-1d5a-4af1-aa83-ab3e562a772a"><con:settings/><con:config><script>
+//generating random values
+Random rand = new Random()
+String MenuNameAPI = "LbaleAutoGen" + rand.nextInt(100000)
+
+//setting test case properties
+testRunner.testCase.testSteps["StoredLabelname"].setPropertyValue("LabelName", MenuNameAPI);
+</script></con:config></con:testStep><con:testStep type="properties" name="Properties of insertvalues" id="30f698ea-d9c3-4bbf-9131-dc6ca9f130c1"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>labelid</con:name><con:value>d8147103-bfe7-4e37-8155-b9b58a8cd245</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="restrequest" name="getid" id="c0f4a509-41f8-4c42-91b5-e61e799dcad3"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/rest/v2/label/id" methodName="Id 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="getid" id="afdd5de3-a337-44d1-8df1-0d74a50b8183" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="x-zycus-token-id" value="${Properties for token#Properties for token}"/>
+  &lt;con:entry key="Content-Type" value=""/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request/><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/label/id</con:originalUri><con:assertion type="GroovyScriptAssertion" id="7784c78d-13af-4c4e-a732-2e4706f39002" name="Script Assertion"><con:configuration><scriptText>//imports
+import groovy.json.JsonSlurper
+import jxl.*
+import jxl.write.*
+ 
+//grab the response
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper()
+
+def apiResponse = jsonSlurper.parseText(ResponseMessage)
+ 
+//verify the slurper isn't empty
+//assert !(apiResponse.isEmpty())
+
+//verify the status, source, processedrecords, totalRecords &amp; description aren't null
+assert apiResponse.payload.id != null
+assert apiResponse.payload.masterTheme.id != null
+assert apiResponse.payload.masterTheme.name != null
+
+assert apiResponse.payload.labelName != null
+assert apiResponse.payload.labelUri != null
+assert apiResponse.payload.labelHostPage != null
+assert apiResponse.payload.status != null
+assert apiResponse.payload.labelProductName != null
+
+assert apiResponse.payload.masterTheme.name.contains ("DEWDROPS")
+assert apiResponse.payload.labelUri.contains ("www.google.com")
+assert apiResponse.payload.labelHostPage.contains ("Dummy 1")
+assert apiResponse.payload.labelProductName.contains ("TMS")
+
+
+
+
+
+
+</scriptText></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="57b19ade-2549-4cdc-82cd-7162f018a654" name="Response SLA"><con:configuration><SLA>3000</SLA></con:configuration></con:assertion><con:assertion type="Valid HTTP Status Codes" id="9c485e3a-e749-4c45-8a0e-0ab97b80c1df" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="${Properties of insertvalues#labelid}" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="747ce7b9-d337-4dcb-a5cc-bd80bf7be31e" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetbyEmail" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="fetching token" id="e9d0fe13-4025-47af-9f89-9f2db418d7ba"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/servicehandler" methodName="Servicehandler 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="fetching token" id="8613bf08-c36a-45ef-ae3b-a91ceea1f9e6" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request/><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/servicehandler</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="password" value="Zycus@123"/>
+  <con:entry key="loginId" value="admin@zycus.com"/>
+  <con:entry key="action" value="authenticate"/>
+</con:parameters><con:parameterOrder><con:entry>action</con:entry><con:entry>loginId</con:entry><con:entry>password</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="Fetch token" id="4e11e5ba-32fd-4b53-bb32-155a9cbe7ee3"><con:settings/><con:config><script>def myTestCase = context.testCase
+propTestStep = myTestCase.getTestStepByName("Properties for token")
+def str = testRunner.testCase.testSteps["fetching token"].testRequest.response.responseHeaders["Set-Cookie"]
+log.info(str) 
+str = str.toString()
+def a=str.indexOf("tokenId=")
+log.info(a)
+def b=a.toInteger()+8;
+log.info(b)
+token = str.substring(b.toInteger(),b.toInteger()+36)
+log.info(token)
+propTestStep.setPropertyValue("Properties for token", token.toString())
+</script></con:config></con:testStep><con:testStep type="properties" name="Properties for token" id="04f2c8b6-7d9b-40fb-bfbf-61b927497014"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>Properties for token</con:name><con:value>e593278e-cbcc-4d4a-88bd-39d1963429c6</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="groovy" name="LabelName" id="231937d7-c8e2-43ae-940e-e7664348a68b"><con:settings/><con:config><script>//generating random values
+Random rand = new Random()
+String MenuNameAPI = "LbaleAutoGen" + rand.nextInt(100000)
+
+//setting test case properties
+testRunner.testCase.testSteps["StoredLabelname"].setPropertyValue("LabelName", MenuNameAPI);
+</script></con:config></con:testStep><con:testStep type="restrequest" name="insertvalues1" id="8e6d0ec4-aff1-4c1c-8581-698a8bddecf7"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/rest/v2/label" methodName="Label 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="insertvalues1" id="02881ffe-7369-4101-9511-e3b1a7cfe5db" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="x-zycus-token-id" value="${Properties for token#Properties for token}"/>
+  &lt;con:entry key="Content-Type" value="application/json"/>
+&lt;/xml-fragment></con:setting><con:setting id="RecordRequestRepresentations">true</con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request>[{
+	"labelName":"${StoredLabelname#LabelName}",
+	"labelUri":"www.google.com",
+	"labelHostPage":"Dummy 1",
+	"themeName":"Rainbow",
+	"labelProductName":"SIM",
+	"labelSequenceNumber": 32,
+	"activitiesProductMap":
+	{
+		"TMS":["Zycus Admin"]  
+	}
+}]
+</con:request><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/label</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="121a7498-8112-4c89-8d2c-a66f76bac5fb" name="Valid HTTP Status Codes"><con:configuration><codes>201</codes></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="308ccca8-7794-4da1-ac56-1995cced09c6" name="Script Assertion"><con:configuration><scriptText>//imports
+import groovy.json.JsonSlurper
+import jxl.*
+import jxl.write.*
+//grab the response
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper()
+def apiResponse = jsonSlurper.parseText(ResponseMessage)
+
+
+assert apiResponse.timestamp != null
+assert apiResponse.payload.entity != null
+assert apiResponse.payload.entity.contains ("Label")
+assert apiResponse.payload.action != null
+assert apiResponse.payload.action.contains ("CREATE")
+assert apiResponse.payload.entityId != null
+assert apiResponse.payload.entityInfo.labelHostPage != null
+assert apiResponse.payload.entityInfo.labelHostPage.contains ("Dummy 1")
+assert apiResponse.payload.entityInfo.labelName != null
+
+
+
+
+
+
+
+
+//def myTestCase = context.testCase
+//propTestStep = myTestCase.getTestStepByName("Properties of insertvalues")
+
+//def labelid = apiResponse.payload[0].entityId
+//propTestStep.setPropertyValue("labelid", labelid.toString())
+</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="properties" name="StoredLabelname" id="e157135b-316f-48d5-a3c3-4c263c02c716"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>LabelName</con:name><con:value>LbaleAutoGen26668</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="restrequest" name="getbyemail" id="4878d1cd-48f4-4666-a4be-014252e00e40"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/rest/v2/label/email" methodName="Email 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="getbyemail" id="5a141281-b87f-4f42-84ef-643de5d27ae3" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="x-zycus-token-id" value="${Properties for token#Properties for token}"/>
+  &lt;con:entry key="Content-Type" value="application/json"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request/><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/label/email</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="c88dc6be-ecd6-4b57-9af4-9470a7703848" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="f1da8930-81d3-4cfe-90f8-4c449c8e43ac" name="Script Assertion"><con:configuration><scriptText>//imports
+import groovy.json.JsonSlurper
+import jxl.*
+import jxl.write.*
+ 
+//grab the response
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper()
+
+def apiResponse = jsonSlurper.parseText(ResponseMessage)
+ 
+//verify the slurper isn't empty
+//assert !(apiResponse.isEmpty())
+
+
+
+//verify the status, source, processedrecords, totalRecords &amp; description aren't null
+assert apiResponse.payload.id != null
+assert apiResponse.payload.masterTheme.id != null
+assert apiResponse.payload.masterTheme.name != null
+
+assert apiResponse.payload.labelName != null
+assert apiResponse.payload.labelUri != null
+assert apiResponse.payload.labelHostPage != null
+assert apiResponse.payload.status != null
+assert apiResponse.payload.labelProductName != null
+
+assert apiResponse.payload.masterTheme.name.contains ("RAINBOW")
+assert apiResponse.payload.labelUri.contains ("www.google.com")
+assert apiResponse.payload.labelHostPage.contains ("Dummy 1")
+assert apiResponse.payload.labelProductName.contains ("TMS")
+
+</scriptText></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="18590d70-95e1-4040-9411-0db1ef5339f5" name="Response SLA"><con:configuration><SLA>3000</SLA></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="email_id" value="admin@zycus.com" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>email_id</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:properties><con:property><con:name>Property L1</con:name></con:property></con:properties></con:testSuite><con:properties><con:property><con:name>Endpoint</con:name><con:value>http://10.121.0.7:15301</con:value></con:property></con:properties><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

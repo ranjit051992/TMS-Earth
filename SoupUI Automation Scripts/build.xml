@@ -1,0 +1,21 @@
+<project name="TMSAPI" default="testreport" basedir=".">
+<target name="soapui">
+<exec dir="." executable="Z:/SMTQA/TMS/SoupUI Automation Scripts/SoapUI-5.4.0/bin/testrunner.bat">
+<arg line="-j -f 'Z:/SMTQA/TMS/SoupUI Automation Scripts/soapUIReports' 'Z:/SMTQA/TMS/SoupUI Automation Scripts/Project-3.xml'"/>
+</exec>
+</target>
+<target name = "testreport" depends ="soapui">
+<junitreport todir="Z:/SMTQA/TMS/SoupUI Automation Scripts/soapUIReports">
+	<fileset dir="Z:/SMTQA/TMS/SoupUI Automation Scripts/soapUIReports">
+		<include name="TEST-*.xml"/>
+	</fileset>
+	<report todir="Z:/SMTQA/TMS/SoupUI Automation Scripts/soapUIReports/HTML"
+		styledir="Z:/SMTQA/TMS/apache-ant-1.10.7-bin/apache-ant-1.10.7/etc"
+		format="noframes">
+		
+		</report>
+	</junitreport>
+	
+	</target>
+	
+	</project>

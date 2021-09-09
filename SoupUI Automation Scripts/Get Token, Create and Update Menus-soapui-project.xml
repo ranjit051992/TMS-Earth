@@ -1,0 +1,1504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="dbe6f0bd-bb94-4409-ba68-4e4b2281e438" activeEnvironment="Default" name="Get Token, Create and Update Menus" resourceRoot="${projectDir}" soapui-version="5.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="ac6cc3ed-dee3-4d24-a8ab-7a6d226a2365" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://hpx.app.inmu.qc.zycus.local:15302" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://hpx.app.inmu.qc.zycus.local:15302</con:endpoint></con:endpoints><con:resource name="Servicehandler" path="/sso/servicehandler" id="a73f65fb-6ff5-47b8-a9fa-5204c1d03f61"><con:settings/><con:parameters><con:parameter><con:name>action</con:name><con:value>authenticate</con:value><con:style>QUERY</con:style><con:default>authenticate</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>loginId</con:name><con:value>admin@zycus.com</con:value><con:style>QUERY</con:style><con:default>admin@zycus.com</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>password</con:name><con:value>Zycus@123</con:value><con:style>QUERY</con:style><con:default>Zycus@123</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Servicehandler 1" id="5ac0e556-c466-4d08-a9db-ccb2f00aa8ca" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" id="b62f2a84-c191-4688-bb82-9f3b4bc4ce84" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://hpx.app.inmu.qc.zycus.local:15302</con:endpoint><con:request/><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/servicehandler</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="password" value="Zycus@123"/>
+  <con:entry key="loginId" value="admin@zycus.com"/>
+  <con:entry key="action" value="authenticate"/>
+</con:parameters><con:parameterOrder><con:entry>action</con:entry><con:entry>loginId</con:entry><con:entry>password</con:entry></con:parameterOrder></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:RestService" id="80577f1a-40c5-4583-8eaf-4b62d43b3c78" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://hpx.app.inmu.qc.zycus.local:15302" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://hpx.app.inmu.qc.zycus.local:15302</con:endpoint></con:endpoints><con:resource name="Menu" path="/sso/rest/v2/menu" id="0b6794de-5942-46ff-b843-08d516f07bcf"><con:settings/><con:parameters/><con:method name="Menu 1" id="da04f380-cc6d-47ab-82a5-874f4d85839d" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>application/json;charset=UTF-8</con:mediaType><con:status>500</con:status><con:params/><con:element xmlns:menu="http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/menu">menu:Fault</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json;charset=UTF-8</con:mediaType><con:status>201</con:status><con:params/><con:element xmlns:menu="http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/menu">menu:Response</con:element></con:representation><con:request name="Request 1" id="9ba4e19c-f9f8-4212-b78d-1fdc8a484055" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://hpx.app.inmu.qc.zycus.local:15302</con:endpoint><con:request>{
+	"productId": "22735e6e-9ad4-4021-97e1-0cd570df464c",
+	"productName": "eCatalog",
+	"name": "eCatalog_MENU_TEST_0111",
+	"rainbowDisplayNameKey": "dd",
+	"rainbowProductUri": "rainbow_URI",
+	"rainbowIconName": "rainbow_IconName",
+	"sequenceNumber": 4,
+	"parentMenuId": "NULL",
+	"addActivities": [ "PPRRole"],
+
+	"themeMappings":
+	{
+		"dewdrops": 
+		{
+			"iconName": "eCatalog_ICON_NAME_TEST_003",
+			"uri": "DD_URI",
+			"displayNameKey": "eCatalog_DISPLAY_NAME_TEST_003"
+		}
+	
+	}
+}
+</con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:RestService" id="cf0f46e3-cbf7-4a4b-8fd6-c44d3fd69520" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://hpx.app.inmu.qc.zycus.local:15302" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://hpx.app.inmu.qc.zycus.local:15302</con:endpoint></con:endpoints><con:resource name="Menu" path="/sso/rest/v2/menu" id="31fccfb9-bda5-41e8-af56-002269317155"><con:settings/><con:parameters/><con:method name="Update Menu" id="d1eb6ee2-2cc1-400f-9c6f-c4b3462ad254" method="PUT"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>application/json;charset=UTF-8</con:mediaType><con:status>500</con:status><con:params/><con:element xmlns:menu="http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/menu">menu:Fault</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json;charset=UTF-8</con:mediaType><con:status>201</con:status><con:params/><con:element xmlns:menu="http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/menu">menu:Response</con:element></con:representation><con:request name="updateApi" id="4428dd8f-8ffe-420e-8d6b-8ed0828b37a3" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://hpx.app.inmu.qc.zycus.local:15302</con:endpoint><con:request>[
+	{
+	"menuId": "e3ea4421-d5d5-4341-a08a-da8bbbf51bc2",
+	"productId": "8005a511-6548-4629-aa7b-6cc8ff5272ed",
+	"productName": "",
+	"name": "",
+	"rainbowDisplayNameKey": "dd-Updated",
+	"rainbowProductUri": "rainbow_URI-Updated",
+	"rainbowIconName": "",
+	"sequenceNumber": "5",
+	"parentMenuId": "",
+	"addActivities": ["Upload New Catalog", "Edit existing Catalog", "System Configuration"],
+	"removeActivities": [],
+	"addSubmenusByIds": [],
+	"RemoveSubmenusByIds": [],
+	"addSubmenusByNames": [],
+	"removeSubmenusByNames": [],
+	"themeMappings":
+	{
+		"dewdrops": 
+		{
+			"iconName": "updatedIconNamess",
+			"uri": "updateduriss",
+			"displayNameKey": "UPDATEd_DISPLAY_NAME_TEST_004ss"
+		}
+	}
+}	
+]
+</con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:RestService" id="ccf159da-33d7-431e-a5a2-4f63a3ba10b6" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://10.121.0.7:15301" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://10.121.0.7:15301</con:endpoint></con:endpoints><con:resource name="Login" path="/sso/rest/v2/auth/login" id="114476c1-3e5a-42fc-a1c7-faa8c11ff0fe"><con:settings/><con:parameters/><con:method name="Login 1" id="b906f19d-457c-4c69-81f5-65a013acfa16" method="POST"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json;charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:log="http://10.121.0.7/sso/rest/v2/auth/login">log:Response</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:request name="Request 1" id="da59114f-ea09-442e-9b9d-0ac69b437221" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="X-Forwarded-for" value="192.168.3.218" xmlns="http://eviware.com/soapui/config"/></con:setting></con:settings><con:endpoint>http://10.121.0.7:15301</con:endpoint><con:request>{
+    "emailAddress": "admin@zycus.com",
+    "password": "Zycus@123",
+    "ipAddress": "192.168.3.218"
+}</con:request><con:originalUri>http://10.121.0.7/sso/rest/v2/auth/login</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:testSuite id="e8809d6c-83cc-429b-bde0-b3006d46ff85" name="finding the token"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="f2607499-f974-4667-aa5e-ac7501f95eb0" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Create Menu" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="Servicehandler 1 - Request 1" id="0ddd2f3f-f1ca-4e48-98cb-b3b2a060b04e" disabled="true"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/servicehandler" methodName="Servicehandler 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Servicehandler 1 - Request 1" id="b62f2a84-c191-4688-bb82-9f3b4bc4ce84" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request/><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/servicehandler</con:originalUri><con:assertion type="Simple Contains" id="b036f8ec-cc99-47dc-8c06-26f3b6199ee4" name="Contains"><con:configuration><token>(?s).*tokenId.*</token><ignoreCase>false</ignoreCase><useRegEx>true</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="password" value="Zycus@123"/>
+  <con:entry key="loginId" value="admin@zycus.com"/>
+  <con:entry key="action" value="authenticate"/>
+</con:parameters><con:parameterOrder><con:entry>action</con:entry><con:entry>loginId</con:entry><con:entry>password</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="Token" id="a55abaf0-092b-4a5d-97ed-48869ba31f34"><con:settings/><con:config service="http://10.121.0.7:15301" resourcePath="/sso/rest/v2/auth/login" methodName="Login 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Token" id="da59114f-ea09-442e-9b9d-0ac69b437221" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="X-Forwarded-for" value="192.168.3.218" xmlns="http://eviware.com/soapui/config"/></con:setting></con:settings><con:endpoint>http://10.121.0.7:15301</con:endpoint><con:request>{
+    "emailAddress": "admin@zycus.com",
+    "password": "Zycus@123",
+    "ipAddress": "192.168.3.218"
+}</con:request><con:originalUri>http://10.121.0.7/sso/rest/v2/auth/login</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="Fetch Token" id="a980b36d-ce17-46af-9c42-1096a16270f3"><con:settings/><con:config><script>import java.util.Random
+
+//For fetching token id and Menu id
+
+def ResponseMessage = testRunner.testCase.testSteps["Token"].testRequest.response.contentAsString
+log.info(ResponseMessage) 
+ResponseMessage = ResponseMessage.toString() 
+log.info (ResponseMessage)
+tokenId = ResponseMessage.substring(49,85)
+log.info(tokenId)  
+def myTestCase1 = context.testCase
+
+propTestStep = myTestCase1.getTestStepByName("StoredTokenId") 
+propTestStep.setPropertyValue("StoredTokenId",tokenId)
+/*propTestStep = myTestCase1.getTestStepByName("StoreMenuId") 
+propTestStep.setPropertyValue("MenuId",menuId)  */ 
+
+
+Random rand = new Random()
+String MenuNameAPI = "TESTSOAPUI" + rand.nextInt(100000)
+
+
+testRunner.testCase.testSteps["StoredTokenId"].setPropertyValue("MenuName", MenuNameAPI);
+
+
+</script></con:config></con:testStep><con:testStep type="properties" name="StoredTokenId" id="038e52c0-5f32-4025-ae78-cd9b7c040bf2"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>StoredTokenId</con:name><con:value>46742d39-20bb-4ffc-be02-d0bc5d085160</con:value></con:property><con:property><con:name>MenuName</con:name><con:value>TESTSOAPUI17364</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="groovy" name="Data_Driver" id="cdbc00f9-faf7-476e-a30b-f3a1a39b843a"><con:settings/><con:config><script> import com.eviware.soapui.support.XmlHolder
+ 
+import jxl.*
+ 
+import jxl.write.*
+ 
+// DECLARE THE VARIABLES
+ 
+def myTestCase = context.testCase //myTestCase contains the test case
+ 
+def counter,next,previous,size //Variables used to handle the loop and to move inside the file
+ 
+Workbook workbook1 = Workbook.getWorkbook(new File("Z:\\SMTQA\\TMS\\SoupUI Automation Scripts\\Pratiksha\\Input\\InputJson.xls")) //file containing the data
+ 
+Sheet sheet1 = workbook1.getSheet(0) //save the first sheet in sheet1
+ 
+size= sheet1.getRows().toInteger() //get the number of rows, each row is a data set
+ 
+propTestStep = myTestCase.getTestStepByName("Property - Looper") // get the Property TestStep object
+ 
+propTestStep.setPropertyValue("Total", size.toString())
+
+counter = propTestStep.getPropertyValue("Count").toString() //counter variable contains iteration number
+ 
+counter = counter.toInteger() //
+ 
+next = (counter > size-2? 0: counter+1) //set the next value
+
+//next = (counter &lt; size? counter+1 : 0)
+
+// OBTAINING THE DATA YOU NEED
+ 
+Cell Inputjson = sheet1.getCell(0,counter) // getCell(column,row) //obtains user
+ 
+workbook1.close() //close the file
+ 
+////////////////////////////////////
+ 
+IJ = Inputjson.getContents()
+ 
+ 
+propTestStep.setPropertyValue("Inputjson", IJ) //the value is saved in the property
+ 
+ 
+propTestStep.setPropertyValue("Count", next.toString()) //increase Count value
+
+next++ //increase next value
+ 
+propTestStep.setPropertyValue("Next", next.toString()) //set Next value on the properties step
+ 
+//Decide if the test has to be run again or not
+ 
+if (counter == size-1)
+ 
+{
+ 
+propTestStep.setPropertyValue("StopLoop", "T")
+ 
+log.info "Setting the stoploop property now..."
+ 
+}
+ 
+else if (counter==0)
+ 
+{
+ 
+def runner = new com.eviware.soapui.impl.wsdl.testcase.WsdlTestCaseRunner(testRunner.testCase, null)
+ 
+propTestStep.setPropertyValue("StopLoop", "F")
+ 
+}
+ 
+else
+ 
+{
+ 
+propTestStep.setPropertyValue("StopLoop", "F")
+ 
+}</script></con:config></con:testStep><con:testStep type="properties" name="Property - Looper" id="c545e074-96c4-4483-a34a-4cded1cb22cc"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>Inputjson</con:name><con:value><![CDATA[{
+	"productId": " ",
+	"productName": "TMhhhS",
+	"name":"hkjmkgh",
+	"rainbowDisplayNameKey":"        ",
+	"rainbowProductUri": "767677hhk&&&&&&&&&&&&",
+	"rainbowIconName": "jjj",
+	"sequenceNumber": 10,
+	"parentMenuId": " ",
+	"addActivities": ["ACT001"],
+	"themeMappings":
+	{
+		"dewdrops": 
+		{
+			"iconName": "TMS_ICON_NAME_TEST_003",
+			"uri": "gh",
+			"displayNameKey": "               "
+		}
+	}
+}]]></con:value></con:property><con:property><con:name>Total</con:name><con:value>14</con:value></con:property><con:property><con:name>Count</con:name><con:value>0</con:value></con:property><con:property><con:name>Next</con:name><con:value>1</con:value></con:property><con:property><con:name>StopLoop</con:name><con:value>T</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="restrequest" name="Menu" id="b0bf49f5-c9e1-4196-89cd-786b6e6eaff8"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/rest/v2/menu" methodName="Menu 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Menu" id="9ba4e19c-f9f8-4212-b78d-1fdc8a484055" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="x-zycus-token-id" value="${StoredTokenId#StoredTokenId}" xmlns="http://eviware.com/soapui/config"/></con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request>${Property - Looper#Inputjson}</con:request><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/menu</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="a2d8ad46-dcf9-4b1b-abf6-4d94810c27dd" name="Valid HTTP Status Codes"><con:configuration><codes>201, 500</codes></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="f955a0a3-5020-469c-8c8b-759f79e6e3a4" name="Response SLA"><con:configuration><SLA>980</SLA></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="04bf4c55-a0ba-48b6-8dea-0df325f2ba55" name="Script Assertion" disabled="true"><con:configuration><scriptText>gfd</scriptText></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="4182c566-cea6-4891-9105-4b4b5da5e6ba" name="Compare action" disabled="true"><con:configuration><scriptText>
+//Check if the response is not empty
+assert context.response, 'Response is empty or null'
+
+//Define expected data
+def expectedData = [action: 'CREATE', entity: 'Menu']
+
+def json = new groovy.json.JsonSlurper().parseText(context.response)
+//Checks all elements of resource one by one and compare with expectedData
+json.resource.each {k, v -> assert v == expectedData."$k" }
+
+
+
+
+
+
+
+/*
+
+//imports
+import groovy.json.JsonSlurper
+import jxl.*
+import jxl.write.*
+ 
+//grab the response
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper()
+
+def apiResponse = jsonSlurper.parseText(ResponseMessage)
+ 
+//verify the slurper isn't empty
+assert !(apiResponse.isEmpty())
+
+//verify the "entity", "Menu","action","entityId" aren't null   
+
+assert apiResponse.entity != null
+assert apiResponse.Menu != null
+assert apiResponse.action != null
+assert apiResponse.entityId != null
+
+//def processedRecords = apiResponse.processedRecords
+	
+def myTestCase = context.testCase //myTestCase contains the test case
+propTestStep = myTestCase.getTestStepByName("Menu") 
+
+
+def entity = Menu
+if (entity = 'Menu')
+{
+log.info("Correct")
+	}
+else
+{
+log.info("Incorrect")
+	}
+
+/*	
+def Menu = 
+def action
+def entityId
+
+if apiResponse.entity = 
+
+def Next = propTestStep.getPropertyValue("Next")
+
+
+for (i=0; i&lt;processedRecords; i++)
+{
+
+def PayloadParaphrase = apiResponse.payload[i].paraphrase
+
+if (apiResponse.payload[i].paraphrase == Paraphrase)
+{
+	Label label = new Label(0, Count.toInteger(), jsonSlurper.parseText(SearchText).searchText);
+	Label PropertyParaphrase = new Label(1, Count.toInteger(), Paraphrase);
+	Label label1 = new Label(2, Count.toInteger(), PayloadParaphrase);
+	Label label2 = new Label(3, Count.toInteger(), "Pass");//(col,row,data)
+	context.sheet1.addCell(label);
+	context.sheet1.addCell(PropertyParaphrase);
+	context.sheet1.addCell(label1);
+	context.sheet1.addCell(label2);
+}
+
+else
+{
+	Label label = new Label(0, Count.toInteger(), jsonSlurper.parseText(SearchText).searchText);
+	Label PropertyParaphrase = new Label(1, Count.toInteger(), Paraphrase);
+	Label label1 = new Label(2, Count.toInteger(), PayloadParaphrase);
+	Label label2 = new Label(3, Count.toInteger(), "Fail");//(col,row,data)
+	context.sheet1.addCell(label);
+	context.sheet1.addCell(PropertyParaphrase);
+	context.sheet1.addCell(label1);
+	context.sheet1.addCell(label2);
+	
+}
+
+
+
+assert apiResponse.payload != []
+
+def PayloadKeywords = apiResponse.payload[i].keywords.join(", ")
+
+if (apiResponse.payload[i].keywords.join(", ") == Keywords)
+{
+	Label PropertyKeywords = new Label(4, Count.toInteger(), Keywords);
+	Label label3 = new Label(5, Count.toInteger(), PayloadKeywords);
+	Label label4 = new Label(6, Count.toInteger(), "Pass");//(col,row,data)
+	context.sheet1.addCell(PropertyKeywords);
+	context.sheet1.addCell(label3);
+	context.sheet1.addCell(label4);
+}
+else
+{
+	Label PropertyKeywords = new Label(4, Count.toInteger(), Keywords);
+	Label label3 = new Label(5, Count.toInteger(), PayloadKeywords);
+	Label label4 = new Label(6, Count.toInteger(), "Fail");//(col,row,data)
+	context.sheet1.addCell(PropertyKeywords);
+	context.sheet1.addCell(label3);
+	context.sheet1.addCell(label4);
+}
+
+def PayloadCriteriaField = apiResponse.payload[i].filterQuery.queryCriteria[0].criteriaList[2].criteriaList[0].field
+
+if (apiResponse.payload[i].filterQuery.queryCriteria[0].criteriaList[2].criteriaList[0].field == CriteriaField)
+{
+	Label PropertyCriteriaField = new Label(7, Count.toInteger(), CriteriaField);
+	Label label5 = new Label(8, Count.toInteger(), PayloadCriteriaField);
+	Label label6 = new Label(9, Count.toInteger(), "Pass");//(col,row,data)
+	context.sheet1.addCell(PropertyCriteriaField);
+	context.sheet1.addCell(label5);
+	context.sheet1.addCell(label6);
+}
+else
+{
+	Label PropertyCriteriaField = new Label(7, Count.toInteger(), CriteriaField);
+	Label label5 = new Label(8, Count.toInteger(), PayloadCriteriaField);
+	Label label6 = new Label(9, Count.toInteger(), "Fail");//(col,row,data)
+	context.sheet1.addCell(PropertyCriteriaField);
+	context.sheet1.addCell(label5);
+	context.sheet1.addCell(label6);
+}
+
+
+def PayloadCriteriaValue = apiResponse.payload[i].filterQuery.queryCriteria[0].criteriaList[2].criteriaList[0].value
+
+if (apiResponse.payload[i].filterQuery.queryCriteria[0].criteriaList[2].criteriaList[0].value == CriteriaValue)
+{
+	Label PropertyCriteriaValue = new Label(10, Count.toInteger(), CriteriaValue);
+	Label label7 = new Label(11, Count.toInteger(), PayloadCriteriaValue);
+	Label label8 = new Label(12, Count.toInteger(), "Pass");//(col,row,data)
+	context.sheet1.addCell(PropertyCriteriaValue);
+	context.sheet1.addCell(label7);
+	context.sheet1.addCell(label8);
+}
+else
+{
+	Label PropertyCriteriaValue = new Label(10, Count.toInteger(), CriteriaValue);
+	Label label7 = new Label(11, Count.toInteger(), PayloadCriteriaValue);
+	Label label8 = new Label(12, Count.toInteger(), "Fail");//(col,row,data)
+	context.sheet1.addCell(PropertyCriteriaValue);
+	context.sheet1.addCell(label7);
+	context.sheet1.addCell(label8);
+}
+
+
+if (i > 0)
+{
+		Label label9 = new Label(13, Count.toInteger(), "Found in Suggested Searches");
+		context.sheet1.addCell(label9);
+}
+
+else
+{
+		Label label9 = new Label(13, Count.toInteger(), "Not Found in Suggested Searches ");
+		context.sheet1.addCell(label9);
+}
+
+if (apiResponse.payload[i].paraphrase == Paraphrase)
+{
+	break;
+}
+
+
+}
+
+/*
+
+
+
+
+def OutputAction = testRunner.testCase.testSteps["Menu"].testRequest.response.contentAsString
+log.info(action) 
+action = action.toString() 
+
+if (ResponseAction.toString() = = 'CREATE')
+ 
+{
+log.info ("SUCCESS")
+ 
+}
+ 
+else
+ 
+{
+ 
+log.info ("fail")
+ 
+}
+
+*/</scriptText></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="47a3dd7e-1c15-4a92-9753-95494690233c" name="Script- Response Verification"><con:configuration><scriptText><![CDATA[//imports
+import groovy.json.JsonSlurper
+import jxl.*
+import jxl.write.*
+
+//grab the response
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper()
+def apiResponse = jsonSlurper.parseText(ResponseMessage)
+
+//verify the slurper isn't empty
+assert !(apiResponse.isEmpty())
+
+//assert apiResponse.status != null
+
+def myTestCase = context.testCase //myTestCase contains the test case
+propTestStep = myTestCase.getTestStepByName("Property - Looper") 
+
+def Count = propTestStep.getPropertyValue("Count")
+def inputjson = propTestStep.getPropertyValue("Inputjson")
+def apiResponse1 = jsonSlurper.parseText(inputjson)
+
+if ("payload" in apiResponse) 
+{
+	assert apiResponse.payload.entity != null
+	assert apiResponse.payload.action != null
+	assert apiResponse.payload.entityId != null
+	
+ if (apiResponse.payload != null && apiResponse.payload.action == "CREATE")
+{
+	                           Label label = new Label(0, Count.toInteger(), "To test with all valid data");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                
+}
+}
+
+else if ("error" in apiResponse || "code" in apiResponse)
+{
+if(apiResponse.error == "Sequence number should be greater than 0")
+{
+                
+                                Label label = new Label(0, Count.toInteger(), "To test with invalid sequence no");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                                
+
+}
+else if(apiResponse.error == "Without any activities menu will not be visible")
+{
+                                Label label = new Label(0, Count.toInteger(), "To verify api without any activities");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                log.info label2
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                
+}
+else if(apiResponse.error.contains ("No activities found"))
+{
+                                Label label = new Label(0, Count.toInteger(), "To verify api without any activities");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                log.info label2
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                
+}
+else if(apiResponse.error == "Menu name should contain only alphabets and numbers.")
+{
+                                Label label = new Label(0, Count.toInteger(), "To verify menu name should not allow special characters");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                log.info label2
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                
+}
+else if(apiResponse.error.contains ("Menu not found with id"))
+{
+                                Label label = new Label(0, Count.toInteger(), "To verify with non-existing parent menu");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                log.info label2
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                
+}
+else if(apiResponse.error.contains ("Product not found with id"))
+{
+                                Label label = new Label(0, Count.toInteger(), "To verify with non-existing product Id");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                log.info label2
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                
+}
+else if(apiResponse.error.contains ("Menu with name") && apiResponse.error.contains ("already exists for product with id"))
+{
+                                Label label = new Label(0, Count.toInteger(), "Check with Duplicate Menu Name");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                log.info label2
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                
+}
+
+else if(apiResponse.error.contains ("Activity not found with name") && apiResponse.error.contains ("for product with id"))
+{
+                                Label label = new Label(0, Count.toInteger(), "To verify api by assigning invalid activities");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                log.info label2
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                
+}
+else if(apiResponse.error.contains ("Product not found with name"))
+{
+                                Label label = new Label(0, Count.toInteger(), "Invalid Product name in API");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                log.info label2
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                
+}
+else if(apiResponse.error.contains ("Uri is blank for theme dewdrops"))
+{
+                                Label label = new Label(0, Count.toInteger(), "To verify assigning blank URI for theme");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                log.info label2
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                
+}
+
+/*else if(apiResponse.payload != null && apiResponse.payload.action == "CREATE")
+{
+                
+                                Label label = new Label(0, Count.toInteger(), "To test with all valid data");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                
+}
+*/
+else if(apiResponse.error == "No Themes found")
+{
+                                Label label = new Label(0, Count.toInteger(), "To verify for invalid theme");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                                
+}
+
+else if(apiResponse.error == "Theme Name cannot be blank")
+{
+                                Label label = new Label(0, Count.toInteger(), "To test API with NULL value");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                                
+}
+
+else if(apiResponse.error == "Product Id/Name both cannot be blank")
+{
+                                Label label = new Label(0, Count.toInteger(), "To test with both Product Id and Name as blank");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                                
+}
+
+else if(apiResponse.error == "Icon name is blank for theme Rainbow")
+{
+                                Label label = new Label(0, Count.toInteger(), "To test icon name with blank value");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                                
+}
+
+/*else if(apiResponse.payload != null && apiResponse.payload.action == "CREATE" && ( apiResponse1.themeMappings.Rainbow.contains("customProperty")))
+{
+                                Label label = new Label(0, Count.toInteger(), "To test with custom property addition in theme menu mapping");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                                
+}*/
+
+else
+{
+                                Label label = new Label(0, Count.toInteger(), "Exceptional Cases");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                Label label1 = new Label(2, Count.toInteger(), "Fail");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                                
+}}
+
+
+]]></scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="Loop" id="300409c0-1b33-42e9-bb86-e374d23b0a7a"><con:settings/><con:config><script>def myTestCase = context.testCase
+ 
+def runner
+ 
+propTestStep = myTestCase.getTestStepByName("Property - Looper") // get the Property TestStep
+ 
+endLoop = propTestStep.getPropertyValue("StopLoop").toString()
+ 
+if (endLoop.toString() == "T" || endLoop.toString()=="True" || endLoop.toString()=="true")
+ 
+{
+ 
+log.info ("Exit Groovy Data Source Looper")
+
+//Setting Counter value to 0
+
+
+assert true
+ 
+}
+ 
+else
+ 
+{
+ 
+testRunner.gotoStepByName("Token") //setStartStep
+ 
+}</script></con:config></con:testStep><con:setupScript>import jxl.*
+import jxl.write.*
+
+context.workbook1 = Workbook.createWorkbook(new File("Z:\\SMTQA\TMS\\SoupUI Automation Scripts\\Pratiksha\Output\\Results\\MenuAPI_results.xls"))
+context.sheet1 = context.workbook1.createSheet("MenuAPI", 0)
+
+testRunner.testCase.testSteps['Property - Looper'].clearPropertyValues()
+def count = 0
+
+testRunner.testCase.testSteps['Property - Looper'].setPropertyValue( "Count", count.toString())
+
+log.info "output excel sheet created"
+</con:setupScript><con:tearDownScript>context.workbook1.write()
+context.workbook1.close()
+
+log.info "output excel sheet closed"</con:tearDownScript><con:properties><con:property><con:name>testRequest</con:name></con:property><con:property><con:name>MenuName</con:name><con:value>eCatalogAPITest79084</con:value></con:property></con:properties></con:testCase><con:testCase id="1cc971dd-69e0-41d4-af2b-12aa3af9f664" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Update Menu" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="Servicehandler 1 - Request 1" id="907d528a-b7bf-4d4a-b9ff-a469b089e40e" disabled="true"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/servicehandler" methodName="Servicehandler 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Servicehandler 1 - Request 1" id="b62f2a84-c191-4688-bb82-9f3b4bc4ce84" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request/><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/servicehandler</con:originalUri><con:assertion type="Simple Contains" id="b036f8ec-cc99-47dc-8c06-26f3b6199ee4" name="Contains"><con:configuration><token>(?s).*tokenId.*</token><ignoreCase>false</ignoreCase><useRegEx>true</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="password" value="Zycus@123"/>
+  <con:entry key="loginId" value="admin@zycus.com"/>
+  <con:entry key="action" value="authenticate"/>
+</con:parameters><con:parameterOrder><con:entry>action</con:entry><con:entry>loginId</con:entry><con:entry>password</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="Token" id="7ea3c0a7-f6d2-42f8-914b-d28b85d8efd5"><con:settings/><con:config service="http://10.121.0.7:15301" resourcePath="/sso/rest/v2/auth/login" methodName="Login 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Token" id="da59114f-ea09-442e-9b9d-0ac69b437221" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="X-Forwarded-for" value="192.168.3.218" xmlns="http://eviware.com/soapui/config"/></con:setting></con:settings><con:endpoint>http://10.121.0.7:15301</con:endpoint><con:request>{
+    "emailAddress": "admin@zycus.com",
+    "password": "Zycus@123",
+    "ipAddress": "192.168.3.218"
+}</con:request><con:originalUri>http://10.121.0.7/sso/rest/v2/auth/login</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="Fetch Token &amp; Menu Name" id="0462e786-de78-4ccf-9d9e-cca214fbbe36"><con:settings/><con:config><script>import java.util.Random
+
+//For v1 API to fetch session
+/*def str = testRunner.testCase.testSteps["Servicehandler 1 - Request 1"].testRequest.response.responseHeaders["Set-Cookie"] 
+log.info(str)  
+str = str.toString() 
+token = str.substring(75,111) 
+log.info(token)   
+def myTestCase = context.testCase  
+
+propTestStep = myTestCase.getTestStepByName("StoredTokenId") 
+propTestStep.setPropertyValue("StoredTokenId",token)        
+
+propTestStep = myTestCase.getTestStepByName("StoreMenuId") 
+propTestStep.setPropertyValue("StoredTokenId",token)   */  
+
+def ResponseMessage = testRunner.testCase.testSteps["Token"].testRequest.response.contentAsString
+log.info(ResponseMessage) 
+ResponseMessage = ResponseMessage.toString() 
+log.info (ResponseMessage)
+tokenId = ResponseMessage.substring(49,85)
+log.info(tokenId)  
+def myTestCase1 = context.testCase
+
+propTestStep = myTestCase1.getTestStepByName("StoredTokenId") 
+propTestStep.setPropertyValue("StoredTokenId",tokenId)
+
+
+
+//generating random values
+Random rand = new Random()
+String MenuNameAPI = "UpdateMenu" + rand.nextInt(100000)
+
+//setting test case properties
+testRunner.testCase.testSteps["StoredTokenId"].setPropertyValue("MenuName", MenuNameAPI);
+</script></con:config></con:testStep><con:testStep type="properties" name="StoredTokenId" id="161807fd-be10-471c-9f26-16bfee242464"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>tokenId</con:name><con:value>a1147acd-e01b-43a3-8b97-d21e009dd483</con:value></con:property><con:property><con:name>MenuName</con:name><con:value>UpdateMenu40652</con:value></con:property><con:property><con:name>StoredTokenId</con:name><con:value>593dc6da-c92c-436d-9e1d-73afc404b3bb</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="restrequest" name="Menu" id="30ab6e59-fecb-4bd0-9998-3efc88330f41"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/rest/v2/menu" methodName="Menu 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Menu" id="9ba4e19c-f9f8-4212-b78d-1fdc8a484055" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="x-zycus-token-id" value="${StoredTokenId#StoredTokenId}" xmlns="http://eviware.com/soapui/config"/></con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request>{
+	"productId": "4a9784d4-8798-4782-9e63-33814a89daf0",
+	"productName": "",
+	"name" : "${StoredTokenId#MenuName}",
+	"rainbowDisplayNameKey": "dd",
+	"rainbowProductUri": "rainbow_URI",
+	"rainbowIconName": "rainbow_IconName",
+	"sequenceNumber": 5,
+	"parentMenuId": "NULL",
+	"addActivities": ["ACT001"],
+
+	"themeMappings":
+	{
+		"dewdrops": 
+		{
+			"iconName": "eCatalog_ICON_NAME_TEST_003",
+			"uri": "DD_URI",
+			"displayNameKey": "eCatalog_DISPLAY_NAME_TEST_003"
+		}
+	
+	}
+}
+</con:request><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/menu</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="a2d8ad46-dcf9-4b1b-abf6-4d94810c27dd" name="Valid HTTP Status Codes"><con:configuration><codes>201</codes></con:configuration></con:assertion><con:assertion type="Response SLA Assertion" id="f955a0a3-5020-469c-8c8b-759f79e6e3a4" name="Response SLA" disabled="true"><con:configuration><SLA>900</SLA></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="4182c566-cea6-4891-9105-4b4b5da5e6ba" name="Compare action" disabled="true"><con:configuration><scriptText>
+//Check if the response is not empty
+assert context.response, 'Response is empty or null'
+
+//Define expected data
+def expectedData = [action: 'CREATE', entity: 'Menu']
+
+def json = new groovy.json.JsonSlurper().parseText(context.response)
+//Checks all elements of resource one by one and compare with expectedData
+json.resource.each {k, v -> assert v == expectedData."$k" }
+
+
+
+
+
+
+
+/*
+
+//imports
+import groovy.json.JsonSlurper
+import jxl.*
+import jxl.write.*
+ 
+//grab the response
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper()
+
+def apiResponse = jsonSlurper.parseText(ResponseMessage)
+ 
+//verify the slurper isn't empty
+assert !(apiResponse.isEmpty())
+
+//verify the "entity", "Menu","action","entityId" aren't null   
+
+assert apiResponse.entity != null
+assert apiResponse.Menu != null
+assert apiResponse.action != null
+assert apiResponse.entityId != null
+
+//def processedRecords = apiResponse.processedRecords
+	
+def myTestCase = context.testCase //myTestCase contains the test case
+propTestStep = myTestCase.getTestStepByName("Menu") 
+
+
+def entity = Menu
+if (entity = 'Menu')
+{
+log.info("Correct")
+	}
+else
+{
+log.info("Incorrect")
+	}
+
+/*	
+def Menu = 
+def action
+def entityId
+
+if apiResponse.entity = 
+
+def Next = propTestStep.getPropertyValue("Next")
+
+
+for (i=0; i&lt;processedRecords; i++)
+{
+
+def PayloadParaphrase = apiResponse.payload[i].paraphrase
+
+if (apiResponse.payload[i].paraphrase == Paraphrase)
+{
+	Label label = new Label(0, Count.toInteger(), jsonSlurper.parseText(SearchText).searchText);
+	Label PropertyParaphrase = new Label(1, Count.toInteger(), Paraphrase);
+	Label label1 = new Label(2, Count.toInteger(), PayloadParaphrase);
+	Label label2 = new Label(3, Count.toInteger(), "Pass");//(col,row,data)
+	context.sheet1.addCell(label);
+	context.sheet1.addCell(PropertyParaphrase);
+	context.sheet1.addCell(label1);
+	context.sheet1.addCell(label2);
+}
+
+else
+{
+	Label label = new Label(0, Count.toInteger(), jsonSlurper.parseText(SearchText).searchText);
+	Label PropertyParaphrase = new Label(1, Count.toInteger(), Paraphrase);
+	Label label1 = new Label(2, Count.toInteger(), PayloadParaphrase);
+	Label label2 = new Label(3, Count.toInteger(), "Fail");//(col,row,data)
+	context.sheet1.addCell(label);
+	context.sheet1.addCell(PropertyParaphrase);
+	context.sheet1.addCell(label1);
+	context.sheet1.addCell(label2);
+	
+}
+
+
+
+assert apiResponse.payload != []
+
+def PayloadKeywords = apiResponse.payload[i].keywords.join(", ")
+
+if (apiResponse.payload[i].keywords.join(", ") == Keywords)
+{
+	Label PropertyKeywords = new Label(4, Count.toInteger(), Keywords);
+	Label label3 = new Label(5, Count.toInteger(), PayloadKeywords);
+	Label label4 = new Label(6, Count.toInteger(), "Pass");//(col,row,data)
+	context.sheet1.addCell(PropertyKeywords);
+	context.sheet1.addCell(label3);
+	context.sheet1.addCell(label4);
+}
+else
+{
+	Label PropertyKeywords = new Label(4, Count.toInteger(), Keywords);
+	Label label3 = new Label(5, Count.toInteger(), PayloadKeywords);
+	Label label4 = new Label(6, Count.toInteger(), "Fail");//(col,row,data)
+	context.sheet1.addCell(PropertyKeywords);
+	context.sheet1.addCell(label3);
+	context.sheet1.addCell(label4);
+}
+
+def PayloadCriteriaField = apiResponse.payload[i].filterQuery.queryCriteria[0].criteriaList[2].criteriaList[0].field
+
+if (apiResponse.payload[i].filterQuery.queryCriteria[0].criteriaList[2].criteriaList[0].field == CriteriaField)
+{
+	Label PropertyCriteriaField = new Label(7, Count.toInteger(), CriteriaField);
+	Label label5 = new Label(8, Count.toInteger(), PayloadCriteriaField);
+	Label label6 = new Label(9, Count.toInteger(), "Pass");//(col,row,data)
+	context.sheet1.addCell(PropertyCriteriaField);
+	context.sheet1.addCell(label5);
+	context.sheet1.addCell(label6);
+}
+else
+{
+	Label PropertyCriteriaField = new Label(7, Count.toInteger(), CriteriaField);
+	Label label5 = new Label(8, Count.toInteger(), PayloadCriteriaField);
+	Label label6 = new Label(9, Count.toInteger(), "Fail");//(col,row,data)
+	context.sheet1.addCell(PropertyCriteriaField);
+	context.sheet1.addCell(label5);
+	context.sheet1.addCell(label6);
+}
+
+
+def PayloadCriteriaValue = apiResponse.payload[i].filterQuery.queryCriteria[0].criteriaList[2].criteriaList[0].value
+
+if (apiResponse.payload[i].filterQuery.queryCriteria[0].criteriaList[2].criteriaList[0].value == CriteriaValue)
+{
+	Label PropertyCriteriaValue = new Label(10, Count.toInteger(), CriteriaValue);
+	Label label7 = new Label(11, Count.toInteger(), PayloadCriteriaValue);
+	Label label8 = new Label(12, Count.toInteger(), "Pass");//(col,row,data)
+	context.sheet1.addCell(PropertyCriteriaValue);
+	context.sheet1.addCell(label7);
+	context.sheet1.addCell(label8);
+}
+else
+{
+	Label PropertyCriteriaValue = new Label(10, Count.toInteger(), CriteriaValue);
+	Label label7 = new Label(11, Count.toInteger(), PayloadCriteriaValue);
+	Label label8 = new Label(12, Count.toInteger(), "Fail");//(col,row,data)
+	context.sheet1.addCell(PropertyCriteriaValue);
+	context.sheet1.addCell(label7);
+	context.sheet1.addCell(label8);
+}
+
+
+if (i > 0)
+{
+		Label label9 = new Label(13, Count.toInteger(), "Found in Suggested Searches");
+		context.sheet1.addCell(label9);
+}
+
+else
+{
+		Label label9 = new Label(13, Count.toInteger(), "Not Found in Suggested Searches ");
+		context.sheet1.addCell(label9);
+}
+
+if (apiResponse.payload[i].paraphrase == Paraphrase)
+{
+	break;
+}
+
+
+}
+
+/*
+
+
+
+
+def OutputAction = testRunner.testCase.testSteps["Menu"].testRequest.response.contentAsString
+log.info(action) 
+action = action.toString() 
+
+if (ResponseAction.toString() = = 'CREATE')
+ 
+{
+log.info ("SUCCESS")
+ 
+}
+ 
+else
+ 
+{
+ 
+log.info ("fail")
+ 
+}
+
+*/</scriptText></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="47a3dd7e-1c15-4a92-9753-95494690233c" name="Script- Response Verification" disabled="true"><con:configuration><scriptText>//imports
+import groovy.json.JsonSlurper
+ 
+//grab the response
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper().parseText(ResponseMessage)
+ 
+//verify the slurper isn't empty
+assert !(jsonSlurper.isEmpty())
+ 
+//verify the Id, Type and Guid aren't null
+assert jsonSlurper.payload.entity != null
+assert jsonSlurper.payload.action != null
+ 
+
+ 
+//verify Type and GUID are Strings
+assert jsonSlurper.payload.entity == "Menu"
+assert jsonSlurper.payload.action == "CREATE"</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="Fetch Menu Id Created" id="eecc7b3e-b44f-4fe8-a9c8-78d9fb227ebc"><con:settings/><con:config><script>
+//For fetching token id and Menu id
+
+def ResponseMessage = testRunner.testCase.testSteps["Menu"].testRequest.response.contentAsString
+log.info(ResponseMessage) 
+ResponseMessage = ResponseMessage.toString() 
+menuId = ResponseMessage.substring(84,120)
+log.info(menuId)  
+def myTestCase1 = context.testCase
+
+propTestStep = myTestCase1.getTestStepByName("StoreMenuId") 
+propTestStep.setPropertyValue("MenuId",menuId)   
+
+</script></con:config></con:testStep><con:testStep type="properties" name="StoreMenuId" id="727096c3-f9d1-489b-9a94-bd7d1e468f30"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>StoredTokenId</con:name><con:value>aca36592-c5b6-4753-b91d-7b5f201d21c4</con:value></con:property><con:property><con:name>MenuId</con:name><con:value>63e74c52-645e-4609-a27c-b197046e0007</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="groovy" name="Data_Driver" id="fe85034e-2bc8-4845-9430-107b16414fa6"><con:settings/><con:config><script> import com.eviware.soapui.support.XmlHolder
+ 
+import jxl.*
+ 
+import jxl.write.*
+ 
+// DECLARE THE VARIABLES
+ 
+def myTestCase = context.testCase //myTestCase contains the test case
+ 
+def counter,next,previous,size //Variables used to handle the loop and to move inside the file
+ 
+Workbook workbook1 = Workbook.getWorkbook(new File("D:\\Automation\\API_Input_Files\\UpdateMenuJson.xls")) //file containing the data
+ 
+Sheet sheet1 = workbook1.getSheet(0) //save the first sheet in sheet1
+ 
+size= sheet1.getRows().toInteger() //get the number of rows, each row is a data set
+ 
+propTestStep = myTestCase.getTestStepByName("Property - Looper") // get the Property TestStep object
+ 
+propTestStep.setPropertyValue("Total", size.toString())
+
+counter = propTestStep.getPropertyValue("Count").toString() //counter variable contains iteration number
+ 
+counter = counter.toInteger() //
+ 
+next = (counter > size-2? 0: counter+1) //set the next value
+
+// OBTAINING THE DATA YOU NEED
+ 
+Cell Inputjson = sheet1.getCell(0,counter) // getCell(column,row) //obtains user
+ 
+workbook1.close() //close the file
+ 
+////////////////////////////////////
+ 
+IJ = Inputjson.getContents()
+ 
+ 
+propTestStep.setPropertyValue("Inputjson", IJ) //the value is saved in the property
+ 
+ 
+propTestStep.setPropertyValue("Count", next.toString()) //increase Count value
+
+next++ //increase next value
+ 
+propTestStep.setPropertyValue("Next", next.toString()) //set Next value on the properties step
+ 
+//Decide if the test has to be run again or not
+ 
+if (counter == size-1)
+ 
+{
+ 
+propTestStep.setPropertyValue("StopLoop", "T")
+ 
+log.info "Setting the stoploop property now..."
+ 
+}
+ 
+else if (counter==0)
+ 
+{
+ 
+def runner = new com.eviware.soapui.impl.wsdl.testcase.WsdlTestCaseRunner(testRunner.testCase, null)
+ 
+propTestStep.setPropertyValue("StopLoop", "F")
+ 
+}
+ 
+else
+ 
+{
+ 
+propTestStep.setPropertyValue("StopLoop", "F")
+ 
+}</script></con:config></con:testStep><con:testStep type="properties" name="Property - Looper" id="ddd397e5-8a4a-4097-b2e1-e9eb2c8ff654"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>Inputjson</con:name><con:value>[
+	{
+	"menuId": " ",
+	"productId": "4a9784d4-8798-4782-9e63-33814a89daf0",
+	"productName": "",
+	"name": "",
+	"rainbowDisplayNameKey": "dd-Updated",
+	"rainbowProductUri": "rainbow_URI-Updated",
+	"rainbowIconName": "",
+	"sequenceNumber": "58",
+	"parentMenuId": "",
+	"addActivities": ["ACT006"],
+	"removeActivities": [],
+	"addSubmenusByIds": [],
+	"RemoveSubmenusByIds": [],
+	"addSubmenusByNames": [],
+	"removeSubmenusByNames": [],
+	"themeMappings":
+	{
+		"dewdrops": 
+		{
+			"iconName": "updatedIconNamess",
+			"uri": "updateduriss",
+			"displayNameKey": "UPDATEd_DISPLAY_NAME_TEST_004ss"
+		}
+	}
+}	
+]</con:value></con:property><con:property><con:name>Total</con:name><con:value>11</con:value></con:property><con:property><con:name>Count</con:name><con:value>0</con:value></con:property><con:property><con:name>Next</con:name><con:value>1</con:value></con:property><con:property><con:name>StopLoop</con:name><con:value>T</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="restrequest" name="Update API" id="07abf68f-2af2-47b5-9654-ba661758e360"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/rest/v2/menu" methodName="Update Menu" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="Update API" id="4428dd8f-8ffe-420e-8d6b-8ed0828b37a3" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="x-zycus-token-id" value="${StoredTokenId#StoredTokenId}" xmlns="http://eviware.com/soapui/config"/></con:setting></con:settings><con:endpoint>${#Project#Endpoint}</con:endpoint><con:request> ${Property - Looper#Inputjson}</con:request><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/menu</con:originalUri><con:assertion type="Response SLA Assertion" id="049ffc3c-fd33-43cc-9668-e1f0038f29d9" name="Response SLA" disabled="true"><con:configuration><SLA>990</SLA></con:configuration></con:assertion><con:assertion type="Valid HTTP Status Codes" id="b3659687-7b3c-473f-8a58-703aa46bd64a" name="Valid HTTP Status Codes"><con:configuration><codes>201,500
+</codes></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="f27d4386-ab4b-484b-9ac9-11c5b0862e90" name="Script Assertion"><con:configuration><scriptText><![CDATA[//imports
+import groovy.json.JsonSlurper
+import jxl.*
+import jxl.write.*
+
+//grab the response
+def ResponseMessage = messageExchange.response.responseContent
+//define a JsonSlurper
+def jsonSlurper = new JsonSlurper()
+def apiResponse = jsonSlurper.parseText(ResponseMessage)
+
+//verify the slurper isn't empty
+assert !(apiResponse.isEmpty())
+
+//assert apiResponse.status != null
+
+def myTestCase = context.testCase //myTestCase contains the test case
+propTestStep = myTestCase.getTestStepByName("Property - Looper") 
+
+def Count = propTestStep.getPropertyValue("Count")
+def inputjson = propTestStep.getPropertyValue("Inputjson")
+
+def apiResponse1 = jsonSlurper.parseText(inputjson)
+
+def productId = apiResponse1.productId[0]
+log.info productId
+
+
+
+//def remove = apiResponse.payload[0].entityInfo.addedActivities
+//log.info remove
+
+
+log.info "asdasdasdasd"
+def inputremoves = apiResponse1[0].removeActivities[0]
+log.info inputremoves
+
+//def inputremove = apiResponse.payload[0].entityInfo.removedActivities
+//log.info inputremove
+//if (apiResponse1[0].removeActivities[0] == apiResponse.payload[0].entityInfo.removedActivities)
+
+
+//def RA = apiResponse1[0].removeActivities[0].equals(apiResponse.payload[0].entityInfo.removedActivities)
+//log.info RA
+
+
+
+
+if ("payload" in apiResponse )
+{
+	if (apiResponse.payload[0].action == "UPDATE" &&  (apiResponse1[0].removeActivities[0] != null && apiResponse1[0].removeActivities[0].equals(apiResponse.payload[0].entityInfo.removedActivities)))
+	{
+	
+                                Label label = new Label(0, Count.toInteger(), "To verify api by removing activities");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                //log.info label2
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                
+	 }
+ 
+
+	else if (apiResponse.payload != null && apiResponse.payload[0].action == "UPDATE" &&  (apiResponse1[0].addActivities[0]!= null && apiResponse1[0].addActivities[0].equals(apiResponse.payload[0].entityInfo.addedActivities)))
+	{
+ 	
+
+                               Label label = new Label(0, Count.toInteger(), "To verify api by adding activities");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                //log.info label2
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+	
+ 	}
+ 	
+	else if(apiResponse.payload != null && apiResponse.payload[0].action == "UPDATE" && (apiResponse1[0].addSubmenusByNames[0]!= null && apiResponse1[0].addSubmenusByNames[0].equals(apiResponse.payload[0].entityInfo.addedSubmenus)))
+ 	{
+                                Label label = new Label(0, Count.toInteger(), "To verify adding submenu by names");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                //log.info label2
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                
+	 }
+
+ 	 else if(apiResponse.payload != null && apiResponse.payload[0].action == "UPDATE" && (apiResponse1[0].rainbowDisplayNameKey != null && apiResponse1[0].rainbowDisplayNameKey.equals(apiResponse.payload[0].entityInfo.displayNameKey)))
+	 {
+                                Label label = new Label(0, Count.toInteger(), "To check updation of display name key");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                //log.info label2
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                
+ 	}
+
+  	else if(apiResponse.payload != null && apiResponse.payload[0].action == "UPDATE" && (apiResponse1[0].rainbowProductUri != null && apiResponse1[0].rainbowProductUri.equals(apiResponse.payload[0].entityInfo.productUri)))
+ 	{
+                                Label label = new Label(0, Count.toInteger(), "To check Rainbow product Uri Update");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                //log.info label2
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                
+ 	}
+
+ 	  	else if(apiResponse.payload != null && apiResponse.payload[0].action == "UPDATE" && "customProperty" in apiResponse )
+ 	{
+                                Label label = new Label(0, Count.toInteger(), "To check API containing Custom property Tags");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                //log.info label2
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                
+ 	}
+
+	else (apiResponse.payload != null && apiResponse.payload[0].action == "UPDATE")
+ 	{ 
+                
+                                Label label = new Label(0, Count.toInteger(), "To test with all valid data");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                
+	
+ 	}
+ }
+ 
+ else if ("error" in apiResponse )
+     {
+ 	
+ 	 if (apiResponse.error != null && apiResponse.error.contains ("Activity not found with name") && apiResponse.error.contains ("for product with id " + productId))
+ 	{
+                
+                                Label label = new Label(0, Count.toInteger(), "To test with invalid activity name");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                               
+ 	}
+ 
+ 	else if (apiResponse.error != null && apiResponse.error.contains ("Menu with id") && apiResponse.error.contains ("not found for product with id " + productId))
+ 	{
+                
+                                Label label = new Label(0, Count.toInteger(), "To test with invalid submenus");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                               
+ 	}
+
+ 	else if(apiResponse.error != null && apiResponse.error.contains ("Menu not found with id"))
+ 	{
+                                Label label = new Label(0, Count.toInteger(), "To verify api without valid menu id");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                //log.info label2
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                
+ 	}
+
+ 	else if(apiResponse.error != null && apiResponse.error.contains ("Theme not found with name"))
+ 	{
+                                Label label = new Label(0, Count.toInteger(), "To verify api without valid menu id");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                //log.info label2
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                
+ 	}
+ 	else if(apiResponse.error != null && apiResponse.error.contains ("Id cannot be blank"))
+ 	{
+                                Label label = new Label(0, Count.toInteger(), "To test without entering menu id");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                //log.info label2
+                                Label label1 = new Label(2, Count.toInteger(), "Pass");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                
+ 	}
+
+	else
+	{
+                                Label label = new Label(0, Count.toInteger(), "Exceptional Cases");
+                                Label label2 = new Label(1, Count.toInteger(), "Input Json is" + inputjson);
+                                Label label1 = new Label(2, Count.toInteger(), "Fail");
+                                context.sheet1.addCell(label);
+                                context.sheet1.addCell(label2);
+                                context.sheet1.addCell(label1);
+                                
+ 	}
+}
+
+
+
+]]></scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="Loop" id="c4470756-8189-4190-af81-15e6c874087d" disabled="true"><con:settings/><con:config><script>def myTestCase = context.testCase
+ 
+def runner
+ 
+propTestStep = myTestCase.getTestStepByName("Property - Looper") // get the Property TestStep
+ 
+endLoop = propTestStep.getPropertyValue("StopLoop").toString()
+ 
+if (endLoop.toString() == "T" || endLoop.toString()=="True" || endLoop.toString()=="true")
+ 
+{
+ 
+log.info ("Exit Groovy Data Source Looper")
+
+//Setting Counter value to 0
+
+
+assert true
+ 
+}
+ 
+else
+ 
+{
+ 
+testRunner.gotoStepByName("Data_Driver") //setStartStep
+ 
+}</script></con:config></con:testStep><con:testStep type="restrequest" name="UpdateMenu" id="4e713a81-778b-4d14-857a-50ae14283259" disabled="true"><con:settings/><con:config service="http://hpx.app.inmu.qc.zycus.local:15302" resourcePath="/sso/rest/v2/menu" methodName="Menu 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="UpdateMenu" id="98233184-52ec-4f7a-8700-178d30d053aa" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  &lt;con:entry key="x-zycus-token-id" value="9be48af7-ca3a-4b02-a544-548fbaa44363"/>
+  &lt;con:entry key="Content-Type" value="application/json"/>
+&lt;/xml-fragment></con:setting></con:settings><con:endpoint>http://hpx.app.inmu.qc.zycus.local:15302</con:endpoint><con:request>[
+	{
+	"menuId": "e3ea4421-d5d5-4341-a08a-da8bbbf51bc2",
+	"productId": "8005a511-6548-4629-aa7b-6cc8ff5272ed",
+	"productName": "",
+	"name": "",
+	"rainbowDisplayNameKey": "dd-Updated",
+	"rainbowProductUri": "rainbow_URI-Updated",
+	"rainbowIconName": "",
+	"sequenceNumber": "5",
+	"parentMenuId": "",
+	"addActivities": ["Upload New Catalog", "Edit existing Catalog", "System Configuration"],
+	"removeActivities": [],
+	"addSubmenusByIds": [],
+	"RemoveSubmenusByIds": [],
+	"addSubmenusByNames": [],
+	"removeSubmenusByNames": [],
+	"themeMappings":
+	{
+		"dewdrops": 
+		{
+			"iconName": "updatedIconNamess",
+			"uri": "updateduriss",
+			"displayNameKey": "UPDATEd_DISPLAY_NAME_TEST_004ss"
+		}
+	}
+}	
+]
+</con:request><con:originalUri>http://hpx.app.inmu.qc.zycus.local/sso/rest/v2/menu</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="Data Generator" id="d6420ae5-f43f-45dc-85e0-718fb66a731d" disabled="true"><con:settings/><con:config><script>import com.eviware.soapui.support.XmlHolder
+ 
+import jxl.*
+ 
+import jxl.write.*
+ 
+// DECLARE THE VARIABLES
+ 
+def myTestCase = context.testCase //myTestCase contains the test case
+ 
+def counter,next,previous,size //Variables used to handle the loop and to move inside the file
+ 
+Workbook workbook1 = Workbook.getWorkbook(new File("D:\\Automation\\Create_Menu.xls")) //file containing the data
+ 
+Sheet sheet1 = workbook1.getSheet(0) //save the first sheet in sheet1
+ 
+size= sheet1.getRows().toInteger() //get the number of rows, each row is a data set
+ 
+propTestStep = myTestCase.getTestStepByName("Property - Looper") // get the Property TestStep object
+ 
+propTestStep.setPropertyValue("Total", size.toString())
+${#TestSuite#Userid
+counter = propTestStep.getPropertyValue("Count").toString() //counter variable contains iteration number
+ 
+counter = counter.toInteger() //
+ 
+next = (counter > size-2? 0: counter+1) //set the next value
+
+// OBTAINING THE DATA YOU NEED
+
+
+ 
+Cell SearchText = sheet1.getCell(0,counter) // getCell(column,row) //obtains user
+ 
+Cell Paraphase = sheet1.getCell(1,counter) // obtains password
+
+Cell Keywords = sheet1.getCell(2,counter)
+
+Cell CriteriaField = sheet1.getCell(3,counter)
+
+Cell CriteriaValue = sheet1.getCell(4,counter)
+ 
+workbook1.close() //close the file
+ 
+////////////////////////////////////
+ 
+ST = SearchText.getContents()
+ 
+PA = Paraphase.getContents()
+
+KW = Keywords.getContents()
+
+CF = CriteriaField.getContents()
+
+CV = CriteriaValue.getContents()
+ 
+propTestStep.setPropertyValue("SearchText", ST) //the value is saved in the property
+ 
+propTestStep.setPropertyValue("Paraphase", PA)
+
+propTestStep.setPropertyValue("Keywords", KW)
+
+propTestStep.setPropertyValue("CriteriaField", CF)
+
+propTestStep.setPropertyValue("CriteriaValue", CV)//the value is saved in the property
+ 
+propTestStep.setPropertyValue("Count", next.toString()) //increase Count value
+
+next++ //increase next value
+ 
+propTestStep.setPropertyValue("Next", next.toString()) //set Next value on the properties step
+ 
+//Decide if the test has to be run again or not
+ 
+if (counter == size-1)
+ 
+{
+ 
+propTestStep.setPropertyValue("StopLoop", "T")
+ 
+log.info "Setting the stoploop property now..."
+ 
+}
+ 
+else if (counter==0)
+ 
+{
+ 
+def runner = new com.eviware.soapui.impl.wsdl.testcase.WsdlTestCaseRunner(testRunner.testCase, null)
+ 
+propTestStep.setPropertyValue("StopLoop", "F")
+ 
+}
+ 
+else
+ 
+{
+ 
+propTestStep.setPropertyValue("StopLoop", "F")
+ 
+}</script></con:config></con:testStep><con:testStep type="groovy" name="UpdateMenu_Loop" id="9933e809-5de3-4704-8110-49446a178ce3"><con:settings/><con:config><script>def myTestCase = context.testCase
+ 
+def runner
+ 
+propTestStep = myTestCase.getTestStepByName("Property - Looper") // get the Property TestStep
+ 
+endLoop = propTestStep.getPropertyValue("StopLoop").toString()
+ 
+if (endLoop.toString() == "T" || endLoop.toString()=="True" || endLoop.toString()=="true")
+ 
+{
+ 
+log.info ("Exit Groovy Data Source Looper")
+
+//Setting Counter value to 0
+
+
+assert true
+ 
+}
+ 
+else
+ 
+{
+ 
+testRunner.gotoStepByName("Token") //setStartStep
+ 
+}</script></con:config></con:testStep><con:setupScript>import jxl.*
+import jxl.write.*
+
+context.workbook1 = Workbook.createWorkbook(new File("D:\\Automation\\Results\\MenuAPIUpdate_results.xls"))
+context.sheet1 = context.workbook1.createSheet("UpdateMenuAPI", 0)
+
+testRunner.testCase.testSteps['Property - Looper'].clearPropertyValues()
+def count = 0
+
+testRunner.testCase.testSteps['Property - Looper'].setPropertyValue( "Count", count.toString())
+
+log.info "output excel sheet created"
+</con:setupScript><con:tearDownScript>context.workbook1.write()
+context.workbook1.close()
+
+log.info "output excel sheet closed"</con:tearDownScript><con:properties><con:property><con:name>testRequest</con:name></con:property><con:property><con:name>MenuName</con:name><con:value>eCatalogAPITest79084</con:value></con:property></con:properties></con:testCase><con:properties/></con:testSuite><con:properties><con:property><con:name>Endpoint</con:name><con:value>http://10.121.0.7:15301</con:value></con:property></con:properties><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

@@ -1,0 +1,1178 @@
+[INFO] logger started at Mon Jul 29 18:16:32 IST 2019
+[INFO] executable name: C:\Users\ankit.pandey\Desktop\SoapUI-x64-5.4.0.exe
+[INFO] install4j version: 5.1.14 (build 5727)
+[INFO] Properties: 
+-- listing properties --
+java.runtime.name=Java(TM) SE Runtime Environment
+exe4j.moduleName=C:\Users\ankit.pandey\Desktop\SoapUI-...
+sun.boot.library.path=c:\users\ankit~1.pan\appdata\local\te...
+exe4j.semaphoreName=Local\c:_users_ankit.pandey_desktop_s...
+java.vm.version=25.152-b16
+java.vm.vendor=Oracle Corporation
+java.vendor.url=http://java.oracle.com/
+path.separator=;
+exe4j.consoleCodepage=cp0
+java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+file.encoding.pkg=sun.io
+user.script=
+user.country=IN
+sun.os.patch.level=
+install4j.exeDir=C:\Users\ankit.pandey\Desktop\
+java.vm.specification.name=Java Virtual Machine Specification
+user.dir=C:\Users\ANKIT~1.PAN\AppData\Local\Te...
+java.runtime.version=1.8.0_152-b16
+java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment
+java.endorsed.dirs=c:\users\ankit~1.pan\appdata\local\te...
+os.arch=amd64
+java.io.tmpdir=C:\Users\ANKIT~1.PAN\AppData\Local\Temp\
+line.separator=
+
+java.vm.specification.vendor=Oracle Corporation
+user.variant=
+exe4j.tempDir=C:\Users\ANKIT~1.PAN\AppData\Local\Te...
+os.name=Windows 10
+sun.java2d.noddraw=true
+sun.jnu.encoding=Cp1252
+java.library.path=C:\Program Files (x86)\Intel\iCLS Cli...
+sun.awt.enableExtraMouseButtons=true
+java.specification.name=Java Platform API Specification
+java.class.version=52.0
+sun.management.compiler=HotSpot 64-Bit Tiered Compilers
+exe4j.isInstall4j=true
+os.version=10.0
+user.home=C:\Users\ankit.pandey
+user.timezone=Asia/Calcutta
+java.awt.printerjob=sun.awt.windows.WPrinterJob
+java.specification.version=1.8
+file.encoding=Cp1252
+user.name=ankit.pandey
+java.class.path=C:\Users\ANKIT~1.PAN\AppData\Local\Te...
+java.vm.specification.version=1.8
+sun.arch.data.model=64
+java.home=c:\users\ankit~1.pan\appdata\local\te...
+sun.java.command=C:\Users\ankit.pandey\Desktop\SoapUI-...
+exe4j.launchName=C:\Users\ankit.pandey\Desktop\SoapUI-...
+java.specification.vendor=Oracle Corporation
+user.language=en
+awt.toolkit=sun.awt.windows.WToolkit
+java.vm.info=mixed mode
+exe4j.unextractedPosition=47121571
+java.version=1.8.0_152
+java.ext.dirs=c:\users\ankit~1.pan\appdata\local\te...
+sun.boot.class.path=c:\users\ankit~1.pan\appdata\local\te...
+java.vendor=Oracle Corporation
+install4j.appDir=C:\Users\ankit.pandey\AppData\Local\T...
+file.separator=\
+java.vendor.url.bug=http://bugreport.sun.com/bugreport/
+sun.cpu.endian=little
+sun.io.unicode.encoding=UnicodeLittle
+sun.desktop=windows
+sun.cpu.isalist=amd64
+[INFO] com.install4j.runtime.beans.actions.misc.RequestPrivilegesAction [ID 4626]: Execute action
+       Property allRequested: false
+       Property obtainIfNormalMac: false
+       Property failIfNotRootUnix: false
+       Property obtainIfNormalWin: false
+       Property obtainIfAdminMac: false
+       Property obtainIfAdminWin: true
+       Property failIfNotObtainedWin: true
+       Property failIfNotObtainedMac: true
+       Property rollbackSupported: false
+       Variable changed: sys.adminRights=true[class java.lang.Boolean]
+       Execute action successful after 8642 ms
+[INFO] com.install4j.runtime.beans.actions.control.SetVariableAction [ID 186]: Using communication backend com.install4j.runtime.installer.platform.win32.Win32CommunicationBackend
+       Execute action
+       Property script: I4jScript_Internal_169
+       Property variableName: xmx
+       Property rollbackSupported: false
+       Property responseFileVariable: false
+       Property onlyIfUndefined: false
+       Property failIfNull: false
+       Variable changed: xmx=1000[class java.lang.Long]
+       Execute action successful after 96 ms
+[INFO] com.install4j.runtime.beans.screens.StartupScreen [ID 1]: command: move 1 screens, executing actions, checking condition
+[INFO] com.install4j.runtime.beans.screens.WelcomeScreen [ID 2]: Show screen
+       thread name AWT-EventQueue-0
+[INFO] com.install4j.runtime.beans.screens.WelcomeScreen [ID 2]: command: move 1 screens, executing actions, checking condition
+[INFO] com.install4j.runtime.beans.screens.LicenseScreen [ID 410]: Show screen
+[INFO] com.install4j.runtime.beans.screens.LicenseScreen [ID 410]: command: move 1 screens, executing actions, checking condition
+[INFO] com.install4j.runtime.beans.screens.InstallationDirectoryScreen [ID 3]: Show screen
+       checking writable with maximum
+       Variable changed: sys.installationDir=D:\SoapUI-5.4.0[class java.lang.String]
+       checking writable with maximum
+[INFO] com.install4j.runtime.beans.actions.misc.LoadResponseFileAction [ID 4]: Execute action
+       Property file: null
+       Property excludedVariables: null
+       Property overwrite: true
+       Property rollbackSupported: true
+       Response file D:\SoapUI-5.4.0\.install4j\response.varfile does not exist
+       Execute action successful after 1 ms
+[INFO] com.install4j.runtime.beans.screens.InstallationDirectoryScreen [ID 3]: command: move 1 screens, executing actions, checking condition
+[INFO] com.install4j.runtime.beans.screens.ComponentsScreen [ID 5]: Show screen
+[INFO] com.install4j.runtime.beans.actions.control.SetVariableAction [ID 2394]: Execute action
+       Property script: I4jScript_Internal_173
+       Property variableName: installTutorials
+       Property rollbackSupported: false
+       Property responseFileVariable: false
+       Property onlyIfUndefined: false
+       Property failIfNull: false
+       Variable changed: installTutorials=true[class java.lang.Boolean]
+       Execute action successful after 2 ms
+[INFO] com.install4j.runtime.beans.screens.ComponentsScreen [ID 5]: command: move 1 screens, executing actions, checking condition
+[INFO] com.install4j.runtime.beans.screens.LicenseScreen [ID 1478]: Show screen
+[INFO] com.install4j.runtime.beans.screens.LicenseScreen [ID 1478]: command: move 1 screens, executing actions, checking condition
+[INFO] com.install4j.runtime.beans.screens.CustomizableDirectoryScreen [ID 2395]: Show screen
+       Variable changed: tutorialsLocation=C:\Users\ankit.pandey\SoapUI-Tutorials[class java.lang.String]
+       checking writable with maximum
+[INFO] com.install4j.runtime.beans.screens.CustomizableDirectoryScreen [ID 2395]: command: move 1 screens, executing actions, checking condition
+[INFO] com.install4j.runtime.beans.screens.StandardProgramGroupScreen [ID 6]: Show screen
+       Variable changed: sys.programGroupName=SmartBear\SoapUI 5.4.0[class java.lang.String]
+       Variable changed: sys.programGroupDisabled=false[class java.lang.Boolean]
+       Variable changed: sys.programGroupAllUsers=true[class java.lang.Boolean]
+[INFO] com.install4j.runtime.beans.screens.StandardProgramGroupScreen [ID 6]: command: move 1 screens, executing actions, checking condition
+[INFO] com.install4j.runtime.beans.screens.AdditionalConfirmationsScreen [ID 430]: Show screen
+       Variable changed: createDesktopLinkAction=true[class java.lang.Boolean]
+[INFO] com.install4j.runtime.beans.screens.AdditionalConfirmationsScreen [ID 430]: command: move 1 screens, executing actions, checking condition
+[INFO] com.install4j.runtime.beans.screens.InstallationScreen [ID 7]: Show screen
+[INFO] com.install4j.runtime.beans.actions.control.SetVariableAction [ID 1477]: Execute action
+       Property script: I4jScript_Internal_178
+       Property variableName: FILE_SEPARATOR
+       Property rollbackSupported: false
+       Property responseFileVariable: false
+       Property onlyIfUndefined: false
+       Property failIfNull: false
+       Variable changed: FILE_SEPARATOR=\[class java.lang.String]
+       Execute action successful after 2 ms
+[INFO] com.install4j.runtime.beans.actions.control.SetVariableAction [ID 1337]: Execute action
+       Property script: I4jScript_Internal_179
+       Property variableName: EXTENSION
+       Property rollbackSupported: false
+       Property responseFileVariable: false
+       Property onlyIfUndefined: false
+       Property failIfNull: false
+       Variable changed: EXTENSION=bat[class java.lang.String]
+       Execute action successful after 26 ms
+[INFO] com.install4j.runtime.beans.actions.UninstallPreviousAction [ID 4298]: Execute action
+       Property installationDirectory: null
+       Property onlyIfSameApplicationId: true
+       Property rollbackSupported: true
+       checking running processes
+       checking running processes ok
+       getting previous installation id
+       no previous installation detected, uninstaller was not started
+       finished
+       Execute action successful after 51 ms
+[INFO] com.install4j.runtime.beans.actions.InstallFilesAction [ID 8]: Execute action
+       Property validateApplicationId: false
+       Property checkFreeSpace: true
+       Property updateBundledJre: true
+       Property sizeCalculatorScript: null
+       Property saveDownloadedFiles: false
+       Property installRuntime: true
+       Property directoryResolverScript: null
+       Property fileFilterScript: null
+       Property delay: false
+       Property triggerReboot: true
+       Property showFileNames: true
+       Property rollbackSupported: true
+       Component SoapUI[132]; Selected: true
+       Component Source[714]; Selected: false
+       Component HermesJMS[1263]; Selected: true
+       Component Tutorials[2393]; Selected: true
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-console-l1-1-0.dll; size: 19264 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:16:26 IST 2019, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, but not for update, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-datetime-l1-1-0.dll; size: 18752 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-debug-l1-1-0.dll; size: 18752 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-errorhandling-l1-1-0.dll; size: 18752 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-file-l1-1-0.dll; size: 22336 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-file-l1-2-0.dll; size: 18752 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-file-l2-1-0.dll; size: 18744 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-handle-l1-1-0.dll; size: 18752 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-heap-l1-1-0.dll; size: 19264 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-interlocked-l1-1-0.dll; size: 18752 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-libraryloader-l1-1-0.dll; size: 19264 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-localization-l1-2-0.dll; size: 21312 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-memory-l1-1-0.dll; size: 19264 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-namedpipe-l1-1-0.dll; size: 18752 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-processenvironment-l1-1-0.dll; size: 19776 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-processthreads-l1-1-0.dll; size: 20800 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-processthreads-l1-1-1.dll; size: 19256 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-profile-l1-1-0.dll; size: 18240 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-rtlsupport-l1-1-0.dll; size: 19264 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-string-l1-1-0.dll; size: 18752 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-synch-l1-1-0.dll; size: 20800 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-synch-l1-2-0.dll; size: 19264 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-sysinfo-l1-1-0.dll; size: 19776 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-timezone-l1-1-0.dll; size: 18752 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-core-util-l1-1-0.dll; size: 18752 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-crt-conio-l1-1-0.dll; size: 19776 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-crt-convert-l1-1-0.dll; size: 22848 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-crt-environment-l1-1-0.dll; size: 19264 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-crt-filesystem-l1-1-0.dll; size: 20800 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-crt-heap-l1-1-0.dll; size: 19776 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-crt-locale-l1-1-0.dll; size: 19264 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-crt-math-l1-1-0.dll; size: 27968 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-crt-multibyte-l1-1-0.dll; size: 26944 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-crt-private-l1-1-0.dll; size: 71488 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-crt-process-l1-1-0.dll; size: 19768 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-crt-runtime-l1-1-0.dll; size: 23360 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-crt-stdio-l1-1-0.dll; size: 24896 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-crt-string-l1-1-0.dll; size: 24896 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-crt-time-l1-1-0.dll; size: 21312 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\api-ms-win-crt-utility-l1-1-0.dll; size: 19256 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\awt.dll; size: 1516096 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\bci.dll; size: 16960 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\concrt140.dll; size: 332456 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\dcpr.dll; size: 159808 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\decora_sse.dll; size: 87104 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\deploy.dll; size: 591936 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\dt_shmem.dll; size: 29760 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\dt_socket.dll; size: 24640 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\eula.dll; size: 136256 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\fontmanager.dll; size: 274496 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\fxplugins.dll; size: 190528 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\glass.dll; size: 284224 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\glib-lite.dll; size: 459328 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\gstreamer-lite.dll; size: 622144 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\hprof.dll; size: 158272 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\instrument.dll; size: 123456 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:16:27 IST 2019, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, but not for update, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\jre\bin\j2pcsc.dll; size: 19008 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\j2pkcs11.dll; size: 63552 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\jaas_nt.dll; size: 20544 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\jabswitch.exe; size: 34368 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\java-rmi.exe; size: 15936 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\java.dll; size: 160832 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\java.exe; size: 206912 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\JavaAccessBridge-64.dll; size: 142400 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\javacpl.cpl; size: 187392 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\javacpl.exe; size: 80448 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\javafx_font.dll; size: 73792 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\javafx_font_t2k.dll; size: 546880 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\javafx_iio.dll; size: 131136 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\javaw.exe; size: 206912 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\java_crw_demo.dll; size: 29760 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\jawt.dll; size: 14400 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\JAWTAccessBridge-64.dll; size: 15424 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\jdwp.dll; size: 202304 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\jfr.dll; size: 27200 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\jfxmedia.dll; size: 144960 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\jfxwebkit.dll; size: 50718784 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\jjs.exe; size: 15936 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\jli.dll; size: 175168 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\jp2iexp.dll; size: 296000 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\jp2launcher.exe; size: 112192 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\jp2native.dll; size: 20032 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\jp2ssv.dll; size: 235584 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\jpeg.dll; size: 186944 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\jsdt.dll; size: 18496 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\jsound.dll; size: 35392 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\jsoundds.dll; size: 31296 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\kcms.dll; size: 220736 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\keytool.exe; size: 16448 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\kinit.exe; size: 16448 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\klist.exe; size: 16448 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\ktab.exe; size: 16448 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\lcms.dll; size: 240192 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\management.dll; size: 36928 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\mlib_image.dll; size: 653888 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\msvcp140.dll; size: 627368 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\msvcr100.dll; size: 829264 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\net.dll; size: 95808 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\nio.dll; size: 60480 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\npt.dll; size: 19008 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\orbd.exe; size: 16448 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\pack200.exe; size: 16448 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\policytool.exe; size: 16448 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\prism_common.dll; size: 61504 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\prism_d3d.dll; size: 132160 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\prism_sw.dll; size: 99392 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\resource.dll; size: 15424 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\rmid.exe; size: 15936 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\rmiregistry.exe; size: 16448 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\server\jvm.dll; size: 8818240 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\server\Xusage.txt; size: 1423 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\servertool.exe; size: 16448 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\splashscreen.dll; size: 205888 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\ssv.dll; size: 571968 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\ssvagent.exe; size: 72256 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\sunec.dll; size: 135744 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\sunmscapi.dll; size: 31808 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\t2k.dll; size: 256576 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\tnameserv.exe; size: 16448 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\ucrtbase.dll; size: 1001792 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\unpack.dll; size: 79936 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\unpack200.exe; size: 199744 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\vcruntime140.dll; size: 87224 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\verify.dll; size: 49216 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\w2k_lsa_auth.dll; size: 24128 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\WindowsAccessBridge-64.dll; size: 110144 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\wsdetect.dll; size: 192576 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\bin\zip.dll; size: 78912 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\COPYRIGHT; size: 3244 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\accessibility.properties; size: 149 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\amd64\jvm.cfg; size: 634 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\calendars.properties; size: 1378 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\charsets.jar; size: 3036922 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\classlist; size: 84355 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\cmm\CIEXYZ.pf; size: 51236 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\cmm\GRAY.pf; size: 632 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\cmm\LINEAR_RGB.pf; size: 1044 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\cmm\PYCC.pf; size: 274474 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\cmm\sRGB.pf; size: 3144 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\content-types.properties; size: 5548 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\currency.data; size: 4134 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\deploy\ffjcext.zip; size: 14156 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\deploy\messages.properties; size: 2860 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\deploy\messages_de.properties; size: 3306 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\deploy\messages_es.properties; size: 3600 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\deploy\messages_fr.properties; size: 3409 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\deploy\messages_it.properties; size: 3223 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\deploy\messages_ja.properties; size: 6349 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\deploy\messages_ko.properties; size: 5712 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\deploy\messages_pt_BR.properties; size: 3285 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\deploy\messages_sv.properties; size: 3409 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\deploy\messages_zh_CN.properties; size: 4072 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\deploy\messages_zh_HK.properties; size: 3752 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\deploy\messages_zh_TW.properties; size: 3752 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\deploy\splash.gif; size: 8590 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\deploy\splash@2x.gif; size: 15276 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\deploy\splash_11-lic.gif; size: 7805 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\deploy\splash_11@2x-lic.gif; size: 12250 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\deploy.jar; size: 5048943 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:16:28 IST 2019, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, but not for update, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\jre\lib\ext\access-bridge-64.jar; size: 195778 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:16:29 IST 2019, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, but not for update, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\jre\lib\ext\cldrdata.jar; size: 3837830 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:16:30 IST 2019, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, but not for update, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\jre\lib\ext\dnsns.jar; size: 8150 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\ext\jaccess.jar; size: 43839 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\ext\jfxrt.jar; size: 18223591 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:16:31 IST 2019, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, but not for update, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\jre\lib\ext\localedata.jar; size: 2204807 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\ext\meta-index; size: 909 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:16:27 IST 2019, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, but not for update, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\jre\lib\ext\nashorn.jar; size: 1983280 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:16:31 IST 2019, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, but not for update, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\jre\lib\ext\sunec.jar; size: 41672 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:16:27 IST 2019, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, but not for update, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\jre\lib\ext\sunjce_provider.jar; size: 273952 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\ext\sunmscapi.jar; size: 33101 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\ext\sunpkcs11.jar; size: 248726 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\ext\zipfs.jar; size: 67504 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:16:31 IST 2019, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, but not for update, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\jre\lib\flavormap.properties; size: 3928 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:16:27 IST 2019, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, but not for update, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\jre\lib\fontconfig.bfc; size: 3770 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\fontconfig.properties.src; size: 10568 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\fonts\LucidaBrightDemiBold.ttf; size: 75144 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\fonts\LucidaBrightDemiItalic.ttf; size: 75124 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\fonts\LucidaBrightItalic.ttf; size: 80856 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\fonts\LucidaBrightRegular.ttf; size: 344908 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\fonts\LucidaSansDemiBold.ttf; size: 317896 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\fonts\LucidaSansRegular.ttf; size: 698236 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\fonts\LucidaTypewriterBold.ttf; size: 234068 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\fonts\LucidaTypewriterRegular.ttf; size: 242700 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\hijrah-config-umalqura.properties; size: 13962 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\images\cursors\cursors.properties; size: 1280 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\images\cursors\invalid32x32.gif; size: 153 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\images\cursors\win32_CopyDrop32x32.gif; size: 165 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\images\cursors\win32_CopyNoDrop32x32.gif; size: 153 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\images\cursors\win32_LinkDrop32x32.gif; size: 168 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\images\cursors\win32_LinkNoDrop32x32.gif; size: 153 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\images\cursors\win32_MoveDrop32x32.gif; size: 147 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\images\cursors\win32_MoveNoDrop32x32.gif; size: 153 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\javafx.properties; size: 56 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\jce.jar; size: 116988 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\jfr\default.jfc; size: 20109 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\jfr\profile.jfc; size: 20065 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\jfr.jar; size: 558903 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:16:28 IST 2019, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, but not for update, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\jre\lib\jfxswt.jar; size: 33471 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\jsse.jar; size: 584784 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\jvm.hprof.txt; size: 4226 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:16:27 IST 2019, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, but not for update, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\jre\lib\logging.properties; size: 2455 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\management\jmxremote.access; size: 3998 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\management\jmxremote.password.template; size: 2856 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\management\management.properties; size: 14630 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\management\snmp.acl.template; size: 3376 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\management-agent.jar; size: 370 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:16:28 IST 2019, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, but not for update, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\jre\lib\meta-index; size: 2126 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:16:27 IST 2019, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, but not for update, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\jre\lib\net.properties; size: 4464 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\plugin.jar; size: 1923211 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:16:28 IST 2019, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, but not for update, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\jre\lib\psfont.properties.ja; size: 2796 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:16:27 IST 2019, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, but not for update, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\jre\lib\psfontj2d.properties; size: 10393 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\resources.jar; size: 3492579 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:16:28 IST 2019, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, but not for update, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\jre\lib\rt.jar; size: 54617977 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:16:29 IST 2019, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, but not for update, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\jre\lib\security\blacklist; size: 4054 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:16:27 IST 2019, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, but not for update, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\jre\lib\security\blacklisted.certs; size: 1253 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\security\cacerts; size: 113367 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\security\java.policy; size: 2466 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\security\java.security; size: 39332 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\security\javaws.policy; size: 98 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\security\policy\limited\local_policy.jar; size: 3527 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\security\policy\limited\US_export_policy.jar; size: 3026 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\security\policy\unlimited\local_policy.jar; size: 3035 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\security\policy\unlimited\US_export_policy.jar; size: 3023 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\security\trusted.libraries; size: 0 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\sound.properties; size: 1210 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\tzdb.dat; size: 105500 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\lib\tzmappings; size: 8400 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\LICENSE; size: 40 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\README.txt; size: 46 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\release; size: 426 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\THIRDPARTYLICENSEREADME-JAVAFX.txt; size: 63933 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\THIRDPARTYLICENSEREADME.txt; size: 145180 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\jre\Welcome.html; size: 955 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\.install4j\SoapUIUpdater.exe; size: 265256 bytes; exists: false
+       File options set to: [fileTime: Mon Dec 04 06:43:40 IST 2017, mode: 755, overwriteMode: If newer otherwise ask, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\uninstall.exe; size: 260648 bytes; exists: false
+       File options set to: [fileTime: Mon Dec 04 06:43:40 IST 2017, mode: 700, overwriteMode: If newer otherwise ask, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\tempHermes\hermes-installer-1.14.jar; size: 31308933 bytes; exists: false
+       File options set to: [fileTime: Mon Dec 04 06:40:06 IST 2017, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\tempHermes\hermesInstall.bat; size: 59 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\tempHermes\hermesInstall.sh; size: 68 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\tempHermes\hermesInstall64bit.bat; size: 48 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\tempHermes\hermesInstallMAC.sh; size: 46 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\tempHermes\script.xml; size: 633 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\tempHermes\xercesImpl.jar; size: 1367760 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\tempHermes\xml-apis.jar; size: 220536 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\bin\installationcomplete.bat; size: 132 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\bin\loadtestrunner.bat; size: 1269 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\bin\mockservicerunner.bat; size: 1272 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\bin\securitytestrunner.bat; size: 1289 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\bin\soapui.bat; size: 1612 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\bin\testrunner.bat; size: 1269 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\bin\toolrunner.bat; size: 1260 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\bin\uninstallactiontrack.bat; size: 134 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\bin\updateinstallation.bat; size: 131 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\bin\wargenerator.bat; size: 1310 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\README_bsp.txt; size: 5034 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\README_bsp11.txt; size: 4904 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\analyzer-config-bsp11.xml; size: 4761 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\analyzer-config-sample.xml; size: 4763 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\analyzerV10.bat; size: 3973 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\analyzerV10.sh; size: 3891 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\analyzerV11.bat; size: 3973 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\analyzerV11.sh; size: 3891 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\bpLog.xml; size: 3981 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\bsplog.xml; size: 17936 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\lib\monitor.jar; size: 99490 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\lib\org.wsi.test.validator.bsp10.jar; size: 138777 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\lib\org.wsi.test.validator.bsp11.jar; size: 189511 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\lib\org.wsi.test.validator.jar; size: 36459 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\log-bsp11.xml; size: 58353 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\log-sample.xml; size: 14364 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\monitor-config-bsp11.xml; size: 4943 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\monitor-config-sample.xml; size: 4937 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\monitor.bat; size: 3917 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\monitor.sh; size: 3834 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\profiles\BasicSecurityProfile-1.0-TAD.xml; size: 101416 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\profiles\BasicSecurityProfile-1.1-TAD.xml; size: 110341 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\report-bsp11.xml; size: 353042 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\xsl\assertions.xsl; size: 48243 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\xsl\assertionsBigFont.xsl; size: 38045 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\xsl\common.xsl; size: 9088 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\xsl\log.xsl; size: 12765 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\xsl\logBigFont.xsl; size: 12582 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\xsl\publicTAD.xsl; size: 4636 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\xsl\report.xsl; size: 32611 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\wsi-test-tools\xsl\reportBigFont.xsl; size: 29387 bytes; exists: false
+       Install file: C:\Users\ankit.pandey\.soapuios\plugins\ready-mqtt-plugin-dist.jar; size: 397191 bytes; exists: false
+       File options set to: [fileTime: Mon Dec 04 06:40:06 IST 2017, mode: 644, overwriteMode: Always, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Install file: C:\Users\ankit.pandey\.soapuios\plugins\ready-uxm-plugin-1.0.1-dist.jar; size: 2370063 bytes; exists: false
+       Install file: C:\Users\ankit.pandey\.soapuios\plugins\readyapi-postman-1.0.1.jar; size: 46086 bytes; exists: false
+       Install file: C:\Users\ankit.pandey\.soapuios\plugins\readyapi-swaggerhub-plugin-1.0.jar; size: 30090 bytes; exists: false
+       Install file: C:\Users\ankit.pandey\.soapuios\plugins\soapui-swagger-plugin-2.2-dist.jar; size: 2491704 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\JavaDoc.url; size: 105 bytes; exists: false
+       File options set to: [fileTime: Mon Dec 04 06:40:06 IST 2017, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\README.md; size: 4579 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\RELEASENOTES.txt; size: 86007 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\SmartBear License Terms of Use.md; size: 49709 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\SmartBear License Terms of Use.txt; size: 49709 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\bin\SoapUI-5.4.0.exe; size: 562728 bytes; exists: false
+       File options set to: [fileTime: Mon Dec 04 06:43:40 IST 2017, mode: 755, overwriteMode: If newer otherwise ask, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\bin\SoapUI-Spashscreen.png; size: 37554 bytes; exists: false
+       File options set to: [fileTime: Mon Dec 04 06:40:06 IST 2017, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\bin\ext\readme.txt; size: 150 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\bin\soapui-5.4.0.jar; size: 11907856 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\bin\soapui-errors.log; size: 0 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\bin\soapui-log4j.xml; size: 4163 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\bin\soapui.log; size: 0 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\bin\starter-page.html; size: 1322 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\activation-1.1.jar; size: 62983 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\analytics-core-5.4.0.jar; size: 39260 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\animal-sniffer-annotations-1.11.jar; size: 3413 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\bcprov-jdk15-144.jar; size: 1643601 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\binding-2.0.1.jar; size: 165033 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\commons-beanutils-1.7.0.jar; size: 188671 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\commons-cli-1.2.jar; size: 41123 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\commons-codec-1.3.jar; size: 46725 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\commons-collections-3.2.2.jar; size: 588337 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\commons-httpclient-3.1.jar; size: 305001 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\commons-io-2.4.jar; size: 185140 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\commons-lang-2.4.jar; size: 261809 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\commons-logging-1.1.1.jar; size: 60686 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\cssparser-0.9.5.jar; size: 253950 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\dom4j-1.6.1.jar; size: 313898 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\ezmorph-1.0.5.jar; size: 86463 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\flex-messaging-common-1.0.jar; size: 89768 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\flex-messaging-core-1.0.jar; size: 644264 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\flex-messaging-opt-1.0.jar; size: 20969 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\flex-messaging-proxy-1.0.jar; size: 66076 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\flex-messaging-remoting-1.0.jar; size: 18822 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\forms-1.0.7.jar; size: 86828 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\google-http-client-1.21.0.jar; size: 285337 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\google-oauth-client-1.21.0.jar; size: 61344 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\groovy-all-2.4.4.jar; size: 6998724 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\guava-14.0.jar; size: 2189111 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\hamcrest-core-1.3.jar; size: 45024 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\hermes-1.14.jar; size: 1350400 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\htmlunit-2.7.jar; size: 899411 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\htmlunit-core-js-2.7.jar; size: 910727 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\httpclient-4.1.1.jar; size: 351132 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\httpclient-cache-4.1.1.jar; size: 105864 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\httpcore-4.1.1.jar; size: 181204 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\httpcore-nio-4.1.1.jar; size: 196368 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\httpmime-4.1.1.jar; size: 26889 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\i4jruntime-5.1.14.jar; size: 1080370 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\jackson-annotations-2.3.0.jar; size: 35058 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\jackson-core-2.3.0.jar; size: 197981 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\jackson-databind-2.3.0.jar; size: 914028 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\javassist-3.16.1-GA.jar; size: 659343 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\jaxen-1.1-beta-8.jar; size: 231706 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\jcifs-1.2.9.jar; size: 267848 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\jdom-1.0.jar; size: 153253 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\jettison-1.2.jar; size: 72478 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\jetty-6.1.26.jar; size: 539912 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\jetty-util-6.1.26.jar; size: 177131 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\jms-1.1.jar; size: 26257 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\joda-time-1.6.2.jar; size: 543044 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\js-1.7R2.jar; size: 871260 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\json-20090211.jar; size: 45944 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\json-lib-2.2.2-jdk15.jar; size: 143977 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\json-path-0.9.1.jar; size: 94243 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\json-smart-1.2.jar; size: 54203 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\jsr173_api-1.0.jar; size: 49672 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\jsr305-1.3.9.jar; size: 33015 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\jtidy-r872-jdk15.jar; size: 279220 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\junit-4.11.jar; size: 245039 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\keen-client-api-java-2.0.2.jar; size: 40983 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\l2fprod-common-directorychooser-7.3.jar; size: 77545 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\l2fprod-common-fontchooser-7.3.jar; size: 124191 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\log4j-1.2.14.jar; size: 367444 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\looks-2.2.0.jar; size: 425237 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\mail-1.4.jar; size: 388864 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\maven-plugin-api-2.0.jar; size: 10133 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\mixpanel-java-1.4.4.jar; size: 13620 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\nekohtml-1.9.14.jar; size: 124361 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\not-yet-commons-ssl-0.3.11.jar; size: 271267 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\opensaml-2.5.1-1.jar; size: 1352924 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\openws-1.4.2-1.jar; size: 565330 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\org.apache.oltu.oauth2.client-0.31.jar; size: 31167 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\org.apache.oltu.oauth2.common-0.31.jar; size: 51643 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\org.apache.oltu.oauth2.httpclient4-0.31.jar; size: 10896 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\out-app-analytics-provider-5.4.0.jar; size: 11566 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\proxy-vole-20131209.jar; size: 195181 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\reflections-0.9.9-RC1.jar; size: 121013 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\rsyntaxtextarea-2.5.0.jar; size: 968909 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\sac-1.3.jar; size: 15808 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\saxon-9.1.0.8j.jar; size: 5046534 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\saxon-dom-9.1.0.8j.jar; size: 129236 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\serializer-2.7.1.jar; size: 278281 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\servlet-api-2.5-20081211.jar; size: 134133 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\slf4j-api-1.6.1.jar; size: 25496 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\slf4j-log4j12-1.6.4.jar; size: 9748 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\swingx-soapui.jar; size: 1156443 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\ws-commons-util-1.0.2.jar; size: 34407 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\wsdl4j-1.6.2-fixed.jar; size: 145963 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\wss4j-1.6.16.jar; size: 456339 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\xalan-2.7.1.jar; size: 3176148 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\xbean-fixed-2.4.0.jar; size: 2695335 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\xbean_xpath-2.4.0.jar; size: 6489 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\xercesImpl-2.9.1.jar; size: 1229289 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\xml-apis-1.3.04.jar; size: 194354 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\xml-apis-2.9.1.jar; size: 194354 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\xmlParserAPIs-2.6.2.jar; size: 124724 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\xmlpublic-2.4.0.jar; size: 432377 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\xmlsec-1.4.5.jar; size: 450950 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\xmltooling-1.3.2-1.jar; size: 610865 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\xmlunit-1.2.jar; size: 96507 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\xom-1.1.jar; size: 431568 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\lib\xstream-1.3.1.jar; size: 431406 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\RSyntaxTextArea-LICENSE.txt; size: 7804 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\activation-LICENSE.txt; size: 14482 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\bcprov-LICENSE.txt; size: 1145 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\binding-LICENSE.txt; size: 1692 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\blazeds-LICENSE.txt; size: 7352 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\commons-beanutils-LICENSE.txt; size: 11560 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\commons-cli-LICENSE.txt; size: 2756 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\commons-codec-LICENSE.txt; size: 11560 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\commons-collections-LICENSE.txt; size: 11560 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\commons-httpclient-LICENSE.txt; size: 10349 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\commons-io-LICENSE.txt; size: 11562 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\commons-lang-LICENSE.txt; size: 11560 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\commons-logging-LICENSE.txt; size: 11560 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\ezmorph-LICENSE.txt; size: 11560 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\forms-LICENSE.txt; size: 1690 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\groovy-LICENSE.txt; size: 580 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\hermesJMS-LICENCE.TXT; size: 9308 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\javamail-LICENSE.txt; size: 14463 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\jetty-LICENSE.txt; size: 11560 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\json-lib-LICENSE.txt; size: 580 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\jtidy-LICENSE.txt; size: 2222 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\junit-LICENSE.txt; size: 12002 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\l2fprod-LICENSE.txt; size: 666 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\log4j-LICENSE.txt; size: 2756 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\looks-LICENSE.txt; size: 1690 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\mydoggy-LICENSE.txt; size: 26934 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\myswing-LICENSE.txt; size: 569 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\not-yet-commons-ssl-LICENSE.txt; size: 10347 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\opensaml-LICENSE.txt; size: 11558 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\piccolo-LICENSE.txt; size: 11560 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\proxy-vole-LICENSE.txt; size: 1557 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\rhino-LICENSE.txt; size: 45646 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\saxon-LICENSE.txt; size: 20115 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\swingx-LICENSE.txt; size: 24837 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\wsdl4j-LICENSE.html; size: 15504 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\wss4j-LICENSE.txt; size: 11560 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\xalan-LICENSE.txt; size: 2744 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\xerces-LICENSE.txt; size: 11560 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\xmlbeans-LICENSE.txt; size: 11560 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\xmlbeans-NOTICE.txt; size: 1301 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\xmlsec-LICENSE.txt; size: 11560 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\xmlunit-LICENSE.txt; size: 1726 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\xom-LICENSE.txt; size: 26930 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\licences\xstream-LICENSE.txt; size: 1555 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\soapUI.url; size: 86 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\SoapUI-Tutorials\Sample-Authentication-Project-soapui-project.xml; size: 7268 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\SoapUI-Tutorials\Sample-REST-Project-soapui-project.xml; size: 9456 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\SoapUI-Tutorials\Sample-SOAP-Project-soapui-project.xml; size: 142945 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\SoapUI-Tutorials\WSDL-WADL\sample-service.wadl; size: 1413 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\SoapUI-Tutorials\WSDL-WADL\sample-service.wsdl; size: 7130 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\SoapUI-Tutorials\popular-apis\Amazon-soapui-project.xml; size: 106242 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\SoapUI-Tutorials\popular-apis\Facebook-soapui-project.xml; size: 21296 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\SoapUI-Tutorials\popular-apis\Flickr-soapui-project.xml; size: 27775 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\SoapUI-Tutorials\popular-apis\Google-Maps-soapui-project.xml; size: 123949 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\SoapUI-Tutorials\popular-apis\Twitter-soapui-project.xml; size: 34023 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\SoapUI-Tutorials\popular-apis\YouTube-soapui-project.xml; size: 29458 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\.install4j\inst_jre.cfg; size: 71 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:17:08 IST 2019, mode: 644, overwriteMode: Always, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\.install4j\pref_jre.cfg; size: 21 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:17:08 IST 2019, mode: 644, overwriteMode: Always, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\.install4j\i4jruntime.jar; size: 1080370 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:17:08 IST 2019, mode: 644, overwriteMode: Always, shared: false, uninstallMode: Always, delayIfNecessary: false]
+       Install file: D:\SoapUI-5.4.0\.install4j\MessagesDefault; size: 32732 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\.install4j\i4jparams.conf; size: 668276 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\.install4j\stats.properties; size: 16307 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\.install4j\user.jar; size: 40235 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\.install4j\i4jdel.exe; size: 35680 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\.install4j\i4jinst.dll; size: 119808 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\.install4j\i4j_extf_0_hs6ad0.utf8; size: 32732 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\.install4j\i4j_extf_10_hs6ad0_1qp61c0.png; size: 4831 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\.install4j\i4j_extf_1_hs6ad0_1mw95qn.png; size: 1976 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\.install4j\i4j_extf_2_hs6ad0_1dj1sbj.png; size: 1544 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\.install4j\i4j_extf_3_hs6ad0_1jsmgym.png; size: 36588 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\.install4j\i4j_extf_4_hs6ad0.txt; size: 49709 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\.install4j\i4j_extf_5_hs6ad0.TXT; size: 9308 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\.install4j\i4j_extf_6_hs6ad0_1h4a4q4.ico; size: 287934 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\.install4j\i4j_extf_7_hs6ad0_1jsmgym.png; size: 36588 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\.install4j\i4j_extf_8_hs6ad0_cwz6mn.png; size: 1028 bytes; exists: false
+       Install file: D:\SoapUI-5.4.0\.install4j\i4j_extf_9_hs6ad0_1sxzjn7.png; size: 2565 bytes; exists: false
+       Execute action successful after 4330 ms
+[INFO] com.install4j.runtime.beans.actions.control.SetVariableAction [ID 1220]: Execute action
+       Property script: I4jScript_Internal_180
+       Property variableName: rootInstallDir
+       Property rollbackSupported: false
+       Property responseFileVariable: false
+       Property onlyIfUndefined: false
+       Property failIfNull: false
+       Variable changed: rootInstallDir=D:\SoapUI-5.4.0[class java.lang.String]
+       Execute action successful after 1 ms
+[INFO] com.install4j.runtime.beans.actions.control.SetVariableAction [ID 1532]: Execute action
+       Property script: I4jScript_Internal_181
+       Property variableName: WhatOS
+       Property rollbackSupported: false
+       Property responseFileVariable: false
+       Property onlyIfUndefined: false
+       Property failIfNull: false
+       Variable changed: WhatOS=[class java.lang.String]
+       Execute action successful after 1 ms
+[INFO] com.install4j.runtime.beans.actions.control.SetVariableAction [ID 4804]: Execute action
+       Property script: I4jScript_Internal_182
+       Property variableName: JreLib
+       Property rollbackSupported: false
+       Property responseFileVariable: false
+       Property onlyIfUndefined: false
+       Property failIfNull: false
+       Variable changed: JreLib=D:\SoapUI-5.4.0\jre\lib[class java.lang.String]
+       Execute action successful after 2 ms
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateProgramGroupAction [ID 470]: Execute action
+       Property unixSymlinks: true
+       Property allUsers: true
+       Property linkDirectory: 
+       Property programGroupName: SmartBear\SoapUI 5.4.0
+       Property unixMenuEntries: true
+       Property programGroupEntryConfigs: [ProgramGroupFileConfig{target=D:\SoapUI-5.4.0\JavaDoc.url, arguments='', runAsAdministrator=false}, ProgramGroupFileConfig{target=D:\SoapUI-5.4.0\SoapUI.url, arguments='', runAsAdministrator=false}]
+       Property addDefaultLauncherLinks: true
+       Property uninstallerMenuName: SoapUI 5.4.0 Uninstaller
+       Property failForSymlinksNotCreated: false
+       Property addUninstaller: true
+       Property categories: Application
+       Property rollbackSupported: true
+       Install file: C:\Users\ankit.pandey\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\SmartBear\SoapUI 5.4.0\SoapUI-5.4.0.lnk; size: 781 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:17:08 IST 2019, mode: 644, overwriteMode: Always, shared: false, uninstallMode: Always, delayIfNecessary: false]
+       Install file: C:\Users\ankit.pandey\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\SmartBear\SoapUI 5.4.0\SoapUI 5.4.0 Uninstaller.lnk; size: 668 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:17:08 IST 2019, mode: 644, overwriteMode: Always, shared: false, uninstallMode: Always, delayIfNecessary: false]
+       Install file: C:\Users\ankit.pandey\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\SmartBear\SoapUI 5.4.0\Online JavaDoc.url; size: 185 bytes; exists: false
+       File options set to: [fileTime: Mon Dec 04 06:40:06 IST 2017, mode: 644, overwriteMode: Always, shared: false, uninstallMode: Always, delayIfNecessary: false]
+       Install file: C:\Users\ankit.pandey\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\SmartBear\SoapUI 5.4.0\soapui.org website.url; size: 86 bytes; exists: false
+       File options set to: [fileTime: Mon Dec 04 06:40:06 IST 2017, mode: 644, overwriteMode: Always, shared: false, uninstallMode: Always, delayIfNecessary: false]
+       Execute action successful after 435 ms
+[INFO] com.install4j.runtime.beans.actions.desktop.RegisterAddRemoveAction [ID 10]: Execute action
+       Property icon: i4j_extf_6_hs6ad0_1h4a4q4.ico
+       Property itemName: SoapUI 5.4.0 5.4.0
+       Property persistentProperties: {}
+       Property rollbackSupported: true
+       Execute action successful after 32 ms
+[INFO] com.install4j.runtime.beans.actions.text.ReplaceInstallerVariablesAction [ID 606]: Execute action
+       Property ignoreMissing: true
+       Property encoding: null
+       Property escapeForPropertyFile: false
+       Property failIfNoReplacement: false
+       Property files: [bin\SoapUI-5.4.0.vmoptions]
+       Property rollbackSupported: true
+[ERROR] com.install4j.runtime.beans.actions.text.ReplaceInstallerVariablesAction [ID 606]: java.io.FileNotFoundException: D:\SoapUI-5.4.0\bin\SoapUI-5.4.0.vmoptions (The system cannot find the file specified)
+java.io.FileNotFoundException: D:\SoapUI-5.4.0\bin\SoapUI-5.4.0.vmoptions (The system cannot find the file specified)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at com.install4j.runtime.beans.actions.text.AbstractModifyTextFileInMemoryAction.modifyFile(Unknown Source)
+	at com.install4j.runtime.beans.actions.files.AbstractModifyFileAction.executeForSingleFile(Unknown Source)
+	at com.install4j.runtime.beans.actions.files.AbstractModifyFileAction.executeForMultipleFiles(Unknown Source)
+	at com.install4j.runtime.beans.actions.files.AbstractModifyMultipleFilesAction.execute(Unknown Source)
+	at com.install4j.runtime.beans.actions.SystemInstallOrUninstallAction.install(Unknown Source)
+	at com.install4j.runtime.installer.InstallerContextImpl$2.fetchValue(Unknown Source)
+	at com.install4j.runtime.installer.helper.comm.actions.FetchObjectAction.execute(Unknown Source)
+	at com.install4j.runtime.installer.helper.comm.HelperCommunication.executeActionWrapper(Unknown Source)
+	at com.install4j.runtime.installer.helper.comm.HelperCommunication.access$200(Unknown Source)
+	at com.install4j.runtime.installer.helper.comm.HelperCommunication$1.run(Unknown Source)
+        Execute action not successful after 18 ms
+[INFO] com.install4j.runtime.beans.actions.control.SetVariableAction [ID 2643]: Execute action
+       Property script: I4jScript_Internal_184
+       Property variableName: jxBrowserInstallLocation
+       Property rollbackSupported: false
+       Property responseFileVariable: false
+       Property onlyIfUndefined: false
+       Property failIfNull: false
+       Variable changed: jxBrowserInstallLocation=${installer:sys.installationDir}\.JxBrowser[class java.lang.String]
+       Execute action successful after 1 ms
+[INFO] com.install4j.runtime.beans.actions.files.SetModeAction [ID 1037]: Execute action
+       Property mode: 755
+       Property recursive: true
+       Property showProgress: false
+       Property showFileNames: true
+       Property directoryFilter: null
+       Property fileFilter: null
+       Property files: [D:\SoapUI-5.4.0\wsi-test-tools]
+       Property rollbackSupported: true
+       Execute action successful after 3 ms
+[INFO] com.install4j.runtime.beans.actions.files.SetModeAction [ID 2096]: Execute action
+       Property mode: 755
+       Property recursive: false
+       Property showProgress: false
+       Property showFileNames: true
+       Property directoryFilter: null
+       Property fileFilter: null
+       Property files: [D:\SoapUI-5.4.0\bin\testrunner.sh]
+       Property rollbackSupported: true
+       Execute action successful after 2 ms
+[INFO] com.install4j.runtime.beans.actions.files.SetModeAction [ID 2097]: Execute action
+       Property mode: 755
+       Property recursive: false
+       Property showProgress: false
+       Property showFileNames: true
+       Property directoryFilter: null
+       Property fileFilter: null
+       Property files: [D:\SoapUI-5.4.0\bin\toolrunner.sh]
+       Property rollbackSupported: true
+       Execute action successful after 1 ms
+[INFO] com.install4j.runtime.beans.actions.files.SetModeAction [ID 2098]: Execute action
+       Property mode: 755
+       Property recursive: false
+       Property showProgress: false
+       Property showFileNames: true
+       Property directoryFilter: null
+       Property fileFilter: null
+       Property files: [D:\SoapUI-5.4.0\bin\loadtestrunner.sh]
+       Property rollbackSupported: true
+       Execute action successful after 1 ms
+[INFO] com.install4j.runtime.beans.actions.files.SetModeAction [ID 2099]: Execute action
+       Property mode: 755
+       Property recursive: false
+       Property showProgress: false
+       Property showFileNames: true
+       Property directoryFilter: null
+       Property fileFilter: null
+       Property files: [D:\SoapUI-5.4.0\bin\mockservicerunner.sh]
+       Property rollbackSupported: true
+       Execute action successful after 2 ms
+[INFO] com.install4j.runtime.beans.actions.files.SetModeAction [ID 2100]: Execute action
+       Property mode: 755
+       Property recursive: false
+       Property showProgress: false
+       Property showFileNames: true
+       Property directoryFilter: null
+       Property fileFilter: null
+       Property files: [D:\SoapUI-5.4.0\bin\soapui.sh]
+       Property rollbackSupported: true
+       Execute action successful after 2 ms
+[INFO] com.install4j.runtime.beans.actions.misc.AddVmOptionsAction [ID 1073]: Execute action
+       Property vmOptions: [-XX:MinHeapFreeRatio=20, -XX:MaxHeapFreeRatio=40, -Xms128m, -Xmx1000m, -Dsoapui.properties=soapui.properties, -Dsoapui.home=D:\SoapUI-5.4.0/bin, -Dsoapui.ext.libraries=D:\SoapUI-5.4.0/bin/ext, -Dsoapui.ext.listeners=D:\SoapUI-5.4.0/bin/listeners, -Dsoapui.ext.actions=D:\SoapUI-5.4.0/bin/actions, -Dwsi.dir=D:\SoapUI-5.4.0/wsi-test-tools, -Djava.library.path=D:\SoapUI-5.4.0/bin, -Djava.util.Arrays.useLegacyMergeSort=true, -splash:SoapUI-Spashscreen.png]
+       Property launcherId: 64
+       Property rollbackSupported: true
+       Execute action successful after 9 ms
+[INFO] com.install4j.runtime.beans.actions.files.AddWindowsFileRightsAction [ID 2705]: Execute action
+       Property rollbackSupported: false
+       Property files: [.JxBrowser]
+       Property group: Authenticated users
+       Property all: true
+       Property execute: false
+       Property read: false
+       Property write: false
+       Property sidOrAccountName: null
+       Execute action successful after 293 ms
+[INFO] com.install4j.runtime.beans.actions.text.ModifyTextFileAction [ID 1436]: Execute action
+       Property logReplacement: true
+       Property searchValue: wheretoinstall
+       Property replaceValue: D:\SoapUI-5.4.0\hermesJMS
+       Property encoding: 
+       Property escapeForPropertyFile: false
+       Property failIfNoReplacement: false
+       Property files: [tempHermes\script.xml]
+       Property rollbackSupported: true
+       Backing up D:\SoapUI-5.4.0\tempHermes\script.xml
+       Execute action successful after 433 ms
+[INFO] com.install4j.runtime.beans.actions.files.SetModeAction [ID 1339]: Execute action
+       Property mode: 755
+       Property recursive: false
+       Property showProgress: false
+       Property showFileNames: true
+       Property directoryFilter: null
+       Property fileFilter: null
+       Property files: [tempHermes\hermesInstall.bat]
+       Property rollbackSupported: true
+       Execute action successful after 1 ms
+[INFO] com.install4j.runtime.beans.actions.files.SetModeAction [ID 1747]: Execute action
+       Property mode: 755
+       Property recursive: false
+       Property showProgress: false
+       Property showFileNames: true
+       Property directoryFilter: null
+       Property fileFilter: null
+       Property files: [tempHermes\hermesInstallMAC.bat]
+       Property rollbackSupported: true
+       Execute action successful after 1 ms
+[INFO] com.install4j.runtime.beans.actions.control.SetVariableAction [ID 7154]: Execute action
+       Property script: I4jScript_Internal_188
+       Property variableName: rootInstallDirPI
+       Property rollbackSupported: false
+       Property responseFileVariable: false
+       Property onlyIfUndefined: false
+       Property failIfNull: false
+       Variable changed: rootInstallDirPI=D:\SoapUI-5.4.0[class java.lang.String]
+       Execute action successful after 1 ms
+[INFO] com.install4j.runtime.beans.actions.misc.RunExecutableAction [ID 1264]: Execute action
+       Property arguments: [logging of arguments is disabled]
+       Property rollbackSupported: false
+       Property includeParentEnvironmentVariables: true
+       Property logArguments: false
+       Property stdoutFile: null
+       Property stdinFile: null
+       Property executable: tempHermes\hermesInstall.bat
+       Property stderrFile: null
+       Property stdinString: 
+       Property waitForStreams: true
+       Property timeout: 0
+       Property wait: true
+       Property workingDirectory: tempHermes
+       Property failOnStderrFileError: false
+       Property failOnStdoutFileError: false
+       Property stdoutRedirectionMode: No redirection
+       Property rollbackArguments: null
+       Property stdoutVariableName: 
+       Property keepConsoleWindow: true
+       Property showWindowsConsole: false
+       Property returnCodeVariable: 
+       Property rollbackExecutable: null
+       Property stderrVariableName: 
+       Property failOnStdinFileError: false
+       Property useRollbackExecutable: false
+       Property environmentVariables: {}
+       Property rollbackWorkingDirectory: null
+       Property stdinRedirectionMode: No redirection
+       Property stderrRedirectionMode: No redirection
+       used working dir: D:\SoapUI-5.4.0\tempHermes
+[ERROR] com.install4j.runtime.beans.actions.misc.RunExecutableAction [ID 1264]: return value is 1
+        return value is 1
+        Execute action not successful after 2262 ms
+[INFO] com.install4j.runtime.beans.actions.files.CopyFileAction [ID 7059]: Execute action
+       Property shared: false
+       Property destinationFile: D:\SoapUI-5.4.0\hermesJMS\lib
+       Property mode: 644
+       Property overwriteMode: Always ask except for update
+       Property uninstallMode: If created
+       Property directoryMode: 755
+       Property recursive: true
+       Property delay: false
+       Property triggerReboot: true
+       Property showProgress: false
+       Property showFileNames: true
+       Property directoryFilter: null
+       Property fileFilter: null
+       Property files: [tempHermes\xml-apis.jar]
+       Property rollbackSupported: true
+       Copy D:\SoapUI-5.4.0\tempHermes\xml-apis.jar to D:\SoapUI-5.4.0\hermesJMS\lib\xml-apis.jar
+       Install file: D:\SoapUI-5.4.0\hermesJMS\lib\xml-apis.jar; size: 220536 bytes; exists: true
+       File options set to: [fileTime: Mon Dec 04 06:40:06 IST 2017, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Execute action successful after 69398 ms
+[INFO] com.install4j.runtime.beans.actions.files.CopyFileAction [ID 7251]: Execute action
+       Property shared: false
+       Property destinationFile: D:\SoapUI-5.4.0\hermesJMS\lib
+       Property mode: 644
+       Property overwriteMode: Always ask except for update
+       Property uninstallMode: If created
+       Property directoryMode: 755
+       Property recursive: true
+       Property delay: false
+       Property triggerReboot: true
+       Property showProgress: false
+       Property showFileNames: true
+       Property directoryFilter: null
+       Property fileFilter: null
+       Property files: [tempHermes\xercesImpl.jar]
+       Property rollbackSupported: true
+       Copy D:\SoapUI-5.4.0\tempHermes\xercesImpl.jar to D:\SoapUI-5.4.0\hermesJMS\lib\xercesImpl.jar
+       Install file: D:\SoapUI-5.4.0\hermesJMS\lib\xercesImpl.jar; size: 1367760 bytes; exists: true
+       File options set to: [fileTime: Mon Dec 04 06:40:06 IST 2017, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Execute action successful after 844 ms
+[INFO] com.install4j.runtime.beans.actions.desktop.CreateDesktopLinkAction [ID 566]: Execute action
+       Property name: SoapUI 5.4.0
+       Property file: bin\SoapUI-5.4.0.exe
+       Property description: Install Desktop ShortCut
+       Property arguments: 
+       Property allUsers: true
+       Property startIn: null
+       Property winIconFile: i4j_extf_6_hs6ad0_1h4a4q4.ico
+       Property runAsAdministrator: false
+       Property macSingleBundleTarget: true
+       Property rollbackSupported: true
+       Install file: C:\Users\ankit.pandey\Desktop\SoapUI 5.4.0.lnk; size: 871 bytes; exists: false
+       File options set to: [fileTime: Mon Jul 29 18:18:21 IST 2019, mode: 644, overwriteMode: Always, shared: false, uninstallMode: Always, delayIfNecessary: false]
+       Execute action successful after 35 ms
+[INFO] com.install4j.runtime.beans.actions.files.MoveFileAction [ID 2503]: Execute action
+       Property shared: false
+       Property destinationFile: C:\Users\ankit.pandey\SoapUI-Tutorials
+       Property mode: 644
+       Property overwriteMode: Always ask except for update
+       Property uninstallMode: If created
+       Property directoryMode: 755
+       Property recursive: true
+       Property delay: false
+       Property triggerReboot: true
+       Property showProgress: false
+       Property showFileNames: true
+       Property directoryFilter: null
+       Property fileFilter: null
+       Property files: [SoapUI-Tutorials]
+       Property rollbackSupported: true
+       Move D:\SoapUI-5.4.0\SoapUI-Tutorials\popular-apis\Amazon-soapui-project.xml to C:\Users\ankit.pandey\SoapUI-Tutorials\popular-apis\Amazon-soapui-project.xml
+       Install file: C:\Users\ankit.pandey\SoapUI-Tutorials\popular-apis\Amazon-soapui-project.xml; size: 106242 bytes; exists: false
+       File options set to: [fileTime: Mon Dec 04 06:40:06 IST 2017, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Move D:\SoapUI-5.4.0\SoapUI-Tutorials\popular-apis\Facebook-soapui-project.xml to C:\Users\ankit.pandey\SoapUI-Tutorials\popular-apis\Facebook-soapui-project.xml
+       Install file: C:\Users\ankit.pandey\SoapUI-Tutorials\popular-apis\Facebook-soapui-project.xml; size: 21296 bytes; exists: false
+       File options set to: [fileTime: Mon Dec 04 06:40:06 IST 2017, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Move D:\SoapUI-5.4.0\SoapUI-Tutorials\popular-apis\Flickr-soapui-project.xml to C:\Users\ankit.pandey\SoapUI-Tutorials\popular-apis\Flickr-soapui-project.xml
+       Install file: C:\Users\ankit.pandey\SoapUI-Tutorials\popular-apis\Flickr-soapui-project.xml; size: 27775 bytes; exists: false
+       File options set to: [fileTime: Mon Dec 04 06:40:06 IST 2017, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Move D:\SoapUI-5.4.0\SoapUI-Tutorials\popular-apis\Google-Maps-soapui-project.xml to C:\Users\ankit.pandey\SoapUI-Tutorials\popular-apis\Google-Maps-soapui-project.xml
+       Install file: C:\Users\ankit.pandey\SoapUI-Tutorials\popular-apis\Google-Maps-soapui-project.xml; size: 123949 bytes; exists: false
+       File options set to: [fileTime: Mon Dec 04 06:40:06 IST 2017, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Move D:\SoapUI-5.4.0\SoapUI-Tutorials\popular-apis\Twitter-soapui-project.xml to C:\Users\ankit.pandey\SoapUI-Tutorials\popular-apis\Twitter-soapui-project.xml
+       Install file: C:\Users\ankit.pandey\SoapUI-Tutorials\popular-apis\Twitter-soapui-project.xml; size: 34023 bytes; exists: false
+       File options set to: [fileTime: Mon Dec 04 06:40:06 IST 2017, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Move D:\SoapUI-5.4.0\SoapUI-Tutorials\popular-apis\YouTube-soapui-project.xml to C:\Users\ankit.pandey\SoapUI-Tutorials\popular-apis\YouTube-soapui-project.xml
+       Install file: C:\Users\ankit.pandey\SoapUI-Tutorials\popular-apis\YouTube-soapui-project.xml; size: 29458 bytes; exists: false
+       File options set to: [fileTime: Mon Dec 04 06:40:06 IST 2017, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Move D:\SoapUI-5.4.0\SoapUI-Tutorials\Sample-Authentication-Project-soapui-project.xml to C:\Users\ankit.pandey\SoapUI-Tutorials\Sample-Authentication-Project-soapui-project.xml
+       Install file: C:\Users\ankit.pandey\SoapUI-Tutorials\Sample-Authentication-Project-soapui-project.xml; size: 7268 bytes; exists: false
+       File options set to: [fileTime: Mon Dec 04 06:40:06 IST 2017, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Move D:\SoapUI-5.4.0\SoapUI-Tutorials\Sample-REST-Project-soapui-project.xml to C:\Users\ankit.pandey\SoapUI-Tutorials\Sample-REST-Project-soapui-project.xml
+       Install file: C:\Users\ankit.pandey\SoapUI-Tutorials\Sample-REST-Project-soapui-project.xml; size: 9456 bytes; exists: false
+       File options set to: [fileTime: Mon Dec 04 06:40:06 IST 2017, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Move D:\SoapUI-5.4.0\SoapUI-Tutorials\Sample-SOAP-Project-soapui-project.xml to C:\Users\ankit.pandey\SoapUI-Tutorials\Sample-SOAP-Project-soapui-project.xml
+       Install file: C:\Users\ankit.pandey\SoapUI-Tutorials\Sample-SOAP-Project-soapui-project.xml; size: 142945 bytes; exists: false
+       File options set to: [fileTime: Mon Dec 04 06:40:06 IST 2017, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Move D:\SoapUI-5.4.0\SoapUI-Tutorials\WSDL-WADL\sample-service.wadl to C:\Users\ankit.pandey\SoapUI-Tutorials\WSDL-WADL\sample-service.wadl
+       Install file: C:\Users\ankit.pandey\SoapUI-Tutorials\WSDL-WADL\sample-service.wadl; size: 1413 bytes; exists: false
+       File options set to: [fileTime: Mon Dec 04 06:40:06 IST 2017, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Move D:\SoapUI-5.4.0\SoapUI-Tutorials\WSDL-WADL\sample-service.wsdl to C:\Users\ankit.pandey\SoapUI-Tutorials\WSDL-WADL\sample-service.wsdl
+       Install file: C:\Users\ankit.pandey\SoapUI-Tutorials\WSDL-WADL\sample-service.wsdl; size: 7130 bytes; exists: false
+       File options set to: [fileTime: Mon Dec 04 06:40:06 IST 2017, mode: 644, overwriteMode: Always ask except for update, shared: false, uninstallMode: If created, delayIfNecessary: false]
+       Backing up D:\SoapUI-5.4.0\SoapUI-Tutorials\popular-apis\Amazon-soapui-project.xml
+       Backing up D:\SoapUI-5.4.0\SoapUI-Tutorials\popular-apis\Facebook-soapui-project.xml
+       Backing up D:\SoapUI-5.4.0\SoapUI-Tutorials\popular-apis\Flickr-soapui-project.xml
+       Backing up D:\SoapUI-5.4.0\SoapUI-Tutorials\popular-apis\Google-Maps-soapui-project.xml
+       Backing up D:\SoapUI-5.4.0\SoapUI-Tutorials\popular-apis\Twitter-soapui-project.xml
+       Backing up D:\SoapUI-5.4.0\SoapUI-Tutorials\popular-apis\YouTube-soapui-project.xml
+       Backing up D:\SoapUI-5.4.0\SoapUI-Tutorials\Sample-Authentication-Project-soapui-project.xml
+       Backing up D:\SoapUI-5.4.0\SoapUI-Tutorials\Sample-REST-Project-soapui-project.xml
+       Backing up D:\SoapUI-5.4.0\SoapUI-Tutorials\Sample-SOAP-Project-soapui-project.xml
+       Backing up D:\SoapUI-5.4.0\SoapUI-Tutorials\WSDL-WADL\sample-service.wadl
+       Backing up D:\SoapUI-5.4.0\SoapUI-Tutorials\WSDL-WADL\sample-service.wsdl
+       Execute action successful after 156 ms
+[INFO] com.install4j.runtime.beans.actions.files.AddWindowsFileRightsAction [ID 4580]: Execute action
+       Property rollbackSupported: false
+       Property files: [bin\soapui.log]
+       Property group: World
+       Property all: false
+       Property execute: false
+       Property read: true
+       Property write: true
+       Property sidOrAccountName: null
+       Execute action successful after 2 ms
+[INFO] com.install4j.runtime.beans.actions.files.AddWindowsFileRightsAction [ID 4582]: Execute action
+       Property rollbackSupported: false
+       Property files: [bin\soapui-errors.log]
+       Property group: World
+       Property all: false
+       Property execute: false
+       Property read: true
+       Property write: true
+       Property sidOrAccountName: null
+       Execute action successful after 2 ms
+[INFO] com.install4j.runtime.beans.actions.files.SetModeAction [ID 4624]: Execute action
+       Property mode: 666
+       Property recursive: false
+       Property showProgress: false
+       Property showFileNames: true
+       Property directoryFilter: null
+       Property fileFilter: null
+       Property files: [bin\soapui.log]
+       Property rollbackSupported: true
+       Execute action successful after 0 ms
+[INFO] com.install4j.runtime.beans.actions.files.SetModeAction [ID 4625]: Execute action
+       Property mode: 666
+       Property recursive: false
+       Property showProgress: false
+       Property showFileNames: true
+       Property directoryFilter: null
+       Property fileFilter: null
+       Property files: [bin\soapui-errors.log]
+       Property rollbackSupported: true
+       Execute action successful after 1 ms
+[INFO] com.install4j.runtime.beans.screens.InstallationScreen [ID 7]: Rollback barrier reached
+       command: move 1 screens, executing actions, checking condition
+[INFO] com.install4j.runtime.beans.screens.FinishedScreen [ID 11]: Show screen
+       Variable changed: showFileAction=true[class java.lang.Boolean]
+       Variable changed: executeLauncherAction=true[class java.lang.Boolean]
+[INFO] com.install4j.runtime.beans.actions.files.DeleteFileAction [ID 1333]: Execute action
+       Property rollbackSupported: true
+       Property backupForRollback: true
+       Property recursive: true
+       Property showProgress: false
+       Property showFileNames: true
+       Property directoryFilter: null
+       Property fileFilter: null
+       Property files: [tempHermes]
+       Backing up D:\SoapUI-5.4.0\tempHermes\hermes-installer-1.14.jar
+       Backing up D:\SoapUI-5.4.0\tempHermes\hermesInstall.bat
+       Backing up D:\SoapUI-5.4.0\tempHermes\hermesInstall.sh
+       Backing up D:\SoapUI-5.4.0\tempHermes\hermesInstall64bit.bat
+       Backing up D:\SoapUI-5.4.0\tempHermes\hermesInstallMAC.sh
+       Backing up D:\SoapUI-5.4.0\tempHermes\script.xml
+       Backing up D:\SoapUI-5.4.0\tempHermes\xercesImpl.jar
+       Backing up D:\SoapUI-5.4.0\tempHermes\xml-apis.jar
+       Execute action successful after 44 ms
+[INFO] com.install4j.runtime.beans.actions.control.SetVariableAction [ID 4924]: Execute action
+       Property script: I4jScript_Internal_194
+       Property variableName: BROWSER_DUMMY
+       Property rollbackSupported: false
+       Property responseFileVariable: false
+       Property onlyIfUndefined: false
+       Property failIfNull: false
+       Variable changed: BROWSER_DUMMY=[class java.lang.String]
+       Execute action successful after 0 ms
+[INFO] com.install4j.runtime.beans.actions.finish.ShowFileAction [ID 413]: Execute action
+       Property file: RELEASENOTES.txt
+       Property rollbackSupported: false
+       Execute action successful after 133 ms
+[INFO] com.install4j.runtime.beans.actions.finish.ExecuteLauncherAction [ID 935]: Execute action
+       Property arguments: null
+       Property rollbackSupported: false
+       Property launcherId: 64
+       Execute action successful after 515 ms
+[INFO] com.install4j.runtime.beans.actions.control.SetVariableAction [ID 5058]: Execute action
+       Property script: I4jScript_Internal_197
+       Property variableName: rootInstallDirPI
+       Property rollbackSupported: false
+       Property responseFileVariable: false
+       Property onlyIfUndefined: false
+       Property failIfNull: false
+       Variable changed: rootInstallDirPI=D:\SoapUI-5.4.0[class java.lang.String]
+       Execute action successful after 0 ms
+[INFO] com.install4j.runtime.beans.actions.misc.RunExecutableAction [ID 5056]: Execute action
+       Property arguments: [logging of arguments is disabled]
+       Property rollbackSupported: false
+       Property includeParentEnvironmentVariables: true
+       Property logArguments: false
+       Property stdoutFile: null
+       Property stdinFile: null
+       Property executable: D:\SoapUI-5.4.0\bin\installationcomplete.bat
+       Property stderrFile: null
+       Property stdinString: 
+       Property waitForStreams: false
+       Property timeout: 0
+       Property wait: false
+       Property workingDirectory: D:\SoapUI-5.4.0\bin
+       Property failOnStderrFileError: false
+       Property failOnStdoutFileError: false
+       Property stdoutRedirectionMode: No redirection
+       Property rollbackArguments: null
+       Property stdoutVariableName: 
+       Property keepConsoleWindow: false
+       Property showWindowsConsole: false
+       Property returnCodeVariable: 
+       Property rollbackExecutable: null
+       Property stderrVariableName: 
+       Property failOnStdinFileError: false
+       Property useRollbackExecutable: false
+       Property environmentVariables: {}
+       Property rollbackWorkingDirectory: null
+       Property stdinRedirectionMode: No redirection
+       Property stderrRedirectionMode: No redirection
+       used working dir: D:\SoapUI-5.4.0\bin
+       Execute action successful after 534 ms
+[INFO] com.install4j.runtime.beans.actions.files.DeleteFileAction [ID 5059]: Execute action
+       Property rollbackSupported: true
+       Property backupForRollback: true
+       Property recursive: false
+       Property showProgress: false
+       Property showFileNames: true
+       Property directoryFilter: null
+       Property fileFilter: null
+       Property files: [D:\SoapUI-5.4.0\bin\installationcomplete.bat, D:\SoapUI-5.4.0\bin\updateinstallation.bat]
+       Backing up D:\SoapUI-5.4.0\bin\installationcomplete.bat
+       Backing up D:\SoapUI-5.4.0\bin\updateinstallation.bat
+       Execute action successful after 40 ms
+[INFO] com.install4j.runtime.beans.screens.FinishedScreen [ID 11]: command: finish
+       cleaning up
+       Finished

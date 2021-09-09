@@ -1,0 +1,41 @@
+Status: FAILED
+Time Taken: 498
+Size: 506
+Timestamp: Mon Jan 27 17:40:01 IST 2020
+TestStep: LoginHistory
+
+----------------- Messages ------------------------------
+[Response SLA] Response did not meet SLA 498/100
+
+----------------- Properties ------------------------------
+HTTP Version: HTTP/1.1
+Endpoint: http://10.121.0.7:15301/
+Method: GET
+StatusCode: 200
+URL: http://10.121.0.7:15301/sso/rest/v2/user/profile/getLoginLogJSON
+
+---------------- Request ---------------------------
+Connection: [Keep-Alive]
+User-Agent: [Apache-HttpClient/4.1.1 (java 1.5)]
+Host: [10.121.0.7:15301]
+Accept-Encoding: [gzip,deflate]
+x-zycus-token-id: [2538c1c2-7214-4352-923f-9052f2f8ca88]
+
+GET http://10.121.0.7:15301/sso/rest/v2/user/profile/getLoginLogJSON HTTP/1.1
+Accept-Encoding: gzip,deflate
+x-zycus-token-id: 2538c1c2-7214-4352-923f-9052f2f8ca88
+Host: 10.121.0.7:15301
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
+
+
+---------------- Response --------------------------
+Transfer-Encoding: [chunked]
+X-OneAgent-JS-Injection: [true]
+Server: [Not Available]
+Set-Cookie: [dtCookie=2F273952B2410D7B0824015B49FA245C||1; Path=/]
+#status#: [HTTP/1.1 200 ]
+Date: [Mon, 27 Jan 2020 12:10:00 GMT]
+Content-Type: [application/json;charset=UTF-8]
+
+{"timestamp":1580127001521,"payload":[{"emailId":"admin@zycus.com","timeStamp":"Mon Jan 27 12:10:00 GMT 2020","ip":"192.168.3.218"},{"emailId":"admin@zycus.com","timeStamp":"Mon Jan 27 12:09:54 GMT 2020","ip":"192.168.3.218"},{"emailId":"admin@zycus.com","timeStamp":"Mon Jan 27 12:09:52 GMT 2020","ip":"10.121.1.47"},{"emailId":"admin@zycus.com","timeStamp":"Mon Jan 27 12:09:51 GMT 2020","ip":"192.168.3.218"},{"emailId":"admin@zycus.com","timeStamp":"Mon Jan 27 12:09:49 GMT 2020","ip":"10.30.31.124"}]}

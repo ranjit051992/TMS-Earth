@@ -1,0 +1,1757 @@
+2020-01-27 14:04:39,693 INFO  [SoapUI] Adding [Z:\SMTQA\TMS\SoupUI Automation Scripts\SoapUI-5.4.0\bin\ext\ojdbc14.jar] to extensions classpath
+2020-01-27 14:04:40,509 INFO  [DefaultSoapUICore] initialized soapui-settings from [C:\Users\ankit.pandey\soapui-settings.xml]
+2020-01-27 14:04:50,061 INFO  [Reflections] Reflections took 112 ms to scan 2 urls, producing 75 keys and 160 values 
+2020-01-27 14:04:50,337 INFO  [Reflections] Reflections took 202 ms to scan 1 urls, producing 321 keys and 1510 values 
+2020-01-27 14:04:50,381 INFO  [Reflections] Reflections took 5 ms to scan 1 urls, producing 11 keys and 17 values 
+2020-01-27 14:04:50,447 INFO  [Reflections] Reflections took 3 ms to scan 1 urls, producing 13 keys and 21 values 
+2020-01-27 14:04:50,666 INFO  [Reflections] Reflections took 103 ms to scan 13 urls, producing 341 keys and 1458 values 
+2020-01-27 14:04:50,754 INFO  [PluginManager] Adding plugin from [C:\Users\ankit.pandey\.soapuios\plugins\ready-mqtt-plugin-dist.jar]
+2020-01-27 14:04:50,760 INFO  [PluginManager] Adding plugin from [C:\Users\ankit.pandey\.soapuios\plugins\soapui-swagger-plugin-2.2-dist.jar]
+2020-01-27 14:04:52,332 INFO  [Reflections] Reflections took 14 ms to scan 2 urls, producing 75 keys and 160 values 
+2020-01-27 14:04:52,481 INFO  [Reflections] Reflections took 117 ms to scan 13 urls, producing 341 keys and 1458 values 
+2020-01-27 14:04:53,636 INFO  [Reflections] Reflections took 1287 ms to scan 1 urls, producing 1600 keys and 6547 values 
+2020-01-27 14:04:53,657 ERROR [SoapUI] An error occurred [com.eviware.soapui.plugins.auto.factories.AutoImportMethodFactory], see error log for details
+2020-01-27 14:04:53,659 ERROR [errorlog] java.lang.ClassNotFoundException: com.eviware.soapui.plugins.auto.factories.AutoImportMethodFactory
+java.lang.ClassNotFoundException: com.eviware.soapui.plugins.auto.factories.AutoImportMethodFactory
+	at java.net.URLClassLoader.findClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at com.eviware.soapui.plugins.LoaderBase.loadAutoFactories(LoaderBase.java:113)
+	at com.eviware.soapui.plugins.LoaderBase.loadFactories(LoaderBase.java:80)
+	at com.eviware.soapui.plugins.PluginLoader.loadPluginFactories(PluginLoader.java:141)
+	at com.eviware.soapui.plugins.PluginLoader.loadPlugin(PluginLoader.java:104)
+	at com.eviware.soapui.plugins.PluginLoader.loadPlugin(PluginLoader.java:54)
+	at com.eviware.soapui.plugins.PluginManager.doInstallPlugin(PluginManager.java:141)
+	at com.eviware.soapui.plugins.PluginManager.access$600(PluginManager.java:43)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.computeSequentially(PluginManager.java:420)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:377)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:382)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:365)
+	at java.util.concurrent.RecursiveTask.exec(Unknown Source)
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(Unknown Source)
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)
+2020-01-27 14:04:53,677 INFO  [Reflections] Reflections took 1177 ms to scan 1 urls, producing 1600 keys and 6547 values 
+2020-01-27 14:04:53,690 ERROR [SoapUI] An error occurred [com.eviware.soapui.plugins.auto.factories.AutoImportMethodFactory], see error log for details
+2020-01-27 14:04:53,690 ERROR [SoapUI] An error occurred [com.eviware.soapui.plugins.auto.factories.AutoDiscoveryMethodFactory], see error log for details
+2020-01-27 14:04:53,775 ERROR [errorlog] java.lang.ClassNotFoundException: com.eviware.soapui.plugins.auto.factories.AutoImportMethodFactory
+java.lang.ClassNotFoundException: com.eviware.soapui.plugins.auto.factories.AutoImportMethodFactory
+	at java.net.URLClassLoader.findClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at com.eviware.soapui.plugins.LoaderBase.loadAutoFactories(LoaderBase.java:113)
+	at com.eviware.soapui.plugins.LoaderBase.loadFactories(LoaderBase.java:80)
+	at com.eviware.soapui.plugins.PluginLoader.loadPluginFactories(PluginLoader.java:141)
+	at com.eviware.soapui.plugins.PluginLoader.loadPlugin(PluginLoader.java:104)
+	at com.eviware.soapui.plugins.PluginLoader.loadPlugin(PluginLoader.java:54)
+	at com.eviware.soapui.plugins.PluginManager.doInstallPlugin(PluginManager.java:141)
+	at com.eviware.soapui.plugins.PluginManager.access$600(PluginManager.java:43)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.computeSequentially(PluginManager.java:420)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:377)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:365)
+	at java.util.concurrent.RecursiveTask.exec(Unknown Source)
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(Unknown Source)
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)
+2020-01-27 14:04:53,799 ERROR [errorlog] java.lang.ClassNotFoundException: com.eviware.soapui.plugins.auto.factories.AutoDiscoveryMethodFactory
+java.lang.ClassNotFoundException: com.eviware.soapui.plugins.auto.factories.AutoDiscoveryMethodFactory
+	at java.net.URLClassLoader.findClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at com.eviware.soapui.plugins.LoaderBase.loadAutoFactories(LoaderBase.java:113)
+	at com.eviware.soapui.plugins.LoaderBase.loadFactories(LoaderBase.java:80)
+	at com.eviware.soapui.plugins.PluginLoader.loadPluginFactories(PluginLoader.java:141)
+	at com.eviware.soapui.plugins.PluginLoader.loadPlugin(PluginLoader.java:104)
+	at com.eviware.soapui.plugins.PluginLoader.loadPlugin(PluginLoader.java:54)
+	at com.eviware.soapui.plugins.PluginManager.doInstallPlugin(PluginManager.java:141)
+	at com.eviware.soapui.plugins.PluginManager.access$600(PluginManager.java:43)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.computeSequentially(PluginManager.java:420)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:377)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:382)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:365)
+	at java.util.concurrent.RecursiveTask.exec(Unknown Source)
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(Unknown Source)
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)
+2020-01-27 14:04:53,802 ERROR [SoapUI] An error occurred [com.eviware.soapui.plugins.auto.factories.AutoDiscoveryMethodFactory], see error log for details
+2020-01-27 14:04:53,805 INFO  [PluginManager] Adding plugin from [C:\Users\ankit.pandey\.soapuios\plugins\ready-uxm-plugin-1.0.1-dist.jar]
+2020-01-27 14:04:53,804 ERROR [errorlog] java.lang.ClassNotFoundException: com.eviware.soapui.plugins.auto.factories.AutoDiscoveryMethodFactory
+java.lang.ClassNotFoundException: com.eviware.soapui.plugins.auto.factories.AutoDiscoveryMethodFactory
+	at java.net.URLClassLoader.findClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at com.eviware.soapui.plugins.LoaderBase.loadAutoFactories(LoaderBase.java:113)
+	at com.eviware.soapui.plugins.LoaderBase.loadFactories(LoaderBase.java:80)
+	at com.eviware.soapui.plugins.PluginLoader.loadPluginFactories(PluginLoader.java:141)
+	at com.eviware.soapui.plugins.PluginLoader.loadPlugin(PluginLoader.java:104)
+	at com.eviware.soapui.plugins.PluginLoader.loadPlugin(PluginLoader.java:54)
+	at com.eviware.soapui.plugins.PluginManager.doInstallPlugin(PluginManager.java:141)
+	at com.eviware.soapui.plugins.PluginManager.access$600(PluginManager.java:43)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.computeSequentially(PluginManager.java:420)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:377)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:365)
+	at java.util.concurrent.RecursiveTask.exec(Unknown Source)
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(Unknown Source)
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)
+2020-01-27 14:04:53,827 INFO  [PluginManager] Adding plugin from [C:\Users\ankit.pandey\.soapuios\plugins\readyapi-postman-1.0.1.jar]
+2020-01-27 14:04:53,902 INFO  [Reflections] Reflections took 4 ms to scan 1 urls, producing 11 keys and 17 values 
+2020-01-27 14:04:53,969 INFO  [Reflections] Reflections took 156 ms to scan 1 urls, producing 321 keys and 1510 values 
+2020-01-27 14:04:54,463 INFO  [Reflections] Reflections took 474 ms to scan 1 urls, producing 1600 keys and 6547 values 
+2020-01-27 14:04:54,464 INFO  [Reflections] Reflections took 533 ms to scan 1 urls, producing 1600 keys and 6547 values 
+2020-01-27 14:04:54,466 ERROR [SoapUI] An error occurred [com.eviware.soapui.plugins.auto.factories.AutoImportMethodFactory], see error log for details
+2020-01-27 14:04:54,467 ERROR [SoapUI] An error occurred [com.eviware.soapui.plugins.auto.factories.AutoImportMethodFactory], see error log for details
+2020-01-27 14:04:54,468 ERROR [errorlog] java.lang.ClassNotFoundException: com.eviware.soapui.plugins.auto.factories.AutoImportMethodFactory
+java.lang.ClassNotFoundException: com.eviware.soapui.plugins.auto.factories.AutoImportMethodFactory
+	at java.net.URLClassLoader.findClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at com.eviware.soapui.plugins.LoaderBase.loadAutoFactories(LoaderBase.java:113)
+	at com.eviware.soapui.plugins.LoaderBase.loadFactories(LoaderBase.java:80)
+	at com.eviware.soapui.plugins.PluginLoader.loadPluginFactories(PluginLoader.java:141)
+	at com.eviware.soapui.plugins.PluginLoader.loadPlugin(PluginLoader.java:104)
+	at com.eviware.soapui.plugins.PluginLoader.loadPlugin(PluginLoader.java:54)
+	at com.eviware.soapui.plugins.PluginManager.doInstallPlugin(PluginManager.java:141)
+	at com.eviware.soapui.plugins.PluginManager.access$600(PluginManager.java:43)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.computeSequentially(PluginManager.java:420)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:377)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:382)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:365)
+	at java.util.concurrent.RecursiveTask.exec(Unknown Source)
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(Unknown Source)
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)
+2020-01-27 14:04:54,475 ERROR [SoapUI] An error occurred [com.eviware.soapui.plugins.auto.factories.AutoDiscoveryMethodFactory], see error log for details
+2020-01-27 14:04:54,470 ERROR [errorlog] java.lang.ClassNotFoundException: com.eviware.soapui.plugins.auto.factories.AutoImportMethodFactory
+java.lang.ClassNotFoundException: com.eviware.soapui.plugins.auto.factories.AutoImportMethodFactory
+	at java.net.URLClassLoader.findClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at com.eviware.soapui.plugins.LoaderBase.loadAutoFactories(LoaderBase.java:113)
+	at com.eviware.soapui.plugins.LoaderBase.loadFactories(LoaderBase.java:80)
+	at com.eviware.soapui.plugins.PluginLoader.loadPluginFactories(PluginLoader.java:141)
+	at com.eviware.soapui.plugins.PluginLoader.loadPlugin(PluginLoader.java:104)
+	at com.eviware.soapui.plugins.PluginLoader.loadPlugin(PluginLoader.java:54)
+	at com.eviware.soapui.plugins.PluginManager.doInstallPlugin(PluginManager.java:141)
+	at com.eviware.soapui.plugins.PluginManager.access$600(PluginManager.java:43)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.computeSequentially(PluginManager.java:420)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:377)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:365)
+	at java.util.concurrent.RecursiveTask.exec(Unknown Source)
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(Unknown Source)
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)
+2020-01-27 14:04:54,477 ERROR [errorlog] java.lang.ClassNotFoundException: com.eviware.soapui.plugins.auto.factories.AutoDiscoveryMethodFactory
+java.lang.ClassNotFoundException: com.eviware.soapui.plugins.auto.factories.AutoDiscoveryMethodFactory
+	at java.net.URLClassLoader.findClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at com.eviware.soapui.plugins.LoaderBase.loadAutoFactories(LoaderBase.java:113)
+	at com.eviware.soapui.plugins.LoaderBase.loadFactories(LoaderBase.java:80)
+	at com.eviware.soapui.plugins.PluginLoader.loadPluginFactories(PluginLoader.java:141)
+	at com.eviware.soapui.plugins.PluginLoader.loadPlugin(PluginLoader.java:104)
+	at com.eviware.soapui.plugins.PluginLoader.loadPlugin(PluginLoader.java:54)
+	at com.eviware.soapui.plugins.PluginManager.doInstallPlugin(PluginManager.java:141)
+	at com.eviware.soapui.plugins.PluginManager.access$600(PluginManager.java:43)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.computeSequentially(PluginManager.java:420)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:377)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:382)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:365)
+	at java.util.concurrent.RecursiveTask.exec(Unknown Source)
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(Unknown Source)
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)
+2020-01-27 14:04:54,481 ERROR [SoapUI] An error occurred [com.eviware.soapui.plugins.auto.factories.AutoDiscoveryMethodFactory], see error log for details
+2020-01-27 14:04:54,483 ERROR [errorlog] java.lang.ClassNotFoundException: com.eviware.soapui.plugins.auto.factories.AutoDiscoveryMethodFactory
+java.lang.ClassNotFoundException: com.eviware.soapui.plugins.auto.factories.AutoDiscoveryMethodFactory
+	at java.net.URLClassLoader.findClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at com.eviware.soapui.plugins.LoaderBase.loadAutoFactories(LoaderBase.java:113)
+	at com.eviware.soapui.plugins.LoaderBase.loadFactories(LoaderBase.java:80)
+	at com.eviware.soapui.plugins.PluginLoader.loadPluginFactories(PluginLoader.java:141)
+	at com.eviware.soapui.plugins.PluginLoader.loadPlugin(PluginLoader.java:104)
+	at com.eviware.soapui.plugins.PluginLoader.loadPlugin(PluginLoader.java:54)
+	at com.eviware.soapui.plugins.PluginManager.doInstallPlugin(PluginManager.java:141)
+	at com.eviware.soapui.plugins.PluginManager.access$600(PluginManager.java:43)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.computeSequentially(PluginManager.java:420)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:377)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:365)
+	at java.util.concurrent.RecursiveTask.exec(Unknown Source)
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(Unknown Source)
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)
+2020-01-27 14:04:54,498 INFO  [PluginManager] Adding plugin from [C:\Users\ankit.pandey\.soapuios\plugins\readyapi-swaggerhub-plugin-1.0.jar]
+2020-01-27 14:04:54,516 INFO  [Reflections] Reflections took 3 ms to scan 1 urls, producing 13 keys and 21 values 
+2020-01-27 14:04:54,863 INFO  [Reflections] Reflections took 344 ms to scan 1 urls, producing 1600 keys and 6547 values 
+2020-01-27 14:04:54,865 ERROR [SoapUI] An error occurred [com.eviware.soapui.plugins.auto.factories.AutoImportMethodFactory], see error log for details
+2020-01-27 14:04:54,866 ERROR [errorlog] java.lang.ClassNotFoundException: com.eviware.soapui.plugins.auto.factories.AutoImportMethodFactory
+java.lang.ClassNotFoundException: com.eviware.soapui.plugins.auto.factories.AutoImportMethodFactory
+	at java.net.URLClassLoader.findClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at com.eviware.soapui.plugins.LoaderBase.loadAutoFactories(LoaderBase.java:113)
+	at com.eviware.soapui.plugins.LoaderBase.loadFactories(LoaderBase.java:80)
+	at com.eviware.soapui.plugins.PluginLoader.loadPluginFactories(PluginLoader.java:141)
+	at com.eviware.soapui.plugins.PluginLoader.loadPlugin(PluginLoader.java:104)
+	at com.eviware.soapui.plugins.PluginLoader.loadPlugin(PluginLoader.java:54)
+	at com.eviware.soapui.plugins.PluginManager.doInstallPlugin(PluginManager.java:141)
+	at com.eviware.soapui.plugins.PluginManager.access$600(PluginManager.java:43)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.computeSequentially(PluginManager.java:420)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:377)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:382)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:365)
+	at java.util.concurrent.RecursiveTask.exec(Unknown Source)
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(Unknown Source)
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)
+2020-01-27 14:04:54,869 ERROR [SoapUI] An error occurred [com.eviware.soapui.plugins.auto.factories.AutoDiscoveryMethodFactory], see error log for details
+2020-01-27 14:04:54,870 ERROR [errorlog] java.lang.ClassNotFoundException: com.eviware.soapui.plugins.auto.factories.AutoDiscoveryMethodFactory
+java.lang.ClassNotFoundException: com.eviware.soapui.plugins.auto.factories.AutoDiscoveryMethodFactory
+	at java.net.URLClassLoader.findClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Unknown Source)
+	at com.eviware.soapui.plugins.LoaderBase.loadAutoFactories(LoaderBase.java:113)
+	at com.eviware.soapui.plugins.LoaderBase.loadFactories(LoaderBase.java:80)
+	at com.eviware.soapui.plugins.PluginLoader.loadPluginFactories(PluginLoader.java:141)
+	at com.eviware.soapui.plugins.PluginLoader.loadPlugin(PluginLoader.java:104)
+	at com.eviware.soapui.plugins.PluginLoader.loadPlugin(PluginLoader.java:54)
+	at com.eviware.soapui.plugins.PluginManager.doInstallPlugin(PluginManager.java:141)
+	at com.eviware.soapui.plugins.PluginManager.access$600(PluginManager.java:43)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.computeSequentially(PluginManager.java:420)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:377)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:382)
+	at com.eviware.soapui.plugins.PluginManager$LoadPluginsTask.compute(PluginManager.java:365)
+	at java.util.concurrent.RecursiveTask.exec(Unknown Source)
+	at java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.util.concurrent.ForkJoinPool$WorkQueue.runTask(Unknown Source)
+	at java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)
+2020-01-27 14:04:54,876 INFO  [PluginManager] 5 plugins loaded in 4138 ms
+2020-01-27 14:04:54,878 INFO  [DefaultSoapUICore] All plugins loaded
+2020-01-27 14:05:00,602 INFO  [WsdlProject] Loaded project from [file:/Z:/SMTQA/TMS/SoupUI%20Automation%20Scripts/Project-3.xml]
+2020-01-27 14:05:00,608 INFO  [SoapUITestCaseRunner] Running SoapUI tests in project [Project 3]
+2020-01-27 14:05:00,610 INFO  [SoapUITestCaseRunner] Running Project [Project 3], runType = SEQUENTIAL
+2020-01-27 14:05:01,236 INFO  [log] Pre task performed
+2020-01-27 14:05:01,239 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [Company SearchAPI]
+2020-01-27 14:05:01,251 INFO  [SoapUITestCaseRunner] running step [Token Generation]
+2020-01-27 14:05:02,105 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:02,153 INFO  [log] [dtCookie=3A658FCB5592A74F6BB581066AC28637||1; Path=/, JSESSIONID=1B3F9B0368E6E3210136AEE0D8D07BCD; Path=/sso; HttpOnly, tokenId=8b00e731-abfc-49d3-bf11-f8d37285eda7]
+2020-01-27 14:05:02,169 INFO  [log] 8b00e731-abfc-49d3-bf11-f8d37285eda7
+2020-01-27 14:05:02,175 INFO  [SoapUITestCaseRunner] running step [Groovy Script]
+2020-01-27 14:05:02,593 INFO  [log] size 2
+2020-01-27 14:05:02,662 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:02,714 INFO  [SoapUITestCaseRunner] running step [QA Search Company API 1 - QA Company serach API]
+2020-01-27 14:05:03,137 INFO  [log] {
+  	"active":"1",
+   	"id":["8dcd1efc-200e-42ad-b350-454cabd6e9e4"],
+  	"requiredItems":["products","dewdrops"]
+}
+2020-01-27 14:05:03,143 INFO  [log] 1
+2020-01-27 14:05:03,298 INFO  [log] Count
+2020-01-27 14:05:03,300 INFO  [log] 1
+2020-01-27 14:05:03,305 INFO  [log] row :30
+2020-01-27 14:05:03,310 INFO  [log] true
+2020-01-27 14:05:03,312 INFO  [log] true
+2020-01-27 14:05:03,314 INFO  [log] PASSED
+2020-01-27 14:05:03,317 INFO  [log] PASSED
+2020-01-27 14:05:03,400 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:03,403 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:03,403 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:03,415 INFO  [SoapUITestCaseRunner] running step [Groovy Script]
+2020-01-27 14:05:03,492 INFO  [log] size 2
+2020-01-27 14:05:03,547 INFO  [log] Setting the stoploop property now...
+2020-01-27 14:05:03,550 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:03,551 INFO  [SoapUITestCaseRunner] running step [QA Search Company API 1 - QA Company serach API]
+2020-01-27 14:05:03,740 INFO  [log] {
+  	"active":"1",
+   	"id":["efcf0a6b-827a-49bf-bf3e-eb1ab0e39109"],
+  	"requiredItems":["products","dewdrops"]
+}
+2020-01-27 14:05:03,742 INFO  [log] 1
+2020-01-27 14:05:03,822 INFO  [log] Count
+2020-01-27 14:05:03,828 INFO  [log] 0
+2020-01-27 14:05:03,830 INFO  [log] row :31
+2020-01-27 14:05:03,832 INFO  [log] true
+2020-01-27 14:05:03,833 INFO  [log] true
+2020-01-27 14:05:03,835 INFO  [log] PASSED
+2020-01-27 14:05:03,836 INFO  [log] PASSED
+2020-01-27 14:05:03,878 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:03,879 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:03,880 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:03,881 INFO  [log] Exit Groovy Data Source Looper
+2020-01-27 14:05:03,885 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [Company SearchAPI], time taken: 1700ms, status: FINISHED
+2020-01-27 14:05:03,894 INFO  [log] Pre task performed
+2020-01-27 14:05:03,896 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [User Search API Logged User]
+2020-01-27 14:05:03,897 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:04,028 INFO  [log] size 3
+2020-01-27 14:05:04,090 INFO  [log] admin@zycus.com
+2020-01-27 14:05:04,093 INFO  [log] Zycus@123
+2020-01-27 14:05:04,096 INFO  [SoapUITestCaseRunner] running step [Token Generation]
+2020-01-27 14:05:04,538 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:04,588 INFO  [log] [dtCookie=FFE81114BE598C6606DE06D44CB988A6||1; Path=/, JSESSIONID=60A6B277E705E8727006A285BDF8500A; Path=/sso; HttpOnly, tokenId=fdd3158b-9f1a-4d1a-b73d-f8c06e7a6294]
+2020-01-27 14:05:04,640 INFO  [log] fdd3158b-9f1a-4d1a-b73d-f8c06e7a6294
+2020-01-27 14:05:04,643 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:04,644 INFO  [SoapUITestCaseRunner] running step [User SearchAPI for Logged User]
+2020-01-27 14:05:04,704 INFO  [log] admin@zycus.com
+2020-01-27 14:05:04,704 INFO  [log] admin@zycus.com
+2020-01-27 14:05:04,707 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:04,708 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:04,709 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:04,716 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:04,788 INFO  [log] size 3
+2020-01-27 14:05:04,846 INFO  [log] CA@pixel.com
+2020-01-27 14:05:04,848 INFO  [log] NeFuFoNaDaHaOo0&
+2020-01-27 14:05:04,850 INFO  [SoapUITestCaseRunner] running step [Token Generation]
+2020-01-27 14:05:05,480 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:05,484 INFO  [log] [dtCookie=901D6F93D1E2F955EF1C54AC6D1BFE8A||1; Path=/, tokenId=9038a077-bc12-4ebe-8ff8-98e454dd6f1c]
+2020-01-27 14:05:05,486 INFO  [log] 9038a077-bc12-4ebe-8ff8-98e454dd6f1c
+2020-01-27 14:05:05,487 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:05,489 INFO  [SoapUITestCaseRunner] running step [User SearchAPI for Logged User]
+2020-01-27 14:05:05,734 INFO  [log] CA@pixel.com
+2020-01-27 14:05:05,737 INFO  [log] CA@pixel.com
+2020-01-27 14:05:05,739 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:05,739 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:05,740 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:05,742 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:05,817 INFO  [log] size 3
+2020-01-27 14:05:05,873 INFO  [log] LA@pixel.com
+2020-01-27 14:05:05,874 INFO  [log] RoFuFaNaPuVoQiDaJeQuIaTu3&
+2020-01-27 14:05:05,876 INFO  [log] Setting the stoploop property now...
+2020-01-27 14:05:05,878 INFO  [SoapUITestCaseRunner] running step [Token Generation]
+2020-01-27 14:05:06,385 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:06,387 INFO  [log] [dtCookie=423869FBAB82A2F5DE46BF02D99EA2AA||1; Path=/, tokenId=69599999-27d0-42ba-82e1-b493ee6b0a98]
+2020-01-27 14:05:06,394 INFO  [log] 69599999-27d0-42ba-82e1-b493ee6b0a98
+2020-01-27 14:05:06,407 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:06,411 INFO  [SoapUITestCaseRunner] running step [User SearchAPI for Logged User]
+2020-01-27 14:05:06,551 INFO  [log] LA@pixel.com
+2020-01-27 14:05:06,553 INFO  [log] LA@pixel.com
+2020-01-27 14:05:06,555 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:06,556 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:06,557 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:06,558 INFO  [log] Exit Groovy Data Source Looper
+2020-01-27 14:05:06,560 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [User Search API Logged User], time taken: 2509ms, status: FINISHED
+2020-01-27 14:05:06,617 INFO  [log] Pre task performed
+2020-01-27 14:05:06,619 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [Login API]
+2020-01-27 14:05:06,620 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:06,845 INFO  [log] {
+	"emailAddress": "admin@zycus.com",
+	"password": "Zycus@123",
+	"ipAddress": "192.168.3.218"
+}
+2020-01-27 14:05:06,846 INFO  [log] 192.168.3.218
+2020-01-27 14:05:06,848 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:06,849 INFO  [SoapUITestCaseRunner] running step [Login Check]
+2020-01-27 14:05:07,308 INFO  [log] 1
+2020-01-27 14:05:07,501 INFO  [log] login Passed
+2020-01-27 14:05:07,505 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:07,507 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:07,517 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:07,645 INFO  [log] {
+	"emailAddress": "LA@pixel.com",
+	"password": "vAlUdEuOhOrIm#8",
+	"ipAddress": "192.168.3.218"
+}
+2020-01-27 14:05:07,933 INFO  [log] 192.168.3.218
+2020-01-27 14:05:08,022 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:08,023 INFO  [SoapUITestCaseRunner] running step [Login Check]
+2020-01-27 14:05:08,407 INFO  [log] 2
+2020-01-27 14:05:08,410 INFO  [log] logged Failed
+2020-01-27 14:05:08,411 INFO  [log] Differnt IP in header and body
+2020-01-27 14:05:08,413 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:08,414 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:08,416 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:08,538 INFO  [log] {
+	"emailAddress": "0022ca@tms.com",
+	"password": "TaJaXeDaHoMaCaYiTaMeB&29",
+	"ipAddress": "192.168.3.218"
+}
+2020-01-27 14:05:08,541 INFO  [log] 192.168.3.218
+2020-01-27 14:05:08,542 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:08,543 INFO  [SoapUITestCaseRunner] running step [Login Check]
+2020-01-27 14:05:08,583 INFO  [log] 3
+2020-01-27 14:05:08,584 INFO  [log] logged Failed
+2020-01-27 14:05:08,585 INFO  [log] Not authorized to login through zycus portal
+2020-01-27 14:05:08,588 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:08,595 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:08,596 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:08,716 INFO  [log] {
+	"emailAddress": "admin@zycus.com",
+	"password": "Zycus@123",
+	"ipAddress": "192.168.3.219"
+}
+2020-01-27 14:05:08,718 INFO  [log] 192.168.3.218
+2020-01-27 14:05:08,720 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:08,720 INFO  [SoapUITestCaseRunner] running step [Login Check]
+2020-01-27 14:05:08,727 INFO  [log] 4
+2020-01-27 14:05:08,730 INFO  [log] logged Failed
+2020-01-27 14:05:08,731 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:08,732 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:08,733 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:08,847 INFO  [log] {
+	"emailAddress": "1234567@mail.com",
+	"password": "MeXiCiVeHeOeGaIoFaZoRuKo$60",
+	"ipAddress": "192.168.3.218"
+}
+2020-01-27 14:05:08,850 INFO  [log] 192.168.3.218
+2020-01-27 14:05:08,851 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:08,852 INFO  [SoapUITestCaseRunner] running step [Login Check]
+2020-01-27 14:05:09,212 INFO  [log] 5
+2020-01-27 14:05:09,398 INFO  [log] logged Failed
+2020-01-27 14:05:09,401 INFO  [log] Company inactive
+2020-01-27 14:05:09,403 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:09,404 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:09,405 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:09,557 INFO  [log] {
+	"emailAddress": "hitrun9006@tms.com",
+	"password": "dEaAqEiUqOhIx83$",
+	"ipAddress": "192.168.3.218",
+	"travelUrl": "Travel access url"
+}
+2020-01-27 14:05:09,910 INFO  [log] 192.168.3.218
+2020-01-27 14:05:10,196 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:10,198 INFO  [SoapUITestCaseRunner] running step [Login Check]
+2020-01-27 14:05:10,601 INFO  [log] 6
+2020-01-27 14:05:10,609 INFO  [log] logged Failed
+2020-01-27 14:05:10,612 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:10,614 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:10,615 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:10,738 INFO  [log] {
+	"emailAddress": "dsadsdas30022ca@tms.com",
+	"password": "TaJaXeDaHoMaCaYiTaMeB&29",
+	"ipAddress": "192.168.3.218"
+}
+2020-01-27 14:05:10,740 INFO  [log] 192.168.3.218
+2020-01-27 14:05:10,742 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:10,742 INFO  [SoapUITestCaseRunner] running step [Login Check]
+2020-01-27 14:05:10,754 INFO  [log] 7
+2020-01-27 14:05:10,757 INFO  [log] logged Failed
+2020-01-27 14:05:10,759 INFO  [log] User email id not found in TMS
+2020-01-27 14:05:10,761 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:10,761 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:10,762 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:10,878 INFO  [log] {
+	"emailAddress": "dad1@gmail.com",
+	"password": "xAbEwAzAlIxAlIk60&",
+	"ipAddress": "192.168.3.218"
+}
+2020-01-27 14:05:10,880 INFO  [log] 192.168.3.218
+2020-01-27 14:05:10,882 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:10,883 INFO  [SoapUITestCaseRunner] running step [Login Check]
+2020-01-27 14:05:11,270 INFO  [log] 8
+2020-01-27 14:05:11,273 INFO  [log] logged Failed
+2020-01-27 14:05:11,274 INFO  [log] User inactive
+2020-01-27 14:05:11,276 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:11,277 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:11,278 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:11,392 INFO  [log] {
+	"emailAddress": "dad5@gmail.com",
+	"password": "oEnAyAsOaIwIyUlUwAcOpOiEvO33#",
+	"ipAddress": "192.168.3.218"
+}
+2020-01-27 14:05:11,456 INFO  [log] 192.168.3.218
+2020-01-27 14:05:11,587 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:11,655 INFO  [SoapUITestCaseRunner] running step [Login Check]
+2020-01-27 14:05:12,039 INFO  [log] 9
+2020-01-27 14:05:12,433 INFO  [log] logged Failed
+2020-01-27 14:05:12,440 INFO  [log] User account locked
+2020-01-27 14:05:12,444 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:12,445 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:12,447 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:12,567 INFO  [log] {
+	"emailAddress": "Company31100@tms.com",
+	"password": "AuDuPaOoBoZoIuJuLeJoNaQoO2$",
+	"ipAddress": "192.168.3.218"
+}
+2020-01-27 14:05:12,699 INFO  [log] 192.168.3.218
+2020-01-27 14:05:12,701 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:12,703 INFO  [SoapUITestCaseRunner] running step [Login Check]
+2020-01-27 14:05:12,724 INFO  [log] 10
+2020-01-27 14:05:12,726 INFO  [log] logged Failed
+2020-01-27 14:05:12,727 INFO  [log] User email id not found in TMS
+2020-01-27 14:05:12,729 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:12,729 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:12,731 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:12,849 INFO  [log] {
+	"emailAddress": "hitrun9005@tms.com",
+	"password": "hAsIsAdEtU17%",
+	"ipAddress": "192.168.3.218",
+	"travelUrl": "Travel access url"
+}
+2020-01-27 14:05:12,851 INFO  [log] 192.168.3.218
+2020-01-27 14:05:12,852 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:12,853 INFO  [SoapUITestCaseRunner] running step [Login Check]
+2020-01-27 14:05:13,228 INFO  [log] 11
+2020-01-27 14:05:13,308 INFO  [log] logged Failed
+2020-01-27 14:05:13,309 INFO  [log] Travel policy not enbaled and wrong access URL is passed in the body
+2020-01-27 14:05:13,311 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:13,312 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:13,312 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:13,433 INFO  [log] {
+	"emailAddress": "hitrun9004@tms.com",
+	"password": "eAgEb%25",
+	"ipAddress": "192.168.3.218"
+}
+2020-01-27 14:05:13,435 INFO  [log] 192.168.3.218
+2020-01-27 14:05:13,437 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:13,438 INFO  [SoapUITestCaseRunner] running step [Login Check]
+2020-01-27 14:05:13,812 INFO  [log] 12
+2020-01-27 14:05:13,950 INFO  [log] logged Failed
+2020-01-27 14:05:13,952 INFO  [log] Travel policy is enabled and access URL is not passed in the body
+2020-01-27 14:05:13,954 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:13,955 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:13,955 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:14,077 INFO  [log] {
+	"emailAddress": "hitrun9003@tms.com",
+	"password": "qEeApOd$38",
+	"ipAddress": "192.168.3.218"
+}
+2020-01-27 14:05:14,210 INFO  [log] 192.168.3.218
+2020-01-27 14:05:14,213 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:14,214 INFO  [SoapUITestCaseRunner] running step [Login Check]
+2020-01-27 14:05:14,604 INFO  [log] 13
+2020-01-27 14:05:14,606 INFO  [log] logged Failed
+2020-01-27 14:05:14,607 INFO  [log] Not atutorized from this IP
+2020-01-27 14:05:14,609 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:14,610 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:14,611 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:14,732 INFO  [log] {
+	"emailAddress": "dilep2@tms.com",
+	"password": "NoIaYiGiBaXiXuYiYoLaJeAeGi%99",
+	"ipAddress": "192.168.3.218"
+}
+2020-01-27 14:05:14,734 INFO  [log] 192.168.3.218
+2020-01-27 14:05:14,737 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:14,738 INFO  [SoapUITestCaseRunner] running step [Login Check]
+2020-01-27 14:05:15,108 INFO  [log] 14
+2020-01-27 14:05:15,127 INFO  [log] logged Failed
+2020-01-27 14:05:15,129 INFO  [log] Password is expired
+2020-01-27 14:05:15,131 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:15,142 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:15,143 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:15,258 INFO  [log] {
+	"emailAddress": "CA@pixel.com",
+	"password": "vAsIoIvOcUgAfOlObI7$",
+	"ipAddress": "192.168.3.218"
+}
+2020-01-27 14:05:15,397 INFO  [log] 192.168.3.218
+2020-01-27 14:05:15,399 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:15,399 INFO  [SoapUITestCaseRunner] running step [Login Check]
+2020-01-27 14:05:15,793 INFO  [log] 15
+2020-01-27 14:05:15,795 INFO  [log] logged Failed
+2020-01-27 14:05:15,797 INFO  [log] Differnt IP in header and body
+2020-01-27 14:05:15,799 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:15,800 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:15,800 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:15,914 INFO  [log] {
+	"emailAddress": "UserF0039@zycus.com",
+	"password": "KoBoGuDiIiBuGiSoGuAeOuDi40#432432432",
+	"ipAddress": "192.168.3.218"
+}
+2020-01-27 14:05:15,916 INFO  [log] 192.168.3.218
+2020-01-27 14:05:15,918 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:15,919 INFO  [SoapUITestCaseRunner] running step [Login Check]
+2020-01-27 14:05:15,948 INFO  [log] 16
+2020-01-27 14:05:16,232 INFO  [log] logged Failed
+2020-01-27 14:05:16,239 INFO  [log] Differnt IP in header and body
+2020-01-27 14:05:16,242 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:16,243 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:16,245 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:16,360 INFO  [log] {
+	"emailAddress": "companyusers103@tms.com",
+	"password": "AuDuPaOoBoZoIuJuLeJoNaQoO2$",
+	"ipAddress": "192.168.3.218"
+}
+2020-01-27 14:05:16,699 INFO  [log] 192.168.3.218
+2020-01-27 14:05:16,773 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:16,775 INFO  [SoapUITestCaseRunner] running step [Login Check]
+2020-01-27 14:05:17,192 INFO  [log] 17
+2020-01-27 14:05:17,303 INFO  [log] logged Failed
+2020-01-27 14:05:17,338 INFO  [log] Password is expired
+2020-01-27 14:05:17,438 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:17,440 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:17,441 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:17,557 INFO  [log] {
+	"emailAddress": "CompAdmin1189@tms.com",
+	"password": "QoJuEuEaBaT%43",
+	"ipAddress": "192.168.3.218"
+}
+2020-01-27 14:05:17,683 INFO  [log] 192.168.3.218
+2020-01-27 14:05:17,685 INFO  [log] Setting the stoploop property now...
+2020-01-27 14:05:17,686 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:17,687 INFO  [SoapUITestCaseRunner] running step [Login Check]
+2020-01-27 14:05:18,064 INFO  [log] 0
+2020-01-27 14:05:18,066 INFO  [log] logged Failed
+2020-01-27 14:05:18,068 INFO  [log] Password is expired
+2020-01-27 14:05:18,069 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:18,070 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:18,071 INFO  [log] Exit Groovy Data Source Looper
+2020-01-27 14:05:18,141 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [Login API], time taken: 9526ms, status: FINISHED
+2020-01-27 14:05:18,188 INFO  [log] Pre task performed
+2020-01-27 14:05:18,192 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [Zdoc Update Status]
+2020-01-27 14:05:18,192 INFO  [SoapUITestCaseRunner] running step [Excel Test Data]
+2020-01-27 14:05:18,509 INFO  [log] {
+  "IntegrationEntities" : {
+    "integrationEntity" : [ {
+      "integrationEntityHeader" : {
+        "integrationTrackingNumber" : "INTEGRATIONTRACKINGNUMBER",
+        "referenceCodeForEntity" : "",
+        "additionalInfo" : "ADDITIONALINFO"
+      },
+      "integrationEntityDetails" : {
+        "statusUpdate" : {
+          "emailId" : "kshitija.shirsekar@zycus.com",
+          "status" : "active",
+          "adminDetails" : {
+            "authorizedBy" : "admin@zycus.com"
+          }
+        }
+      }
+    } ]
+  }
+}
+2020-01-27 14:05:18,510 INFO  [log] a17f606f-fb05-45c0-8161-50a4236e91bf
+2020-01-27 14:05:18,512 INFO  [log] Case1
+2020-01-27 14:05:18,514 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:18,516 INFO  [SoapUITestCaseRunner] running step [UpdateStatus]
+2020-01-27 14:05:20,766 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:20,767 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:20,774 INFO  [SoapUITestCaseRunner] running step [Excel Test Data]
+2020-01-27 14:05:20,919 INFO  [log] {
+  "IntegrationEntities" : {
+    "integrationEntity" : [ {
+      "integrationEntityHeader" : {
+        "integrationTrackingNumber" : "INTEGRATIONTRACKINGNUMBER",
+        "referenceCodeForEntity" : "",
+        "additionalInfo" : "ADDITIONALINFO"
+      },
+      "integrationEntityDetails" : {
+        "statusUpdate" : {
+          "emailId" : "kshitija.shirsekar@zycus.com",
+          "status" : "inactive",
+          "adminDetails" : {
+            "authorizedBy" : "admin@zycus.com"
+          }
+        }
+      }
+    } ]
+  }
+}
+2020-01-27 14:05:20,935 INFO  [log] a17f606f-fb05-45c0-8161-50a4236e91bf
+2020-01-27 14:05:20,937 INFO  [log] Case2
+2020-01-27 14:05:20,939 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:20,940 INFO  [SoapUITestCaseRunner] running step [UpdateStatus]
+2020-01-27 14:05:21,398 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:21,399 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:21,400 INFO  [SoapUITestCaseRunner] running step [Excel Test Data]
+2020-01-27 14:05:21,520 INFO  [log] {
+  "IntegrationEntities" : {
+    "integrationEntity" : [ {
+      "integrationEntityHeader" : {
+        "integrationTrackingNumber" : "INTEGRATIONTRACKINGNUMBER",
+        "referenceCodeForEntity" : "",
+        "additionalInfo" : "ADDITIONALINFO"
+      },
+      "integrationEntityDetails" : {
+        "statusUpdate" : {
+          "emailId" : "kshitija.shirsekar@zycus.com",
+          "status" : "inactive",
+          "adminDetails" : {
+            "authorizedBy" : "admin@zycus.com"
+          }
+        }
+      }
+    } ]
+  }
+}
+2020-01-27 14:05:21,535 INFO  [log] a17f606f-fb05-45c0-8161-50a4236e91bf
+2020-01-27 14:05:21,537 INFO  [log] Case3
+2020-01-27 14:05:21,542 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:21,543 INFO  [SoapUITestCaseRunner] running step [UpdateStatus]
+2020-01-27 14:05:22,215 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:22,257 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:22,293 INFO  [SoapUITestCaseRunner] running step [Excel Test Data]
+2020-01-27 14:05:22,450 INFO  [log] {
+  "IntegrationEntities" : {
+    "integrationEntity" : [ {
+      "integrationEntityHeader" : {
+        "integrationTrackingNumber" : "INTEGRATIONTRACKINGNUMBER",
+        "referenceCodeForEntity" : "",
+        "additionalInfo" : "ADDITIONALINFO"
+      },
+      "integrationEntityDetails" : {
+        "statusUpdate" : {
+          "emailId" : "kshitija.shirsekar@zycus.com",
+          "status" : "inactive",
+          "adminDetails" : {
+            "authorizedBy" : "admin@zycus.com"
+          }
+        }
+      }
+    } ]
+  }
+}
+2020-01-27 14:05:22,452 INFO  [log] a17f606f-fb05-45c0-8161-50a4236e91bf
+2020-01-27 14:05:22,453 INFO  [log] Case4
+2020-01-27 14:05:22,455 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:22,455 INFO  [SoapUITestCaseRunner] running step [UpdateStatus]
+2020-01-27 14:05:22,799 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:22,814 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:22,816 INFO  [SoapUITestCaseRunner] running step [Excel Test Data]
+2020-01-27 14:05:22,934 INFO  [log] {
+  "IntegrationEntities" : {
+    "integrationEntity" : [ {
+      "integrationEntityHeader" : {
+        "integrationTrackingNumber" : "INTEGRATIONTRACKINGNUMBER",
+        "referenceCodeForEntity" : "",
+        "additionalInfo" : "ADDITIONALINFO"
+      },
+      "integrationEntityDetails" : {
+        "statusUpdate" : {
+          "emailId" : "kshitija.shirsekar@zycus.com",
+          "status" : "inactive",
+          "adminDetails" : {
+            "authorizedBy" : "admin@zycus.com"
+          }
+        }
+      }
+    } ]
+  }
+}
+2020-01-27 14:05:22,957 INFO  [log] a17f606f-fb05-45c0-8161-50a4236e91bf
+2020-01-27 14:05:22,960 INFO  [log] Case5
+2020-01-27 14:05:22,961 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:22,962 INFO  [SoapUITestCaseRunner] running step [UpdateStatus]
+2020-01-27 14:05:23,489 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:23,490 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:23,493 INFO  [SoapUITestCaseRunner] running step [Excel Test Data]
+2020-01-27 14:05:23,613 INFO  [log] {
+  "IntegrationEntities" : {
+    "integrationEntity" : [ {
+      "integrationEntityHeader" : {
+        "integrationTrackingNumber" : "INTEGRATIONTRACKINGNUMBER",
+        "referenceCodeForEntity" : "",
+        "additionalInfo" : "ADDITIONALINFO"
+      },
+      "integrationEntityDetails" : {
+        "statusUpdate" : {
+          "emailId" : "kshitija.shirsekar@zycus.com",
+          "status" : "inactive",
+          "adminDetails" : {
+            "authorizedBy" : "admin@zycus.com"
+          }
+        }
+      }
+    } ]
+  }
+}
+2020-01-27 14:05:23,732 INFO  [log] a17f606f-fb05-45c0-8161-50a4236e91bf
+2020-01-27 14:05:23,734 INFO  [log] Case6
+2020-01-27 14:05:23,736 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:23,737 INFO  [SoapUITestCaseRunner] running step [UpdateStatus]
+2020-01-27 14:05:24,067 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:24,280 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:24,357 INFO  [SoapUITestCaseRunner] running step [Excel Test Data]
+2020-01-27 14:05:24,478 INFO  [log] {
+  "IntegrationEntities" : {
+    "integrationEntity" : [ {
+      "integrationEntityHeader" : {
+        "integrationTrackingNumber" : "INTEGRATIONTRACKINGNUMBER",
+        "referenceCodeForEntity" : "",
+        "additionalInfo" : "ADDITIONALINFO"
+      },
+      "integrationEntityDetails" : {
+        "statusUpdate" : {
+          "emailId" : "kshitija.shirsekar@zycus.com",
+          "status" : "inactive",
+          "adminDetails" : {
+            "authorizedBy" : "admin@zycus.com"
+          }
+        }
+      }
+    } ]
+  }
+}
+2020-01-27 14:05:24,546 INFO  [log] a17f606f-fb05-45c0-8161-50a4236e91bf
+2020-01-27 14:05:24,548 INFO  [log] Case7
+2020-01-27 14:05:24,549 INFO  [log] Setting the stoploop property now...
+2020-01-27 14:05:24,551 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:24,552 INFO  [SoapUITestCaseRunner] running step [UpdateStatus]
+2020-01-27 14:05:24,864 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:24,865 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:24,866 INFO  [log] Exit Groovy Data Source Looper
+2020-01-27 14:05:24,906 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [Zdoc Update Status], time taken: 6194ms, status: FINISHED
+2020-01-27 14:05:24,913 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [Login History]
+2020-01-27 14:05:24,914 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:25,256 INFO  [log] size 3
+2020-01-27 14:05:25,319 INFO  [log] admin@zycus.com
+2020-01-27 14:05:25,321 INFO  [log] Zycus@123
+2020-01-27 14:05:25,323 INFO  [SoapUITestCaseRunner] running step [TokenGeneration]
+2020-01-27 14:05:26,027 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:26,170 INFO  [log] [dtCookie=703D7EC6FF53A946EA9BDDB76EA15421||1; Path=/, JSESSIONID=F71534C0672619970B3936716D996369; Path=/sso; HttpOnly, tokenId=7a54e47f-3cee-4a70-ac6a-9f2c06382113]
+2020-01-27 14:05:26,173 INFO  [log] 7a54e47f-3cee-4a70-ac6a-9f2c06382113
+2020-01-27 14:05:26,175 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:26,176 INFO  [SoapUITestCaseRunner] running step [LoginHistory]
+2020-01-27 14:05:26,215 INFO  [log] Email admin@zycus.com
+2020-01-27 14:05:26,218 INFO  [log] processedRecords 5
+2020-01-27 14:05:26,221 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:26,222 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:26,223 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:26,234 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:26,322 INFO  [log] size 3
+2020-01-27 14:05:26,386 INFO  [log] CA@pixel.com
+2020-01-27 14:05:26,491 INFO  [log] NeFuFoNaDaHaOo0&
+2020-01-27 14:05:26,571 INFO  [SoapUITestCaseRunner] running step [TokenGeneration]
+2020-01-27 14:05:27,105 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:27,132 INFO  [log] [dtCookie=602BC79B2A9E3FBBAD7DF9243D884672||1; Path=/, tokenId=fae39849-fe93-4d14-981b-fee194782bd7]
+2020-01-27 14:05:27,134 INFO  [log] fae39849-fe93-4d14-981b-fee194782bd7
+2020-01-27 14:05:27,136 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:27,137 INFO  [SoapUITestCaseRunner] running step [LoginHistory]
+2020-01-27 14:05:27,163 INFO  [log] Email CA@pixel.com
+2020-01-27 14:05:27,165 INFO  [log] processedRecords 5
+2020-01-27 14:05:27,167 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:27,208 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:27,209 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:27,211 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:27,298 INFO  [log] size 3
+2020-01-27 14:05:27,452 INFO  [log] LA@pixel.com
+2020-01-27 14:05:27,454 INFO  [log] RoFuFaNaPuVoQiDaJeQuIaTu3&
+2020-01-27 14:05:27,456 INFO  [log] Setting the stoploop property now...
+2020-01-27 14:05:27,457 INFO  [SoapUITestCaseRunner] running step [TokenGeneration]
+2020-01-27 14:05:27,897 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:27,951 INFO  [log] [dtCookie=285CA820EEC949B794552FBB71B45BE6||1; Path=/, tokenId=e78261f4-a0b3-4a7c-9e96-9984d43a548f]
+2020-01-27 14:05:27,953 INFO  [log] e78261f4-a0b3-4a7c-9e96-9984d43a548f
+2020-01-27 14:05:27,956 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:27,957 INFO  [SoapUITestCaseRunner] running step [LoginHistory]
+2020-01-27 14:05:27,985 INFO  [log] Email LA@pixel.com
+2020-01-27 14:05:27,987 INFO  [log] processedRecords 5
+2020-01-27 14:05:27,988 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:27,989 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:27,990 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:27,991 INFO  [log] Exit Groovy Data Source Looper
+2020-01-27 14:05:27,993 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [Login History], time taken: 2687ms, status: FINISHED
+2020-01-27 14:05:28,000 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [Change MPIN]
+2020-01-27 14:05:28,001 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:28,169 INFO  [log] size 7
+2020-01-27 14:05:28,237 INFO  [log] CA@pixel.com
+2020-01-27 14:05:28,370 INFO  [log] NeFuFoNaDaHaOo0&
+2020-01-27 14:05:28,408 INFO  [log] {
+	"newMPin": ""
+}
+2020-01-27 14:05:28,482 INFO  [log] NR-TMS-C-MPIN016
+2020-01-27 14:05:28,486 INFO  [SoapUITestCaseRunner] running step [TokenGeneration]
+2020-01-27 14:05:28,961 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:28,973 INFO  [log] [dtCookie=8BBC730BA11CE933408C430DA314C165||1; Path=/, tokenId=6f980bf3-8e8d-4ebc-b936-73304eb40bc7]
+2020-01-27 14:05:28,975 INFO  [log] 6f980bf3-8e8d-4ebc-b936-73304eb40bc7
+2020-01-27 14:05:28,977 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:28,978 INFO  [SoapUITestCaseRunner] running step [Change Mpin]
+2020-01-27 14:05:28,999 INFO  [log] Code NR-TMS-C-MPIN016
+2020-01-27 14:05:29,002 INFO  [log] ifa
+2020-01-27 14:05:29,004 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:29,005 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:29,006 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:29,013 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:29,108 INFO  [log] size 7
+2020-01-27 14:05:29,262 INFO  [log] CA@pixel.com
+2020-01-27 14:05:29,264 INFO  [log] NeFuFoNaDaHaOo0&
+2020-01-27 14:05:29,266 INFO  [log] {
+	"newMPin": "Mhdas"
+}
+2020-01-27 14:05:29,267 INFO  [log] NR-TMS-C-MPIN015
+2020-01-27 14:05:29,270 INFO  [SoapUITestCaseRunner] running step [TokenGeneration]
+2020-01-27 14:05:29,725 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:29,727 INFO  [log] [dtCookie=03AC2B79CBDF6EA1D63A59EA5C2C96D8||1; Path=/, tokenId=a6c73a9a-4f65-4bee-b338-b0df3adb2def]
+2020-01-27 14:05:29,728 INFO  [log] a6c73a9a-4f65-4bee-b338-b0df3adb2def
+2020-01-27 14:05:29,769 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:29,803 INFO  [SoapUITestCaseRunner] running step [Change Mpin]
+2020-01-27 14:05:29,821 INFO  [log] Code NR-TMS-C-MPIN015
+2020-01-27 14:05:29,823 INFO  [log] ifa
+2020-01-27 14:05:29,826 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:29,827 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:29,828 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:29,828 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:29,894 INFO  [log] size 7
+2020-01-27 14:05:29,955 INFO  [log] CA@pixel.com
+2020-01-27 14:05:29,957 INFO  [log] NeFuFoNaDaHaOo0&
+2020-01-27 14:05:29,959 INFO  [log] {
+	"newMPin": "78978"
+}
+2020-01-27 14:05:29,961 INFO  [log] NR-TMS-C-MPIN015
+2020-01-27 14:05:29,963 INFO  [SoapUITestCaseRunner] running step [TokenGeneration]
+2020-01-27 14:05:30,417 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:30,418 INFO  [log] [dtCookie=C24835ADEA8CAF6F7F0DB62711AF6D11||1; Path=/, tokenId=5fd81691-3c0b-4bd1-bc09-b6723c84f65d]
+2020-01-27 14:05:30,419 INFO  [log] 5fd81691-3c0b-4bd1-bc09-b6723c84f65d
+2020-01-27 14:05:30,421 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:30,422 INFO  [SoapUITestCaseRunner] running step [Change Mpin]
+2020-01-27 14:05:30,444 INFO  [log] Code NR-TMS-C-MPIN015
+2020-01-27 14:05:30,445 INFO  [log] ifa
+2020-01-27 14:05:30,448 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:30,450 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:30,450 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:30,452 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:30,516 INFO  [log] size 7
+2020-01-27 14:05:30,853 INFO  [log] CA@pixel.com
+2020-01-27 14:05:30,944 INFO  [log] NeFuFoNaDaHaOo0&
+2020-01-27 14:05:30,947 INFO  [log] {
+	"newMPin": "Mnas454562"
+}
+2020-01-27 14:05:30,949 INFO  [log] NR-TMS-C-MPIN014
+2020-01-27 14:05:30,951 INFO  [SoapUITestCaseRunner] running step [TokenGeneration]
+2020-01-27 14:05:31,404 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:31,436 INFO  [log] [dtCookie=35632FDA99826B4F696DC30F44147750||1; Path=/, tokenId=4ecfef8c-364c-4a16-83ff-e69308e7d98a]
+2020-01-27 14:05:31,439 INFO  [log] 4ecfef8c-364c-4a16-83ff-e69308e7d98a
+2020-01-27 14:05:31,440 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:31,441 INFO  [SoapUITestCaseRunner] running step [Change Mpin]
+2020-01-27 14:05:31,462 INFO  [log] Code NR-TMS-C-MPIN014
+2020-01-27 14:05:31,465 INFO  [log] ifa
+2020-01-27 14:05:31,466 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:31,466 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:31,468 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:31,469 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:31,532 INFO  [log] size 7
+2020-01-27 14:05:31,595 INFO  [log] CA@pixel.com
+2020-01-27 14:05:31,597 INFO  [log] NeFuFoNaDaHaOo0&
+2020-01-27 14:05:31,598 INFO  [log] {
+	"newMPin": "Mn2"
+}
+2020-01-27 14:05:31,601 INFO  [log] MPIN changed successfully.
+2020-01-27 14:05:31,602 INFO  [SoapUITestCaseRunner] running step [TokenGeneration]
+2020-01-27 14:05:32,280 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:32,281 INFO  [log] [dtCookie=BF8200218AAE1E881ECE18C72F465E50||1; Path=/, tokenId=1d7124c5-35e8-4f41-9281-85d1d6a8b0af]
+2020-01-27 14:05:32,283 INFO  [log] 1d7124c5-35e8-4f41-9281-85d1d6a8b0af
+2020-01-27 14:05:32,284 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:32,285 INFO  [SoapUITestCaseRunner] running step [Change Mpin]
+2020-01-27 14:05:32,327 INFO  [log] Code MPIN changed successfully.
+2020-01-27 14:05:32,329 INFO  [log] elses
+2020-01-27 14:05:32,333 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:32,334 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:32,334 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:32,335 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:32,400 INFO  [log] size 7
+2020-01-27 14:05:32,462 INFO  [log] CA@pixel.com
+2020-01-27 14:05:32,465 INFO  [log] NeFuFoNaDaHaOo0&
+2020-01-27 14:05:32,466 INFO  [log] {
+	"newMPin": "Mn2"
+}
+2020-01-27 14:05:32,467 INFO  [log] NR-TMS-C-MPIN017
+2020-01-27 14:05:32,469 INFO  [SoapUITestCaseRunner] running step [TokenGeneration]
+2020-01-27 14:05:33,092 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:33,146 INFO  [log] [dtCookie=E9015BDE020243082BE8545F474566AB||1; Path=/, tokenId=4fa6bf21-4453-49a6-941e-3948ec4a4c8c]
+2020-01-27 14:05:33,149 INFO  [log] 4fa6bf21-4453-49a6-941e-3948ec4a4c8c
+2020-01-27 14:05:33,150 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:33,151 INFO  [SoapUITestCaseRunner] running step [Change Mpin]
+2020-01-27 14:05:33,184 INFO  [log] Code NR-TMS-C-MPIN017
+2020-01-27 14:05:33,186 INFO  [log] ifa
+2020-01-27 14:05:33,188 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:33,189 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:33,190 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:33,192 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:33,257 INFO  [log] size 7
+2020-01-27 14:05:33,319 INFO  [log] CA@pixel.com
+2020-01-27 14:05:33,453 INFO  [log] NeFuFoNaDaHaOo0&
+2020-01-27 14:05:33,456 INFO  [log] {
+	"newMPin": "Mn1234"
+}
+2020-01-27 14:05:33,458 INFO  [log] MPIN changed successfully.
+2020-01-27 14:05:33,460 INFO  [log] Setting the stoploop property now...
+2020-01-27 14:05:33,695 INFO  [SoapUITestCaseRunner] running step [TokenGeneration]
+2020-01-27 14:05:34,243 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:34,255 INFO  [log] [dtCookie=E8231DCF44B5109C7AE667345CADD39F||1; Path=/, tokenId=697a5f31-9d48-46ca-9415-2fe0fb79992c]
+2020-01-27 14:05:34,257 INFO  [log] 697a5f31-9d48-46ca-9415-2fe0fb79992c
+2020-01-27 14:05:34,259 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:34,261 INFO  [SoapUITestCaseRunner] running step [Change Mpin]
+2020-01-27 14:05:34,342 INFO  [log] Code MPIN changed successfully.
+2020-01-27 14:05:34,344 INFO  [log] elses
+2020-01-27 14:05:34,346 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:34,346 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:34,347 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:34,348 INFO  [log] Exit Groovy Data Source Looper
+2020-01-27 14:05:34,349 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [Change MPIN], time taken: 5989ms, status: FINISHED
+2020-01-27 14:05:34,358 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [getPreferenceData]
+2020-01-27 14:05:34,359 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:34,584 INFO  [log] size 2
+2020-01-27 14:05:34,651 INFO  [log] CA@pixel.com
+2020-01-27 14:05:34,653 INFO  [log] NeFuFoNaDaHaOo0&
+2020-01-27 14:05:34,654 INFO  [log] 0389aab1-f184-49cb-a262-ef8fb62107e8
+2020-01-27 14:05:34,656 INFO  [SoapUITestCaseRunner] running step [TokenGeneration]
+2020-01-27 14:05:35,233 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:35,245 INFO  [log] [dtCookie=FC7558147A704233B54A13546B4D806B||1; Path=/, tokenId=6542e976-0b88-4935-8674-18d1993ee16e]
+2020-01-27 14:05:35,247 INFO  [log] 6542e976-0b88-4935-8674-18d1993ee16e
+2020-01-27 14:05:35,249 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:35,249 INFO  [SoapUITestCaseRunner] running step [GetPreference]
+2020-01-27 14:05:35,485 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:35,590 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:35,592 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:35,599 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:35,668 INFO  [log] size 2
+2020-01-27 14:05:35,731 INFO  [log] CA@pixel.com
+2020-01-27 14:05:35,733 INFO  [log] NeFuFoNaDaHaOo0&
+2020-01-27 14:05:35,734 INFO  [log] 0389aab1-f184-49cb-a262-ef8fb62107e8
+2020-01-27 14:05:35,736 INFO  [log] Setting the stoploop property now...
+2020-01-27 14:05:35,737 INFO  [SoapUITestCaseRunner] running step [TokenGeneration]
+2020-01-27 14:05:36,202 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:36,204 INFO  [log] [dtCookie=2887635F887081E23CA04015089AC049||1; Path=/, tokenId=256d9cac-d7ab-4110-9973-f2b8bd7bc076]
+2020-01-27 14:05:36,206 INFO  [log] 256d9cac-d7ab-4110-9973-f2b8bd7bc076
+2020-01-27 14:05:36,208 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:36,209 INFO  [SoapUITestCaseRunner] running step [GetPreference]
+2020-01-27 14:05:36,349 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:36,382 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:36,458 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:36,460 INFO  [log] Exit Groovy Data Source Looper
+2020-01-27 14:05:36,461 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [getPreferenceData], time taken: 1828ms, status: FINISHED
+2020-01-27 14:05:36,467 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [ForgetPassword]
+2020-01-27 14:05:36,468 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:36,487 INFO  [log] size 4
+2020-01-27 14:05:36,489 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:36,490 INFO  [SoapUITestCaseRunner] running step [ForgetPassword]
+2020-01-27 14:05:36,512 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:36,514 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:36,515 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status UNKNOWN
+2020-01-27 14:05:36,516 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:36,522 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:36,524 INFO  [log] size 4
+2020-01-27 14:05:36,526 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:36,528 INFO  [SoapUITestCaseRunner] running step [ForgetPassword]
+2020-01-27 14:05:36,964 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:36,966 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:36,967 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status UNKNOWN
+2020-01-27 14:05:36,967 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:36,968 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:36,969 INFO  [log] size 4
+2020-01-27 14:05:36,971 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:36,971 INFO  [SoapUITestCaseRunner] running step [ForgetPassword]
+2020-01-27 14:05:37,098 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:37,193 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:37,195 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status UNKNOWN
+2020-01-27 14:05:37,197 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:37,198 INFO  [SoapUITestCaseRunner] running step [Excel User Credentails]
+2020-01-27 14:05:37,198 INFO  [log] size 4
+2020-01-27 14:05:37,200 INFO  [log] Setting the stoploop property now...
+2020-01-27 14:05:37,202 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:37,203 INFO  [SoapUITestCaseRunner] running step [ForgetPassword]
+2020-01-27 14:05:37,238 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:37,239 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:37,240 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status UNKNOWN
+2020-01-27 14:05:37,240 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:37,241 INFO  [log] Exit Groovy Data Source Looper
+2020-01-27 14:05:37,243 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [ForgetPassword], time taken: 631ms, status: FINISHED
+2020-01-27 14:05:37,244 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [UpadteProfilePic]
+2020-01-27 14:05:37,246 INFO  [SoapUITestCaseRunner] running step [Login]
+2020-01-27 14:05:37,637 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:37,638 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:37,639 INFO  [SoapUITestCaseRunner] running step [UpadteProfilepic]
+2020-01-27 14:05:37,878 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:37,961 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status UNKNOWN
+2020-01-27 14:05:37,964 INFO  [SoapUITestCaseRunner] running step [UpadteProfilepic2]
+2020-01-27 14:05:38,308 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:38,309 INFO  [SoapUITestCaseRunner] running step [UpadteProfilepic3]
+2020-01-27 14:05:38,427 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:38,429 INFO  [SoapUITestCaseRunner] running step [UpadteProfilepic6]
+2020-01-27 14:05:38,715 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:38,716 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status UNKNOWN
+2020-01-27 14:05:38,717 INFO  [SoapUITestCaseRunner] running step [UpadteProfilepic7]
+2020-01-27 14:05:38,922 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status UNKNOWN
+2020-01-27 14:05:39,017 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status UNKNOWN
+2020-01-27 14:05:39,019 INFO  [SoapUITestCaseRunner] running step [UpadteProfilepic5]
+2020-01-27 14:05:39,797 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:39,936 INFO  [SoapUITestCaseRunner] running step [UpadteProfilepic4]
+2020-01-27 14:05:40,323 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:40,472 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [UpadteProfilePic], time taken: 2328ms, status: FINISHED
+2020-01-27 14:05:40,673 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [UpdateUserProfile]
+2020-01-27 14:05:40,677 INFO  [SoapUITestCaseRunner] running step [Login]
+2020-01-27 14:05:41,090 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:41,091 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:41,092 INFO  [SoapUITestCaseRunner] running step [UpdateProfile]
+2020-01-27 14:05:41,181 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:41,415 INFO  [SoapUITestCaseRunner] running step [UpdateProfile1]
+2020-01-27 14:05:41,496 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:41,497 INFO  [SoapUITestCaseRunner] running step [UpdateProfile2]
+2020-01-27 14:05:41,538 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:41,539 INFO  [SoapUITestCaseRunner] running step [UpdateProfile3]
+2020-01-27 14:05:41,579 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:41,706 INFO  [SoapUITestCaseRunner] running step [UpdateProfile4]
+2020-01-27 14:05:41,741 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:41,742 INFO  [SoapUITestCaseRunner] running step [UpdateProfile5]
+2020-01-27 14:05:41,785 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:41,851 INFO  [SoapUITestCaseRunner] running step [UpdateProfile6]
+2020-01-27 14:05:41,957 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:41,958 INFO  [SoapUITestCaseRunner] running step [UpdateProfile7]
+2020-01-27 14:05:42,001 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:42,002 INFO  [SoapUITestCaseRunner] running step [UpdateProfile8]
+2020-01-27 14:05:42,044 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:42,046 INFO  [SoapUITestCaseRunner] running step [UpdateProfile9]
+2020-01-27 14:05:42,086 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:42,086 INFO  [SoapUITestCaseRunner] running step [UpdateProfile10]
+2020-01-27 14:05:42,118 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:42,119 INFO  [SoapUITestCaseRunner] running step [UpdateProfile11]
+2020-01-27 14:05:42,160 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:42,162 INFO  [SoapUITestCaseRunner] running step [UpdateProfile12]
+2020-01-27 14:05:42,198 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:42,226 INFO  [SoapUITestCaseRunner] running step [UpdateProfile13]
+2020-01-27 14:05:42,388 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:42,575 INFO  [SoapUITestCaseRunner] running step [UpdateProfile14]
+2020-01-27 14:05:42,708 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:42,751 INFO  [SoapUITestCaseRunner] running step [UpdateProfile15]
+2020-01-27 14:05:42,922 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:43,006 INFO  [SoapUITestCaseRunner] running step [UpdateProfile16]
+2020-01-27 14:05:43,186 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:43,229 INFO  [SoapUITestCaseRunner] running step [UpdateProfileP1]
+2020-01-27 14:05:43,329 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:43,330 INFO  [SoapUITestCaseRunner] running step [UpdateProfileP2]
+2020-01-27 14:05:43,360 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:43,360 INFO  [SoapUITestCaseRunner] running step [UpdateProfileP3]
+2020-01-27 14:05:43,395 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:43,397 INFO  [SoapUITestCaseRunner] running step [UpdateProfileP4]
+2020-01-27 14:05:43,426 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:43,477 INFO  [SoapUITestCaseRunner] running step [UpdateProfileP5]
+2020-01-27 14:05:43,587 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:43,589 INFO  [SoapUITestCaseRunner] running step [UpdateProfileP6]
+2020-01-27 14:05:43,618 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:43,619 INFO  [SoapUITestCaseRunner] running step [UpdateProfileP8]
+2020-01-27 14:05:43,650 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:43,651 INFO  [SoapUITestCaseRunner] running step [UpdateProfileP9]
+2020-01-27 14:05:43,686 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:43,687 INFO  [SoapUITestCaseRunner] running step [UpdateProfile - Minimum data]
+2020-01-27 14:05:43,731 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:43,732 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [UpdateUserProfile], time taken: 1127ms, status: FINISHED
+2020-01-27 14:05:43,733 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [ChangePassword]
+2020-01-27 14:05:43,734 INFO  [SoapUITestCaseRunner] running step [ChangePassword]
+2020-01-27 14:05:43,742 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [ChangePassword], time taken: 5ms, status: FINISHED
+2020-01-27 14:05:43,744 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [Copy of Theme invalid]
+2020-01-27 14:05:43,745 INFO  [SoapUITestCaseRunner] running step [New Fetching Token]
+2020-01-27 14:05:44,152 INFO  [SoapUITestCaseRunner] running step [New Fetch Token]
+2020-01-27 14:05:44,261 INFO  [log] {"timestamp":1580114144152,"payload":{"tokenId":"281c55e8-ee66-4c72-bedb-9c0e29046d89","emailAddress":"eircom_supp@zycus.com","userId":"29694a7c-0e2a-47a4-94c5-0ac492b5b5c9","tenantId":"925e083c-99f3-40e7-908e-26549be45368"}}
+2020-01-27 14:05:44,296 INFO  [log] {"timestamp":1580114144152,"payload":{"tokenId":"281c55e8-ee66-4c72-bedb-9c0e29046d89","emailAddress":"eircom_supp@zycus.com","userId":"29694a7c-0e2a-47a4-94c5-0ac492b5b5c9","tenantId":"925e083c-99f3-40e7-908e-26549be45368"}}
+2020-01-27 14:05:44,300 INFO  [log] 281c55e8-ee66-4c72-bedb-9c0e29046d89
+2020-01-27 14:05:44,302 INFO  [SoapUITestCaseRunner] running step [NewStoredTokenId]
+2020-01-27 14:05:44,303 INFO  [SoapUITestCaseRunner] running step [LabelName]
+2020-01-27 14:05:44,315 INFO  [SoapUITestCaseRunner] running step [StoredLabelname]
+2020-01-27 14:05:44,316 INFO  [SoapUITestCaseRunner] running step [LabelName1]
+2020-01-27 14:05:44,322 INFO  [SoapUITestCaseRunner] running step [StoredLabelname1]
+2020-01-27 14:05:44,324 INFO  [SoapUITestCaseRunner] running step [CreateLabel]
+2020-01-27 14:05:44,470 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:45,035 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:45,164 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:45,199 INFO  [SoapUITestCaseRunner] running step [ThemeNameInvalid]
+2020-01-27 14:05:45,226 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:45,266 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:45,404 INFO  [SoapUITestCaseRunner] running step [LabelProductNameinvalid]
+2020-01-27 14:05:45,430 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:45,525 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:45,528 INFO  [SoapUITestCaseRunner] running step [ActivitiesProductMapinvalidProduct]
+2020-01-27 14:05:45,560 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:45,561 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:45,562 INFO  [SoapUITestCaseRunner] running step [ActivitiesProductMapInvalidactivity]
+2020-01-27 14:05:45,610 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:45,611 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:45,612 INFO  [SoapUITestCaseRunner] running step [ActivityProductMapMissmatch]
+2020-01-27 14:05:45,651 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:45,653 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:45,654 INFO  [SoapUITestCaseRunner] running step [NullLabelName]
+2020-01-27 14:05:45,673 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:45,733 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:45,943 INFO  [SoapUITestCaseRunner] running step [NullHostPage]
+2020-01-27 14:05:45,964 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:45,965 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:45,967 INFO  [SoapUITestCaseRunner] running step [NullThemeName]
+2020-01-27 14:05:45,986 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:45,988 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:45,989 INFO  [SoapUITestCaseRunner] running step [NulllabelUri]
+2020-01-27 14:05:46,008 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:46,009 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:46,010 INFO  [SoapUITestCaseRunner] running step [NullProductName]
+2020-01-27 14:05:46,024 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:46,025 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:46,027 INFO  [SoapUITestCaseRunner] running step [NullLabelSequenceNumber]
+2020-01-27 14:05:46,069 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:46,070 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:46,072 INFO  [SoapUITestCaseRunner] running step [LableAlreadyExists]
+2020-01-27 14:05:46,121 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:46,122 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:46,123 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [Copy of Theme invalid], time taken: 833ms, status: FINISHED
+2020-01-27 14:05:46,125 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [Copy of getbyid]
+2020-01-27 14:05:46,127 INFO  [SoapUITestCaseRunner] running step [New Fetching Token]
+2020-01-27 14:05:46,526 INFO  [SoapUITestCaseRunner] running step [New Fetch Token]
+2020-01-27 14:05:46,536 INFO  [log] {"timestamp":1580114146527,"payload":{"tokenId":"556fdaf5-c462-4767-bac7-d13933403f11","emailAddress":"eircom_supp@zycus.com","userId":"29694a7c-0e2a-47a4-94c5-0ac492b5b5c9","tenantId":"925e083c-99f3-40e7-908e-26549be45368"}}
+2020-01-27 14:05:46,538 INFO  [log] {"timestamp":1580114146527,"payload":{"tokenId":"556fdaf5-c462-4767-bac7-d13933403f11","emailAddress":"eircom_supp@zycus.com","userId":"29694a7c-0e2a-47a4-94c5-0ac492b5b5c9","tenantId":"925e083c-99f3-40e7-908e-26549be45368"}}
+2020-01-27 14:05:46,540 INFO  [log] 556fdaf5-c462-4767-bac7-d13933403f11
+2020-01-27 14:05:46,542 INFO  [SoapUITestCaseRunner] running step [NewStoredTokenId]
+2020-01-27 14:05:46,543 INFO  [SoapUITestCaseRunner] running step [LabelName]
+2020-01-27 14:05:46,549 INFO  [SoapUITestCaseRunner] running step [StoredLabelname]
+2020-01-27 14:05:46,550 INFO  [SoapUITestCaseRunner] running step [insertvalues1]
+2020-01-27 14:05:46,610 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:46,653 INFO  [SoapUITestCaseRunner] Assertion [Contains] has status VALID
+2020-01-27 14:05:46,722 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:46,731 INFO  [SoapUITestCaseRunner] running step [Label id]
+2020-01-27 14:05:46,736 INFO  [SoapUITestCaseRunner] running step [Properties of insertvalues]
+2020-01-27 14:05:46,738 INFO  [SoapUITestCaseRunner] running step [getid]
+2020-01-27 14:05:46,837 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:46,839 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:46,840 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:46,841 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [Copy of getbyid], time taken: 482ms, status: FINISHED
+2020-01-27 14:05:46,842 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [Copy of GetbyEmail]
+2020-01-27 14:05:46,843 INFO  [SoapUITestCaseRunner] running step [New Fetching Token]
+2020-01-27 14:05:47,242 INFO  [SoapUITestCaseRunner] running step [New Fetch Token]
+2020-01-27 14:05:47,750 INFO  [log] {"timestamp":1580114147243,"payload":{"tokenId":"e478c3c4-42e5-4c4b-8fb0-54084c92b214","emailAddress":"eircom_supp@zycus.com","userId":"29694a7c-0e2a-47a4-94c5-0ac492b5b5c9","tenantId":"925e083c-99f3-40e7-908e-26549be45368"}}
+2020-01-27 14:05:47,825 INFO  [log] {"timestamp":1580114147243,"payload":{"tokenId":"e478c3c4-42e5-4c4b-8fb0-54084c92b214","emailAddress":"eircom_supp@zycus.com","userId":"29694a7c-0e2a-47a4-94c5-0ac492b5b5c9","tenantId":"925e083c-99f3-40e7-908e-26549be45368"}}
+2020-01-27 14:05:47,828 INFO  [log] e478c3c4-42e5-4c4b-8fb0-54084c92b214
+2020-01-27 14:05:48,328 INFO  [SoapUITestCaseRunner] running step [NewStoredTokenId]
+2020-01-27 14:05:48,426 INFO  [SoapUITestCaseRunner] running step [LabelName]
+2020-01-27 14:05:48,439 INFO  [SoapUITestCaseRunner] running step [insertvalues1]
+2020-01-27 14:05:48,482 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:48,483 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:48,483 INFO  [SoapUITestCaseRunner] running step [StoredLabelname]
+2020-01-27 14:05:48,484 INFO  [SoapUITestCaseRunner] running step [getbyemail]
+2020-01-27 14:05:48,554 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:48,817 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:05:48,956 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:49,102 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [Copy of GetbyEmail], time taken: 1074ms, status: FINISHED
+2020-01-27 14:05:49,357 INFO  [log] output excel sheet created
+2020-01-27 14:05:49,416 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [Copy of Create Menu]
+2020-01-27 14:05:49,484 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:05:50,046 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:50,055 INFO  [log] {"timestamp":1580114150046,"payload":{"tokenId":"5a34c48d-1e8a-4802-b404-2e90e5fecc89","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:50,057 INFO  [log] {"timestamp":1580114150046,"payload":{"tokenId":"5a34c48d-1e8a-4802-b404-2e90e5fecc89","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:50,059 INFO  [log] 5a34c48d-1e8a-4802-b404-2e90e5fecc89
+2020-01-27 14:05:50,061 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:05:50,061 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:05:50,490 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:50,570 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:05:50,752 INFO  [log] hello
+2020-01-27 14:05:50,879 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:50,882 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:50,883 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status UNKNOWN
+2020-01-27 14:05:50,884 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:05:50,885 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status VALID
+2020-01-27 14:05:50,886 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:50,893 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:05:51,296 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:51,298 INFO  [log] {"timestamp":1580114151298,"payload":{"tokenId":"565e0ddf-7e67-4856-a768-3c864c48bc53","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:51,300 INFO  [log] {"timestamp":1580114151298,"payload":{"tokenId":"565e0ddf-7e67-4856-a768-3c864c48bc53","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:51,302 INFO  [log] 565e0ddf-7e67-4856-a768-3c864c48bc53
+2020-01-27 14:05:51,303 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:05:51,304 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:05:51,459 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:51,533 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:05:51,600 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:51,601 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:51,602 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status UNKNOWN
+2020-01-27 14:05:51,602 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:05:51,603 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status VALID
+2020-01-27 14:05:51,604 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:51,605 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:05:51,985 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:52,003 INFO  [log] {"timestamp":1580114151986,"payload":{"tokenId":"62f65571-f2c0-4323-a184-d690393d6bf9","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:52,005 INFO  [log] {"timestamp":1580114151986,"payload":{"tokenId":"62f65571-f2c0-4323-a184-d690393d6bf9","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:52,007 INFO  [log] 62f65571-f2c0-4323-a184-d690393d6bf9
+2020-01-27 14:05:52,009 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:05:52,010 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:05:52,151 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:52,205 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:05:52,217 INFO  [log] jxl.write.Label@7df1c36a
+2020-01-27 14:05:52,278 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:52,379 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:52,381 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status UNKNOWN
+2020-01-27 14:05:52,382 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:05:52,416 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status VALID
+2020-01-27 14:05:52,483 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:52,551 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:05:53,002 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:53,039 INFO  [log] {"timestamp":1580114153001,"payload":{"tokenId":"2a01d55c-3d8b-48ff-adcd-eb2efd7b5574","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:53,078 INFO  [log] {"timestamp":1580114153001,"payload":{"tokenId":"2a01d55c-3d8b-48ff-adcd-eb2efd7b5574","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:53,081 INFO  [log] 2a01d55c-3d8b-48ff-adcd-eb2efd7b5574
+2020-01-27 14:05:53,156 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:05:53,158 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:05:53,304 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:53,305 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:05:53,332 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:53,333 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:53,334 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status UNKNOWN
+2020-01-27 14:05:53,335 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:05:53,335 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status VALID
+2020-01-27 14:05:53,336 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:53,337 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:05:53,737 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:53,738 INFO  [log] {"timestamp":1580114153737,"payload":{"tokenId":"cbce53e1-bd0b-4ee0-a710-8b7680c2b98f","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:53,739 INFO  [log] {"timestamp":1580114153737,"payload":{"tokenId":"cbce53e1-bd0b-4ee0-a710-8b7680c2b98f","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:53,741 INFO  [log] cbce53e1-bd0b-4ee0-a710-8b7680c2b98f
+2020-01-27 14:05:53,743 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:05:53,744 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:05:53,894 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:53,985 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:05:53,998 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:53,999 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:53,999 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status UNKNOWN
+2020-01-27 14:05:54,001 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:05:54,002 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status VALID
+2020-01-27 14:05:54,002 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:54,003 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:05:54,404 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:54,588 INFO  [log] {"timestamp":1580114154404,"payload":{"tokenId":"71edf8e7-f2c5-408d-99ee-4a0fb101890c","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:54,593 INFO  [log] {"timestamp":1580114154404,"payload":{"tokenId":"71edf8e7-f2c5-408d-99ee-4a0fb101890c","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:54,594 INFO  [log] 71edf8e7-f2c5-408d-99ee-4a0fb101890c
+2020-01-27 14:05:54,596 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:05:54,597 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:05:54,753 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:54,918 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:05:55,036 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:55,038 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:55,038 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status UNKNOWN
+2020-01-27 14:05:55,039 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:05:55,040 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status VALID
+2020-01-27 14:05:55,042 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:55,043 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:05:55,422 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:55,423 INFO  [log] {"timestamp":1580114155424,"payload":{"tokenId":"f63adce4-d552-4108-b819-544424ec9c8d","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:55,426 INFO  [log] {"timestamp":1580114155424,"payload":{"tokenId":"f63adce4-d552-4108-b819-544424ec9c8d","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:55,428 INFO  [log] f63adce4-d552-4108-b819-544424ec9c8d
+2020-01-27 14:05:55,430 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:05:55,430 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:05:55,582 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:55,583 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:05:55,651 INFO  [log] hello
+2020-01-27 14:05:55,753 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:55,755 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:55,755 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status UNKNOWN
+2020-01-27 14:05:55,757 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:05:55,758 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status VALID
+2020-01-27 14:05:55,758 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:55,759 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:05:56,151 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:56,293 INFO  [log] {"timestamp":1580114156152,"payload":{"tokenId":"c6c0d057-57d0-40a1-accf-16065f14c231","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:56,299 INFO  [log] {"timestamp":1580114156152,"payload":{"tokenId":"c6c0d057-57d0-40a1-accf-16065f14c231","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:56,301 INFO  [log] c6c0d057-57d0-40a1-accf-16065f14c231
+2020-01-27 14:05:56,303 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:05:56,304 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:05:56,462 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:56,632 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:05:56,727 INFO  [log] jxl.write.Label@9962860
+2020-01-27 14:05:56,788 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:56,789 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:56,790 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status UNKNOWN
+2020-01-27 14:05:56,791 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:05:56,791 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status VALID
+2020-01-27 14:05:56,792 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:56,793 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:05:57,170 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:57,232 INFO  [log] {"timestamp":1580114157170,"payload":{"tokenId":"9f6afbc6-0c46-493f-b677-13f6d6ec1b8e","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:57,235 INFO  [log] {"timestamp":1580114157170,"payload":{"tokenId":"9f6afbc6-0c46-493f-b677-13f6d6ec1b8e","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:57,236 INFO  [log] 9f6afbc6-0c46-493f-b677-13f6d6ec1b8e
+2020-01-27 14:05:57,238 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:05:57,239 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:05:57,387 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:57,389 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:05:57,472 INFO  [log] jxl.write.Label@7f05d1e8
+2020-01-27 14:05:57,570 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:57,571 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:57,572 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status UNKNOWN
+2020-01-27 14:05:57,572 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:05:57,573 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status VALID
+2020-01-27 14:05:57,573 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:57,574 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:05:57,966 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:58,002 INFO  [log] {"timestamp":1580114157968,"payload":{"tokenId":"8a87d9e2-2e7f-47a6-af42-15f87967c6bf","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:58,004 INFO  [log] {"timestamp":1580114157968,"payload":{"tokenId":"8a87d9e2-2e7f-47a6-af42-15f87967c6bf","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:58,006 INFO  [log] 8a87d9e2-2e7f-47a6-af42-15f87967c6bf
+2020-01-27 14:05:58,007 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:05:58,008 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:05:58,189 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:58,190 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:05:58,207 INFO  [log] jxl.write.Label@5800f821
+2020-01-27 14:05:58,209 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:58,210 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:58,210 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status UNKNOWN
+2020-01-27 14:05:58,211 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:05:58,213 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status VALID
+2020-01-27 14:05:58,215 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:58,216 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:05:58,615 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:58,617 INFO  [log] {"timestamp":1580114158615,"payload":{"tokenId":"c93051fc-1dfe-453d-8e27-d34fabcbae86","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:58,619 INFO  [log] {"timestamp":1580114158615,"payload":{"tokenId":"c93051fc-1dfe-453d-8e27-d34fabcbae86","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:58,621 INFO  [log] c93051fc-1dfe-453d-8e27-d34fabcbae86
+2020-01-27 14:05:58,623 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:05:58,624 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:05:58,800 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:58,801 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:05:58,809 INFO  [log] jxl.write.Label@72ba2159
+2020-01-27 14:05:58,812 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:58,813 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:58,814 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status UNKNOWN
+2020-01-27 14:05:58,815 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:05:58,816 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status VALID
+2020-01-27 14:05:58,817 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:58,818 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:05:59,208 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:59,210 INFO  [log] {"timestamp":1580114159210,"payload":{"tokenId":"966a361d-c4e5-4bf3-b073-9bb6b33802b8","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:59,213 INFO  [log] {"timestamp":1580114159210,"payload":{"tokenId":"966a361d-c4e5-4bf3-b073-9bb6b33802b8","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:59,214 INFO  [log] 966a361d-c4e5-4bf3-b073-9bb6b33802b8
+2020-01-27 14:05:59,217 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:05:59,218 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:05:59,387 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:05:59,389 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:05:59,414 INFO  [log] jxl.write.Label@5b683fdc
+2020-01-27 14:05:59,416 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:05:59,417 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:05:59,418 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status UNKNOWN
+2020-01-27 14:05:59,419 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:05:59,420 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status VALID
+2020-01-27 14:05:59,421 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:05:59,421 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:05:59,805 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:05:59,898 INFO  [log] {"timestamp":1580114159806,"payload":{"tokenId":"53c89021-0721-45ba-b100-d13e3b0205c1","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:59,921 INFO  [log] {"timestamp":1580114159806,"payload":{"tokenId":"53c89021-0721-45ba-b100-d13e3b0205c1","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:05:59,923 INFO  [log] 53c89021-0721-45ba-b100-d13e3b0205c1
+2020-01-27 14:05:59,925 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:05:59,926 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:06:00,121 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:06:00,123 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:06:00,139 INFO  [log] jxl.write.Label@7eef5eda
+2020-01-27 14:06:00,366 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:00,472 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:06:00,516 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status UNKNOWN
+2020-01-27 14:06:00,544 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:06:00,544 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status VALID
+2020-01-27 14:06:00,547 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:06:00,548 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:06:00,947 INFO  [SoapUITestCaseRunner] running step [Fetch Token]
+2020-01-27 14:06:00,948 INFO  [log] {"timestamp":1580114160947,"payload":{"tokenId":"5c2075aa-6f7a-410c-ad24-e5def1bca113","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:00,950 INFO  [log] {"timestamp":1580114160947,"payload":{"tokenId":"5c2075aa-6f7a-410c-ad24-e5def1bca113","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:00,952 INFO  [log] 5c2075aa-6f7a-410c-ad24-e5def1bca113
+2020-01-27 14:06:00,953 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:06:00,954 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:06:01,131 INFO  [log] Setting the stoploop property now...
+2020-01-27 14:06:01,134 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:06:01,135 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:06:01,163 INFO  [log] jxl.write.Label@59c77d6a
+2020-01-27 14:06:01,165 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:01,166 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status VALID
+2020-01-27 14:06:01,167 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status UNKNOWN
+2020-01-27 14:06:01,168 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:06:01,169 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status VALID
+2020-01-27 14:06:01,170 INFO  [SoapUITestCaseRunner] running step [Loop]
+2020-01-27 14:06:01,171 INFO  [log] Exit Groovy Data Source Looper
+2020-01-27 14:06:01,237 INFO  [log] output excel sheet closed
+2020-01-27 14:06:01,239 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [Copy of Create Menu], time taken: 8565ms, status: FINISHED
+2020-01-27 14:06:01,252 INFO  [log] output excel sheet created
+2020-01-27 14:06:01,253 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [Copy of Update Menu]
+2020-01-27 14:06:01,254 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:06:01,676 INFO  [SoapUITestCaseRunner] running step [Fetch Token & Menu Name]
+2020-01-27 14:06:01,684 INFO  [log] {"timestamp":1580114161675,"payload":{"tokenId":"e7c95684-7c58-47ea-91cc-3a467cbba4db","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:01,687 INFO  [log] {"timestamp":1580114161675,"payload":{"tokenId":"e7c95684-7c58-47ea-91cc-3a467cbba4db","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:01,689 INFO  [log] e7c95684-7c58-47ea-91cc-3a467cbba4db
+2020-01-27 14:06:01,691 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:06:01,691 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:06:01,747 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:01,846 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:01,848 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:06:01,927 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status UNKNOWN
+2020-01-27 14:06:02,037 INFO  [SoapUITestCaseRunner] running step [Fetch Menu Id Created]
+2020-01-27 14:06:02,145 INFO  [log] {"timestamp":1580114161748,"payload":{"entity":"Menu","action":"CREATE","entityId":"98dfc770-939e-4da8-8806-79368985b388"}}
+2020-01-27 14:06:02,216 INFO  [log] 98dfc770-939e-4da8-8806-79368985b388
+2020-01-27 14:06:02,219 INFO  [SoapUITestCaseRunner] running step [StoreMenuId]
+2020-01-27 14:06:02,220 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:06:02,531 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:06:02,834 INFO  [SoapUITestCaseRunner] running step [Update API]
+2020-01-27 14:06:03,124 INFO  [log] 4a9784d4-8798-4782-9e63-33814a89daf0
+2020-01-27 14:06:03,127 INFO  [log] asdasdasdasd
+2020-01-27 14:06:03,129 INFO  [log] ACT001
+2020-01-27 14:06:03,132 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:03,134 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:03,135 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:06:03,136 INFO  [SoapUITestCaseRunner] running step [UpdateMenu_Loop]
+2020-01-27 14:06:03,142 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:06:03,539 INFO  [SoapUITestCaseRunner] running step [Fetch Token & Menu Name]
+2020-01-27 14:06:03,540 INFO  [log] {"timestamp":1580114163541,"payload":{"tokenId":"20d8cfb1-17d0-484f-8388-776cf73572e4","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:03,541 INFO  [log] {"timestamp":1580114163541,"payload":{"tokenId":"20d8cfb1-17d0-484f-8388-776cf73572e4","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:03,543 INFO  [log] 20d8cfb1-17d0-484f-8388-776cf73572e4
+2020-01-27 14:06:03,545 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:06:03,546 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:06:03,626 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:03,628 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:03,628 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:06:03,629 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status UNKNOWN
+2020-01-27 14:06:03,630 INFO  [SoapUITestCaseRunner] running step [Fetch Menu Id Created]
+2020-01-27 14:06:03,631 INFO  [log] {"timestamp":1580114163628,"payload":{"entity":"Menu","action":"CREATE","entityId":"6446b863-61dd-439a-b3ad-64521070b633"}}
+2020-01-27 14:06:03,632 INFO  [log] 6446b863-61dd-439a-b3ad-64521070b633
+2020-01-27 14:06:03,634 INFO  [SoapUITestCaseRunner] running step [StoreMenuId]
+2020-01-27 14:06:03,635 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:06:03,821 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:06:03,822 INFO  [SoapUITestCaseRunner] running step [Update API]
+2020-01-27 14:06:03,852 INFO  [log] 4a9784d4-8798-4782-9e63-33814a89daf0
+2020-01-27 14:06:03,854 INFO  [log] asdasdasdasd
+2020-01-27 14:06:03,855 INFO  [log] 
+2020-01-27 14:06:03,857 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:03,858 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:03,859 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:06:03,859 INFO  [SoapUITestCaseRunner] running step [UpdateMenu_Loop]
+2020-01-27 14:06:03,861 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:06:04,288 INFO  [SoapUITestCaseRunner] running step [Fetch Token & Menu Name]
+2020-01-27 14:06:04,289 INFO  [log] {"timestamp":1580114164289,"payload":{"tokenId":"ac315250-c316-4299-94fa-b54262487bcb","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:04,292 INFO  [log] {"timestamp":1580114164289,"payload":{"tokenId":"ac315250-c316-4299-94fa-b54262487bcb","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:04,294 INFO  [log] ac315250-c316-4299-94fa-b54262487bcb
+2020-01-27 14:06:04,296 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:06:04,297 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:06:04,344 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:04,345 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:04,346 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:06:04,347 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status UNKNOWN
+2020-01-27 14:06:04,347 INFO  [SoapUITestCaseRunner] running step [Fetch Menu Id Created]
+2020-01-27 14:06:04,348 INFO  [log] {"timestamp":1580114164346,"payload":{"entity":"Menu","action":"CREATE","entityId":"75ee62da-0f15-4d63-be2d-a376a1d7ac90"}}
+2020-01-27 14:06:04,350 INFO  [log] 75ee62da-0f15-4d63-be2d-a376a1d7ac90
+2020-01-27 14:06:04,352 INFO  [SoapUITestCaseRunner] running step [StoreMenuId]
+2020-01-27 14:06:04,352 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:06:04,499 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:06:04,501 INFO  [SoapUITestCaseRunner] running step [Update API]
+2020-01-27 14:06:04,547 INFO  [log] 4a9784d4-8798-4782-9e63-33814a89daf0
+2020-01-27 14:06:04,550 INFO  [log] asdasdasdasd
+2020-01-27 14:06:04,552 INFO  [log] 
+2020-01-27 14:06:04,554 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:04,555 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:04,556 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:06:04,557 INFO  [SoapUITestCaseRunner] running step [UpdateMenu_Loop]
+2020-01-27 14:06:04,558 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:06:04,951 INFO  [SoapUITestCaseRunner] running step [Fetch Token & Menu Name]
+2020-01-27 14:06:04,958 INFO  [log] {"timestamp":1580114164953,"payload":{"tokenId":"54a16805-e8b4-4cf7-99a5-bf77968ab509","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:05,033 INFO  [log] {"timestamp":1580114164953,"payload":{"tokenId":"54a16805-e8b4-4cf7-99a5-bf77968ab509","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:05,238 INFO  [log] 54a16805-e8b4-4cf7-99a5-bf77968ab509
+2020-01-27 14:06:05,409 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:06:05,478 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:06:05,568 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:05,569 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:05,570 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:06:05,570 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status UNKNOWN
+2020-01-27 14:06:05,572 INFO  [SoapUITestCaseRunner] running step [Fetch Menu Id Created]
+2020-01-27 14:06:05,572 INFO  [log] {"timestamp":1580114165569,"payload":{"entity":"Menu","action":"CREATE","entityId":"fb4a1139-229d-4feb-8e40-ed97514ae318"}}
+2020-01-27 14:06:05,574 INFO  [log] fb4a1139-229d-4feb-8e40-ed97514ae318
+2020-01-27 14:06:05,576 INFO  [SoapUITestCaseRunner] running step [StoreMenuId]
+2020-01-27 14:06:05,577 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:06:05,731 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:06:05,732 INFO  [SoapUITestCaseRunner] running step [Update API]
+2020-01-27 14:06:05,749 INFO  [log] 60df86cd-e2da-45b8-97b7-623d786d37ff
+2020-01-27 14:06:05,751 INFO  [log] asdasdasdasd
+2020-01-27 14:06:05,752 INFO  [log] 
+2020-01-27 14:06:05,754 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:05,754 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:05,755 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:06:05,756 INFO  [SoapUITestCaseRunner] running step [UpdateMenu_Loop]
+2020-01-27 14:06:05,757 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:06:06,165 INFO  [SoapUITestCaseRunner] running step [Fetch Token & Menu Name]
+2020-01-27 14:06:06,166 INFO  [log] {"timestamp":1580114166166,"payload":{"tokenId":"b43ab237-d7ba-4f00-b5d3-15f6effd8993","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:06,168 INFO  [log] {"timestamp":1580114166166,"payload":{"tokenId":"b43ab237-d7ba-4f00-b5d3-15f6effd8993","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:06,170 INFO  [log] b43ab237-d7ba-4f00-b5d3-15f6effd8993
+2020-01-27 14:06:06,172 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:06:06,173 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:06:06,213 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:06,214 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:06,215 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:06:06,216 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status UNKNOWN
+2020-01-27 14:06:06,216 INFO  [SoapUITestCaseRunner] running step [Fetch Menu Id Created]
+2020-01-27 14:06:06,218 INFO  [log] {"timestamp":1580114166212,"payload":{"entity":"Menu","action":"CREATE","entityId":"8c81c0e1-c879-41d4-9a0f-f62b98d24838"}}
+2020-01-27 14:06:06,220 INFO  [log] 8c81c0e1-c879-41d4-9a0f-f62b98d24838
+2020-01-27 14:06:06,222 INFO  [SoapUITestCaseRunner] running step [StoreMenuId]
+2020-01-27 14:06:06,223 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:06:06,382 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:06:06,383 INFO  [SoapUITestCaseRunner] running step [Update API]
+2020-01-27 14:06:06,393 INFO  [log] 60df86cd-e2da-45b8-97b7-623d786d37ff
+2020-01-27 14:06:06,395 INFO  [log] asdasdasdasd
+2020-01-27 14:06:06,397 INFO  [log] 
+2020-01-27 14:06:06,399 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:06,400 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:06,400 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:06:06,401 INFO  [SoapUITestCaseRunner] running step [UpdateMenu_Loop]
+2020-01-27 14:06:06,402 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:06:06,809 INFO  [SoapUITestCaseRunner] running step [Fetch Token & Menu Name]
+2020-01-27 14:06:06,810 INFO  [log] {"timestamp":1580114166809,"payload":{"tokenId":"b1bc328e-3fe6-4ae8-8abb-d5530fa8eb97","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:06,812 INFO  [log] {"timestamp":1580114166809,"payload":{"tokenId":"b1bc328e-3fe6-4ae8-8abb-d5530fa8eb97","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:06,813 INFO  [log] b1bc328e-3fe6-4ae8-8abb-d5530fa8eb97
+2020-01-27 14:06:06,816 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:06:06,817 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:06:06,866 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:06,899 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:06,937 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:06:06,940 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status UNKNOWN
+2020-01-27 14:06:06,942 INFO  [SoapUITestCaseRunner] running step [Fetch Menu Id Created]
+2020-01-27 14:06:06,944 INFO  [log] {"timestamp":1580114166867,"payload":{"entity":"Menu","action":"CREATE","entityId":"e0c768bb-229f-407f-a1ed-5e44fb5bc2e7"}}
+2020-01-27 14:06:06,948 INFO  [log] e0c768bb-229f-407f-a1ed-5e44fb5bc2e7
+2020-01-27 14:06:06,950 INFO  [SoapUITestCaseRunner] running step [StoreMenuId]
+2020-01-27 14:06:06,951 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:06:07,096 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:06:07,097 INFO  [SoapUITestCaseRunner] running step [Update API]
+2020-01-27 14:06:07,132 INFO  [log] 4a9784d4-8798-4782-9e63-33814a89daf0
+2020-01-27 14:06:07,135 INFO  [log] asdasdasdasd
+2020-01-27 14:06:07,136 INFO  [log] act001
+2020-01-27 14:06:07,139 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:07,140 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:07,141 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:06:07,142 INFO  [SoapUITestCaseRunner] running step [UpdateMenu_Loop]
+2020-01-27 14:06:07,142 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:06:07,537 INFO  [SoapUITestCaseRunner] running step [Fetch Token & Menu Name]
+2020-01-27 14:06:07,538 INFO  [log] {"timestamp":1580114167539,"payload":{"tokenId":"29801ee8-a4db-45c1-bf86-44b1685ac08a","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:07,540 INFO  [log] {"timestamp":1580114167539,"payload":{"tokenId":"29801ee8-a4db-45c1-bf86-44b1685ac08a","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:07,541 INFO  [log] 29801ee8-a4db-45c1-bf86-44b1685ac08a
+2020-01-27 14:06:07,544 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:06:07,545 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:06:07,586 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:07,587 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:07,588 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:06:07,589 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status UNKNOWN
+2020-01-27 14:06:07,590 INFO  [SoapUITestCaseRunner] running step [Fetch Menu Id Created]
+2020-01-27 14:06:07,591 INFO  [log] {"timestamp":1580114167587,"payload":{"entity":"Menu","action":"CREATE","entityId":"74cb27c4-7898-480f-b842-f96059f17d5a"}}
+2020-01-27 14:06:07,594 INFO  [log] 74cb27c4-7898-480f-b842-f96059f17d5a
+2020-01-27 14:06:07,596 INFO  [SoapUITestCaseRunner] running step [StoreMenuId]
+2020-01-27 14:06:07,597 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:06:07,783 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:06:07,785 INFO  [SoapUITestCaseRunner] running step [Update API]
+2020-01-27 14:06:08,021 INFO  [log] 4a9784d4-8798-4782-9e63-33814a89daf0
+2020-01-27 14:06:08,023 INFO  [log] asdasdasdasd
+2020-01-27 14:06:08,025 INFO  [log] 
+2020-01-27 14:06:08,027 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:08,028 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:08,029 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:06:08,030 INFO  [SoapUITestCaseRunner] running step [UpdateMenu_Loop]
+2020-01-27 14:06:08,031 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:06:08,423 INFO  [SoapUITestCaseRunner] running step [Fetch Token & Menu Name]
+2020-01-27 14:06:08,425 INFO  [log] {"timestamp":1580114168424,"payload":{"tokenId":"3901a1bd-456d-41f1-84a4-1789293666ea","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:08,427 INFO  [log] {"timestamp":1580114168424,"payload":{"tokenId":"3901a1bd-456d-41f1-84a4-1789293666ea","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:08,429 INFO  [log] 3901a1bd-456d-41f1-84a4-1789293666ea
+2020-01-27 14:06:08,430 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:06:08,432 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:06:08,471 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:08,472 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:08,473 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:06:08,474 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status UNKNOWN
+2020-01-27 14:06:08,475 INFO  [SoapUITestCaseRunner] running step [Fetch Menu Id Created]
+2020-01-27 14:06:08,476 INFO  [log] {"timestamp":1580114168472,"payload":{"entity":"Menu","action":"CREATE","entityId":"54a66ab2-8411-4ec5-a1df-ee472fd72eed"}}
+2020-01-27 14:06:08,477 INFO  [log] 54a66ab2-8411-4ec5-a1df-ee472fd72eed
+2020-01-27 14:06:08,479 INFO  [SoapUITestCaseRunner] running step [StoreMenuId]
+2020-01-27 14:06:08,481 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:06:08,636 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:06:08,637 INFO  [SoapUITestCaseRunner] running step [Update API]
+2020-01-27 14:06:08,657 INFO  [log] 4a9784d4-8798-4782-9e63-33814a89daf0
+2020-01-27 14:06:08,660 INFO  [log] asdasdasdasd
+2020-01-27 14:06:08,661 INFO  [log] 
+2020-01-27 14:06:08,664 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:08,665 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:08,666 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:06:08,667 INFO  [SoapUITestCaseRunner] running step [UpdateMenu_Loop]
+2020-01-27 14:06:08,667 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:06:09,035 INFO  [SoapUITestCaseRunner] running step [Fetch Token & Menu Name]
+2020-01-27 14:06:09,220 INFO  [log] {"timestamp":1580114169034,"payload":{"tokenId":"b7ff29de-414f-4678-b2a2-92bcbf4c41e7","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:09,227 INFO  [log] {"timestamp":1580114169034,"payload":{"tokenId":"b7ff29de-414f-4678-b2a2-92bcbf4c41e7","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:09,229 INFO  [log] b7ff29de-414f-4678-b2a2-92bcbf4c41e7
+2020-01-27 14:06:09,230 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:06:09,231 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:06:09,273 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:09,297 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:09,398 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:06:09,527 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status UNKNOWN
+2020-01-27 14:06:09,594 INFO  [SoapUITestCaseRunner] running step [Fetch Menu Id Created]
+2020-01-27 14:06:09,595 INFO  [log] {"timestamp":1580114169274,"payload":{"entity":"Menu","action":"CREATE","entityId":"f8a31c4c-492d-4e24-b288-e5000604b1dc"}}
+2020-01-27 14:06:09,623 INFO  [log] f8a31c4c-492d-4e24-b288-e5000604b1dc
+2020-01-27 14:06:09,625 INFO  [SoapUITestCaseRunner] running step [StoreMenuId]
+2020-01-27 14:06:09,625 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:06:09,827 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:06:09,828 INFO  [SoapUITestCaseRunner] running step [Update API]
+2020-01-27 14:06:09,849 INFO  [log] 4a9784d4-8798-4782-9e63-33814a89daf0
+2020-01-27 14:06:09,850 INFO  [log] asdasdasdasd
+2020-01-27 14:06:09,852 INFO  [log] ACT001
+2020-01-27 14:06:09,854 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:09,854 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:09,855 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:06:09,856 INFO  [SoapUITestCaseRunner] running step [UpdateMenu_Loop]
+2020-01-27 14:06:09,857 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:06:10,228 INFO  [SoapUITestCaseRunner] running step [Fetch Token & Menu Name]
+2020-01-27 14:06:10,229 INFO  [log] {"timestamp":1580114170227,"payload":{"tokenId":"f405eb35-0a65-4d48-9c0f-1010cf82b974","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:10,231 INFO  [log] {"timestamp":1580114170227,"payload":{"tokenId":"f405eb35-0a65-4d48-9c0f-1010cf82b974","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:10,233 INFO  [log] f405eb35-0a65-4d48-9c0f-1010cf82b974
+2020-01-27 14:06:10,234 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:06:10,235 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:06:10,306 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:10,307 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:10,308 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:06:10,308 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status UNKNOWN
+2020-01-27 14:06:10,309 INFO  [SoapUITestCaseRunner] running step [Fetch Menu Id Created]
+2020-01-27 14:06:10,310 INFO  [log] {"timestamp":1580114170308,"payload":{"entity":"Menu","action":"CREATE","entityId":"4a51a4b6-7f5a-4cdf-8289-5cdbd8d044bf"}}
+2020-01-27 14:06:10,312 INFO  [log] 4a51a4b6-7f5a-4cdf-8289-5cdbd8d044bf
+2020-01-27 14:06:10,314 INFO  [SoapUITestCaseRunner] running step [StoreMenuId]
+2020-01-27 14:06:10,315 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:06:10,541 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:06:10,543 INFO  [SoapUITestCaseRunner] running step [Update API]
+2020-01-27 14:06:10,564 INFO  [log] 4a9784d4-8798-4782-9e63-33814a89daf0
+2020-01-27 14:06:10,565 INFO  [log] asdasdasdasd
+2020-01-27 14:06:10,567 INFO  [log] 
+2020-01-27 14:06:10,569 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:10,570 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:10,571 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:06:10,572 INFO  [SoapUITestCaseRunner] running step [UpdateMenu_Loop]
+2020-01-27 14:06:10,573 INFO  [SoapUITestCaseRunner] running step [Token]
+2020-01-27 14:06:10,989 INFO  [SoapUITestCaseRunner] running step [Fetch Token & Menu Name]
+2020-01-27 14:06:11,094 INFO  [log] {"timestamp":1580114170990,"payload":{"tokenId":"f7b55643-3c84-40d4-94e3-fed15b7116bc","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:11,134 INFO  [log] {"timestamp":1580114170990,"payload":{"tokenId":"f7b55643-3c84-40d4-94e3-fed15b7116bc","emailAddress":"admin@zycus.com","userId":"f285751e-79d6-4cec-a781-d6a5341fff72","tenantId":"054508f8-2757-4e33-8df6-ac2f4e1fbc09"}}
+2020-01-27 14:06:11,137 INFO  [log] f7b55643-3c84-40d4-94e3-fed15b7116bc
+2020-01-27 14:06:11,140 INFO  [SoapUITestCaseRunner] running step [StoredTokenId]
+2020-01-27 14:06:11,141 INFO  [SoapUITestCaseRunner] running step [Menu]
+2020-01-27 14:06:11,198 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:11,199 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:11,199 INFO  [SoapUITestCaseRunner] Assertion [Compare action] has status UNKNOWN
+2020-01-27 14:06:11,200 INFO  [SoapUITestCaseRunner] Assertion [Script- Response Verification] has status UNKNOWN
+2020-01-27 14:06:11,201 INFO  [SoapUITestCaseRunner] running step [Fetch Menu Id Created]
+2020-01-27 14:06:11,202 INFO  [log] {"timestamp":1580114171196,"payload":{"entity":"Menu","action":"CREATE","entityId":"08697584-5d6e-4ab8-bd2e-b74b3f5b905d"}}
+2020-01-27 14:06:11,203 INFO  [log] 08697584-5d6e-4ab8-bd2e-b74b3f5b905d
+2020-01-27 14:06:11,205 INFO  [SoapUITestCaseRunner] running step [StoreMenuId]
+2020-01-27 14:06:11,206 INFO  [SoapUITestCaseRunner] running step [Data_Driver]
+2020-01-27 14:06:11,359 INFO  [log] Setting the stoploop property now...
+2020-01-27 14:06:11,367 INFO  [SoapUITestCaseRunner] running step [Property - Looper]
+2020-01-27 14:06:11,368 INFO  [SoapUITestCaseRunner] running step [Update API]
+2020-01-27 14:06:11,378 INFO  [log] 4a9784d4-8798-4782-9e63-33814a89daf0
+2020-01-27 14:06:11,380 INFO  [log] asdasdasdasd
+2020-01-27 14:06:11,381 INFO  [log] 
+2020-01-27 14:06:11,383 INFO  [SoapUITestCaseRunner] Assertion [Response SLA] has status UNKNOWN
+2020-01-27 14:06:11,383 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+2020-01-27 14:06:11,384 INFO  [SoapUITestCaseRunner] Assertion [Script Assertion] has status VALID
+2020-01-27 14:06:11,385 INFO  [SoapUITestCaseRunner] running step [UpdateMenu_Loop]
+2020-01-27 14:06:11,386 INFO  [log] Exit Groovy Data Source Looper
+2020-01-27 14:06:11,503 INFO  [log] output excel sheet closed
+2020-01-27 14:06:11,505 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [Copy of Update Menu], time taken: 8138ms, status: FINISHED
+2020-01-27 14:06:11,506 INFO  [SoapUITestCaseRunner] Project [Project 3] finished with status [FINISHED] in 70892ms
+2020-01-27 14:06:11,510 WARN  [Tools] Could not delete temporary directory C:\Users\ANKIT~1.PAN\AppData\Local\Temp\a5fd3075-93b3-456e-9ddd-c99b2231abb3
+2020-01-27 14:06:11,516 WARN  [Tools] Could not delete temporary directory C:\Users\ANKIT~1.PAN\AppData\Local\Temp\63e26a37-7ec5-40d7-bb9f-9438b668cc86
